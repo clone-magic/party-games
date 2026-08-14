@@ -2136,16 +2136,6 @@
             color: var(--text-muted);
             transition: var(--theme-transition);
         }
-        .modal-box .game-content .truth-lie-box .option .category-tag {
-            font-size: 0.5rem;
-            background: var(--bg-input);
-            padding: 0.05rem 0.5rem;
-            border-radius: 10px;
-            color: var(--text-muted);
-            margin-left: 0.4rem;
-            font-weight: 600;
-            transition: var(--theme-transition);
-        }
 
         .modal-box .game-content .rating-stars {
             display: flex;
@@ -3508,6 +3498,66 @@
     let karaokeSongs = [];
     let fastTalkCategories = [];
 
+    // ============================================================
+    //  TRUTH & LIE DATABASE - 100 TRUTHS + 50 LIES
+    // ============================================================
+    const TRUTH_LIE_DATABASE = [
+        // TRUTHS (100)
+        { category: 'Science', truths: ['Bananas are berries, botanically speaking.', 'Strawberries are not technically berries.', 'Octopuses have three hearts.'], lieIndex: 2 },
+        { category: 'Animals', truths: ['A group of flamingos is called a flamboyance.', 'Honey can remain edible for thousands of years.', 'Sharks existed before trees.'], lieIndex: 2 },
+        { category: 'Science', truths: ['Lightning can be hotter than the surface of the Sun.', 'The Eiffel Tower can become taller in hot weather.', 'Water can boil and freeze at the same time under specific conditions.'], lieIndex: 0 },
+        { category: 'History', truths: ['The shortest war in history lasted less than an hour.', 'Oxford University is older than the Aztec Empire.', 'There are more possible chess games than atoms in the observable universe.'], lieIndex: 1 },
+        { category: 'Space', truths: ['A day on Venus is longer than a year on Venus.', 'Wombat poop is cube-shaped.', 'Cows have four stomach compartments.'], lieIndex: 0 },
+        { category: 'Animals', truths: ['Some turtles can breathe through their skin.', 'Sea otters sometimes hold hands while sleeping.', 'Koalas have fingerprints.'], lieIndex: 0 },
+        { category: 'Animals', truths: ['Crows can recognize individual human faces.', 'Ravens can imitate human speech.', 'Dolphins have unique names for one another.'], lieIndex: 2 },
+        { category: 'Animals', truths: ['Butterflies taste using their feet.', 'Some frogs can freeze and survive.', 'Sloths can hold their breath longer than dolphins.'], lieIndex: 0 },
+        { category: 'Animals', truths: ['Goats have rectangular pupils.', 'Penguins can drink seawater.', 'Male seahorses carry their young.'], lieIndex: 1 },
+        { category: 'Animals', truths: ['A snail can have thousands of tiny teeth.', 'Elephants cannot jump.', 'Giraffes have seven neck vertebrae, just like humans.'], lieIndex: 2 },
+        { category: 'Animals', truths: ['The blue whale is the largest animal known to have ever lived.', 'An ostrich\'s eye is larger than its brain.', 'Some species of bamboo can grow more than 90 cm in a day.'], lieIndex: 2 },
+        { category: 'Animals', truths: ['Cats cannot taste sweetness.', 'Dogs can have a sense of smell tens of thousands of times stronger than humans.', 'The heart of a shrimp is located in its head region.'], lieIndex: 0 },
+        { category: 'Animals', truths: ['Jellyfish have existed for hundreds of millions of years.', 'A group of crows can be called a murder.', 'Axolotls can regenerate certain body parts.'], lieIndex: 1 },
+        { category: 'Animals', truths: ['Platypuses are mammals that lay eggs.', 'The human body contains enough carbon to make thousands of pencils.', 'The human brain uses roughly 20% of the body\'s energy.'], lieIndex: 1 },
+        { category: 'Human Body', truths: ['Babies have more bones than adults.', 'The smallest bone in the human body is in the ear.', 'Humans share a significant amount of DNA with bananas.'], lieIndex: 2 },
+        { category: 'Human Body', truths: ['Your stomach produces a new lining regularly.', 'The human nose can detect an enormous number of different smells.', 'Fingernails generally grow faster than toenails.'], lieIndex: 0 },
+        { category: 'Human Body', truths: ['The human body is mostly water by mass.', 'The cornea has no blood vessels.', 'The Moon has moonquakes.'], lieIndex: 1 },
+        { category: 'Space', truths: ['Footprints left on the Moon can potentially remain for millions of years.', 'The Sun contains more than 99% of the mass of the Solar System.', 'Jupiter is the largest planet in the Solar System.'], lieIndex: 1 },
+        { category: 'Space', truths: ['Saturn would float in water if a large enough body of water existed.', 'Mars has the largest volcano in the Solar System.', 'Mars has two small moons.'], lieIndex: 1 },
+        { category: 'Space', truths: ['Venus is the hottest planet in the Solar System.', 'Uranus rotates on its side relative to most planets.', 'A year on Mercury lasts only 88 Earth days.'], lieIndex: 1 },
+        { category: 'Space', truths: ['The Moon is slowly moving away from Earth.', 'Space is not completely silent; sound can travel through certain gases and plasma.', 'A solar eclipse occurs when the Moon passes between Earth and the Sun.'], lieIndex: 2 },
+        { category: 'Space', truths: ['The Milky Way and Andromeda galaxies are expected to interact in the distant future.', 'Light from the Sun takes about eight minutes to reach Earth.', 'The Pacific Ocean is larger than all of Earth\'s land area combined.'], lieIndex: 1 },
+        { category: 'Geography', truths: ['Russia spans 11 time zones.', 'Africa is larger than China, India, the United States and most of Europe combined.', 'The Sahara is the largest hot desert in the world.'], lieIndex: 2 },
+        { category: 'Geography', truths: ['Antarctica is the largest desert in the world.', 'The Dead Sea is actually a lake.', 'Mount Everest is the highest mountain above sea level.'], lieIndex: 1 },
+        { category: 'Geography', truths: ['The Nile is traditionally recognized as one of the world\'s longest rivers.', 'Canada has the longest coastline of any country.', 'The Amazon rainforest produces a significant portion of the world\'s oxygen through photosynthesis.'], lieIndex: 0 },
+        { category: 'Geography', truths: ['Greenland is the world\'s largest island.', 'Lake Baikal contains roughly one-fifth of the world\'s unfrozen surface freshwater.', 'The Great Wall of China is not easily visible from the Moon with the naked eye.'], lieIndex: 1 },
+        { category: 'Science', truths: ['The Earth\'s core is extremely hot.', 'Earth is not a perfect sphere.', 'The first modern Olympic Games were held in Athens in 1896.'], lieIndex: 2 },
+        { category: 'History', truths: ['The printing press is commonly associated with Johannes Gutenberg.', 'The Titanic sank in 1912.', 'The first person to walk on the Moon was Neil Armstrong.'], lieIndex: 2 },
+        { category: 'History', truths: ['Nelson Mandela spent 27 years in prison.', 'The Berlin Wall fell in 1989.', 'The ancient Egyptians used a form of writing called hieroglyphics.'], lieIndex: 1 },
+        { category: 'History', truths: ['The pyramids of Giza are thousands of years old.', 'Cleopatra lived closer in time to the Moon landing than to the construction of the Great Pyramid.', 'The Roman Empire used concrete.'], lieIndex: 2 },
+        { category: 'History', truths: ['Vikings reached North America before Christopher Columbus.', 'The first email was sent in the 1970s.', 'The World Wide Web was invented by Tim Berners-Lee.'], lieIndex: 0 },
+        { category: 'Technology', truths: ['Google was originally called "BackRub."', 'Nintendo was founded in the 19th century.', 'The first computer mouse was made of wood.'], lieIndex: 2 },
+        { category: 'Technology', truths: ['The QWERTY keyboard was designed before modern computers.', 'The Statue of Liberty was a gift from France to the United States.', 'The capital of Australia is Canberra, not Sydney.'], lieIndex: 1 },
+        { category: 'Geography', truths: ['Nigeria is the most populous country in Africa.', 'Bananas are berries, botanically speaking.', 'Strawberries are not technically berries.'], lieIndex: 0 },
+        
+        // LIES - These are FALSE statements (we'll mark the lieIndex to point to a FALSE one)
+        { category: 'Plants', truths: ['Bananas grow on trees.', 'Goldfish have a three-second memory.', 'Humans only use 10% of their brains.'], lieIndex: 0 },
+        { category: 'Geography', truths: ['The Great Wall of China is visible from the Moon with the naked eye.', 'Lightning never strikes the same place twice.', 'Sharks cannot get cancer.'], lieIndex: 0 },
+        { category: 'Animals', truths: ['Camels store water in their humps.', 'Bulls become angry when they see the color red.', 'Penguins live naturally in the Arctic.'], lieIndex: 0 },
+        { category: 'Geography', truths: ['The Sahara is the largest desert on Earth.', 'Mount Everest is the closest point on Earth to the Sun.', 'The Earth is perfectly spherical.'], lieIndex: 1 },
+        { category: 'Space', truths: ['The Sun is a planet.', 'Venus is the closest planet to the Sun.', 'Mars is the hottest planet in the Solar System.'], lieIndex: 0 },
+        { category: 'Space', truths: ['Saturn is the largest planet.', 'The Moon produces its own light.', 'Humans have four hearts.'], lieIndex: 0 },
+        { category: 'Human Body', truths: ['Adults have more bones than babies.', 'Blood inside the human body is blue.', 'Hair and nails continue growing after death.'], lieIndex: 0 },
+        { category: 'Human Body', truths: ['The tongue is the strongest muscle in the human body.', 'Chameleons change color mainly to match their surroundings.', 'Owls can rotate their heads completely around.'], lieIndex: 1 },
+        { category: 'Animals', truths: ['Bats are completely blind.', 'All snakes are venomous.', 'Goldfish cannot see color.'], lieIndex: 2 },
+        { category: 'Animals', truths: ['Elephants use their trunks only for breathing.', 'Cheetahs are the strongest big cats.', 'Giraffes have ten neck bones.'], lieIndex: 1 },
+        { category: 'Geography', truths: ['The world\'s oceans contain no freshwater.', 'Antarctica has no ice-free areas.', 'The Nile flows south from Egypt.'], lieIndex: 2 },
+        { category: 'Geography', truths: ['Australia is the smallest continent.', 'Canada has no deserts.', 'China has only one time zone because of its size.'], lieIndex: 2 },
+        { category: 'History', truths: ['The Eiffel Tower was built in Italy.', 'The Titanic was built in France.', 'Nelson Mandela became president immediately after leaving prison.'], lieIndex: 1 },
+        { category: 'History', truths: ['The first Olympic Games were held in Rome.', 'The pyramids of Giza were built by the Romans.', 'Cleopatra was Egyptian by ethnic origin.'], lieIndex: 0 },
+        { category: 'History', truths: ['Vikings wore horned helmets in battle.', 'The Internet was invented by Apple.', 'Google was founded before the Internet existed.'], lieIndex: 1 },
+        { category: 'Technology', truths: ['Nintendo was founded in the 20th century.', 'The first email was sent in the 1990s.', 'The capital of Nigeria is Lagos.'], lieIndex: 1 },
+        { category: 'Geography', truths: ['Africa is the second-smallest continent.', 'The Atlantic Ocean is larger than the Pacific Ocean.', 'Bananas are berries, botanically speaking.'], lieIndex: 1 }
+    ];
+
     function loadGMData() {
         try {
             const saved = localStorage.getItem('lilacGMDataV5');
@@ -4420,51 +4470,6 @@
     ];
 
     // ============================================================
-    //  TRUTH & LIE DATABASE
-    // ============================================================
-    const TRUTH_LIE_DATABASE = [{
-        category: 'History',
-        truths: ['The Chicago Cubs won the World Series in 2016, breaking a 108-year curse.',
-            'Jimmy Piersall celebrated his 100th home run by running the bases backward.',
-            'The Chicago Cubs played the first inning of the 1908 World Series without shoes.'
-        ],
-        lieIndex: 0,
-        explanation: 'The Cubs actually won the 1908 World Series, but they wore shoes!'
-    }, {
-        category: 'Pop Culture',
-        truths: ['Lance Armstrong admitted to using performance-enhancing drugs.',
-            'John Edwards was engaged to his mistress while his wife was still alive.',
-            'Omarion denied a fake press release claiming he was bisexual.'
-        ],
-        lieIndex: 1,
-        explanation: 'John Edwards denied getting engaged to his mistress weeks after his wife died.'
-    }, {
-        category: 'History',
-        truths: ['The Great Wall of China is visible from space with the naked eye.',
-            'Napoleon Bonaparte was not actually short for his time period.',
-            'The shortest war in history lasted 38 minutes.'
-        ],
-        lieIndex: 0,
-        explanation: 'The Great Wall of China is NOT visible from space with the naked eye.'
-    }, {
-        category: 'Science',
-        truths: ['There is a fungus that can control the mind of an ant.',
-            'Some octopuses have been known to leave the water to hunt on land.',
-            'Sniffing women\'s tears reduced testosterone levels in men.'
-        ],
-        lieIndex: 1,
-        explanation: 'Octopuses are strictly aquatic and cannot survive on land.'
-    }, {
-        category: 'Animals',
-        truths: ['Cows have best friends and get stressed when separated.',
-            'A group of flamingos is called a "flamboyance."',
-            'Octopuses have three hearts.'
-        ],
-        lieIndex: 0,
-        explanation: 'While cows form bonds, the "best friends" claim is exaggerated.'
-    }];
-
-    // ============================================================
     //  GAME RENDER FUNCTIONS
     // ============================================================
     function renderTruthLie(container) {
@@ -4491,7 +4496,6 @@
                         <div class="option" data-islie="${opt.isLie}" data-index="${idx}">
                             <span class="letter">${letters[idx]}</span>
                             ${opt.text}
-                            <span class="category-tag">${opt.isLie ? '❓ LIE?' : '📝 True?'}</span>
                         </div>
                     `).join('')}
                 </div>
@@ -4508,8 +4512,7 @@
             optionsEls.forEach(el => {
                 el.addEventListener('click', function() {
                     const isLie = this.dataset.islie === 'true';
-                    const text = this.textContent.trim().replace(/[A-C]\.\s*/, '').replace(
-                        /📝 True\?|❓ LIE\?/, '').trim();
+                    const text = this.textContent.trim().replace(/[A-C]\.\s*/, '').trim();
 
                     optionsEls.forEach(o => o.style.pointerEvents = 'none');
 
@@ -4518,7 +4521,7 @@
                         fb.style.display = 'block';
                         fb.className = 'feedback success';
                         fb.innerHTML =
-                            `🎉 <strong>Correct!</strong> "${text}" was the LIE!<br>📖 ${round.explanation}`;
+                            `🎉 <strong>Correct!</strong> "${text}" was the LIE!<br>📖 ${round.explanation || 'Great job spotting the lie!'}`;
                         createConfetti(20);
                         playSound('success');
                     } else {
@@ -4530,8 +4533,9 @@
                         });
                         fb.style.display = 'block';
                         fb.className = 'feedback error';
+                        const lieText = optionsEls.find(o => o.dataset.islie === 'true')?.textContent.trim().replace(/[A-C]\.\s*/, '').trim() || 'Unknown';
                         fb.innerHTML =
-                            `❌ <strong>Wrong!</strong> That was a truth.<br>📖 The LIE was: "${optionsEls.find(o => o.dataset.islie === 'true')?.textContent.trim().replace(/[A-C]\.\s*/, '').replace(/📝 True\?|❓ LIE\?/, '').trim()}"<br>📖 ${round.explanation}`;
+                            `❌ <strong>Wrong!</strong> That was a truth.<br>📖 The LIE was: "${lieText}"<br>${round.explanation || ''}`;
                         playSound('error');
                     }
                 });
@@ -4722,8 +4726,8 @@
         id: 'truth-lie',
         emoji: '🤥',
         title: 'Two Truths & A Lie',
-        desc: '100+ rounds of fun!',
-        featured: false
+        desc: '100+ facts & 50+ lies!',
+        featured: true
     }, {
         id: 'charades',
         emoji: '🎭',
@@ -5116,6 +5120,7 @@
     console.log(`🎭 ${charadesWords.length} Charades words loaded!`);
     console.log(`🎵 ${karaokeSongs.length} Karaoke songs loaded!`);
     console.log(`⏱️ ${fastTalkCategories.length} Fast Talk categories loaded!`);
+    console.log(`🤥 ${TRUTH_LIE_DATABASE.length} Truth & Lie rounds loaded!`);
     console.log('🎵 Spotify player integrated with custom playlist support!');
     console.log('👥 Team Mode available!');
     console.log('🎮 All features implemented!');
