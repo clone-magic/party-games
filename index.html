@@ -95,7 +95,6 @@
             transition: var(--theme-transition);
         }
 
-        /* Gradient Background */
         body::after {
             content: '';
             position: fixed;
@@ -113,7 +112,119 @@
             transition: var(--theme-transition);
         }
 
-        /* --- LOGIN OVERLAY --- */
+        .glow-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 0;
+            animation: orbFloat 25s ease-in-out infinite;
+            transition: var(--theme-transition);
+        }
+        .glow-orb:nth-child(1) {
+            width: 500px;
+            height: 500px;
+            background: var(--orb-green);
+            top: -200px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+        .glow-orb:nth-child(2) {
+            width: 400px;
+            height: 400px;
+            background: var(--orb-yellow);
+            bottom: -150px;
+            left: -100px;
+            animation-delay: -5s;
+        }
+        .glow-orb:nth-child(3) {
+            width: 300px;
+            height: 300px;
+            background: var(--orb-peach);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -10s;
+        }
+        .glow-orb:nth-child(4) {
+            width: 350px;
+            height: 350px;
+            background: var(--orb-teal);
+            bottom: -50px;
+            right: -50px;
+            animation-delay: -15s;
+        }
+
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(30px, -20px) scale(1.05); }
+            50% { transform: translate(-20px, 30px) scale(0.95); }
+            75% { transform: translate(15px, -10px) scale(1.02); }
+        }
+
+        .particle {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: particleFloat linear infinite;
+            opacity: 0.06;
+            transition: var(--theme-transition);
+        }
+        [data-theme="dark"] .particle {
+            opacity: 0.03;
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) scale(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.1; }
+            90% { opacity: 0.1; }
+            100% { transform: translateY(-10vh) scale(1) rotate(720deg); opacity: 0; }
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            z-index: 9998;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loading-screen .loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--border-color);
+            border-top-color: var(--color-green);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        .loading-screen .loader-text {
+            margin-top: 1rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            animation: pulseText 1.5s ease-in-out infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes pulseText { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+
         .login-overlay {
             position: fixed;
             top: 0;
@@ -213,315 +324,177 @@
             transition: var(--theme-transition);
         }
 
-        /* --- GLOW ORBS --- */
-        .glow-orb {
+        .theme-toggle-simple {
             position: fixed;
-            border-radius: 50%;
-            filter: blur(120px);
-            pointer-events: none;
-            z-index: 0;
-            animation: orbFloat 25s ease-in-out infinite;
-            transition: var(--theme-transition);
-        }
-        .glow-orb:nth-child(1) {
-            width: 500px;
-            height: 500px;
-            background: var(--orb-green);
-            top: -200px;
-            right: -100px;
-            animation-delay: 0s;
-        }
-        .glow-orb:nth-child(2) {
-            width: 400px;
-            height: 400px;
-            background: var(--orb-yellow);
-            bottom: -150px;
-            left: -100px;
-            animation-delay: -5s;
-        }
-        .glow-orb:nth-child(3) {
-            width: 300px;
-            height: 300px;
-            background: var(--orb-peach);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation-delay: -10s;
-        }
-        .glow-orb:nth-child(4) {
-            width: 350px;
-            height: 350px;
-            background: var(--orb-teal);
-            bottom: -50px;
-            right: -50px;
-            animation-delay: -15s;
-        }
-
-        @keyframes orbFloat {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(30px, -20px) scale(1.05); }
-            50% { transform: translate(-20px, 30px) scale(0.95); }
-            75% { transform: translate(15px, -10px) scale(1.02); }
-        }
-
-        /* --- PARTICLES --- */
-        .particle {
-            position: fixed;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 0;
-            animation: particleFloat linear infinite;
-            opacity: 0.06;
-            transition: var(--theme-transition);
-        }
-        [data-theme="dark"] .particle {
-            opacity: 0.03;
-        }
-
-        @keyframes particleFloat {
-            0% { transform: translateY(100vh) scale(0) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.1; }
-            90% { opacity: 0.1; }
-            100% { transform: translateY(-10vh) scale(1) rotate(720deg); opacity: 0; }
-        }
-
-        .container {
-            max-width: 1100px;
-            width: 100%;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* --- LOADING SCREEN --- */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-primary);
-            z-index: 9998;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
-        }
-        .loading-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        .loading-screen .loader {
-            width: 60px;
-            height: 60px;
-            border: 4px solid var(--border-color);
-            border-top-color: var(--color-green);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        .loading-screen .loader-text {
-            margin-top: 1rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-            animation: pulseText 1.5s ease-in-out infinite;
-        }
-
-        @keyframes spin { to { transform: rotate(360deg); } }
-        @keyframes pulseText { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
-
-        /* ============================================================
-           HANGMAN
-           ============================================================ */
-        .hangman-container {
-            padding: 0.5rem 0;
-            width: 100%;
-        }
-
-        .hangman-display {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            width: 100%;
-        }
-
-        .hangman-figure {
-            font-family: 'Courier New', monospace;
-            font-size: 1.3rem;
-            line-height: 1.6;
-            background: var(--bg-input);
-            padding: 0.8rem 1.2rem;
-            border-radius: 16px;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
             border: 2px solid var(--border-color);
-            min-height: 200px;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100%;
+            cursor: pointer;
+            font-size: 1.4rem;
             transition: var(--theme-transition);
-            white-space: pre;
-            overflow-x: auto;
+            box-shadow: 0 4px 20px var(--shadow-color);
+        }
+        .theme-toggle-simple:hover {
+            transform: scale(1.1);
+            border-color: var(--color-green);
+            box-shadow: 0 8px 30px var(--shadow-strong);
+        }
+
+        .header {
+            text-align: center;
+            padding: 0.5rem 0 1rem 0;
+            animation: fadeDown 0.8s ease;
+        }
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 4rem;
+            font-weight: 700;
             color: var(--text-primary);
             letter-spacing: 1px;
-            box-shadow: inset 0 2px 10px var(--shadow-color);
-            animation: figureAppear 0.5s ease;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 4px 20px var(--shadow-color);
+            transition: var(--theme-transition);
+            background: linear-gradient(135deg, var(--color-green), var(--color-teal), var(--color-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
-        @keyframes figureAppear {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+        [data-theme="dark"] .header h1 {
+            background: linear-gradient(135deg, #8CB369, #5B8C8C, #F4C27A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
-        .hangman-word {
+        .header h1 .emoji-left,
+        .header h1 .emoji-right {
+            -webkit-text-fill-color: initial;
+        }
+        .header h1 .emoji-left {
             font-size: 2.8rem;
-            letter-spacing: 14px;
-            font-weight: 700;
-            font-family: 'Fredoka One', cursive;
-            color: var(--text-primary);
-            margin: 0.3rem 0;
-            transition: var(--theme-transition);
-            min-height: 4rem;
+            margin-right: 0.3rem;
+            animation: bounceEmoji 2s ease-in-out infinite;
+        }
+        .header h1 .emoji-right {
+            font-size: 2.8rem;
+            margin-left: 0.3rem;
+            animation: bounceEmoji 2s ease-in-out infinite 0.3s;
         }
 
-        .hangman-word .letter-revealed {
-            color: var(--color-green);
-        }
-        .hangman-word .letter-hidden {
-            color: var(--text-muted);
+        @keyframes bounceEmoji {
+            0%,100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
         }
 
-        .hangman-guesses {
-            font-size: 0.85rem;
+        .header .subhead {
             color: var(--text-secondary);
+            font-size: 1rem;
+            margin-top: 0.2rem;
+            font-weight: 600;
+            letter-spacing: 3px;
             transition: var(--theme-transition);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            justify-content: center;
         }
-        .hangman-guesses .wrong {
-            color: var(--color-peach);
-            font-weight: 700;
-        }
-        .hangman-guesses .correct {
+        .header .subhead span {
             color: var(--color-green);
-            font-weight: 700;
-        }
-
-        .hangman-input-row {
-            display: flex;
-            gap: 0.6rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: 100%;
-            margin: 0.3rem 0;
-        }
-
-        .hangman-input-row input {
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            border: 2px solid var(--border-color);
-            background: var(--bg-input);
-            color: var(--text-primary);
-            font-size: 1.2rem;
-            width: 70px;
-            text-align: center;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
+            animation: pulseText 2s ease-in-out infinite;
             transition: var(--theme-transition);
-            letter-spacing: 2px;
         }
 
-        .hangman-input-row input:focus {
-            outline: none;
-            border-color: var(--color-green);
-            box-shadow: 0 0 30px var(--glow-green);
+        .header .theme-bar {
+            display: flex;
+            height: 4px;
+            width: 100%;
+            max-width: 400px;
+            margin: 0.8rem auto;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 0 40px var(--glow-green);
+            transition: var(--theme-transition);
+        }
+        .header .theme-bar span {
+            flex: 1;
+            transition: all 0.5s ease;
+        }
+        .header .theme-bar span:hover { transform: scaleY(2); }
+        .header .theme-bar span:nth-child(1) { background: #8CB369; }
+        .header .theme-bar span:nth-child(2) { background: #F4C27A; }
+        .header .theme-bar span:nth-child(3) { background: #E8A87C; }
+        .header .theme-bar span:nth-child(4) { background: #5B8C8C; }
+        .header .theme-bar span:nth-child(5) { background: #8CB369; }
+
+        .music-visualizer {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            height: 30px;
+            margin: 0.5rem auto;
+            max-width: 200px;
+        }
+        .music-visualizer .bar {
+            width: 6px;
+            border-radius: 4px;
+            background: linear-gradient(180deg, var(--color-green), var(--color-yellow), var(--color-peach));
+            animation: visualizerBounce 0.8s ease-in-out infinite alternate;
+            transition: var(--theme-transition);
+        }
+        .music-visualizer .bar:nth-child(1) { height: 20px; animation-delay: 0s; }
+        .music-visualizer .bar:nth-child(2) { height: 30px; animation-delay: 0.1s; }
+        .music-visualizer .bar:nth-child(3) { height: 15px; animation-delay: 0.2s; }
+        .music-visualizer .bar:nth-child(4) { height: 28px; animation-delay: 0.3s; }
+        .music-visualizer .bar:nth-child(5) { height: 22px; animation-delay: 0.4s; }
+        .music-visualizer .bar:nth-child(6) { height: 35px; animation-delay: 0.5s; }
+        .music-visualizer .bar:nth-child(7) { height: 18px; animation-delay: 0.6s; }
+        .music-visualizer .bar:nth-child(8) { height: 25px; animation-delay: 0.7s; }
+
+        @keyframes visualizerBounce {
+            0% { transform: scaleY(0.4); }
+            100% { transform: scaleY(1); }
         }
 
-        .hangman-input-row input::placeholder {
-            color: var(--text-muted);
-            font-size: 0.8rem;
+        .spotify-launch-row {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
         }
 
-        .hangman-input-row button {
-            padding: 0.5rem 1.4rem;
+        .spotify-launch-row .btn-spotify-launch {
+            padding: 0.6rem 2.5rem;
             border-radius: 30px;
             border: none;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: var(--theme-transition);
             font-family: 'Nunito', sans-serif;
-            background: var(--color-green);
-            color: var(--color-white);
-            box-shadow: 0 4px 25px var(--glow-green);
-        }
-
-        .hangman-input-row button:hover {
-            transform: scale(1.05);
-        }
-
-        .hangman-input-row .hint-btn {
-            background: var(--color-yellow);
-            color: var(--color-wood);
-            box-shadow: 0 4px 25px var(--glow-yellow);
-        }
-
-        .hangman-input-row .hint-btn:hover {
-            box-shadow: 0 8px 35px var(--glow-yellow);
-        }
-
-        .hangman-input-row .reset-btn {
-            background: var(--color-peach);
-            color: var(--color-white);
-            box-shadow: 0 4px 25px var(--glow-peach);
-        }
-
-        .hangman-input-row .next-btn {
-            background: var(--color-teal);
-            color: var(--color-white);
-            box-shadow: 0 4px 25px var(--glow-teal);
-        }
-
-        .hangman-input-row .next-btn:hover {
-            box-shadow: 0 8px 35px var(--glow-teal);
-        }
-
-        .hangman-stats {
-            display: flex;
-            gap: 2rem;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            justify-content: center;
-            flex-wrap: wrap;
-            transition: var(--theme-transition);
-            margin-top: 0.2rem;
-        }
-
-        .hangman-stats span {
+            background: var(--spotify-green);
+            color: #000;
+            box-shadow: 0 4px 30px rgba(29, 185, 84, 0.3);
             display: flex;
             align-items: center;
-            gap: 0.3rem;
+            gap: 0.6rem;
+        }
+        .spotify-launch-row .btn-spotify-launch:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 8px 40px rgba(29, 185, 84, 0.4);
         }
 
-        .hangman-status {
-            font-size: 1.1rem;
-            font-weight: 700;
-            padding: 0.2rem 1rem;
-            border-radius: 16px;
-            transition: var(--theme-transition);
-        }
-        .hangman-status.win {
-            color: var(--color-green);
-        }
-        .hangman-status.lose {
-            color: var(--color-peach);
-        }
-
-        /* ============================================================
-           SPOTIFY PAGE
-           ============================================================ */
+        /* --- SPOTIFY PAGE --- */
         .spotify-page {
             display: none;
             position: fixed;
@@ -708,183 +681,27 @@
             background: #121212;
         }
 
-        /* --- THEME TOGGLE --- */
-        .theme-toggle-simple {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 100;
-            background: var(--bg-glass);
-            backdrop-filter: blur(20px);
-            border: 2px solid var(--border-color);
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1.4rem;
-            transition: var(--theme-transition);
-            box-shadow: 0 4px 20px var(--shadow-color);
-        }
-
-        .theme-toggle-simple:hover {
-            transform: scale(1.1);
-            border-color: var(--color-green);
-            box-shadow: 0 8px 30px var(--shadow-strong);
-        }
-
-        /* --- HEADER --- */
-        .header {
+        .spotify-note {
             text-align: center;
-            padding: 0.5rem 0 1rem 0;
-            animation: fadeDown 0.8s ease;
-        }
-        @keyframes fadeDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: var(--bg-input);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
         }
 
-        .header h1 {
-            font-family: 'Fredoka One', cursive;
-            font-size: 4rem;
+        .spotify-note a {
+            color: var(--spotify-green);
+            text-decoration: none;
             font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: 1px;
-            position: relative;
-            display: inline-block;
-            text-shadow: 0 4px 20px var(--shadow-color);
-            transition: var(--theme-transition);
-            background: linear-gradient(135deg, var(--color-green), var(--color-teal), var(--color-yellow));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        [data-theme="dark"] .header h1 {
-            background: linear-gradient(135deg, #8CB369, #5B8C8C, #F4C27A);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .header h1 .emoji-left,
-        .header h1 .emoji-right {
-            -webkit-text-fill-color: initial;
-        }
-        .header h1 .emoji-left {
-            font-size: 2.8rem;
-            margin-right: 0.3rem;
-            animation: bounceEmoji 2s ease-in-out infinite;
-        }
-        .header h1 .emoji-right {
-            font-size: 2.8rem;
-            margin-left: 0.3rem;
-            animation: bounceEmoji 2s ease-in-out infinite 0.3s;
         }
 
-        @keyframes bounceEmoji {
-            0%,100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(5deg); }
+        .spotify-note a:hover {
+            text-decoration: underline;
         }
 
-        .header .subhead {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            margin-top: 0.2rem;
-            font-weight: 600;
-            letter-spacing: 3px;
-            transition: var(--theme-transition);
-        }
-        .header .subhead span {
-            color: var(--color-green);
-            animation: pulseText 2s ease-in-out infinite;
-            transition: var(--theme-transition);
-        }
-
-        .header .theme-bar {
-            display: flex;
-            height: 4px;
-            width: 100%;
-            max-width: 400px;
-            margin: 0.8rem auto;
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 0 40px var(--glow-green);
-            transition: var(--theme-transition);
-        }
-        .header .theme-bar span {
-            flex: 1;
-            transition: all 0.5s ease;
-        }
-        .header .theme-bar span:hover { transform: scaleY(2); }
-        .header .theme-bar span:nth-child(1) { background: #8CB369; }
-        .header .theme-bar span:nth-child(2) { background: #F4C27A; }
-        .header .theme-bar span:nth-child(3) { background: #E8A87C; }
-        .header .theme-bar span:nth-child(4) { background: #5B8C8C; }
-        .header .theme-bar span:nth-child(5) { background: #8CB369; }
-
-        /* Music Visualizer */
-        .music-visualizer {
-            display: flex;
-            justify-content: center;
-            gap: 5px;
-            height: 30px;
-            margin: 0.5rem auto;
-            max-width: 200px;
-        }
-        .music-visualizer .bar {
-            width: 6px;
-            border-radius: 4px;
-            background: linear-gradient(180deg, var(--color-green), var(--color-yellow), var(--color-peach));
-            animation: visualizerBounce 0.8s ease-in-out infinite alternate;
-            transition: var(--theme-transition);
-        }
-        .music-visualizer .bar:nth-child(1) { height: 20px; animation-delay: 0s; }
-        .music-visualizer .bar:nth-child(2) { height: 30px; animation-delay: 0.1s; }
-        .music-visualizer .bar:nth-child(3) { height: 15px; animation-delay: 0.2s; }
-        .music-visualizer .bar:nth-child(4) { height: 28px; animation-delay: 0.3s; }
-        .music-visualizer .bar:nth-child(5) { height: 22px; animation-delay: 0.4s; }
-        .music-visualizer .bar:nth-child(6) { height: 35px; animation-delay: 0.5s; }
-        .music-visualizer .bar:nth-child(7) { height: 18px; animation-delay: 0.6s; }
-        .music-visualizer .bar:nth-child(8) { height: 25px; animation-delay: 0.7s; }
-
-        @keyframes visualizerBounce {
-            0% { transform: scaleY(0.4); }
-            100% { transform: scaleY(1); }
-        }
-
-        /* --- SPOTIFY LAUNCH BUTTON --- */
-        .spotify-launch-row {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1.2rem;
-            flex-wrap: wrap;
-        }
-
-        .spotify-launch-row .btn-spotify-launch {
-            padding: 0.6rem 2.5rem;
-            border-radius: 30px;
-            border: none;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--theme-transition);
-            font-family: 'Nunito', sans-serif;
-            background: var(--spotify-green);
-            color: #000;
-            box-shadow: 0 4px 30px rgba(29, 185, 84, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .spotify-launch-row .btn-spotify-launch:hover {
-            transform: translateY(-2px) scale(1.03);
-            box-shadow: 0 8px 40px rgba(29, 185, 84, 0.4);
-        }
-
-        /* --- PLAYER SETUP --- */
         .setup-area {
             background: var(--bg-glass);
             backdrop-filter: blur(20px);
@@ -1037,7 +854,6 @@
             50% { box-shadow: 0 0 40px var(--glow-green); }
         }
 
-        /* --- TEAM MODE --- */
         .team-section {
             background: var(--bg-glass);
             backdrop-filter: blur(20px);
@@ -1169,7 +985,6 @@
             color: var(--color-peach);
         }
 
-        /* --- GAME MASTER BUTTON --- */
         .gm-button-row {
             display: flex;
             justify-content: center;
@@ -1202,7 +1017,193 @@
             box-shadow: 0 4px 25px var(--glow-peach);
         }
 
-        /* --- RANDOM GAME BUTTON --- */
+        /* --- GAME MASTER PANEL - Full control for ALL games --- */
+        .gm-panel {
+            display: none;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid var(--border-light);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            animation: fadeUp 0.5s ease;
+            max-height: 600px;
+            overflow-y: auto;
+            transition: var(--theme-transition);
+        }
+        .gm-panel.active {
+            display: block;
+        }
+        .gm-panel h3 {
+            font-family: 'Fredoka One', cursive;
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--theme-transition);
+        }
+
+        .gm-panel .gm-tabs {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .gm-panel .gm-tabs button {
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-input);
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: var(--theme-transition);
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+        }
+
+        .gm-panel .gm-tabs button:hover {
+            border-color: var(--color-green);
+            background: var(--glow-green);
+            color: var(--text-primary);
+        }
+
+        .gm-panel .gm-tabs button.active {
+            border-color: var(--color-green);
+            background: var(--color-green);
+            color: var(--color-white);
+        }
+
+        .gm-panel .gm-tab-content {
+            display: none;
+            animation: fadeUp 0.3s ease;
+        }
+
+        .gm-panel .gm-tab-content.active {
+            display: block;
+        }
+
+        .gm-panel .gm-section {
+            background: var(--bg-input);
+            border-radius: 16px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+            transition: var(--theme-transition);
+        }
+
+        .gm-panel .gm-section h4 {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--theme-transition);
+        }
+
+        .gm-panel .gm-section .gm-count {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-left: auto;
+            transition: var(--theme-transition);
+        }
+
+        .gm-panel .gm-input-row {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .gm-panel .gm-input-row input {
+            flex: 1;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-input);
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            font-family: 'Nunito', sans-serif;
+            min-width: 80px;
+            transition: var(--theme-transition);
+        }
+
+        .gm-panel .gm-input-row input:focus {
+            outline: none;
+            border-color: var(--color-green);
+            box-shadow: 0 0 30px var(--glow-green);
+        }
+
+        .gm-panel .gm-input-row input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .gm-panel .gm-input-row button {
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: var(--theme-transition);
+            font-family: 'Nunito', sans-serif;
+            background: var(--color-green);
+            color: var(--color-white);
+            white-space: nowrap;
+        }
+
+        .gm-panel .gm-input-row button:hover {
+            transform: scale(1.05);
+        }
+
+        .gm-panel .gm-input-row button.gm-remove {
+            background: var(--color-peach);
+            color: var(--color-white);
+            font-size: 0.65rem;
+            padding: 0.2rem 0.6rem;
+        }
+
+        .gm-panel .gm-item-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            max-height: 150px;
+            overflow-y: auto;
+            padding: 0.2rem 0;
+        }
+
+        .gm-panel .gm-item-list .gm-item {
+            background: var(--bg-input);
+            padding: 0.15rem 0.6rem;
+            border-radius: 16px;
+            font-size: 0.7rem;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--text-secondary);
+            transition: var(--theme-transition);
+        }
+
+        .gm-panel .gm-item-list .gm-item .gm-del {
+            cursor: pointer;
+            color: var(--color-peach);
+            font-weight: bold;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .gm-panel .gm-item-list .gm-item .gm-del:hover {
+            color: var(--color-yellow);
+            transform: scale(1.2);
+        }
+
         .random-game-btn {
             background: linear-gradient(135deg, var(--color-green), var(--color-yellow));
             color: var(--color-wood);
@@ -1222,7 +1223,6 @@
             box-shadow: 0 8px 35px var(--glow-yellow);
         }
 
-        /* --- LEADERBOARD --- */
         .leaderboard-preview {
             width: 100%;
             margin-bottom: 1.2rem;
@@ -1438,7 +1438,6 @@
             color: var(--color-wood);
         }
 
-        /* --- GAME GRID --- */
         .game-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -1573,137 +1572,6 @@
             opacity: 1;
         }
 
-        /* --- GAME MASTER PANEL --- */
-        .gm-panel {
-            display: none;
-            background: var(--bg-glass);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            border: 1px solid var(--border-light);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            animation: fadeUp 0.5s ease;
-            max-height: 500px;
-            overflow-y: auto;
-            transition: var(--theme-transition);
-        }
-        .gm-panel.active {
-            display: block;
-        }
-        .gm-panel h3 {
-            font-family: 'Fredoka One', cursive;
-            color: var(--text-primary);
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: var(--theme-transition);
-        }
-        .gm-panel .gm-section {
-            background: var(--bg-input);
-            border-radius: 16px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border: 1px solid var(--border-color);
-            transition: var(--theme-transition);
-        }
-        .gm-panel .gm-section h4 {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: var(--theme-transition);
-        }
-        .gm-panel .gm-section .gm-count {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            margin-left: auto;
-            transition: var(--theme-transition);
-        }
-        .gm-panel .gm-input-row {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 0.5rem;
-        }
-        .gm-panel .gm-input-row input {
-            flex: 1;
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-input);
-            color: var(--text-primary);
-            font-size: 0.85rem;
-            font-family: 'Nunito', sans-serif;
-            min-width: 120px;
-            transition: var(--theme-transition);
-        }
-        .gm-panel .gm-input-row input:focus {
-            outline: none;
-            border-color: var(--color-green);
-            box-shadow: 0 0 30px var(--glow-green);
-        }
-        .gm-panel .gm-input-row input::placeholder {
-            color: var(--text-muted);
-        }
-        .gm-panel .gm-input-row button {
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            border: none;
-            font-weight: 700;
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: var(--theme-transition);
-            font-family: 'Nunito', sans-serif;
-            background: var(--color-green);
-            color: var(--color-white);
-            white-space: nowrap;
-        }
-        .gm-panel .gm-input-row button:hover {
-            transform: scale(1.05);
-        }
-        .gm-panel .gm-input-row button.gm-remove {
-            background: var(--color-peach);
-            color: var(--color-white);
-            font-size: 0.65rem;
-            padding: 0.2rem 0.6rem;
-        }
-        .gm-panel .gm-item-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.3rem;
-            max-height: 100px;
-            overflow-y: auto;
-            padding: 0.2rem 0;
-        }
-        .gm-panel .gm-item-list .gm-item {
-            background: var(--bg-input);
-            padding: 0.15rem 0.6rem;
-            border-radius: 16px;
-            font-size: 0.7rem;
-            border: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            color: var(--text-secondary);
-            transition: var(--theme-transition);
-        }
-        .gm-panel .gm-item-list .gm-item .gm-del {
-            cursor: pointer;
-            color: var(--color-peach);
-            font-weight: bold;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
-        }
-        .gm-panel .gm-item-list .gm-item .gm-del:hover {
-            color: var(--color-yellow);
-            transform: scale(1.2);
-        }
-
-        /* --- PRE-GAME SETUP --- */
         .pre-game-setup {
             background: var(--bg-glass);
             backdrop-filter: blur(20px);
@@ -1803,7 +1671,6 @@
             box-shadow: 0 8px 35px var(--glow-green);
         }
 
-        /* --- MODAL --- */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -1880,7 +1747,6 @@
             transition: var(--theme-transition);
         }
 
-        /* --- GAME TOOLTIP --- */
         .game-tooltip {
             background: var(--bg-glass);
             border: 1px solid var(--border-light);
@@ -1893,7 +1759,6 @@
             transition: var(--theme-transition);
         }
 
-        /* --- SCORING SECTION --- */
         .scoring-section {
             background: var(--bg-input);
             border-radius: 16px;
@@ -1964,7 +1829,6 @@
             box-shadow: 0 4px 20px var(--glow-green);
         }
 
-        /* --- SCORE NOTIFICATION --- */
         .score-notification {
             position: fixed;
             top: 20px;
@@ -2007,7 +1871,6 @@
             to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
 
-        /* --- MODAL GAME CONTENT --- */
         .modal-box .game-content button {
             background: var(--color-green);
             border: none;
@@ -2264,7 +2127,6 @@
             transition: var(--theme-transition);
         }
 
-        /* --- TIMER --- */
         .timer-container {
             display: flex;
             align-items: center;
@@ -2328,7 +2190,6 @@
             transform: scale(1.05);
         }
 
-        /* --- CONFETTI --- */
         .confetti-container {
             position: fixed;
             top: 0;
@@ -2352,13 +2213,11 @@
             100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
         }
 
-        /* Scrollbar */
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: var(--bg-input); border-radius: 10px; }
         ::-webkit-scrollbar-thumb { background: var(--color-green); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--color-green); }
 
-        /* --- LEADERBOARD PAGE --- */
         .leaderboard-page {
             display: none;
             position: fixed;
@@ -2504,7 +2363,6 @@
             color: var(--color-wood);
         }
 
-        /* --- SHARE MODAL --- */
         .share-modal {
             display: none;
             position: fixed;
@@ -2578,7 +2436,194 @@
             background: var(--color-peach);
         }
 
-        /* Mobile */
+        /* --- HANGMAN --- */
+        .hangman-container {
+            padding: 0.5rem 0;
+            width: 100%;
+        }
+
+        .hangman-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            width: 100%;
+        }
+
+        .hangman-figure {
+            font-family: 'Courier New', monospace;
+            font-size: 1.3rem;
+            line-height: 1.6;
+            background: var(--bg-input);
+            padding: 0.8rem 1.2rem;
+            border-radius: 16px;
+            border: 2px solid var(--border-color);
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            transition: var(--theme-transition);
+            white-space: pre;
+            overflow-x: auto;
+            color: var(--text-primary);
+            letter-spacing: 1px;
+            box-shadow: inset 0 2px 10px var(--shadow-color);
+            animation: figureAppear 0.5s ease;
+        }
+
+        @keyframes figureAppear {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .hangman-word {
+            font-size: 2.8rem;
+            letter-spacing: 14px;
+            font-weight: 700;
+            font-family: 'Fredoka One', cursive;
+            color: var(--text-primary);
+            margin: 0.3rem 0;
+            transition: var(--theme-transition);
+            min-height: 4rem;
+        }
+
+        .hangman-word .letter-revealed {
+            color: var(--color-green);
+        }
+        .hangman-word .letter-hidden {
+            color: var(--text-muted);
+        }
+
+        .hangman-guesses {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: var(--theme-transition);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+        .hangman-guesses .wrong {
+            color: var(--color-peach);
+            font-weight: 700;
+        }
+        .hangman-guesses .correct {
+            color: var(--color-green);
+            font-weight: 700;
+        }
+
+        .hangman-input-row {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            margin: 0.3rem 0;
+        }
+
+        .hangman-input-row input {
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-input);
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            width: 70px;
+            text-align: center;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: var(--theme-transition);
+            letter-spacing: 2px;
+        }
+
+        .hangman-input-row input:focus {
+            outline: none;
+            border-color: var(--color-green);
+            box-shadow: 0 0 30px var(--glow-green);
+        }
+
+        .hangman-input-row input::placeholder {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .hangman-input-row button {
+            padding: 0.5rem 1.4rem;
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--theme-transition);
+            font-family: 'Nunito', sans-serif;
+            background: var(--color-green);
+            color: var(--color-white);
+            box-shadow: 0 4px 25px var(--glow-green);
+        }
+
+        .hangman-input-row button:hover {
+            transform: scale(1.05);
+        }
+
+        .hangman-input-row .hint-btn {
+            background: var(--color-yellow);
+            color: var(--color-wood);
+            box-shadow: 0 4px 25px var(--glow-yellow);
+        }
+
+        .hangman-input-row .hint-btn:hover {
+            box-shadow: 0 8px 35px var(--glow-yellow);
+        }
+
+        .hangman-input-row .reset-btn {
+            background: var(--color-peach);
+            color: var(--color-white);
+            box-shadow: 0 4px 25px var(--glow-peach);
+        }
+
+        .hangman-input-row .next-btn {
+            background: var(--color-teal);
+            color: var(--color-white);
+            box-shadow: 0 4px 25px var(--glow-teal);
+        }
+
+        .hangman-input-row .next-btn:hover {
+            box-shadow: 0 8px 35px var(--glow-teal);
+        }
+
+        .hangman-stats {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            justify-content: center;
+            flex-wrap: wrap;
+            transition: var(--theme-transition);
+            margin-top: 0.2rem;
+        }
+
+        .hangman-stats span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .hangman-status {
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 0.2rem 1rem;
+            border-radius: 16px;
+            transition: var(--theme-transition);
+        }
+        .hangman-status.win {
+            color: var(--color-green);
+        }
+        .hangman-status.lose {
+            color: var(--color-peach);
+        }
+
         @media (max-width: 600px) {
             .header h1 { font-size: 2.2rem; }
             .header h1 .emoji-left, .header h1 .emoji-right { font-size: 1.8rem; }
@@ -2648,7 +2693,7 @@
         </div>
     </div>
 
-    <!-- THEME TOGGLE (Simple) -->
+    <!-- THEME TOGGLE -->
     <button class="theme-toggle-simple" id="themeToggleSimple" onclick="toggleThemeSimple()" title="Toggle Theme">🌙</button>
 
     <!-- GLOW ORBS -->
@@ -2688,23 +2733,21 @@
         <button class="close-spotify" onclick="closeSpotifyPage()">✕</button>
         <div class="spotify-page-header">
             <h2>🎵 Spotify Player</h2>
-            <p>Browse and control your party playlist</p>
+            <p>Paste any playlist or song URL to play</p>
         </div>
         <div class="spotify-page-embed">
-            <div class="page-playlist-controls">
-                <button onclick="changeSpotifyPagePlaylist('37i9dQZF1DXcBWIGoYBM5M')" class="active">🔥 Top Hits</button>
-                <button onclick="changeSpotifyPagePlaylist('37i9dQZF1DX0SM0LYsmbMT')">💃 Afrobeats</button>
-                <button onclick="changeSpotifyPagePlaylist('37i9dQZF1DX4JUtH3Zinu')">🎶 R&B</button>
-                <button onclick="changeSpotifyPagePlaylist('37i9dQZF1DWTwnEm1IYyoj')">🎤 Karaoke</button>
-                <button onclick="changeSpotifyPagePlaylist('37i9dQZF1DX4WYpd7IY3rj')">🌊 Chill</button>
-                <button class="btn-spotify-green" onclick="openSpotifyWebPlayer()">🎵 Open Spotify Web</button>
-            </div>
             <div class="page-playlist-input">
-                <input type="text" id="spotifyPageInput" placeholder="Paste Spotify playlist ID or URL..." />
+                <input type="text" id="spotifyPageInput" placeholder="Paste Spotify URL (playlist, album, or track)..." />
                 <button onclick="loadSpotifyPagePlaylist()">🎵 Load</button>
                 <button class="btn-id" onclick="getSpotifyPageId()">📋 Get ID</button>
             </div>
-            <iframe id="spotifyPageIframe" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator&theme=0" allow="encrypted-media" loading="lazy"></iframe>
+            <div id="spotifyEmbedContainer">
+                <iframe id="spotifyPageIframe" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator&theme=0" allow="encrypted-media" loading="lazy"></iframe>
+            </div>
+            <div class="spotify-note">
+                💡 <strong>Note:</strong> To play full songs, use the <a href="https://open.spotify.com" target="_blank">Spotify Web Player</a> or mobile app. The embed player requires a Spotify account.
+                <br>Paste any Spotify URL: playlist, album, or track!
+            </div>
         </div>
     </div>
 
@@ -2767,37 +2810,115 @@
             <button class="btn-gm" id="gmToggleBtn" onclick="toggleGMPanel()">👑 Game Master</button>
         </div>
 
-        <!-- GAME MASTER PANEL -->
+        <!-- GAME MASTER PANEL - FULL CONTROL FOR ALL GAMES -->
         <div class="gm-panel" id="gmPanel">
-            <h3>👑 Game Master Control Panel</h3>
+            <h3>👑 Game Master - Full Control</h3>
 
-            <div class="gm-section">
-                <h4>🎭 Charades Words <span class="gm-count" id="charadesCount">0 words</span></h4>
-                <div class="gm-input-row">
-                    <input type="text" id="gmCharadesInput" placeholder="Add charades word..." />
-                    <button onclick="addGMCharades()">➕ Add</button>
-                </div>
-                <div class="gm-item-list" id="gmCharadesList"></div>
+            <!-- Tabs -->
+            <div class="gm-tabs" id="gmTabs">
+                <button class="active" data-tab="tab-charades">🎭 Charades</button>
+                <button data-tab="tab-karaoke">🎤 Karaoke</button>
+                <button data-tab="tab-fasttalk">⏱️ Fast Talk</button>
+                <button data-tab="tab-pictionary">🎨 Pictionary</button>
+                <button data-tab="tab-hangman">🧩 Hangman</button>
+                <button data-tab="tab-truthlie">🤥 Truth & Lie</button>
+                <button data-tab="tab-roast">🔥 Roast</button>
             </div>
 
-            <div class="gm-section">
-                <h4>🎵 Karaoke Songs <span class="gm-count" id="karaokeCount">0 songs</span></h4>
-                <div class="gm-input-row">
-                    <input type="text" id="gmKaraokeTitle" placeholder="Song title..." />
-                    <input type="text" id="gmKaraokeArtist" placeholder="Artist..." />
-                    <button onclick="addGMKaraoke()">➕ Add</button>
+            <!-- Tab: Charades -->
+            <div class="gm-tab-content active" id="tab-charades">
+                <div class="gm-section">
+                    <h4>🎭 Charades Words <span class="gm-count" id="charadesCount">0 words</span></h4>
+                    <div class="gm-input-row">
+                        <input type="text" id="gmCharadesInput" placeholder="Add charades word..." />
+                        <button onclick="addGMCharades()">➕ Add</button>
+                        <button class="gm-remove" onclick="clearGMCharades()">🗑️ Clear All</button>
+                    </div>
+                    <div class="gm-item-list" id="gmCharadesList"></div>
                 </div>
-                <div class="gm-item-list" id="gmKaraokeList"></div>
             </div>
 
-            <div class="gm-section">
-                <h4>⏱️ Fast Talk Categories <span class="gm-count" id="fastTalkCount">0 categories</span></h4>
-                <div class="gm-input-row">
-                    <input type="text" id="gmCategoryName" placeholder="Category name..." />
-                    <input type="text" id="gmCategoryWords" placeholder="Words (comma separated)..." />
-                    <button onclick="addGMCategory()">➕ Add</button>
+            <!-- Tab: Karaoke -->
+            <div class="gm-tab-content" id="tab-karaoke">
+                <div class="gm-section">
+                    <h4>🎤 Karaoke Songs <span class="gm-count" id="karaokeCount">0 songs</span></h4>
+                    <div class="gm-input-row">
+                        <input type="text" id="gmKaraokeTitle" placeholder="Song title..." />
+                        <input type="text" id="gmKaraokeArtist" placeholder="Artist..." />
+                        <button onclick="addGMKaraoke()">➕ Add</button>
+                        <button class="gm-remove" onclick="clearGMKaraoke()">🗑️ Clear All</button>
+                    </div>
+                    <div class="gm-item-list" id="gmKaraokeList"></div>
                 </div>
-                <div class="gm-item-list" id="gmCategoryList"></div>
+            </div>
+
+            <!-- Tab: Fast Talk -->
+            <div class="gm-tab-content" id="tab-fasttalk">
+                <div class="gm-section">
+                    <h4>⏱️ Fast Talk Categories <span class="gm-count" id="fastTalkCount">0 categories</span></h4>
+                    <div class="gm-input-row">
+                        <input type="text" id="gmCategoryName" placeholder="Category name..." />
+                        <input type="text" id="gmCategoryWords" placeholder="Words (comma separated)..." />
+                        <button onclick="addGMCategory()">➕ Add</button>
+                        <button class="gm-remove" onclick="clearGMCategories()">🗑️ Clear All</button>
+                    </div>
+                    <div class="gm-item-list" id="gmCategoryList"></div>
+                </div>
+            </div>
+
+            <!-- Tab: Pictionary -->
+            <div class="gm-tab-content" id="tab-pictionary">
+                <div class="gm-section">
+                    <h4>🎨 Pictionary Words <span class="gm-count" id="pictionaryCount">0 words</span></h4>
+                    <div class="gm-input-row">
+                        <input type="text" id="gmPictionaryInput" placeholder="Add pictionary word..." />
+                        <button onclick="addGMPictionary()">➕ Add</button>
+                        <button class="gm-remove" onclick="clearGMPictionary()">🗑️ Clear All</button>
+                    </div>
+                    <div class="gm-item-list" id="gmPictionaryList"></div>
+                </div>
+            </div>
+
+            <!-- Tab: Hangman -->
+            <div class="gm-tab-content" id="tab-hangman">
+                <div class="gm-section">
+                    <h4>🧩 Hangman Words <span class="gm-count" id="hangmanCount">0 words</span></h4>
+                    <div class="gm-input-row">
+                        <input type="text" id="gmHangmanInput" placeholder="Add hangman word..." />
+                        <button onclick="addGMHangman()">➕ Add</button>
+                        <button class="gm-remove" onclick="clearGMHangman()">🗑️ Clear All</button>
+                    </div>
+                    <div class="gm-item-list" id="gmHangmanList"></div>
+                </div>
+            </div>
+
+            <!-- Tab: Truth & Lie -->
+            <div class="gm-tab-content" id="tab-truthlie">
+                <div class="gm-section">
+                    <h4>🤥 Truth & Lie Rounds <span class="gm-count" id="truthLieCount">0 rounds</span></h4>
+                    <div class="gm-input-row">
+                        <input type="text" id="gmTruthLieCategory" placeholder="Category..." />
+                        <input type="text" id="gmTruth1" placeholder="Truth 1..." />
+                        <input type="text" id="gmTruth2" placeholder="Truth 2..." />
+                        <input type="text" id="gmLie" placeholder="Lie..." />
+                        <button onclick="addGMTruthLie()">➕ Add</button>
+                        <button class="gm-remove" onclick="clearGMTruthLie()">🗑️ Clear All</button>
+                    </div>
+                    <div class="gm-item-list" id="gmTruthLieList"></div>
+                </div>
+            </div>
+
+            <!-- Tab: Roast -->
+            <div class="gm-tab-content" id="tab-roast">
+                <div class="gm-section">
+                    <h4>🔥 Roast Prompts <span class="gm-count" id="roastCount">0 prompts</span></h4>
+                    <div class="gm-input-row">
+                        <input type="text" id="gmRoastInput" placeholder="Add roast prompt..." />
+                        <button onclick="addGMRoast()">➕ Add</button>
+                        <button class="gm-remove" onclick="clearGMRoast()">🗑️ Clear All</button>
+                    </div>
+                    <div class="gm-item-list" id="gmRoastList"></div>
+                </div>
             </div>
         </div>
 
@@ -2881,7 +3002,7 @@
         });
 
         // ============================================================
-        //  THEME SYSTEM (Simple Toggle)
+        //  THEME SYSTEM
         // ============================================================
         let currentTheme = 'light';
 
@@ -3029,7 +3150,7 @@
         }
 
         // ============================================================
-        //  SPOTIFY PAGE
+        //  SPOTIFY PAGE - Simplified
         // ============================================================
         let spotifyPagePlaylist = '37i9dQZF1DXcBWIGoYBM5M';
 
@@ -3037,10 +3158,6 @@
             const page = document.getElementById('spotifyPage');
             page.classList.add('active');
             document.body.style.overflow = 'hidden';
-            const iframe = document.getElementById('spotifyPageIframe');
-            if (iframe) {
-                iframe.src = `https://open.spotify.com/embed/playlist/${spotifyPagePlaylist}?utm_source=generator&theme=0`;
-            }
         }
 
         function closeSpotifyPage() {
@@ -3049,44 +3166,76 @@
             document.body.style.overflow = '';
         }
 
-        function changeSpotifyPagePlaylist(playlistId) {
-            spotifyPagePlaylist = playlistId;
-            const iframe = document.getElementById('spotifyPageIframe');
-            if (iframe) {
-                iframe.src = `https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=0`;
-            }
-            document.querySelectorAll('.page-playlist-controls button').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.page-playlist-controls button').forEach(btn => {
-                const onclickAttr = btn.getAttribute('onclick');
-                if (onclickAttr && onclickAttr.includes(playlistId)) {
-                    btn.classList.add('active');
-                }
-            });
-            document.getElementById('spotifyPageInput').value = '';
-            playSound('success');
-        }
-
         function loadSpotifyPagePlaylist() {
             const input = document.getElementById('spotifyPageInput');
             let value = input.value.trim();
-            
+
             if (!value) {
-                alert('Please paste a Spotify playlist URL or ID!');
+                alert('Please paste a Spotify URL!');
                 return;
             }
-            
-            let idMatch = value.match(/playlist[\/:]([a-zA-Z0-9]+)/);
+
+            // Extract ID from various URL formats
+            let idMatch = value.match(/(?:playlist|album|track|episode)[\/:]([a-zA-Z0-9]+)/);
             if (idMatch) {
                 value = idMatch[1];
+            } else {
+                // Check if it's already an ID
+                if (!/^[a-zA-Z0-9]+$/.test(value)) {
+                    alert('Invalid Spotify URL or ID!');
+                    return;
+                }
             }
+
+            const embedType = value.includes('track') ? 'track' : 
+                             value.includes('album') ? 'album' : 
+                             value.includes('episode') ? 'episode' : 'playlist';
             
-            if (!/^[a-zA-Z0-9]+$/.test(value)) {
-                alert('Invalid playlist ID!');
+            // Re-extract ID for different URL formats
+            if (value.includes('spotify.com')) {
+                const match = value.match(/\/(?:playlist|album|track|episode)\/([a-zA-Z0-9]+)/);
+                if (match) {
+                    value = match[1];
+                }
+            }
+
+            // Determine embed type from input
+            let type = 'playlist';
+            if (value.includes('album') || input.value.includes('album')) type = 'album';
+            if (value.includes('track') || input.value.includes('track')) type = 'track';
+            if (value.includes('episode') || input.value.includes('episode')) type = 'episode';
+
+            // Clean up - just use the ID
+            const cleanId = value.replace(/[^a-zA-Z0-9]/g, '');
+
+            if (cleanId.length < 5) {
+                alert('Invalid Spotify ID!');
                 return;
             }
+
+            // Determine type based on the URL pattern
+            const urlLower = input.value.toLowerCase();
+            let finalType = 'playlist';
+            if (urlLower.includes('/album/')) finalType = 'album';
+            else if (urlLower.includes('/track/')) finalType = 'track';
+            else if (urlLower.includes('/episode/')) finalType = 'episode';
+
+            spotifyPagePlaylist = cleanId;
+            const iframe = document.getElementById('spotifyPageIframe');
+            if (iframe) {
+                iframe.src = `https://open.spotify.com/embed/${finalType}/${cleanId}?utm_source=generator&theme=0`;
+            }
             
-            changeSpotifyPagePlaylist(value);
-            document.querySelectorAll('.page-playlist-controls button').forEach(btn => btn.classList.remove('active'));
+            // Show success message
+            const note = document.querySelector('.spotify-note');
+            if (note) {
+                note.innerHTML = `✅ Loaded ${finalType}: <strong>${cleanId}</strong> — Playing ${finalType} content!`;
+                setTimeout(() => {
+                    note.innerHTML = `💡 <strong>Note:</strong> To play full songs, use the <a href="https://open.spotify.com" target="_blank">Spotify Web Player</a> or mobile app. The embed player requires a Spotify account.<br>Paste any Spotify URL: playlist, album, or track!`;
+                }, 5000);
+            }
+            
+            input.value = '';
             playSound('success');
         }
 
@@ -3101,10 +3250,6 @@
             } else {
                 prompt('Current playlist ID:', id);
             }
-        }
-
-        function openSpotifyWebPlayer() {
-            window.open('https://open.spotify.com', '_blank');
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -3307,391 +3452,36 @@
         const EMOJIS = ['😀', '😎', '🤩', '🥳', '😺', '🦊', '🐼', '🐨', '🦁', '🐯', '🐸', '🐵', '🦄', '🐲', '🐉', '🦋', '🐝', '🐞'];
 
         // ============================================================
-        //  HANGMAN
-        // ============================================================
-        const HANGMAN_WORDS = [
-            { word: 'dance' }, { word: 'music' }, { word: 'party' }, { word: 'laugh' }, { word: 'smile' },
-            { word: 'happy' }, { word: 'friend' }, { word: 'love' }, { word: 'dream' }, { word: 'star' },
-            { word: 'moon' }, { word: 'light' }, { word: 'rain' }, { word: 'snow' }, { word: 'wind' },
-            { word: 'fire' }, { word: 'tree' }, { word: 'bird' }, { word: 'fish' }, { word: 'lion' },
-            { word: 'bear' }, { word: 'wolf' }, { word: 'eagle' }, { word: 'shark' }, { word: 'apple' },
-            { word: 'banana' }, { word: 'orange' }, { word: 'grape' }, { word: 'mango' }, { word: 'pizza' },
-            { word: 'pasta' }, { word: 'taco' }, { word: 'sushi' }, { word: 'cake' }, { word: 'bread' },
-            { word: 'rice' }, { word: 'soup' }, { word: 'strong' }, { word: 'brave' }, { word: 'kind' },
-            { word: 'smart' }, { word: 'funny' }, { word: 'cool' }, { word: 'wild' }, { word: 'sing' },
-            { word: 'jump' }, { word: 'run' }, { word: 'swim' }, { word: 'fly' }, { word: 'climb' },
-            { word: 'draw' }, { word: 'write' }, { word: 'read' }, { word: 'play' }, { word: 'walk' },
-            { word: 'talk' }, { word: 'think' }, { word: 'know' }, { word: 'help' }, { word: 'give' },
-            { word: 'take' }, { word: 'make' }, { word: 'find' }, { word: 'keep' }, { word: 'hold' },
-            { word: 'call' }, { word: 'bring' }, { word: 'build' }, { word: 'grow' }, { word: 'move' },
-            { word: 'open' }, { word: 'close' }, { word: 'start' }, { word: 'stop' }, { word: 'change' },
-            { word: 'choose' }, { word: 'decide' }, { word: 'believe' }, { word: 'create' }, { word: 'imagine' },
-            { word: 'remember' }, { word: 'forget' }, { word: 'understand' }, { word: 'explore' }, { word: 'discover' },
-            { word: 'adventure' }, { word: 'challenge' }, { word: 'victory' }, { word: 'courage' }, { word: 'wisdom' },
-            { word: 'freedom' }, { word: 'justice' }, { word: 'peace' }, { word: 'trust' }, { word: 'hope' },
-            { word: 'joy' }, { word: 'grace' }, { word: 'glory' }, { word: 'honor' }, { word: 'truth' }
-        ];
-
-        let hangmanState = {
-            word: '',
-            guessed: [],
-            wrongGuesses: 0,
-            maxWrong: 6,
-            gameOver: false,
-            won: false
-        };
-
-        const HANGMAN_FIGURES = [
-            `  ╔═══╗
-              ║   ║
-                  ║
-                  ║
-                  ║
-                  ║
-            ═══════`,
-            `  ╔═══╗
-              ║   ║
-              ○   ║
-                  ║
-                  ║
-                  ║
-            ═══════`,
-            `  ╔═══╗
-              ║   ║
-              ○   ║
-              │   ║
-                  ║
-                  ║
-            ═══════`,
-            `  ╔═══╗
-              ║   ║
-              ○   ║
-             ─┼   ║
-                  ║
-                  ║
-            ═══════`,
-            `  ╔═══╗
-              ║   ║
-              ○   ║
-             ─┼─  ║
-                  ║
-                  ║
-            ═══════`,
-            `  ╔═══╗
-              ║   ║
-              ○   ║
-             ─┼─  ║
-             /    ║
-                  ║
-            ═══════`,
-            `  ╔═══╗
-              ║   ║
-              ○   ║
-             ─┼─  ║
-             / \\  ║
-                  ║
-            ═══════`
-        ];
-
-        function startHangman() {
-            const entry = HANGMAN_WORDS[Math.floor(Math.random() * HANGMAN_WORDS.length)];
-            hangmanState.word = entry.word.toLowerCase();
-            hangmanState.guessed = [];
-            hangmanState.wrongGuesses = 0;
-            hangmanState.gameOver = false;
-            hangmanState.won = false;
-            renderHangman();
-            document.getElementById('gameTooltip').innerHTML = '💡 <strong>How to play:</strong> Type a letter and press Enter or click Guess. You have 6 wrong guesses!';
-            
-            setTimeout(() => {
-                const input = document.getElementById('hangmanInput');
-                if (input) {
-                    input.focus();
-                    input.addEventListener('input', function(e) {
-                        this.value = this.value.replace(/[^a-zA-Z]/g, '').toUpperCase();
-                    });
-                }
-            }, 150);
-        }
-
-        function getHangmanFigure() {
-            const index = Math.min(hangmanState.wrongGuesses, HANGMAN_FIGURES.length - 1);
-            return HANGMAN_FIGURES[index];
-        }
-
-        function renderHangman() {
-            const container = document.getElementById('modalContent');
-            
-            const wordDisplay = hangmanState.word.split('').map(letter => 
-                hangmanState.guessed.includes(letter) ? 
-                `<span class="letter-revealed">${letter.toUpperCase()}</span>` : 
-                `<span class="letter-hidden">_</span>`
-            ).join(' ');
-
-            const guessedLetters = hangmanState.guessed.join(' ');
-            const wrongLetters = hangmanState.guessed.filter(l => !hangmanState.word.includes(l)).join(' ');
-            const correctLetters = hangmanState.guessed.filter(l => hangmanState.word.includes(l)).join(' ');
-
-            const isGameActive = !hangmanState.gameOver;
-
-            let statusHTML = '';
-            if (hangmanState.won) {
-                statusHTML = `<div class="hangman-status win">🎉 You Win! +1 point!</div>`;
-            } else if (hangmanState.gameOver && !hangmanState.won) {
-                statusHTML = `<div class="hangman-status lose">💀 Game Over! The word was "${hangmanState.word.toUpperCase()}"</div>`;
-            }
-
-            container.innerHTML = `
-                <div class="hangman-container">
-                    <div class="hangman-display">
-                        <div class="hangman-figure">${getHangmanFigure()}</div>
-                        ${statusHTML}
-                        <div class="hangman-word">${wordDisplay}</div>
-                        <div class="hangman-guesses">
-                            ${correctLetters ? `<span class="correct">✅ ${correctLetters}</span>` : ''}
-                            ${wrongLetters ? `<span class="wrong">❌ ${wrongLetters}</span>` : ''}
-                            <span>${hangmanState.wrongGuesses}/${hangmanState.maxWrong}</span>
-                        </div>
-                        <div class="hangman-input-row">
-                            ${isGameActive ? `
-                                <input type="text" id="hangmanInput" maxlength="1" placeholder="?" autofocus />
-                                <button onclick="hangmanGuess()">Guess</button>
-                                <button class="hint-btn" onclick="hangmanHint()">💡 Hint</button>
-                                <button class="next-btn" onclick="startHangman()">➡️ Next</button>
-                            ` : `
-                                <button class="next-btn" onclick="startHangman()">➡️ Next Word</button>
-                            `}
-                        </div>
-                        <div class="hangman-stats">
-                            <span>🏆 Score: +${hangmanState.guessed.filter(l => hangmanState.word.includes(l)).length}</span>
-                            <span>❌ Wrong: ${hangmanState.wrongGuesses}</span>
-                            <span>📝 Guessed: ${hangmanState.guessed.length}</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            const scoringDiv = document.createElement('div');
-            scoringDiv.innerHTML = createScoringUI();
-            container.appendChild(scoringDiv);
-
-            if (isGameActive) {
-                setTimeout(() => {
-                    const input = document.getElementById('hangmanInput');
-                    if (input) {
-                        input.focus();
-                        input.addEventListener('input', function() {
-                            this.value = this.value.replace(/[^a-zA-Z]/g, '').toUpperCase();
-                            if (this.value.length > 1) {
-                                this.value = this.value.slice(0, 1);
-                            }
-                        });
-                        input.addEventListener('keydown', function(e) {
-                            if (e.key === 'Enter') {
-                                e.preventDefault();
-                                hangmanGuess();
-                            }
-                            if (!/^[a-zA-Z]$/.test(e.key) && e.key !== 'Enter' && e.key !== 'Backspace' && e.key !== 'Tab') {
-                                e.preventDefault();
-                            }
-                        });
-                    }
-                }, 200);
-            }
-
-            updateScoringDisplay();
-        }
-
-        function hangmanGuess() {
-            const input = document.getElementById('hangmanInput');
-            if (!input) return;
-            
-            const letter = input.value.toLowerCase().trim();
-            input.value = '';
-            
-            if (hangmanState.gameOver) {
-                showHangmanFeedback('Game over! Click "Next Word" to continue.', 'error');
-                return;
-            }
-
-            if (!letter || letter.length !== 1 || !/[a-z]/.test(letter)) {
-                showHangmanFeedback('Please enter a single letter.', 'error');
-                setTimeout(() => {
-                    const inp = document.getElementById('hangmanInput');
-                    if (inp) inp.focus();
-                }, 100);
-                return;
-            }
-
-            if (hangmanState.guessed.includes(letter)) {
-                showHangmanFeedback(`You already guessed "${letter}".`, 'error');
-                setTimeout(() => {
-                    const inp = document.getElementById('hangmanInput');
-                    if (inp) inp.focus();
-                }, 100);
-                return;
-            }
-
-            hangmanState.guessed.push(letter);
-
-            if (hangmanState.word.includes(letter)) {
-                showHangmanFeedback(`✅ "${letter}" is correct!`, 'success');
-                playSound('point');
-                
-                const allGuessed = hangmanState.word.split('').every(l => hangmanState.guessed.includes(l));
-                if (allGuessed) {
-                    hangmanState.won = true;
-                    hangmanState.gameOver = true;
-                    const player = getCurrentPlayer();
-                    if (player) {
-                        const idx = players.findIndex(p => p.name === player.name);
-                        if (idx !== -1) {
-                            addPoints(idx, 1);
-                        }
-                    }
-                    showHangmanFeedback(`🎉 You win! The word was "${hangmanState.word}"! +1 point!`, 'success');
-                    createConfetti(50);
-                    playSound('levelup');
-                    renderHangman();
-                    return;
-                }
-            } else {
-                hangmanState.wrongGuesses++;
-                showHangmanFeedback(`❌ "${letter}" is not in the word.`, 'error');
-                playSound('error');
-
-                if (hangmanState.wrongGuesses >= hangmanState.maxWrong) {
-                    hangmanState.gameOver = true;
-                    showHangmanFeedback(`💀 Game over! The word was "${hangmanState.word}".`, 'error');
-                    renderHangman();
-                    return;
-                }
-            }
-
-            renderHangman();
-            setTimeout(() => {
-                const inp = document.getElementById('hangmanInput');
-                if (inp) inp.focus();
-            }, 150);
-        }
-
-        function hangmanHint() {
-            if (hangmanState.gameOver) {
-                showHangmanFeedback('Game over! Click "Next Word" to continue.', 'error');
-                return;
-            }
-
-            const unguessed = hangmanState.word.split('').filter(l => !hangmanState.guessed.includes(l));
-            if (unguessed.length === 0) {
-                showHangmanFeedback('All letters revealed! Guess the word!', 'success');
-                return;
-            }
-
-            const hintLetter = unguessed[0];
-            showHangmanFeedback(`💡 Try the letter "${hintLetter.toUpperCase()}"`, 'success');
-            
-            setTimeout(() => {
-                const input = document.getElementById('hangmanInput');
-                if (input) {
-                    input.value = hintLetter.toUpperCase();
-                    hangmanGuess();
-                }
-            }, 600);
-        }
-
-        function showHangmanFeedback(message, type) {
-            let fb = document.getElementById('hangmanFeedback');
-            if (!fb) {
-                const container = document.getElementById('modalContent');
-                const fbDiv = document.createElement('div');
-                fbDiv.id = 'hangmanFeedback';
-                fbDiv.className = 'feedback';
-                fbDiv.style.display = 'block';
-                container.appendChild(fbDiv);
-                fb = fbDiv;
-            }
-            fb.style.display = 'block';
-            fb.className = `feedback ${type}`;
-            fb.innerHTML = message;
-            clearTimeout(fb._timeout);
-            fb._timeout = setTimeout(() => {
-                fb.style.display = 'none';
-            }, 3000);
-        }
-
-        // ============================================================
-        //  GAME MASTER DATA
+        //  GAME MASTER DATA - ALL GAMES
         // ============================================================
         let charadesWords = [];
         let karaokeSongs = [];
         let fastTalkCategories = [];
+        let pictionaryWords = [];
+        let hangmanWords = [];
+        let truthLieRounds = [];
+        let roastPrompts = [];
 
-        const TRUTH_LIE_DATABASE = [
-            { category: 'Science', truths: ['Bananas are berries, botanically speaking.', 'Strawberries are not technically berries.', 'Octopuses have three hearts.'], lieIndex: 2 },
-            { category: 'Animals', truths: ['A group of flamingos is called a flamboyance.', 'Honey can remain edible for thousands of years.', 'Sharks existed before trees.'], lieIndex: 2 },
-            { category: 'Science', truths: ['Lightning can be hotter than the surface of the Sun.', 'The Eiffel Tower can become taller in hot weather.', 'Water can boil and freeze at the same time under specific conditions.'], lieIndex: 0 },
-            { category: 'History', truths: ['The shortest war in history lasted less than an hour.', 'Oxford University is older than the Aztec Empire.', 'There are more possible chess games than atoms in the observable universe.'], lieIndex: 1 },
-            { category: 'Space', truths: ['A day on Venus is longer than a year on Venus.', 'Wombat poop is cube-shaped.', 'Cows have four stomach compartments.'], lieIndex: 0 },
-            { category: 'Animals', truths: ['Some turtles can breathe through their skin.', 'Sea otters sometimes hold hands while sleeping.', 'Koalas have fingerprints.'], lieIndex: 0 },
-            { category: 'Animals', truths: ['Crows can recognize individual human faces.', 'Ravens can imitate human speech.', 'Dolphins have unique names for one another.'], lieIndex: 2 },
-            { category: 'Animals', truths: ['Butterflies taste using their feet.', 'Some frogs can freeze and survive.', 'Sloths can hold their breath longer than dolphins.'], lieIndex: 0 },
-            { category: 'Animals', truths: ['Goats have rectangular pupils.', 'Penguins can drink seawater.', 'Male seahorses carry their young.'], lieIndex: 1 },
-            { category: 'Animals', truths: ['A snail can have thousands of tiny teeth.', 'Elephants cannot jump.', 'Giraffes have seven neck vertebrae, just like humans.'], lieIndex: 2 },
-            { category: 'Animals', truths: ['The blue whale is the largest animal known to have ever lived.', 'An ostrich\'s eye is larger than its brain.', 'Some species of bamboo can grow more than 90 cm in a day.'], lieIndex: 2 },
-            { category: 'Animals', truths: ['Cats cannot taste sweetness.', 'Dogs can have a sense of smell tens of thousands of times stronger than humans.', 'The heart of a shrimp is located in its head region.'], lieIndex: 0 },
-            { category: 'Animals', truths: ['Jellyfish have existed for hundreds of millions of years.', 'A group of crows can be called a murder.', 'Axolotls can regenerate certain body parts.'], lieIndex: 1 },
-            { category: 'Animals', truths: ['Platypuses are mammals that lay eggs.', 'The human body contains enough carbon to make thousands of pencils.', 'The human brain uses roughly 20% of the body\'s energy.'], lieIndex: 1 },
-            { category: 'Human Body', truths: ['Babies have more bones than adults.', 'The smallest bone in the human body is in the ear.', 'Humans share a significant amount of DNA with bananas.'], lieIndex: 2 },
-            { category: 'Human Body', truths: ['Your stomach produces a new lining regularly.', 'The human nose can detect an enormous number of different smells.', 'Fingernails generally grow faster than toenails.'], lieIndex: 0 },
-            { category: 'Human Body', truths: ['The human body is mostly water by mass.', 'The cornea has no blood vessels.', 'The Moon has moonquakes.'], lieIndex: 1 },
-            { category: 'Space', truths: ['Footprints left on the Moon can potentially remain for millions of years.', 'The Sun contains more than 99% of the mass of the Solar System.', 'Jupiter is the largest planet in the Solar System.'], lieIndex: 1 },
-            { category: 'Space', truths: ['Saturn would float in water if a large enough body of water existed.', 'Mars has the largest volcano in the Solar System.', 'Mars has two small moons.'], lieIndex: 1 },
-            { category: 'Space', truths: ['Venus is the hottest planet in the Solar System.', 'Uranus rotates on its side relative to most planets.', 'A year on Mercury lasts only 88 Earth days.'], lieIndex: 1 },
-            { category: 'Space', truths: ['The Moon is slowly moving away from Earth.', 'Space is not completely silent; sound can travel through certain gases and plasma.', 'A solar eclipse occurs when the Moon passes between Earth and the Sun.'], lieIndex: 2 },
-            { category: 'Space', truths: ['The Milky Way and Andromeda galaxies are expected to interact in the distant future.', 'Light from the Sun takes about eight minutes to reach Earth.', 'The Pacific Ocean is larger than all of Earth\'s land area combined.'], lieIndex: 1 },
-            { category: 'Geography', truths: ['Russia spans 11 time zones.', 'Africa is larger than China, India, the United States and most of Europe combined.', 'The Sahara is the largest hot desert in the world.'], lieIndex: 2 },
-            { category: 'Geography', truths: ['Antarctica is the largest desert in the world.', 'The Dead Sea is actually a lake.', 'Mount Everest is the highest mountain above sea level.'], lieIndex: 1 },
-            { category: 'Geography', truths: ['The Nile is traditionally recognized as one of the world\'s longest rivers.', 'Canada has the longest coastline of any country.', 'The Amazon rainforest produces a significant portion of the world\'s oxygen through photosynthesis.'], lieIndex: 0 },
-            { category: 'Geography', truths: ['Greenland is the world\'s largest island.', 'Lake Baikal contains roughly one-fifth of the world\'s unfrozen surface freshwater.', 'The Great Wall of China is not easily visible from the Moon with the naked eye.'], lieIndex: 1 },
-            { category: 'Science', truths: ['The Earth\'s core is extremely hot.', 'Earth is not a perfect sphere.', 'The first modern Olympic Games were held in Athens in 1896.'], lieIndex: 2 },
-            { category: 'History', truths: ['The printing press is commonly associated with Johannes Gutenberg.', 'The Titanic sank in 1912.', 'The first person to walk on the Moon was Neil Armstrong.'], lieIndex: 2 },
-            { category: 'History', truths: ['Nelson Mandela spent 27 years in prison.', 'The Berlin Wall fell in 1989.', 'The ancient Egyptians used a form of writing called hieroglyphics.'], lieIndex: 1 },
-            { category: 'History', truths: ['The pyramids of Giza are thousands of years old.', 'Cleopatra lived closer in time to the Moon landing than to the construction of the Great Pyramid.', 'The Roman Empire used concrete.'], lieIndex: 2 },
-            { category: 'History', truths: ['Vikings reached North America before Christopher Columbus.', 'The first email was sent in the 1970s.', 'The World Wide Web was invented by Tim Berners-Lee.'], lieIndex: 0 },
-            { category: 'Technology', truths: ['Google was originally called "BackRub."', 'Nintendo was founded in the 19th century.', 'The first computer mouse was made of wood.'], lieIndex: 2 },
-            { category: 'Technology', truths: ['The QWERTY keyboard was designed before modern computers.', 'The Statue of Liberty was a gift from France to the United States.', 'The capital of Australia is Canberra, not Sydney.'], lieIndex: 1 },
-            { category: 'Geography', truths: ['Nigeria is the most populous country in Africa.', 'Bananas are berries, botanically speaking.', 'Strawberries are not technically berries.'], lieIndex: 0 },
-            { category: 'Plants', truths: ['Bananas grow on trees.', 'Goldfish have a three-second memory.', 'Humans only use 10% of their brains.'], lieIndex: 0 },
-            { category: 'Geography', truths: ['The Great Wall of China is visible from the Moon with the naked eye.', 'Lightning never strikes the same place twice.', 'Sharks cannot get cancer.'], lieIndex: 0 },
-            { category: 'Animals', truths: ['Camels store water in their humps.', 'Bulls become angry when they see the color red.', 'Penguins live naturally in the Arctic.'], lieIndex: 0 },
-            { category: 'Geography', truths: ['The Sahara is the largest desert on Earth.', 'Mount Everest is the closest point on Earth to the Sun.', 'The Earth is perfectly spherical.'], lieIndex: 1 },
-            { category: 'Space', truths: ['The Sun is a planet.', 'Venus is the closest planet to the Sun.', 'Mars is the hottest planet in the Solar System.'], lieIndex: 0 },
-            { category: 'Space', truths: ['Saturn is the largest planet.', 'The Moon produces its own light.', 'Humans have four hearts.'], lieIndex: 0 },
-            { category: 'Human Body', truths: ['Adults have more bones than babies.', 'Blood inside the human body is blue.', 'Hair and nails continue growing after death.'], lieIndex: 0 },
-            { category: 'Human Body', truths: ['The tongue is the strongest muscle in the human body.', 'Chameleons change color mainly to match their surroundings.', 'Owls can rotate their heads completely around.'], lieIndex: 1 },
-            { category: 'Animals', truths: ['Bats are completely blind.', 'All snakes are venomous.', 'Goldfish cannot see color.'], lieIndex: 2 },
-            { category: 'Animals', truths: ['Elephants use their trunks only for breathing.', 'Cheetahs are the strongest big cats.', 'Giraffes have ten neck bones.'], lieIndex: 1 },
-            { category: 'Geography', truths: ['The world\'s oceans contain no freshwater.', 'Antarctica has no ice-free areas.', 'The Nile flows south from Egypt.'], lieIndex: 2 },
-            { category: 'Geography', truths: ['Australia is the smallest continent.', 'Canada has no deserts.', 'China has only one time zone because of its size.'], lieIndex: 2 },
-            { category: 'History', truths: ['The Eiffel Tower was built in Italy.', 'The Titanic was built in France.', 'Nelson Mandela became president immediately after leaving prison.'], lieIndex: 1 },
-            { category: 'History', truths: ['The first Olympic Games were held in Rome.', 'The pyramids of Giza were built by the Romans.', 'Cleopatra was Egyptian by ethnic origin.'], lieIndex: 0 },
-            { category: 'History', truths: ['Vikings wore horned helmets in battle.', 'The Internet was invented by Apple.', 'Google was founded before the Internet existed.'], lieIndex: 1 },
-            { category: 'Technology', truths: ['Nintendo was founded in the 20th century.', 'The first email was sent in the 1990s.', 'The capital of Nigeria is Lagos.'], lieIndex: 1 },
-            { category: 'Geography', truths: ['Africa is the second-smallest continent.', 'The Atlantic Ocean is larger than the Pacific Ocean.', 'Bananas are berries, botanically speaking.'], lieIndex: 1 }
-        ];
-
+        // ============================================================
+        //  LOAD GM DATA
+        // ============================================================
         function loadGMData() {
             try {
-                const saved = localStorage.getItem('lilacGMDataV5');
+                const saved = localStorage.getItem('lilacGMDataV6');
                 if (saved) {
                     const data = JSON.parse(saved);
                     charadesWords = data.charadesWords || [];
                     karaokeSongs = data.karaokeSongs || [];
                     fastTalkCategories = data.fastTalkCategories || [];
+                    pictionaryWords = data.pictionaryWords || [];
+                    hangmanWords = data.hangmanWords || [];
+                    truthLieRounds = data.truthLieRounds || [];
+                    roastPrompts = data.roastPrompts || [];
                     return;
                 }
             } catch (e) {}
 
+            // Default data
             charadesWords = [
                 'cat', 'dog', 'elephant', 'frog', 'bird', 'fish', 'lion', 'monkey', 'snake', 'chicken',
                 'chimpanzee', 'penguin', 'giraffe', 'shark', 'butterfly', 'spider', 'fox', 'dragon', 'dinosaur',
@@ -3727,21 +3517,58 @@
                 items: ['lion', 'tiger', 'bear', 'eagle', 'shark', 'wolf', 'fox', 'elephant', 'giraffe', 'zebra']
             }];
 
+            pictionaryWords = [
+                'dog', 'cat', 'cow', 'pig', 'spider', 'giraffe', 'bird', 'lion', 'chicken', 'monkey',
+                'fish', 'turtle', 'frog', 'deer', 'bat', 'lizard', 'dolphin', 'gorilla', 'whale', 'kangaroo',
+                'eagle', 'ladybug', 'otter', 'fox', 'shark', 'butterfly', 'sun', 'apple', 'house', 'car',
+                'tree', 'clock', 'book', 'chair', 'hat', 'key', 'backpack', 'flashlight', 'pencil', 'globe',
+                'ruler', 'scissors', 'stapler', 'notebook', 'guitar', 'bicycle', 'phone', 'toothbrush',
+                'mug', 'computer', 'cloud', 'lightning', 'socks', 'shield', 'frying pan', 'tambourine'
+            ];
+
+            hangmanWords = [
+                'dance', 'music', 'party', 'laugh', 'smile', 'happy', 'friend', 'love', 'dream', 'star',
+                'moon', 'light', 'rain', 'snow', 'wind', 'fire', 'tree', 'bird', 'fish', 'lion',
+                'bear', 'wolf', 'eagle', 'shark', 'apple', 'banana', 'orange', 'grape', 'mango', 'pizza',
+                'pasta', 'taco', 'sushi', 'cake', 'bread', 'rice', 'soup', 'strong', 'brave', 'kind',
+                'smart', 'funny', 'cool', 'wild', 'sing', 'jump', 'run', 'swim', 'fly', 'climb',
+                'draw', 'write', 'read', 'play', 'walk', 'talk', 'think', 'know', 'help', 'give'
+            ];
+
+            truthLieRounds = [
+                { category: 'Science', truths: ['Bananas are berries, botanically speaking.', 'Strawberries are not technically berries.'], lie: 'Octopuses have three hearts.' },
+                { category: 'Animals', truths: ['A group of flamingos is called a flamboyance.', 'Honey can remain edible for thousands of years.'], lie: 'Sharks existed before trees.' },
+                { category: 'Space', truths: ['A day on Venus is longer than a year on Venus.', 'Wombat poop is cube-shaped.'], lie: 'Cows have four stomach compartments.' },
+                { category: 'Animals', truths: ['Some turtles can breathe through their skin.', 'Sea otters sometimes hold hands while sleeping.'], lie: 'Koalas have fingerprints.' }
+            ];
+
+            roastPrompts = [
+                'Roast someone about their dance moves!',
+                'Roast someone about their fashion choices!',
+                'Roast someone about their singing voice!',
+                'Roast someone about their cooking skills!',
+                'Roast someone about their taste in music!'
+            ];
+
             saveGMData();
         }
 
         function saveGMData() {
             try {
-                localStorage.setItem('lilacGMDataV5', JSON.stringify({
+                localStorage.setItem('lilacGMDataV6', JSON.stringify({
                     charadesWords: charadesWords,
                     karaokeSongs: karaokeSongs,
-                    fastTalkCategories: fastTalkCategories
+                    fastTalkCategories: fastTalkCategories,
+                    pictionaryWords: pictionaryWords,
+                    hangmanWords: hangmanWords,
+                    truthLieRounds: truthLieRounds,
+                    roastPrompts: roastPrompts
                 }));
             } catch (e) {}
         }
 
         // ============================================================
-        //  GAME MASTER FUNCTIONS
+        //  GAME MASTER PANEL
         // ============================================================
         function toggleGMPanel() {
             const panel = document.getElementById('gmPanel');
@@ -3752,6 +3579,7 @@
                 btn.textContent = '👑 Close Game Master';
                 btn.classList.add('active');
                 renderGMData();
+                setupGMTabs();
             } else {
                 panel.classList.remove('active');
                 btn.textContent = '👑 Game Master';
@@ -3759,12 +3587,32 @@
             }
         }
 
+        function setupGMTabs() {
+            const tabs = document.querySelectorAll('.gm-tabs button');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    const tabId = this.dataset.tab;
+                    document.querySelectorAll('.gm-tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        }
+
         function renderGMData() {
             renderGMCharades();
             renderGMKaraoke();
             renderGMCategories();
+            renderGMPictionary();
+            renderGMHangman();
+            renderGMTruthLie();
+            renderGMRoast();
         }
 
+        // --- Charades ---
         function renderGMCharades() {
             const list = document.getElementById('gmCharadesList');
             const count = document.getElementById('charadesCount');
@@ -3795,6 +3643,15 @@
             renderGMCharades();
         }
 
+        function clearGMCharades() {
+            if (charadesWords.length === 0 || confirm('Clear all charades words?')) {
+                charadesWords = [];
+                saveGMData();
+                renderGMCharades();
+            }
+        }
+
+        // --- Karaoke ---
         function renderGMKaraoke() {
             const list = document.getElementById('gmKaraokeList');
             const count = document.getElementById('karaokeCount');
@@ -3832,6 +3689,15 @@
             renderGMKaraoke();
         }
 
+        function clearGMKaraoke() {
+            if (karaokeSongs.length === 0 || confirm('Clear all karaoke songs?')) {
+                karaokeSongs = [];
+                saveGMData();
+                renderGMKaraoke();
+            }
+        }
+
+        // --- Fast Talk ---
         function renderGMCategories() {
             const list = document.getElementById('gmCategoryList');
             const count = document.getElementById('fastTalkCount');
@@ -3866,6 +3732,184 @@
             fastTalkCategories.splice(index, 1);
             saveGMData();
             renderGMCategories();
+        }
+
+        function clearGMCategories() {
+            if (fastTalkCategories.length === 0 || confirm('Clear all fast talk categories?')) {
+                fastTalkCategories = [];
+                saveGMData();
+                renderGMCategories();
+            }
+        }
+
+        // --- Pictionary ---
+        function renderGMPictionary() {
+            const list = document.getElementById('gmPictionaryList');
+            const count = document.getElementById('pictionaryCount');
+            count.textContent = `${pictionaryWords.length} words`;
+            list.innerHTML = pictionaryWords.map((word, i) => `
+                    <span class="gm-item">
+                        ${word}
+                        <span class="gm-del" onclick="deleteGMPictionary(${i})">✕</span>
+                    </span>
+                `).join('');
+        }
+
+        function addGMPictionary() {
+            const input = document.getElementById('gmPictionaryInput');
+            const word = input.value.trim().toLowerCase();
+            if (word && !pictionaryWords.includes(word)) {
+                pictionaryWords.push(word);
+                saveGMData();
+                renderGMPictionary();
+                input.value = '';
+                createConfetti(15);
+            } else if (word) alert('Word already exists!');
+        }
+
+        function deleteGMPictionary(index) {
+            pictionaryWords.splice(index, 1);
+            saveGMData();
+            renderGMPictionary();
+        }
+
+        function clearGMPictionary() {
+            if (pictionaryWords.length === 0 || confirm('Clear all pictionary words?')) {
+                pictionaryWords = [];
+                saveGMData();
+                renderGMPictionary();
+            }
+        }
+
+        // --- Hangman ---
+        function renderGMHangman() {
+            const list = document.getElementById('gmHangmanList');
+            const count = document.getElementById('hangmanCount');
+            count.textContent = `${hangmanWords.length} words`;
+            list.innerHTML = hangmanWords.map((word, i) => `
+                    <span class="gm-item">
+                        ${word}
+                        <span class="gm-del" onclick="deleteGMHangman(${i})">✕</span>
+                    </span>
+                `).join('');
+        }
+
+        function addGMHangman() {
+            const input = document.getElementById('gmHangmanInput');
+            const word = input.value.trim().toLowerCase();
+            if (word && /^[a-z]+$/.test(word) && !hangmanWords.includes(word)) {
+                hangmanWords.push(word);
+                saveGMData();
+                renderGMHangman();
+                input.value = '';
+                createConfetti(15);
+            } else if (word && !/^[a-z]+$/.test(word)) {
+                alert('Only letters please!');
+            } else if (word) {
+                alert('Word already exists!');
+            }
+        }
+
+        function deleteGMHangman(index) {
+            hangmanWords.splice(index, 1);
+            saveGMData();
+            renderGMHangman();
+        }
+
+        function clearGMHangman() {
+            if (hangmanWords.length === 0 || confirm('Clear all hangman words?')) {
+                hangmanWords = [];
+                saveGMData();
+                renderGMHangman();
+            }
+        }
+
+        // --- Truth & Lie ---
+        function renderGMTruthLie() {
+            const list = document.getElementById('gmTruthLieList');
+            const count = document.getElementById('truthLieCount');
+            count.textContent = `${truthLieRounds.length} rounds`;
+            list.innerHTML = truthLieRounds.map((round, i) => `
+                    <span class="gm-item">
+                        📂 ${round.category}: "${round.lie}" (lie)
+                        <span class="gm-del" onclick="deleteGMTruthLie(${i})">✕</span>
+                    </span>
+                `).join('');
+        }
+
+        function addGMTruthLie() {
+            const category = document.getElementById('gmTruthLieCategory').value.trim();
+            const truth1 = document.getElementById('gmTruth1').value.trim();
+            const truth2 = document.getElementById('gmTruth2').value.trim();
+            const lie = document.getElementById('gmLie').value.trim();
+
+            if (category && truth1 && truth2 && lie) {
+                truthLieRounds.push({ category, truths: [truth1, truth2], lie });
+                saveGMData();
+                renderGMTruthLie();
+                document.getElementById('gmTruthLieCategory').value = '';
+                document.getElementById('gmTruth1').value = '';
+                document.getElementById('gmTruth2').value = '';
+                document.getElementById('gmLie').value = '';
+                createConfetti(15);
+            } else {
+                alert('Please fill in all fields!');
+            }
+        }
+
+        function deleteGMTruthLie(index) {
+            truthLieRounds.splice(index, 1);
+            saveGMData();
+            renderGMTruthLie();
+        }
+
+        function clearGMTruthLie() {
+            if (truthLieRounds.length === 0 || confirm('Clear all truth & lie rounds?')) {
+                truthLieRounds = [];
+                saveGMData();
+                renderGMTruthLie();
+            }
+        }
+
+        // --- Roast ---
+        function renderGMRoast() {
+            const list = document.getElementById('gmRoastList');
+            const count = document.getElementById('roastCount');
+            count.textContent = `${roastPrompts.length} prompts`;
+            list.innerHTML = roastPrompts.map((prompt, i) => `
+                    <span class="gm-item">
+                        ${prompt}
+                        <span class="gm-del" onclick="deleteGMRoast(${i})">✕</span>
+                    </span>
+                `).join('');
+        }
+
+        function addGMRoast() {
+            const input = document.getElementById('gmRoastInput');
+            const prompt = input.value.trim();
+            if (prompt && !roastPrompts.includes(prompt)) {
+                roastPrompts.push(prompt);
+                saveGMData();
+                renderGMRoast();
+                input.value = '';
+                createConfetti(15);
+            } else if (prompt) {
+                alert('Prompt already exists!');
+            }
+        }
+
+        function deleteGMRoast(index) {
+            roastPrompts.splice(index, 1);
+            saveGMData();
+            renderGMRoast();
+        }
+
+        function clearGMRoast() {
+            if (roastPrompts.length === 0 || confirm('Clear all roast prompts?')) {
+                roastPrompts = [];
+                saveGMData();
+                renderGMRoast();
+            }
         }
 
         // ============================================================
@@ -3911,6 +3955,10 @@
                 charadesWords: charadesWords,
                 karaokeSongs: karaokeSongs,
                 fastTalkCategories: fastTalkCategories,
+                pictionaryWords: pictionaryWords,
+                hangmanWords: hangmanWords,
+                truthLieRounds: truthLieRounds,
+                roastPrompts: roastPrompts,
                 teams: teams,
                 timestamp: new Date().toISOString()
             };
@@ -3937,6 +3985,10 @@
                             if (data.charadesWords) charadesWords = data.charadesWords;
                             if (data.karaokeSongs) karaokeSongs = data.karaokeSongs;
                             if (data.fastTalkCategories) fastTalkCategories = data.fastTalkCategories;
+                            if (data.pictionaryWords) pictionaryWords = data.pictionaryWords;
+                            if (data.hangmanWords) hangmanWords = data.hangmanWords;
+                            if (data.truthLieRounds) truthLieRounds = data.truthLieRounds;
+                            if (data.roastPrompts) roastPrompts = data.roastPrompts;
                             if (data.teams) teams = data.teams;
                             savePlayers();
                             saveGMData();
@@ -4030,17 +4082,6 @@
             document.execCommand('copy');
             playSound('success');
             alert('📋 Copied to clipboard!');
-        }
-
-        // ============================================================
-        //  AUTO ADVANCE
-        // ============================================================
-        function toggleAutoAdvance() {
-            autoAdvance = !autoAdvance;
-            const btn = document.getElementById('autoAdvanceBtn');
-            btn.textContent = autoAdvance ? '⏭️ Auto: On' : '⏭️ Auto: Off';
-            btn.style.borderColor = autoAdvance ? 'var(--color-green)' : '';
-            btn.style.background = autoAdvance ? 'var(--glow-green)' : '';
         }
 
         // ============================================================
@@ -4245,11 +4286,6 @@
                 updateTurnIndicator();
             }
         }
-
-        // ============================================================
-        //  KEYBOARD - FULLY ENABLED
-        // ============================================================
-        // No keyboard blocking - everything works normally
 
         // ============================================================
         //  TIMER SYSTEM
@@ -4527,36 +4563,309 @@
         }
 
         // ============================================================
-        //  PICTIONARY WORDS
+        //  HANGMAN - Using GM words
         // ============================================================
-        const PICTIONARY_WORDS = [
-            'dog', 'cat', 'cow', 'pig', 'spider', 'giraffe', 'bird', 'lion', 'chicken', 'monkey',
-            'fish', 'turtle', 'frog', 'deer', 'bat', 'lizard', 'dolphin', 'gorilla', 'whale', 'kangaroo',
-            'eagle', 'ladybug', 'otter', 'fox', 'shark', 'butterfly', 'sun', 'apple', 'house', 'car',
-            'tree', 'clock', 'book', 'chair', 'hat', 'key', 'backpack', 'flashlight', 'pencil', 'globe',
-            'ruler', 'scissors', 'stapler', 'notebook', 'guitar', 'bicycle', 'phone', 'toothbrush',
-            'mug', 'computer', 'cloud', 'lightning', 'socks', 'shield', 'frying pan', 'tambourine',
-            'trident', 'curtains', 'branch', 'couch', 'smoke', 'beach', 'supermarket', 'france',
-            'egypt', 'bridge', 'castle', 'farm', 'museum', 'hospital', 'school', 'airport', 'zoo',
-            'desert', 'forest', 'library', 'restaurant', 'theater', 'pizza', 'burger', 'hot dog',
-            'donut', 'fries', 'watermelon', 'taco', 'sushi', 'pancakes', 'popcorn', 'sandwich',
-            'running', 'dancing', 'singing', 'cooking', 'painting', 'fishing', 'surfing', 'climbing',
-            'juggling', 'laughing', 'sleeping', 'skiing', 'diving', 'camping', 'hiking', 'baking',
-            'airplane', 'basketball', 'birdhouse', 'bookworm', 'campfire', 'doorbell', 'dragonfly',
-            'firefighter', 'goldfish', 'headphones', 'keyboard', 'lighthouse', 'notebook', 'pancake'
+        let hangmanState = {
+            word: '',
+            guessed: [],
+            wrongGuesses: 0,
+            maxWrong: 6,
+            gameOver: false,
+            won: false
+        };
+
+        const HANGMAN_FIGURES = [
+            `  ╔═══╗
+              ║   ║
+                  ║
+                  ║
+                  ║
+                  ║
+            ═══════`,
+            `  ╔═══╗
+              ║   ║
+              ○   ║
+                  ║
+                  ║
+                  ║
+            ═══════`,
+            `  ╔═══╗
+              ║   ║
+              ○   ║
+              │   ║
+                  ║
+                  ║
+            ═══════`,
+            `  ╔═══╗
+              ║   ║
+              ○   ║
+             ─┼   ║
+                  ║
+                  ║
+            ═══════`,
+            `  ╔═══╗
+              ║   ║
+              ○   ║
+             ─┼─  ║
+                  ║
+                  ║
+            ═══════`,
+            `  ╔═══╗
+              ║   ║
+              ○   ║
+             ─┼─  ║
+             /    ║
+                  ║
+            ═══════`,
+            `  ╔═══╗
+              ║   ║
+              ○   ║
+             ─┼─  ║
+             / \\  ║
+                  ║
+            ═══════`
         ];
+
+        function startHangman() {
+            const words = hangmanWords.length > 0 ? hangmanWords : ['party', 'music', 'dance'];
+            const entry = words[Math.floor(Math.random() * words.length)];
+            hangmanState.word = entry.toLowerCase();
+            hangmanState.guessed = [];
+            hangmanState.wrongGuesses = 0;
+            hangmanState.gameOver = false;
+            hangmanState.won = false;
+            renderHangman();
+            document.getElementById('gameTooltip').innerHTML = '💡 <strong>How to play:</strong> Type a letter and press Enter or click Guess. You have 6 wrong guesses!';
+            
+            setTimeout(() => {
+                const input = document.getElementById('hangmanInput');
+                if (input) {
+                    input.focus();
+                    input.addEventListener('input', function(e) {
+                        this.value = this.value.replace(/[^a-zA-Z]/g, '').toUpperCase();
+                    });
+                }
+            }, 150);
+        }
+
+        function getHangmanFigure() {
+            const index = Math.min(hangmanState.wrongGuesses, HANGMAN_FIGURES.length - 1);
+            return HANGMAN_FIGURES[index];
+        }
+
+        function renderHangman() {
+            const container = document.getElementById('modalContent');
+            
+            const wordDisplay = hangmanState.word.split('').map(letter => 
+                hangmanState.guessed.includes(letter) ? 
+                `<span class="letter-revealed">${letter.toUpperCase()}</span>` : 
+                `<span class="letter-hidden">_</span>`
+            ).join(' ');
+
+            const guessedLetters = hangmanState.guessed.join(' ');
+            const wrongLetters = hangmanState.guessed.filter(l => !hangmanState.word.includes(l)).join(' ');
+            const correctLetters = hangmanState.guessed.filter(l => hangmanState.word.includes(l)).join(' ');
+
+            const isGameActive = !hangmanState.gameOver;
+
+            let statusHTML = '';
+            if (hangmanState.won) {
+                statusHTML = `<div class="hangman-status win">🎉 You Win! +1 point!</div>`;
+            } else if (hangmanState.gameOver && !hangmanState.won) {
+                statusHTML = `<div class="hangman-status lose">💀 Game Over! The word was "${hangmanState.word.toUpperCase()}"</div>`;
+            }
+
+            container.innerHTML = `
+                <div class="hangman-container">
+                    <div class="hangman-display">
+                        <div class="hangman-figure">${getHangmanFigure()}</div>
+                        ${statusHTML}
+                        <div class="hangman-word">${wordDisplay}</div>
+                        <div class="hangman-guesses">
+                            ${correctLetters ? `<span class="correct">✅ ${correctLetters}</span>` : ''}
+                            ${wrongLetters ? `<span class="wrong">❌ ${wrongLetters}</span>` : ''}
+                            <span>${hangmanState.wrongGuesses}/${hangmanState.maxWrong}</span>
+                        </div>
+                        <div class="hangman-input-row">
+                            ${isGameActive ? `
+                                <input type="text" id="hangmanInput" maxlength="1" placeholder="?" autofocus />
+                                <button onclick="hangmanGuess()">Guess</button>
+                                <button class="hint-btn" onclick="hangmanHint()">💡 Hint</button>
+                                <button class="next-btn" onclick="startHangman()">➡️ Next</button>
+                            ` : `
+                                <button class="next-btn" onclick="startHangman()">➡️ Next Word</button>
+                            `}
+                        </div>
+                        <div class="hangman-stats">
+                            <span>🏆 Score: +${hangmanState.guessed.filter(l => hangmanState.word.includes(l)).length}</span>
+                            <span>❌ Wrong: ${hangmanState.wrongGuesses}</span>
+                            <span>📝 Guessed: ${hangmanState.guessed.length}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            const scoringDiv = document.createElement('div');
+            scoringDiv.innerHTML = createScoringUI();
+            container.appendChild(scoringDiv);
+
+            if (isGameActive) {
+                setTimeout(() => {
+                    const input = document.getElementById('hangmanInput');
+                    if (input) {
+                        input.focus();
+                        input.addEventListener('input', function() {
+                            this.value = this.value.replace(/[^a-zA-Z]/g, '').toUpperCase();
+                            if (this.value.length > 1) {
+                                this.value = this.value.slice(0, 1);
+                            }
+                        });
+                        input.addEventListener('keydown', function(e) {
+                            if (e.key === 'Enter') {
+                                e.preventDefault();
+                                hangmanGuess();
+                            }
+                            if (!/^[a-zA-Z]$/.test(e.key) && e.key !== 'Enter' && e.key !== 'Backspace' && e.key !== 'Tab') {
+                                e.preventDefault();
+                            }
+                        });
+                    }
+                }, 200);
+            }
+
+            updateScoringDisplay();
+        }
+
+        function hangmanGuess() {
+            const input = document.getElementById('hangmanInput');
+            if (!input) return;
+            
+            const letter = input.value.toLowerCase().trim();
+            input.value = '';
+            
+            if (hangmanState.gameOver) {
+                showHangmanFeedback('Game over! Click "Next Word" to continue.', 'error');
+                return;
+            }
+
+            if (!letter || letter.length !== 1 || !/[a-z]/.test(letter)) {
+                showHangmanFeedback('Please enter a single letter.', 'error');
+                setTimeout(() => {
+                    const inp = document.getElementById('hangmanInput');
+                    if (inp) inp.focus();
+                }, 100);
+                return;
+            }
+
+            if (hangmanState.guessed.includes(letter)) {
+                showHangmanFeedback(`You already guessed "${letter}".`, 'error');
+                setTimeout(() => {
+                    const inp = document.getElementById('hangmanInput');
+                    if (inp) inp.focus();
+                }, 100);
+                return;
+            }
+
+            hangmanState.guessed.push(letter);
+
+            if (hangmanState.word.includes(letter)) {
+                showHangmanFeedback(`✅ "${letter}" is correct!`, 'success');
+                playSound('point');
+                
+                const allGuessed = hangmanState.word.split('').every(l => hangmanState.guessed.includes(l));
+                if (allGuessed) {
+                    hangmanState.won = true;
+                    hangmanState.gameOver = true;
+                    const player = getCurrentPlayer();
+                    if (player) {
+                        const idx = players.findIndex(p => p.name === player.name);
+                        if (idx !== -1) {
+                            addPoints(idx, 1);
+                        }
+                    }
+                    showHangmanFeedback(`🎉 You win! The word was "${hangmanState.word}"! +1 point!`, 'success');
+                    createConfetti(50);
+                    playSound('levelup');
+                    renderHangman();
+                    return;
+                }
+            } else {
+                hangmanState.wrongGuesses++;
+                showHangmanFeedback(`❌ "${letter}" is not in the word.`, 'error');
+                playSound('error');
+
+                if (hangmanState.wrongGuesses >= hangmanState.maxWrong) {
+                    hangmanState.gameOver = true;
+                    showHangmanFeedback(`💀 Game over! The word was "${hangmanState.word}".`, 'error');
+                    renderHangman();
+                    return;
+                }
+            }
+
+            renderHangman();
+            setTimeout(() => {
+                const inp = document.getElementById('hangmanInput');
+                if (inp) inp.focus();
+            }, 150);
+        }
+
+        function hangmanHint() {
+            if (hangmanState.gameOver) {
+                showHangmanFeedback('Game over! Click "Next Word" to continue.', 'error');
+                return;
+            }
+
+            const unguessed = hangmanState.word.split('').filter(l => !hangmanState.guessed.includes(l));
+            if (unguessed.length === 0) {
+                showHangmanFeedback('All letters revealed! Guess the word!', 'success');
+                return;
+            }
+
+            const hintLetter = unguessed[0];
+            showHangmanFeedback(`💡 Try the letter "${hintLetter.toUpperCase()}"`, 'success');
+            
+            setTimeout(() => {
+                const input = document.getElementById('hangmanInput');
+                if (input) {
+                    input.value = hintLetter.toUpperCase();
+                    hangmanGuess();
+                }
+            }, 600);
+        }
+
+        function showHangmanFeedback(message, type) {
+            let fb = document.getElementById('hangmanFeedback');
+            if (!fb) {
+                const container = document.getElementById('modalContent');
+                const fbDiv = document.createElement('div');
+                fbDiv.id = 'hangmanFeedback';
+                fbDiv.className = 'feedback';
+                fbDiv.style.display = 'block';
+                container.appendChild(fbDiv);
+                fb = fbDiv;
+            }
+            fb.style.display = 'block';
+            fb.className = `feedback ${type}`;
+            fb.innerHTML = message;
+            clearTimeout(fb._timeout);
+            fb._timeout = setTimeout(() => {
+                fb.style.display = 'none';
+            }, 3000);
+        }
 
         // ============================================================
         //  GAME RENDER FUNCTIONS
         // ============================================================
         function renderTruthLie(container) {
-            const round = TRUTH_LIE_DATABASE[Math.floor(Math.random() * TRUTH_LIE_DATABASE.length)];
-            const currentPlayer = getCurrentPlayer();
+            const rounds = truthLieRounds.length > 0 ? truthLieRounds : [
+                { category: 'Science', truths: ['Bananas are berries, botanically speaking.', 'Strawberries are not technically berries.'], lie: 'Octopuses have three hearts.' }
+            ];
+            const round = rounds[Math.floor(Math.random() * rounds.length)];
 
             const options = [
-                { text: round.truths[0], isLie: round.lieIndex === 0 },
-                { text: round.truths[1], isLie: round.lieIndex === 1 },
-                { text: round.truths[2], isLie: round.lieIndex === 2 }
+                { text: round.truths[0], isLie: false },
+                { text: round.truths[1], isLie: false },
+                { text: round.lie, isLie: true }
             ];
             for (let i = options.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -4597,7 +4906,7 @@
                             fb.style.display = 'block';
                             fb.className = 'feedback success';
                             fb.innerHTML =
-                                `🎉 <strong>Correct!</strong> "${text}" was the LIE!<br>📖 ${round.explanation || 'Great job!'}`;
+                                `🎉 <strong>Correct!</strong> "${text}" was the LIE!`;
                             createConfetti(20);
                             playSound('success');
                         } else {
@@ -4611,7 +4920,7 @@
                             fb.className = 'feedback error';
                             const lieText = optionsEls.find(o => o.dataset.islie === 'true')?.textContent.trim().replace(/[A-C]\.\s*/, '').trim() || 'Unknown';
                             fb.innerHTML =
-                                `❌ <strong>Wrong!</strong> That was a truth.<br>📖 The LIE was: "${lieText}"<br>${round.explanation || ''}`;
+                                `❌ <strong>Wrong!</strong> That was a truth.<br>📖 The LIE was: "${lieText}"`;
                             playSound('error');
                         }
                     });
@@ -4637,7 +4946,8 @@
         }
 
         function renderPictionary(container) {
-            const word = PICTIONARY_WORDS[Math.floor(Math.random() * PICTIONARY_WORDS.length)];
+            const words = pictionaryWords.length > 0 ? pictionaryWords : ['house', 'tree', 'car', 'dog'];
+            const word = words[Math.floor(Math.random() * words.length)];
 
             container.innerHTML = `
                     <p><strong>🎨 Draw this (on paper/whiteboard)!</strong></p>
@@ -4646,7 +4956,7 @@
                     <p style="font-size:0.85rem;color:var(--text-secondary);">🖍️ Others guess! Use scoring buttons below to award points!</p>
                     ${createScoringUI()}
                     <button class="secondary" onclick="nextTurn()">⏭️ Next player (new word)</button>
-                    <div class="feedback static" style="border-left-color:var(--color-green);opacity:0.3;">💡 100+ pictionary words!</div>
+                    <div class="feedback static" style="border-left-color:var(--color-green);opacity:0.3;">💡 ${pictionaryWords.length} pictionary words available!</div>
                 `;
             updateScoringDisplay();
         }
@@ -4762,10 +5072,12 @@
         }
 
         function renderRoast(container) {
-            const currentPlayer = getCurrentPlayer();
+            const prompts = roastPrompts.length > 0 ? roastPrompts : ['Roast someone\'s dance moves!'];
+            const prompt = prompts[Math.floor(Math.random() * prompts.length)];
 
             container.innerHTML = `
                     <p><strong>🔥 Roast Battle</strong></p>
+                    <p style="color:var(--text-secondary);font-size:0.85rem;">${prompt}</p>
                     <p style="color:var(--text-secondary);font-size:0.85rem;">Enter who you want to roast:</p>
                     <div style="display:flex;gap:0.5rem;flex-wrap:wrap;justify-content:center;margin:0.3rem 0;">
                         <input type="text" id="roastTargetInput" placeholder="Who to roast..." style="flex:1;min-width:150px;padding:0.4rem 1rem;border-radius:30px;border:1px solid var(--border-color);background:var(--bg-input);color:var(--text-primary);font-size:0.9rem;font-family:'Nunito',sans-serif;">
@@ -4855,31 +5167,31 @@
             id: 'hangman',
             emoji: '🧩',
             title: 'Hangman',
-            desc: 'Guess the word!',
+            desc: 'GM editable!',
             featured: true
         }, {
             id: 'truth-lie',
             emoji: '🤥',
             title: 'Two Truths & A Lie',
-            desc: '100+ facts & 50+ lies!',
+            desc: 'GM editable!',
             featured: true
         }, {
             id: 'charades',
             emoji: '🎭',
             title: 'Charades',
-            desc: 'GM editable! ⭐',
+            desc: 'GM editable!',
             featured: true
         }, {
             id: 'pictionary',
             emoji: '🎨',
             title: 'Pictionary',
-            desc: '100+ words!',
+            desc: 'GM editable!',
             featured: false
         }, {
             id: 'karaoke',
             emoji: '🎤',
             title: 'Karaoke Showdown',
-            desc: '10+ hits!',
+            desc: 'GM editable!',
             featured: false
         }, {
             id: 'fast-talk',
@@ -4891,7 +5203,7 @@
             id: 'roast',
             emoji: '🔥',
             title: 'Roast Battle',
-            desc: 'Lighthearted roasts!',
+            desc: 'GM editable!',
             featured: false
         }];
 
@@ -5267,17 +5579,16 @@
 
         console.log('🎉 PARTY GAMES loaded!');
         console.log(`👥 ${players.length} players loaded.`);
-        console.log(`🎭 ${charadesWords.length} Charades words loaded!`);
-        console.log(`🎵 ${karaokeSongs.length} Karaoke songs loaded!`);
-        console.log(`⏱️ ${fastTalkCategories.length} Fast Talk categories loaded!`);
-        console.log(`🤥 ${TRUTH_LIE_DATABASE.length} Truth & Lie rounds loaded!`);
-        console.log(`🧩 Hangman with ${HANGMAN_WORDS.length} words loaded!`);
-        console.log('🎵 Spotify player available via dedicated page!');
-        console.log('👥 Team Mode available - teams share points!');
-        console.log('🎮 All features implemented!');
+        console.log(`🎭 ${charadesWords.length} Charades words`);
+        console.log(`🎵 ${karaokeSongs.length} Karaoke songs`);
+        console.log(`⏱️ ${fastTalkCategories.length} Fast Talk categories`);
+        console.log(`🎨 ${pictionaryWords.length} Pictionary words`);
+        console.log(`🧩 ${hangmanWords.length} Hangman words`);
+        console.log(`🤥 ${truthLieRounds.length} Truth & Lie rounds`);
+        console.log(`🔥 ${roastPrompts.length} Roast prompts`);
+        console.log('🎵 Spotify: Paste any URL (playlist, album, track)');
+        console.log('👑 Game Master: Edit ALL games!');
         console.log('🔒 Login: Username: Clone | Password: Lilac');
-        console.log('🧩 Hangman: Type letters and press Enter to guess!');
-        console.log('⌨️ Keyboard fully functional!');
     </script>
-    </body>
-    </html>
+</body>
+</html>
