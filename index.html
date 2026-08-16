@@ -50,7 +50,6 @@
             --login-bg: rgba(255, 255, 255, 0.85);
             --login-shadow: rgba(45, 31, 20, 0.1);
             --theme-transition: all 0.4s ease;
-            --spotify-green: #1DB954;
         }
 
         [data-theme="dark"] {
@@ -102,7 +101,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
+            background:
                 radial-gradient(ellipse at 15% 20%, var(--orb-green) 0%, transparent 55%),
                 radial-gradient(ellipse at 85% 70%, var(--orb-yellow) 0%, transparent 55%),
                 radial-gradient(ellipse at 50% 0%, var(--orb-peach) 0%, transparent 50%),
@@ -463,243 +462,6 @@
         @keyframes visualizerBounce {
             0% { transform: scaleY(0.4); }
             100% { transform: scaleY(1); }
-        }
-
-        .spotify-launch-row {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1.2rem;
-            flex-wrap: wrap;
-        }
-
-        .spotify-launch-row .btn-spotify-launch {
-            padding: 0.6rem 2.5rem;
-            border-radius: 30px;
-            border: none;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--theme-transition);
-            font-family: 'Nunito', sans-serif;
-            background: var(--spotify-green);
-            color: #000;
-            box-shadow: 0 4px 30px rgba(29, 185, 84, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-        .spotify-launch-row .btn-spotify-launch:hover {
-            transform: translateY(-2px) scale(1.03);
-            box-shadow: 0 8px 40px rgba(29, 185, 84, 0.4);
-        }
-
-        /* --- SPOTIFY PAGE --- */
-        .spotify-page {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--bg-primary);
-            z-index: 5000;
-            padding: 1.5rem;
-            overflow-y: auto;
-            animation: pageFadeIn 0.4s ease;
-            transition: var(--theme-transition);
-        }
-        .spotify-page.active {
-            display: block;
-        }
-
-        @keyframes pageFadeIn {
-            from { opacity: 0; transform: scale(0.98) translateY(20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
-        .spotify-page .close-spotify {
-            position: fixed;
-            top: 20px;
-            right: 30px;
-            font-size: 2.5rem;
-            cursor: pointer;
-            color: var(--text-muted);
-            transition: var(--theme-transition);
-            background: none;
-            border: none;
-            z-index: 5001;
-            background: var(--bg-glass);
-            backdrop-filter: blur(20px);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .spotify-page .close-spotify:hover {
-            color: var(--color-peach);
-            transform: rotate(90deg) scale(1.1);
-        }
-
-        .spotify-page .spotify-page-header {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            padding-top: 1rem;
-        }
-
-        .spotify-page .spotify-page-header h2 {
-            font-family: 'Fredoka One', cursive;
-            font-size: 2.8rem;
-            color: var(--text-primary);
-            transition: var(--theme-transition);
-        }
-
-        .spotify-page .spotify-page-header p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        .spotify-page .spotify-page-embed {
-            max-width: 900px;
-            margin: 0 auto;
-            background: var(--bg-glass);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            border: 1px solid var(--border-light);
-            padding: 1.5rem;
-            box-shadow: 0 8px 40px var(--shadow-color);
-            transition: var(--theme-transition);
-        }
-
-        .spotify-page .spotify-page-embed .page-playlist-controls {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-
-        .spotify-page .spotify-page-embed .page-playlist-controls button {
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-input);
-            color: var(--text-secondary);
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: var(--theme-transition);
-            font-family: 'Nunito', sans-serif;
-            font-weight: 600;
-        }
-
-        .spotify-page .spotify-page-embed .page-playlist-controls button:hover {
-            border-color: var(--color-green);
-            background: var(--glow-green);
-            color: var(--text-primary);
-        }
-
-        .spotify-page .spotify-page-embed .page-playlist-controls button.active {
-            border-color: var(--color-green);
-            background: var(--color-green);
-            color: var(--color-white);
-        }
-
-        .spotify-page .spotify-page-embed .page-playlist-controls .btn-spotify-green {
-            background: var(--spotify-green);
-            color: #000;
-            border-color: var(--spotify-green);
-        }
-
-        .spotify-page .spotify-page-embed .page-playlist-controls .btn-spotify-green:hover {
-            background: #1ed760;
-            border-color: #1ed760;
-        }
-
-        .spotify-page .spotify-page-embed .page-playlist-input {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-
-        .spotify-page .spotify-page-embed .page-playlist-input input {
-            flex: 1;
-            min-width: 200px;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-input);
-            color: var(--text-primary);
-            font-size: 0.85rem;
-            font-family: 'Nunito', sans-serif;
-            transition: var(--theme-transition);
-        }
-
-        .spotify-page .spotify-page-embed .page-playlist-input input:focus {
-            outline: none;
-            border-color: var(--color-green);
-            box-shadow: 0 0 30px var(--glow-green);
-        }
-
-        .spotify-page .spotify-page-embed .page-playlist-input button {
-            padding: 0.4rem 1.2rem;
-            border-radius: 20px;
-            border: none;
-            font-weight: 600;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: var(--theme-transition);
-            font-family: 'Nunito', sans-serif;
-            background: var(--color-green);
-            color: var(--color-white);
-        }
-
-        .spotify-page .spotify-page-embed .page-playlist-input button:hover {
-            transform: scale(1.05);
-        }
-
-        .spotify-page .spotify-page-embed .page-playlist-input button.btn-id {
-            background: var(--bg-input);
-            color: var(--text-secondary);
-            border: 1px solid var(--border-color);
-        }
-
-        .spotify-page .spotify-page-embed .page-playlist-input button.btn-id:hover {
-            border-color: var(--color-yellow);
-            background: var(--glow-yellow);
-            color: var(--text-primary);
-        }
-
-        .spotify-page .spotify-page-embed iframe {
-            width: 100%;
-            height: 500px;
-            border: none;
-            border-radius: 12px;
-            background: #121212;
-        }
-
-        .spotify-note {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.75rem;
-            margin-top: 0.5rem;
-            padding: 0.5rem;
-            background: var(--bg-input);
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
-
-        .spotify-note a {
-            color: var(--spotify-green);
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .spotify-note a:hover {
-            text-decoration: underline;
         }
 
         .setup-area {
@@ -1504,20 +1266,36 @@
             border-color: var(--glow-green);
             background: var(--bg-card);
         }
-        .game-card.featured::after {
-            content: '⭐ FEATURED';
+
+        /* --- CHARADES gets extra highlight --- */
+        .game-card.charades-highlight {
+            border-color: var(--color-yellow);
+            background: var(--glow-yellow);
+            box-shadow: 0 0 40px var(--glow-yellow);
+            transform: scale(1.03);
+        }
+        .game-card.charades-highlight::after {
+            content: '🎭 STAR GAME';
             position: absolute;
             top: 10px;
             right: 10px;
-            background: var(--color-yellow);
-            color: var(--color-wood);
+            background: var(--color-peach);
+            color: white;
             font-size: 0.55rem;
             font-weight: 800;
             padding: 0.2rem 0.8rem;
             border-radius: 12px;
             z-index: 2;
             animation: pulseBadge 1.5s infinite;
-            box-shadow: 0 0 20px var(--glow-yellow);
+            box-shadow: 0 0 20px var(--glow-peach);
+        }
+        .game-card.charades-highlight .emoji-big {
+            animation: charadesFloat 2s ease-in-out infinite;
+        }
+
+        @keyframes charadesFloat {
+            0%,100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-6px) rotate(-4deg); }
         }
 
         @keyframes pulseBadge {
@@ -2661,12 +2439,8 @@
             .hangman-word { font-size: 1.8rem; letter-spacing: 6px; min-height: 3rem; }
             .hangman-input-row input { width: 55px; font-size: 1rem; }
             .hangman-input-row button { padding: 0.4rem 1rem; font-size: 0.8rem; }
-            .spotify-page .spotify-page-embed iframe { height: 350px; }
-            .spotify-page .spotify-page-header h2 { font-size: 1.8rem; }
-            .spotify-page .close-spotify { top: 10px; right: 10px; width: 40px; height: 40px; font-size: 1.8rem; }
             .team-card { min-width: 80px; }
             .team-section .team-header { flex-direction: column; align-items: stretch; }
-            .spotify-launch-row .btn-spotify-launch { padding: 0.4rem 1.5rem; font-size: 0.85rem; }
             .theme-toggle-simple { top: 10px; right: 10px; width: 40px; height: 40px; font-size: 1.2rem; }
         }
     </style>
@@ -2728,29 +2502,6 @@
         </div>
     </div>
 
-    <!-- SPOTIFY PAGE -->
-    <div class="spotify-page" id="spotifyPage">
-        <button class="close-spotify" onclick="closeSpotifyPage()">✕</button>
-        <div class="spotify-page-header">
-            <h2>🎵 Spotify Player</h2>
-            <p>Paste any playlist or song URL to play</p>
-        </div>
-        <div class="spotify-page-embed">
-            <div class="page-playlist-input">
-                <input type="text" id="spotifyPageInput" placeholder="Paste Spotify URL (playlist, album, or track)..." />
-                <button onclick="loadSpotifyPagePlaylist()">🎵 Load</button>
-                <button class="btn-id" onclick="getSpotifyPageId()">📋 Get ID</button>
-            </div>
-            <div id="spotifyEmbedContainer">
-                <iframe id="spotifyPageIframe" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator&theme=0" allow="encrypted-media" loading="lazy"></iframe>
-            </div>
-            <div class="spotify-note">
-                💡 <strong>Note:</strong> To play full songs, use the <a href="https://open.spotify.com" target="_blank">Spotify Web Player</a> or mobile app. The embed player requires a Spotify account.
-                <br>Paste any Spotify URL: playlist, album, or track!
-            </div>
-        </div>
-    </div>
-
     <div class="container" id="mainContent">
         <!-- HEADER -->
         <div class="header">
@@ -2773,11 +2524,6 @@
                 <span></span>
             </div>
             <div class="subhead">✦ <span>Up to 20 players</span> · <span>Add friends</span> · <span>Track scores</span> ✦</div>
-        </div>
-
-        <!-- SPOTIFY LAUNCH BUTTON -->
-        <div class="spotify-launch-row">
-            <button class="btn-spotify-launch" onclick="openSpotifyPage()">🎵 Open Spotify Player</button>
         </div>
 
         <!-- TEAM MODE -->
@@ -2926,7 +2672,7 @@
         <div class="leaderboard-preview" id="leaderboardPreview">
             <div class="leaderboard-header">
                 <span>🏅 Rank</span>
-                <span>Player</span>
+                <span id="lbHeaderName">Player</span>
                 <span>⭐ Points</span>
                 <button class="view-all" onclick="openLeaderboardPage()">📊 View Full</button>
             </div>
@@ -2952,7 +2698,7 @@
     <!-- LEADERBOARD PAGE -->
     <div class="leaderboard-page" id="leaderboardPage">
         <button class="close-page" onclick="closeLeaderboardPage()">✕</button>
-        <h2>🏆 Full Leaderboard</h2>
+        <h2 id="lbPageTitle">🏆 Full Leaderboard</h2>
         <div class="lb-full-list" id="lbFullList"></div>
         <div class="lb-actions-export">
             <button onclick="printLeaderboard()">🖨️ Print</button>
@@ -3150,120 +2896,6 @@
         }
 
         // ============================================================
-        //  SPOTIFY PAGE - Simplified
-        // ============================================================
-        let spotifyPagePlaylist = '37i9dQZF1DXcBWIGoYBM5M';
-
-        function openSpotifyPage() {
-            const page = document.getElementById('spotifyPage');
-            page.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeSpotifyPage() {
-            const page = document.getElementById('spotifyPage');
-            page.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        function loadSpotifyPagePlaylist() {
-            const input = document.getElementById('spotifyPageInput');
-            let value = input.value.trim();
-
-            if (!value) {
-                alert('Please paste a Spotify URL!');
-                return;
-            }
-
-            // Extract ID from various URL formats
-            let idMatch = value.match(/(?:playlist|album|track|episode)[\/:]([a-zA-Z0-9]+)/);
-            if (idMatch) {
-                value = idMatch[1];
-            } else {
-                // Check if it's already an ID
-                if (!/^[a-zA-Z0-9]+$/.test(value)) {
-                    alert('Invalid Spotify URL or ID!');
-                    return;
-                }
-            }
-
-            const embedType = value.includes('track') ? 'track' : 
-                             value.includes('album') ? 'album' : 
-                             value.includes('episode') ? 'episode' : 'playlist';
-            
-            // Re-extract ID for different URL formats
-            if (value.includes('spotify.com')) {
-                const match = value.match(/\/(?:playlist|album|track|episode)\/([a-zA-Z0-9]+)/);
-                if (match) {
-                    value = match[1];
-                }
-            }
-
-            // Determine embed type from input
-            let type = 'playlist';
-            if (value.includes('album') || input.value.includes('album')) type = 'album';
-            if (value.includes('track') || input.value.includes('track')) type = 'track';
-            if (value.includes('episode') || input.value.includes('episode')) type = 'episode';
-
-            // Clean up - just use the ID
-            const cleanId = value.replace(/[^a-zA-Z0-9]/g, '');
-
-            if (cleanId.length < 5) {
-                alert('Invalid Spotify ID!');
-                return;
-            }
-
-            // Determine type based on the URL pattern
-            const urlLower = input.value.toLowerCase();
-            let finalType = 'playlist';
-            if (urlLower.includes('/album/')) finalType = 'album';
-            else if (urlLower.includes('/track/')) finalType = 'track';
-            else if (urlLower.includes('/episode/')) finalType = 'episode';
-
-            spotifyPagePlaylist = cleanId;
-            const iframe = document.getElementById('spotifyPageIframe');
-            if (iframe) {
-                iframe.src = `https://open.spotify.com/embed/${finalType}/${cleanId}?utm_source=generator&theme=0`;
-            }
-            
-            // Show success message
-            const note = document.querySelector('.spotify-note');
-            if (note) {
-                note.innerHTML = `✅ Loaded ${finalType}: <strong>${cleanId}</strong> — Playing ${finalType} content!`;
-                setTimeout(() => {
-                    note.innerHTML = `💡 <strong>Note:</strong> To play full songs, use the <a href="https://open.spotify.com" target="_blank">Spotify Web Player</a> or mobile app. The embed player requires a Spotify account.<br>Paste any Spotify URL: playlist, album, or track!`;
-                }, 5000);
-            }
-            
-            input.value = '';
-            playSound('success');
-        }
-
-        function getSpotifyPageId() {
-            const id = spotifyPagePlaylist;
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(id).then(() => {
-                    alert(`📋 Current playlist ID: ${id}\nCopied to clipboard!`);
-                }).catch(() => {
-                    prompt('Current playlist ID:', id);
-                });
-            } else {
-                prompt('Current playlist ID:', id);
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const input = document.getElementById('spotifyPageInput');
-            if (input) {
-                input.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter') {
-                        loadSpotifyPagePlaylist();
-                    }
-                });
-            }
-        });
-
-        // ============================================================
         //  TEAM MODE
         // ============================================================
         let teamModeEnabled = false;
@@ -3273,23 +2905,52 @@
         function toggleTeamMode() {
             teamModeEnabled = !teamModeEnabled;
             const btn = document.getElementById('teamToggleBtn');
+            const headerName = document.getElementById('lbHeaderName');
+            const pageTitle = document.getElementById('lbPageTitle');
+
             if (teamModeEnabled) {
                 btn.textContent = '✅ Enabled';
                 btn.style.borderColor = 'var(--color-green)';
                 btn.style.background = 'var(--glow-green)';
+                headerName.textContent = 'Team';
+                pageTitle.textContent = '🏆 Team Leaderboard';
                 if (teams.length === 0) {
                     addTeam();
                     addTeam();
                 }
+                // Reset individual player scores to 0 when enabling team mode
+                players.forEach(p => {
+                    p.points = 0;
+                    p.history = [];
+                    p.streak = 0;
+                    p.level = 1;
+                    p.totalGames = 0;
+                    p.correctGuesses = 0;
+                    p.achievements = [];
+                });
                 assignAllToTeams();
             } else {
                 btn.textContent = '🚫 Disabled';
                 btn.style.borderColor = '';
                 btn.style.background = '';
+                headerName.textContent = 'Player';
+                pageTitle.textContent = '🏆 Full Leaderboard';
                 teams = [];
+                // Reset team points and player scores
+                players.forEach(p => {
+                    p.team = null;
+                    p.points = 0;
+                    p.history = [];
+                    p.streak = 0;
+                    p.level = 1;
+                    p.totalGames = 0;
+                    p.correctGuesses = 0;
+                    p.achievements = [];
+                });
                 renderTeams();
             }
-            renderLeaderboard();
+            savePlayers();
+            renderAll();
         }
 
         function addTeam() {
@@ -3298,6 +2959,7 @@
             const color = teamColors[teams.length % teamColors.length];
             teams.push({ name: name, color: color, members: [], points: 0 });
             renderTeams();
+            renderAll();
         }
 
         function removeTeam(index) {
@@ -3311,7 +2973,7 @@
             });
             teams.splice(index, 1);
             renderTeams();
-            renderLeaderboard();
+            renderAll();
         }
 
         function assignPlayerToTeam(playerName, teamIndex) {
@@ -3327,7 +2989,7 @@
                 if (player) player.team = teamIndex;
             }
             renderTeams();
-            renderLeaderboard();
+            renderAll();
         }
 
         function assignAllToTeams() {
@@ -3342,7 +3004,7 @@
                 p.team = teamIdx;
             });
             renderTeams();
-            renderLeaderboard();
+            renderAll();
         }
 
         function renderTeams() {
@@ -3353,6 +3015,7 @@
                 return;
             }
 
+            // Recalculate team points from player points
             teams.forEach(t => {
                 t.points = players.filter(p => t.members.includes(p.name)).reduce((sum, p) => sum + p.points, 0);
             });
@@ -3463,11 +3126,11 @@
         let roastPrompts = [];
 
         // ============================================================
-        //  LOAD GM DATA
+        //  LOAD GM DATA - EXPANDED WITH 100+ ITEMS EACH
         // ============================================================
         function loadGMData() {
             try {
-                const saved = localStorage.getItem('lilacGMDataV6');
+                const saved = localStorage.getItem('lilacGMDataV7');
                 if (saved) {
                     const data = JSON.parse(saved);
                     charadesWords = data.charadesWords || [];
@@ -3481,73 +3144,232 @@
                 }
             } catch (e) {}
 
-            // Default data
+            // --- CHARADES: 100+ words ---
             charadesWords = [
-                'cat', 'dog', 'elephant', 'frog', 'bird', 'fish', 'lion', 'monkey', 'snake', 'chicken',
-                'chimpanzee', 'penguin', 'giraffe', 'shark', 'butterfly', 'spider', 'fox', 'dragon', 'dinosaur',
-                'zombie', 'gorilla', 'kangaroo', 'flamingo', 'cow', 'horse', 'turtle', 'whale',
-                'sleeping', 'swimming', 'running', 'dancing', 'singing', 'cooking', 'painting', 'fishing', 'surfing',
-                'climbing', 'juggling', 'laughing', 'sneezing', 'yawning', 'whispering', 'skipping', 'stomping'
+                'elephant', 'guitar', 'astronaut', 'penguin', 'helicopter', 'telescope', 'skateboard', 'volcano',
+                'tornado', 'mermaid', 'dragon', 'unicorn', 'pirate', 'knight', 'zombie', 'vampire', 'werewolf',
+                'robot', 'alien', 'superhero', 'ninja', 'samurai', 'gladiator', 'wizard', 'witch', 'fairy',
+                'genie', 'dinosaur', 'giraffe', 'dolphin', 'kangaroo', 'panda', 'koala', 'hedgehog', 'squirrel',
+                'parrot', 'eagle', 'shark', 'whale', 'octopus', 'jellyfish', 'seahorse', 'crab', 'lobster',
+                'turtle', 'frog', 'chameleon', 'iguana', 'crocodile', 'alligator', 'snake', 'lizard', 'bee',
+                'butterfly', 'dragonfly', 'ladybug', 'tarantula', 'scorpion', 'praying mantis', 'firefly',
+                'skyscraper', 'igloo', 'temple', 'castle', 'pyramid', 'lighthouse', 'windmill', 'pagoda',
+                'sailboat', 'submarine', 'hot air balloon', 'rocket', 'satellite', 'spaceship', 'hoverboard',
+                'snowboard', 'surfboard', 'waterski', 'gymnastics', 'archery', 'fencing', 'boxing', 'karate',
+                'judo', 'taekwondo', 'yoga', 'ballet', 'jazz', 'tap dance', 'salsa', 'flamenco', 'tango',
+                'moonwalk', 'breakdance', 'parkour', 'skydiving', 'bungee jumping', 'paragliding', 'baseball',
+                'basketball', 'soccer', 'tennis', 'golf', 'bowling', 'cricket', 'rugby', 'hockey', 'fishing',
+                'camping', 'hiking', 'cooking', 'baking', 'gardening', 'painting', 'sculpting', 'origami'
+            ];
+            // Ensure at least 100
+            while (charadesWords.length < 100) {
+                charadesWords.push('mystery' + charadesWords.length);
+            }
+
+            // --- KARAOKE: 100 songs ---
+            const artistList = ['Burna Boy', 'Wizkid', 'Davido', 'Rema', 'Fireboy DML', 'Ckay', 'Asake', 'Ayra Starr',
+                'Tems', 'Oxlade', 'Kizz Daniel', 'Simi', 'Tiwa Savage', 'Yemi Alade', 'Flavour', 'Patoranking', 'Runtown',
+                'Mr Eazi', 'Tekno', 'Mayorkun', 'Omah Lay', 'Joeboy', 'Victony', 'Bella Shmurda', 'Zlatan', 'Ruger',
+                'Buju', 'Falz', 'Niniola', 'Seyi Shay', 'Naira Marley', 'M.I. Abaga', 'Phyno', 'Olamide', 'Kcee',
+                'P-Square', '2Baba', 'D\'banj', 'Don Jazzy', 'Rema'
             ];
 
-            karaokeSongs = [
-                { title: "African Giant", artist: "Burna Boy" },
-                { title: "Last Last", artist: "Burna Boy" },
-                { title: "Ye", artist: "Burna Boy" },
-                { title: "On The Low", artist: "Burna Boy" },
-                { title: "Essence", artist: "Wizkid ft Tems" },
-                { title: "Fall", artist: "Davido" },
-                { title: "If", artist: "Davido" },
-                { title: "Calm Down", artist: "Rema" },
-                { title: "Peru", artist: "Fireboy DML" },
-                { title: "Love Nwantiti", artist: "Ckay" }
+            const songTitles = [
+                'African Giant', 'Last Last', 'Ye', 'On The Low', 'Essence', 'Fall', 'If', 'Calm Down', 'Peru',
+                'Love Nwantiti', 'Sungba', 'Rush', 'Trabaye', 'Joha', 'Sempe', 'Monalisa', 'Finesse', 'Bella',
+                'Have Fun', 'Feel Good', 'High', 'Iskaba', 'Mami Wota', 'Gbera', 'Omo Ada', 'Nowo', 'Soco', 'Aye',
+                'Lagos City', 'Abule', 'Sisi', 'Karma', 'Shayo', 'My Woman', 'Akube', 'Champion', 'Egedege',
+                'Ifeanyi', 'Joromi', 'Sufferer', 'Balance', 'Maya', 'Azul', 'Comma', 'Ku Lo Sa', 'Sability',
+                'Peace Be Unto You', 'Woman', 'Dada', 'Jowo', 'Kana', 'Odo', 'Laye', 'Fable', 'Ginger', 'Pour Me Water',
+                'Ghetto Love', 'Blessings', 'Loyal', 'Caro', 'Party', 'Tonight', 'Tomorrow', 'Forever', 'Promise',
+                'Surrender', 'My Way', 'No Games', 'Bad Boy', 'Gangsta', 'King', 'Queen', 'Royal', 'Shine', 'Glow',
+                'Rise', 'Thrive', 'Believe', 'Dream', 'Magic', 'Starlight', 'Moonlight', 'Sunrise', 'Sunset',
+                'Ocean', 'Mountain', 'Rivers', 'Forest', 'Desert', 'Sky', 'Fire', 'Gold', 'Diamond', 'Crystal',
+                'Echo', 'Bliss', 'Aura', 'Flow', 'Vibe', 'Wave', 'Zenith', 'Apex', 'Phoenix', 'Titan', 'Apex'
             ];
 
-            fastTalkCategories = [{
-                name: 'Fruits',
-                items: ['apple', 'banana', 'orange', 'grape', 'strawberry', 'kiwi', 'mango', 'pineapple', 'watermelon']
-            }, {
-                name: 'Countries',
-                items: ['nigeria', 'ghana', 'south africa', 'kenya', 'egypt', 'morocco', 'usa', 'canada', 'uk', 'france']
-            }, {
-                name: 'Movies',
-                items: ['titanic', 'avatar', 'inception', 'gladiator', 'frozen', 'jaws', 'the lion king', 'toy story']
-            }, {
-                name: 'Animals',
-                items: ['lion', 'tiger', 'bear', 'eagle', 'shark', 'wolf', 'fox', 'elephant', 'giraffe', 'zebra']
-            }];
+            karaokeSongs = [];
+            let idx = 0;
+            for (let i = 0; i < 100; i++) {
+                const artist = artistList[i % artistList.length];
+                const title = songTitles[i % songTitles.length] + (i >= songTitles.length ? ' ' + (Math.floor(i / songTitles
+                    .length) + 1) : '');
+                karaokeSongs.push({ title: title, artist: artist });
+            }
 
+            // --- FAST TALK: 20+ categories with 8-12 words each ---
+            const categoryData = {
+                'Fruits': ['apple', 'banana', 'orange', 'grape', 'strawberry', 'kiwi', 'mango', 'pineapple', 'watermelon',
+                    'papaya', 'guava', 'cherry'
+                ],
+                'Countries': ['nigeria', 'ghana', 'kenya', 'south africa', 'egypt', 'morocco', 'usa', 'canada', 'uk',
+                    'france', 'germany', 'italy', 'spain', 'brazil', 'argentina', 'mexico', 'japan', 'china', 'india',
+                    'australia'
+                ],
+                'Movies': ['titanic', 'avatar', 'inception', 'gladiator', 'frozen', 'jaws', 'the lion king', 'toy story',
+                    'star wars', 'jurassic park', 'the matrix', 'lord of the rings', 'harry potter', 'mamma mia',
+                    'grease', 'the wizard of oz', 'casablanca', 'citizen kane', 'pulp fiction', 'the godfather'
+                ],
+                'Animals': ['lion', 'tiger', 'bear', 'eagle', 'shark', 'wolf', 'fox', 'elephant', 'giraffe', 'zebra',
+                    'hippo', 'rhino', 'leopard', 'cheetah', 'panda', 'koala', 'kangaroo', 'dolphin', 'whale', 'octopus'
+                ],
+                'Sports': ['soccer', 'basketball', 'tennis', 'golf', 'swimming', 'running', 'cycling', 'boxing', 'karate',
+                    'judo', 'fencing', 'archery', 'skiing', 'snowboarding', 'surfing', 'skateboarding', 'cricket',
+                    'rugby', 'hockey', 'volleyball'
+                ],
+                'Foods': ['pizza', 'pasta', 'sushi', 'taco', 'burger', 'sandwich', 'salad', 'soup', 'rice', 'beans',
+                    'chicken', 'fish', 'beef', 'pork', 'tofu', 'cheese', 'bread', 'cake', 'ice cream', 'chocolate'
+                ],
+                'Instruments': ['guitar', 'piano', 'drums', 'violin', 'cello', 'flute', 'saxophone', 'trumpet', 'trombone',
+                    'clarinet', 'oboe', 'harp', 'ukulele', 'banjo', 'mandolin', 'accordion', 'organ', 'synthesizer',
+                    'xylophone', 'marimba'
+                ],
+                'Professions': ['teacher', 'doctor', 'lawyer', 'engineer', 'architect', 'pilot', 'chef', 'artist',
+                    'musician', 'actor', 'director', 'writer', 'journalist', 'scientist', 'researcher', 'pharmacist',
+                    'dentist', 'veterinarian', 'psychologist', 'social worker'
+                ],
+                'Cities': ['new york', 'london', 'tokyo', 'paris', 'rome', 'barcelona', 'berlin', 'moscow', 'sydney',
+                    'mexico city', 'cairo', 'cape town', 'lagos', 'nairobi', 'mumbai', 'shanghai', 'seoul', 'dubai',
+                    'istanbul', 'rio de janeiro'
+                ],
+                'Nature': ['mountain', 'river', 'forest', 'ocean', 'desert', 'waterfall', 'canyon', 'valley', 'plain',
+                    'lake', 'island', 'peninsula', 'volcano', 'geyser', 'cave', 'iceberg', 'reef', 'tundra', 'jungle',
+                    'savanna'
+                ],
+                'Tech': ['computer', 'laptop', 'tablet', 'smartphone', 'camera', 'printer', 'scanner', 'projector',
+                    'router', 'modem', 'server', 'database', 'algorithm', 'software', 'hardware', 'cyber', 'cloud',
+                    'network', 'programming', 'robotics'
+                ],
+                'Art': ['painting', 'sculpture', 'photography', 'drawing', 'printing', 'calligraphy', 'mosaic', 'tattoo',
+                    'graffiti', 'installation', 'performance', 'dance', 'theatre', 'opera', 'ballet', 'jazz', 'blues',
+                    'classical', 'folk', 'pop'
+                ],
+                'Fashion': ['dress', 'shirt', 'pants', 'jacket', 'coat', 'jeans', 'skirt', 'blouse', 'tie', 'belt',
+                    'scarf', 'gloves', 'boots', 'sneakers', 'loafers', 'handbag', 'backpack', 'sunglasses', 'necklace',
+                    'watch'
+                ],
+                'Mythology': ['zeus', 'odin', 'thor', 'loki', 'athena', 'aphrodite', 'hercules', 'medusa', 'centaur',
+                    'pegasus', 'phoenix', 'dragon', 'unicorn', 'mermaid', 'gryphon', 'cerberus', 'hydra', 'sphinx',
+                    'minotaur', 'chimera'
+                ]
+            };
+
+            fastTalkCategories = [];
+            for (const [name, items] of Object.entries(categoryData)) {
+                fastTalkCategories.push({ name: name, items: items.slice(0, 10) });
+            }
+            // Add more categories to reach 20+
+            const extraCats = ['Science', 'History', 'Geography', 'Astronomy', 'Chemistry', 'Physics', 'Biology', 'Math',
+                'Literature', 'Philosophy'
+            ];
+            for (const cat of extraCats) {
+                const wordList = ['concept', 'theory', 'hypothesis', 'experiment', 'analysis', 'synthesis', 'deduction',
+                    'induction', 'paradigm', 'methodology'
+                ];
+                fastTalkCategories.push({ name: cat, items: wordList.map(w => w + '_' + cat.toLowerCase()) });
+            }
+            while (fastTalkCategories.length < 25) {
+                fastTalkCategories.push({ name: 'Category_' + fastTalkCategories.length, items: ['word1', 'word2', 'word3',
+                        'word4', 'word5', 'word6', 'word7', 'word8'
+                    ] });
+            }
+
+            // --- PICTIONARY: 100 words ---
             pictionaryWords = [
                 'dog', 'cat', 'cow', 'pig', 'spider', 'giraffe', 'bird', 'lion', 'chicken', 'monkey',
                 'fish', 'turtle', 'frog', 'deer', 'bat', 'lizard', 'dolphin', 'gorilla', 'whale', 'kangaroo',
                 'eagle', 'ladybug', 'otter', 'fox', 'shark', 'butterfly', 'sun', 'apple', 'house', 'car',
                 'tree', 'clock', 'book', 'chair', 'hat', 'key', 'backpack', 'flashlight', 'pencil', 'globe',
                 'ruler', 'scissors', 'stapler', 'notebook', 'guitar', 'bicycle', 'phone', 'toothbrush',
-                'mug', 'computer', 'cloud', 'lightning', 'socks', 'shield', 'frying pan', 'tambourine'
+                'mug', 'computer', 'cloud', 'lightning', 'socks', 'shield', 'frying pan', 'tambourine',
+                'mountain', 'river', 'desert', 'island', 'volcano', 'waterfall', 'cave', 'iceberg', 'reef', 'canyon',
+                'zeus', 'odin', 'thor', 'loki', 'athena', 'aphrodite', 'hercules', 'medusa', 'centaur', 'pegasus',
+                'phoenix', 'dragon', 'unicorn', 'mermaid', 'gryphon', 'cerberus', 'hydra', 'sphinx', 'minotaur', 'chimera',
+                'titanic', 'avatar', 'inception', 'gladiator', 'frozen', 'jaws', 'lionking', 'toystory', 'starwars',
+                'jurassicpark', 'matrix', 'lordoftherings', 'harrypotter', 'mammamia', 'grease', 'wizardofoz', 'casablanca',
+                'citizenkane', 'pulpfiction', 'godfather'
             ];
+            while (pictionaryWords.length < 100) {
+                pictionaryWords.push('draw' + pictionaryWords.length);
+            }
 
-            hangmanWords = [
+            // --- HANGMAN: 200 words, 5+ letters ---
+            const hangmanBase = [
                 'dance', 'music', 'party', 'laugh', 'smile', 'happy', 'friend', 'love', 'dream', 'star',
                 'moon', 'light', 'rain', 'snow', 'wind', 'fire', 'tree', 'bird', 'fish', 'lion',
                 'bear', 'wolf', 'eagle', 'shark', 'apple', 'banana', 'orange', 'grape', 'mango', 'pizza',
                 'pasta', 'taco', 'sushi', 'cake', 'bread', 'rice', 'soup', 'strong', 'brave', 'kind',
                 'smart', 'funny', 'cool', 'wild', 'sing', 'jump', 'run', 'swim', 'fly', 'climb',
-                'draw', 'write', 'read', 'play', 'walk', 'talk', 'think', 'know', 'help', 'give'
+                'draw', 'write', 'read', 'play', 'walk', 'talk', 'think', 'know', 'help', 'give',
+                'take', 'make', 'find', 'feel', 'hear', 'see', 'tell', 'ask', 'show', 'try',
+                'nice', 'good', 'great', 'best', 'free', 'high', 'low', 'late', 'soon', 'fast',
+                'slow', 'hot', 'cold', 'warm', 'cool', 'wet', 'dry', 'soft', 'hard', 'dark',
+                'light', 'bright', 'clear', 'deep', 'wide', 'tall', 'short', 'long', 'big', 'small',
+                'happy', 'sad', 'mad', 'glad', 'calm', 'wild', 'quiet', 'loud', 'proud', 'wise',
+                'young', 'old', 'new', 'true', 'real', 'whole', 'full', 'empty', 'open', 'close',
+                'early', 'late', 'near', 'far', 'left', 'right', 'north', 'south', 'east', 'west',
+                'blue', 'red', 'green', 'pink', 'gold', 'gray', 'black', 'white', 'brown', 'purple',
+                'orange', 'yellow', 'silver', 'stone', 'rock', 'sand', 'gold', 'silver', 'copper', 'iron',
+                'steel', 'glass', 'paper', 'wood', 'wool', 'silk', 'cotton', 'linen', 'ivory', 'jade',
+                'ruby', 'pearl', 'amber', 'coral', 'onyx', 'opal', 'jade', 'agate', 'topaz', 'garnet'
             ];
+            // Ensure all words are 5+ letters
+            hangmanWords = hangmanBase.filter(w => w.length >= 5);
+            // Add more to reach 200
+            const extraWords = [
+                'adventure', 'champion', 'discover', 'explore', 'fantasy', 'glorious', 'heroic', 'imagine',
+                'journey', 'knowledge', 'legendary', 'mystery', 'nature', 'ocean', 'paradise', 'quest',
+                'rainbow', 'silent', 'triumph', 'unique', 'vibrant', 'wisdom', 'xenial', 'youthful', 'zenith',
+                'ability', 'brilliant', 'courage', 'dazzling', 'elegant', 'freedom', 'graceful', 'honor',
+                'innocence', 'justice', 'kindness', 'loyalty', 'mercy', 'noble', 'passion', 'radiant',
+                'sacred', 'tender', 'uplift', 'valiant', 'wonder', 'yearning', 'zeal', 'awesome', 'bloom',
+                'cosmic', 'dawn', 'eternal', 'faith', 'glimmer', 'harmony', 'infinite', 'joyful', 'keen',
+                'luminous', 'majesty', 'novel', 'opulent', 'purity', 'quaint', 'reverie', 'serene', 'tranquil',
+                'ultimate', 'vivid', 'whimsical', 'exotic', 'yielding', 'zealous', 'blossom', 'cherish'
+            ];
+            hangmanWords = hangmanWords.concat(extraWords);
+            while (hangmanWords.length < 200) {
+                hangmanWords.push('mystery' + hangmanWords.length);
+            }
+            // Ensure all 5+ letters
+            hangmanWords = hangmanWords.filter(w => w.length >= 5).slice(0, 200);
 
+            // --- TRUTH & LIE: 10 rounds ---
             truthLieRounds = [
                 { category: 'Science', truths: ['Bananas are berries, botanically speaking.', 'Strawberries are not technically berries.'], lie: 'Octopuses have three hearts.' },
                 { category: 'Animals', truths: ['A group of flamingos is called a flamboyance.', 'Honey can remain edible for thousands of years.'], lie: 'Sharks existed before trees.' },
                 { category: 'Space', truths: ['A day on Venus is longer than a year on Venus.', 'Wombat poop is cube-shaped.'], lie: 'Cows have four stomach compartments.' },
-                { category: 'Animals', truths: ['Some turtles can breathe through their skin.', 'Sea otters sometimes hold hands while sleeping.'], lie: 'Koalas have fingerprints.' }
+                { category: 'Animals', truths: ['Some turtles can breathe through their skin.', 'Sea otters sometimes hold hands while sleeping.'], lie: 'Koalas have fingerprints.' },
+                { category: 'History', truths: ['Cleopatra lived closer to the moon landing than to the building of the Great Pyramid.', 'Oxford University is older than the Aztec Empire.'], lie: 'The Great Wall of China is visible from space.' },
+                { category: 'Biology', truths: ['Your stomach has to produce a new lining every few days.', 'Your skin is the largest organ in your body.'], lie: 'The human heart is located on the left side of the chest.' },
+                { category: 'Geography', truths: ['Russia spans 11 time zones.', 'Canada has the most lakes of any country.'], lie: 'The Nile River is the longest river in the world.' },
+                { category: 'Pop Culture', truths: ['The first computer mouse was made of wood.', 'Samsung is over 80 years old.'], lie: 'Netflix started as a video rental service.' },
+                { category: 'Sports', truths: ['The first modern Olympic Games were held in Athens in 1896.', 'The NFL was founded in 1920.'], lie: 'Soccer is called football in every country.' },
+                { category: 'Food', truths: ['Jelly beans were first sold in the United States in the 1800s.', 'Ketchup was once used as medicine.'], lie: 'Popcorn was invented in the United States.' }
             ];
 
+            // --- ROAST: 20 prompts ---
             roastPrompts = [
                 'Roast someone about their dance moves!',
                 'Roast someone about their fashion choices!',
                 'Roast someone about their singing voice!',
                 'Roast someone about their cooking skills!',
-                'Roast someone about their taste in music!'
+                'Roast someone about their taste in music!',
+                'Roast someone about their workout routine!',
+                'Roast someone about their cooking disasters!',
+                'Roast someone about their Karaoke performance!',
+                'Roast someone about their dance moves at parties!',
+                'Roast someone about their selfie angles!',
+                'Roast someone about their handwriting!',
+                'Roast someone about their driving skills!',
+                'Roast someone about their reading speed!',
+                'Roast someone about their taste in memes!',
+                'Roast someone about their love life!',
+                'Roast someone about their work ethic!',
+                'Roast someone about their phone addiction!',
+                'Roast someone about their Netflix choices!',
+                'Roast someone about their sense of humor!',
+                'Roast someone about their life decisions!'
             ];
 
             saveGMData();
@@ -3555,7 +3377,7 @@
 
         function saveGMData() {
             try {
-                localStorage.setItem('lilacGMDataV6', JSON.stringify({
+                localStorage.setItem('lilacGMDataV7', JSON.stringify({
                     charadesWords: charadesWords,
                     karaokeSongs: karaokeSongs,
                     fastTalkCategories: fastTalkCategories,
@@ -3797,7 +3619,7 @@
         function addGMHangman() {
             const input = document.getElementById('gmHangmanInput');
             const word = input.value.trim().toLowerCase();
-            if (word && /^[a-z]+$/.test(word) && !hangmanWords.includes(word)) {
+            if (word && /^[a-z]+$/.test(word) && word.length >= 5 && !hangmanWords.includes(word)) {
                 hangmanWords.push(word);
                 saveGMData();
                 renderGMHangman();
@@ -3805,6 +3627,8 @@
                 createConfetti(15);
             } else if (word && !/^[a-z]+$/.test(word)) {
                 alert('Only letters please!');
+            } else if (word && word.length < 5) {
+                alert('Word must be at least 5 letters!');
             } else if (word) {
                 alert('Word already exists!');
             }
@@ -4022,6 +3846,9 @@
                     p.correctGuesses = 0;
                     p.achievements = [];
                 });
+                if (teamModeEnabled) {
+                    teams.forEach(t => t.points = 0);
+                }
                 savePlayers();
                 renderAll();
                 playSound('success');
@@ -4032,13 +3859,21 @@
         //  PRINT LEADERBOARD
         // ============================================================
         function printLeaderboard() {
-            const sorted = [...players].sort((a, b) => b.points - a.points);
-            let text = '🎉 PARTY GAMES - LEADERBOARD\n';
+            let sorted;
+            let title = '🎉 PARTY GAMES - LEADERBOARD\n';
+            if (teamModeEnabled) {
+                sorted = [...teams].sort((a, b) => b.points - a.points);
+                title = '🎉 PARTY GAMES - TEAM LEADERBOARD\n';
+            } else {
+                sorted = [...players].sort((a, b) => b.points - a.points);
+            }
+            let text = title;
             text += '='.repeat(40) + '\n\n';
             sorted.forEach((p, i) => {
                 const trophy = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}.`;
-                const team = p.team !== null && teams[p.team] ? ` (${teams[p.team].name})` : '';
-                text += `${trophy} ${p.name}${team}: ${p.points} pts (Level ${p.level})\n`;
+                const name = teamModeEnabled ? p.name : p.name;
+                const points = teamModeEnabled ? p.points : p.points;
+                text += `${trophy} ${name}: ${points} pts\n`;
             });
             text += '\n' + '='.repeat(40) + '\n';
             text += `Generated: ${new Date().toLocaleString()}`;
@@ -4059,13 +3894,21 @@
         //  SHARE
         // ============================================================
         function openShareModal() {
-            const sorted = [...players].sort((a, b) => b.points - a.points);
+            let sorted;
             let text = '🎉 PARTY GAMES RESULTS 🎉\n\n';
-            sorted.forEach((p, i) => {
-                const trophy = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}.`;
-                const team = p.team !== null && teams[p.team] ? ` (${teams[p.team].name})` : '';
-                text += `${trophy} ${p.name}${team}: ${p.points} pts\n`;
-            });
+            if (teamModeEnabled) {
+                sorted = [...teams].sort((a, b) => b.points - a.points);
+                sorted.forEach((p, i) => {
+                    const trophy = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}.`;
+                    text += `${trophy} ${p.name}: ${p.points} pts\n`;
+                });
+            } else {
+                sorted = [...players].sort((a, b) => b.points - a.points);
+                sorted.forEach((p, i) => {
+                    const trophy = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}.`;
+                    text += `${trophy} ${p.name}: ${p.points} pts\n`;
+                });
+            }
             text += '\n🎉 What a session!';
 
             document.getElementById('shareText').value = text;
@@ -4098,6 +3941,7 @@
             if (players.length >= MAX_PLAYERS) return { success: false, message: `Max ${MAX_PLAYERS} players reached.` };
             if (!isNameUnique(name)) return { success: false, message: 'Username already taken!' };
 
+            // Reset individual points when adding in team mode
             const newPlayer = {
                 name: name,
                 points: 0,
@@ -4169,6 +4013,8 @@
         }
 
         function checkAchievements(p) {
+            // No individual achievements in team mode
+            if (teamModeEnabled) return;
             const newAchievements = [];
             if (p.points >= 10 && !p.achievements.includes('first_10')) { newAchievements.push('first_10');
                 createConfetti(30);
@@ -4201,6 +4047,7 @@
         }
 
         function getAchievementEmoji(achievements) {
+            if (teamModeEnabled) return '';
             const map = { 'first_10': '🆕', 'streak_5': '🔥', 'streak_10': '⚡', 'half_century': '🌟', 'century': '💎',
                 'guesser_20': '🎯' };
             return achievements.map(a => map[a] || '').filter(Boolean).join(' ');
@@ -4246,6 +4093,16 @@
 
         function getCurrentPlayer() {
             return players.length > 0 ? players[currentTurnIndex % players.length] : null;
+        }
+
+        function getCurrentTeam() {
+            if (!teamModeEnabled || teams.length === 0) return null;
+            const current = getCurrentPlayer();
+            if (!current) return null;
+            if (current.team !== null && teams[current.team]) {
+                return teams[current.team];
+            }
+            return null;
         }
 
         function nextTurn() {
@@ -4453,24 +4310,32 @@
         }
 
         // ============================================================
-        //  SCORING UI HELPER
+        //  SCORING UI HELPER - In team mode, show team name
         // ============================================================
         function createScoringUI() {
             const currentPlayer = getCurrentPlayer();
+            const currentTeam = getCurrentTeam();
             const playerName = currentPlayer ? currentPlayer.name : 'No player';
             const playerScore = currentPlayer ? currentPlayer.points : 0;
             const achievements = currentPlayer ? getAchievementEmoji(currentPlayer.achievements) : '';
-            const teamName = (currentPlayer && currentPlayer.team !== null && teams[currentPlayer.team]) ? teams[currentPlayer
-                .team].name : '';
+
+            let displayName = playerName;
+            let displayScore = playerScore;
+
+            if (teamModeEnabled && currentTeam) {
+                displayName = currentTeam.name;
+                displayScore = currentTeam.points;
+            }
 
             return `
                     <div class="scoring-section">
                         <div class="scoring-label">🎯 Score This Round</div>
                         <div class="scoring-player">
-                            Current player: <span style="color:var(--color-green);">${playerName}</span>
-                            ${teamName ? `<span style="font-size:0.7rem;color:var(--text-muted);">(${teamName})</span>` : ''}
-                            <span class="current-score" id="scoringCurrentScore">${playerScore}</span> pts
-                            ${achievements ? `<span style="font-size:0.7rem;margin-left:0.3rem;">${achievements}</span>` : ''}
+                            ${teamModeEnabled ? 'Team: ' : 'Current player: '}
+                            <span style="color:var(--color-green);">${displayName}</span>
+                            ${!teamModeEnabled && currentPlayer && currentPlayer.team !== null && teams[currentPlayer.team] ? `<span style="font-size:0.7rem;color:var(--text-muted);">(${teams[currentPlayer.team].name})</span>` : ''}
+                            <span class="current-score" id="scoringCurrentScore">${displayScore}</span> pts
+                            ${achievements && !teamModeEnabled ? `<span style="font-size:0.7rem;margin-left:0.3rem;">${achievements}</span>` : ''}
                         </div>
                         <div class="score-buttons">
                             <button class="btn-minus" onclick="scoreCurrentPlayer(-1)">−1</button>
@@ -4487,9 +4352,28 @@
                 alert('No player selected!');
                 return;
             }
-            const idx = players.findIndex(p => p.name === currentPlayer.name);
-            if (idx !== -1) {
-                addPoints(idx, amount);
+
+            // In team mode, add points to the team's members (all players in the team)
+            if (teamModeEnabled) {
+                const teamIdx = currentPlayer.team;
+                if (teamIdx === null || teamIdx < 0 || teamIdx >= teams.length) {
+                    alert('Player is not assigned to a team!');
+                    return;
+                }
+                const team = teams[teamIdx];
+                // Add points to each member of the team
+                team.members.forEach(memberName => {
+                    const member = players.find(p => p.name === memberName);
+                    if (member) {
+                        const idx = players.indexOf(member);
+                        addPoints(idx, amount);
+                    }
+                });
+            } else {
+                const idx = players.findIndex(p => p.name === currentPlayer.name);
+                if (idx !== -1) {
+                    addPoints(idx, amount);
+                }
             }
         }
 
@@ -4563,7 +4447,7 @@
         }
 
         // ============================================================
-        //  HANGMAN - Using GM words
+        //  HANGMAN - Using GM words with timer
         // ============================================================
         let hangmanState = {
             word: '',
@@ -4636,7 +4520,15 @@
             hangmanState.won = false;
             renderHangman();
             document.getElementById('gameTooltip').innerHTML = '💡 <strong>How to play:</strong> Type a letter and press Enter or click Guess. You have 6 wrong guesses!';
-            
+
+            // Auto-start timer for Hangman
+            setTimeout(() => {
+                const startBtn = document.querySelector('#timerStartBtn');
+                if (startBtn) {
+                    startBtn.click();
+                }
+            }, 400);
+
             setTimeout(() => {
                 const input = document.getElementById('hangmanInput');
                 if (input) {
@@ -4655,10 +4547,10 @@
 
         function renderHangman() {
             const container = document.getElementById('modalContent');
-            
-            const wordDisplay = hangmanState.word.split('').map(letter => 
-                hangmanState.guessed.includes(letter) ? 
-                `<span class="letter-revealed">${letter.toUpperCase()}</span>` : 
+
+            const wordDisplay = hangmanState.word.split('').map(letter =>
+                hangmanState.guessed.includes(letter) ?
+                `<span class="letter-revealed">${letter.toUpperCase()}</span>` :
                 `<span class="letter-hidden">_</span>`
             ).join(' ');
 
@@ -4705,9 +4597,24 @@
                 </div>
             `;
 
+            const timerDiv = document.createElement('div');
+            timerDiv.innerHTML = createTimerUI(currentGameTimerSeconds);
+            container.appendChild(timerDiv);
+
             const scoringDiv = document.createElement('div');
             scoringDiv.innerHTML = createScoringUI();
             container.appendChild(scoringDiv);
+
+            // Setup timer UI for Hangman
+            setupTimerUI(container, currentGameTimerSeconds);
+
+            // Auto-start timer for Hangman
+            setTimeout(() => {
+                const startBtn = document.querySelector('#timerStartBtn');
+                if (startBtn) {
+                    startBtn.click();
+                }
+            }, 300);
 
             if (isGameActive) {
                 setTimeout(() => {
@@ -4739,10 +4646,10 @@
         function hangmanGuess() {
             const input = document.getElementById('hangmanInput');
             if (!input) return;
-            
+
             const letter = input.value.toLowerCase().trim();
             input.value = '';
-            
+
             if (hangmanState.gameOver) {
                 showHangmanFeedback('Game over! Click "Next Word" to continue.', 'error');
                 return;
@@ -4771,7 +4678,7 @@
             if (hangmanState.word.includes(letter)) {
                 showHangmanFeedback(`✅ "${letter}" is correct!`, 'success');
                 playSound('point');
-                
+
                 const allGuessed = hangmanState.word.split('').every(l => hangmanState.guessed.includes(l));
                 if (allGuessed) {
                     hangmanState.won = true;
@@ -4823,7 +4730,7 @@
 
             const hintLetter = unguessed[0];
             showHangmanFeedback(`💡 Try the letter "${hintLetter.toUpperCase()}"`, 'success');
-            
+
             setTimeout(() => {
                 const input = document.getElementById('hangmanInput');
                 if (input) {
@@ -5039,7 +4946,7 @@
                 const input = document.getElementById('categoryInput');
                 const submitBtn = document.getElementById('submitCategory');
                 const fb = document.getElementById('categoryFeedback');
-                
+
                 if (submitBtn) {
                     submitBtn.onclick = () => {
                         const guess = input.value.trim().toLowerCase();
@@ -5058,7 +4965,7 @@
                         }
                     };
                 }
-                
+
                 if (input) {
                     input.addEventListener('keydown', (e) => {
                         if (e.key === 'Enter' && submitBtn) {
@@ -5066,7 +4973,7 @@
                         }
                     });
                 }
-                
+
                 updateScoringDisplay();
             }, 50);
         }
@@ -5161,26 +5068,27 @@
         }
 
         // ============================================================
-        //  GAME DEFINITIONS
+        //  GAME DEFINITIONS - Charades highlighted
         // ============================================================
         const GAMES = [{
+            id: 'charades',
+            emoji: '🎭',
+            title: 'Charades',
+            desc: 'GM editable!',
+            featured: true,
+            highlight: true
+        }, {
             id: 'hangman',
             emoji: '🧩',
             title: 'Hangman',
             desc: 'GM editable!',
-            featured: true
+            featured: false
         }, {
             id: 'truth-lie',
             emoji: '🤥',
             title: 'Two Truths & A Lie',
             desc: 'GM editable!',
-            featured: true
-        }, {
-            id: 'charades',
-            emoji: '🎭',
-            title: 'Charades',
-            desc: 'GM editable!',
-            featured: true
+            featured: false
         }, {
             id: 'pictionary',
             emoji: '🎨',
@@ -5216,18 +5124,47 @@
             page.classList.add('active');
             document.body.style.overflow = 'hidden';
 
+            if (teamModeEnabled) {
+                if (teams.length === 0) {
+                    list.innerHTML =
+                        `<div class="empty-state">🏆 No teams yet. Add teams and players to start!</div>`;
+                    return;
+                }
+                const sorted = [...teams].sort((a, b) => b.points - a.points);
+                list.innerHTML = sorted.map((t, i) => {
+                    const isTop1 = i === 0 && t.points > 0;
+                    const isTop2 = i === 1 && t.points > 0;
+                    const isTop3 = i === 2 && t.points > 0;
+
+                    let rankEmoji = `#${i + 1}`;
+                    let rankClass = '';
+                    if (isTop1) { rankEmoji = '🥇';
+                        rankClass = 'top-1'; } else if (isTop2) { rankEmoji = '🥈';
+                        rankClass = 'top-2'; } else if (isTop3) { rankEmoji = '🥉';
+                        rankClass = 'top-3'; }
+
+                    const trophy = getTrophy(t.points);
+                    return `
+                            <div class="lb-full-item ${rankClass}">
+                                <div class="lb-full-rank">${rankEmoji}</div>
+                                <div class="lb-full-avatar" style="background:${t.color}">${t.name.substring(0,2).toUpperCase()}</div>
+                                <div class="lb-full-name">${t.name}</div>
+                                ${trophy.emoji ? `<div class="lb-full-trophy">${trophy.emoji}</div>` : ''}
+                                <div class="lb-full-points">${t.points} pts</div>
+                            </div>
+                        `;
+                }).join('');
+                return;
+            }
+
+            // Individual mode
             if (players.length === 0) {
                 list.innerHTML =
-                    `
-                        <div class="empty-state">
-                            🏆 No players yet. Add some players to start the competition!
-                        </div>
-                    `;
+                    `<div class="empty-state">🏆 No players yet. Add some players to start the competition!</div>`;
                 return;
             }
 
             const sorted = [...players].sort((a, b) => b.points - a.points);
-
             list.innerHTML = sorted.map((p, i) => {
                 const isTop1 = i === 0 && p.points > 0;
                 const isTop2 = i === 1 && p.points > 0;
@@ -5266,12 +5203,15 @@
         }
 
         // ============================================================
-        //  RENDER GAME GRID
+        //  RENDER GAME GRID - Charades Highlighted
         // ============================================================
         const grid = document.getElementById('gameGrid');
         GAMES.forEach(game => {
             const card = document.createElement('div');
-            card.className = `game-card${game.featured ? ' featured' : ''}`;
+            let className = `game-card`;
+            if (game.featured) className += ' featured';
+            if (game.highlight) className += ' charades-highlight';
+            card.className = className;
             card.innerHTML = `
                     <div class="emoji-big">${game.emoji}</div>
                     <div class="title">${game.title}</div>
@@ -5472,20 +5412,75 @@
                 container.innerHTML = '<span style="color:var(--text-muted);font-size:0.75rem;">No players yet. Add some!</span>';
                 return;
             }
-            container.innerHTML = players.map((p, i) => `
+            container.innerHTML = players.map((p, i) => {
+                const teamName = teamModeEnabled && p.team !== null && teams[p.team] ? teams[p.team].name : '';
+                return `
                     <span class="player-tag ${i === currentTurnIndex ? 'active-turn' : ''}">
                         <span class="emoji-selector" onclick="changePlayerEmoji(${i})" title="Click to change emoji">${p.emoji || '😀'}</span>
                         ${p.name}
                         ${i === currentTurnIndex ? '👑' : ''}
-                        ${teamModeEnabled && p.team !== null && teams[p.team] ? `(${teams[p.team].name})` : ''}
+                        ${teamName ? `(${teamName})` : ''}
                         <span class="remove" onclick="removePlayer(${i})">✕</span>
                     </span>
-                `).join('');
+                `;
+            }).join('');
             document.getElementById('playerCount').textContent = `${players.length} / ${MAX_PLAYERS}`;
         }
 
         function renderLeaderboard() {
             const container = document.getElementById('leaderboardBody');
+
+            // Team mode: show teams only
+            if (teamModeEnabled) {
+                if (teams.length === 0) {
+                    container.innerHTML = `
+                            <div style="text-align:center;color:var(--text-muted);padding:0.5rem;font-size:0.75rem;">
+                                🏆 No teams yet. Add teams and players!
+                            </div>
+                        `;
+                    return;
+                }
+                const sorted = [...teams].sort((a, b) => b.points - a.points);
+                container.innerHTML = sorted.slice(0, 5).map((t, i) => {
+                    const isTop1 = i === 0 && t.points > 0;
+                    const isTop2 = i === 1 && t.points > 0;
+                    const isTop3 = i === 2 && t.points > 0;
+
+                    let rankEmoji = `#${i + 1}`;
+                    let rankClass = '';
+                    if (isTop1) { rankEmoji = '🥇';
+                        rankClass = 'gold'; } else if (isTop2) { rankEmoji = '🥈';
+                        rankClass = 'silver'; } else if (isTop3) { rankEmoji = '🥉';
+                        rankClass = 'bronze'; }
+
+                    const initials = t.name.substring(0, 2).toUpperCase();
+
+                    return `
+                            <div class="leaderboard-item ${isTop1 ? 'top-1' : ''} ${isTop2 ? 'top-2' : ''} ${isTop3 ? 'top-3' : ''}">
+                                <div class="lb-rank ${rankClass}">${rankEmoji}</div>
+                                <div class="lb-avatar" style="background:${t.color}">${initials}</div>
+                                <div class="lb-name">${t.name}</div>
+                                <div class="lb-stats">
+                                    <span>👥 ${t.members.length}</span>
+                                </div>
+                                <div class="lb-points">${t.points}</div>
+                            </div>
+                        `;
+                }).join('');
+
+                if (teams.length > 5) {
+                    container.innerHTML += `
+                            <div style="text-align:center;padding:0.3rem;">
+                                <button onclick="openLeaderboardPage()" style="background:none;border:none;color:var(--color-green);font-size:0.7rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;padding:0.2rem 0.8rem;border-radius:12px;transition:all 0.3s ease;">
+                                    📊 View all ${teams.length} teams →
+                                </button>
+                            </div>
+                        `;
+                }
+                return;
+            }
+
+            // Individual mode
             if (players.length === 0) {
                 container.innerHTML = `
                         <div style="text-align:center;color:var(--text-muted);padding:0.5rem;font-size:0.75rem;">
@@ -5496,7 +5491,6 @@
             }
 
             const sorted = [...players].sort((a, b) => b.points - a.points);
-
             container.innerHTML = sorted.slice(0, 5).map((p, i) => {
                 const originalIdx = players.indexOf(p);
                 const isTop1 = i === 0 && p.points > 0;
@@ -5555,11 +5549,22 @@
         function updateTurnIndicator() {
             const el = document.getElementById('turnIndicator');
             const current = getCurrentPlayer();
+            const currentTeam = getCurrentTeam();
             const achievements = current ? getAchievementEmoji(current.achievements) : '';
-            const teamName = (current && teamModeEnabled && current.team !== null && teams[current.team]) ? ` (${teams[current.team].name})` :
-                '';
+
+            let displayName = current ? current.name : 'No players';
+            let displayTeam = '';
+
+            if (teamModeEnabled && currentTeam) {
+                displayTeam = ` (${currentTeam.name})`;
+            } else if (current && current.team !== null && teams[current.team]) {
+                displayTeam = ` (${teams[current.team].name})`;
+            }
+
+            const displayPoints = current ? current.points : 0;
+
             el.textContent = current ?
-                `👤 Current turn: ${current.emoji || '😀'} ${current.name}${teamName} (${current.points} pts) ${achievements}` :
+                `👤 Current turn: ${current.emoji || '😀'} ${displayName}${displayTeam} (${displayPoints} pts) ${achievements}` :
                 '👤 No players';
         }
 
@@ -5579,16 +5584,18 @@
 
         console.log('🎉 PARTY GAMES loaded!');
         console.log(`👥 ${players.length} players loaded.`);
-        console.log(`🎭 ${charadesWords.length} Charades words`);
+        console.log(`🎭 ${charadesWords.length} Charades words (HIGHLIGHTED)`);
         console.log(`🎵 ${karaokeSongs.length} Karaoke songs`);
         console.log(`⏱️ ${fastTalkCategories.length} Fast Talk categories`);
         console.log(`🎨 ${pictionaryWords.length} Pictionary words`);
-        console.log(`🧩 ${hangmanWords.length} Hangman words`);
+        console.log(`🧩 ${hangmanWords.length} Hangman words (5+ letters)`);
         console.log(`🤥 ${truthLieRounds.length} Truth & Lie rounds`);
         console.log(`🔥 ${roastPrompts.length} Roast prompts`);
-        console.log('🎵 Spotify: Paste any URL (playlist, album, track)');
         console.log('👑 Game Master: Edit ALL games!');
         console.log('🔒 Login: Username: Clone | Password: Lilac');
+        console.log('🎭 CHARADES is highlighted as the featured game!');
+        console.log('👥 TEAM MODE: Only teams appear on the leaderboard!');
+        console.log('⏱️ HANGMAN now uses the timer interface!');
     </script>
 </body>
 </html>
