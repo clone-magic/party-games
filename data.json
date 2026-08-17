@@ -280,7 +280,57 @@
     "stretching",
     "shivering",
     "hiding",
-    "celebrating"
+    "celebrating",
+    "skipping rope",
+    "riding a bicycle",
+    "tying shoelaces",
+    "opening a jar",
+    "washing dishes",
+    "folding clothes",
+    "ironing a shirt",
+    "baking a cake",
+    "taking a selfie",
+    "answering a phone",
+    "typing",
+    "driving",
+    "rowing a boat",
+    "playing chess",
+    "playing drums",
+    "playing guitar",
+    "playing violin",
+    "conducting an orchestra",
+    "directing traffic",
+    "taking a photograph",
+    "reading a newspaper",
+    "writing a letter",
+    "wrapping a gift",
+    "blowing up a balloon",
+    "flying a kite",
+    "building a sandcastle",
+    "digging",
+    "planting a tree",
+    "watering plants",
+    "mowing the lawn",
+    "walking a dog",
+    "feeding a baby",
+    "rock climbing",
+    "ice skating",
+    "skiing downhill",
+    "surfing a wave",
+    "playing volleyball",
+    "shooting a basketball",
+    "scoring a goal",
+    "lifting weights",
+    "doing yoga",
+    "meditating",
+    "sleepwalking",
+    "looking for lost keys",
+    "checking the time",
+    "flying a plane",
+    "milking a cow",
+    "playing tennis",
+    "shoveling snow",
+    "washing a car"
   ],
   "karaoke": [
     {
@@ -1258,6 +1308,206 @@
     {
       "title": "Free Mind",
       "artist": "Tems"
+    },
+    {
+      "title": "On the Low",
+      "artist": "Burna Boy"
+    },
+    {
+      "title": "Unavailable",
+      "artist": "Davido ft Musa Keys"
+    },
+    {
+      "title": "Risky",
+      "artist": "Davido"
+    },
+    {
+      "title": "Bounce",
+      "artist": "Rema"
+    },
+    {
+      "title": "Trouble Maker",
+      "artist": "Rema"
+    },
+    {
+      "title": "Mr Money",
+      "artist": "Asake"
+    },
+    {
+      "title": "Organise",
+      "artist": "Asake"
+    },
+    {
+      "title": "2:30",
+      "artist": "Asake"
+    },
+    {
+      "title": "Love Me JeJe",
+      "artist": "Tems"
+    },
+    {
+      "title": "Try Me",
+      "artist": "Tems"
+    },
+    {
+      "title": "Me & U",
+      "artist": "Tems"
+    },
+    {
+      "title": "Crazy Tings",
+      "artist": "Tems"
+    },
+    {
+      "title": "Somebody Son",
+      "artist": "Tiwa Savage"
+    },
+    {
+      "title": "All Over",
+      "artist": "Tiwa Savage"
+    },
+    {
+      "title": "Ma Lo",
+      "artist": "Tiwa Savage ft Spellz"
+    },
+    {
+      "title": "Fada Fada",
+      "artist": "Phyno"
+    },
+    {
+      "title": "Melo Melo",
+      "artist": "Olamide"
+    },
+    {
+      "title": "Wo!!",
+      "artist": "Olamide"
+    },
+    {
+      "title": "Shape of You",
+      "artist": "Ed Sheeran"
+    },
+    {
+      "title": "Perfect",
+      "artist": "Ed Sheeran"
+    },
+    {
+      "title": "Thinking Out Loud",
+      "artist": "Ed Sheeran"
+    },
+    {
+      "title": "Someone Like You",
+      "artist": "Adele"
+    },
+    {
+      "title": "Hello",
+      "artist": "Adele"
+    },
+    {
+      "title": "Rolling in the Deep",
+      "artist": "Adele"
+    },
+    {
+      "title": "Blinding Lights",
+      "artist": "The Weeknd"
+    },
+    {
+      "title": "Starboy",
+      "artist": "The Weeknd"
+    },
+    {
+      "title": "Save Your Tears",
+      "artist": "The Weeknd"
+    },
+    {
+      "title": "Stay",
+      "artist": "The Kid LAROI & Justin Bieber"
+    },
+    {
+      "title": "Peaches",
+      "artist": "Justin Bieber"
+    },
+    {
+      "title": "Sorry",
+      "artist": "Justin Bieber"
+    },
+    {
+      "title": "Love Yourself",
+      "artist": "Justin Bieber"
+    },
+    {
+      "title": "Uptown Funk",
+      "artist": "Mark Ronson ft Bruno Mars"
+    },
+    {
+      "title": "Just the Way You Are",
+      "artist": "Bruno Mars"
+    },
+    {
+      "title": "Locked Out of Heaven",
+      "artist": "Bruno Mars"
+    },
+    {
+      "title": "Grenade",
+      "artist": "Bruno Mars"
+    },
+    {
+      "title": "Havana",
+      "artist": "Camila Cabello"
+    },
+    {
+      "title": "Senorita",
+      "artist": "Shawn Mendes & Camila Cabello"
+    },
+    {
+      "title": "Despacito",
+      "artist": "Luis Fonsi ft Daddy Yankee"
+    },
+    {
+      "title": "Shape of My Heart",
+      "artist": "Sting"
+    },
+    {
+      "title": "Billie Jean",
+      "artist": "Michael Jackson"
+    },
+    {
+      "title": "Thriller",
+      "artist": "Michael Jackson"
+    },
+    {
+      "title": "Beat It",
+      "artist": "Michael Jackson"
+    },
+    {
+      "title": "I Want It That Way",
+      "artist": "Backstreet Boys"
+    },
+    {
+      "title": "Careless Whisper",
+      "artist": "George Michael"
+    },
+    {
+      "title": "My Heart Will Go On",
+      "artist": "Celine Dion"
+    },
+    {
+      "title": "Umbrella",
+      "artist": "Rihanna"
+    },
+    {
+      "title": "Diamonds",
+      "artist": "Rihanna"
+    },
+    {
+      "title": "We Found Love",
+      "artist": "Rihanna"
+    },
+    {
+      "title": "No One",
+      "artist": "Alicia Keys"
+    },
+    {
+      "title": "Empire State of Mind",
+      "artist": "Jay-Z ft Alicia Keys"
     }
   ],
   "hangman": [
@@ -1454,7 +1704,57 @@
     "garlic",
     "gentle",
     "giant",
-    "golden"
+    "golden",
+    "abacus",
+    "arcade",
+    "bakery",
+    "bamboo",
+    "banquet",
+    "barrel",
+    "beacon",
+    "beehive",
+    "blanket",
+    "blossom",
+    "boulder",
+    "cabinet",
+    "captain",
+    "cereal",
+    "chimney",
+    "cinnamon",
+    "coconut",
+    "compass",
+    "curtain",
+    "diamond",
+    "dolphin",
+    "emerald",
+    "engineer",
+    "falcon",
+    "festival",
+    "fortune",
+    "freckle",
+    "goblet",
+    "library",
+    "luggage",
+    "magnet",
+    "mermaid",
+    "mustard",
+    "orchard",
+    "pancake",
+    "parachute",
+    "lanterns",
+    "journey",
+    "jewelry",
+    "knuckle",
+    "laptop",
+    "meadow",
+    "midnight",
+    "notebook",
+    "peacock",
+    "pioneer",
+    "sandwich",
+    "sculpture",
+    "sunrise",
+    "thunder"
   ],
   "pictionary": [
     "house",
@@ -1629,7 +1929,57 @@
     "vampire",
     "werewolf",
     "monster",
-    "superhero"
+    "superhero",
+    "trophy",
+    "medal",
+    "backpack",
+    "suitcase",
+    "hairdryer",
+    "scissors",
+    "glue",
+    "ruler",
+    "calculator",
+    "keyboard",
+    "mouse",
+    "headphones",
+    "microphone",
+    "remote control",
+    "refrigerator",
+    "microwave",
+    "blender",
+    "kettle",
+    "toaster",
+    "washing machine",
+    "iron",
+    "sofa",
+    "pillow",
+    "blanket",
+    "lamp",
+    "bookshelf",
+    "wallet",
+    "passport",
+    "sunglasses",
+    "necklace",
+    "bracelet",
+    "ring",
+    "watchtower",
+    "lighthouse",
+    "pyramid",
+    "windmill",
+    "fountain",
+    "statue",
+    "ferris wheel",
+    "roller coaster",
+    "campfire",
+    "tent",
+    "canoe",
+    "parachute",
+    "medal podium",
+    "alarm clock",
+    "keyhole",
+    "doorknob",
+    "laptop bag",
+    "coffee mug"
   ],
   "fastTalk": [
     {
@@ -3819,6 +4169,1006 @@
         "silence",
         "heart"
       ]
+    },
+    {
+      "name": "Things in a Bathroom",
+      "items": [
+        "toilet",
+        "sink",
+        "shower",
+        "bathtub",
+        "towel",
+        "soap",
+        "shampoo",
+        "toothbrush",
+        "toothpaste",
+        "mirror",
+        "comb",
+        "razor",
+        "bucket",
+        "mop",
+        "toilet paper"
+      ]
+    },
+    {
+      "name": "Things in a Bedroom",
+      "items": [
+        "bed",
+        "pillow",
+        "blanket",
+        "wardrobe",
+        "dresser",
+        "lamp",
+        "mirror",
+        "alarm clock",
+        "curtain",
+        "carpet",
+        "hanger",
+        "mattress",
+        "bedsheet",
+        "fan",
+        "nightstand"
+      ]
+    },
+    {
+      "name": "Things in a Kitchen",
+      "items": [
+        "stove",
+        "oven",
+        "fridge",
+        "freezer",
+        "blender",
+        "kettle",
+        "toaster",
+        "plate",
+        "cup",
+        "pot",
+        "pan",
+        "spatula",
+        "knife",
+        "cutting board",
+        "sink"
+      ]
+    },
+    {
+      "name": "Things in an Office",
+      "items": [
+        "desk",
+        "computer",
+        "printer",
+        "stapler",
+        "paper",
+        "pen",
+        "folder",
+        "chair",
+        "calendar",
+        "phone",
+        "notebook",
+        "scanner",
+        "projector",
+        "whiteboard",
+        "calculator"
+      ]
+    },
+    {
+      "name": "Things at an Airport",
+      "items": [
+        "airplane",
+        "terminal",
+        "passport",
+        "ticket",
+        "luggage",
+        "security",
+        "gate",
+        "runway",
+        "pilot",
+        "flight attendant",
+        "boarding pass",
+        "customs",
+        "baggage claim",
+        "departure board",
+        "taxi"
+      ]
+    },
+    {
+      "name": "Things at a Beach",
+      "items": [
+        "sand",
+        "ocean",
+        "waves",
+        "umbrella",
+        "towel",
+        "sunscreen",
+        "swimsuit",
+        "sandcastle",
+        "shells",
+        "surfboard",
+        "flip flops",
+        "lifeguard",
+        "bucket",
+        "sunhat",
+        "beach ball"
+      ]
+    },
+    {
+      "name": "Things in a Classroom",
+      "items": [
+        "teacher",
+        "students",
+        "desk",
+        "chair",
+        "board",
+        "chalk",
+        "marker",
+        "book",
+        "pen",
+        "pencil",
+        "ruler",
+        "backpack",
+        "projector",
+        "notebook",
+        "clock"
+      ]
+    },
+    {
+      "name": "Things in a Hospital",
+      "items": [
+        "doctor",
+        "nurse",
+        "patient",
+        "bed",
+        "ward",
+        "stethoscope",
+        "syringe",
+        "medicine",
+        "bandage",
+        "mask",
+        "gloves",
+        "ambulance",
+        "wheelchair",
+        "reception",
+        "thermometer"
+      ]
+    },
+    {
+      "name": "Things at a Wedding",
+      "items": [
+        "bride",
+        "groom",
+        "ring",
+        "dress",
+        "suit",
+        "cake",
+        "flowers",
+        "music",
+        "dancing",
+        "guests",
+        "altar",
+        "photographer",
+        "bouquet",
+        "vows",
+        "reception"
+      ]
+    },
+    {
+      "name": "Things at a Football Match",
+      "items": [
+        "ball",
+        "goal",
+        "pitch",
+        "referee",
+        "player",
+        "coach",
+        "fans",
+        "jersey",
+        "whistle",
+        "corner flag",
+        "stadium",
+        "scoreboard",
+        "boots",
+        "substitute",
+        "trophy"
+      ]
+    },
+    {
+      "name": "Things You Can Eat",
+      "items": [
+        "rice",
+        "bread",
+        "beans",
+        "yam",
+        "plantain",
+        "chicken",
+        "fish",
+        "egg",
+        "cheese",
+        "pasta",
+        "pizza",
+        "burger",
+        "salad",
+        "soup",
+        "fruit"
+      ]
+    },
+    {
+      "name": "Things You Can Drink",
+      "items": [
+        "water",
+        "juice",
+        "tea",
+        "coffee",
+        "milk",
+        "smoothie",
+        "soda",
+        "lemonade",
+        "cocoa",
+        "milkshake",
+        "kunu",
+        "zobo",
+        "fura",
+        "chapman",
+        "coconut water"
+      ]
+    },
+    {
+      "name": "Things That Are Round",
+      "items": [
+        "ball",
+        "coin",
+        "wheel",
+        "plate",
+        "orange",
+        "moon",
+        "globe",
+        "button",
+        "ring",
+        "clock",
+        "donut",
+        "marble",
+        "bubble",
+        "pizza",
+        "sun"
+      ]
+    },
+    {
+      "name": "Things That Are Cold",
+      "items": [
+        "ice",
+        "snow",
+        "ice cream",
+        "fridge",
+        "freezer",
+        "snowman",
+        "hail",
+        "popsicle",
+        "cold drink",
+        "winter",
+        "frost",
+        "iceberg",
+        "sorbet",
+        "slushie",
+        "air conditioner"
+      ]
+    },
+    {
+      "name": "Things That Are Hot",
+      "items": [
+        "fire",
+        "sun",
+        "oven",
+        "pepper",
+        "tea",
+        "coffee",
+        "soup",
+        "stove",
+        "steam",
+        "desert",
+        "chili",
+        "barbecue",
+        "sauna",
+        "volcano",
+        "boiling water"
+      ]
+    },
+    {
+      "name": "Things With Wheels",
+      "items": [
+        "car",
+        "bus",
+        "bicycle",
+        "motorcycle",
+        "truck",
+        "train",
+        "skateboard",
+        "roller skates",
+        "wheelbarrow",
+        "shopping cart",
+        "scooter",
+        "tractor",
+        "wheelchair",
+        "stroller",
+        "wagon"
+      ]
+    },
+    {
+      "name": "Things With Wings",
+      "items": [
+        "bird",
+        "airplane",
+        "butterfly",
+        "bee",
+        "bat",
+        "eagle",
+        "owl",
+        "parrot",
+        "helicopter",
+        "dragonfly",
+        "mosquito",
+        "falcon",
+        "pigeon",
+        "kite",
+        "angel"
+      ]
+    },
+    {
+      "name": "Things You Find in a Wallet",
+      "items": [
+        "cash",
+        "cards",
+        "ID",
+        "coins",
+        "receipt",
+        "photo",
+        "driver license",
+        "business card",
+        "membership card",
+        "ticket",
+        "coupon",
+        "note",
+        "bank card",
+        "insurance card",
+        "key"
+      ]
+    },
+    {
+      "name": "Things You Find in a Backpack",
+      "items": [
+        "books",
+        "notebook",
+        "pen",
+        "pencil",
+        "laptop",
+        "charger",
+        "bottle",
+        "snacks",
+        "headphones",
+        "umbrella",
+        "wallet",
+        "keys",
+        "calculator",
+        "folder",
+        "phone"
+      ]
+    },
+    {
+      "name": "Things You Find in a Living Room",
+      "items": [
+        "sofa",
+        "television",
+        "remote",
+        "table",
+        "chair",
+        "carpet",
+        "lamp",
+        "curtain",
+        "cushion",
+        "bookshelf",
+        "fan",
+        "speaker",
+        "clock",
+        "painting",
+        "plant"
+      ]
+    },
+    {
+      "name": "Things You Find at a Supermarket",
+      "items": [
+        "cart",
+        "basket",
+        "cashier",
+        "shelves",
+        "food",
+        "drinks",
+        "bread",
+        "milk",
+        "fruit",
+        "vegetables",
+        "meat",
+        "freezer",
+        "receipt",
+        "scanner",
+        "checkout"
+      ]
+    },
+    {
+      "name": "Things You Find in a Library",
+      "items": [
+        "books",
+        "shelves",
+        "librarian",
+        "desk",
+        "computer",
+        "magazines",
+        "newspapers",
+        "catalogue",
+        "chair",
+        "table",
+        "printer",
+        "scanner",
+        "quiet room",
+        "membership card",
+        "dictionary"
+      ]
+    },
+    {
+      "name": "Things You Find at a Hospital Reception",
+      "items": [
+        "receptionist",
+        "desk",
+        "chairs",
+        "forms",
+        "computer",
+        "phone",
+        "queue",
+        "sign",
+        "pen",
+        "visitor pass",
+        "appointment",
+        "insurance card",
+        "waiting room",
+        "clock",
+        "number ticket"
+      ]
+    },
+    {
+      "name": "Things You Find at a Construction Site",
+      "items": [
+        "helmet",
+        "cement",
+        "bricks",
+        "crane",
+        "scaffolding",
+        "hammer",
+        "nails",
+        "drill",
+        "worker",
+        "blueprint",
+        "ladder",
+        "concrete",
+        "sand",
+        "truck",
+        "safety vest"
+      ]
+    },
+    {
+      "name": "Things You Find at a Police Station",
+      "items": [
+        "officer",
+        "desk",
+        "cells",
+        "badge",
+        "uniform",
+        "radio",
+        "computer",
+        "report",
+        "handcuffs",
+        "vehicle",
+        "evidence",
+        "interview room",
+        "phone",
+        "camera",
+        "file"
+      ]
+    },
+    {
+      "name": "Things You Find at a Cinema",
+      "items": [
+        "screen",
+        "seats",
+        "popcorn",
+        "tickets",
+        "projector",
+        "speakers",
+        "movie",
+        "advertisement",
+        "usher",
+        "snacks",
+        "drinks",
+        "aisle",
+        "exit",
+        "curtain",
+        "trailer"
+      ]
+    },
+    {
+      "name": "Things You Find at a Playground",
+      "items": [
+        "slide",
+        "swings",
+        "seesaw",
+        "sandbox",
+        "children",
+        "ball",
+        "bench",
+        "climbing frame",
+        "swing set",
+        "fence",
+        "grass",
+        "tree",
+        "slide tunnel",
+        "monkey bars",
+        "tricycle"
+      ]
+    },
+    {
+      "name": "Things You Find at a Swimming Pool",
+      "items": [
+        "water",
+        "goggles",
+        "swimsuit",
+        "towel",
+        "lifeguard",
+        "ladder",
+        "diving board",
+        "float",
+        "lane rope",
+        "locker",
+        "shower",
+        "poolside",
+        "whistle",
+        "cap",
+        "kickboard"
+      ]
+    },
+    {
+      "name": "Things You Find in a Church",
+      "items": [
+        "altar",
+        "pews",
+        "Bible",
+        "cross",
+        "choir",
+        "pulpit",
+        "pastor",
+        "priest",
+        "hymn book",
+        "bell",
+        "offering box",
+        "microphone",
+        "flowers",
+        "candles",
+        "congregation"
+      ]
+    },
+    {
+      "name": "Things You Find in a Mosque",
+      "items": [
+        "prayer mat",
+        "Quran",
+        "mihrab",
+        "minaret",
+        "imam",
+        "carpet",
+        "wudu area",
+        "mosque",
+        "shoes",
+        "clock",
+        "microphone",
+        "pulpit",
+        "ablution",
+        "dome",
+        "congregation"
+      ]
+    },
+    {
+      "name": "Things You Find in a Bank",
+      "items": [
+        "cash",
+        "teller",
+        "ATM",
+        "queue",
+        "counter",
+        "card",
+        "money",
+        "vault",
+        "security guard",
+        "forms",
+        "pen",
+        "computer",
+        "receipt",
+        "manager",
+        "customer"
+      ]
+    },
+    {
+      "name": "Things You Find in a Taxi",
+      "items": [
+        "driver",
+        "passenger",
+        "seat",
+        "meter",
+        "steering wheel",
+        "radio",
+        "seatbelt",
+        "window",
+        "door",
+        "phone",
+        "money",
+        "air conditioner",
+        "dashboard",
+        "boot",
+        "horn"
+      ]
+    },
+    {
+      "name": "Things You Find on a Train",
+      "items": [
+        "seats",
+        "passengers",
+        "conductor",
+        "ticket",
+        "window",
+        "door",
+        "aisle",
+        "luggage",
+        "railway",
+        "station",
+        "announcement",
+        "toilet",
+        "carriage",
+        "handle",
+        "platform"
+      ]
+    },
+    {
+      "name": "Things You Find on a Boat",
+      "items": [
+        "captain",
+        "sailor",
+        "anchor",
+        "rope",
+        "deck",
+        "cabin",
+        "life jacket",
+        "steering wheel",
+        "engine",
+        "oar",
+        "mast",
+        "sail",
+        "compass",
+        "boat",
+        "fishing rod"
+      ]
+    },
+    {
+      "name": "Things You Can Lose",
+      "items": [
+        "keys",
+        "wallet",
+        "phone",
+        "money",
+        "pen",
+        "earrings",
+        "glasses",
+        "ticket",
+        "passport",
+        "remote",
+        "charger",
+        "shoe",
+        "ring",
+        "receipt",
+        "patience"
+      ]
+    },
+    {
+      "name": "Things You Can Forget",
+      "items": [
+        "password",
+        "name",
+        "appointment",
+        "keys",
+        "birthday",
+        "meeting",
+        "homework",
+        "deadline",
+        "phone",
+        "wallet",
+        "address",
+        "umbrella",
+        "promise",
+        "shopping list",
+        "anniversary"
+      ]
+    },
+    {
+      "name": "Things That Need Batteries",
+      "items": [
+        "remote",
+        "torch",
+        "clock",
+        "camera",
+        "phone",
+        "laptop",
+        "toy",
+        "flashlight",
+        "calculator",
+        "radio",
+        "controller",
+        "hearing aid",
+        "smoke detector",
+        "mouse",
+        "keyboard"
+      ]
+    },
+    {
+      "name": "Things You Can Charge",
+      "items": [
+        "phone",
+        "laptop",
+        "tablet",
+        "camera",
+        "watch",
+        "headphones",
+        "speaker",
+        "power bank",
+        "electric car",
+        "controller",
+        "toothbrush",
+        "drone",
+        "vacuum",
+        "e-reader",
+        "smartwatch"
+      ]
+    },
+    {
+      "name": "Things You Can Wear",
+      "items": [
+        "shirt",
+        "trousers",
+        "dress",
+        "skirt",
+        "jacket",
+        "shoes",
+        "socks",
+        "hat",
+        "belt",
+        "tie",
+        "scarf",
+        "gloves",
+        "shorts",
+        "sweater",
+        "uniform"
+      ]
+    },
+    {
+      "name": "Things You Can Read",
+      "items": [
+        "book",
+        "newspaper",
+        "magazine",
+        "novel",
+        "letter",
+        "email",
+        "menu",
+        "sign",
+        "map",
+        "poster",
+        "label",
+        "manual",
+        "poem",
+        "comic",
+        "text message"
+      ]
+    },
+    {
+      "name": "Things You Can Write With",
+      "items": [
+        "pen",
+        "pencil",
+        "marker",
+        "crayon",
+        "chalk",
+        "brush",
+        "stylus",
+        "typewriter",
+        "keyboard",
+        "fountain pen",
+        "highlighter",
+        "charcoal",
+        "quill",
+        "paintbrush",
+        "pastel"
+      ]
+    },
+    {
+      "name": "Things That Glow",
+      "items": [
+        "sun",
+        "lamp",
+        "fire",
+        "candle",
+        "bulb",
+        "screen",
+        "neon sign",
+        "star",
+        "lightning",
+        "torch",
+        "lava",
+        "firefly",
+        "glow stick",
+        "LED",
+        "laser"
+      ]
+    },
+    {
+      "name": "Things That Are Soft",
+      "items": [
+        "pillow",
+        "blanket",
+        "cotton",
+        "teddy bear",
+        "cushion",
+        "sponge",
+        "carpet",
+        "feather",
+        "towel",
+        "wool",
+        "foam",
+        "silk",
+        "mattress",
+        "sweater",
+        "marshmallow"
+      ]
+    },
+    {
+      "name": "Things That Are Loud",
+      "items": [
+        "drum",
+        "horn",
+        "speaker",
+        "alarm",
+        "thunder",
+        "fireworks",
+        "engine",
+        "siren",
+        "concert",
+        "vacuum",
+        "chainsaw",
+        "train",
+        "motorcycle",
+        "crowd",
+        "whistle"
+      ]
+    },
+    {
+      "name": "Things That Are Sticky",
+      "items": [
+        "glue",
+        "tape",
+        "honey",
+        "gum",
+        "syrup",
+        "jam",
+        "caramel",
+        "wax",
+        "molasses",
+        "resin",
+        "toffee",
+        "adhesive",
+        "candy",
+        "marshmallow",
+        "mud"
+      ]
+    },
+    {
+      "name": "Things That Can Melt",
+      "items": [
+        "ice",
+        "butter",
+        "chocolate",
+        "cheese",
+        "wax",
+        "plastic",
+        "metal",
+        "snow",
+        "ice cream",
+        "candle",
+        "crayon",
+        "coconut oil",
+        "sugar",
+        "marshmallow",
+        "glue"
+      ]
+    },
+    {
+      "name": "Things You Can Throw",
+      "items": [
+        "ball",
+        "stone",
+        "frisbee",
+        "paper",
+        "pillow",
+        "boomerang",
+        "dice",
+        "coin",
+        "rope",
+        "spear",
+        "snowball",
+        "beanbag",
+        "dart",
+        "water balloon",
+        "confetti"
+      ]
+    },
+    {
+      "name": "Things You Can Kick",
+      "items": [
+        "ball",
+        "door",
+        "stone",
+        "football",
+        "bucket",
+        "box",
+        "chair",
+        "tyre",
+        "can",
+        "sand",
+        "puddle",
+        "goalpost",
+        "punching bag",
+        "football boot",
+        "dust"
+      ]
+    },
+    {
+      "name": "Things You Can Open",
+      "items": [
+        "door",
+        "window",
+        "book",
+        "box",
+        "bottle",
+        "jar",
+        "bag",
+        "drawer",
+        "envelope",
+        "gift",
+        "laptop",
+        "umbrella",
+        "gate",
+        "curtain",
+        "email"
+      ]
+    },
+    {
+      "name": "Things You Can Close",
+      "items": [
+        "door",
+        "window",
+        "book",
+        "box",
+        "bottle",
+        "bag",
+        "drawer",
+        "gate",
+        "curtain",
+        "laptop",
+        "umbrella",
+        "zipper",
+        "app",
+        "account",
+        "eyes"
+      ]
     }
   ],
   "truths": [
@@ -3971,7 +5321,57 @@
     "Camels can survive long periods with limited access to water.",
     "Ravens are capable of solving some complex problems.",
     "Humans and chimpanzees share a large proportion of their DNA.",
-    "The Earth's rotation contributes to the length of a day."
+    "The Earth's rotation contributes to the length of a day.",
+    "Honey can last for years without spoiling.",
+    "Bananas contain potassium.",
+    "The Pacific Ocean is the largest ocean.",
+    "Lightning can strike the same place more than once.",
+    "Venus is the hottest planet in our solar system.",
+    "Sharks are older than trees.",
+    "A day on Venus is longer than its year.",
+    "The human body has 206 bones in adulthood.",
+    "Sound travels faster through water than air.",
+    "A leap year usually has 366 days.",
+    "The Eiffel Tower expands slightly in hot weather.",
+    "A snail can have thousands of teeth.",
+    "Wombat droppings can be cube-shaped.",
+    "The cheetah is the fastest land animal.",
+    "The Sahara is the largest hot desert.",
+    "A bolt of lightning can be hotter than the surface of the Sun.",
+    "Penguins live naturally in the Southern Hemisphere.",
+    "The Nile flows northward.",
+    "Glass is made primarily from sand.",
+    "The Moon has no atmosphere like Earth’s.",
+    "Some frogs can freeze and later survive.",
+    "Bats are the only mammals capable of sustained flight.",
+    "A blue whale is larger than any known dinosaur.",
+    "The human heart has four chambers.",
+    "Mercury is the closest planet to the Sun.",
+    "Jupiter is the largest planet in our solar system.",
+    "The Great Wall of China is made from multiple materials.",
+    "Some bamboo species can grow very quickly.",
+    "The African elephant is the largest living land animal.",
+    "Dolphins use clicks and whistles to communicate.",
+    "The Earth takes about 365 days to orbit the Sun.",
+    "The chemical symbol for gold is Au.",
+    "The chemical symbol for iron is Fe.",
+    "A triangle has three sides.",
+    "An octagon has eight sides.",
+    "Water boils at a lower temperature at high altitude.",
+    "The human brain uses a significant amount of the body’s energy.",
+    "Some plants can communicate chemically with nearby plants.",
+    "The largest organ of the human body is the skin.",
+    "A prism can split white light into different colors.",
+    "The Amazon rainforest produces a significant portion of the oxygen in its own ecosystem through respiration and photosynthesis.",
+    "The Earth has a natural satellite called the Moon.",
+    "A spider is an arachnid, not an insect.",
+    "The chemical symbol for sodium is Na.",
+    "A hexagon has six sides.",
+    "The Atlantic Ocean is smaller than the Pacific Ocean.",
+    "Most adult humans have 32 teeth.",
+    "The human body contains more bacteria cells than some estimates once suggested, though exact ratios vary.",
+    "Mars is often called the Red Planet.",
+    "A compass needle generally points toward magnetic north."
   ],
   "lies": [
     "Bananas grow on trees.",
@@ -4073,7 +5473,57 @@
     "Brazil is in Europe.",
     "Egypt is in South America.",
     "India is in Africa.",
-    "New Zealand is part of South America."
+    "New Zealand is part of South America.",
+    "Penguins naturally live in the Sahara Desert.",
+    "Humans have three lungs.",
+    "The Great Wall of China can be seen clearly from the Moon with the naked eye.",
+    "A tomato is always classified as a vegetable botanically.",
+    "The Moon is larger than Earth.",
+    "All deserts are covered in sand.",
+    "Bats are blind.",
+    "The human body has more than 1,000 bones.",
+    "Camels store water directly inside their humps.",
+    "Elephants cannot jump because they have no knees.",
+    "Goldfish have a memory of only three seconds.",
+    "The North Pole is on a continent.",
+    "The Amazon River flows west into the Pacific Ocean.",
+    "Chameleons change color only to match their surroundings.",
+    "A snail can outrun a cheetah.",
+    "The human heart is located on the right side of the chest in everyone.",
+    "The Pacific Ocean is the smallest ocean.",
+    "Mount Everest is the tallest mountain measured from Earth’s center.",
+    "The Earth is completely flat at the poles.",
+    "A rainbow has only five colors.",
+    "All birds can fly.",
+    "Penguins can fly long distances.",
+    "The adult human body contains 500 bones.",
+    "Oxygen is the most abundant gas in Earth’s atmosphere.",
+    "The Sahara is the coldest desert on Earth.",
+    "A diamond is made of frozen water.",
+    "Mercury has the longest year of all the planets.",
+    "The Moon produces its own visible light.",
+    "Spiders are insects.",
+    "Whales are fish.",
+    "All frogs are green.",
+    "A crocodile can breathe underwater like a fish.",
+    "The Statue of Liberty is in Los Angeles.",
+    "Nigeria is in South America.",
+    "The Nile flows southward into the Mediterranean Sea.",
+    "Africa is the smallest continent.",
+    "A square has five sides.",
+    "A hexagon has seven sides.",
+    "The chemical symbol for silver is Si.",
+    "Iron is naturally liquid at room temperature.",
+    "Mars is larger than Jupiter.",
+    "The chemical symbol for oxygen is Ox.",
+    "A triangle has four sides.",
+    "The Moon is a star.",
+    "Humans normally have 64 adult teeth.",
+    "Mars is known as the Blue Planet.",
+    "A compass always points exactly to the geographic North Pole.",
+    "Sound can travel through a perfect vacuum.",
+    "The chemical symbol for sodium is So.",
+    "Earth has no natural satellites."
   ],
   "roasts": [
     "Roast someone about their dance moves!",
@@ -4175,6 +5625,56 @@
     "Roast someone about their profile picture!",
     "Roast someone about their group-chat behavior!",
     "Roast someone about their competitive side!",
-    "Roast someone about their dramatic reactions!"
+    "Roast someone about their dramatic reactions!",
+    "Roast someone about always arriving late!",
+    "Roast someone about their endless selfies!",
+    "Roast someone about their terrible jokes!",
+    "Roast someone about how slowly they reply to messages!",
+    "Roast someone about their obsession with their phone!",
+    "Roast someone about their dancing technique!",
+    "Roast someone about their excuses for losing!",
+    "Roast someone about their terrible handwriting!",
+    "Roast someone about their messy room!",
+    "Roast someone about their love of snacks!",
+    "Roast someone about how much they talk!",
+    "Roast someone about never knowing what to order!",
+    "Roast someone about their dramatic facial expressions!",
+    "Roast someone about their sleeping habits!",
+    "Roast someone about their alarm clock routine!",
+    "Roast someone about their obsession with gossip!",
+    "Roast someone about their navigation skills!",
+    "Roast someone about their cooking confidence!",
+    "Roast someone about their online shopping habits!",
+    "Roast someone about their excuses for not exercising!",
+    "Roast someone about their competitive attitude!",
+    "Roast someone about their obsession with winning!",
+    "Roast someone about their overthinking!",
+    "Roast someone about their indecisiveness!",
+    "Roast someone about their group-project contributions!",
+    "Roast someone about their meeting behavior!",
+    "Roast someone about their typing speed!",
+    "Roast someone about their spelling mistakes!",
+    "Roast someone about their reaction to losing Wi-Fi!",
+    "Roast someone about their battery percentage anxiety!",
+    "Roast someone about their obsession with screenshots!",
+    "Roast someone about their camera roll!",
+    "Roast someone about their habit of saying “I’m on my way”!",
+    "Roast someone about their excuses for being broke!",
+    "Roast someone about their obsession with food delivery!",
+    "Roast someone about their inability to wake up early!",
+    "Roast someone about their random life advice!",
+    "Roast someone about their confidence when they are completely wrong!",
+    "Roast someone about their obsession with filters!",
+    "Roast someone about their terrible parking!",
+    "Roast someone about their overpacked bag!",
+    "Roast someone about their obsession with air conditioning!",
+    "Roast someone about their endless voice notes!",
+    "Roast someone about their habit of saying “literally”!",
+    "Roast someone about their terrible time management!",
+    "Roast someone about their obsession with matching outfits!",
+    "Roast someone about their inability to choose a restaurant!",
+    "Roast someone about their constant snacking!",
+    "Roast someone about their dramatic status updates!",
+    "Roast someone about their habit of asking obvious questions!"
   ]
 }
