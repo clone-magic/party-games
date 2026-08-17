@@ -17,7 +17,7 @@
         }
 
         :root {
-            /* Light Mode */
+            /* Light Mode (Default) */
             --bg-primary: #f0f4f8;
             --bg-secondary: #e8edf2;
             --bg-card: #ffffff;
@@ -65,8 +65,28 @@
             --color-fasttalk-light: #33d4e8;
             --color-roast: #e74c3c;
             --color-roast-light: #f06a5a;
+            
+            /* Theme Variables - Will be overridden by themes */
+            --theme-bg-primary: #f0f4f8;
+            --theme-bg-secondary: #e8edf2;
+            --theme-bg-card: #ffffff;
+            --theme-bg-card-hover: #f5f8fa;
+            --theme-bg-input: #e8edf2;
+            --theme-bg-sidebar: #0a1628;
+            --theme-bg-sidebar-hover: #1a2a4a;
+            --theme-text-primary: #1a2a3a;
+            --theme-text-secondary: #3a5a7a;
+            --theme-text-muted: #7a9aaa;
+            --theme-border-color: #d0d8e0;
+            --theme-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            --theme-shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.15);
+            --theme-blue-bright: #4a90d9;
+            --theme-blue-electric: #00d4ff;
+            --theme-glow-blue: rgba(0, 212, 255, 0.25);
+            --theme-glow-blue-strong: rgba(0, 212, 255, 0.4);
         }
 
+        /* Theme-specific overrides will be applied via JavaScript */
         [data-theme="dark"] {
             --bg-primary: #0a1628;
             --bg-secondary: #0f1f33;
@@ -85,10 +105,11 @@
             --shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.6);
         }
 
+        /* Apply theme variables to actual CSS properties */
         body {
             font-family: var(--font-body);
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            background: var(--theme-bg-primary);
+            color: var(--theme-text-primary);
             min-height: 100vh;
             transition: var(--transition);
             overflow-x: hidden;
@@ -98,10 +119,10 @@
             width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: var(--bg-secondary);
+            background: var(--theme-bg-secondary);
         }
         ::-webkit-scrollbar-thumb {
-            background: var(--blue-bright);
+            background: var(--theme-blue-bright);
             border-radius: 10px;
         }
 
@@ -116,7 +137,7 @@
             left: 0;
             width: 200px;
             height: 100vh;
-            background: var(--bg-sidebar);
+            background: var(--theme-bg-sidebar);
             padding: 1.2rem 0.8rem;
             display: flex;
             flex-direction: column;
@@ -124,19 +145,19 @@
             z-index: 1000;
             transition: var(--transition);
             overflow-y: auto;
-            border-right: 2px solid var(--blue-bright);
-            box-shadow: 4px 0 40px rgba(0, 212, 255, 0.08);
+            border-right: 2px solid var(--theme-blue-bright);
+            box-shadow: 4px 0 40px var(--theme-glow-blue);
         }
 
         .sidebar .brand {
             font-family: var(--font-display);
             font-size: 0.7rem;
-            color: var(--blue-electric);
+            color: var(--theme-blue-electric);
             text-align: center;
             padding: 0.5rem 0 0.8rem 0;
-            border-bottom: 2px solid rgba(0, 212, 255, 0.15);
+            border-bottom: 2px solid var(--theme-glow-blue);
             margin-bottom: 0.5rem;
-            text-shadow: 0 0 30px var(--glow-blue);
+            text-shadow: 0 0 30px var(--theme-glow-blue);
             letter-spacing: 1px;
             line-height: 1.6;
         }
@@ -144,7 +165,7 @@
         .sidebar .brand .sub {
             font-family: var(--font-body);
             font-size: 0.4rem;
-            color: var(--text-muted);
+            color: var(--theme-text-muted);
             letter-spacing: 3px;
         }
 
@@ -154,7 +175,7 @@
             gap: 0.6rem;
             padding: 0.6rem 0.8rem;
             border-radius: 10px;
-            color: var(--text-muted);
+            color: var(--theme-text-muted);
             font-weight: 700;
             font-size: 0.7rem;
             cursor: pointer;
@@ -167,15 +188,15 @@
         }
 
         .sidebar .nav-item:hover {
-            background: var(--bg-sidebar-hover);
-            color: var(--text-white);
+            background: var(--theme-bg-sidebar-hover);
+            color: var(--theme-text-primary);
             transform: translateX(3px);
         }
 
         .sidebar .nav-item.active {
-            background: var(--blue-bright);
+            background: var(--theme-blue-bright);
             color: white;
-            box-shadow: 0 0 30px var(--glow-blue-strong);
+            box-shadow: 0 0 30px var(--theme-glow-blue-strong);
         }
 
         .sidebar .nav-item .icon {
@@ -187,23 +208,23 @@
 
         .sidebar .nav-item.gm-toggle {
             margin-top: auto;
-            border-top: 1px solid rgba(0, 212, 255, 0.1);
+            border-top: 1px solid var(--theme-glow-blue);
             padding-top: 0.8rem;
         }
 
         .sidebar .nav-item.gm-toggle:hover {
-            color: var(--blue-electric);
+            color: var(--theme-blue-electric);
         }
 
         .sidebar .nav-item.gm-toggle.active {
-            background: var(--blue-electric);
+            background: var(--theme-blue-electric);
             color: var(--blue-dark);
-            box-shadow: 0 0 30px var(--glow-blue-strong);
+            box-shadow: 0 0 30px var(--theme-glow-blue-strong);
         }
 
         .sidebar .theme-toggle-btn {
             margin-top: 0.2rem;
-            border-top: 1px solid rgba(0, 212, 255, 0.05);
+            border-top: 1px solid var(--theme-glow-blue);
             padding-top: 0.5rem;
         }
 
@@ -220,7 +241,7 @@
             justify-content: space-between;
             align-items: center;
             padding-bottom: 0.8rem;
-            border-bottom: 2px solid var(--border-color);
+            border-bottom: 2px solid var(--theme-border-color);
             margin-bottom: 1.2rem;
             flex-wrap: wrap;
             gap: 0.5rem;
@@ -229,11 +250,11 @@
         .top-bar .page-title {
             font-family: var(--font-display);
             font-size: 0.9rem;
-            color: var(--text-primary);
+            color: var(--theme-text-primary);
         }
 
         .top-bar .page-title .highlight {
-            color: var(--blue-electric);
+            color: var(--theme-blue-electric);
         }
 
         .top-bar .top-actions {
@@ -243,22 +264,22 @@
         }
 
         .top-bar .top-actions .player-count-badge {
-            background: var(--blue-bright);
+            background: var(--theme-blue-bright);
             color: white;
             padding: 0.2rem 0.8rem;
             border-radius: 30px;
             font-weight: 800;
             font-size: 0.6rem;
-            box-shadow: 0 0 20px var(--glow-blue);
+            box-shadow: 0 0 20px var(--theme-glow-blue);
         }
 
         .top-bar .top-actions .theme-toggle-small {
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            border: 2px solid var(--border-color);
-            background: var(--bg-card);
-            color: var(--text-primary);
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-card);
+            color: var(--theme-text-primary);
             font-size: 1rem;
             cursor: pointer;
             transition: var(--transition);
@@ -269,8 +290,8 @@
 
         .top-bar .top-actions .theme-toggle-small:hover {
             transform: rotate(30deg) scale(1.1);
-            border-color: var(--blue-electric);
-            box-shadow: 0 0 30px var(--glow-blue);
+            border-color: var(--theme-blue-electric);
+            box-shadow: 0 0 30px var(--theme-glow-blue);
         }
 
         .page {
@@ -300,27 +321,28 @@
         }
 
         .home-welcome .neon {
-            color: var(--blue-electric);
-            text-shadow: 0 0 30px var(--glow-blue);
+            color: var(--theme-blue-electric);
+            text-shadow: 0 0 30px var(--theme-glow-blue);
         }
 
         .home-subtitle {
-            color: var(--text-secondary);
+            color: var(--theme-text-secondary);
             font-size: 0.85rem;
             margin-bottom: 1.2rem;
         }
 
         .home-quick-start {
-            background: var(--bg-card);
+            background: var(--theme-bg-card);
             border-radius: var(--card-radius);
             padding: 1rem 1.2rem;
-            border: 2px solid var(--border-color);
+            border: 2px solid var(--theme-border-color);
             margin-bottom: 1.2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 0.8rem;
+            box-shadow: var(--theme-shadow);
         }
 
         .home-quick-start .qs-text {
@@ -329,34 +351,35 @@
         }
 
         .home-quick-start .qs-text .highlight {
-            color: var(--blue-electric);
+            color: var(--theme-blue-electric);
         }
 
         .home-quick-start .qs-btn {
             padding: 0.4rem 1.5rem;
             border-radius: 30px;
             border: none;
-            background: var(--blue-bright);
+            background: var(--theme-blue-bright);
             color: white;
             font-weight: 700;
             font-size: 0.7rem;
             cursor: pointer;
             transition: var(--transition);
             font-family: var(--font-body);
-            box-shadow: 0 0 20px var(--glow-blue);
+            box-shadow: 0 0 20px var(--theme-glow-blue);
         }
 
         .home-quick-start .qs-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 40px var(--glow-blue-strong);
+            box-shadow: 0 0 40px var(--theme-glow-blue-strong);
         }
 
         .players-section {
-            background: var(--bg-card);
+            background: var(--theme-bg-card);
             border-radius: var(--card-radius);
             padding: 1rem 1.2rem;
-            border: 2px solid var(--border-color);
+            border: 2px solid var(--theme-border-color);
             margin-bottom: 1.2rem;
+            box-shadow: var(--theme-shadow);
         }
 
         .players-section .players-header {
@@ -371,7 +394,7 @@
         .players-section .players-header h3 {
             font-weight: 800;
             font-size: 0.8rem;
-            color: var(--text-secondary);
+            color: var(--theme-text-secondary);
             font-family: var(--font-display);
             letter-spacing: 1px;
         }
@@ -385,9 +408,9 @@
         .players-section .players-header .input-row input {
             padding: 0.4rem 1rem;
             border-radius: 30px;
-            border: 2px solid var(--border-color);
-            background: var(--bg-input);
-            color: var(--text-primary);
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-primary);
             font-size: 0.75rem;
             font-family: var(--font-body);
             transition: var(--transition);
@@ -396,12 +419,12 @@
 
         .players-section .players-header .input-row input:focus {
             outline: none;
-            border-color: var(--blue-electric);
-            box-shadow: 0 0 20px var(--glow-blue);
+            border-color: var(--theme-blue-electric);
+            box-shadow: 0 0 20px var(--theme-glow-blue);
         }
 
         .players-section .players-header .input-row input::placeholder {
-            color: var(--text-muted);
+            color: var(--theme-text-muted);
         }
 
         .players-section .players-header .input-row button {
@@ -413,9 +436,9 @@
             cursor: pointer;
             transition: var(--transition);
             font-family: var(--font-body);
-            background: var(--blue-bright);
+            background: var(--theme-blue-bright);
             color: white;
-            box-shadow: 0 0 20px var(--glow-blue);
+            box-shadow: 0 0 20px var(--theme-glow-blue);
         }
 
         .players-section .players-header .input-row button:hover {
@@ -437,10 +460,10 @@
             display: flex;
             align-items: center;
             gap: 0.4rem;
-            background: var(--bg-input);
+            background: var(--theme-bg-input);
             padding: 0.15rem 0.7rem 0.15rem 0.2rem;
             border-radius: 30px;
-            border: 2px solid var(--border-color);
+            border: 2px solid var(--theme-border-color);
             font-size: 0.65rem;
             font-weight: 600;
             transition: var(--transition);
@@ -448,9 +471,9 @@
         }
 
         .player-avatar.active-turn {
-            border-color: var(--blue-electric);
-            background: var(--glow-blue);
-            box-shadow: 0 0 20px var(--glow-blue);
+            border-color: var(--theme-blue-electric);
+            background: var(--theme-glow-blue);
+            box-shadow: 0 0 20px var(--theme-glow-blue);
         }
 
         .player-avatar .avatar-circle {
@@ -473,19 +496,19 @@
         }
 
         .player-avatar .avatar-name {
-            color: var(--text-primary);
+            color: var(--theme-text-primary);
             font-size: 0.7rem;
         }
 
         .player-avatar .avatar-points {
-            color: var(--blue-electric);
+            color: var(--theme-blue-electric);
             font-weight: 800;
             font-size: 0.7rem;
         }
 
         .player-avatar .remove-btn {
             cursor: pointer;
-            color: var(--text-muted);
+            color: var(--theme-text-muted);
             font-size: 0.7rem;
             transition: var(--transition);
             background: none;
@@ -513,11 +536,12 @@
         }
 
         .team-section {
-            background: var(--bg-card);
+            background: var(--theme-bg-card);
             border-radius: var(--card-radius);
             padding: 0.8rem 1.2rem;
-            border: 2px solid var(--border-color);
+            border: 2px solid var(--theme-border-color);
             margin-bottom: 1.2rem;
+            box-shadow: var(--theme-shadow);
         }
 
         .team-section .team-header {
@@ -531,7 +555,7 @@
 
         .team-section .team-header label {
             font-size: 0.55rem;
-            color: var(--text-muted);
+            color: var(--theme-text-muted);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -547,9 +571,9 @@
         .team-section .team-header .team-controls button {
             padding: 0.15rem 0.8rem;
             border-radius: 20px;
-            border: 2px solid var(--border-color);
-            background: var(--bg-input);
-            color: var(--text-secondary);
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-secondary);
             font-size: 0.5rem;
             cursor: pointer;
             transition: var(--transition);
@@ -558,14 +582,14 @@
         }
 
         .team-section .team-header .team-controls button:hover {
-            border-color: var(--blue-electric);
-            color: var(--text-primary);
+            border-color: var(--theme-blue-electric);
+            color: var(--theme-text-primary);
             transform: scale(1.05);
         }
 
         .team-section .team-header .team-controls button.active {
-            border-color: var(--blue-electric);
-            background: var(--blue-electric);
+            border-color: var(--theme-blue-electric);
+            background: var(--theme-blue-electric);
             color: var(--blue-dark);
         }
 
@@ -576,10 +600,10 @@
         }
 
         .team-card {
-            background: var(--bg-input);
+            background: var(--theme-bg-input);
             border-radius: 12px;
             padding: 0.4rem 0.8rem;
-            border: 2px solid var(--border-color);
+            border: 2px solid var(--theme-border-color);
             flex: 1;
             min-width: 100px;
             transition: var(--transition);
@@ -587,14 +611,14 @@
         }
 
         .team-card:hover {
-            border-color: var(--blue-bright);
+            border-color: var(--theme-blue-bright);
             transform: translateY(-2px);
         }
 
         .team-card.active-team {
-            border-color: var(--blue-electric);
-            background: var(--glow-blue);
-            box-shadow: 0 0 30px var(--glow-blue);
+            border-color: var(--theme-blue-electric);
+            background: var(--theme-glow-blue);
+            box-shadow: 0 0 30px var(--theme-glow-blue);
         }
 
         .team-card .team-name {
@@ -616,7 +640,7 @@
         .team-card .team-name .team-edit-btn {
             background: none;
             border: none;
-            color: var(--text-muted);
+            color: var(--theme-text-muted);
             cursor: pointer;
             font-size: 0.6rem;
             transition: var(--transition);
@@ -624,15 +648,15 @@
         }
 
         .team-card .team-name .team-edit-btn:hover {
-            color: var(--blue-electric);
+            color: var(--theme-blue-electric);
             transform: scale(1.2);
         }
 
         .team-card .team-name .team-name-input {
-            background: var(--bg-input);
-            border: 2px solid var(--blue-electric);
+            background: var(--theme-bg-input);
+            border: 2px solid var(--theme-blue-electric);
             border-radius: 6px;
-            color: var(--text-primary);
+            color: var(--theme-text-primary);
             font-size: 0.7rem;
             padding: 0.05rem 0.3rem;
             font-weight: 700;
@@ -646,36 +670,37 @@
 
         .team-card .team-members {
             font-size: 0.5rem;
-            color: var(--text-muted);
+            color: var(--theme-text-muted);
         }
 
         .team-card .team-score {
             font-weight: 800;
-            color: var(--blue-electric);
+            color: var(--theme-blue-electric);
             font-size: 0.8rem;
         }
 
         .leaderboard-full {
-            background: var(--bg-card);
+            background: var(--theme-bg-card);
             border-radius: var(--card-radius);
             padding: 1.5rem;
-            border: 2px solid var(--border-color);
+            border: 2px solid var(--theme-border-color);
+            box-shadow: var(--theme-shadow);
         }
 
         .leaderboard-full h2 {
             font-family: var(--font-display);
             font-size: 1.2rem;
-            color: var(--blue-electric);
-            text-shadow: 0 0 30px var(--glow-blue);
+            color: var(--theme-blue-electric);
+            text-shadow: 0 0 30px var(--theme-glow-blue);
             text-align: center;
             margin-bottom: 1rem;
         }
 
         .point-settings {
-            background: var(--bg-input);
+            background: var(--theme-bg-input);
             border-radius: 14px;
             padding: 1rem 1.2rem;
-            border: 2px solid var(--border-color);
+            border: 2px solid var(--theme-border-color);
             margin-bottom: 1.2rem;
             display: flex;
             flex-wrap: wrap;
@@ -687,7 +712,7 @@
         .point-settings .ps-label {
             font-family: var(--font-display);
             font-size: 0.5rem;
-            color: var(--text-muted);
+            color: var(--theme-text-muted);
             letter-spacing: 1px;
         }
 
@@ -701,9 +726,9 @@
         .point-settings .ps-presets .ps-btn {
             padding: 0.3rem 0.8rem;
             border-radius: 20px;
-            border: 2px solid var(--border-color);
-            background: var(--bg-input);
-            color: var(--text-secondary);
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-secondary);
             font-size: 0.65rem;
             font-weight: 700;
             cursor: pointer;
@@ -713,28 +738,28 @@
         }
 
         .point-settings .ps-presets .ps-btn:hover {
-            border-color: var(--blue-electric);
-            color: var(--text-primary);
+            border-color: var(--theme-blue-electric);
+            color: var(--theme-text-primary);
             transform: scale(1.05);
         }
 
         .point-settings .ps-presets .ps-btn.active {
-            border-color: var(--blue-electric);
-            background: var(--blue-electric);
+            border-color: var(--theme-blue-electric);
+            background: var(--theme-blue-electric);
             color: var(--blue-dark);
         }
 
         .point-settings .ps-presets .ps-btn.ps-edit {
-            border-color: var(--blue-bright);
-            background: var(--blue-bright);
+            border-color: var(--theme-blue-bright);
+            background: var(--theme-blue-bright);
             color: white;
             font-size: 0.5rem;
             padding: 0.3rem 0.6rem;
         }
 
         .point-settings .ps-presets .ps-btn.ps-edit:hover {
-            background: var(--blue-electric);
-            border-color: var(--blue-electric);
+            background: var(--theme-blue-electric);
+            border-color: var(--theme-blue-electric);
         }
 
         .point-settings .ps-custom-input {
@@ -747,9 +772,9 @@
             width: 50px;
             padding: 0.25rem 0.4rem;
             border-radius: 16px;
-            border: 2px solid var(--border-color);
-            background: var(--bg-input);
-            color: var(--text-primary);
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-primary);
             font-size: 0.7rem;
             text-align: center;
             font-family: var(--font-body);
@@ -758,12 +783,12 @@
 
         .point-settings .ps-custom-input input:focus {
             outline: none;
-            border-color: var(--blue-electric);
+            border-color: var(--theme-blue-electric);
         }
 
         .point-settings .ps-custom-input span {
             font-size: 0.55rem;
-            color: var(--text-muted);
+            color: var(--theme-text-muted);
             font-weight: 600;
         }
 
@@ -776,9 +801,9 @@
             cursor: pointer;
             transition: var(--transition);
             font-family: var(--font-body);
-            background: var(--blue-bright);
+            background: var(--theme-blue-bright);
             color: white;
-            box-shadow: 0 0 20px var(--glow-blue);
+            box-shadow: 0 0 20px var(--theme-glow-blue);
         }
 
         .point-settings .ps-apply-btn:hover {
@@ -797,8 +822,8 @@
             padding: 0.5rem 0.8rem;
             margin: 0.3rem 0;
             border-radius: 14px;
-            background: var(--bg-input);
-            border: 2px solid var(--border-color);
+            background: var(--theme-bg-input);
+            border: 2px solid var(--theme-border-color);
             transition: var(--transition);
             animation: slideIn 0.4s ease;
             flex-wrap: wrap;
@@ -806,22 +831,22 @@
 
         .lb-full-item:hover {
             transform: scale(1.01);
-            border-color: var(--blue-bright);
+            border-color: var(--theme-blue-bright);
         }
 
         .lb-full-item.top-1 {
-            border-color: var(--blue-electric);
-            background: var(--glow-blue);
+            border-color: var(--theme-blue-electric);
+            background: var(--theme-glow-blue);
         }
 
         .lb-full-item.top-2 {
-            border-color: rgba(0, 212, 255, 0.15);
-            background: var(--bg-input);
+            border-color: var(--theme-glow-blue);
+            background: var(--theme-bg-input);
         }
 
         .lb-full-item.top-3 {
-            border-color: rgba(0, 212, 255, 0.08);
-            background: var(--bg-input);
+            border-color: var(--theme-glow-blue);
+            background: var(--theme-bg-input);
         }
 
         .lb-full-rank {
@@ -849,7 +874,7 @@
             flex: 1;
             font-size: 0.8rem;
             font-weight: 600;
-            color: var(--text-primary);
+            color: var(--theme-text-primary);
             min-width: 80px;
         }
 
@@ -861,7 +886,7 @@
         .lb-full-points {
             font-size: 1rem;
             font-weight: 800;
-            color: var(--blue-electric);
+            color: var(--theme-blue-electric);
             font-family: var(--font-display);
             min-width: 40px;
             text-align: right;
@@ -869,7 +894,7 @@
 
         .lb-full-stats {
             font-size: 0.5rem;
-            color: var(--text-muted);
+            color: var(--theme-text-muted);
             text-align: right;
             min-width: 40px;
         }
@@ -897,15 +922,15 @@
         }
 
         .lb-full-actions .lb-add1 {
-            background: var(--blue-bright);
+            background: var(--theme-blue-bright);
             color: white;
-            box-shadow: 0 0 10px var(--glow-blue);
+            box-shadow: 0 0 10px var(--theme-glow-blue);
         }
 
         .lb-full-actions .lb-add3 {
-            background: var(--blue-electric);
+            background: var(--theme-blue-electric);
             color: var(--blue-dark);
-            box-shadow: 0 0 10px var(--glow-blue-strong);
+            box-shadow: 0 0 10px var(--theme-glow-blue-strong);
         }
 
         .lb-full-actions .lb-add5 {
@@ -937,9 +962,9 @@
             cursor: pointer;
             transition: var(--transition);
             font-family: var(--font-body);
-            background: var(--blue-bright);
+            background: var(--theme-blue-bright);
             color: white;
-            box-shadow: 0 0 20px var(--glow-blue);
+            box-shadow: 0 0 20px var(--theme-glow-blue);
         }
 
         .lb-actions-export button:hover {
@@ -953,19 +978,19 @@
 
         .lb-actions-export button.outline {
             background: transparent;
-            border: 2px solid var(--border-color);
-            color: var(--text-secondary);
+            border: 2px solid var(--theme-border-color);
+            color: var(--theme-text-secondary);
             box-shadow: none;
         }
 
         .lb-actions-export button.outline:hover {
-            border-color: var(--blue-electric);
-            color: var(--text-primary);
+            border-color: var(--theme-blue-electric);
+            color: var(--theme-text-primary);
         }
 
         .empty-state {
             text-align: center;
-            color: var(--text-muted);
+            color: var(--theme-text-muted);
             padding: 2rem;
             font-size: 0.8rem;
         }
@@ -984,8 +1009,8 @@
         .games-page-header {
             font-family: var(--font-display);
             font-size: 1.2rem;
-            color: var(--blue-electric);
-            text-shadow: 0 0 30px var(--glow-blue);
+            color: var(--theme-blue-electric);
+            text-shadow: 0 0 30px var(--theme-glow-blue);
             text-align: center;
             margin-bottom: 1.2rem;
         }
@@ -1004,7 +1029,7 @@
             transition: var(--transition);
             position: relative;
             overflow: hidden;
-            box-shadow: var(--shadow);
+            box-shadow: var(--theme-shadow);
             color: white;
             min-height: 180px;
             display: flex;
@@ -1016,7 +1041,7 @@
 
         .game-card:hover {
             transform: translateY(-6px) scale(1.02);
-            box-shadow: var(--shadow-hover), 0 0 40px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--theme-shadow-hover), 0 0 40px rgba(0, 0, 0, 0.3);
             border-color: rgba(255, 255, 255, 0.3);
         }
 
@@ -1110,17 +1135,18 @@
         }
 
         .gm-page {
-            background: var(--bg-card);
+            background: var(--theme-bg-card);
             border-radius: var(--card-radius);
             padding: 1.5rem;
-            border: 2px solid var(--border-color);
+            border: 2px solid var(--theme-border-color);
+            box-shadow: var(--theme-shadow);
         }
 
         .gm-page h2 {
             font-family: var(--font-display);
             font-size: 1.2rem;
-            color: var(--blue-electric);
-            text-shadow: 0 0 30px var(--glow-blue);
+            color: var(--theme-blue-electric);
+            text-shadow: 0 0 30px var(--theme-glow-blue);
             margin-bottom: 1.2rem;
             display: flex;
             align-items: center;
@@ -1132,16 +1158,16 @@
             gap: 0.5rem;
             flex-wrap: wrap;
             margin-bottom: 1.2rem;
-            border-bottom: 2px solid var(--border-color);
+            border-bottom: 2px solid var(--theme-border-color);
             padding-bottom: 0.8rem;
         }
 
         .gm-page .gm-tabs button {
             padding: 0.4rem 1.2rem;
             border-radius: 20px;
-            border: 2px solid var(--border-color);
-            background: var(--bg-input);
-            color: var(--text-secondary);
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-secondary);
             font-size: 0.6rem;
             cursor: pointer;
             transition: var(--transition);
@@ -1150,14 +1176,14 @@
         }
 
         .gm-page .gm-tabs button:hover {
-            border-color: var(--blue-electric);
-            color: var(--text-primary);
+            border-color: var(--theme-blue-electric);
+            color: var(--theme-text-primary);
             transform: scale(1.05);
         }
 
         .gm-page .gm-tabs button.active {
-            border-color: var(--blue-electric);
-            background: var(--blue-electric);
+            border-color: var(--theme-blue-electric);
+            background: var(--theme-blue-electric);
             color: var(--blue-dark);
         }
 
@@ -1171,15 +1197,15 @@
         }
 
         .gm-page .gm-section {
-            background: var(--bg-input);
+            background: var(--theme-bg-input);
             border-radius: 14px;
             padding: 1.2rem;
             margin-bottom: 1rem;
-            border: 2px solid var(--border-color);
+            border: 2px solid var(--theme-border-color);
         }
 
         .gm-page .gm-section h4 {
-            color: var(--text-secondary);
+            color: var(--theme-text-secondary);
             font-size: 0.8rem;
             margin-bottom: 0.6rem;
             display: flex;
@@ -1190,7 +1216,7 @@
         .gm-page .gm-section h4 span {
             font-family: var(--font-display);
             font-size: 0.6rem;
-            color: var(--blue-electric);
+            color: var(--theme-blue-electric);
         }
 
         .gm-page .gm-input-row {
@@ -1204,9 +1230,9 @@
             flex: 1;
             padding: 0.5rem 1rem;
             border-radius: 24px;
-            border: 2px solid var(--border-color);
-            background: var(--bg-input);
-            color: var(--text-primary);
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-primary);
             font-size: 0.8rem;
             font-family: var(--font-body);
             min-width: 80px;
@@ -1215,8 +1241,8 @@
 
         .gm-page .gm-input-row input:focus {
             outline: none;
-            border-color: var(--blue-electric);
-            box-shadow: 0 0 20px var(--glow-blue);
+            border-color: var(--theme-blue-electric);
+            box-shadow: 0 0 20px var(--theme-glow-blue);
         }
 
         .gm-page .gm-input-row button {
@@ -1228,9 +1254,9 @@
             cursor: pointer;
             transition: var(--transition);
             font-family: var(--font-body);
-            background: var(--blue-bright);
+            background: var(--theme-blue-bright);
             color: white;
-            box-shadow: 0 0 15px var(--glow-blue);
+            box-shadow: 0 0 15px var(--theme-glow-blue);
             white-space: nowrap;
         }
 
@@ -1253,15 +1279,15 @@
         }
 
         .gm-item-list .gm-item {
-            background: var(--bg-input);
+            background: var(--theme-bg-input);
             padding: 0.2rem 0.8rem;
             border-radius: 14px;
             font-size: 0.65rem;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--theme-border-color);
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--text-secondary);
+            color: var(--theme-text-secondary);
             font-weight: 600;
         }
 
@@ -1277,7 +1303,7 @@
         }
 
         .gm-item-list .gm-item .gm-del:hover {
-            color: var(--blue-electric);
+            color: var(--theme-blue-electric);
             transform: scale(1.3);
         }
 
@@ -1313,7 +1339,7 @@
         }
 
         .modal-box {
-            background: var(--bg-secondary);
+            background: var(--theme-bg-secondary);
             border-radius: 24px;
             max-height: 90vh;
             overflow-y: auto;
@@ -1321,7 +1347,7 @@
             width: 100%;
             padding: 2rem;
             position: relative;
-            box-shadow: 0 0 80px var(--glow-blue-strong);
+            box-shadow: 0 0 80px var(--theme-glow-blue-strong);
         }
 
         .modal-box .modal-close {
@@ -1330,7 +1356,7 @@
             right: 16px;
             font-size: 1.4rem;
             cursor: pointer;
-            color: var(--text-muted);
+            color: var(--theme-text-muted);
             transition: var(--transition);
             background: none;
             border: none;
@@ -1344,7 +1370,7 @@
         }
 
         .modal-box .modal-close:hover {
-            color: var(--text-white);
+            color: var(--theme-text-primary);
             background: rgba(255, 255, 255, 0.1);
             transform: rotate(90deg) scale(1.1);
         }
@@ -1357,7 +1383,7 @@
             gap: 0.5rem;
             margin-bottom: 1rem;
             padding-bottom: 0.8rem;
-            border-bottom: 2px solid var(--border-color);
+            border-bottom: 2px solid var(--theme-border-color);
         }
 
         .modal-box .game-header h2 {
@@ -1366,24 +1392,27 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            color: var(--theme-blue-electric);
         }
 
         .modal-box .game-header .game-info {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.2rem;
             flex-wrap: wrap;
+            flex: 1;
+            justify-content: flex-end;
         }
 
         .modal-box .game-header .game-info .turn-indicator {
             font-size: 0.65rem;
-            color: var(--text-secondary);
+            color: var(--theme-text-secondary);
             font-weight: 600;
         }
 
         .modal-box .game-header .game-info .round-info {
             font-size: 0.5rem;
-            color: var(--text-muted);
+            color: var(--theme-text-muted);
             font-weight: 700;
             font-family: var(--font-display);
         }
@@ -1393,6 +1422,9 @@
             font-size: 2rem;
             min-width: 60px;
             text-align: center;
+            order: -1;
+            margin-right: auto;
+            color: var(--theme-blue-electric);
         }
 
         .modal-box .game-header .game-info .timer-display.warning {
@@ -1413,10 +1445,10 @@
         }
 
         .timer-setup {
-            background: var(--bg-input);
+            background: var(--theme-bg-input);
             border-radius: 16px;
             padding: 1.5rem 1.5rem;
-            border: 2px solid var(--border-color);
+            border: 2px solid var(--theme-border-color);
             margin-bottom: 1rem;
             display: flex;
             flex-direction: column;
@@ -1436,7 +1468,7 @@
         .timer-setup .timer-row label {
             font-family: var(--font-display);
             font-size: 0.7rem;
-            color: var(--text-muted);
+            color: var(--theme-text-muted);
             letter-spacing: 1px;
         }
 
@@ -1449,9 +1481,9 @@
         .timer-setup .timer-presets button {
             padding: 0.4rem 1.2rem;
             border-radius: 24px;
-            border: 2px solid var(--border-color);
-            background: var(--bg-input);
-            color: var(--text-secondary);
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-secondary);
             font-size: 0.7rem;
             cursor: pointer;
             transition: var(--transition);
@@ -1460,14 +1492,14 @@
         }
 
         .timer-setup .timer-presets button:hover {
-            border-color: var(--blue-electric);
-            color: var(--text-primary);
+            border-color: var(--theme-blue-electric);
+            color: var(--theme-text-primary);
             transform: scale(1.05);
         }
 
         .timer-setup .timer-presets button.active {
-            border-color: var(--blue-electric);
-            background: var(--blue-electric);
+            border-color: var(--theme-blue-electric);
+            background: var(--theme-blue-electric);
             color: var(--blue-dark);
         }
 
@@ -1481,9 +1513,9 @@
             width: 70px;
             padding: 0.4rem 0.5rem;
             border-radius: 24px;
-            border: 2px solid var(--border-color);
-            background: var(--bg-input);
-            color: var(--text-primary);
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-primary);
             font-size: 1rem;
             text-align: center;
             font-family: var(--font-body);
@@ -1492,12 +1524,12 @@
 
         .timer-setup .timer-custom input:focus {
             outline: none;
-            border-color: var(--blue-electric);
+            border-color: var(--theme-blue-electric);
         }
 
         .timer-setup .timer-custom span {
             font-size: 0.7rem;
-            color: var(--text-muted);
+            color: var(--theme-text-muted);
             font-weight: 600;
         }
 
@@ -1511,16 +1543,17 @@
             transition: var(--transition);
             font-family: var(--font-body);
             color: white;
-            box-shadow: 0 0 30px var(--glow-blue);
+            box-shadow: 0 0 30px var(--theme-glow-blue);
+            background: var(--theme-blue-bright);
         }
 
         .timer-setup .timer-start-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 50px var(--glow-blue-strong);
+            box-shadow: 0 0 50px var(--theme-glow-blue-strong);
         }
 
         .modal-box .game-content {
-            color: var(--text-secondary);
+            color: var(--theme-text-secondary);
             line-height: 1.7;
             min-height: 150px;
         }
@@ -1531,28 +1564,30 @@
             text-align: center;
             padding: 1.2rem 0;
             letter-spacing: 6px;
-            border: 3px dashed var(--border-color);
+            border: 3px dashed var(--theme-border-color);
             border-radius: 16px;
-            background: var(--bg-input);
+            background: var(--theme-bg-input);
             margin: 0.5rem 0;
+            color: var(--theme-blue-electric);
         }
 
         .song-display {
-            background: var(--bg-input);
+            background: var(--theme-bg-input);
             padding: 1rem;
             border-radius: 16px;
             text-align: center;
-            border: 3px solid var(--border-color);
+            border: 3px solid var(--theme-border-color);
             margin: 0.5rem 0;
         }
 
         .song-display .title {
             font-family: var(--font-display);
             font-size: 1.2rem;
+            color: var(--theme-blue-electric);
         }
 
         .song-display .artist {
-            color: var(--text-muted);
+            color: var(--theme-text-muted);
             font-size: 0.75rem;
             margin-top: 0.2rem;
         }
@@ -1561,18 +1596,18 @@
             padding: 0.5rem 0.8rem;
             margin: 0.3rem 0;
             border-radius: 12px;
-            background: var(--bg-input);
-            border: 2px solid var(--border-color);
+            background: var(--theme-bg-input);
+            border: 2px solid var(--theme-border-color);
             cursor: pointer;
             transition: var(--transition);
             font-weight: 600;
             font-size: 0.8rem;
-            color: var(--text-secondary);
+            color: var(--theme-text-secondary);
         }
 
         .truth-lie-box .option:hover {
-            border-color: var(--blue-electric);
-            background: var(--glow-blue);
+            border-color: var(--theme-blue-electric);
+            background: var(--theme-glow-blue);
             transform: scale(1.02);
         }
 
@@ -1612,16 +1647,16 @@
             font-size: 2.2rem;
             cursor: pointer;
             transition: var(--transition);
-            color: var(--text-muted);
+            color: var(--theme-text-muted);
         }
 
         .rating-stars .star:hover {
             transform: scale(1.4);
-            color: var(--blue-electric);
+            color: var(--theme-blue-electric);
         }
 
         .rating-stars .star.active {
-            color: var(--blue-electric);
+            color: var(--theme-blue-electric);
             animation: starPop 0.3s ease;
         }
 
@@ -1638,12 +1673,12 @@
         }
 
         .feedback {
-            background: var(--bg-input);
+            background: var(--theme-bg-input);
             padding: 0.5rem 0.8rem;
             border-radius: 12px;
             margin: 0.4rem 0;
-            border-left: 4px solid var(--blue-electric);
-            color: var(--text-secondary);
+            border-left: 4px solid var(--theme-blue-electric);
+            color: var(--theme-text-secondary);
             font-size: 0.75rem;
             display: none;
         }
@@ -1659,18 +1694,18 @@
         }
 
         .scoring-section {
-            background: var(--bg-input);
+            background: var(--theme-bg-input);
             border-radius: 14px;
             padding: 0.8rem 1rem;
             margin: 0.8rem 0;
-            border: 2px solid var(--border-color);
+            border: 2px solid var(--theme-border-color);
             text-align: center;
         }
 
         .scoring-section .scoring-label {
             font-family: var(--font-display);
             font-size: 0.45rem;
-            color: var(--text-muted);
+            color: var(--theme-text-muted);
             text-transform: uppercase;
             letter-spacing: 3px;
         }
@@ -1678,13 +1713,14 @@
         .scoring-section .scoring-player {
             font-size: 0.85rem;
             font-weight: 700;
-            color: var(--text-primary);
+            color: var(--theme-text-primary);
             margin-bottom: 0.3rem;
         }
 
         .scoring-section .scoring-player .current-score {
             font-family: var(--font-display);
             font-size: 1.1rem;
+            color: var(--theme-blue-electric);
         }
 
         .scoring-section .score-buttons {
@@ -1717,8 +1753,9 @@
         }
 
         .scoring-section .score-buttons button.btn-plus {
+            background: var(--theme-blue-bright);
             color: white;
-            box-shadow: 0 0 20px var(--glow-blue);
+            box-shadow: 0 0 20px var(--theme-glow-blue);
         }
 
         .scoring-section .score-buttons button.btn-plus:hover {
@@ -1739,15 +1776,15 @@
             font-family: 'Courier New', monospace;
             font-size: 1rem;
             line-height: 1.5;
-            background: var(--bg-input);
+            background: var(--theme-bg-input);
             padding: 0.8rem 1rem;
             border-radius: 14px;
-            border: 2px solid var(--border-color);
+            border: 2px solid var(--theme-border-color);
             min-height: 160px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-primary);
+            color: var(--theme-text-primary);
             white-space: pre;
             overflow-x: auto;
             margin: 0.5rem 0;
@@ -1761,15 +1798,20 @@
             margin: 0.5rem 0;
             min-height: 3.5rem;
             text-align: center;
+            color: var(--theme-blue-electric);
         }
 
         .hangman-word .letter-hidden {
-            color: var(--text-muted);
+            color: var(--theme-text-muted);
+        }
+
+        .hangman-word .letter-revealed {
+            color: var(--theme-blue-electric);
         }
 
         .hangman-guesses {
             font-size: 0.7rem;
-            color: var(--text-secondary);
+            color: var(--theme-text-secondary);
             display: flex;
             flex-wrap: wrap;
             gap: 0.4rem;
@@ -1798,9 +1840,9 @@
         .hangman-input-row input {
             padding: 0.4rem 0.8rem;
             border-radius: 30px;
-            border: 3px solid var(--border-color);
-            background: var(--bg-input);
-            color: var(--text-primary);
+            border: 3px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-primary);
             font-size: 1.3rem;
             width: 60px;
             text-align: center;
@@ -1811,8 +1853,8 @@
 
         .hangman-input-row input:focus {
             outline: none;
-            border-color: var(--blue-electric);
-            box-shadow: 0 0 30px var(--glow-blue);
+            border-color: var(--theme-blue-electric);
+            box-shadow: 0 0 30px var(--theme-glow-blue);
         }
 
         .hangman-input-row button {
@@ -1825,7 +1867,8 @@
             transition: var(--transition);
             font-family: var(--font-body);
             color: white;
-            box-shadow: 0 0 20px var(--glow-blue);
+            box-shadow: 0 0 20px var(--theme-glow-blue);
+            background: var(--theme-blue-bright);
         }
 
         .hangman-input-row button:hover {
@@ -1833,8 +1876,9 @@
         }
 
         .hangman-input-row button.hint-btn {
-            color: white;
-            box-shadow: 0 0 20px var(--glow-blue-strong);
+            background: var(--theme-blue-electric);
+            color: var(--blue-dark);
+            box-shadow: 0 0 20px var(--theme-glow-blue-strong);
         }
 
         .hangman-input-row button.next-btn {
@@ -1865,17 +1909,18 @@
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--bg-card);
-            border: 3px solid var(--blue-electric);
+            background: var(--theme-bg-card);
+            border: 3px solid var(--theme-blue-electric);
             border-radius: 16px;
             padding: 0.5rem 1.5rem;
             z-index: 9998;
             display: none;
             animation: notifSlide 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             text-align: center;
-            box-shadow: 0 0 60px var(--glow-blue-strong);
+            box-shadow: 0 0 60px var(--theme-glow-blue-strong);
             font-weight: 700;
             font-size: 0.85rem;
+            color: var(--theme-text-primary);
         }
 
         .score-notification.show {
@@ -1883,7 +1928,7 @@
         }
 
         .score-notification .notif-player {
-            color: var(--text-primary);
+            color: var(--theme-text-primary);
         }
 
         .score-notification .notif-change.positive {
@@ -1958,18 +2003,18 @@
         }
 
         .share-modal .share-box {
-            background: var(--bg-secondary);
+            background: var(--theme-bg-secondary);
             border-radius: 20px;
             padding: 1.5rem;
             max-width: 500px;
             width: 100%;
-            border: 3px solid var(--blue-electric);
-            box-shadow: 0 0 60px var(--glow-blue-strong);
+            border: 3px solid var(--theme-blue-electric);
+            box-shadow: 0 0 60px var(--theme-glow-blue-strong);
         }
 
         .share-modal .share-box h3 {
             font-family: var(--font-display);
-            color: var(--blue-electric);
+            color: var(--theme-blue-electric);
             margin-bottom: 0.8rem;
             text-align: center;
             font-size: 0.8rem;
@@ -1979,9 +2024,9 @@
             width: 100%;
             padding: 0.8rem;
             border-radius: 14px;
-            border: 2px solid var(--border-color);
-            background: var(--bg-input);
-            color: var(--text-primary);
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-primary);
             font-family: var(--font-body);
             font-size: 0.75rem;
             resize: vertical;
@@ -2005,9 +2050,9 @@
             cursor: pointer;
             transition: var(--transition);
             font-family: var(--font-body);
-            background: var(--blue-bright);
+            background: var(--theme-blue-bright);
             color: white;
-            box-shadow: 0 0 20px var(--glow-blue);
+            box-shadow: 0 0 20px var(--theme-glow-blue);
         }
 
         .share-modal .share-box .share-buttons button:hover {
@@ -2017,6 +2062,109 @@
         .share-modal .share-box .share-buttons button.close-share {
             background: #e74c3c;
             box-shadow: 0 0 20px rgba(231, 76, 60, 0.3);
+        }
+
+        /* ============================================================
+           THEMES PAGE
+           ============================================================ */
+        .themes-page-header {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--theme-blue-electric);
+            text-shadow: 0 0 30px var(--theme-glow-blue);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .themes-subtitle {
+            text-align: center;
+            color: var(--theme-text-secondary);
+            font-size: 0.8rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .theme-card {
+            background: var(--theme-bg-card);
+            border-radius: var(--card-radius);
+            border: 3px solid var(--theme-border-color);
+            padding: 1.2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--theme-shadow);
+        }
+
+        .theme-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--theme-shadow-hover);
+            border-color: var(--theme-blue-electric);
+        }
+
+        .theme-card.active-theme {
+            border-color: var(--theme-blue-electric);
+            box-shadow: 0 0 30px var(--theme-glow-blue-strong);
+            background: var(--theme-glow-blue);
+        }
+
+        .theme-card .theme-preview {
+            display: flex;
+            height: 40px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 0.6rem;
+            border: 2px solid var(--theme-border-color);
+        }
+
+        .theme-card .theme-preview .swatch {
+            flex: 1;
+            height: 100%;
+        }
+
+        .theme-card .theme-name {
+            font-weight: 700;
+            font-size: 0.7rem;
+            color: var(--theme-text-primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .theme-card .theme-mood {
+            font-size: 0.55rem;
+            color: var(--theme-text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .theme-card .theme-apply-btn {
+            padding: 0.3rem 1.5rem;
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.55rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            background: var(--theme-blue-bright);
+            color: white;
+            box-shadow: 0 0 15px var(--theme-glow-blue);
+        }
+
+        .theme-card .theme-apply-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px var(--theme-glow-blue-strong);
+        }
+
+        .theme-card .theme-apply-btn.active-btn {
+            background: #2ecc71;
+            box-shadow: 0 0 15px rgba(46, 204, 113, 0.3);
+        }
+
+        .theme-card .theme-apply-btn.active-btn:hover {
+            box-shadow: 0 0 25px rgba(46, 204, 113, 0.5);
         }
 
         /* Responsive */
@@ -2078,9 +2226,11 @@
                 gap: 0.3rem;
             }
             .modal-box .game-header .game-info {
-                justify-content: space-between;
+                justify-content: center;
             }
             .modal-box .game-header .game-info .timer-display {
+                margin-right: 0;
+                order: 0;
                 font-size: 1.5rem;
             }
 
@@ -2165,6 +2315,17 @@
                 font-size: 0.5rem;
                 padding: 0.3rem 0.8rem;
             }
+
+            .themes-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 0.8rem;
+            }
+            .theme-card {
+                padding: 0.8rem;
+            }
+            .theme-card .theme-preview {
+                height: 30px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -2243,6 +2404,27 @@
                 padding: 0.4rem 1.5rem;
                 font-size: 0.65rem;
             }
+
+            .themes-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.5rem;
+            }
+            .theme-card {
+                padding: 0.6rem;
+            }
+            .theme-card .theme-preview {
+                height: 24px;
+            }
+            .theme-card .theme-name {
+                font-size: 0.6rem;
+            }
+            .theme-card .theme-mood {
+                font-size: 0.45rem;
+            }
+            .theme-card .theme-apply-btn {
+                font-size: 0.45rem;
+                padding: 0.2rem 1rem;
+            }
         }
     </style>
 </head>
@@ -2272,9 +2454,9 @@
             <div class="game-header">
                 <h2 id="modalTitle">🎮 GAME</h2>
                 <div class="game-info">
+                    <span class="timer-display" id="timerDisplay">30</span>
                     <span class="turn-indicator" id="turnIndicator">👤 No player</span>
                     <span class="round-info" id="roundInfo">ROUND 1/5</span>
-                    <span class="timer-display" id="timerDisplay">30</span>
                 </div>
             </div>
             <div class="timer-setup" id="timerSetup">
@@ -2295,7 +2477,7 @@
                 <button class="timer-start-btn" id="timerStartBtn" onclick="startGameWithTimer()">🚀 START GAME</button>
             </div>
             <div class="game-content" id="modalContent"></div>
-            <div style="text-align:center;font-size:0.45rem;color:var(--text-muted);margin-top:0.5rem;font-family:var(--font-display);letter-spacing:2px;">
+            <div style="text-align:center;font-size:0.45rem;color:var(--theme-text-muted);margin-top:0.5rem;font-family:var(--font-display);letter-spacing:2px;">
                 ⚡ USE SCORING BUTTONS BELOW ⚡
             </div>
         </div>
@@ -2319,6 +2501,10 @@
             <button class="nav-item" onclick="navigateTo('games')" data-page="games">
                 <span class="icon">🎮</span>
                 <span>Games</span>
+            </button>
+            <button class="nav-item" onclick="navigateTo('themes')" data-page="themes">
+                <span class="icon">🎨</span>
+                <span>Themes</span>
             </button>
             <button class="nav-item gm-toggle" onclick="navigateTo('gm')" data-page="gm" id="gmNavBtn">
                 <span class="icon">👑</span>
@@ -2414,6 +2600,13 @@
             <div class="page" id="gamesPage">
                 <div class="games-page-header">🎮 ALL GAMES</div>
                 <div class="game-grid" id="gameGrid"></div>
+            </div>
+
+            <!-- THEMES PAGE -->
+            <div class="page" id="themesPage">
+                <div class="themes-page-header">🎨 CHOOSE YOUR THEME</div>
+                <div class="themes-subtitle">Pick a color theme that sets the mood for your party!</div>
+                <div class="themes-grid" id="themesGrid"></div>
             </div>
 
             <div class="page" id="gmPage">
@@ -2517,6 +2710,252 @@
 
     <script>
         // ============================================================
+        //  THEME DEFINITIONS
+        // ============================================================
+        const THEMES = {
+            'gothic-noir': {
+                name: 'Gothic Noir',
+                mood: 'Sophisticated · Moody · Dramatic',
+                colors: ['#1A1A1A', '#2D2D2D', '#8A8A8A', '#D4C4B7'],
+                variables: {
+                    '--theme-bg-primary': '#1A1A1A',
+                    '--theme-bg-secondary': '#2D2D2D',
+                    '--theme-bg-card': '#2D2D2D',
+                    '--theme-bg-card-hover': '#3A3A3A',
+                    '--theme-bg-input': '#2D2D2D',
+                    '--theme-bg-sidebar': '#0D0D0D',
+                    '--theme-bg-sidebar-hover': '#2D2D2D',
+                    '--theme-text-primary': '#F0EDE8',
+                    '--theme-text-secondary': '#B8B0A8',
+                    '--theme-text-muted': '#8A8A8A',
+                    '--theme-border-color': '#3A3A3A',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.6)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.8)',
+                    '--theme-blue-bright': '#B8A898',
+                    '--theme-blue-electric': '#D4C4B7',
+                    '--theme-glow-blue': 'rgba(212,196,183,0.2)',
+                    '--theme-glow-blue-strong': 'rgba(212,196,183,0.4)'
+                }
+            },
+            'neon-noir': {
+                name: 'Neon Noir',
+                mood: 'Futuristic · Edgy · Cyberpunk',
+                colors: ['#0A0A0A', '#39FF14', '#B026FF', '#00FFFF'],
+                variables: {
+                    '--theme-bg-primary': '#0A0A0A',
+                    '--theme-bg-secondary': '#1A1A1A',
+                    '--theme-bg-card': '#1A1A1A',
+                    '--theme-bg-card-hover': '#2A2A2A',
+                    '--theme-bg-input': '#1A1A1A',
+                    '--theme-bg-sidebar': '#050505',
+                    '--theme-bg-sidebar-hover': '#2A2A2A',
+                    '--theme-text-primary': '#F0F0F0',
+                    '--theme-text-secondary': '#B0B0B0',
+                    '--theme-text-muted': '#666666',
+                    '--theme-border-color': '#2A2A2A',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.8)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.9)',
+                    '--theme-blue-bright': '#39FF14',
+                    '--theme-blue-electric': '#00FFFF',
+                    '--theme-glow-blue': 'rgba(0,255,255,0.15)',
+                    '--theme-glow-blue-strong': 'rgba(0,255,255,0.35)'
+                }
+            },
+            'quiet-luxury': {
+                name: 'Quiet Luxury',
+                mood: 'Elegant · Soft · Timeless',
+                colors: ['#F5E6D3', '#E8D5C4', '#D4A89B', '#8B6B61'],
+                variables: {
+                    '--theme-bg-primary': '#F5E6D3',
+                    '--theme-bg-secondary': '#EDDCCB',
+                    '--theme-bg-card': '#FFFFFF',
+                    '--theme-bg-card-hover': '#F5EDE6',
+                    '--theme-bg-input': '#EDDCCB',
+                    '--theme-bg-sidebar': '#3A2A22',
+                    '--theme-bg-sidebar-hover': '#5A4A42',
+                    '--theme-text-primary': '#3A2A22',
+                    '--theme-text-secondary': '#6A5A52',
+                    '--theme-text-muted': '#9A8A82',
+                    '--theme-border-color': '#E8D5C4',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.08)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.15)',
+                    '--theme-blue-bright': '#D4A89B',
+                    '--theme-blue-electric': '#8B6B61',
+                    '--theme-glow-blue': 'rgba(139,107,97,0.2)',
+                    '--theme-glow-blue-strong': 'rgba(139,107,97,0.4)'
+                }
+            },
+            'lush-forest': {
+                name: 'Lush Forest',
+                mood: 'Natural · Grounded · Organic',
+                colors: ['#1B4D3D', '#2D6A4F', '#40916C', '#52B788'],
+                variables: {
+                    '--theme-bg-primary': '#0F2A1F',
+                    '--theme-bg-secondary': '#1B4D3D',
+                    '--theme-bg-card': '#1B4D3D',
+                    '--theme-bg-card-hover': '#2D6A4F',
+                    '--theme-bg-input': '#1B4D3D',
+                    '--theme-bg-sidebar': '#0A1A12',
+                    '--theme-bg-sidebar-hover': '#1B4D3D',
+                    '--theme-text-primary': '#E8F0E8',
+                    '--theme-text-secondary': '#A0C0A8',
+                    '--theme-text-muted': '#6A8A72',
+                    '--theme-border-color': '#2D6A4F',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.5)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.7)',
+                    '--theme-blue-bright': '#40916C',
+                    '--theme-blue-electric': '#52B788',
+                    '--theme-glow-blue': 'rgba(82,183,136,0.2)',
+                    '--theme-glow-blue-strong': 'rgba(82,183,136,0.4)'
+                }
+            },
+            'zesty-lemon': {
+                name: 'Zesty Lemon',
+                mood: 'Cheerful · Sunny · Playful',
+                colors: ['#FFF3B0', '#FFE66D', '#F9C80E', '#F4A300'],
+                variables: {
+                    '--theme-bg-primary': '#FFFDF5',
+                    '--theme-bg-secondary': '#FFF8E0',
+                    '--theme-bg-card': '#FFFFFF',
+                    '--theme-bg-card-hover': '#FFFDF5',
+                    '--theme-bg-input': '#FFF8E0',
+                    '--theme-bg-sidebar': '#2A2000',
+                    '--theme-bg-sidebar-hover': '#4A3A0A',
+                    '--theme-text-primary': '#2A2000',
+                    '--theme-text-secondary': '#6A5A20',
+                    '--theme-text-muted': '#9A8A50',
+                    '--theme-border-color': '#FFE66D',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.08)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.15)',
+                    '--theme-blue-bright': '#F9C80E',
+                    '--theme-blue-electric': '#F4A300',
+                    '--theme-glow-blue': 'rgba(244,163,0,0.2)',
+                    '--theme-glow-blue-strong': 'rgba(244,163,0,0.4)'
+                }
+            },
+            'autumn-leaves': {
+                name: 'Autumn Leaves',
+                mood: 'Warm · Cozy · Nostalgic',
+                colors: ['#D97A2B', '#C85A17', '#8B5A2B', '#F4A460'],
+                variables: {
+                    '--theme-bg-primary': '#2A1A0A',
+                    '--theme-bg-secondary': '#3A2A1A',
+                    '--theme-bg-card': '#3A2A1A',
+                    '--theme-bg-card-hover': '#4A3A2A',
+                    '--theme-bg-input': '#3A2A1A',
+                    '--theme-bg-sidebar': '#1A0A00',
+                    '--theme-bg-sidebar-hover': '#3A2A1A',
+                    '--theme-text-primary': '#F0E0D0',
+                    '--theme-text-secondary': '#C0A890',
+                    '--theme-text-muted': '#8A7A6A',
+                    '--theme-border-color': '#4A3A2A',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.5)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.7)',
+                    '--theme-blue-bright': '#D97A2B',
+                    '--theme-blue-electric': '#F4A460',
+                    '--theme-glow-blue': 'rgba(244,164,96,0.2)',
+                    '--theme-glow-blue-strong': 'rgba(244,164,96,0.4)'
+                }
+            },
+            'pop-art': {
+                name: 'Pop Art',
+                mood: 'Bold · Playful · High-Energy',
+                colors: ['#FF0055', '#00D4FF', '#FFE600', '#FFFFFF'],
+                variables: {
+                    '--theme-bg-primary': '#FFFFFF',
+                    '--theme-bg-secondary': '#F0F0F0',
+                    '--theme-bg-card': '#FFFFFF',
+                    '--theme-bg-card-hover': '#F5F5F5',
+                    '--theme-bg-input': '#F0F0F0',
+                    '--theme-bg-sidebar': '#1A1A2E',
+                    '--theme-bg-sidebar-hover': '#2A2A4E',
+                    '--theme-text-primary': '#1A1A2E',
+                    '--theme-text-secondary': '#4A4A6E',
+                    '--theme-text-muted': '#8A8AAE',
+                    '--theme-border-color': '#E0E0E0',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.1)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.2)',
+                    '--theme-blue-bright': '#FF0055',
+                    '--theme-blue-electric': '#00D4FF',
+                    '--theme-glow-blue': 'rgba(0,212,255,0.2)',
+                    '--theme-glow-blue-strong': 'rgba(0,212,255,0.4)'
+                }
+            },
+            'ocean-tide': {
+                name: 'Ocean Tide',
+                mood: 'Calming · Peaceful · Refreshing',
+                colors: ['#0077B6', '#00B4D8', '#90E0EF', '#CAF0F8'],
+                variables: {
+                    '--theme-bg-primary': '#E8F4F8',
+                    '--theme-bg-secondary': '#D4ECF5',
+                    '--theme-bg-card': '#FFFFFF',
+                    '--theme-bg-card-hover': '#F0F8FA',
+                    '--theme-bg-input': '#D4ECF5',
+                    '--theme-bg-sidebar': '#003A5C',
+                    '--theme-bg-sidebar-hover': '#005A7C',
+                    '--theme-text-primary': '#003A5C',
+                    '--theme-text-secondary': '#2A6A8C',
+                    '--theme-text-muted': '#6A9AAC',
+                    '--theme-border-color': '#B0D0E0',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.06)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.12)',
+                    '--theme-blue-bright': '#0077B6',
+                    '--theme-blue-electric': '#00B4D8',
+                    '--theme-glow-blue': 'rgba(0,180,216,0.2)',
+                    '--theme-glow-blue-strong': 'rgba(0,180,216,0.4)'
+                }
+            },
+            'urban-loft': {
+                name: 'Urban Loft',
+                mood: 'Modern · Industrial · Clean',
+                colors: ['#2C2C2C', '#8B4513', '#D3D3D3', '#F5F5F5'],
+                variables: {
+                    '--theme-bg-primary': '#F5F5F5',
+                    '--theme-bg-secondary': '#E8E8E8',
+                    '--theme-bg-card': '#FFFFFF',
+                    '--theme-bg-card-hover': '#F5F5F5',
+                    '--theme-bg-input': '#E8E8E8',
+                    '--theme-bg-sidebar': '#1A1A1A',
+                    '--theme-bg-sidebar-hover': '#2C2C2C',
+                    '--theme-text-primary': '#1A1A1A',
+                    '--theme-text-secondary': '#4A4A4A',
+                    '--theme-text-muted': '#8A8A8A',
+                    '--theme-border-color': '#D3D3D3',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.08)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.15)',
+                    '--theme-blue-bright': '#8B4513',
+                    '--theme-blue-electric': '#A05520',
+                    '--theme-glow-blue': 'rgba(139,69,19,0.15)',
+                    '--theme-glow-blue-strong': 'rgba(139,69,19,0.3)'
+                }
+            },
+            'cotton-candy': {
+                name: 'Cotton Candy Skies',
+                mood: 'Whimsical · Dreamy · Soft',
+                colors: ['#F8B4D9', '#D4A5D6', '#A8D8EA', '#FDFBF7'],
+                variables: {
+                    '--theme-bg-primary': '#FDFBF7',
+                    '--theme-bg-secondary': '#F8F0F5',
+                    '--theme-bg-card': '#FFFFFF',
+                    '--theme-bg-card-hover': '#FDFBF7',
+                    '--theme-bg-input': '#F8F0F5',
+                    '--theme-bg-sidebar': '#3A2A3A',
+                    '--theme-bg-sidebar-hover': '#5A4A5A',
+                    '--theme-text-primary': '#3A2A3A',
+                    '--theme-text-secondary': '#6A5A6A',
+                    '--theme-text-muted': '#9A8A9A',
+                    '--theme-border-color': '#E8D8E8',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.06)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.12)',
+                    '--theme-blue-bright': '#D4A5D6',
+                    '--theme-blue-electric': '#A8D8EA',
+                    '--theme-glow-blue': 'rgba(168,216,234,0.2)',
+                    '--theme-glow-blue-strong': 'rgba(168,216,234,0.4)'
+                }
+            }
+        };
+
+        // ============================================================
         //  CONFIG
         // ============================================================
         const MAX_PLAYERS = 20;
@@ -2554,6 +2993,7 @@
         let teamModeEnabled = false;
         let teams = [];
         let currentPage = 'home';
+        let currentTheme = 'gothic-noir';
 
         let charadesWords = [];
         let karaokeSongs = [];
@@ -2597,10 +3037,77 @@
             custom: null
         };
 
-        let currentTheme = 'dark';
+        let currentThemeMode = 'dark';
 
         // ============================================================
-        //  THEME
+        //  THEME FUNCTIONS
+        // ============================================================
+        function applyTheme(themeId) {
+            const theme = THEMES[themeId];
+            if (!theme) return;
+
+            currentTheme = themeId;
+            const root = document.documentElement;
+
+            // Apply all theme variables
+            Object.entries(theme.variables).forEach(([key, value]) => {
+                root.style.setProperty(key, value);
+            });
+
+            // Update active state on theme cards
+            document.querySelectorAll('.theme-card').forEach(card => {
+                card.classList.toggle('active-theme', card.dataset.theme === themeId);
+                const btn = card.querySelector('.theme-apply-btn');
+                if (btn) {
+                    btn.textContent = card.dataset.theme === themeId ? '✅ ACTIVE' : 'APPLY';
+                    btn.classList.toggle('active-btn', card.dataset.theme === themeId);
+                }
+            });
+
+            // Save to localStorage
+            localStorage.setItem('arcadeThemeId', themeId);
+        }
+
+        function loadThemePreference() {
+            const saved = localStorage.getItem('arcadeThemeId');
+            if (saved && THEMES[saved]) {
+                applyTheme(saved);
+            } else {
+                // Default to gothic-noir
+                applyTheme('gothic-noir');
+            }
+        }
+
+        function renderThemes() {
+            const grid = document.getElementById('themesGrid');
+            grid.innerHTML = Object.entries(THEMES).map(([id, theme]) => `
+                <div class="theme-card" data-theme="${id}">
+                    <div class="theme-preview">
+                        ${theme.colors.map(c => `<div class="swatch" style="background:${c}"></div>`).join('')}
+                    </div>
+                    <div class="theme-name">${theme.name}</div>
+                    <div class="theme-mood">${theme.mood}</div>
+                    <button class="theme-apply-btn" onclick="applyTheme('${id}')">
+                        ${currentTheme === id ? '✅ ACTIVE' : 'APPLY'}
+                    </button>
+                </div>
+            `).join('');
+
+            // Mark active theme
+            document.querySelectorAll('.theme-card').forEach(card => {
+                if (card.dataset.theme === currentTheme) {
+                    card.classList.add('active-theme');
+                    const btn = card.querySelector('.theme-apply-btn');
+                    if (btn) {
+                        btn.textContent = '✅ ACTIVE';
+                        btn.classList.add('active-btn');
+                    }
+                }
+            });
+        }
+
+        // ============================================================
+        //  THEME TOGGLE (Dark/Light mode) - Legacy support
         // ============================================================
         function toggleTheme() {
             const html = document.documentElement;
@@ -2608,26 +3115,26 @@
             const themeIcon = document.getElementById('themeIcon');
             const themeLabel = document.getElementById('themeLabel');
 
-            if (currentTheme === 'dark') {
+            if (currentThemeMode === 'dark') {
                 html.setAttribute('data-theme', 'light');
-                currentTheme = 'light';
+                currentThemeMode = 'light';
                 btn.textContent = '☀️';
                 themeIcon.textContent = '☀️';
                 themeLabel.textContent = 'Light';
             } else {
                 html.setAttribute('data-theme', 'dark');
-                currentTheme = 'dark';
+                currentThemeMode = 'dark';
                 btn.textContent = '🌙';
                 themeIcon.textContent = '🌙';
                 themeLabel.textContent = 'Dark';
             }
-            localStorage.setItem('arcadeTheme', currentTheme);
+            localStorage.setItem('arcadeTheme', currentThemeMode);
         }
 
-        function loadTheme() {
+        function loadThemeMode() {
             const saved = localStorage.getItem('arcadeTheme');
             if (saved) {
-                currentTheme = saved;
+                currentThemeMode = saved;
                 const html = document.documentElement;
                 html.setAttribute('data-theme', saved);
                 const btn = document.getElementById('themeToggleBtn');
@@ -2681,6 +3188,7 @@
                 renderGameGrid();
                 renderAll();
                 renderGMData();
+                renderThemes();
 
                 return true;
             } catch (error) {
@@ -2874,12 +3382,14 @@
                 home: 'DASHBOARD',
                 players: 'RANKINGS',
                 games: 'ALL GAMES',
+                themes: 'THEMES',
                 gm: 'GAME MASTER'
             };
             document.getElementById('pageTitle').textContent = titles[page] || 'DASHBOARD';
 
             if (page === 'players') renderLeaderboardFull();
             if (page === 'games') renderGameGrid();
+            if (page === 'themes') renderThemes();
 
             if (document.getElementById('modalOverlay').classList.contains('active')) {
                 closeModal();
@@ -3621,7 +4131,7 @@
 
             container.innerHTML = `
                 <p><strong>🤥 TWO TRUTHS & A LIE</strong></p>
-                <p style="color:var(--text-muted);font-size:0.75rem;">📂 Random Facts</p>
+                <p style="color:var(--theme-text-muted);font-size:0.75rem;">📂 Random Facts</p>
                 <div class="truth-lie-box" id="truthLieBox">
                     ${options.map((opt, idx) => `
                         <div class="option" data-islie="${opt.isLie}" data-index="${idx}">
@@ -3631,7 +4141,7 @@
                 </div>
                 <div id="truthLieFeedback" class="feedback"></div>
                 ${createScoringUI()}
-                <button onclick="nextTurn()" style="padding:0.25rem 1rem;border-radius:30px;border:2px solid var(--border-color);background:var(--bg-input);color:var(--text-secondary);cursor:pointer;font-family:var(--font-body);font-size:0.6rem;font-weight:700;transition:var(--transition);margin-top:0.3rem;">⏭️ NEXT TURN</button>
+                <button onclick="nextTurn()" style="padding:0.25rem 1rem;border-radius:30px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-secondary);cursor:pointer;font-family:var(--font-body);font-size:0.6rem;font-weight:700;transition:var(--transition);margin-top:0.3rem;">⏭️ NEXT TURN</button>
             `;
 
             setTimeout(() => {
@@ -3675,9 +4185,9 @@
             container.innerHTML = `
                 <p><strong>🎭 ACT THIS OUT SILENTLY:</strong></p>
                 <div class="word-display">${word.toUpperCase()}</div>
-                <p style="font-size:0.75rem;color:var(--text-muted);">👀 Others guess! Use scoring buttons below.</p>
+                <p style="font-size:0.75rem;color:var(--theme-text-muted);">👀 Others guess! Use scoring buttons below.</p>
                 ${createScoringUI()}
-                <button onclick="nextTurn()" style="padding:0.25rem 1rem;border-radius:30px;border:2px solid var(--border-color);background:var(--bg-input);color:var(--text-secondary);cursor:pointer;font-family:var(--font-body);font-size:0.6rem;font-weight:700;transition:var(--transition);margin-top:0.3rem;">⏭️ NEXT TURN</button>
+                <button onclick="nextTurn()" style="padding:0.25rem 1rem;border-radius:30px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-secondary);cursor:pointer;font-family:var(--font-body);font-size:0.6rem;font-weight:700;transition:var(--transition);margin-top:0.3rem;">⏭️ NEXT TURN</button>
             `;
         }
 
@@ -3689,9 +4199,9 @@
             container.innerHTML = `
                 <p><strong>🎨 DRAW THIS:</strong></p>
                 <div class="word-display">${word.toUpperCase()}</div>
-                <p style="font-size:0.75rem;color:var(--text-muted);">🖍️ Others guess! Use scoring buttons below.</p>
+                <p style="font-size:0.75rem;color:var(--theme-text-muted);">🖍️ Others guess! Use scoring buttons below.</p>
                 ${createScoringUI()}
-                <button onclick="nextTurn()" style="padding:0.25rem 1rem;border-radius:30px;border:2px solid var(--border-color);background:var(--bg-input);color:var(--text-secondary);cursor:pointer;font-family:var(--font-body);font-size:0.6rem;font-weight:700;transition:var(--transition);margin-top:0.3rem;">⏭️ NEXT TURN</button>
+                <button onclick="nextTurn()" style="padding:0.25rem 1rem;border-radius:30px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-secondary);cursor:pointer;font-family:var(--font-body);font-size:0.6rem;font-weight:700;transition:var(--transition);margin-top:0.3rem;">⏭️ NEXT TURN</button>
             `;
         }
 
@@ -3706,7 +4216,7 @@
                     <div class="title">${song.title}</div>
                     <div class="artist">🎵 ${song.artist}</div>
                 </div>
-                <p style="font-size:0.75rem;color:var(--text-muted);">🎤 Sing your heart out! Rate the performance:</p>
+                <p style="font-size:0.75rem;color:var(--theme-text-muted);">🎤 Sing your heart out! Rate the performance:</p>
                 <div class="rating-stars" id="karaokeStars">
                     <span class="star" data-rating="1">⭐</span>
                     <span class="star" data-rating="2">⭐</span>
@@ -3716,7 +4226,7 @@
                 </div>
                 <div id="karaokeFeedback" class="feedback"></div>
                 ${createScoringUI()}
-                <button onclick="nextTurn()" style="padding:0.25rem 1rem;border-radius:30px;border:2px solid var(--border-color);background:var(--bg-input);color:var(--text-secondary);cursor:pointer;font-family:var(--font-body);font-size:0.6rem;font-weight:700;transition:var(--transition);margin-top:0.3rem;">⏭️ NEXT TURN</button>
+                <button onclick="nextTurn()" style="padding:0.25rem 1rem;border-radius:30px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-secondary);cursor:pointer;font-family:var(--font-body);font-size:0.6rem;font-weight:700;transition:var(--transition);margin-top:0.3rem;">⏭️ NEXT TURN</button>
             `;
 
             setTimeout(() => {
@@ -3751,15 +4261,15 @@
             const cat = categories[Math.floor(Math.random() * categories.length)];
 
             container.innerHTML = `
-                <p><strong>⏱️ FAST TALK: <span style="color:var(--blue-electric);">${cat.name.toUpperCase()}</span></strong></p>
-                <p style="font-size:0.75rem;color:var(--text-muted);">Name as many ${cat.name.toLowerCase()} as you can!</p>
+                <p><strong>⏱️ FAST TALK: <span style="color:var(--theme-blue-electric);">${cat.name.toUpperCase()}</span></strong></p>
+                <p style="font-size:0.75rem;color:var(--theme-text-muted);">Name as many ${cat.name.toLowerCase()} as you can!</p>
                 <div style="display:flex;gap:0.4rem;flex-wrap:wrap;justify-content:center;margin:0.3rem 0;">
-                    <input type="text" id="categoryInput" placeholder="Name one..." style="flex:1;min-width:100px;padding:0.35rem 0.8rem;border-radius:30px;border:2px solid var(--border-color);background:var(--bg-input);color:var(--text-primary);font-size:0.75rem;font-family:var(--font-body);transition:var(--transition);">
-                    <button id="submitCategory" style="padding:0.25rem 1rem;border-radius:30px;border:none;font-weight:700;font-size:0.55rem;cursor:pointer;background:var(--blue-bright);color:white;font-family:var(--font-body);box-shadow:0 0 20px var(--glow-blue);transition:var(--transition);">SUBMIT</button>
+                    <input type="text" id="categoryInput" placeholder="Name one..." style="flex:1;min-width:100px;padding:0.35rem 0.8rem;border-radius:30px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);font-size:0.75rem;font-family:var(--font-body);transition:var(--transition);">
+                    <button id="submitCategory" style="padding:0.25rem 1rem;border-radius:30px;border:none;font-weight:700;font-size:0.55rem;cursor:pointer;background:var(--theme-blue-bright);color:white;font-family:var(--font-body);box-shadow:0 0 20px var(--theme-glow-blue);transition:var(--transition);">SUBMIT</button>
                 </div>
                 <div id="categoryFeedback" class="feedback"></div>
                 ${createScoringUI()}
-                <button onclick="nextTurn()" style="padding:0.25rem 1rem;border-radius:30px;border:2px solid var(--border-color);background:var(--bg-input);color:var(--text-secondary);cursor:pointer;font-family:var(--font-body);font-size:0.6rem;font-weight:700;transition:var(--transition);margin-top:0.3rem;">⏭️ NEXT TURN</button>
+                <button onclick="nextTurn()" style="padding:0.25rem 1rem;border-radius:30px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-secondary);cursor:pointer;font-family:var(--font-body);font-size:0.6rem;font-weight:700;transition:var(--transition);margin-top:0.3rem;">⏭️ NEXT TURN</button>
             `;
 
             setTimeout(() => {
@@ -3800,17 +4310,17 @@
 
             container.innerHTML = `
                 <p><strong>🔥 ROAST BATTLE</strong></p>
-                <p style="color:var(--text-secondary);font-size:0.8rem;">${prompt}</p>
+                <p style="color:var(--theme-text-secondary);font-size:0.8rem;">${prompt}</p>
                 <div style="display:flex;gap:0.4rem;flex-wrap:wrap;justify-content:center;margin:0.3rem 0;">
-                    <input type="text" id="roastTargetInput" placeholder="Who to roast..." style="flex:1;min-width:80px;padding:0.35rem 0.8rem;border-radius:30px;border:2px solid var(--border-color);background:var(--bg-input);color:var(--text-primary);font-size:0.75rem;font-family:var(--font-body);transition:var(--transition);">
-                    <button id="setRoastTarget" style="padding:0.25rem 1rem;border-radius:30px;border:none;font-weight:700;font-size:0.55rem;cursor:pointer;background:var(--blue-electric);color:var(--blue-dark);font-family:var(--font-body);box-shadow:0 0 20px var(--glow-blue-strong);transition:var(--transition);">SET TARGET</button>
+                    <input type="text" id="roastTargetInput" placeholder="Who to roast..." style="flex:1;min-width:80px;padding:0.35rem 0.8rem;border-radius:30px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);font-size:0.75rem;font-family:var(--font-body);transition:var(--transition);">
+                    <button id="setRoastTarget" style="padding:0.25rem 1rem;border-radius:30px;border:none;font-weight:700;font-size:0.55rem;cursor:pointer;background:var(--theme-blue-electric);color:var(--blue-dark);font-family:var(--font-body);box-shadow:0 0 20px var(--theme-glow-blue-strong);transition:var(--transition);">SET TARGET</button>
                 </div>
-                <div id="roastTargetDisplay" style="font-size:0.8rem;font-weight:700;color:var(--blue-electric);margin:0.2rem 0;">🎯 TARGET: NOT SET</div>
-                <input type="text" id="roastInput" placeholder="Give a gentle roast..." style="width:100%;padding:0.35rem 0.8rem;border-radius:30px;border:2px solid var(--border-color);background:var(--bg-input);color:var(--text-primary);font-size:0.75rem;font-family:var(--font-body);margin:0.2rem 0;transition:var(--transition);">
+                <div id="roastTargetDisplay" style="font-size:0.8rem;font-weight:700;color:var(--theme-blue-electric);margin:0.2rem 0;">🎯 TARGET: NOT SET</div>
+                <input type="text" id="roastInput" placeholder="Give a gentle roast..." style="width:100%;padding:0.35rem 0.8rem;border-radius:30px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);font-size:0.75rem;font-family:var(--font-body);margin:0.2rem 0;transition:var(--transition);">
                 <button id="submitRoast" style="padding:0.25rem 1rem;border-radius:30px;border:none;font-weight:700;font-size:0.55rem;cursor:pointer;background:#e74c3c;color:white;font-family:var(--font-body);box-shadow:0 0 20px rgba(231,76,60,0.3);transition:var(--transition);">🔥 ROAST 'EM</button>
                 <div id="roastFeedback" class="feedback"></div>
                 ${createScoringUI()}
-                <button onclick="nextTurn()" style="padding:0.25rem 1rem;border-radius:30px;border:2px solid var(--border-color);background:var(--bg-input);color:var(--text-secondary);cursor:pointer;font-family:var(--font-body);font-size:0.6rem;font-weight:700;transition:var(--transition);margin-top:0.3rem;">⏭️ NEXT TURN</button>
+                <button onclick="nextTurn()" style="padding:0.25rem 1rem;border-radius:30px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-secondary);cursor:pointer;font-family:var(--font-body);font-size:0.6rem;font-weight:700;transition:var(--transition);margin-top:0.3rem;">⏭️ NEXT TURN</button>
             `;
 
             setTimeout(() => {
@@ -3826,7 +4336,7 @@
                     setBtn.onclick = () => {
                         target = targetInput.value.trim();
                         if (target) {
-                            display.innerHTML = `🎯 TARGET: <span style="color:var(--blue-electric);">${target.toUpperCase()}</span>`;
+                            display.innerHTML = `🎯 TARGET: <span style="color:var(--theme-blue-electric);">${target.toUpperCase()}</span>`;
                             targetInput.value = '';
                             playSound('success');
                         }
@@ -4112,7 +4622,7 @@
                     <div class="scoring-label">🎯 SCORE THIS ROUND</div>
                     <div class="scoring-player">
                         ${teamModeEnabled ? 'TEAM: ' : ''}
-                        <span style="color:var(--blue-electric);">${displayName}</span>
+                        <span style="color:var(--theme-blue-electric);">${displayName}</span>
                         <span class="current-score" id="scoringCurrentScore">${displayScore}</span> PTS
                     </div>
                     <div class="score-buttons">
@@ -4144,7 +4654,7 @@
         function renderPlayerTags() {
             const container = document.getElementById('playerTags');
             if (players.length === 0) {
-                container.innerHTML = '<span style="color:var(--text-muted);font-size:0.65rem;">No players yet. Add some!</span>';
+                container.innerHTML = '<span style="color:var(--theme-text-muted);font-size:0.65rem;">No players yet. Add some!</span>';
                 return;
             }
             container.innerHTML = players.map((p, i) => `
@@ -4154,7 +4664,7 @@
                     </div>
                     <span class="avatar-name">${p.name}</span>
                     ${i === currentTurnIndex ? '👑' : ''}
-                    ${teamModeEnabled && p.team !== null && teams[p.team] ? `<span style="font-size:0.45rem;color:var(--text-muted);">(${teams[p.team].name})</span>` : ''}
+                    ${teamModeEnabled && p.team !== null && teams[p.team] ? `<span style="font-size:0.45rem;color:var(--theme-text-muted);">(${teams[p.team].name})</span>` : ''}
                     <span class="avatar-points">${p.points}</span>
                     <button class="remove-btn" onclick="removePlayer(${i})">✕</button>
                 </div>
@@ -4258,7 +4768,7 @@
             const container = document.getElementById('teamList');
             if (!teamModeEnabled || teams.length === 0) {
                 container.innerHTML =
-                    `<div style="color:var(--text-muted);font-size:0.65rem;padding:0.2rem;">Enable Team Mode to start</div>`;
+                    `<div style="color:var(--theme-text-muted);font-size:0.65rem;padding:0.2rem;">Enable Team Mode to start</div>`;
                 return;
             }
 
@@ -4285,8 +4795,8 @@
                     </div>
                     <div class="team-members">${t.members.length > 0 ? t.members.join(', ') : 'No members'}</div>
                     <div style="margin-top:0.15rem;display:flex;gap:0.3rem;flex-wrap:wrap;">
-                        <button onclick="removeTeam(${idx})" style="background:var(--bg-input);border:1px solid var(--border-color);border-radius:10px;padding:0.05rem 0.5rem;font-size:0.4rem;color:var(--text-muted);cursor:pointer;font-family:var(--font-body);font-weight:700;">🗑️</button>
-                        <button onclick="setTeamTurn(${idx})" style="background:var(--glow-blue);border:1px solid var(--blue-electric);border-radius:10px;padding:0.05rem 0.5rem;font-size:0.4rem;color:var(--blue-electric);cursor:pointer;font-family:var(--font-body);font-weight:700;">👑 SET TURN</button>
+                        <button onclick="removeTeam(${idx})" style="background:var(--theme-bg-input);border:1px solid var(--theme-border-color);border-radius:10px;padding:0.05rem 0.5rem;font-size:0.4rem;color:var(--theme-text-muted);cursor:pointer;font-family:var(--font-body);font-weight:700;">🗑️</button>
+                        <button onclick="setTeamTurn(${idx})" style="background:var(--theme-glow-blue);border:1px solid var(--theme-blue-electric);border-radius:10px;padding:0.05rem 0.5rem;font-size:0.4rem;color:var(--theme-blue-electric);cursor:pointer;font-family:var(--font-body);font-weight:700;">👑 SET TURN</button>
                     </div>
                 </div>
             `}).join('');
@@ -4529,19 +5039,40 @@
 
         function renderGMTruthLie() {
             const list = document.getElementById('gmTruthLieList');
-            document.getElementById('truthLieCount').textContent = `${truthLieRounds.length}`;
-            list.innerHTML = truthLieRounds.map((r, i) =>
-                `<span class="gm-item">📂 ${r.category}: "${r.lie}" (lie) <button class="gm-del" onclick="deleteGMTruthLie(${i})">✕</button></span>`
-            ).join('');
+            const totalItems = truthLieData.truths.length + truthLieData.lies.length;
+            document.getElementById('truthLieCount').textContent = `${totalItems}`;
+            
+            let html = '';
+            truthLieData.truths.forEach((t, i) => {
+                html += `<span class="gm-item">✅ Truth: ${t} <button class="gm-del" onclick="deleteGMTruth(${i})">✕</button></span>`;
+            });
+            truthLieData.lies.forEach((l, i) => {
+                html += `<span class="gm-item">❌ Lie: ${l} <button class="gm-del" onclick="deleteGMLie(${i})">✕</button></span>`;
+            });
+            list.innerHTML = html || '<span style="color:var(--theme-text-muted);font-size:0.6rem;">No data added yet.</span>';
         }
 
         function addGMTruthLie() {
-            const category = document.getElementById('gmTruthLieCategory').value.trim();
             const truth1 = document.getElementById('gmTruth1').value.trim();
             const truth2 = document.getElementById('gmTruth2').value.trim();
             const lie = document.getElementById('gmLie').value.trim();
-            if (category && truth1 && truth2 && lie) {
-                truthLieRounds.push({ category, truths: [truth1, truth2], lie });
+            
+            let added = 0;
+            
+            if (truth1) {
+                truthLieData.truths.push(truth1);
+                added++;
+            }
+            if (truth2) {
+                truthLieData.truths.push(truth2);
+                added++;
+            }
+            if (lie) {
+                truthLieData.lies.push(lie);
+                added++;
+            }
+            
+            if (added > 0) {
                 saveGMData();
                 renderGMTruthLie();
                 document.getElementById('gmTruthLieCategory').value = '';
@@ -4549,17 +5080,32 @@
                 document.getElementById('gmTruth2').value = '';
                 document.getElementById('gmLie').value = '';
                 createConfetti(15);
-            } else alert('Fill in all fields!');
+                playSound('success');
+            } else {
+                alert('Add at least one truth or lie!');
+            }
         }
 
-        function deleteGMTruthLie(index) { truthLieRounds.splice(index, 1);
+        function deleteGMTruth(index) {
+            truthLieData.truths.splice(index, 1);
             saveGMData();
-            renderGMTruthLie(); }
+            renderGMTruthLie();
+        }
+
+        function deleteGMLie(index) {
+            truthLieData.lies.splice(index, 1);
+            saveGMData();
+            renderGMTruthLie();
+        }
 
         function clearGMTruthLie() {
-            if (truthLieRounds.length === 0 || confirm('Clear all?')) { truthLieRounds = [];
+            const total = truthLieData.truths.length + truthLieData.lies.length;
+            if (total === 0 || confirm('Clear all truths and lies?')) {
+                truthLieData.truths = [];
+                truthLieData.lies = [];
                 saveGMData();
-                renderGMTruthLie(); }
+                renderGMTruthLie();
+            }
         }
 
         function renderGMRoast() {
@@ -4602,7 +5148,8 @@
                 fastTalkCategories,
                 pictionaryWords,
                 hangmanWords,
-                truthLieRounds,
+                truths: truthLieData.truths,
+                lies: truthLieData.lies,
                 roastPrompts,
                 teams,
                 timestamp: new Date().toISOString()
@@ -4632,7 +5179,8 @@
                             if (data.fastTalkCategories) fastTalkCategories = data.fastTalkCategories;
                             if (data.pictionaryWords) pictionaryWords = data.pictionaryWords;
                             if (data.hangmanWords) hangmanWords = data.hangmanWords;
-                            if (data.truthLieRounds) truthLieRounds = data.truthLieRounds;
+                            if (data.truths) truthLieData.truths = data.truths;
+                            if (data.lies) truthLieData.lies = data.lies;
                             if (data.roastPrompts) roastPrompts = data.roastPrompts;
                             if (data.teams) teams = data.teams;
                             savePlayers();
@@ -4691,7 +5239,7 @@
             const win = window.open('', '_blank');
             if (win) {
                 win.document.write(
-                    `<pre style="font-family:monospace;padding:2rem;background:#0a1628;color:#00D4FF;font-size:14px;line-height:1.8;border:3px solid #4A90D9;min-height:100vh;">${text}</pre>`
+                    `<pre style="font-family:monospace;padding:2rem;background:var(--theme-bg-primary);color:var(--theme-blue-electric);font-size:14px;line-height:1.8;border:3px solid var(--theme-blue-electric);min-height:100vh;">${text}</pre>`
                 );
                 win.document.close();
                 win.print();
@@ -4734,21 +5282,14 @@
             });
 
             document.getElementById('clearAllBtn').addEventListener('click', clearAllPlayers);
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 't' || e.key === 'T') {
-                    if (!e.ctrlKey && !e.metaKey) {
-                        toggleTheme();
-                    }
-                }
-            });
         }
 
         // ============================================================
         //  INIT
         // ============================================================
         async function init() {
-            loadTheme();
+            loadThemeMode();
+            loadThemePreference();
             loadPlayers();
 
             // Try to load from localStorage first
@@ -4778,12 +5319,13 @@
             setupGMTabs();
             setupEventListeners();
             renderGMData();
+            renderThemes();
 
             currentGameTimerSeconds = 30;
 
             console.log('🎮 ARCADE PARTY loaded!');
-            console.log('🎯 Press "T" to toggle theme');
             console.log('📝 Edit data.json to add/remove words!');
+            console.log('🎨 Select a theme from the Themes page!');
         }
 
         // Also try loading data on page load as a fallback
@@ -4794,6 +5336,7 @@
                     renderGameGrid();
                     renderAll();
                     renderGMData();
+                    renderThemes();
                 });
             }
         });
