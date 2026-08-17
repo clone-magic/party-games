@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
@@ -17,18 +17,18 @@
         }
 
         :root {
-            /* Light Mode (Default) */
-            --bg-primary: #f0f4f8;
-            --bg-secondary: #e8edf2;
-            --bg-card: #ffffff;
-            --bg-card-hover: #f5f8fa;
-            --bg-input: #e8edf2;
-            --bg-sidebar: #0a1628;
-            --bg-sidebar-hover: #1a2a4a;
+            /* Dark Mode Only */
+            --bg-primary: #0a1628;
+            --bg-secondary: #0f1f33;
+            --bg-card: #121f33;
+            --bg-card-hover: #1a2a4a;
+            --bg-input: #1a2a4a;
+            --bg-sidebar: #060e1a;
+            --bg-sidebar-hover: #121f33;
 
-            --text-primary: #1a2a3a;
-            --text-secondary: #3a5a7a;
-            --text-muted: #7a9aaa;
+            --text-primary: #f0f4f8;
+            --text-secondary: #a0b8d0;
+            --text-muted: #5a7a9a;
             --text-white: #ffffff;
 
             --blue-dark: #0a1628;
@@ -41,9 +41,9 @@
             --glow-blue: rgba(0, 212, 255, 0.25);
             --glow-blue-strong: rgba(0, 212, 255, 0.4);
 
-            --border-color: #d0d8e0;
-            --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.15);
+            --border-color: #1a2a4a;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.6);
 
             --card-radius: 16px;
             --transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -53,6 +53,25 @@
             /* Sidebar sizing - responsive */
             --sidebar-width: 200px;
             --bottom-nav-height: 0px;
+
+            /* Theme Variables - Dark Only */
+            --theme-bg-primary: #0a1628;
+            --theme-bg-secondary: #0f1f33;
+            --theme-bg-card: #121f33;
+            --theme-bg-card-hover: #1a2a4a;
+            --theme-bg-input: #1a2a4a;
+            --theme-bg-sidebar: #060e1a;
+            --theme-bg-sidebar-hover: #121f33;
+            --theme-text-primary: #f0f4f8;
+            --theme-text-secondary: #a0b8d0;
+            --theme-text-muted: #5a7a9a;
+            --theme-border-color: #1a2a4a;
+            --theme-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --theme-shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.6);
+            --theme-blue-bright: #4a90d9;
+            --theme-blue-electric: #00d4ff;
+            --theme-glow-blue: rgba(0, 212, 255, 0.25);
+            --theme-glow-blue-strong: rgba(0, 212, 255, 0.4);
 
             /* Game Colors */
             --color-charades: #1a5276;
@@ -69,41 +88,6 @@
             --color-fasttalk-light: #33d4e8;
             --color-roast: #e74c3c;
             --color-roast-light: #f06a5a;
-            
-            /* Theme Variables */
-            --theme-bg-primary: #f0f4f8;
-            --theme-bg-secondary: #e8edf2;
-            --theme-bg-card: #ffffff;
-            --theme-bg-card-hover: #f5f8fa;
-            --theme-bg-input: #e8edf2;
-            --theme-bg-sidebar: #0a1628;
-            --theme-bg-sidebar-hover: #1a2a4a;
-            --theme-text-primary: #1a2a3a;
-            --theme-text-secondary: #3a5a7a;
-            --theme-text-muted: #7a9aaa;
-            --theme-border-color: #d0d8e0;
-            --theme-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            --theme-shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.15);
-            --theme-blue-bright: #4a90d9;
-            --theme-blue-electric: #00d4ff;
-            --theme-glow-blue: rgba(0, 212, 255, 0.25);
-            --theme-glow-blue-strong: rgba(0, 212, 255, 0.4);
-        }
-
-        [data-theme="dark"] {
-            --bg-primary: #0a1628;
-            --bg-secondary: #0f1f33;
-            --bg-card: #121f33;
-            --bg-card-hover: #1a2a4a;
-            --bg-input: #1a2a4a;
-            --bg-sidebar: #060e1a;
-            --bg-sidebar-hover: #121f33;
-            --text-primary: #f0f4f8;
-            --text-secondary: #a0b8d0;
-            --text-muted: #5a7a9a;
-            --border-color: #1a2a4a;
-            --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            --shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.6);
         }
 
         body {
@@ -208,12 +192,6 @@
             padding-top: 0.8rem;
         }
 
-        .sidebar .theme-toggle-btn {
-            margin-top: 0.2rem;
-            border-top: 1px solid var(--theme-glow-blue);
-            padding-top: 0.5rem;
-        }
-
         .main-content {
             margin-left: var(--sidebar-width);
             flex: 1;
@@ -258,27 +236,6 @@
             font-weight: 800;
             font-size: 0.6rem;
             box-shadow: 0 0 20px var(--theme-glow-blue);
-        }
-
-        .top-bar .top-actions .theme-toggle-small {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 2px solid var(--theme-border-color);
-            background: var(--theme-bg-card);
-            color: var(--theme-text-primary);
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .top-bar .top-actions .theme-toggle-small:hover {
-            transform: rotate(30deg) scale(1.1);
-            border-color: var(--theme-blue-electric);
-            box-shadow: 0 0 30px var(--theme-glow-blue);
         }
 
         .page {
@@ -1408,18 +1365,18 @@
             transform: scale(1.05);
         }
 
-        .game-actions button.change-word-btn {
+        .game-actions button.change-btn {
             background: var(--theme-blue-bright);
             color: white;
             border-color: var(--theme-blue-bright);
             box-shadow: 0 0 15px var(--theme-glow-blue);
         }
 
-        .game-actions button.change-word-btn:hover {
+        .game-actions button.change-btn:hover {
             box-shadow: 0 0 30px var(--theme-glow-blue-strong);
         }
 
-        .game-actions button.change-word-btn:disabled {
+        .game-actions button.change-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
             transform: none !important;
@@ -1436,7 +1393,7 @@
             box-shadow: 0 0 30px var(--theme-glow-blue-strong);
         }
 
-        /* Change word counter */
+        /* Change counter */
         .change-counter {
             font-size: 0.5rem;
             color: var(--theme-text-muted);
@@ -1624,7 +1581,7 @@
         .scoring-section .score-buttons button.btn-green:hover { transform: scale(1.08); }
 
         /* ============================================================
-           HANGMAN - SVG ILLUSTRATION
+           HANGMAN - SVG ILLUSTRATION (LARGER)
            ============================================================ */
         .hangman-container {
             display: flex;
@@ -1641,6 +1598,8 @@
             border-radius: 14px;
             padding: 0.5rem;
             border: 2px solid var(--theme-border-color);
+            width: 200px;
+            height: 240px;
         }
 
         .hangman-part {
@@ -2060,12 +2019,6 @@
                 padding-top: 0.15rem;
             }
 
-            .sidebar .nav-item.theme-toggle-btn {
-                margin-top: 0;
-                border-top: none;
-                padding-top: 0.15rem;
-            }
-
             .sidebar .nav-item:hover { transform: none; }
 
             .main-content {
@@ -2081,7 +2034,6 @@
 
             .top-bar .page-title { font-size: 0.55rem; }
             .top-bar .top-actions .player-count-badge { font-size: 0.45rem; padding: 0.1rem 0.4rem; }
-            .top-bar .top-actions .theme-toggle-small { width: 28px; height: 28px; font-size: 0.7rem; }
 
             .home-welcome { font-size: 1rem; }
             .home-subtitle { font-size: 0.7rem; margin-bottom: 0.8rem; }
@@ -2212,7 +2164,7 @@
                 padding: 0.25rem 0.7rem;
             }
 
-            .hangman-svg { width: 100px; height: 130px; padding: 0.3rem; }
+            .hangman-svg { width: 140px; height: 170px; padding: 0.3rem; }
             .hangman-word {
                 font-size: 1.1rem !important;
                 letter-spacing: 3px !important;
@@ -2320,7 +2272,7 @@
 
             .game-actions button { font-size: 0.45rem; padding: 0.2rem 0.5rem; }
 
-            .hangman-svg { width: 80px; height: 100px; }
+            .hangman-svg { width: 110px; height: 140px; }
             .hangman-word { font-size: 0.9rem !important; letter-spacing: 2px !important; }
             .hangman-figure { font-size: 0.5rem; min-height: 60px; }
             .scoring-section .score-buttons button { padding: 0.3rem 0.4rem; font-size: 0.45rem; min-width: 32px; min-height: 32px; }
@@ -2447,10 +2399,6 @@
                 <span class="icon">👑</span>
                 <span>Game Master</span>
             </button>
-            <button class="nav-item theme-toggle-btn" onclick="toggleTheme()">
-                <span class="icon" id="themeIcon">🌙</span>
-                <span id="themeLabel">Dark</span>
-            </button>
         </nav>
 
         <main class="main-content">
@@ -2460,9 +2408,6 @@
                 </div>
                 <div class="top-actions">
                     <span class="player-count-badge" id="playerCountBadge">👥 0</span>
-                    <button class="theme-toggle-small" onclick="toggleTheme()" id="themeToggleBtn" title="Toggle Theme">
-                        🌙
-                    </button>
                 </div>
             </div>
 
@@ -2945,14 +2890,18 @@
         let selectedGameId = null;
         let selectedGameData = null;
 
-        // Track used words per round
-        let usedWordsInRound = {
+        // Track used items per round
+        let usedItemsInRound = {
             charades: [],
-            pictionary: []
+            pictionary: [],
+            karaoke: [],
+            truthlie: [],
+            fasttalk: [],
+            roast: []
         };
 
-        // Track change word count per player per round
-        let changeWordCounts = {};
+        // Track change count per player per round
+        let changeCounts = {};
 
         let hangmanState = {
             word: '',
@@ -2968,8 +2917,6 @@
             values: { 1: 1, 3: 3, 5: 5, '-1': -1 },
             custom: null
         };
-
-        let currentThemeMode = 'dark';
 
         // ============================================================
         //  THEME FUNCTIONS
@@ -3026,48 +2973,6 @@
                     }
                 }
             });
-        }
-
-        function toggleTheme() {
-            const html = document.documentElement;
-            const btn = document.getElementById('themeToggleBtn');
-            const themeIcon = document.getElementById('themeIcon');
-            const themeLabel = document.getElementById('themeLabel');
-            if (currentThemeMode === 'dark') {
-                html.setAttribute('data-theme', 'light');
-                currentThemeMode = 'light';
-                btn.textContent = '☀️';
-                themeIcon.textContent = '☀️';
-                themeLabel.textContent = 'Light';
-            } else {
-                html.setAttribute('data-theme', 'dark');
-                currentThemeMode = 'dark';
-                btn.textContent = '🌙';
-                themeIcon.textContent = '🌙';
-                themeLabel.textContent = 'Dark';
-            }
-            localStorage.setItem('arcadeTheme', currentThemeMode);
-        }
-
-        function loadThemeMode() {
-            const saved = localStorage.getItem('arcadeTheme');
-            if (saved) {
-                currentThemeMode = saved;
-                const html = document.documentElement;
-                html.setAttribute('data-theme', saved);
-                const btn = document.getElementById('themeToggleBtn');
-                const themeIcon = document.getElementById('themeIcon');
-                const themeLabel = document.getElementById('themeLabel');
-                if (saved === 'light') {
-                    btn.textContent = '☀️';
-                    themeIcon.textContent = '☀️';
-                    themeLabel.textContent = 'Light';
-                } else {
-                    btn.textContent = '🌙';
-                    themeIcon.textContent = '🌙';
-                    themeLabel.textContent = 'Dark';
-                }
-            }
         }
 
         // ============================================================
@@ -3256,9 +3161,9 @@
 
         let wordToastTimeout = null;
 
-        function showWordChangedToast() {
+        function showChangeToast(message) {
             const toast = document.getElementById('wordChangedToast');
-            toast.textContent = '✨ Word changed!';
+            toast.textContent = message;
             toast.classList.add('show');
             if (wordToastTimeout) clearTimeout(wordToastTimeout);
             wordToastTimeout = setTimeout(() => toast.classList.remove('show'), 1500);
@@ -3427,36 +3332,39 @@
         function nextTurn() {
             if (players.length === 0) return;
             
-            // Reset change word count for current player's turn
+            // Reset change count for current player
             const playerName = getCurrentPlayerName();
             if (playerName) {
-                changeWordCounts[playerName] = 0;
+                changeCounts[playerName] = 0;
             }
             
             // Advance turn
             currentTurnIndex = (currentTurnIndex + 1) % players.length;
             
-            // Reset used words for new round
-            usedWordsInRound.charades = [];
-            usedWordsInRound.pictionary = [];
+            // Reset used items for new round
+            usedItemsInRound.charades = [];
+            usedItemsInRound.pictionary = [];
+            usedItemsInRound.karaoke = [];
+            usedItemsInRound.truthlie = [];
+            usedItemsInRound.fasttalk = [];
+            usedItemsInRound.roast = [];
             
             renderAll();
             renderTeams();
             updateModalHeader();
             
-            // Refresh game content with new word and restart timer
+            // Refresh game content with new item and restart timer
             if (selectedGameId && selectedGameData) {
                 refreshGameContent(selectedGameId, selectedGameData);
-                // Restart timer
                 restartTimer();
             }
             playSound('point');
         }
 
         // ============================================================
-        //  CHANGE WORD FUNCTION
+        //  CHANGE ITEM FUNCTIONS
         // ============================================================
-        function changeWord(gameId) {
+        function changeItem(gameId, type, label, maxChanges) {
             const currentPlayer = getCurrentPlayer();
             if (!currentPlayer) {
                 alert('No active player!');
@@ -3466,57 +3374,45 @@
             const playerName = currentPlayer.name;
             
             // Initialize count if not exists
-            if (!changeWordCounts[playerName]) {
-                changeWordCounts[playerName] = 0;
+            if (!changeCounts[playerName]) {
+                changeCounts[playerName] = 0;
             }
             
-            // Check limit (3 changes per round)
-            if (changeWordCounts[playerName] >= 3) {
-                showWordChangedToast();
-                const toast = document.getElementById('wordChangedToast');
-                toast.textContent = '⚠️ Max 3 changes per turn!';
-                toast.classList.add('show');
-                if (wordToastTimeout) clearTimeout(wordToastTimeout);
-                wordToastTimeout = setTimeout(() => toast.classList.remove('show'), 2000);
+            // Check limit
+            if (changeCounts[playerName] >= maxChanges) {
+                showChangeToast(`⚠️ Max ${maxChanges} changes per turn!`);
                 playSound('error');
                 return;
             }
 
             // Increment count
-            changeWordCounts[playerName]++;
+            changeCounts[playerName]++;
             
             // Reset timer
             stopTimer();
             
-            // Refresh content with new word
+            // Refresh content with new item
             if (selectedGameId && selectedGameData) {
                 refreshGameContent(selectedGameId, selectedGameData);
-                // Restart timer
                 restartTimer();
             }
             
             // Show notification
-            showWordChangedToast();
-            const toast = document.getElementById('wordChangedToast');
-            toast.textContent = `✨ Word changed! (${changeWordCounts[playerName]}/3)`;
-            toast.classList.add('show');
-            if (wordToastTimeout) clearTimeout(wordToastTimeout);
-            wordToastTimeout = setTimeout(() => toast.classList.remove('show'), 2000);
-            
+            showChangeToast(`✨ ${label} changed! (${changeCounts[playerName]}/${maxChanges})`);
             playSound('success');
         }
 
-        function getRandomUnusedWord(wordList, usedList, gameId) {
-            // Filter out used words
-            const available = wordList.filter(w => !usedList.includes(w));
+        // ============================================================
+        //  GET RANDOM UNUSED ITEM
+        // ============================================================
+        function getRandomUnusedItem(itemList, usedList) {
+            const available = itemList.filter(item => !usedList.includes(item));
             
-            // If all words are used, reset the used list
             if (available.length === 0) {
                 usedList.length = 0;
-                const resetAvailable = wordList.filter(w => !usedList.includes(w));
+                const resetAvailable = itemList.filter(item => !usedList.includes(item));
                 if (resetAvailable.length === 0) {
-                    // Fallback: just use the first word from the full list
-                    return wordList[0] || 'party';
+                    return itemList[0] || null;
                 }
                 return resetAvailable[Math.floor(Math.random() * resetAvailable.length)];
             }
@@ -3817,9 +3713,7 @@
         }
 
         function restartTimer() {
-            // Stop current timer
             stopTimer();
-            // Start new timer with same duration
             if (isGameActive()) {
                 startTimer(currentGameTimerSeconds, () => {
                     const fb = document.querySelector('.feedback');
@@ -3869,7 +3763,7 @@
             const hangmanButtons = document.querySelectorAll('.hangman-input-row button:not(.next-btn)');
             const hangmanHint = document.querySelector('.hangman-input-row .hint-btn');
             const hangmanSvg = document.querySelector('.hangman-svg');
-            const changeWordBtn = document.querySelector('.change-word-btn');
+            const changeBtn = document.querySelector('.change-btn');
             
             modalBox.style.borderColor = color.main;
             modalBox.style.boxShadow = `0 0 80px ${color.glow}`;
@@ -3916,10 +3810,10 @@
                 hangmanHint.style.background = color.light;
                 hangmanHint.style.boxShadow = `0 0 20px ${color.glow}`;
             }
-            if (changeWordBtn) {
-                changeWordBtn.style.background = color.main;
-                changeWordBtn.style.borderColor = color.main;
-                changeWordBtn.style.boxShadow = `0 0 15px ${color.glow}`;
+            if (changeBtn) {
+                changeBtn.style.background = color.main;
+                changeBtn.style.borderColor = color.main;
+                changeBtn.style.boxShadow = `0 0 15px ${color.glow}`;
             }
             document.querySelectorAll('.timer-presets button.active').forEach(btn => {
                 btn.style.borderColor = color.main;
@@ -3968,9 +3862,13 @@
             selectedGameId = gameId;
             selectedGameData = gameData;
             
-            // Reset used words for this round
-            usedWordsInRound.charades = [];
-            usedWordsInRound.pictionary = [];
+            // Reset used items for this round
+            usedItemsInRound.charades = [];
+            usedItemsInRound.pictionary = [];
+            usedItemsInRound.karaoke = [];
+            usedItemsInRound.truthlie = [];
+            usedItemsInRound.fasttalk = [];
+            usedItemsInRound.roast = [];
             
             document.getElementById('modalTitle').textContent = `${gameData.emoji} ${gameData.title}`;
             overlay.classList.add('active');
@@ -3998,10 +3896,14 @@
             document.getElementById('timerSetup').style.display = 'flex';
             document.getElementById('modalContent').style.display = 'none';
             
-            // Reset change word counts
-            changeWordCounts = {};
-            usedWordsInRound.charades = [];
-            usedWordsInRound.pictionary = [];
+            // Reset change counts
+            changeCounts = {};
+            usedItemsInRound.charades = [];
+            usedItemsInRound.pictionary = [];
+            usedItemsInRound.karaoke = [];
+            usedItemsInRound.truthlie = [];
+            usedItemsInRound.fasttalk = [];
+            usedItemsInRound.roast = [];
         }
 
         document.getElementById('closeModalBtn').addEventListener('click', closeModal);
@@ -4073,10 +3975,176 @@
             }, 300);
         }
 
+        // ---- CHARADES ----
+        function renderCharades(container) {
+            const words = charadesWords.length > 0 ? charadesWords : ['elephant', 'guitar', 'astronaut'];
+            const word = getRandomUnusedItem(words, usedItemsInRound.charades);
+            usedItemsInRound.charades.push(word);
+            const isLong = word.length > 10;
+            
+            const playerName = getCurrentPlayerName() || '';
+            const changeCount = changeCounts[playerName] || 0;
+            const maxChanges = 3;
+            
+            container.innerHTML = `
+                <p><strong>🎭 ACT THIS OUT SILENTLY:</strong></p>
+                <div class="word-display ${isLong ? 'long-word' : ''}">${word.toUpperCase()}</div>
+                <p style="font-size:0.75rem;color:var(--theme-text-muted);">👀 Others guess! Use scoring buttons below.</p>
+                <div class="game-actions">
+                    <button class="change-btn" onclick="changeItem('charades', 'charades', 'Word', 3)" ${changeCount >= maxChanges ? 'disabled' : ''}>
+                        🔄 CHANGE WORD ${changeCount}/${maxChanges}
+                    </button>
+                    <button class="next-turn-btn" onclick="nextTurn()">⏭️ NEXT TURN</button>
+                </div>
+                ${createScoringUI()}
+            `;
+        }
+
+        // ---- PICTIONARY ----
+        function renderPictionary(container) {
+            const words = pictionaryWords.length > 0 ? pictionaryWords : ['house', 'tree', 'car', 'dog'];
+            const word = getRandomUnusedItem(words, usedItemsInRound.pictionary);
+            usedItemsInRound.pictionary.push(word);
+            const isLong = word.length > 10;
+            
+            const playerName = getCurrentPlayerName() || '';
+            const changeCount = changeCounts[playerName] || 0;
+            const maxChanges = 3;
+            
+            container.innerHTML = `
+                <p><strong>🎨 DRAW THIS:</strong></p>
+                <div class="word-display ${isLong ? 'long-word' : ''}">${word.toUpperCase()}</div>
+                <p style="font-size:0.75rem;color:var(--theme-text-muted);">🖍️ Others guess! Use scoring buttons below.</p>
+                <div class="game-actions">
+                    <button class="change-btn" onclick="changeItem('pictionary', 'pictionary', 'Word', 3)" ${changeCount >= maxChanges ? 'disabled' : ''}>
+                        🔄 CHANGE WORD ${changeCount}/${maxChanges}
+                    </button>
+                    <button class="next-turn-btn" onclick="nextTurn()">⏭️ NEXT TURN</button>
+                </div>
+                ${createScoringUI()}
+            `;
+        }
+
+        // ---- KARAOKE ----
+        function renderKaraoke(container) {
+            const songs = karaokeSongs.length > 0 ? karaokeSongs : [{ title: 'African Giant', artist: 'Burna Boy' }];
+            const song = getRandomUnusedItem(songs, usedItemsInRound.karaoke);
+            usedItemsInRound.karaoke.push(song);
+            
+            const playerName = getCurrentPlayerName() || '';
+            const changeCount = changeCounts[playerName] || 0;
+            const maxChanges = 3;
+            
+            container.innerHTML = `
+                <p><strong>🎤 KARAOKE SHOWDOWN!</strong></p>
+                <div class="song-display">
+                    <div class="title">${song.title}</div>
+                    <div class="artist">🎵 ${song.artist}</div>
+                </div>
+                <p style="font-size:0.75rem;color:var(--theme-text-muted);">🎤 Sing your heart out! Rate the performance:</p>
+                <div class="rating-stars" id="karaokeStars">
+                    <span class="star" data-rating="1">⭐</span>
+                    <span class="star" data-rating="2">⭐</span>
+                    <span class="star" data-rating="3">⭐</span>
+                    <span class="star" data-rating="4">⭐</span>
+                    <span class="star" data-rating="5">⭐</span>
+                </div>
+                <div id="karaokeFeedback" class="feedback"></div>
+                <div class="game-actions">
+                    <button class="change-btn" onclick="changeItem('karaoke', 'karaoke', 'Song', 3)" ${changeCount >= maxChanges ? 'disabled' : ''}>
+                        🎵 CHANGE SONG ${changeCount}/${maxChanges}
+                    </button>
+                    <button class="next-turn-btn" onclick="nextTurn()">⏭️ NEXT TURN</button>
+                </div>
+                ${createScoringUI()}
+            `;
+            setTimeout(() => {
+                const stars = document.querySelectorAll('#karaokeStars .star');
+                const fb = document.getElementById('karaokeFeedback');
+                stars.forEach(star => {
+                    star.addEventListener('click', function() {
+                        const rating = parseInt(this.dataset.rating);
+                        stars.forEach(s => s.classList.remove('active'));
+                        stars.forEach(s => {
+                            if (parseInt(s.dataset.rating) <= rating) s.classList.add('active');
+                        });
+                        fb.style.display = 'block';
+                        fb.className = 'feedback success';
+                        fb.innerHTML = `⭐ ${rating}/5 stars! Use the scoring buttons below!`;
+                        createConfetti(15);
+                        playSound('point');
+                    });
+                });
+            }, 50);
+        }
+
+        // ---- FAST TALK ----
+        function renderFastTalk(container) {
+            const categories = fastTalkCategories.length > 0 ? fastTalkCategories : [{ name: 'Fruits', items: ['apple',
+                        'banana', 'orange'
+                    ] }];
+            const cat = getRandomUnusedItem(categories, usedItemsInRound.fasttalk);
+            usedItemsInRound.fasttalk.push(cat);
+            
+            const playerName = getCurrentPlayerName() || '';
+            const changeCount = changeCounts[playerName] || 0;
+            const maxChanges = 3;
+            
+            container.innerHTML = `
+                <p><strong>⏱️ FAST TALK: <span style="color:var(--theme-blue-electric);">${cat.name.toUpperCase()}</span></strong></p>
+                <p style="font-size:0.75rem;color:var(--theme-text-muted);">Name as many ${cat.name.toLowerCase()} as you can!</p>
+                <div style="display:flex;gap:0.4rem;flex-wrap:wrap;justify-content:center;margin:0.3rem 0;">
+                    <input type="text" id="categoryInput" placeholder="Name one..." style="flex:1;min-width:100px;padding:0.35rem 0.8rem;border-radius:30px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);font-size:0.75rem;font-family:var(--font-body);transition:var(--transition);">
+                    <button id="submitCategory" style="padding:0.25rem 1rem;border-radius:30px;border:none;font-weight:700;font-size:0.55rem;cursor:pointer;background:var(--theme-blue-bright);color:white;font-family:var(--font-body);box-shadow:0 0 20px var(--theme-glow-blue);transition:var(--transition);">SUBMIT</button>
+                </div>
+                <div id="categoryFeedback" class="feedback"></div>
+                <div class="game-actions">
+                    <button class="change-btn" onclick="changeItem('fast-talk', 'fasttalk', 'Category', 3)" ${changeCount >= maxChanges ? 'disabled' : ''}>
+                        📂 CHANGE CATEGORY ${changeCount}/${maxChanges}
+                    </button>
+                    <button class="next-turn-btn" onclick="nextTurn()">⏭️ NEXT TURN</button>
+                </div>
+                ${createScoringUI()}
+            `;
+            setTimeout(() => {
+                const input = document.getElementById('categoryInput');
+                const submitBtn = document.getElementById('submitCategory');
+                const fb = document.getElementById('categoryFeedback');
+                if (submitBtn) {
+                    submitBtn.onclick = () => {
+                        const guess = input.value.trim().toLowerCase();
+                        if (cat.items.some(i => guess.includes(i.toLowerCase()))) {
+                            fb.style.display = 'block';
+                            fb.className = 'feedback success';
+                            fb.innerHTML = `✅ "${input.value}" is in the category! Use scoring buttons!`;
+                            input.value = '';
+                            playSound('point');
+                        } else {
+                            fb.style.display = 'block';
+                            fb.className = 'feedback error';
+                            fb.innerHTML = `❌ "${input.value}" isn't in the ${cat.name} category.`;
+                            input.value = '';
+                            playSound('error');
+                        }
+                    };
+                }
+                if (input) {
+                    input.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' && submitBtn) submitBtn.click();
+                    });
+                }
+            }, 50);
+        }
+
         // ---- TRUTH & LIE ----
         function renderTruthLie(container) {
+            const playerName = getCurrentPlayerName() || '';
+            const changeCount = changeCounts[playerName] || 0;
+            const maxChanges = 3;
+            
             const options = getRandomTruthLie();
             const letters = ['A', 'B', 'C'];
+            
             container.innerHTML = `
                 <p><strong>🤥 TWO TRUTHS & A LIE</strong></p>
                 <p style="color:var(--theme-text-muted);font-size:0.75rem;">📂 Random Facts</p>
@@ -4089,6 +4157,9 @@
                 </div>
                 <div id="truthLieFeedback" class="feedback"></div>
                 <div class="game-actions">
+                    <button class="change-btn" onclick="changeItem('truth-lie', 'truthlie', 'Facts', 3)" ${changeCount >= maxChanges ? 'disabled' : ''}>
+                        🎲 RANDOMIZE FACTS ${changeCount}/${maxChanges}
+                    </button>
                     <button class="next-turn-btn" onclick="nextTurn()">⏭️ NEXT TURN</button>
                 </div>
                 ${createScoringUI()}
@@ -4124,165 +4195,12 @@
             }, 50);
         }
 
-        // ---- CHARADES ----
-        function renderCharades(container) {
-            const words = charadesWords.length > 0 ? charadesWords : ['elephant', 'guitar', 'astronaut'];
-            
-            // Get a word not used yet in this round
-            const word = getRandomUnusedWord(words, usedWordsInRound.charades, 'charades');
-            usedWordsInRound.charades.push(word);
-            
-            const isLong = word.length > 10;
-            
-            // Get current player name for change word tracking
-            const currentPlayer = getCurrentPlayer();
-            const playerName = currentPlayer ? currentPlayer.name : '';
-            const changeCount = changeWordCounts[playerName] || 0;
-            const maxChanges = 3;
-            
-            container.innerHTML = `
-                <p><strong>🎭 ACT THIS OUT SILENTLY:</strong></p>
-                <div class="word-display ${isLong ? 'long-word' : ''}">${word.toUpperCase()}</div>
-                <p style="font-size:0.75rem;color:var(--theme-text-muted);">👀 Others guess! Use scoring buttons below.</p>
-                <div class="game-actions">
-                    <button class="change-word-btn" onclick="changeWord('charades')" ${changeCount >= maxChanges ? 'disabled' : ''}>
-                        🔄 CHANGE WORD ${changeCount}/${maxChanges}
-                    </button>
-                    <button class="next-turn-btn" onclick="nextTurn()">⏭️ NEXT TURN</button>
-                </div>
-                ${createScoringUI()}
-            `;
-        }
-
-        // ---- PICTIONARY ----
-        function renderPictionary(container) {
-            const words = pictionaryWords.length > 0 ? pictionaryWords : ['house', 'tree', 'car', 'dog'];
-            
-            // Get a word not used yet in this round
-            const word = getRandomUnusedWord(words, usedWordsInRound.pictionary, 'pictionary');
-            usedWordsInRound.pictionary.push(word);
-            
-            const isLong = word.length > 10;
-            
-            // Get current player name for change word tracking
-            const currentPlayer = getCurrentPlayer();
-            const playerName = currentPlayer ? currentPlayer.name : '';
-            const changeCount = changeWordCounts[playerName] || 0;
-            const maxChanges = 3;
-            
-            container.innerHTML = `
-                <p><strong>🎨 DRAW THIS:</strong></p>
-                <div class="word-display ${isLong ? 'long-word' : ''}">${word.toUpperCase()}</div>
-                <p style="font-size:0.75rem;color:var(--theme-text-muted);">🖍️ Others guess! Use scoring buttons below.</p>
-                <div class="game-actions">
-                    <button class="change-word-btn" onclick="changeWord('pictionary')" ${changeCount >= maxChanges ? 'disabled' : ''}>
-                        🔄 CHANGE WORD ${changeCount}/${maxChanges}
-                    </button>
-                    <button class="next-turn-btn" onclick="nextTurn()">⏭️ NEXT TURN</button>
-                </div>
-                ${createScoringUI()}
-            `;
-        }
-
-        // ---- KARAOKE ----
-        function renderKaraoke(container) {
-            const songs = karaokeSongs.length > 0 ? karaokeSongs : [{ title: 'African Giant', artist: 'Burna Boy' }];
-            const song = songs[Math.floor(Math.random() * songs.length)];
-            container.innerHTML = `
-                <p><strong>🎤 KARAOKE SHOWDOWN!</strong></p>
-                <div class="song-display">
-                    <div class="title">${song.title}</div>
-                    <div class="artist">🎵 ${song.artist}</div>
-                </div>
-                <p style="font-size:0.75rem;color:var(--theme-text-muted);">🎤 Sing your heart out! Rate the performance:</p>
-                <div class="rating-stars" id="karaokeStars">
-                    <span class="star" data-rating="1">⭐</span>
-                    <span class="star" data-rating="2">⭐</span>
-                    <span class="star" data-rating="3">⭐</span>
-                    <span class="star" data-rating="4">⭐</span>
-                    <span class="star" data-rating="5">⭐</span>
-                </div>
-                <div id="karaokeFeedback" class="feedback"></div>
-                <div class="game-actions">
-                    <button class="next-turn-btn" onclick="nextTurn()">⏭️ NEXT TURN</button>
-                </div>
-                ${createScoringUI()}
-            `;
-            setTimeout(() => {
-                const stars = document.querySelectorAll('#karaokeStars .star');
-                const fb = document.getElementById('karaokeFeedback');
-                stars.forEach(star => {
-                    star.addEventListener('click', function() {
-                        const rating = parseInt(this.dataset.rating);
-                        stars.forEach(s => s.classList.remove('active'));
-                        stars.forEach(s => {
-                            if (parseInt(s.dataset.rating) <= rating) s.classList.add('active');
-                        });
-                        const current = getCurrentPlayer();
-                        const name = current ? current.name : 'Unknown';
-                        fb.style.display = 'block';
-                        fb.className = 'feedback success';
-                        fb.innerHTML = `⭐ ${rating}/5 stars! Use the scoring buttons below!`;
-                        createConfetti(15);
-                        playSound('point');
-                    });
-                });
-            }, 50);
-        }
-
-        // ---- FAST TALK ----
-        function renderFastTalk(container) {
-            const categories = fastTalkCategories.length > 0 ? fastTalkCategories : [{ name: 'Fruits', items: ['apple',
-                        'banana', 'orange'
-                    ] }];
-            const cat = categories[Math.floor(Math.random() * categories.length)];
-            container.innerHTML = `
-                <p><strong>⏱️ FAST TALK: <span style="color:var(--theme-blue-electric);">${cat.name.toUpperCase()}</span></strong></p>
-                <p style="font-size:0.75rem;color:var(--theme-text-muted);">Name as many ${cat.name.toLowerCase()} as you can!</p>
-                <div style="display:flex;gap:0.4rem;flex-wrap:wrap;justify-content:center;margin:0.3rem 0;">
-                    <input type="text" id="categoryInput" placeholder="Name one..." style="flex:1;min-width:100px;padding:0.35rem 0.8rem;border-radius:30px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);font-size:0.75rem;font-family:var(--font-body);transition:var(--transition);">
-                    <button id="submitCategory" style="padding:0.25rem 1rem;border-radius:30px;border:none;font-weight:700;font-size:0.55rem;cursor:pointer;background:var(--theme-blue-bright);color:white;font-family:var(--font-body);box-shadow:0 0 20px var(--theme-glow-blue);transition:var(--transition);">SUBMIT</button>
-                </div>
-                <div id="categoryFeedback" class="feedback"></div>
-                <div class="game-actions">
-                    <button class="next-turn-btn" onclick="nextTurn()">⏭️ NEXT TURN</button>
-                </div>
-                ${createScoringUI()}
-            `;
-            setTimeout(() => {
-                const input = document.getElementById('categoryInput');
-                const submitBtn = document.getElementById('submitCategory');
-                const fb = document.getElementById('categoryFeedback');
-                if (submitBtn) {
-                    submitBtn.onclick = () => {
-                        const guess = input.value.trim().toLowerCase();
-                        if (cat.items.some(i => guess.includes(i.toLowerCase()))) {
-                            fb.style.display = 'block';
-                            fb.className = 'feedback success';
-                            fb.innerHTML = `✅ "${input.value}" is in the category! Use scoring buttons!`;
-                            input.value = '';
-                            playSound('point');
-                        } else {
-                            fb.style.display = 'block';
-                            fb.className = 'feedback error';
-                            fb.innerHTML = `❌ "${input.value}" isn't in the ${cat.name} category.`;
-                            input.value = '';
-                            playSound('error');
-                        }
-                    };
-                }
-                if (input) {
-                    input.addEventListener('keydown', (e) => {
-                        if (e.key === 'Enter' && submitBtn) submitBtn.click();
-                    });
-                }
-            }, 50);
-        }
-
         // ---- ROAST ----
         function renderRoast(container) {
             const prompts = roastPrompts.length > 0 ? roastPrompts : ['Roast someone\'s dance moves!'];
-            const prompt = prompts[Math.floor(Math.random() * prompts.length)];
+            const prompt = getRandomUnusedItem(prompts, usedItemsInRound.roast);
+            usedItemsInRound.roast.push(prompt);
+            
             container.innerHTML = `
                 <p><strong>🔥 ROAST BATTLE</strong></p>
                 <p style="color:var(--theme-text-secondary);font-size:0.8rem;">${prompt}</p>
@@ -4418,7 +4336,7 @@
 
             container.innerHTML = `
                 <div class="hangman-container">
-                    <svg class="hangman-svg" viewBox="0 0 100 130" width="140" height="170">
+                    <svg class="hangman-svg" viewBox="0 0 100 130" width="200" height="240">
                         <line x1="50" y1="120" x2="50" y2="15" stroke="var(--theme-text-primary)" stroke-width="3"/>
                         <line x1="50" y1="15" x2="20" y2="15" stroke="var(--theme-text-primary)" stroke-width="3"/>
                         <line x1="20" y1="15" x2="20" y2="28" stroke="var(--theme-text-primary)" stroke-width="3"/>
@@ -5255,7 +5173,6 @@
         //  INIT
         // ============================================================
         async function init() {
-            loadThemeMode();
             loadThemePreference();
             loadPlayers();
             const hasLocalData = loadGMData();
