@@ -2,7 +2,7 @@
 <html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
     <title>🎮 ARCADE PARTY</title>
     <style>
         /* ============================================================
@@ -50,6 +50,10 @@
             --font-display: 'Press Start 2P', monospace;
             --font-body: 'Nunito', sans-serif;
 
+            /* Sidebar sizing - responsive */
+            --sidebar-width: 200px;
+            --bottom-nav-height: 0px;
+
             /* Game Colors */
             --color-charades: #1a5276;
             --color-charades-light: #2a7aa6;
@@ -66,7 +70,7 @@
             --color-roast: #e74c3c;
             --color-roast-light: #f06a5a;
             
-            /* Theme Variables - Will be overridden by themes */
+            /* Theme Variables */
             --theme-bg-primary: #f0f4f8;
             --theme-bg-secondary: #e8edf2;
             --theme-bg-card: #ffffff;
@@ -86,7 +90,6 @@
             --theme-glow-blue-strong: rgba(0, 212, 255, 0.4);
         }
 
-        /* Theme-specific overrides will be applied via JavaScript */
         [data-theme="dark"] {
             --bg-primary: #0a1628;
             --bg-secondary: #0f1f33;
@@ -95,17 +98,14 @@
             --bg-input: #1a2a4a;
             --bg-sidebar: #060e1a;
             --bg-sidebar-hover: #121f33;
-
             --text-primary: #f0f4f8;
             --text-secondary: #a0b8d0;
             --text-muted: #5a7a9a;
-
             --border-color: #1a2a4a;
             --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
             --shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.6);
         }
 
-        /* Apply theme variables to actual CSS properties */
         body {
             font-family: var(--font-body);
             background: var(--theme-bg-primary);
@@ -115,27 +115,23 @@
             overflow-x: hidden;
         }
 
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--theme-bg-secondary);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--theme-blue-bright);
-            border-radius: 10px;
-        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--theme-bg-secondary); }
+        ::-webkit-scrollbar-thumb { background: var(--theme-blue-bright); border-radius: 10px; }
 
         .app {
             display: flex;
             min-height: 100vh;
         }
 
+        /* ============================================================
+           SIDEBAR - Desktop
+           ============================================================ */
         .sidebar {
             position: fixed;
             top: 0;
             left: 0;
-            width: 200px;
+            width: var(--sidebar-width);
             height: 100vh;
             background: var(--theme-bg-sidebar);
             padding: 1.2rem 0.8rem;
@@ -212,16 +208,6 @@
             padding-top: 0.8rem;
         }
 
-        .sidebar .nav-item.gm-toggle:hover {
-            color: var(--theme-blue-electric);
-        }
-
-        .sidebar .nav-item.gm-toggle.active {
-            background: var(--theme-blue-electric);
-            color: var(--blue-dark);
-            box-shadow: 0 0 30px var(--theme-glow-blue-strong);
-        }
-
         .sidebar .theme-toggle-btn {
             margin-top: 0.2rem;
             border-top: 1px solid var(--theme-glow-blue);
@@ -229,13 +215,16 @@
         }
 
         .main-content {
-            margin-left: 200px;
+            margin-left: var(--sidebar-width);
             flex: 1;
             padding: 1.2rem 2rem 2rem 2rem;
             min-height: 100vh;
             transition: var(--transition);
         }
 
+        /* ============================================================
+           TOP BAR
+           ============================================================ */
         .top-bar {
             display: flex;
             justify-content: space-between;
@@ -253,9 +242,7 @@
             color: var(--theme-text-primary);
         }
 
-        .top-bar .page-title .highlight {
-            color: var(--theme-blue-electric);
-        }
+        .top-bar .page-title .highlight { color: var(--theme-blue-electric); }
 
         .top-bar .top-actions {
             display: flex;
@@ -299,37 +286,19 @@
             animation: pageIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .page.active {
-            display: block;
-        }
+        .page.active { display: block; }
 
         @keyframes pageIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px) scale(0.97);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+            from { opacity: 0; transform: translateY(20px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        .home-welcome {
-            font-size: 1.3rem;
-            font-weight: 800;
-            margin-bottom: 0.1rem;
-        }
-
-        .home-welcome .neon {
-            color: var(--theme-blue-electric);
-            text-shadow: 0 0 30px var(--theme-glow-blue);
-        }
-
-        .home-subtitle {
-            color: var(--theme-text-secondary);
-            font-size: 0.85rem;
-            margin-bottom: 1.2rem;
-        }
+        /* ============================================================
+           HOME PAGE
+           ============================================================ */
+        .home-welcome { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.1rem; }
+        .home-welcome .neon { color: var(--theme-blue-electric); text-shadow: 0 0 30px var(--theme-glow-blue); }
+        .home-subtitle { color: var(--theme-text-secondary); font-size: 0.85rem; margin-bottom: 1.2rem; }
 
         .home-quick-start {
             background: var(--theme-bg-card);
@@ -345,15 +314,8 @@
             box-shadow: var(--theme-shadow);
         }
 
-        .home-quick-start .qs-text {
-            font-weight: 700;
-            font-size: 0.85rem;
-        }
-
-        .home-quick-start .qs-text .highlight {
-            color: var(--theme-blue-electric);
-        }
-
+        .home-quick-start .qs-text { font-weight: 700; font-size: 0.85rem; }
+        .home-quick-start .qs-text .highlight { color: var(--theme-blue-electric); }
         .home-quick-start .qs-btn {
             padding: 0.4rem 1.5rem;
             border-radius: 30px;
@@ -373,6 +335,9 @@
             box-shadow: 0 0 40px var(--theme-glow-blue-strong);
         }
 
+        /* ============================================================
+           PLAYERS SECTION
+           ============================================================ */
         .players-section {
             background: var(--theme-bg-card);
             border-radius: var(--card-radius);
@@ -423,9 +388,7 @@
             box-shadow: 0 0 20px var(--theme-glow-blue);
         }
 
-        .players-section .players-header .input-row input::placeholder {
-            color: var(--theme-text-muted);
-        }
+        .players-section .players-header .input-row input::placeholder { color: var(--theme-text-muted); }
 
         .players-section .players-header .input-row button {
             padding: 0.4rem 1.2rem;
@@ -441,14 +404,8 @@
             box-shadow: 0 0 20px var(--theme-glow-blue);
         }
 
-        .players-section .players-header .input-row button:hover {
-            transform: scale(1.05);
-        }
-
-        .players-section .players-header .input-row button.danger {
-            background: #e74c3c;
-            box-shadow: 0 0 20px rgba(231, 76, 60, 0.3);
-        }
+        .players-section .players-header .input-row button:hover { transform: scale(1.05); }
+        .players-section .players-header .input-row button.danger { background: #e74c3c; box-shadow: 0 0 20px rgba(231, 76, 60, 0.3); }
 
         .player-avatars {
             display: flex;
@@ -491,20 +448,9 @@
             flex-shrink: 0;
         }
 
-        .player-avatar .avatar-circle:hover {
-            transform: scale(1.15) rotate(-10deg);
-        }
-
-        .player-avatar .avatar-name {
-            color: var(--theme-text-primary);
-            font-size: 0.7rem;
-        }
-
-        .player-avatar .avatar-points {
-            color: var(--theme-blue-electric);
-            font-weight: 800;
-            font-size: 0.7rem;
-        }
+        .player-avatar .avatar-circle:hover { transform: scale(1.15) rotate(-10deg); }
+        .player-avatar .avatar-name { color: var(--theme-text-primary); font-size: 0.7rem; }
+        .player-avatar .avatar-points { color: var(--theme-blue-electric); font-weight: 800; font-size: 0.7rem; }
 
         .player-avatar .remove-btn {
             cursor: pointer;
@@ -516,25 +462,17 @@
             padding: 0 0.1rem;
         }
 
-        .player-avatar .remove-btn:hover {
-            color: #e74c3c;
-            transform: scale(1.3);
-        }
+        .player-avatar .remove-btn:hover { color: #e74c3c; transform: scale(1.3); }
 
         @keyframes bounceIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.5) rotate(-10deg);
-            }
-            60% {
-                transform: scale(1.1) rotate(2deg);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) rotate(0);
-            }
+            0% { opacity: 0; transform: scale(0.5) rotate(-10deg); }
+            60% { transform: scale(1.1) rotate(2deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0); }
         }
 
+        /* ============================================================
+           TEAM SECTION
+           ============================================================ */
         .team-section {
             background: var(--theme-bg-card);
             border-radius: var(--card-radius);
@@ -664,21 +602,13 @@
             width: 80px;
         }
 
-        .team-card .team-name .team-name-input:focus {
-            outline: none;
-        }
+        .team-card .team-name .team-name-input:focus { outline: none; }
+        .team-card .team-members { font-size: 0.5rem; color: var(--theme-text-muted); }
+        .team-card .team-score { font-weight: 800; color: var(--theme-blue-electric); font-size: 0.8rem; }
 
-        .team-card .team-members {
-            font-size: 0.5rem;
-            color: var(--theme-text-muted);
-        }
-
-        .team-card .team-score {
-            font-weight: 800;
-            color: var(--theme-blue-electric);
-            font-size: 0.8rem;
-        }
-
+        /* ============================================================
+           LEADERBOARD
+           ============================================================ */
         .leaderboard-full {
             background: var(--theme-bg-card);
             border-radius: var(--card-radius);
@@ -806,14 +736,9 @@
             box-shadow: 0 0 20px var(--theme-glow-blue);
         }
 
-        .point-settings .ps-apply-btn:hover {
-            transform: scale(1.05);
-        }
+        .point-settings .ps-apply-btn:hover { transform: scale(1.05); }
 
-        .lb-full-list {
-            max-width: 700px;
-            margin: 0 auto;
-        }
+        .lb-full-list { max-width: 700px; margin: 0 auto; }
 
         .lb-full-item {
             display: flex;
@@ -839,12 +764,7 @@
             background: var(--theme-glow-blue);
         }
 
-        .lb-full-item.top-2 {
-            border-color: var(--theme-glow-blue);
-            background: var(--theme-bg-input);
-        }
-
-        .lb-full-item.top-3 {
+        .lb-full-item.top-2, .lb-full-item.top-3 {
             border-color: var(--theme-glow-blue);
             background: var(--theme-bg-input);
         }
@@ -878,26 +798,9 @@
             min-width: 80px;
         }
 
-        .lb-full-name .achievement-badge {
-            font-size: 0.6rem;
-            margin-left: 0.2rem;
-        }
-
-        .lb-full-points {
-            font-size: 1rem;
-            font-weight: 800;
-            color: var(--theme-blue-electric);
-            font-family: var(--font-display);
-            min-width: 40px;
-            text-align: right;
-        }
-
-        .lb-full-stats {
-            font-size: 0.5rem;
-            color: var(--theme-text-muted);
-            text-align: right;
-            min-width: 40px;
-        }
+        .lb-full-name .achievement-badge { font-size: 0.6rem; margin-left: 0.2rem; }
+        .lb-full-points { font-size: 1rem; font-weight: 800; color: var(--theme-blue-electric); font-family: var(--font-display); min-width: 40px; text-align: right; }
+        .lb-full-stats { font-size: 0.5rem; color: var(--theme-text-muted); text-align: right; min-width: 40px; }
 
         .lb-full-actions {
             display: flex;
@@ -917,33 +820,11 @@
             min-width: 28px;
         }
 
-        .lb-full-actions button:hover {
-            transform: scale(1.1);
-        }
-
-        .lb-full-actions .lb-add1 {
-            background: var(--theme-blue-bright);
-            color: white;
-            box-shadow: 0 0 10px var(--theme-glow-blue);
-        }
-
-        .lb-full-actions .lb-add3 {
-            background: var(--theme-blue-electric);
-            color: var(--blue-dark);
-            box-shadow: 0 0 10px var(--theme-glow-blue-strong);
-        }
-
-        .lb-full-actions .lb-add5 {
-            background: #2ecc71;
-            color: white;
-            box-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
-        }
-
-        .lb-full-actions .lb-sub1 {
-            background: #e74c3c;
-            color: white;
-            box-shadow: 0 0 10px rgba(231, 76, 60, 0.3);
-        }
+        .lb-full-actions button:hover { transform: scale(1.1); }
+        .lb-full-actions .lb-add1 { background: var(--theme-blue-bright); color: white; box-shadow: 0 0 10px var(--theme-glow-blue); }
+        .lb-full-actions .lb-add3 { background: var(--theme-blue-electric); color: var(--blue-dark); box-shadow: 0 0 10px var(--theme-glow-blue-strong); }
+        .lb-full-actions .lb-add5 { background: #2ecc71; color: white; box-shadow: 0 0 10px rgba(46, 204, 113, 0.3); }
+        .lb-full-actions .lb-sub1 { background: #e74c3c; color: white; box-shadow: 0 0 10px rgba(231, 76, 60, 0.3); }
 
         .lb-actions-export {
             display: flex;
@@ -967,45 +848,21 @@
             box-shadow: 0 0 20px var(--theme-glow-blue);
         }
 
-        .lb-actions-export button:hover {
-            transform: scale(1.05);
-        }
+        .lb-actions-export button:hover { transform: scale(1.05); }
+        .lb-actions-export button.danger { background: #e74c3c; box-shadow: 0 0 20px rgba(231, 76, 60, 0.3); }
+        .lb-actions-export button.outline { background: transparent; border: 2px solid var(--theme-border-color); color: var(--theme-text-secondary); box-shadow: none; }
+        .lb-actions-export button.outline:hover { border-color: var(--theme-blue-electric); color: var(--theme-text-primary); }
 
-        .lb-actions-export button.danger {
-            background: #e74c3c;
-            box-shadow: 0 0 20px rgba(231, 76, 60, 0.3);
-        }
-
-        .lb-actions-export button.outline {
-            background: transparent;
-            border: 2px solid var(--theme-border-color);
-            color: var(--theme-text-secondary);
-            box-shadow: none;
-        }
-
-        .lb-actions-export button.outline:hover {
-            border-color: var(--theme-blue-electric);
-            color: var(--theme-text-primary);
-        }
-
-        .empty-state {
-            text-align: center;
-            color: var(--theme-text-muted);
-            padding: 2rem;
-            font-size: 0.8rem;
-        }
+        .empty-state { text-align: center; color: var(--theme-text-muted); padding: 2rem; font-size: 0.8rem; }
 
         @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-15px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(-15px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
+        /* ============================================================
+           GAMES
+           ============================================================ */
         .games-page-header {
             font-family: var(--font-display);
             font-size: 1.2rem;
@@ -1045,34 +902,11 @@
             border-color: rgba(255, 255, 255, 0.3);
         }
 
-        .game-card:active {
-            transform: scale(0.95);
-        }
-
-        .game-card .emoji {
-            font-size: 2.8rem;
-            display: block;
-            transition: var(--transition);
-        }
-
-        .game-card:hover .emoji {
-            transform: scale(1.15) rotate(-5deg);
-        }
-
-        .game-card .title {
-            font-weight: 800;
-            font-size: 0.85rem;
-            margin-top: 0.4rem;
-            color: white;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .game-card .desc {
-            font-size: 0.6rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-top: 0.1rem;
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-        }
+        .game-card:active { transform: scale(0.95); }
+        .game-card .emoji { font-size: 2.8rem; display: block; transition: var(--transition); }
+        .game-card:hover .emoji { transform: scale(1.15) rotate(-5deg); }
+        .game-card .title { font-weight: 800; font-size: 0.85rem; margin-top: 0.4rem; color: white; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); }
+        .game-card .desc { font-size: 0.6rem; color: rgba(255, 255, 255, 0.8); margin-top: 0.1rem; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2); }
 
         .game-card .play-badge {
             margin-top: 0.6rem;
@@ -1112,28 +946,17 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .game-card.game-charades {
-            background: var(--color-charades);
-        }
-        .game-card.game-hangman {
-            background: var(--color-hangman);
-        }
-        .game-card.game-truthlie {
-            background: var(--color-truthlie);
-        }
-        .game-card.game-pictionary {
-            background: var(--color-pictionary);
-        }
-        .game-card.game-karaoke {
-            background: var(--color-karaoke);
-        }
-        .game-card.game-fasttalk {
-            background: var(--color-fasttalk);
-        }
-        .game-card.game-roast {
-            background: var(--color-roast);
-        }
+        .game-card.game-charades { background: var(--color-charades); }
+        .game-card.game-hangman { background: var(--color-hangman); }
+        .game-card.game-truthlie { background: var(--color-truthlie); }
+        .game-card.game-pictionary { background: var(--color-pictionary); }
+        .game-card.game-karaoke { background: var(--color-karaoke); }
+        .game-card.game-fasttalk { background: var(--color-fasttalk); }
+        .game-card.game-roast { background: var(--color-roast); }
 
+        /* ============================================================
+           GAME MASTER
+           ============================================================ */
         .gm-page {
             background: var(--theme-bg-card);
             border-radius: var(--card-radius);
@@ -1187,14 +1010,8 @@
             color: var(--blue-dark);
         }
 
-        .gm-tab-content {
-            display: none;
-        }
-
-        .gm-tab-content.active {
-            display: block;
-            animation: pageIn 0.3s ease;
-        }
+        .gm-tab-content { display: none; }
+        .gm-tab-content.active { display: block; animation: pageIn 0.3s ease; }
 
         .gm-page .gm-section {
             background: var(--theme-bg-input);
@@ -1260,14 +1077,8 @@
             white-space: nowrap;
         }
 
-        .gm-page .gm-input-row button:hover {
-            transform: scale(1.05);
-        }
-
-        .gm-page .gm-input-row button.gm-remove {
-            background: #e74c3c;
-            box-shadow: 0 0 15px rgba(231, 76, 60, 0.3);
-        }
+        .gm-page .gm-input-row button:hover { transform: scale(1.05); }
+        .gm-page .gm-input-row button.gm-remove { background: #e74c3c; box-shadow: 0 0 15px rgba(231, 76, 60, 0.3); }
 
         .gm-item-list {
             display: flex;
@@ -1307,6 +1118,9 @@
             transform: scale(1.3);
         }
 
+        /* ============================================================
+           MODAL
+           ============================================================ */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -1328,14 +1142,8 @@
         }
 
         @keyframes modalIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9) translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
+            from { opacity: 0; transform: scale(0.9) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         .modal-box {
@@ -1410,13 +1218,6 @@
             font-weight: 600;
         }
 
-        .modal-box .game-header .game-info .round-info {
-            font-size: 0.5rem;
-            color: var(--theme-text-muted);
-            font-weight: 700;
-            font-family: var(--font-display);
-        }
-
         .modal-box .game-header .game-info .timer-display {
             font-family: var(--font-display);
             font-size: 2rem;
@@ -1433,17 +1234,13 @@
         }
 
         @keyframes timerPulse {
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.5;
-                transform: scale(0.95);
-            }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.95); }
         }
 
+        /* ============================================================
+           TIMER SETUP
+           ============================================================ */
         .timer-setup {
             background: var(--theme-bg-input);
             border-radius: 16px;
@@ -1558,6 +1355,9 @@
             min-height: 150px;
         }
 
+        /* ============================================================
+           WORD DISPLAY
+           ============================================================ */
         .word-display {
             font-family: var(--font-display);
             font-size: 2.8rem;
@@ -1569,8 +1369,84 @@
             background: var(--theme-bg-input);
             margin: 0.5rem 0;
             color: var(--theme-blue-electric);
+            word-break: break-word;
+            overflow-wrap: break-word;
         }
 
+        .word-display.long-word {
+            font-size: 2rem;
+            letter-spacing: 3px;
+        }
+
+        /* ============================================================
+           GAME ACTION BUTTONS
+           ============================================================ */
+        .game-actions {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 0.3rem 0;
+        }
+
+        .game-actions button {
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-secondary);
+            font-size: 0.6rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            font-weight: 700;
+        }
+
+        .game-actions button:hover {
+            border-color: var(--theme-blue-electric);
+            color: var(--theme-text-primary);
+            transform: scale(1.05);
+        }
+
+        .game-actions button.change-word-btn {
+            background: var(--theme-blue-bright);
+            color: white;
+            border-color: var(--theme-blue-bright);
+            box-shadow: 0 0 15px var(--theme-glow-blue);
+        }
+
+        .game-actions button.change-word-btn:hover {
+            box-shadow: 0 0 30px var(--theme-glow-blue-strong);
+        }
+
+        .game-actions button.change-word-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .game-actions button.next-turn-btn {
+            background: var(--theme-blue-electric);
+            color: var(--blue-dark);
+            border-color: var(--theme-blue-electric);
+            box-shadow: 0 0 15px var(--theme-glow-blue-strong);
+        }
+
+        .game-actions button.next-turn-btn:hover {
+            box-shadow: 0 0 30px var(--theme-glow-blue-strong);
+        }
+
+        /* Change word counter */
+        .change-counter {
+            font-size: 0.5rem;
+            color: var(--theme-text-muted);
+            text-align: center;
+            margin: 0.1rem 0;
+        }
+
+        /* ============================================================
+           SONG DISPLAY
+           ============================================================ */
         .song-display {
             background: var(--theme-bg-input);
             padding: 1rem;
@@ -1592,6 +1468,9 @@
             margin-top: 0.2rem;
         }
 
+        /* ============================================================
+           TRUTH & LIE
+           ============================================================ */
         .truth-lie-box .option {
             padding: 0.5rem 0.8rem;
             margin: 0.3rem 0;
@@ -1624,18 +1503,14 @@
         }
 
         @keyframes shake {
-            0%,
-            100% {
-                transform: translateX(0);
-            }
-            25% {
-                transform: translateX(-10px);
-            }
-            75% {
-                transform: translateX(10px);
-            }
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
         }
 
+        /* ============================================================
+           RATING STARS
+           ============================================================ */
         .rating-stars {
             display: flex;
             gap: 0.5rem;
@@ -1661,17 +1536,14 @@
         }
 
         @keyframes starPop {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.5) rotate(-10deg);
-            }
-            100% {
-                transform: scale(1.1);
-            }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5) rotate(-10deg); }
+            100% { transform: scale(1.1); }
         }
 
+        /* ============================================================
+           FEEDBACK
+           ============================================================ */
         .feedback {
             background: var(--theme-bg-input);
             padding: 0.5rem 0.8rem;
@@ -1683,16 +1555,13 @@
             display: none;
         }
 
-        .feedback.success {
-            display: block;
-            border-left-color: #2ecc71;
-        }
+        .feedback.success { display: block; border-left-color: #2ecc71; }
+        .feedback.error { display: block; border-left-color: #e74c3c; }
+        .feedback.info { display: block; border-left-color: var(--theme-blue-electric); }
 
-        .feedback.error {
-            display: block;
-            border-left-color: #e74c3c;
-        }
-
+        /* ============================================================
+           SCORING UI
+           ============================================================ */
         .scoring-section {
             background: var(--theme-bg-input);
             border-radius: 14px;
@@ -1748,47 +1617,40 @@
             box-shadow: 0 0 20px rgba(231, 76, 60, 0.3);
         }
 
-        .scoring-section .score-buttons button.btn-minus:hover {
-            transform: scale(1.08) rotate(-5deg);
-        }
+        .scoring-section .score-buttons button.btn-minus:hover { transform: scale(1.08) rotate(-5deg); }
+        .scoring-section .score-buttons button.btn-plus { background: var(--theme-blue-bright); color: white; box-shadow: 0 0 20px var(--theme-glow-blue); }
+        .scoring-section .score-buttons button.btn-plus:hover { transform: scale(1.08) rotate(5deg); }
+        .scoring-section .score-buttons button.btn-green { background: #2ecc71; color: white; box-shadow: 0 0 20px rgba(46, 204, 113, 0.3); }
+        .scoring-section .score-buttons button.btn-green:hover { transform: scale(1.08); }
 
-        .scoring-section .score-buttons button.btn-plus {
-            background: var(--theme-blue-bright);
-            color: white;
-            box-shadow: 0 0 20px var(--theme-glow-blue);
-        }
-
-        .scoring-section .score-buttons button.btn-plus:hover {
-            transform: scale(1.08) rotate(5deg);
-        }
-
-        .scoring-section .score-buttons button.btn-green {
-            background: #2ecc71;
-            color: white;
-            box-shadow: 0 0 20px rgba(46, 204, 113, 0.3);
-        }
-
-        .scoring-section .score-buttons button.btn-green:hover {
-            transform: scale(1.08);
-        }
-
-        .hangman-figure {
-            font-family: 'Courier New', monospace;
-            font-size: 1rem;
-            line-height: 1.5;
-            background: var(--theme-bg-input);
-            padding: 0.8rem 1rem;
-            border-radius: 14px;
-            border: 2px solid var(--theme-border-color);
-            min-height: 160px;
+        /* ============================================================
+           HANGMAN - SVG ILLUSTRATION
+           ============================================================ */
+        .hangman-container {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            color: var(--theme-text-primary);
-            white-space: pre;
-            overflow-x: auto;
-            margin: 0.5rem 0;
-            font-weight: 700;
+        }
+
+        .hangman-svg {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+            background: var(--theme-bg-input);
+            border-radius: 14px;
+            padding: 0.5rem;
+            border: 2px solid var(--theme-border-color);
+        }
+
+        .hangman-part {
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            stroke: var(--theme-text-primary);
+        }
+
+        .hangman-part.show {
+            opacity: 1;
         }
 
         .hangman-word {
@@ -1799,15 +1661,12 @@
             min-height: 3.5rem;
             text-align: center;
             color: var(--theme-blue-electric);
+            word-break: break-word;
+            overflow-wrap: break-word;
         }
 
-        .hangman-word .letter-hidden {
-            color: var(--theme-text-muted);
-        }
-
-        .hangman-word .letter-revealed {
-            color: var(--theme-blue-electric);
-        }
+        .hangman-word .letter-hidden { color: var(--theme-text-muted); }
+        .hangman-word .letter-revealed { color: var(--theme-blue-electric); }
 
         .hangman-guesses {
             font-size: 0.7rem;
@@ -1819,15 +1678,8 @@
             margin: 0.3rem 0;
         }
 
-        .hangman-guesses .wrong {
-            color: #e74c3c;
-            font-weight: 700;
-        }
-
-        .hangman-guesses .correct {
-            color: #2ecc71;
-            font-weight: 700;
-        }
+        .hangman-guesses .wrong { color: #e74c3c; font-weight: 700; }
+        .hangman-guesses .correct { color: #2ecc71; font-weight: 700; }
 
         .hangman-input-row {
             display: flex;
@@ -1871,21 +1723,9 @@
             background: var(--theme-blue-bright);
         }
 
-        .hangman-input-row button:hover {
-            transform: scale(1.08);
-        }
-
-        .hangman-input-row button.hint-btn {
-            background: var(--theme-blue-electric);
-            color: var(--blue-dark);
-            box-shadow: 0 0 20px var(--theme-glow-blue-strong);
-        }
-
-        .hangman-input-row button.next-btn {
-            background: #2ecc71;
-            color: white;
-            box-shadow: 0 0 20px rgba(46, 204, 113, 0.3);
-        }
+        .hangman-input-row button:hover { transform: scale(1.08); }
+        .hangman-input-row button.hint-btn { background: var(--theme-blue-electric); color: var(--blue-dark); box-shadow: 0 0 20px var(--theme-glow-blue-strong); }
+        .hangman-input-row button.next-btn { background: #2ecc71; color: white; box-shadow: 0 0 20px rgba(46, 204, 113, 0.3); }
 
         .hangman-status {
             font-family: var(--font-display);
@@ -1894,16 +1734,12 @@
             text-align: center;
         }
 
-        .hangman-status.win {
-            color: #2ecc71;
-            text-shadow: 0 0 30px rgba(46, 204, 113, 0.3);
-        }
+        .hangman-status.win { color: #2ecc71; text-shadow: 0 0 30px rgba(46, 204, 113, 0.3); }
+        .hangman-status.lose { color: #e74c3c; text-shadow: 0 0 30px rgba(231, 76, 60, 0.3); }
 
-        .hangman-status.lose {
-            color: #e74c3c;
-            text-shadow: 0 0 30px rgba(231, 76, 60, 0.3);
-        }
-
+        /* ============================================================
+           NOTIFICATIONS
+           ============================================================ */
         .score-notification {
             position: fixed;
             top: 20px;
@@ -1923,34 +1759,36 @@
             color: var(--theme-text-primary);
         }
 
-        .score-notification.show {
-            display: block;
+        .score-notification.show { display: block; }
+        .score-notification .notif-player { color: var(--theme-text-primary); }
+        .score-notification .notif-change.positive { color: #2ecc71; font-size: 1rem; }
+        .score-notification .notif-change.negative { color: #e74c3c; font-size: 1rem; }
+
+        @keyframes notifSlide {
+            from { opacity: 0; transform: translateX(-50%) translateY(-30px) scale(0.8); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
         }
 
-        .score-notification .notif-player {
+        .word-changed-toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--theme-bg-card);
+            border: 2px solid var(--theme-blue-electric);
+            border-radius: 12px;
+            padding: 0.5rem 1.5rem;
+            z-index: 9997;
+            display: none;
+            animation: notifSlide 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-align: center;
+            box-shadow: 0 0 40px var(--theme-glow-blue-strong);
+            font-weight: 700;
+            font-size: 0.75rem;
             color: var(--theme-text-primary);
         }
 
-        .score-notification .notif-change.positive {
-            color: #2ecc71;
-            font-size: 1rem;
-        }
-
-        .score-notification .notif-change.negative {
-            color: #e74c3c;
-            font-size: 1rem;
-        }
-
-        @keyframes notifSlide {
-            from {
-                opacity: 0;
-                transform: translateX(-50%) translateY(-30px) scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0) scale(1);
-            }
-        }
+        .word-changed-toast.show { display: block; }
 
         .confetti-container {
             position: fixed;
@@ -1972,16 +1810,13 @@
         }
 
         @keyframes confettiFall {
-            0% {
-                transform: translateY(-10vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(110vh) rotate(720deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
         }
 
+        /* ============================================================
+           SHARE MODAL
+           ============================================================ */
         .share-modal {
             display: none;
             position: fixed;
@@ -2055,17 +1890,11 @@
             box-shadow: 0 0 20px var(--theme-glow-blue);
         }
 
-        .share-modal .share-box .share-buttons button:hover {
-            transform: scale(1.05);
-        }
-
-        .share-modal .share-box .share-buttons button.close-share {
-            background: #e74c3c;
-            box-shadow: 0 0 20px rgba(231, 76, 60, 0.3);
-        }
+        .share-modal .share-box .share-buttons button:hover { transform: scale(1.05); }
+        .share-modal .share-box .share-buttons button.close-share { background: #e74c3c; box-shadow: 0 0 20px rgba(231, 76, 60, 0.3); }
 
         /* ============================================================
-           THEMES PAGE
+           THEMES
            ============================================================ */
         .themes-page-header {
             font-family: var(--font-display);
@@ -2167,264 +1996,371 @@
             box-shadow: 0 0 25px rgba(46, 204, 113, 0.5);
         }
 
-        /* Responsive */
+        /* ============================================================
+           RESPONSIVE - Mobile (<= 768px)
+           ============================================================ */
         @media (max-width: 768px) {
+            :root {
+                --sidebar-width: 0px;
+                --bottom-nav-height: 64px;
+            }
+
             .sidebar {
-                width: 56px;
-                padding: 0.6rem 0.3rem;
+                position: fixed;
+                bottom: 0;
+                top: auto;
+                left: 0;
+                width: 100%;
+                height: var(--bottom-nav-height);
+                flex-direction: row;
+                padding: 0.2rem 0.2rem;
+                border-right: none;
+                border-top: 2px solid var(--theme-blue-bright);
+                box-shadow: 0 -4px 40px var(--theme-glow-blue);
+                overflow-x: auto;
+                overflow-y: hidden;
+                justify-content: space-around;
+                align-items: center;
+                background: var(--theme-bg-sidebar);
+                gap: 0;
+                border-radius: 0;
             }
-            .sidebar .brand {
-                font-size: 0.4rem;
-            }
-            .sidebar .brand .sub {
-                display: none;
-            }
+
+            .sidebar .brand { display: none; }
+
             .sidebar .nav-item {
-                padding: 0.4rem 0.3rem;
-                font-size: 0;
+                flex-direction: column;
+                padding: 0.15rem 0.15rem;
+                font-size: 0.4rem;
+                gap: 0.05rem;
+                flex: 1;
+                min-width: 40px;
                 justify-content: center;
+                align-items: center;
+                border-radius: 8px;
+                text-align: center;
+                height: 100%;
             }
+
+            .sidebar .nav-item span:last-child {
+                display: block;
+                font-size: 0.4rem;
+                line-height: 1.1;
+                white-space: nowrap;
+            }
+
             .sidebar .nav-item .icon {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
                 width: auto;
             }
-            .sidebar .nav-item span {
-                display: none;
+
+            .sidebar .nav-item.gm-toggle {
+                margin-top: 0;
+                border-top: none;
+                padding-top: 0.15rem;
             }
+
+            .sidebar .nav-item.theme-toggle-btn {
+                margin-top: 0;
+                border-top: none;
+                padding-top: 0.15rem;
+            }
+
+            .sidebar .nav-item:hover { transform: none; }
 
             .main-content {
-                margin-left: 56px;
-                padding: 0.8rem 1rem 1.5rem 1rem;
+                margin-left: 0;
+                padding: 0.6rem 0.6rem calc(var(--bottom-nav-height) + 0.6rem) 0.6rem;
             }
 
-            .game-grid {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-                gap: 0.6rem;
+            .top-bar {
+                padding-bottom: 0.4rem;
+                margin-bottom: 0.6rem;
+                flex-wrap: wrap;
             }
 
-            .game-card {
-                padding: 1rem 0.6rem 0.8rem 0.6rem;
-                min-height: 140px;
+            .top-bar .page-title { font-size: 0.55rem; }
+            .top-bar .top-actions .player-count-badge { font-size: 0.45rem; padding: 0.1rem 0.4rem; }
+            .top-bar .top-actions .theme-toggle-small { width: 28px; height: 28px; font-size: 0.7rem; }
+
+            .home-welcome { font-size: 1rem; }
+            .home-subtitle { font-size: 0.7rem; margin-bottom: 0.8rem; }
+
+            .home-quick-start {
+                flex-direction: column;
+                text-align: center;
+                padding: 0.6rem;
+                gap: 0.4rem;
             }
-            .game-card .emoji {
-                font-size: 2rem;
+
+            .home-quick-start .qs-text { font-size: 0.65rem; }
+            .home-quick-start .qs-btn { width: 100%; padding: 0.4rem; font-size: 0.6rem; }
+
+            .players-section { padding: 0.6rem; }
+            .players-section .players-header { flex-direction: column; align-items: stretch; gap: 0.4rem; }
+            .players-section .players-header h3 { font-size: 0.65rem; }
+            .players-section .players-header .input-row { flex-wrap: wrap; }
+            .players-section .players-header .input-row input { flex: 1; min-width: 60px; font-size: 0.55rem; padding: 0.3rem 0.6rem; }
+            .players-section .players-header .input-row button { padding: 0.3rem 0.6rem; font-size: 0.45rem; }
+
+            .player-avatars {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 0.3rem;
+                gap: 0.3rem;
+                -webkit-overflow-scrolling: touch;
             }
-            .game-card .title {
-                font-size: 0.7rem;
-            }
-            .game-card .desc {
+
+            .player-avatars::-webkit-scrollbar { height: 3px; }
+
+            .player-avatar {
+                flex-shrink: 0;
                 font-size: 0.5rem;
+                padding: 0.1rem 0.3rem 0.1rem 0.1rem;
+                gap: 0.2rem;
             }
+
+            .player-avatar .avatar-circle { width: 22px; height: 22px; font-size: 0.6rem; }
+            .player-avatar .avatar-points { font-size: 0.5rem; }
+            .player-avatar .avatar-name { font-size: 0.5rem; }
+
+            .team-section { padding: 0.5rem 0.6rem; }
+            .team-section .team-header { flex-direction: column; align-items: stretch; gap: 0.3rem; }
+            .team-section .team-header label { font-size: 0.45rem; }
+            .team-section .team-header .team-controls { justify-content: center; }
+            .team-section .team-header .team-controls button { font-size: 0.4rem; padding: 0.15rem 0.5rem; }
+
+            .team-list {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                gap: 0.3rem;
+                padding-bottom: 0.3rem;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .team-list::-webkit-scrollbar { height: 3px; }
+
+            .team-card {
+                flex: 0 0 auto;
+                min-width: 80px;
+                padding: 0.3rem 0.4rem;
+            }
+
+            .team-card .team-name { font-size: 0.5rem; flex-wrap: wrap; }
+            .team-card .team-name .team-name-input { width: 60px; font-size: 0.5rem; }
+            .team-card .team-members { font-size: 0.4rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+            .team-card .team-score { font-size: 0.55rem; }
+
+            .game-grid { grid-template-columns: repeat(2, 1fr); gap: 0.4rem; }
+            .game-card { min-height: 120px; padding: 0.6rem 0.3rem; }
+            .game-card .emoji { font-size: 1.8rem; }
+            .game-card .title { font-size: 0.5rem; }
+            .game-card .desc { display: none; }
+            .game-card .play-badge { font-size: 0.4rem; padding: 0.1rem 0.6rem; }
+            .game-card .featured-ribbon { font-size: 0.35rem; padding: 0.1rem 0.4rem; top: 4px; right: 4px; }
+            .games-page-header { font-size: 0.9rem; margin-bottom: 0.8rem; }
+
+            .modal-overlay { padding: 0.3rem; align-items: flex-end; }
+            .modal-overlay.active { align-items: flex-end; }
 
             .modal-box {
-                padding: 1.2rem;
-                margin: 0.5rem;
+                max-height: 92vh;
+                padding: 0.8rem;
+                border-radius: 16px 16px 0 0;
+                max-width: 100%;
+                margin: 0;
+                animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             }
-            .modal-box .game-header {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0.3rem;
+
+            @keyframes slideUp {
+                from { transform: translateY(100%); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
             }
-            .modal-box .game-header .game-info {
-                justify-content: center;
-            }
-            .modal-box .game-header .game-info .timer-display {
-                margin-right: 0;
-                order: 0;
-                font-size: 1.5rem;
-            }
+
+            .modal-box .modal-close { top: 6px; right: 10px; font-size: 1.1rem; width: 28px; height: 28px; }
+            .modal-box .game-header { flex-direction: column; align-items: stretch; gap: 0.2rem; padding-bottom: 0.4rem; margin-bottom: 0.5rem; }
+            .modal-box .game-header h2 { font-size: 0.65rem; }
+            .modal-box .game-header .game-info { justify-content: center; gap: 0.6rem; }
+            .modal-box .game-header .game-info .timer-display { font-size: 1.6rem; min-width: 40px; margin-right: 0; order: 0; }
+            .modal-box .game-header .game-info .turn-indicator { font-size: 0.5rem; }
+
+            .timer-setup { padding: 0.6rem; gap: 0.6rem; }
+            .timer-setup .timer-row { flex-direction: column; gap: 0.4rem; }
+            .timer-setup .timer-row label { font-size: 0.5rem; }
+            .timer-setup .timer-presets { justify-content: center; }
+            .timer-setup .timer-presets button { padding: 0.2rem 0.5rem; font-size: 0.5rem; }
+            .timer-setup .timer-custom input { width: 50px; font-size: 0.8rem; padding: 0.25rem 0.3rem; }
+            .timer-setup .timer-custom span { font-size: 0.55rem; }
+            .timer-setup .timer-start-btn { padding: 0.4rem 1.5rem; font-size: 0.6rem; }
 
             .word-display {
-                font-size: 1.8rem;
-                letter-spacing: 4px;
+                font-size: 1.4rem !important;
+                letter-spacing: 2px !important;
+                padding: 0.6rem 0.3rem !important;
+                word-break: break-word;
+                overflow-wrap: break-word;
+                hyphens: auto;
             }
 
+            .word-display.long-word {
+                font-size: 1rem !important;
+                letter-spacing: 1px !important;
+            }
+
+            .game-actions button {
+                font-size: 0.5rem;
+                padding: 0.25rem 0.7rem;
+            }
+
+            .hangman-svg { width: 100px; height: 130px; padding: 0.3rem; }
             .hangman-word {
-                font-size: 1.6rem;
-                letter-spacing: 8px;
+                font-size: 1.1rem !important;
+                letter-spacing: 3px !important;
+                min-height: 2.5rem;
+                word-break: break-word;
+                overflow-wrap: break-word;
+                hyphens: auto;
             }
+            .hangman-figure { font-size: 0.6rem; min-height: 80px; padding: 0.4rem; }
+            .hangman-guesses { font-size: 0.55rem; gap: 0.2rem; }
+            .hangman-input-row input { width: 44px; font-size: 1rem; padding: 0.25rem 0.3rem; }
+            .hangman-input-row button { font-size: 0.5rem; padding: 0.25rem 0.6rem; }
+            .hangman-status { font-size: 0.65rem; }
 
-            .hangman-figure {
-                font-size: 0.7rem;
-                min-height: 100px;
-            }
+            .truth-lie-box .option { font-size: 0.65rem; padding: 0.3rem 0.5rem; }
+            .song-display .title { font-size: 0.9rem; }
+            .song-display .artist { font-size: 0.6rem; }
+            .rating-stars .star { font-size: 1.6rem; }
 
-            .top-bar .page-title {
-                font-size: 0.7rem;
-            }
+            .scoring-section { padding: 0.5rem; margin: 0.4rem 0; }
+            .scoring-section .scoring-label { font-size: 0.4rem; }
+            .scoring-section .scoring-player { font-size: 0.7rem; }
+            .scoring-section .scoring-player .current-score { font-size: 0.9rem; }
+            .scoring-section .score-buttons { gap: 0.25rem; }
+            .scoring-section .score-buttons button { padding: 0.4rem 0.6rem; font-size: 0.55rem; min-width: 40px; min-height: 40px; }
 
-            .players-section .players-header {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .players-section .players-header .input-row input {
-                min-width: 80px;
-                font-size: 0.65rem;
-            }
+            .point-settings { flex-direction: column; align-items: stretch; gap: 0.4rem; padding: 0.5rem; }
+            .point-settings .ps-label { font-size: 0.4rem; text-align: center; }
+            .point-settings .ps-presets { justify-content: center; }
+            .point-settings .ps-presets .ps-btn { padding: 0.25rem 0.5rem; font-size: 0.5rem; min-width: 32px; min-height: 32px; }
+            .point-settings .ps-custom-input { justify-content: center; }
+            .point-settings .ps-custom-input input { width: 44px; font-size: 0.6rem; padding: 0.2rem 0.3rem; }
+            .point-settings .ps-custom-input span { font-size: 0.45rem; }
+            .point-settings .ps-apply-btn { font-size: 0.45rem; padding: 0.25rem 0.8rem; }
 
-            .timer-setup .timer-row {
-                flex-direction: column;
-                gap: 0.6rem;
-            }
+            .leaderboard-full { padding: 0.6rem; }
+            .leaderboard-full h2 { font-size: 0.9rem; margin-bottom: 0.6rem; }
+            .lb-full-list { max-width: 100%; }
+            .lb-full-item { padding: 0.3rem 0.4rem; gap: 0.2rem; flex-wrap: wrap; }
+            .lb-full-rank { font-size: 0.6rem; width: 22px; }
+            .lb-full-avatar { width: 22px; height: 22px; font-size: 0.4rem; }
+            .lb-full-name { font-size: 0.55rem; min-width: 50px; }
+            .lb-full-name .achievement-badge { font-size: 0.45rem; }
+            .lb-full-points { font-size: 0.65rem; min-width: 30px; }
+            .lb-full-stats { display: none; }
+            .lb-full-actions { width: 100%; justify-content: center; gap: 0.15rem; }
+            .lb-full-actions button { font-size: 0.4rem; padding: 0.1rem 0.3rem; min-width: 20px; min-height: 26px; }
+            .lb-actions-export { gap: 0.3rem; margin-top: 0.6rem; }
+            .lb-actions-export button { font-size: 0.45rem; padding: 0.25rem 0.8rem; }
 
-            .lb-full-item {
-                padding: 0.4rem 0.6rem;
-                gap: 0.3rem;
-            }
-            .lb-full-rank {
-                font-size: 0.7rem;
-                width: 28px;
-            }
-            .lb-full-avatar {
-                width: 28px;
-                height: 28px;
-                font-size: 0.5rem;
-            }
-            .lb-full-name {
-                font-size: 0.7rem;
-                min-width: 60px;
-            }
-            .lb-full-points {
-                font-size: 0.8rem;
-            }
-            .lb-full-actions button {
-                font-size: 0.45rem;
-                padding: 0.1rem 0.3rem;
-                min-width: 22px;
-            }
+            .themes-page-header { font-size: 0.9rem; }
+            .themes-subtitle { font-size: 0.6rem; margin-bottom: 0.8rem; }
+            .themes-grid { grid-template-columns: repeat(2, 1fr); gap: 0.4rem; }
+            .theme-card { padding: 0.5rem; }
+            .theme-card .theme-preview { height: 20px; }
+            .theme-card .theme-name { font-size: 0.5rem; }
+            .theme-card .theme-mood { display: none; }
+            .theme-card .theme-apply-btn { font-size: 0.4rem; padding: 0.15rem 0.6rem; }
 
-            .point-settings {
-                padding: 0.8rem;
-                gap: 0.5rem;
-            }
-            .point-settings .ps-presets .ps-btn {
-                font-size: 0.55rem;
-                padding: 0.2rem 0.6rem;
-                min-width: 36px;
-            }
+            .gm-page { padding: 0.6rem; }
+            .gm-page h2 { font-size: 0.9rem; margin-bottom: 0.6rem; }
+            .gm-page .gm-tabs { flex-wrap: nowrap; overflow-x: auto; gap: 0.2rem; padding-bottom: 0.3rem; -webkit-overflow-scrolling: touch; }
+            .gm-page .gm-tabs::-webkit-scrollbar { height: 2px; }
+            .gm-page .gm-tabs button { flex-shrink: 0; font-size: 0.4rem; padding: 0.2rem 0.5rem; }
+            .gm-page .gm-section { padding: 0.5rem; margin-bottom: 0.5rem; }
+            .gm-page .gm-section h4 { font-size: 0.6rem; }
+            .gm-page .gm-section h4 span { font-size: 0.5rem; }
+            .gm-page .gm-input-row { flex-direction: column; }
+            .gm-page .gm-input-row input { width: 100%; font-size: 0.6rem; padding: 0.3rem 0.6rem; }
+            .gm-page .gm-input-row button { width: 100%; font-size: 0.5rem; padding: 0.3rem; justify-content: center; }
+            .gm-item-list { max-height: 80px; gap: 0.2rem; }
+            .gm-item-list .gm-item { font-size: 0.5rem; padding: 0.1rem 0.4rem; }
 
-            .gm-page .gm-input-row input {
-                font-size: 0.7rem;
-                padding: 0.4rem 0.8rem;
-            }
-            .gm-page .gm-input-row button {
+            .share-modal .share-box { padding: 0.8rem; margin: 0.5rem; }
+            .share-modal .share-box h3 { font-size: 0.6rem; }
+            .share-modal .share-box textarea { font-size: 0.6rem; min-height: 80px; padding: 0.5rem; }
+            .share-modal .share-box .share-buttons button { font-size: 0.5rem; padding: 0.25rem 0.8rem; }
+
+            .feedback { font-size: 0.6rem; padding: 0.3rem 0.5rem; }
+            .empty-state { font-size: 0.6rem; padding: 1rem; }
+            
+            .word-changed-toast {
+                bottom: 80px;
                 font-size: 0.6rem;
-                padding: 0.4rem 1rem;
-            }
-            .gm-page .gm-tabs button {
-                font-size: 0.5rem;
-                padding: 0.3rem 0.8rem;
-            }
-
-            .themes-grid {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-                gap: 0.8rem;
-            }
-            .theme-card {
-                padding: 0.8rem;
-            }
-            .theme-card .theme-preview {
-                height: 30px;
+                padding: 0.3rem 1rem;
             }
         }
 
-        @media (max-width: 480px) {
-            .game-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 0.5rem;
-            }
+        @media (max-width: 400px) {
+            .sidebar .nav-item { min-width: 32px; padding: 0.1rem 0.1rem; }
+            .sidebar .nav-item span:last-child { font-size: 0.35rem; }
+            .sidebar .nav-item .icon { font-size: 0.9rem; }
+            .game-grid { grid-template-columns: 1fr 1fr; gap: 0.3rem; }
+            .game-card { min-height: 100px; padding: 0.4rem 0.2rem; }
+            .game-card .emoji { font-size: 1.4rem; }
+            .game-card .title { font-size: 0.45rem; }
+            .game-card .play-badge { font-size: 0.35rem; padding: 0.1rem 0.4rem; }
+            .themes-grid { grid-template-columns: 1fr 1fr; gap: 0.3rem; }
+            .theme-card { padding: 0.4rem; }
+            .theme-card .theme-preview { height: 16px; }
+            .theme-card .theme-name { font-size: 0.45rem; }
 
-            .game-card {
-                padding: 0.8rem 0.4rem 0.6rem 0.4rem;
-                min-height: 120px;
-            }
-            .game-card .emoji {
-                font-size: 1.6rem;
-            }
-            .game-card .title {
-                font-size: 0.6rem;
-            }
-            .game-card .desc {
-                font-size: 0.45rem;
-            }
-            .game-card .play-badge {
-                font-size: 0.5rem;
-                padding: 0.15rem 1rem;
-            }
+            .word-display { font-size: 1.1rem !important; letter-spacing: 1px !important; }
+            .word-display.long-word { font-size: 0.85rem !important; }
 
-            .modal-box .game-header .game-info .timer-display {
-                font-size: 1.2rem;
-            }
+            .game-actions button { font-size: 0.45rem; padding: 0.2rem 0.5rem; }
 
-            .hangman-word {
-                font-size: 1.2rem;
-                letter-spacing: 6px;
-            }
+            .hangman-svg { width: 80px; height: 100px; }
+            .hangman-word { font-size: 0.9rem !important; letter-spacing: 2px !important; }
+            .hangman-figure { font-size: 0.5rem; min-height: 60px; }
+            .scoring-section .score-buttons button { padding: 0.3rem 0.4rem; font-size: 0.45rem; min-width: 32px; min-height: 32px; }
+            .modal-box { padding: 0.6rem; }
+            .modal-box .game-header h2 { font-size: 0.55rem; }
+            .modal-box .game-header .game-info .timer-display { font-size: 1.2rem; }
+            .lb-full-item { padding: 0.2rem 0.3rem; }
+            .lb-full-name { font-size: 0.45rem; min-width: 40px; }
+            .lb-full-points { font-size: 0.55rem; }
+            .lb-full-actions button { font-size: 0.35rem; min-width: 16px; min-height: 22px; padding: 0.05rem 0.2rem; }
+            .player-avatar { font-size: 0.4rem; padding: 0.05rem 0.2rem 0.05rem 0.05rem; }
+            .player-avatar .avatar-circle { width: 18px; height: 18px; font-size: 0.5rem; }
+            .player-avatar .avatar-points { font-size: 0.4rem; }
+            .player-avatar .avatar-name { font-size: 0.4rem; }
+            .team-card { min-width: 60px; padding: 0.2rem 0.3rem; }
+            .team-card .team-name { font-size: 0.4rem; }
+            .team-card .team-score { font-size: 0.45rem; }
+            .top-bar .page-title { font-size: 0.45rem; }
+            .home-welcome { font-size: 0.8rem; }
+            .home-subtitle { font-size: 0.55rem; }
+            .home-quick-start .qs-text { font-size: 0.55rem; }
+            .home-quick-start .qs-btn { font-size: 0.5rem; padding: 0.3rem; }
+        }
 
-            .hangman-input-row input {
-                width: 44px;
-                font-size: 1rem;
+        @media (pointer: coarse) {
+            button, .nav-item, .game-card, .theme-card, .team-card, .option, .star, .player-avatar, .lb-full-actions button {
+                cursor: default;
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
             }
-            .hangman-input-row button {
-                font-size: 0.55rem;
-                padding: 0.25rem 0.8rem;
-            }
+            input, textarea { font-size: 16px !important; }
+        }
 
-            .scoring-section .score-buttons button {
-                padding: 0.25rem 0.6rem;
-                font-size: 0.55rem;
-                min-width: 32px;
-            }
-
-            .team-card {
-                min-width: 70px;
-            }
-            .team-card .team-name {
-                font-size: 0.6rem;
-            }
-            .team-card .team-members {
-                font-size: 0.45rem;
-            }
-
-            .lb-full-item {
-                flex-wrap: wrap;
-                gap: 0.2rem;
-            }
-            .lb-full-actions {
-                width: 100%;
-                justify-content: center;
-                margin-top: 0.2rem;
-            }
-
-            .timer-setup .timer-presets button {
-                padding: 0.3rem 0.8rem;
-                font-size: 0.6rem;
-            }
-            .timer-setup .timer-start-btn {
-                padding: 0.4rem 1.5rem;
-                font-size: 0.65rem;
-            }
-
-            .themes-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 0.5rem;
-            }
-            .theme-card {
-                padding: 0.6rem;
-            }
-            .theme-card .theme-preview {
-                height: 24px;
-            }
-            .theme-card .theme-name {
-                font-size: 0.6rem;
-            }
-            .theme-card .theme-mood {
-                font-size: 0.45rem;
-            }
-            .theme-card .theme-apply-btn {
-                font-size: 0.45rem;
-                padding: 0.2rem 1rem;
-            }
+        @media (pointer: fine) {
+            button, .nav-item, .game-card, .theme-card, .team-card, .option, .star, .player-avatar { cursor: pointer; }
+            .sidebar .nav-item:hover { background: var(--theme-bg-sidebar-hover); color: var(--theme-text-primary); transform: translateX(3px); }
+            .game-card:hover { transform: translateY(-6px) scale(1.02); }
+            .game-card:hover .emoji { transform: scale(1.15) rotate(-5deg); }
+            .theme-card:hover { transform: translateY(-4px); }
+            .team-card:hover { border-color: var(--theme-blue-bright); transform: translateY(-2px); }
         }
     </style>
 </head>
@@ -2436,6 +2372,8 @@
         <span class="notif-player" id="notifPlayer"></span>
         <span class="notif-change" id="notifChange"></span>
     </div>
+
+    <div class="word-changed-toast" id="wordChangedToast">✨ Word changed!</div>
 
     <div class="share-modal" id="shareModal">
         <div class="share-box">
@@ -2456,7 +2394,6 @@
                 <div class="game-info">
                     <span class="timer-display" id="timerDisplay">30</span>
                     <span class="turn-indicator" id="turnIndicator">👤 No player</span>
-                    <span class="round-info" id="roundInfo">ROUND 1/5</span>
                 </div>
             </div>
             <div class="timer-setup" id="timerSetup">
@@ -2602,7 +2539,6 @@
                 <div class="game-grid" id="gameGrid"></div>
             </div>
 
-            <!-- THEMES PAGE -->
             <div class="page" id="themesPage">
                 <div class="themes-page-header">🎨 CHOOSE YOUR THEME</div>
                 <div class="themes-subtitle">Pick a color theme that sets the mood for your party!</div>
@@ -2972,9 +2908,6 @@
             roast: { main: '#E74C3C', light: '#F06A5A', text: '#FFFFFF', glow: 'rgba(231,76,60,0.4)' }
         };
 
-        // ============================================================
-        //  GAME DEFINITIONS
-        // ============================================================
         const GAMES = [
             { id: 'charades', emoji: '🎭', title: 'CHARADES', desc: 'Act it out!', color: 'game-charades' },
             { id: 'hangman', emoji: '🧩', title: 'HANGMAN', desc: 'Guess the word!', color: 'game-hangman' },
@@ -3012,6 +2945,15 @@
         let selectedGameId = null;
         let selectedGameData = null;
 
+        // Track used words per round
+        let usedWordsInRound = {
+            charades: [],
+            pictionary: []
+        };
+
+        // Track change word count per player per round
+        let changeWordCounts = {};
+
         let hangmanState = {
             word: '',
             guessed: [],
@@ -3020,16 +2962,6 @@
             gameOver: false,
             won: false
         };
-
-        const HANGMAN_FIGURES = [
-            `  ╔═══╗\n  ║   ║\n      ║\n      ║\n      ║\n      ║\n═══════`,
-            `  ╔═══╗\n  ║   ║\n  ○   ║\n      ║\n      ║\n      ║\n═══════`,
-            `  ╔═══╗\n  ║   ║\n  ○   ║\n  │   ║\n      ║\n      ║\n═══════`,
-            `  ╔═══╗\n  ║   ║\n  ○   ║\n ─┼   ║\n      ║\n      ║\n═══════`,
-            `  ╔═══╗\n  ║   ║\n  ○   ║\n ─┼─  ║\n      ║\n      ║\n═══════`,
-            `  ╔═══╗\n  ║   ║\n  ○   ║\n ─┼─  ║\n /    ║\n      ║\n═══════`,
-            `  ╔═══╗\n  ║   ║\n  ○   ║\n ─┼─  ║\n / \\  ║\n      ║\n═══════`
-        ];
 
         let pointPresets = {
             active: 1,
@@ -3045,16 +2977,11 @@
         function applyTheme(themeId) {
             const theme = THEMES[themeId];
             if (!theme) return;
-
             currentTheme = themeId;
             const root = document.documentElement;
-
-            // Apply all theme variables
             Object.entries(theme.variables).forEach(([key, value]) => {
                 root.style.setProperty(key, value);
             });
-
-            // Update active state on theme cards
             document.querySelectorAll('.theme-card').forEach(card => {
                 card.classList.toggle('active-theme', card.dataset.theme === themeId);
                 const btn = card.querySelector('.theme-apply-btn');
@@ -3063,8 +2990,6 @@
                     btn.classList.toggle('active-btn', card.dataset.theme === themeId);
                 }
             });
-
-            // Save to localStorage
             localStorage.setItem('arcadeThemeId', themeId);
         }
 
@@ -3073,7 +2998,6 @@
             if (saved && THEMES[saved]) {
                 applyTheme(saved);
             } else {
-                // Default to gothic-noir
                 applyTheme('gothic-noir');
             }
         }
@@ -3092,8 +3016,6 @@
                     </button>
                 </div>
             `).join('');
-
-            // Mark active theme
             document.querySelectorAll('.theme-card').forEach(card => {
                 if (card.dataset.theme === currentTheme) {
                     card.classList.add('active-theme');
@@ -3106,15 +3028,11 @@
             });
         }
 
-        // ============================================================
-        //  THEME TOGGLE (Dark/Light mode) - Legacy support
-        // ============================================================
         function toggleTheme() {
             const html = document.documentElement;
             const btn = document.getElementById('themeToggleBtn');
             const themeIcon = document.getElementById('themeIcon');
             const themeLabel = document.getElementById('themeLabel');
-
             if (currentThemeMode === 'dark') {
                 html.setAttribute('data-theme', 'light');
                 currentThemeMode = 'light';
@@ -3153,7 +3071,7 @@
         }
 
         // ============================================================
-        //  LOAD DATA FROM JSON
+        //  LOAD DATA
         // ============================================================
         async function loadData() {
             try {
@@ -3162,7 +3080,6 @@
                     throw new Error('Could not load data.json');
                 }
                 const data = await response.json();
-
                 charadesWords = data.charades || [];
                 karaokeSongs = data.karaoke || [];
                 hangmanWords = data.hangman || [];
@@ -3171,36 +3088,19 @@
                 truthLieData.truths = data.truths || [];
                 truthLieData.lies = data.lies || [];
                 roastPrompts = data.roasts || [];
-
                 console.log('✅ Data loaded from data.json');
-                console.log(`🎭 ${charadesWords.length} charades words`);
-                console.log(`🎤 ${karaokeSongs.length} karaoke songs`);
-                console.log(`🧩 ${hangmanWords.length} hangman words`);
-                console.log(`🎨 ${pictionaryWords.length} pictionary words`);
-                console.log(`⏱️ ${fastTalkCategories.length} fast talk categories`);
-                console.log(`🤥 ${truthLieData.truths.length} truths + ${truthLieData.lies.length} lies`);
-                console.log(`🔥 ${roastPrompts.length} roast prompts`);
-
-                // Save to localStorage for persistence
                 saveGMData();
-
-                // Render everything
                 renderGameGrid();
                 renderAll();
                 renderGMData();
                 renderThemes();
-
                 return true;
             } catch (error) {
                 console.error('❌ Error loading data.json:', error);
-                alert('⚠️ Could not load data.json. Please make sure the file is in the same folder as this HTML file.');
                 return false;
             }
         }
 
-        // ============================================================
-        //  LOAD / SAVE PLAYERS
-        // ============================================================
         function loadPlayers() {
             try {
                 const saved = localStorage.getItem('arcadePlayers');
@@ -3265,7 +3165,7 @@
         }
 
         // ============================================================
-        //  SOUND
+        //  SOUND / CONFETTI / NOTIFICATION
         // ============================================================
         function playSound(type) {
             try {
@@ -3274,7 +3174,6 @@
                 const gain = ctx.createGain();
                 osc.connect(gain);
                 gain.connect(ctx.destination);
-
                 if (type === 'point') {
                     osc.frequency.value = 800;
                     osc.type = 'sine';
@@ -3314,9 +3213,6 @@
             } catch (e) {}
         }
 
-        // ============================================================
-        //  CONFETTI
-        // ============================================================
         function createConfetti(count = 30) {
             const container = document.getElementById('confettiContainer');
             const colors = ['#4A90D9', '#00D4FF', '#7EC8E3', '#2E6B9E', '#5BA3D9', '#1A4A7A', '#00A8CC', '#FFD700'];
@@ -3343,25 +3239,29 @@
             }
         }
 
-        // ============================================================
-        //  NOTIFICATION
-        // ============================================================
         let notifTimeout = null;
 
         function showScoreNotification(playerName, change) {
             const notification = document.getElementById('scoreNotification');
             const playerEl = document.getElementById('notifPlayer');
             const changeEl = document.getElementById('notifChange');
-
             playerEl.textContent = playerName;
             changeEl.textContent = change > 0 ? `+${change}` : `${change}`;
             changeEl.className = 'notif-change ' + (change > 0 ? 'positive' : 'negative');
-
             notification.classList.add('show');
             if (notifTimeout) clearTimeout(notifTimeout);
             notifTimeout = setTimeout(() => notification.classList.remove('show'), 1500);
-
             if (change > 0) playSound('point');
+        }
+
+        let wordToastTimeout = null;
+
+        function showWordChangedToast() {
+            const toast = document.getElementById('wordChangedToast');
+            toast.textContent = '✨ Word changed!';
+            toast.classList.add('show');
+            if (wordToastTimeout) clearTimeout(wordToastTimeout);
+            wordToastTimeout = setTimeout(() => toast.classList.remove('show'), 1500);
         }
 
         // ============================================================
@@ -3369,28 +3269,17 @@
         // ============================================================
         function navigateTo(page) {
             currentPage = page;
-
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             const navItem = document.querySelector(`.nav-item[data-page="${page}"]`);
             if (navItem) navItem.classList.add('active');
-
             document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
             const targetPage = document.getElementById(`${page}Page`);
             if (targetPage) targetPage.classList.add('active');
-
-            const titles = {
-                home: 'DASHBOARD',
-                players: 'RANKINGS',
-                games: 'ALL GAMES',
-                themes: 'THEMES',
-                gm: 'GAME MASTER'
-            };
+            const titles = { home: 'DASHBOARD', players: 'RANKINGS', games: 'ALL GAMES', themes: 'THEMES', gm: 'GAME MASTER' };
             document.getElementById('pageTitle').textContent = titles[page] || 'DASHBOARD';
-
             if (page === 'players') renderLeaderboardFull();
             if (page === 'games') renderGameGrid();
             if (page === 'themes') renderThemes();
-
             if (document.getElementById('modalOverlay').classList.contains('active')) {
                 closeModal();
             }
@@ -3453,7 +3342,6 @@
             if (players.some(p => p.name.toLowerCase() === name.toLowerCase())) {
                 return { success: false, message: 'Username already taken!' };
             }
-
             const color = COLORS[players.length % COLORS.length];
             const newPlayer = {
                 name: name,
@@ -3473,7 +3361,6 @@
             renderAll();
             createConfetti(15);
             playSound('success');
-
             if (teamModeEnabled && teams.length > 0) {
                 const teamIdx = players.length % teams.length;
                 assignPlayerToTeam(name, teamIdx);
@@ -3531,27 +3418,110 @@
             return null;
         }
 
+        function getCurrentPlayerName() {
+            const current = getCurrentPlayer();
+            if (!current) return null;
+            return current.name;
+        }
+
         function nextTurn() {
             if (players.length === 0) return;
+            
+            // Reset change word count for current player's turn
+            const playerName = getCurrentPlayerName();
+            if (playerName) {
+                changeWordCounts[playerName] = 0;
+            }
+            
+            // Advance turn
             currentTurnIndex = (currentTurnIndex + 1) % players.length;
+            
+            // Reset used words for new round
+            usedWordsInRound.charades = [];
+            usedWordsInRound.pictionary = [];
+            
             renderAll();
             renderTeams();
             updateModalHeader();
-
+            
+            // Refresh game content with new word and restart timer
             if (selectedGameId && selectedGameData) {
                 refreshGameContent(selectedGameId, selectedGameData);
+                // Restart timer
+                restartTimer();
             }
             playSound('point');
         }
 
-        function setTurnByName(name) {
-            const idx = players.findIndex(p => p.name === name);
-            if (idx !== -1) {
-                currentTurnIndex = idx;
-                renderAll();
-                renderTeams();
-                updateModalHeader();
+        // ============================================================
+        //  CHANGE WORD FUNCTION
+        // ============================================================
+        function changeWord(gameId) {
+            const currentPlayer = getCurrentPlayer();
+            if (!currentPlayer) {
+                alert('No active player!');
+                return;
             }
+
+            const playerName = currentPlayer.name;
+            
+            // Initialize count if not exists
+            if (!changeWordCounts[playerName]) {
+                changeWordCounts[playerName] = 0;
+            }
+            
+            // Check limit (3 changes per round)
+            if (changeWordCounts[playerName] >= 3) {
+                showWordChangedToast();
+                const toast = document.getElementById('wordChangedToast');
+                toast.textContent = '⚠️ Max 3 changes per turn!';
+                toast.classList.add('show');
+                if (wordToastTimeout) clearTimeout(wordToastTimeout);
+                wordToastTimeout = setTimeout(() => toast.classList.remove('show'), 2000);
+                playSound('error');
+                return;
+            }
+
+            // Increment count
+            changeWordCounts[playerName]++;
+            
+            // Reset timer
+            stopTimer();
+            
+            // Refresh content with new word
+            if (selectedGameId && selectedGameData) {
+                refreshGameContent(selectedGameId, selectedGameData);
+                // Restart timer
+                restartTimer();
+            }
+            
+            // Show notification
+            showWordChangedToast();
+            const toast = document.getElementById('wordChangedToast');
+            toast.textContent = `✨ Word changed! (${changeWordCounts[playerName]}/3)`;
+            toast.classList.add('show');
+            if (wordToastTimeout) clearTimeout(wordToastTimeout);
+            wordToastTimeout = setTimeout(() => toast.classList.remove('show'), 2000);
+            
+            playSound('success');
+        }
+
+        function getRandomUnusedWord(wordList, usedList, gameId) {
+            // Filter out used words
+            const available = wordList.filter(w => !usedList.includes(w));
+            
+            // If all words are used, reset the used list
+            if (available.length === 0) {
+                usedList.length = 0;
+                const resetAvailable = wordList.filter(w => !usedList.includes(w));
+                if (resetAvailable.length === 0) {
+                    // Fallback: just use the first word from the full list
+                    return wordList[0] || 'party';
+                }
+                return resetAvailable[Math.floor(Math.random() * resetAvailable.length)];
+            }
+            
+            return available[Math.floor(Math.random() * available.length)];
         }
 
         // ============================================================
@@ -3560,7 +3530,6 @@
         function addPoints(index, amount) {
             const p = players[index];
             if (!p) return;
-
             if (teamModeEnabled && p.team !== null && p.team < teams.length) {
                 const team = teams[p.team];
                 team.members.forEach(memberName => {
@@ -3586,32 +3555,24 @@
                 updateModalHeader();
                 return;
             }
-
             const newPoints = Math.max(0, p.points + amount);
             const change = newPoints - p.points;
-
             p.history.push(change);
             if (p.history.length > 10) p.history.shift();
-
             if (change > 0) { p.streak += 1;
                 p.correctGuesses += 1; } else if (change < 0) { p.streak = 0; }
-
             p.points = newPoints;
             const oldLevel = p.level;
             p.level = Math.floor(p.points / 10) + 1;
-
             if (p.level > oldLevel) {
                 createConfetti(50);
                 playSound('levelup');
             }
-
             if (change !== 0) p.totalGames += 1;
             checkAchievements(p);
-
             savePlayers();
             renderAll();
             renderTeams();
-
             showScoreNotification(p.name, change);
             updateModalHeader();
         }
@@ -3647,7 +3608,6 @@
                 alert('No player selected!');
                 return;
             }
-
             if (teamModeEnabled) {
                 const teamIdx = current.team;
                 if (teamIdx === null || teamIdx < 0 || teamIdx >= teams.length) {
@@ -3680,7 +3640,6 @@
         function toggleTeamMode() {
             teamModeEnabled = !teamModeEnabled;
             const btn = document.getElementById('teamToggleBtn');
-
             if (teamModeEnabled) {
                 btn.textContent = '✅ ENABLED';
                 btn.classList.add('active');
@@ -3748,7 +3707,6 @@
             if (!teamModeEnabled || teams.length === 0) return;
             teams.forEach(t => t.members = []);
             players.forEach(p => p.team = null);
-
             const shuffled = [...players].sort(() => Math.random() - 0.5);
             shuffled.forEach((p, i) => {
                 const teamIdx = i % teams.length;
@@ -3772,6 +3730,7 @@
                 updateModalHeader();
                 if (selectedGameId && selectedGameData) {
                     refreshGameContent(selectedGameId, selectedGameData);
+                    restartTimer();
                 }
                 playSound('point');
             }
@@ -3821,17 +3780,14 @@
             isTimerRunning = true;
             gameTimerCallback = callback;
             updateTimerDisplay();
-
             timerInterval = setInterval(() => {
                 currentTimerValue--;
                 updateTimerDisplay();
-
                 if (currentTimerValue <= 3) {
                     const display = document.getElementById('timerDisplay');
                     if (display) display.classList.add('warning');
                     if (currentTimerValue === 3) playSound('timer');
                 }
-
                 if (currentTimerValue <= 0) {
                     stopTimer();
                     playSound('timer');
@@ -3860,6 +3816,27 @@
             }
         }
 
+        function restartTimer() {
+            // Stop current timer
+            stopTimer();
+            // Start new timer with same duration
+            if (isGameActive()) {
+                startTimer(currentGameTimerSeconds, () => {
+                    const fb = document.querySelector('.feedback');
+                    if (fb) {
+                        fb.style.display = 'block';
+                        fb.className = 'feedback error';
+                        fb.innerHTML = '⏰ TIME\'S UP! Use scoring buttons below!';
+                        setTimeout(() => { if (fb.innerHTML.includes('TIME')) fb.style.display = 'none'; }, 3000);
+                    }
+                });
+            }
+        }
+
+        function isGameActive() {
+            return selectedGameId && selectedGameData && document.getElementById('modalContent').style.display !== 'none';
+        }
+
         function updateTimerDisplay() {
             const display = document.getElementById('timerDisplay');
             if (display) {
@@ -3873,12 +3850,11 @@
         }
 
         // ============================================================
-        //  COLOR MATCHING SYSTEM
+        //  COLOR MATCHING
         // ============================================================
         function applyGameColors(gameId) {
             const color = GAME_COLORS[gameId];
             if (!color) return;
-
             const modalBox = document.getElementById('modalBox');
             const timerSetup = document.getElementById('timerSetup');
             const timerDisplay = document.getElementById('timerDisplay');
@@ -3892,73 +3868,63 @@
             const plusButtons = document.querySelectorAll('.scoring-section .score-buttons .btn-plus');
             const hangmanButtons = document.querySelectorAll('.hangman-input-row button:not(.next-btn)');
             const hangmanHint = document.querySelector('.hangman-input-row .hint-btn');
-
+            const hangmanSvg = document.querySelector('.hangman-svg');
+            const changeWordBtn = document.querySelector('.change-word-btn');
+            
             modalBox.style.borderColor = color.main;
             modalBox.style.boxShadow = `0 0 80px ${color.glow}`;
-
             timerSetup.style.borderColor = color.main;
-
             if (!timerDisplay.classList.contains('warning')) {
                 timerDisplay.style.color = color.main;
             }
-
             modalTitle.style.color = color.main;
-
             timerStartBtn.style.background = color.main;
             timerStartBtn.style.boxShadow = `0 0 30px ${color.glow}`;
-
+            
             if (wordDisplay) {
                 wordDisplay.style.color = color.main;
                 wordDisplay.style.borderColor = color.main;
                 wordDisplay.style.textShadow = `0 0 40px ${color.glow}`;
             }
-
             if (songTitle) {
                 songTitle.style.color = color.main;
                 songTitle.style.textShadow = `0 0 30px ${color.glow}`;
             }
-
             if (hangmanWord) {
                 hangmanWord.style.color = color.main;
                 hangmanWord.style.textShadow = `0 0 30px ${color.glow}`;
             }
-
+            if (hangmanSvg) {
+                hangmanSvg.style.borderColor = color.main;
+                hangmanSvg.style.boxShadow = `0 0 20px ${color.glow}`;
+            }
             hangmanRevealed.forEach(el => {
                 el.style.color = color.main;
             });
-
             if (currentScore) {
                 currentScore.style.color = color.main;
             }
-
             plusButtons.forEach(btn => {
                 btn.style.background = color.main;
                 btn.style.boxShadow = `0 0 20px ${color.glow}`;
             });
-
             hangmanButtons.forEach(btn => {
                 btn.style.background = color.main;
                 btn.style.boxShadow = `0 0 20px ${color.glow}`;
             });
-
             if (hangmanHint) {
                 hangmanHint.style.background = color.light;
                 hangmanHint.style.boxShadow = `0 0 20px ${color.glow}`;
             }
-
+            if (changeWordBtn) {
+                changeWordBtn.style.background = color.main;
+                changeWordBtn.style.borderColor = color.main;
+                changeWordBtn.style.boxShadow = `0 0 15px ${color.glow}`;
+            }
             document.querySelectorAll('.timer-presets button.active').forEach(btn => {
                 btn.style.borderColor = color.main;
                 btn.style.background = color.main;
                 btn.style.color = '#ffffff';
-            });
-
-            document.querySelectorAll('.timer-presets button:not(.active)').forEach(btn => {
-                btn.onmouseenter = () => {
-                    btn.style.borderColor = color.main;
-                };
-                btn.onmouseleave = () => {
-                    btn.style.borderColor = '';
-                };
             });
         }
 
@@ -3968,8 +3934,6 @@
         function getRandomTruthLie() {
             const truths = [...truthLieData.truths];
             const lies = [...truthLieData.lies];
-
-            // If no data, use fallbacks
             if (truths.length === 0 || lies.length === 0) {
                 return [
                     { text: "Bananas are berries, botanically speaking.", isLie: false },
@@ -3977,29 +3941,21 @@
                     { text: "Bananas grow on trees.", isLie: true }
                 ];
             }
-
-            // Shuffle and pick 2 truths
             for (let i = truths.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [truths[i], truths[j]] = [truths[j], truths[i]];
             }
             const selectedTruths = truths.slice(0, 2);
-
-            // Pick 1 lie
             const lie = lies[Math.floor(Math.random() * lies.length)];
-
-            // Combine and shuffle
             const options = [
                 { text: selectedTruths[0], isLie: false },
                 { text: selectedTruths[1], isLie: false },
                 { text: lie, isLie: true }
             ];
-
             for (let i = options.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [options[i], options[j]] = [options[j], options[i]];
             }
-
             return options;
         }
 
@@ -4011,27 +3967,26 @@
         function openModal(gameId, gameData) {
             selectedGameId = gameId;
             selectedGameData = gameData;
+            
+            // Reset used words for this round
+            usedWordsInRound.charades = [];
+            usedWordsInRound.pictionary = [];
+            
             document.getElementById('modalTitle').textContent = `${gameData.emoji} ${gameData.title}`;
             overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
-
             document.getElementById('timerSetup').style.display = 'flex';
             document.getElementById('modalContent').style.display = 'none';
             document.getElementById('modalContent').innerHTML = '';
             document.getElementById('timerDisplay').textContent = currentGameTimerSeconds || 30;
             document.getElementById('customTimerInput').value = currentGameTimerSeconds || 30;
-
             document.querySelectorAll('.timer-presets button').forEach(b => b.classList.remove('active'));
             const defaultPreset = document.querySelector(
                 `.timer-presets button[onclick*="${currentGameTimerSeconds || 30}"]`);
             if (defaultPreset) defaultPreset.classList.add('active');
-
             updateModalHeader();
-
             const colorKey = gameId.replace('-', '');
             applyGameColors(colorKey);
-
-            if (gameId === 'hangman') {}
         }
 
         function closeModal() {
@@ -4042,6 +3997,11 @@
             selectedGameData = null;
             document.getElementById('timerSetup').style.display = 'flex';
             document.getElementById('modalContent').style.display = 'none';
+            
+            // Reset change word counts
+            changeWordCounts = {};
+            usedWordsInRound.charades = [];
+            usedWordsInRound.pictionary = [];
         }
 
         document.getElementById('closeModalBtn').addEventListener('click', closeModal);
@@ -4052,7 +4012,6 @@
             const current = getCurrentPlayer();
             const currentTeam = getCurrentTeam();
             const turnEl = document.getElementById('turnIndicator');
-
             if (teamModeEnabled && currentTeam) {
                 turnEl.textContent = `👑 ${currentTeam.name} (${currentTeam.points} pts)`;
             } else if (current) {
@@ -4062,8 +4021,6 @@
             } else {
                 turnEl.textContent = '👤 No players';
             }
-
-            document.getElementById('roundInfo').textContent = `ROUND 1/5`;
         }
 
         // ============================================================
@@ -4073,10 +4030,8 @@
             const container = document.getElementById('modalContent');
             container.style.display = 'block';
             container.innerHTML = '';
-
             const colorKey = gameId.replace('-', '');
             applyGameColors(colorKey);
-
             if (gameId === 'truth-lie') renderTruthLie(container);
             else if (gameId === 'charades') renderCharades(container);
             else if (gameId === 'pictionary') renderPictionary(container);
@@ -4087,9 +4042,7 @@
                 startHangman();
                 return;
             }
-
             updateModalHeader();
-
             setTimeout(() => {
                 applyGameColors(colorKey);
             }, 50);
@@ -4099,17 +4052,13 @@
             const seconds = parseInt(document.getElementById('customTimerInput').value) || 30;
             currentGameTimerSeconds = seconds;
             document.getElementById('timerDisplay').textContent = seconds;
-
             document.getElementById('timerSetup').style.display = 'none';
             document.getElementById('modalContent').style.display = 'block';
-
             const colorKey = selectedGameId.replace('-', '');
             applyGameColors(colorKey);
-
             if (selectedGameId && selectedGameData) {
                 refreshGameContent(selectedGameId, selectedGameData);
             }
-
             setTimeout(() => {
                 startTimer(seconds, () => {
                     const fb = document.querySelector('.feedback');
@@ -4128,7 +4077,6 @@
         function renderTruthLie(container) {
             const options = getRandomTruthLie();
             const letters = ['A', 'B', 'C'];
-
             container.innerHTML = `
                 <p><strong>🤥 TWO TRUTHS & A LIE</strong></p>
                 <p style="color:var(--theme-text-muted);font-size:0.75rem;">📂 Random Facts</p>
@@ -4140,19 +4088,18 @@
                     `).join('')}
                 </div>
                 <div id="truthLieFeedback" class="feedback"></div>
+                <div class="game-actions">
+                    <button class="next-turn-btn" onclick="nextTurn()">⏭️ NEXT TURN</button>
+                </div>
                 ${createScoringUI()}
-                <button onclick="nextTurn()" style="padding:0.25rem 1rem;border-radius:30px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-secondary);cursor:pointer;font-family:var(--font-body);font-size:0.6rem;font-weight:700;transition:var(--transition);margin-top:0.3rem;">⏭️ NEXT TURN</button>
             `;
-
             setTimeout(() => {
                 const optionsEls = document.querySelectorAll('#truthLieBox .option');
                 const fb = document.getElementById('truthLieFeedback');
-
                 optionsEls.forEach(el => {
                     el.addEventListener('click', function() {
                         const isLie = this.dataset.islie === 'true';
                         optionsEls.forEach(o => o.style.pointerEvents = 'none');
-
                         if (isLie) {
                             this.classList.add('selected-correct');
                             fb.style.display = 'block';
@@ -4180,28 +4127,60 @@
         // ---- CHARADES ----
         function renderCharades(container) {
             const words = charadesWords.length > 0 ? charadesWords : ['elephant', 'guitar', 'astronaut'];
-            const word = words[Math.floor(Math.random() * words.length)];
-
+            
+            // Get a word not used yet in this round
+            const word = getRandomUnusedWord(words, usedWordsInRound.charades, 'charades');
+            usedWordsInRound.charades.push(word);
+            
+            const isLong = word.length > 10;
+            
+            // Get current player name for change word tracking
+            const currentPlayer = getCurrentPlayer();
+            const playerName = currentPlayer ? currentPlayer.name : '';
+            const changeCount = changeWordCounts[playerName] || 0;
+            const maxChanges = 3;
+            
             container.innerHTML = `
                 <p><strong>🎭 ACT THIS OUT SILENTLY:</strong></p>
-                <div class="word-display">${word.toUpperCase()}</div>
+                <div class="word-display ${isLong ? 'long-word' : ''}">${word.toUpperCase()}</div>
                 <p style="font-size:0.75rem;color:var(--theme-text-muted);">👀 Others guess! Use scoring buttons below.</p>
+                <div class="game-actions">
+                    <button class="change-word-btn" onclick="changeWord('charades')" ${changeCount >= maxChanges ? 'disabled' : ''}>
+                        🔄 CHANGE WORD ${changeCount}/${maxChanges}
+                    </button>
+                    <button class="next-turn-btn" onclick="nextTurn()">⏭️ NEXT TURN</button>
+                </div>
                 ${createScoringUI()}
-                <button onclick="nextTurn()" style="padding:0.25rem 1rem;border-radius:30px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-secondary);cursor:pointer;font-family:var(--font-body);font-size:0.6rem;font-weight:700;transition:var(--transition);margin-top:0.3rem;">⏭️ NEXT TURN</button>
             `;
         }
 
         // ---- PICTIONARY ----
         function renderPictionary(container) {
             const words = pictionaryWords.length > 0 ? pictionaryWords : ['house', 'tree', 'car', 'dog'];
-            const word = words[Math.floor(Math.random() * words.length)];
-
+            
+            // Get a word not used yet in this round
+            const word = getRandomUnusedWord(words, usedWordsInRound.pictionary, 'pictionary');
+            usedWordsInRound.pictionary.push(word);
+            
+            const isLong = word.length > 10;
+            
+            // Get current player name for change word tracking
+            const currentPlayer = getCurrentPlayer();
+            const playerName = currentPlayer ? currentPlayer.name : '';
+            const changeCount = changeWordCounts[playerName] || 0;
+            const maxChanges = 3;
+            
             container.innerHTML = `
                 <p><strong>🎨 DRAW THIS:</strong></p>
-                <div class="word-display">${word.toUpperCase()}</div>
+                <div class="word-display ${isLong ? 'long-word' : ''}">${word.toUpperCase()}</div>
                 <p style="font-size:0.75rem;color:var(--theme-text-muted);">🖍️ Others guess! Use scoring buttons below.</p>
+                <div class="game-actions">
+                    <button class="change-word-btn" onclick="changeWord('pictionary')" ${changeCount >= maxChanges ? 'disabled' : ''}>
+                        🔄 CHANGE WORD ${changeCount}/${maxChanges}
+                    </button>
+                    <button class="next-turn-btn" onclick="nextTurn()">⏭️ NEXT TURN</button>
+                </div>
                 ${createScoringUI()}
-                <button onclick="nextTurn()" style="padding:0.25rem 1rem;border-radius:30px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-secondary);cursor:pointer;font-family:var(--font-body);font-size:0.6rem;font-weight:700;transition:var(--transition);margin-top:0.3rem;">⏭️ NEXT TURN</button>
             `;
         }
 
@@ -4209,7 +4188,6 @@
         function renderKaraoke(container) {
             const songs = karaokeSongs.length > 0 ? karaokeSongs : [{ title: 'African Giant', artist: 'Burna Boy' }];
             const song = songs[Math.floor(Math.random() * songs.length)];
-
             container.innerHTML = `
                 <p><strong>🎤 KARAOKE SHOWDOWN!</strong></p>
                 <div class="song-display">
@@ -4225,14 +4203,14 @@
                     <span class="star" data-rating="5">⭐</span>
                 </div>
                 <div id="karaokeFeedback" class="feedback"></div>
+                <div class="game-actions">
+                    <button class="next-turn-btn" onclick="nextTurn()">⏭️ NEXT TURN</button>
+                </div>
                 ${createScoringUI()}
-                <button onclick="nextTurn()" style="padding:0.25rem 1rem;border-radius:30px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-secondary);cursor:pointer;font-family:var(--font-body);font-size:0.6rem;font-weight:700;transition:var(--transition);margin-top:0.3rem;">⏭️ NEXT TURN</button>
             `;
-
             setTimeout(() => {
                 const stars = document.querySelectorAll('#karaokeStars .star');
                 const fb = document.getElementById('karaokeFeedback');
-
                 stars.forEach(star => {
                     star.addEventListener('click', function() {
                         const rating = parseInt(this.dataset.rating);
@@ -4240,7 +4218,6 @@
                         stars.forEach(s => {
                             if (parseInt(s.dataset.rating) <= rating) s.classList.add('active');
                         });
-
                         const current = getCurrentPlayer();
                         const name = current ? current.name : 'Unknown';
                         fb.style.display = 'block';
@@ -4259,7 +4236,6 @@
                         'banana', 'orange'
                     ] }];
             const cat = categories[Math.floor(Math.random() * categories.length)];
-
             container.innerHTML = `
                 <p><strong>⏱️ FAST TALK: <span style="color:var(--theme-blue-electric);">${cat.name.toUpperCase()}</span></strong></p>
                 <p style="font-size:0.75rem;color:var(--theme-text-muted);">Name as many ${cat.name.toLowerCase()} as you can!</p>
@@ -4268,15 +4244,15 @@
                     <button id="submitCategory" style="padding:0.25rem 1rem;border-radius:30px;border:none;font-weight:700;font-size:0.55rem;cursor:pointer;background:var(--theme-blue-bright);color:white;font-family:var(--font-body);box-shadow:0 0 20px var(--theme-glow-blue);transition:var(--transition);">SUBMIT</button>
                 </div>
                 <div id="categoryFeedback" class="feedback"></div>
+                <div class="game-actions">
+                    <button class="next-turn-btn" onclick="nextTurn()">⏭️ NEXT TURN</button>
+                </div>
                 ${createScoringUI()}
-                <button onclick="nextTurn()" style="padding:0.25rem 1rem;border-radius:30px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-secondary);cursor:pointer;font-family:var(--font-body);font-size:0.6rem;font-weight:700;transition:var(--transition);margin-top:0.3rem;">⏭️ NEXT TURN</button>
             `;
-
             setTimeout(() => {
                 const input = document.getElementById('categoryInput');
                 const submitBtn = document.getElementById('submitCategory');
                 const fb = document.getElementById('categoryFeedback');
-
                 if (submitBtn) {
                     submitBtn.onclick = () => {
                         const guess = input.value.trim().toLowerCase();
@@ -4307,7 +4283,6 @@
         function renderRoast(container) {
             const prompts = roastPrompts.length > 0 ? roastPrompts : ['Roast someone\'s dance moves!'];
             const prompt = prompts[Math.floor(Math.random() * prompts.length)];
-
             container.innerHTML = `
                 <p><strong>🔥 ROAST BATTLE</strong></p>
                 <p style="color:var(--theme-text-secondary);font-size:0.8rem;">${prompt}</p>
@@ -4319,10 +4294,11 @@
                 <input type="text" id="roastInput" placeholder="Give a gentle roast..." style="width:100%;padding:0.35rem 0.8rem;border-radius:30px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);font-size:0.75rem;font-family:var(--font-body);margin:0.2rem 0;transition:var(--transition);">
                 <button id="submitRoast" style="padding:0.25rem 1rem;border-radius:30px;border:none;font-weight:700;font-size:0.55rem;cursor:pointer;background:#e74c3c;color:white;font-family:var(--font-body);box-shadow:0 0 20px rgba(231,76,60,0.3);transition:var(--transition);">🔥 ROAST 'EM</button>
                 <div id="roastFeedback" class="feedback"></div>
+                <div class="game-actions">
+                    <button class="next-turn-btn" onclick="nextTurn()">⏭️ NEXT TURN</button>
+                </div>
                 ${createScoringUI()}
-                <button onclick="nextTurn()" style="padding:0.25rem 1rem;border-radius:30px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-secondary);cursor:pointer;font-family:var(--font-body);font-size:0.6rem;font-weight:700;transition:var(--transition);margin-top:0.3rem;">⏭️ NEXT TURN</button>
             `;
-
             setTimeout(() => {
                 const targetInput = document.getElementById('roastTargetInput');
                 const setBtn = document.getElementById('setRoastTarget');
@@ -4331,18 +4307,17 @@
                 const submitBtn = document.getElementById('submitRoast');
                 const fb = document.getElementById('roastFeedback');
                 let target = '';
-
                 if (setBtn) {
                     setBtn.onclick = () => {
                         target = targetInput.value.trim();
                         if (target) {
-                            display.innerHTML = `🎯 TARGET: <span style="color:var(--theme-blue-electric);">${target.toUpperCase()}</span>`;
+                            display.innerHTML =
+                                `🎯 TARGET: <span style="color:var(--theme-blue-electric);">${target.toUpperCase()}</span>`;
                             targetInput.value = '';
                             playSound('success');
                         }
                     };
                 }
-
                 if (submitBtn) {
                     submitBtn.onclick = () => {
                         if (!target) {
@@ -4356,7 +4331,8 @@
                         if (roast.length > 3) {
                             fb.style.display = 'block';
                             fb.className = 'feedback success';
-                            fb.innerHTML = `😅 "${roast}" — ${target} has been roasted! Use scoring buttons!`;
+                            fb.innerHTML =
+                            `😅 "${roast}" — ${target} has been roasted! Use scoring buttons!`;
                             roastInput.value = '';
                             createConfetti(10);
                             playSound('point');
@@ -4368,7 +4344,6 @@
                         }
                     };
                 }
-
                 if (targetInput) {
                     targetInput.addEventListener('keydown', (e) => {
                         if (e.key === 'Enter' && setBtn) setBtn.click();
@@ -4391,18 +4366,14 @@
             hangmanState.wrongGuesses = 0;
             hangmanState.gameOver = false;
             hangmanState.won = false;
-
             document.getElementById('timerSetup').style.display = 'none';
             const container = document.getElementById('modalContent');
             container.style.display = 'block';
-
             renderHangman();
-
             const colorKey = selectedGameId.replace('-', '');
             setTimeout(() => {
                 applyGameColors(colorKey);
             }, 50);
-
             setTimeout(() => {
                 const seconds = parseInt(document.getElementById('customTimerInput').value) || 30;
                 startTimer(seconds, () => {
@@ -4416,7 +4387,6 @@
                     }
                 });
             }, 300);
-
             setTimeout(() => {
                 const input = document.getElementById('hangmanInput');
                 if (input) {
@@ -4430,17 +4400,14 @@
 
         function renderHangman() {
             const container = document.getElementById('modalContent');
-
             const wordDisplay = hangmanState.word.split('').map(letter =>
                 hangmanState.guessed.includes(letter) ?
                 `<span class="letter-revealed">${letter.toUpperCase()}</span>` :
                 `<span class="letter-hidden">_</span>`
             ).join(' ');
-
             const wrongLetters = hangmanState.guessed.filter(l => !hangmanState.word.includes(l)).join(' ');
             const correctLetters = hangmanState.guessed.filter(l => hangmanState.word.includes(l)).join(' ');
             const isGameActive = !hangmanState.gameOver;
-
             let statusHTML = '';
             if (hangmanState.won) {
                 statusHTML = `<div class="hangman-status win">🎉 YOU WIN! +1 POINT!</div>`;
@@ -4451,7 +4418,30 @@
 
             container.innerHTML = `
                 <div class="hangman-container">
-                    <div class="hangman-figure">${HANGMAN_FIGURES[hangmanState.wrongGuesses]}</div>
+                    <svg class="hangman-svg" viewBox="0 0 100 130" width="140" height="170">
+                        <line x1="50" y1="120" x2="50" y2="15" stroke="var(--theme-text-primary)" stroke-width="3"/>
+                        <line x1="50" y1="15" x2="20" y2="15" stroke="var(--theme-text-primary)" stroke-width="3"/>
+                        <line x1="20" y1="15" x2="20" y2="28" stroke="var(--theme-text-primary)" stroke-width="3"/>
+                        
+                        <circle class="hangman-part ${hangmanState.wrongGuesses >= 1 ? 'show' : ''}" 
+                                cx="20" cy="42" r="12" stroke="var(--theme-text-primary)" stroke-width="2.5" fill="none"/>
+                        
+                        <line class="hangman-part ${hangmanState.wrongGuesses >= 2 ? 'show' : ''}" 
+                              x1="20" y1="54" x2="20" y2="78" stroke="var(--theme-text-primary)" stroke-width="2.5"/>
+                        
+                        <line class="hangman-part ${hangmanState.wrongGuesses >= 3 ? 'show' : ''}" 
+                              x1="20" y1="62" x2="5" y2="72" stroke="var(--theme-text-primary)" stroke-width="2.5"/>
+                        
+                        <line class="hangman-part ${hangmanState.wrongGuesses >= 4 ? 'show' : ''}" 
+                              x1="20" y1="62" x2="35" y2="72" stroke="var(--theme-text-primary)" stroke-width="2.5"/>
+                        
+                        <line class="hangman-part ${hangmanState.wrongGuesses >= 5 ? 'show' : ''}" 
+                              x1="20" y1="78" x2="8" y2="95" stroke="var(--theme-text-primary)" stroke-width="2.5"/>
+                        
+                        <line class="hangman-part ${hangmanState.wrongGuesses >= 6 ? 'show' : ''}" 
+                              x1="20" y1="78" x2="32" y2="95" stroke="var(--theme-text-primary)" stroke-width="2.5"/>
+                    </svg>
+                    
                     ${statusHTML}
                     <div class="hangman-word">${wordDisplay}</div>
                     <div class="hangman-guesses">
@@ -4470,9 +4460,11 @@
                         `}
                     </div>
                 </div>
+                <div class="game-actions">
+                    <button class="next-turn-btn" onclick="nextTurn()">⏭️ NEXT TURN</button>
+                </div>
                 ${createScoringUI()}
             `;
-
             if (isGameActive) {
                 setTimeout(() => {
                     const input = document.getElementById('hangmanInput');
@@ -4489,40 +4481,34 @@
                     }
                 }, 200);
             }
-
             updateModalHeader();
+            const colorKey = selectedGameId.replace('-', '');
+            applyGameColors(colorKey);
         }
 
         function hangmanGuess() {
             const input = document.getElementById('hangmanInput');
             if (!input) return;
-
             const letter = input.value.toLowerCase().trim();
             input.value = '';
-
             if (hangmanState.gameOver) {
                 showHangmanFeedback('Game over! Click "NEXT WORD" to continue.', 'error');
                 return;
             }
-
             if (!letter || letter.length !== 1 || !/[a-z]/.test(letter)) {
                 showHangmanFeedback('Please enter a single letter.', 'error');
                 setTimeout(() => { const inp = document.getElementById('hangmanInput'); if (inp) inp.focus(); }, 100);
                 return;
             }
-
             if (hangmanState.guessed.includes(letter)) {
                 showHangmanFeedback(`You already guessed "${letter}".`, 'error');
                 setTimeout(() => { const inp = document.getElementById('hangmanInput'); if (inp) inp.focus(); }, 100);
                 return;
             }
-
             hangmanState.guessed.push(letter);
-
             if (hangmanState.word.includes(letter)) {
                 showHangmanFeedback(`✅ "${letter}" is correct!`, 'success');
                 playSound('point');
-
                 const allGuessed = hangmanState.word.split('').every(l => hangmanState.guessed.includes(l));
                 if (allGuessed) {
                     hangmanState.won = true;
@@ -4542,7 +4528,6 @@
                 hangmanState.wrongGuesses++;
                 showHangmanFeedback(`❌ "${letter}" is not in the word.`, 'error');
                 playSound('error');
-
                 if (hangmanState.wrongGuesses >= hangmanState.maxWrong) {
                     hangmanState.gameOver = true;
                     showHangmanFeedback(`💀 GAME OVER! The word was "${hangmanState.word}".`, 'error');
@@ -4550,7 +4535,6 @@
                     return;
                 }
             }
-
             renderHangman();
             setTimeout(() => { const inp = document.getElementById('hangmanInput'); if (inp) inp.focus(); }, 150);
         }
@@ -4560,16 +4544,13 @@
                 showHangmanFeedback('Game over! Click "NEXT WORD" to continue.', 'error');
                 return;
             }
-
             const unguessed = hangmanState.word.split('').filter(l => !hangmanState.guessed.includes(l));
             if (unguessed.length === 0) {
                 showHangmanFeedback('All letters revealed! Guess the word!', 'success');
                 return;
             }
-
             const hintLetter = unguessed[0];
             showHangmanFeedback(`💡 Try the letter "${hintLetter.toUpperCase()}"`, 'success');
-
             setTimeout(() => {
                 const input = document.getElementById('hangmanInput');
                 if (input) {
@@ -4603,10 +4584,8 @@
         function createScoringUI() {
             const current = getCurrentPlayer();
             const currentTeam = getCurrentTeam();
-
             let displayName = 'No player';
             let displayScore = 0;
-
             if (teamModeEnabled && currentTeam) {
                 displayName = currentTeam.name;
                 displayScore = currentTeam.points;
@@ -4614,9 +4593,7 @@
                 displayName = current.name;
                 displayScore = current.points;
             }
-
             const activeVal = getActivePointValue();
-
             return `
                 <div class="scoring-section">
                     <div class="scoring-label">🎯 SCORE THIS ROUND</div>
@@ -4654,7 +4631,8 @@
         function renderPlayerTags() {
             const container = document.getElementById('playerTags');
             if (players.length === 0) {
-                container.innerHTML = '<span style="color:var(--theme-text-muted);font-size:0.65rem;">No players yet. Add some!</span>';
+                container.innerHTML =
+                    '<span style="color:var(--theme-text-muted);font-size:0.65rem;">No players yet. Add some!</span>';
                 return;
             }
             container.innerHTML = players.map((p, i) => `
@@ -4675,7 +4653,6 @@
         function renderLeaderboardFull() {
             const list = document.getElementById('lbFullList');
             const activeVal = getActivePointValue();
-
             if (teamModeEnabled) {
                 if (teams.length === 0) {
                     list.innerHTML = `<div class="empty-state">🏆 No teams yet. Add teams on the Home page!</div>`;
@@ -4710,12 +4687,10 @@
                 }).join('');
                 return;
             }
-
             if (players.length === 0) {
                 list.innerHTML = `<div class="empty-state">🏆 No players yet. Add some on the Home page!</div>`;
                 return;
             }
-
             const sorted = [...players].sort((a, b) => b.points - a.points);
             list.innerHTML = sorted.map((p, i) => {
                 const originalIdx = players.indexOf(p);
@@ -4771,11 +4746,9 @@
                     `<div style="color:var(--theme-text-muted);font-size:0.65rem;padding:0.2rem;">Enable Team Mode to start</div>`;
                 return;
             }
-
             teams.forEach(t => {
                 t.points = players.filter(p => t.members.includes(p.name)).reduce((sum, p) => sum + p.points, 0);
             });
-
             container.innerHTML = teams.map((t, idx) => {
                 const isActive = idx === getCurrentTeamIndex();
                 return `
@@ -4843,12 +4816,10 @@
             if (game) {
                 document.getElementById('timerDisplay').textContent = currentGameTimerSeconds || 30;
                 document.getElementById('customTimerInput').value = currentGameTimerSeconds || 30;
-
                 document.querySelectorAll('.timer-presets button').forEach(b => b.classList.remove('active'));
                 const defaultPreset = document.querySelector(
                     `.timer-presets button[onclick*="${currentGameTimerSeconds || 30}"]`);
                 if (defaultPreset) defaultPreset.classList.add('active');
-
                 openModal(gameId, game);
             }
         }
@@ -5041,13 +5012,14 @@
             const list = document.getElementById('gmTruthLieList');
             const totalItems = truthLieData.truths.length + truthLieData.lies.length;
             document.getElementById('truthLieCount').textContent = `${totalItems}`;
-            
             let html = '';
             truthLieData.truths.forEach((t, i) => {
-                html += `<span class="gm-item">✅ Truth: ${t} <button class="gm-del" onclick="deleteGMTruth(${i})">✕</button></span>`;
+                html +=
+                    `<span class="gm-item">✅ Truth: ${t} <button class="gm-del" onclick="deleteGMTruth(${i})">✕</button></span>`;
             });
             truthLieData.lies.forEach((l, i) => {
-                html += `<span class="gm-item">❌ Lie: ${l} <button class="gm-del" onclick="deleteGMLie(${i})">✕</button></span>`;
+                html +=
+                    `<span class="gm-item">❌ Lie: ${l} <button class="gm-del" onclick="deleteGMLie(${i})">✕</button></span>`;
             });
             list.innerHTML = html || '<span style="color:var(--theme-text-muted);font-size:0.6rem;">No data added yet.</span>';
         }
@@ -5056,9 +5028,7 @@
             const truth1 = document.getElementById('gmTruth1').value.trim();
             const truth2 = document.getElementById('gmTruth2').value.trim();
             const lie = document.getElementById('gmLie').value.trim();
-            
             let added = 0;
-            
             if (truth1) {
                 truthLieData.truths.push(truth1);
                 added++;
@@ -5071,7 +5041,6 @@
                 truthLieData.lies.push(lie);
                 added++;
             }
-            
             if (added > 0) {
                 saveGMData();
                 renderGMTruthLie();
@@ -5276,11 +5245,9 @@
                 else { input.value = '';
                     input.focus(); }
             });
-
             document.getElementById('playerNameInput').addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') document.getElementById('addPlayerBtn').click();
             });
-
             document.getElementById('clearAllBtn').addEventListener('click', clearAllPlayers);
         }
 
@@ -5291,46 +5258,26 @@
             loadThemeMode();
             loadThemePreference();
             loadPlayers();
-
-            // Try to load from localStorage first
             const hasLocalData = loadGMData();
-
-            // If no local data, load from JSON file
             if (!hasLocalData || charadesWords.length === 0) {
                 await loadData();
             } else {
                 console.log('✅ Data loaded from localStorage');
-                console.log(`🎭 ${charadesWords.length} charades words`);
-                console.log(`🎤 ${karaokeSongs.length} karaoke songs`);
-                console.log(`🧩 ${hangmanWords.length} hangman words`);
-                console.log(`🎨 ${pictionaryWords.length} pictionary words`);
-                console.log(`⏱️ ${fastTalkCategories.length} fast talk categories`);
-                console.log(`🤥 ${truthLieData.truths.length} truths + ${truthLieData.lies.length} lies`);
-                console.log(`🔥 ${roastPrompts.length} roast prompts`);
             }
-
-            // Ensure we have truth/lie data
             if (truthLieData.truths.length === 0 || truthLieData.lies.length === 0) {
                 await loadData();
             }
-
             renderGameGrid();
             renderAll();
             setupGMTabs();
             setupEventListeners();
             renderGMData();
             renderThemes();
-
             currentGameTimerSeconds = 30;
-
             console.log('🎮 ARCADE PARTY loaded!');
-            console.log('📝 Edit data.json to add/remove words!');
-            console.log('🎨 Select a theme from the Themes page!');
         }
 
-        // Also try loading data on page load as a fallback
         document.addEventListener('DOMContentLoaded', () => {
-            // If data hasn't loaded yet, try again
             if (charadesWords.length === 0) {
                 loadData().then(() => {
                     renderGameGrid();
