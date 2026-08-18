@@ -88,6 +88,8 @@
             --color-fasttalk-light: #33d4e8;
             --color-roast: #e74c3c;
             --color-roast-light: #f06a5a;
+            --color-whoami: #8e44ad;
+            --color-whoami-light: #a569bd;
         }
 
         body {
@@ -910,6 +912,7 @@
         .game-card.game-karaoke { background: var(--color-karaoke); }
         .game-card.game-fasttalk { background: var(--color-fasttalk); }
         .game-card.game-roast { background: var(--color-roast); }
+        .game-card.game-whoami { background: var(--color-whoami); }
 
         /* ============================================================
            GAME MASTER
@@ -1335,6 +1338,21 @@
             letter-spacing: 3px;
         }
 
+        .word-display.whoami {
+            font-size: 3.2rem;
+            letter-spacing: 4px;
+            color: var(--theme-blue-electric);
+            border-color: var(--color-whoami);
+            border-style: solid;
+            background: rgba(142, 68, 173, 0.1);
+            box-shadow: 0 0 40px rgba(142, 68, 173, 0.2);
+        }
+
+        .word-display.whoami.long-word {
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+        }
+
         /* ============================================================
            GAME ACTION BUTTONS
            ============================================================ */
@@ -1393,12 +1411,33 @@
             box-shadow: 0 0 30px var(--theme-glow-blue-strong);
         }
 
+        .game-actions button.guess-btn {
+            background: #2ecc71;
+            color: white;
+            border-color: #2ecc71;
+            box-shadow: 0 0 15px rgba(46, 204, 113, 0.3);
+        }
+
+        .game-actions button.guess-btn:hover {
+            box-shadow: 0 0 30px rgba(46, 204, 113, 0.5);
+        }
+
         /* Change counter */
         .change-counter {
             font-size: 0.5rem;
             color: var(--theme-text-muted);
             text-align: center;
             margin: 0.1rem 0;
+        }
+
+        .whoami-hint {
+            font-size: 0.7rem;
+            color: var(--theme-text-muted);
+            text-align: center;
+            padding: 0.3rem;
+            border: 1px dashed var(--theme-border-color);
+            border-radius: 8px;
+            margin: 0.3rem 0;
         }
 
         /* ============================================================
@@ -2159,6 +2198,16 @@
                 letter-spacing: 1px !important;
             }
 
+            .word-display.whoami {
+                font-size: 1.8rem !important;
+                letter-spacing: 2px !important;
+            }
+
+            .word-display.whoami.long-word {
+                font-size: 1.2rem !important;
+                letter-spacing: 1px !important;
+            }
+
             .game-actions button {
                 font-size: 0.5rem;
                 padding: 0.25rem 0.7rem;
@@ -2269,6 +2318,8 @@
 
             .word-display { font-size: 1.1rem !important; letter-spacing: 1px !important; }
             .word-display.long-word { font-size: 0.85rem !important; }
+            .word-display.whoami { font-size: 1.4rem !important; letter-spacing: 1px !important; }
+            .word-display.whoami.long-word { font-size: 1rem !important; }
 
             .game-actions button { font-size: 0.45rem; padding: 0.2rem 0.5rem; }
 
@@ -2501,6 +2552,7 @@
                         <button data-tab="tab-hangman">🧩 Hangman</button>
                         <button data-tab="tab-truthlie">🤥 Truth & Lie</button>
                         <button data-tab="tab-roast">🔥 Roast</button>
+                        <button data-tab="tab-whoami">🕵️ Who Am I</button>
                     </div>
                     <div class="gm-tab-content active" id="tab-charades">
                         <div class="gm-section">
@@ -2582,6 +2634,17 @@
                                 <button class="gm-remove" onclick="clearGMRoast()">🗑️ Clear</button>
                             </div>
                             <div class="gm-item-list" id="gmRoastList"></div>
+                        </div>
+                    </div>
+                    <div class="gm-tab-content" id="tab-whoami">
+                        <div class="gm-section">
+                            <h4>🕵️ Who Am I - Names <span id="whoamiCount">0</span></h4>
+                            <div class="gm-input-row">
+                                <input type="text" id="gmWhoamiInput" placeholder="Add name..." />
+                                <button onclick="addGMWhoami()">➕ Add</button>
+                                <button class="gm-remove" onclick="clearGMWhoami()">🗑️ Clear</button>
+                            </div>
+                            <div class="gm-item-list" id="gmWhoamiList"></div>
                         </div>
                     </div>
                 </div>
@@ -2850,7 +2913,8 @@
             pictionary: { main: '#3498DB', light: '#5DB5E8', text: '#FFFFFF', glow: 'rgba(52,152,219,0.4)' },
             karaoke: { main: '#2C3E50', light: '#4A6078', text: '#FFFFFF', glow: 'rgba(44,62,80,0.4)' },
             fasttalk: { main: '#00BCD4', light: '#33D4E8', text: '#FFFFFF', glow: 'rgba(0,188,212,0.4)' },
-            roast: { main: '#E74C3C', light: '#F06A5A', text: '#FFFFFF', glow: 'rgba(231,76,60,0.4)' }
+            roast: { main: '#E74C3C', light: '#F06A5A', text: '#FFFFFF', glow: 'rgba(231,76,60,0.4)' },
+            whoami: { main: '#8E44AD', light: '#A569BD', text: '#FFFFFF', glow: 'rgba(142,68,173,0.4)' }
         };
 
         const GAMES = [
@@ -2860,7 +2924,8 @@
             { id: 'pictionary', emoji: '🎨', title: 'PICTIONARY', desc: 'Draw & guess!', color: 'game-pictionary' },
             { id: 'karaoke', emoji: '🎤', title: 'KARAOKE', desc: 'Sing it loud!', color: 'game-karaoke' },
             { id: 'fast-talk', emoji: '⏱️', title: 'FAST TALK', desc: 'Think fast!', color: 'game-fasttalk' },
-            { id: 'roast', emoji: '🔥', title: 'ROAST', desc: 'Bring the heat!', color: 'game-roast' }
+            { id: 'roast', emoji: '🔥', title: 'ROAST', desc: 'Bring the heat!', color: 'game-roast' },
+            { id: 'whoami', emoji: '🕵️', title: 'WHO AM I?', desc: 'Guess the character!', color: 'game-whoami' }
         ];
 
         // ============================================================
@@ -2880,6 +2945,7 @@
         let hangmanWords = [];
         let truthLieData = { truths: [], lies: [] };
         let roastPrompts = [];
+        let whoamiNames = [];
 
         let timerInterval = null;
         let timerSeconds = 30;
@@ -2897,7 +2963,8 @@
             karaoke: [],
             truthlie: [],
             fasttalk: [],
-            roast: []
+            roast: [],
+            whoami: []
         };
 
         // Track change count per player per round
@@ -2993,6 +3060,29 @@
                 truthLieData.truths = data.truths || [];
                 truthLieData.lies = data.lies || [];
                 roastPrompts = data.roasts || [];
+                whoamiNames = data.whoami || [];
+                
+                // If no whoami data, add defaults
+                if (whoamiNames.length === 0) {
+                    whoamiNames = [
+                        "Albert Einstein", "Beyoncé", "Darth Vader", "Nelson Mandela",
+                        "Barack Obama", "Dwayne Johnson", "Elon Musk", "Taylor Swift",
+                        "Lionel Messi", "Queen Elizabeth II", "Martin Luther King Jr.",
+                        "Adele", "Michael Jackson", "Kim Kardashian", "William Shakespeare",
+                        "Oprah Winfrey", "Cristiano Ronaldo", "Leonardo da Vinci",
+                        "Ariana Grande", "Steve Jobs", "Marilyn Monroe", "Bruce Lee",
+                        "Natalie Portman", "LeBron James", "Amelia Earhart", "Frida Kahlo",
+                        "Homer Simpson", "Dumbledore", "Sherlock Holmes", "Pikachu",
+                        "Spiderman", "Wonder Woman", "Batman", "Harry Potter",
+                        "Frodo Baggins", "The Joker", "Aang", "Gandalf", "Simba",
+                        "Shrek", "Mufasa", "Buzz Lightyear", "James Bond", "Fiona",
+                        "Napoleon Bonaparte", "Cleopatra", "Alexander the Great",
+                        "Marie Curie", "Abraham Lincoln", "Mahatma Gandhi",
+                        "J.K. Rowling", "Mark Zuckerberg", "Trevor Noah",
+                        "Lupita Nyong'o", "Chimamanda Ngozi Adichie"
+                    ];
+                }
+                
                 console.log('✅ Data loaded from data.json');
                 saveGMData();
                 renderGameGrid();
@@ -3002,6 +3092,21 @@
                 return true;
             } catch (error) {
                 console.error('❌ Error loading data.json:', error);
+                // Use defaults if JSON fails
+                if (whoamiNames.length === 0) {
+                    whoamiNames = [
+                        "Albert Einstein", "Beyoncé", "Darth Vader", "Nelson Mandela",
+                        "Barack Obama", "Dwayne Johnson", "Elon Musk", "Taylor Swift",
+                        "Lionel Messi", "Martin Luther King Jr.", "Adele",
+                        "Michael Jackson", "William Shakespeare", "Oprah Winfrey",
+                        "Cristiano Ronaldo", "Leonardo da Vinci", "Ariana Grande",
+                        "Steve Jobs", "Marilyn Monroe", "Bruce Lee", "LeBron James",
+                        "Homer Simpson", "Dumbledore", "Sherlock Holmes", "Pikachu",
+                        "Spiderman", "Wonder Woman", "Batman", "Harry Potter",
+                        "Frodo Baggins", "The Joker", "Gandalf", "Simba", "Shrek",
+                        "James Bond", "Cleopatra", "Marie Curie", "Abraham Lincoln"
+                    ];
+                }
                 return false;
             }
         }
@@ -3046,7 +3151,8 @@
                     pictionaryWords,
                     hangmanWords,
                     truthLieData,
-                    roastPrompts
+                    roastPrompts,
+                    whoamiNames
                 }));
             } catch (e) {}
         }
@@ -3063,6 +3169,7 @@
                     hangmanWords = data.hangmanWords || [];
                     truthLieData = data.truthLieData || { truths: [], lies: [] };
                     roastPrompts = data.roastPrompts || [];
+                    whoamiNames = data.whoamiNames || [];
                     return true;
                 }
             } catch (e) {}
@@ -3348,6 +3455,7 @@
             usedItemsInRound.truthlie = [];
             usedItemsInRound.fasttalk = [];
             usedItemsInRound.roast = [];
+            usedItemsInRound.whoami = [];
             
             renderAll();
             renderTeams();
@@ -3869,6 +3977,7 @@
             usedItemsInRound.truthlie = [];
             usedItemsInRound.fasttalk = [];
             usedItemsInRound.roast = [];
+            usedItemsInRound.whoami = [];
             
             document.getElementById('modalTitle').textContent = `${gameData.emoji} ${gameData.title}`;
             overlay.classList.add('active');
@@ -3904,6 +4013,7 @@
             usedItemsInRound.truthlie = [];
             usedItemsInRound.fasttalk = [];
             usedItemsInRound.roast = [];
+            usedItemsInRound.whoami = [];
         }
 
         document.getElementById('closeModalBtn').addEventListener('click', closeModal);
@@ -3940,6 +4050,7 @@
             else if (gameId === 'karaoke') renderKaraoke(container);
             else if (gameId === 'fast-talk') renderFastTalk(container);
             else if (gameId === 'roast') renderRoast(container);
+            else if (gameId === 'whoami') renderWhoAmI(container);
             else if (gameId === 'hangman') {
                 startHangman();
                 return;
@@ -4273,6 +4384,34 @@
                     });
                 }
             }, 50);
+        }
+
+        // ---- WHO AM I ----
+        function renderWhoAmI(container) {
+            const names = whoamiNames.length > 0 ? whoamiNames : ['Albert Einstein', 'Beyoncé', 'Darth Vader'];
+            const name = getRandomUnusedItem(names, usedItemsInRound.whoami);
+            usedItemsInRound.whoami.push(name);
+            const isLong = name.length > 15;
+            
+            const playerName = getCurrentPlayerName() || '';
+            const changeCount = changeCounts[playerName] || 0;
+            const maxChanges = 3;
+            
+            container.innerHTML = `
+                <p><strong>🕵️ WHO AM I?</strong></p>
+                <div class="word-display whoami ${isLong ? 'long-word' : ''}">${name.toUpperCase()}</div>
+                <div class="whoami-hint">
+                    🙈 ${getCurrentPlayer()?.name || 'Current player'} — CLOSE YOUR EYES! Everyone else can see the name.
+                </div>
+                <p style="font-size:0.75rem;color:var(--theme-text-muted);">🗣️ Ask YES/NO questions to figure out who you are!</p>
+                <div class="game-actions">
+                    <button class="change-btn" onclick="changeItem('whoami', 'whoami', 'Character', 3)" ${changeCount >= maxChanges ? 'disabled' : ''}>
+                        🕵️ CHANGE CHARACTER ${changeCount}/${maxChanges}
+                    </button>
+                    <button class="next-turn-btn" onclick="nextTurn()">⏭️ NEXT TURN</button>
+                </div>
+                ${createScoringUI()}
+            `;
         }
 
         // ---- HANGMAN ----
@@ -4766,6 +4905,7 @@
             renderGMHangman();
             renderGMTruthLie();
             renderGMRoast();
+            renderGMWhoami();
         }
 
         function renderGMCharades() {
@@ -5024,6 +5164,37 @@
                 renderGMRoast(); }
         }
 
+        // ---- WHO AM I GM ----
+        function renderGMWhoami() {
+            const list = document.getElementById('gmWhoamiList');
+            document.getElementById('whoamiCount').textContent = `${whoamiNames.length}`;
+            list.innerHTML = whoamiNames.map((n, i) =>
+                `<span class="gm-item">🕵️ ${n} <button class="gm-del" onclick="deleteGMWhoami(${i})">✕</button></span>`
+            ).join('');
+        }
+
+        function addGMWhoami() {
+            const input = document.getElementById('gmWhoamiInput');
+            const name = input.value.trim();
+            if (name && !whoamiNames.includes(name)) {
+                whoamiNames.push(name);
+                saveGMData();
+                renderGMWhoami();
+                input.value = '';
+                createConfetti(15);
+            } else if (name) alert('Name already exists!');
+        }
+
+        function deleteGMWhoami(index) { whoamiNames.splice(index, 1);
+            saveGMData();
+            renderGMWhoami(); }
+
+        function clearGMWhoami() {
+            if (whoamiNames.length === 0 || confirm('Clear all names?')) { whoamiNames = [];
+                saveGMData();
+                renderGMWhoami(); }
+        }
+
         // ============================================================
         //  EXPORT / IMPORT / SHARE / PRINT / RESET
         // ============================================================
@@ -5038,6 +5209,7 @@
                 truths: truthLieData.truths,
                 lies: truthLieData.lies,
                 roastPrompts,
+                whoamiNames,
                 teams,
                 timestamp: new Date().toISOString()
             };
@@ -5069,6 +5241,7 @@
                             if (data.truths) truthLieData.truths = data.truths;
                             if (data.lies) truthLieData.lies = data.lies;
                             if (data.roastPrompts) roastPrompts = data.roastPrompts;
+                            if (data.whoamiNames) whoamiNames = data.whoamiNames;
                             if (data.teams) teams = data.teams;
                             savePlayers();
                             saveGMData();
