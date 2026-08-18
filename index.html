@@ -17,7 +17,6 @@
         }
 
         :root {
-            /* Dark Mode Only */
             --bg-primary: #0a1628;
             --bg-secondary: #0f1f33;
             --bg-card: #121f33;
@@ -25,36 +24,27 @@
             --bg-input: #1a2a4a;
             --bg-sidebar: #060e1a;
             --bg-sidebar-hover: #121f33;
-
             --text-primary: #f0f4f8;
             --text-secondary: #a0b8d0;
             --text-muted: #5a7a9a;
             --text-white: #ffffff;
-
             --blue-dark: #0a1628;
             --blue-primary: #1a3a5c;
             --blue-secondary: #2e6b9e;
             --blue-bright: #4a90d9;
             --blue-light: #7ec8e3;
             --blue-electric: #00d4ff;
-
             --glow-blue: rgba(0, 212, 255, 0.25);
             --glow-blue-strong: rgba(0, 212, 255, 0.4);
-
             --border-color: #1a2a4a;
             --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
             --shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.6);
-
             --card-radius: 16px;
             --transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             --font-display: 'Press Start 2P', monospace;
             --font-body: 'Nunito', sans-serif;
-
-            /* Sidebar sizing - responsive */
             --sidebar-width: 200px;
             --bottom-nav-height: 0px;
-
-            /* Theme Variables - Dark Only */
             --theme-bg-primary: #0a1628;
             --theme-bg-secondary: #0f1f33;
             --theme-bg-card: #121f33;
@@ -72,8 +62,6 @@
             --theme-blue-electric: #00d4ff;
             --theme-glow-blue: rgba(0, 212, 255, 0.25);
             --theme-glow-blue-strong: rgba(0, 212, 255, 0.4);
-
-            /* Game Colors */
             --color-charades: #1a5276;
             --color-charades-light: #2a7aa6;
             --color-hangman: #1abc9c;
@@ -1420,14 +1408,6 @@
 
         .game-actions button.guess-btn:hover {
             box-shadow: 0 0 30px rgba(46, 204, 113, 0.5);
-        }
-
-        /* Change counter */
-        .change-counter {
-            font-size: 0.5rem;
-            color: var(--theme-text-muted);
-            text-align: center;
-            margin: 0.1rem 0;
         }
 
         .whoami-hint {
@@ -3043,15 +3023,18 @@
         }
 
         // ============================================================
-        //  LOAD DATA
+        //  LOAD DATA - FIXED for whoAmI format
         // ============================================================
         async function loadData() {
             try {
-                const response = await fetch('data.json');
+                const response = await fetch('data.json?t=' + Date.now());
                 if (!response.ok) {
                     throw new Error('Could not load data.json');
                 }
                 const data = await response.json();
+
+                console.log('📥 Raw data loaded:', Object.keys(data));
+
                 charadesWords = data.charades || [];
                 karaokeSongs = data.karaoke || [];
                 hangmanWords = data.hangman || [];
@@ -3060,10 +3043,21 @@
                 truthLieData.truths = data.truths || [];
                 truthLieData.lies = data.lies || [];
                 roastPrompts = data.roasts || [];
-                whoamiNames = data.whoami || [];
-                
-                // If no whoami data, add defaults
-                if (whoamiNames.length === 0) {
+
+                // FIX: Handle whoAmI data (supports both "whoami" and "whoAmI")
+                let rawWhoami = data.whoami || data.whoAmI || [];
+
+                if (rawWhoami.length > 0) {
+                    // Check if it's array of objects with 'name' property
+                    if (typeof rawWhoami[0] === 'object' && rawWhoami[0].name) {
+                        whoamiNames = rawWhoami.map(item => item.name);
+                        console.log(`🕵️ Loaded ${whoamiNames.length} names from data.json (object format)`);
+                    } else {
+                        whoamiNames = rawWhoami;
+                        console.log(`🕵️ Loaded ${whoamiNames.length} names from data.json (string format)`);
+                    }
+                } else {
+                    console.warn('⚠️ No "whoami" or "whoAmI" found in data.json, using defaults');
                     whoamiNames = [
                         "Albert Einstein", "Beyoncé", "Darth Vader", "Nelson Mandela",
                         "Barack Obama", "Dwayne Johnson", "Elon Musk", "Taylor Swift",
@@ -3071,19 +3065,20 @@
                         "Adele", "Michael Jackson", "Kim Kardashian", "William Shakespeare",
                         "Oprah Winfrey", "Cristiano Ronaldo", "Leonardo da Vinci",
                         "Ariana Grande", "Steve Jobs", "Marilyn Monroe", "Bruce Lee",
-                        "Natalie Portman", "LeBron James", "Amelia Earhart", "Frida Kahlo",
-                        "Homer Simpson", "Dumbledore", "Sherlock Holmes", "Pikachu",
-                        "Spiderman", "Wonder Woman", "Batman", "Harry Potter",
-                        "Frodo Baggins", "The Joker", "Aang", "Gandalf", "Simba",
-                        "Shrek", "Mufasa", "Buzz Lightyear", "James Bond", "Fiona",
-                        "Napoleon Bonaparte", "Cleopatra", "Alexander the Great",
-                        "Marie Curie", "Abraham Lincoln", "Mahatma Gandhi",
-                        "J.K. Rowling", "Mark Zuckerberg", "Trevor Noah",
-                        "Lupita Nyong'o", "Chimamanda Ngozi Adichie"
+                        "Natalie Portman", "LeBron James", "Amelia Earhart", "Frida Kahlo"
                     ];
                 }
-                
+
                 console.log('✅ Data loaded from data.json');
+                console.log(`🎭 ${charadesWords.length} charades words`);
+                console.log(`🎤 ${karaokeSongs.length} karaoke songs`);
+                console.log(`🧩 ${hangmanWords.length} hangman words`);
+                console.log(`🎨 ${pictionaryWords.length} pictionary words`);
+                console.log(`⏱️ ${fastTalkCategories.length} fast talk categories`);
+                console.log(`🤥 ${truthLieData.truths.length} truths + ${truthLieData.lies.length} lies`);
+                console.log(`🔥 ${roastPrompts.length} roast prompts`);
+                console.log(`🕵️ ${whoamiNames.length} whoami names`);
+
                 saveGMData();
                 renderGameGrid();
                 renderAll();
@@ -3092,21 +3087,6 @@
                 return true;
             } catch (error) {
                 console.error('❌ Error loading data.json:', error);
-                // Use defaults if JSON fails
-                if (whoamiNames.length === 0) {
-                    whoamiNames = [
-                        "Albert Einstein", "Beyoncé", "Darth Vader", "Nelson Mandela",
-                        "Barack Obama", "Dwayne Johnson", "Elon Musk", "Taylor Swift",
-                        "Lionel Messi", "Martin Luther King Jr.", "Adele",
-                        "Michael Jackson", "William Shakespeare", "Oprah Winfrey",
-                        "Cristiano Ronaldo", "Leonardo da Vinci", "Ariana Grande",
-                        "Steve Jobs", "Marilyn Monroe", "Bruce Lee", "LeBron James",
-                        "Homer Simpson", "Dumbledore", "Sherlock Holmes", "Pikachu",
-                        "Spiderman", "Wonder Woman", "Batman", "Harry Potter",
-                        "Frodo Baggins", "The Joker", "Gandalf", "Simba", "Shrek",
-                        "James Bond", "Cleopatra", "Marie Curie", "Abraham Lincoln"
-                    ];
-                }
                 return false;
             }
         }
@@ -3438,16 +3418,16 @@
 
         function nextTurn() {
             if (players.length === 0) return;
-            
+
             // Reset change count for current player
             const playerName = getCurrentPlayerName();
             if (playerName) {
                 changeCounts[playerName] = 0;
             }
-            
+
             // Advance turn
             currentTurnIndex = (currentTurnIndex + 1) % players.length;
-            
+
             // Reset used items for new round
             usedItemsInRound.charades = [];
             usedItemsInRound.pictionary = [];
@@ -3456,11 +3436,11 @@
             usedItemsInRound.fasttalk = [];
             usedItemsInRound.roast = [];
             usedItemsInRound.whoami = [];
-            
+
             renderAll();
             renderTeams();
             updateModalHeader();
-            
+
             // Refresh game content with new item and restart timer
             if (selectedGameId && selectedGameData) {
                 refreshGameContent(selectedGameId, selectedGameData);
@@ -3480,12 +3460,12 @@
             }
 
             const playerName = currentPlayer.name;
-            
+
             // Initialize count if not exists
             if (!changeCounts[playerName]) {
                 changeCounts[playerName] = 0;
             }
-            
+
             // Check limit
             if (changeCounts[playerName] >= maxChanges) {
                 showChangeToast(`⚠️ Max ${maxChanges} changes per turn!`);
@@ -3495,16 +3475,16 @@
 
             // Increment count
             changeCounts[playerName]++;
-            
+
             // Reset timer
             stopTimer();
-            
+
             // Refresh content with new item
             if (selectedGameId && selectedGameData) {
                 refreshGameContent(selectedGameId, selectedGameData);
                 restartTimer();
             }
-            
+
             // Show notification
             showChangeToast(`✨ ${label} changed! (${changeCounts[playerName]}/${maxChanges})`);
             playSound('success');
@@ -3515,7 +3495,7 @@
         // ============================================================
         function getRandomUnusedItem(itemList, usedList) {
             const available = itemList.filter(item => !usedList.includes(item));
-            
+
             if (available.length === 0) {
                 usedList.length = 0;
                 const resetAvailable = itemList.filter(item => !usedList.includes(item));
@@ -3524,7 +3504,7 @@
                 }
                 return resetAvailable[Math.floor(Math.random() * resetAvailable.length)];
             }
-            
+
             return available[Math.floor(Math.random() * available.length)];
         }
 
@@ -3872,7 +3852,7 @@
             const hangmanHint = document.querySelector('.hangman-input-row .hint-btn');
             const hangmanSvg = document.querySelector('.hangman-svg');
             const changeBtn = document.querySelector('.change-btn');
-            
+
             modalBox.style.borderColor = color.main;
             modalBox.style.boxShadow = `0 0 80px ${color.glow}`;
             timerSetup.style.borderColor = color.main;
@@ -3882,7 +3862,7 @@
             modalTitle.style.color = color.main;
             timerStartBtn.style.background = color.main;
             timerStartBtn.style.boxShadow = `0 0 30px ${color.glow}`;
-            
+
             if (wordDisplay) {
                 wordDisplay.style.color = color.main;
                 wordDisplay.style.borderColor = color.main;
@@ -3969,7 +3949,7 @@
         function openModal(gameId, gameData) {
             selectedGameId = gameId;
             selectedGameData = gameData;
-            
+
             // Reset used items for this round
             usedItemsInRound.charades = [];
             usedItemsInRound.pictionary = [];
@@ -3978,7 +3958,7 @@
             usedItemsInRound.fasttalk = [];
             usedItemsInRound.roast = [];
             usedItemsInRound.whoami = [];
-            
+
             document.getElementById('modalTitle').textContent = `${gameData.emoji} ${gameData.title}`;
             overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -4004,7 +3984,7 @@
             selectedGameData = null;
             document.getElementById('timerSetup').style.display = 'flex';
             document.getElementById('modalContent').style.display = 'none';
-            
+
             // Reset change counts
             changeCounts = {};
             usedItemsInRound.charades = [];
@@ -4092,11 +4072,11 @@
             const word = getRandomUnusedItem(words, usedItemsInRound.charades);
             usedItemsInRound.charades.push(word);
             const isLong = word.length > 10;
-            
+
             const playerName = getCurrentPlayerName() || '';
             const changeCount = changeCounts[playerName] || 0;
             const maxChanges = 3;
-            
+
             container.innerHTML = `
                 <p><strong>🎭 ACT THIS OUT SILENTLY:</strong></p>
                 <div class="word-display ${isLong ? 'long-word' : ''}">${word.toUpperCase()}</div>
@@ -4117,11 +4097,11 @@
             const word = getRandomUnusedItem(words, usedItemsInRound.pictionary);
             usedItemsInRound.pictionary.push(word);
             const isLong = word.length > 10;
-            
+
             const playerName = getCurrentPlayerName() || '';
             const changeCount = changeCounts[playerName] || 0;
             const maxChanges = 3;
-            
+
             container.innerHTML = `
                 <p><strong>🎨 DRAW THIS:</strong></p>
                 <div class="word-display ${isLong ? 'long-word' : ''}">${word.toUpperCase()}</div>
@@ -4141,11 +4121,11 @@
             const songs = karaokeSongs.length > 0 ? karaokeSongs : [{ title: 'African Giant', artist: 'Burna Boy' }];
             const song = getRandomUnusedItem(songs, usedItemsInRound.karaoke);
             usedItemsInRound.karaoke.push(song);
-            
+
             const playerName = getCurrentPlayerName() || '';
             const changeCount = changeCounts[playerName] || 0;
             const maxChanges = 3;
-            
+
             container.innerHTML = `
                 <p><strong>🎤 KARAOKE SHOWDOWN!</strong></p>
                 <div class="song-display">
@@ -4196,11 +4176,11 @@
                     ] }];
             const cat = getRandomUnusedItem(categories, usedItemsInRound.fasttalk);
             usedItemsInRound.fasttalk.push(cat);
-            
+
             const playerName = getCurrentPlayerName() || '';
             const changeCount = changeCounts[playerName] || 0;
             const maxChanges = 3;
-            
+
             container.innerHTML = `
                 <p><strong>⏱️ FAST TALK: <span style="color:var(--theme-blue-electric);">${cat.name.toUpperCase()}</span></strong></p>
                 <p style="font-size:0.75rem;color:var(--theme-text-muted);">Name as many ${cat.name.toLowerCase()} as you can!</p>
@@ -4252,10 +4232,10 @@
             const playerName = getCurrentPlayerName() || '';
             const changeCount = changeCounts[playerName] || 0;
             const maxChanges = 3;
-            
+
             const options = getRandomTruthLie();
             const letters = ['A', 'B', 'C'];
-            
+
             container.innerHTML = `
                 <p><strong>🤥 TWO TRUTHS & A LIE</strong></p>
                 <p style="color:var(--theme-text-muted);font-size:0.75rem;">📂 Random Facts</p>
@@ -4311,7 +4291,7 @@
             const prompts = roastPrompts.length > 0 ? roastPrompts : ['Roast someone\'s dance moves!'];
             const prompt = getRandomUnusedItem(prompts, usedItemsInRound.roast);
             usedItemsInRound.roast.push(prompt);
-            
+
             container.innerHTML = `
                 <p><strong>🔥 ROAST BATTLE</strong></p>
                 <p style="color:var(--theme-text-secondary);font-size:0.8rem;">${prompt}</p>
@@ -4392,11 +4372,11 @@
             const name = getRandomUnusedItem(names, usedItemsInRound.whoami);
             usedItemsInRound.whoami.push(name);
             const isLong = name.length > 15;
-            
+
             const playerName = getCurrentPlayerName() || '';
             const changeCount = changeCounts[playerName] || 0;
             const maxChanges = 3;
-            
+
             container.innerHTML = `
                 <p><strong>🕵️ WHO AM I?</strong></p>
                 <div class="word-display whoami ${isLong ? 'long-word' : ''}">${name.toUpperCase()}</div>
@@ -5185,14 +5165,18 @@
             } else if (name) alert('Name already exists!');
         }
 
-        function deleteGMWhoami(index) { whoamiNames.splice(index, 1);
+        function deleteGMWhoami(index) {
+            whoamiNames.splice(index, 1);
             saveGMData();
-            renderGMWhoami(); }
+            renderGMWhoami();
+        }
 
         function clearGMWhoami() {
-            if (whoamiNames.length === 0 || confirm('Clear all names?')) { whoamiNames = [];
+            if (whoamiNames.length === 0 || confirm('Clear all names?')) {
+                whoamiNames = [];
                 saveGMData();
-                renderGMWhoami(); }
+                renderGMWhoami();
+            }
         }
 
         // ============================================================
@@ -5348,15 +5332,24 @@
         async function init() {
             loadThemePreference();
             loadPlayers();
+
+            // First try loading from localStorage
             const hasLocalData = loadGMData();
-            if (!hasLocalData || charadesWords.length === 0) {
+
+            // If no local data OR no whoami names, load from data.json
+            if (!hasLocalData || whoamiNames.length === 0 || charadesWords.length === 0) {
+                console.log('📥 Loading from data.json...');
                 await loadData();
             } else {
                 console.log('✅ Data loaded from localStorage');
+                console.log(`🕵️ ${whoamiNames.length} whoami names loaded`);
             }
+
+            // Double-check truth/lie data
             if (truthLieData.truths.length === 0 || truthLieData.lies.length === 0) {
                 await loadData();
             }
+
             renderGameGrid();
             renderAll();
             setupGMTabs();
@@ -5364,11 +5357,13 @@
             renderGMData();
             renderThemes();
             currentGameTimerSeconds = 30;
+
             console.log('🎮 ARCADE PARTY loaded!');
+            console.log(`🕵️ Final whoami count: ${whoamiNames.length}`);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            if (charadesWords.length === 0) {
+            if (charadesWords.length === 0 || whoamiNames.length === 0) {
                 loadData().then(() => {
                     renderGameGrid();
                     renderAll();
