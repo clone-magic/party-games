@@ -2679,1004 +2679,604 @@
   ],
   "whoAmI": [
     {
-      "name": "Wizkid",
-      "category": "Nigerian Music",
-      "difficulty": "Easy"
+      "name": "Wizkid"
     },
     {
-      "name": "Davido",
-      "category": "Nigerian Music",
-      "difficulty": "Easy"
+      "name": "Davido"
     },
     {
-      "name": "Burna Boy",
-      "category": "Nigerian Music",
-      "difficulty": "Easy"
+      "name": "Burna Boy"
     },
     {
-      "name": "Rema",
-      "category": "Nigerian Music",
-      "difficulty": "Easy"
+      "name": "Rema"
     },
     {
-      "name": "Asake",
-      "category": "Nigerian Music",
-      "difficulty": "Easy"
+      "name": "Asake"
     },
     {
-      "name": "Ayra Starr",
-      "category": "Nigerian Music",
-      "difficulty": "Easy"
+      "name": "Ayra Starr"
     },
     {
-      "name": "Tems",
-      "category": "Nigerian Music",
-      "difficulty": "Easy"
+      "name": "Tems"
     },
     {
-      "name": "Tiwa Savage",
-      "category": "Nigerian Music",
-      "difficulty": "Easy"
+      "name": "Tiwa Savage"
     },
     {
-      "name": "Olamide",
-      "category": "Nigerian Music",
-      "difficulty": "Easy"
+      "name": "Olamide"
     },
     {
-      "name": "Phyno",
-      "category": "Nigerian Music",
-      "difficulty": "Easy"
+      "name": "Phyno"
     },
     {
-      "name": "2Baba",
-      "category": "Nigerian Music",
-      "difficulty": "Easy"
+      "name": "2Baba"
     },
     {
-      "name": "D'banj",
-      "category": "Nigerian Music",
-      "difficulty": "Easy"
+      "name": "D'banj"
     },
     {
-      "name": "Don Jazzy",
-      "category": "Nigerian Music",
-      "difficulty": "Medium"
+      "name": "Don Jazzy"
     },
     {
-      "name": "Yemi Alade",
-      "category": "Nigerian Music",
-      "difficulty": "Medium"
+      "name": "Yemi Alade"
     },
     {
-      "name": "Flavour",
-      "category": "Nigerian Music",
-      "difficulty": "Medium"
+      "name": "Flavour"
     },
     {
-      "name": "Simi",
-      "category": "Nigerian Music",
-      "difficulty": "Medium"
+      "name": "Simi"
     },
     {
-      "name": "Mr Eazi",
-      "category": "Nigerian Music",
-      "difficulty": "Medium"
+      "name": "Mr Eazi"
     },
     {
-      "name": "Fireboy DML",
-      "category": "Nigerian Music",
-      "difficulty": "Easy"
+      "name": "Fireboy DML"
     },
     {
-      "name": "Oxlade",
-      "category": "Nigerian Music",
-      "difficulty": "Medium"
+      "name": "Oxlade"
     },
     {
-      "name": "Adekunle Gold",
-      "category": "Nigerian Music",
-      "difficulty": "Medium"
+      "name": "Adekunle Gold"
     },
     {
-      "name": "Funke Akindele",
-      "category": "Nollywood",
-      "difficulty": "Easy"
+      "name": "Funke Akindele"
     },
     {
-      "name": "Genevieve Nnaji",
-      "category": "Nollywood",
-      "difficulty": "Easy"
+      "name": "Genevieve Nnaji"
     },
     {
-      "name": "Ramsey Nouah",
-      "category": "Nollywood",
-      "difficulty": "Easy"
+      "name": "Ramsey Nouah"
     },
     {
-      "name": "Richard Mofe-Damijo",
-      "category": "Nollywood",
-      "difficulty": "Medium"
+      "name": "Richard Mofe-Damijo"
     },
     {
-      "name": "Kunle Remi",
-      "category": "Nollywood",
-      "difficulty": "Medium"
+      "name": "Kunle Remi"
     },
     {
-      "name": "Yul Edochie",
-      "category": "Nollywood",
-      "difficulty": "Medium"
+      "name": "Yul Edochie"
     },
     {
-      "name": "Toyin Abraham",
-      "category": "Nollywood",
-      "difficulty": "Easy"
+      "name": "Toyin Abraham"
     },
     {
-      "name": "Mercy Johnson",
-      "category": "Nollywood",
-      "difficulty": "Easy"
+      "name": "Mercy Johnson"
     },
     {
-      "name": "Osita Iheme",
-      "category": "Nollywood",
-      "difficulty": "Easy"
+      "name": "Osita Iheme"
     },
     {
-      "name": "Chinedu Ikedieze",
-      "category": "Nollywood",
-      "difficulty": "Easy"
+      "name": "Chinedu Ikedieze"
     },
     {
-      "name": "Mr Ibu",
-      "category": "Nollywood",
-      "difficulty": "Easy"
+      "name": "Mr Ibu"
     },
     {
-      "name": "Pete Edochie",
-      "category": "Nollywood",
-      "difficulty": "Easy"
+      "name": "Pete Edochie"
     },
     {
-      "name": "Idris Elba",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "Idris Elba"
     },
     {
-      "name": "Dwayne Johnson",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "Dwayne Johnson"
     },
     {
-      "name": "Leonardo DiCaprio",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "Leonardo DiCaprio"
     },
     {
-      "name": "Tom Hanks",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "Tom Hanks"
     },
     {
-      "name": "Will Smith",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "Will Smith"
     },
     {
-      "name": "Jackie Chan",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "Jackie Chan"
     },
     {
-      "name": "Keanu Reeves",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "Keanu Reeves"
     },
     {
-      "name": "Zendaya",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "Zendaya"
     },
     {
-      "name": "Ryan Reynolds",
-      "category": "Actors",
-      "difficulty": "Medium"
+      "name": "Ryan Reynolds"
     },
     {
-      "name": "Morgan Freeman",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "Morgan Freeman"
     },
     {
-      "name": "Angelina Jolie",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "Angelina Jolie"
     },
     {
-      "name": "Jim Carrey",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "Jim Carrey"
     },
     {
-      "name": "Cristiano Ronaldo",
-      "category": "Football",
-      "difficulty": "Easy"
+      "name": "Cristiano Ronaldo"
     },
     {
-      "name": "Lionel Messi",
-      "category": "Football",
-      "difficulty": "Easy"
+      "name": "Lionel Messi"
     },
     {
-      "name": "Kylian Mbappe",
-      "category": "Football",
-      "difficulty": "Easy"
+      "name": "Kylian Mbappe"
     },
     {
-      "name": "Neymar",
-      "category": "Football",
-      "difficulty": "Easy"
+      "name": "Neymar"
     },
     {
-      "name": "Mohamed Salah",
-      "category": "Football",
-      "difficulty": "Easy"
+      "name": "Mohamed Salah"
     },
     {
-      "name": "Victor Osimhen",
-      "category": "Football",
-      "difficulty": "Easy"
+      "name": "Victor Osimhen"
     },
     {
-      "name": "Jay-Jay Okocha",
-      "category": "Football",
-      "difficulty": "Medium"
+      "name": "Jay-Jay Okocha"
     },
     {
-      "name": "Didier Drogba",
-      "category": "Football",
-      "difficulty": "Easy"
+      "name": "Didier Drogba"
     },
     {
-      "name": "Sadio Mane",
-      "category": "Football",
-      "difficulty": "Easy"
+      "name": "Sadio Mane"
     },
     {
-      "name": "Erling Haaland",
-      "category": "Football",
-      "difficulty": "Easy"
+      "name": "Erling Haaland"
     },
     {
-      "name": "Michael Jackson",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Michael Jackson"
     },
     {
-      "name": "Beyonce",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Beyonce"
     },
     {
-      "name": "Rihanna",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Rihanna"
     },
     {
-      "name": "Drake",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Drake"
     },
     {
-      "name": "Taylor Swift",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Taylor Swift"
     },
     {
-      "name": "Bruno Mars",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Bruno Mars"
     },
     {
-      "name": "Adele",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Adele"
     },
     {
-      "name": "Justin Bieber",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Justin Bieber"
     },
     {
-      "name": "Eminem",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Eminem"
     },
     {
-      "name": "Lady Gaga",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Lady Gaga"
     },
     {
-      "name": "Elvis Presley",
-      "category": "Music",
-      "difficulty": "Medium"
+      "name": "Elvis Presley"
     },
     {
-      "name": "Bob Marley",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Bob Marley"
     },
     {
-      "name": "Harry Potter",
-      "category": "Fictional Character",
-      "difficulty": "Easy"
+      "name": "Harry Potter"
     },
     {
-      "name": "Spider-Man",
-      "category": "Superheroes",
-      "difficulty": "Easy"
+      "name": "Spider-Man"
     },
     {
-      "name": "Batman",
-      "category": "Superheroes",
-      "difficulty": "Easy"
+      "name": "Batman"
     },
     {
-      "name": "Superman",
-      "category": "Superheroes",
-      "difficulty": "Easy"
+      "name": "Superman"
     },
     {
-      "name": "Iron Man",
-      "category": "Superheroes",
-      "difficulty": "Easy"
+      "name": "Iron Man"
     },
     {
-      "name": "Black Panther",
-      "category": "Superheroes",
-      "difficulty": "Easy"
+      "name": "Black Panther"
     },
     {
-      "name": "Wonder Woman",
-      "category": "Superheroes",
-      "difficulty": "Easy"
+      "name": "Wonder Woman"
     },
     {
-      "name": "Hulk",
-      "category": "Superheroes",
-      "difficulty": "Easy"
+      "name": "Hulk"
     },
     {
-      "name": "Thor",
-      "category": "Superheroes",
-      "difficulty": "Easy"
+      "name": "Thor"
     },
     {
-      "name": "Captain America",
-      "category": "Superheroes",
-      "difficulty": "Easy"
+      "name": "Captain America"
     },
     {
-      "name": "Deadpool",
-      "category": "Superheroes",
-      "difficulty": "Medium"
+      "name": "Deadpool"
     },
     {
-      "name": "Wolverine",
-      "category": "Superheroes",
-      "difficulty": "Medium"
+      "name": "Wolverine"
     },
     {
-      "name": "Darth Vader",
-      "category": "Movie Character",
-      "difficulty": "Easy"
+      "name": "Darth Vader"
     },
     {
-      "name": "Elsa",
-      "category": "Movie Character",
-      "difficulty": "Easy"
+      "name": "Elsa"
     },
     {
-      "name": "Simba",
-      "category": "Movie Character",
-      "difficulty": "Easy"
+      "name": "Simba"
     },
     {
-      "name": "Shrek",
-      "category": "Movie Character",
-      "difficulty": "Easy"
+      "name": "Shrek"
     },
     {
-      "name": "Jack Sparrow",
-      "category": "Movie Character",
-      "difficulty": "Easy"
+      "name": "Jack Sparrow"
     },
     {
-      "name": "Gollum",
-      "category": "Movie Character",
-      "difficulty": "Medium"
+      "name": "Gollum"
     },
     {
-      "name": "Indiana Jones",
-      "category": "Movie Character",
-      "difficulty": "Medium"
+      "name": "Indiana Jones"
     },
     {
-      "name": "Homer Simpson",
-      "category": "TV Character",
-      "difficulty": "Easy"
+      "name": "Homer Simpson"
     },
     {
-      "name": "SpongeBob SquarePants",
-      "category": "TV Character",
-      "difficulty": "Easy"
+      "name": "SpongeBob SquarePants"
     },
     {
-      "name": "Mr Bean",
-      "category": "TV Character",
-      "difficulty": "Easy"
+      "name": "Mr Bean"
     },
     {
-      "name": "Wednesday Addams",
-      "category": "TV Character",
-      "difficulty": "Easy"
+      "name": "Wednesday Addams"
     },
     {
-      "name": "Walter White",
-      "category": "TV Character",
-      "difficulty": "Medium"
+      "name": "Walter White"
     },
     {
-      "name": "Sherlock Holmes",
-      "category": "Fictional Character",
-      "difficulty": "Easy"
+      "name": "Sherlock Holmes"
     },
     {
-      "name": "James Bond",
-      "category": "Fictional Character",
-      "difficulty": "Easy"
+      "name": "James Bond"
     },
     {
-      "name": "Albert Einstein",
-      "category": "Historical Figure",
-      "difficulty": "Easy"
+      "name": "Albert Einstein"
     },
     {
-      "name": "Nelson Mandela",
-      "category": "Historical Figure",
-      "difficulty": "Easy"
+      "name": "Nelson Mandela"
     },
     {
-      "name": "Martin Luther King Jr.",
-      "category": "Historical Figure",
-      "difficulty": "Easy"
+      "name": "Martin Luther King Jr."
     },
     {
-      "name": "Cleopatra",
-      "category": "Historical Figure",
-      "difficulty": "Easy"
+      "name": "Cleopatra"
     },
     {
-      "name": "William Shakespeare",
-      "category": "Historical Figure",
-      "difficulty": "Easy"
+      "name": "William Shakespeare"
     },
     {
-      "name": "Winston Churchill",
-      "category": "Historical Figure",
-      "difficulty": "Medium"
+      "name": "Winston Churchill"
     },
     {
-      "name": "Steve Jobs",
-      "category": "Technology",
-      "difficulty": "Easy"
+      "name": "Steve Jobs"
     },
     {
-      "name": "Bill Gates",
-      "category": "Technology",
-      "difficulty": "Easy"
+      "name": "Bill Gates"
     },
     {
-      "name": "Mark Zuckerberg",
-      "category": "Technology",
-      "difficulty": "Easy"
+      "name": "Mark Zuckerberg"
     },
     {
-      "name": "Elon Musk",
-      "category": "Technology",
-      "difficulty": "Easy"
+      "name": "Elon Musk"
     },
     {
-      "name": "P-Square",
-      "category": "Nigerian Music",
-      "difficulty": "Medium"
+      "name": "P-Square"
     },
     {
-      "name": "Kizz Daniel",
-      "category": "Nigerian Music",
-      "difficulty": "Easy"
+      "name": "Kizz Daniel"
     },
     {
-      "name": "Victony",
-      "category": "Nigerian Music",
-      "difficulty": "Medium"
+      "name": "Victony"
     },
     {
-      "name": "BNXN",
-      "category": "Nigerian Music",
-      "difficulty": "Medium"
+      "name": "BNXN"
     },
     {
-      "name": "Shallipopi",
-      "category": "Nigerian Music",
-      "difficulty": "Medium"
+      "name": "Shallipopi"
     },
     {
-      "name": "Korede Bello",
-      "category": "Nigerian Music",
-      "difficulty": "Medium"
+      "name": "Korede Bello"
     },
     {
-      "name": "Tekno",
-      "category": "Nigerian Music",
-      "difficulty": "Easy"
+      "name": "Tekno"
     },
     {
-      "name": "Runtown",
-      "category": "Nigerian Music",
-      "difficulty": "Medium"
+      "name": "Runtown"
     },
     {
-      "name": "Wande Coal",
-      "category": "Nigerian Music",
-      "difficulty": "Medium"
+      "name": "Wande Coal"
     },
     {
-      "name": "Johnny Drille",
-      "category": "Nigerian Music",
-      "difficulty": "Medium"
+      "name": "Johnny Drille"
     },
     {
-      "name": "Chike",
-      "category": "Nigerian Music",
-      "difficulty": "Medium"
+      "name": "Chike"
     },
     {
-      "name": "Lojay",
-      "category": "Nigerian Music",
-      "difficulty": "Medium"
+      "name": "Lojay"
     },
     {
-      "name": "Zinoleesky",
-      "category": "Nigerian Music",
-      "difficulty": "Medium"
+      "name": "Zinoleesky"
     },
     {
-      "name": "Teni",
-      "category": "Nigerian Music",
-      "difficulty": "Easy"
+      "name": "Teni"
     },
     {
-      "name": "Niniola",
-      "category": "Nigerian Music",
-      "difficulty": "Medium"
+      "name": "Niniola"
     },
     {
-      "name": "Mavin",
-      "category": "Nigerian Music",
-      "difficulty": "Hard"
+      "name": "Mavin"
     },
     {
-      "name": "Falz",
-      "category": "Nigerian Music",
-      "difficulty": "Easy"
+      "name": "Falz"
     },
     {
-      "name": "MI Abaga",
-      "category": "Nigerian Music",
-      "difficulty": "Medium"
+      "name": "MI Abaga"
     },
     {
-      "name": "Ice Prince",
-      "category": "Nigerian Music",
-      "difficulty": "Easy"
+      "name": "Ice Prince"
     },
     {
-      "name": "Bovi",
-      "category": "Nollywood",
-      "difficulty": "Medium"
+      "name": "Bovi"
     },
     {
-      "name": "AY Makun",
-      "category": "Nollywood",
-      "difficulty": "Easy"
+      "name": "AY Makun"
     },
     {
-      "name": "Basketmouth",
-      "category": "Nollywood",
-      "difficulty": "Easy"
+      "name": "Basketmouth"
     },
     {
-      "name": "Nkem Owoh",
-      "category": "Nollywood",
-      "difficulty": "Easy"
+      "name": "Nkem Owoh"
     },
     {
-      "name": "Kanayo O. Kanayo",
-      "category": "Nollywood",
-      "difficulty": "Medium"
+      "name": "Kanayo O. Kanayo"
     },
     {
-      "name": "Ini Edo",
-      "category": "Nollywood",
-      "difficulty": "Easy"
+      "name": "Ini Edo"
     },
     {
-      "name": "Stephanie Linus",
-      "category": "Nollywood",
-      "difficulty": "Medium"
+      "name": "Stephanie Linus"
     },
     {
-      "name": "Adesua Etomi",
-      "category": "Nollywood",
-      "difficulty": "Easy"
+      "name": "Adesua Etomi"
     },
     {
-      "name": "Alexx Ekubo",
-      "category": "Nollywood",
-      "difficulty": "Medium"
+      "name": "Alexx Ekubo"
     },
     {
-      "name": "Mike Ezuruonye",
-      "category": "Nollywood",
-      "difficulty": "Medium"
+      "name": "Mike Ezuruonye"
     },
     {
-      "name": "Blossom Chukwujekwu",
-      "category": "Nollywood",
-      "difficulty": "Hard"
+      "name": "Blossom Chukwujekwu"
     },
     {
-      "name": "Ireti Doyle",
-      "category": "Nollywood",
-      "difficulty": "Medium"
+      "name": "Ireti Doyle"
     },
     {
-      "name": "John Boyega",
-      "category": "Actors",
-      "difficulty": "Medium"
+      "name": "John Boyega"
     },
     {
-      "name": "Robert Downey Jr.",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "Robert Downey Jr."
     },
     {
-      "name": "Chris Hemsworth",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "Chris Hemsworth"
     },
     {
-      "name": "Chris Evans",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "Chris Evans"
     },
     {
-      "name": "Scarlett Johansson",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "Scarlett Johansson"
     },
     {
-      "name": "Jennifer Aniston",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "Jennifer Aniston"
     },
     {
-      "name": "Brad Pitt",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "Brad Pitt"
     },
     {
-      "name": "George Clooney",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "George Clooney"
     },
     {
-      "name": "Johnny Depp",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "Johnny Depp"
     },
     {
-      "name": "Emma Watson",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "Emma Watson"
     },
     {
-      "name": "Anne Hathaway",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "Anne Hathaway"
     },
     {
-      "name": "Margot Robbie",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "Margot Robbie"
     },
     {
-      "name": "Cillian Murphy",
-      "category": "Actors",
-      "difficulty": "Medium"
+      "name": "Cillian Murphy"
     },
     {
-      "name": "Pedro Pascal",
-      "category": "Actors",
-      "difficulty": "Medium"
+      "name": "Pedro Pascal"
     },
     {
-      "name": "Jason Statham",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "Jason Statham"
     },
     {
-      "name": "Arnold Schwarzenegger",
-      "category": "Actors",
-      "difficulty": "Easy"
+      "name": "Arnold Schwarzenegger"
     },
     {
-      "name": "Kobe Bryant",
-      "category": "Basketball",
-      "difficulty": "Easy"
+      "name": "Kobe Bryant"
     },
     {
-      "name": "LeBron James",
-      "category": "Basketball",
-      "difficulty": "Easy"
+      "name": "LeBron James"
     },
     {
-      "name": "Stephen Curry",
-      "category": "Basketball",
-      "difficulty": "Easy"
+      "name": "Stephen Curry"
     },
     {
-      "name": "Michael Jordan",
-      "category": "Basketball",
-      "difficulty": "Easy"
+      "name": "Michael Jordan"
     },
     {
-      "name": "Giannis Antetokounmpo",
-      "category": "Basketball",
-      "difficulty": "Medium"
+      "name": "Giannis Antetokounmpo"
     },
     {
-      "name": "Serena Williams",
-      "category": "Sports",
-      "difficulty": "Easy"
+      "name": "Serena Williams"
     },
     {
-      "name": "Usain Bolt",
-      "category": "Sports",
-      "difficulty": "Easy"
+      "name": "Usain Bolt"
     },
     {
-      "name": "Simone Biles",
-      "category": "Sports",
-      "difficulty": "Medium"
+      "name": "Simone Biles"
     },
     {
-      "name": "Tiger Woods",
-      "category": "Sports",
-      "difficulty": "Easy"
+      "name": "Tiger Woods"
     },
     {
-      "name": "Floyd Mayweather",
-      "category": "Sports",
-      "difficulty": "Easy"
+      "name": "Floyd Mayweather"
     },
     {
-      "name": "Tyson Fury",
-      "category": "Sports",
-      "difficulty": "Medium"
+      "name": "Tyson Fury"
     },
     {
-      "name": "Conor McGregor",
-      "category": "Sports",
-      "difficulty": "Easy"
+      "name": "Conor McGregor"
     },
     {
-      "name": "Novak Djokovic",
-      "category": "Tennis",
-      "difficulty": "Easy"
+      "name": "Novak Djokovic"
     },
     {
-      "name": "Rafael Nadal",
-      "category": "Tennis",
-      "difficulty": "Easy"
+      "name": "Rafael Nadal"
     },
     {
-      "name": "Roger Federer",
-      "category": "Tennis",
-      "difficulty": "Easy"
+      "name": "Roger Federer"
     },
     {
-      "name": "Whitney Houston",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Whitney Houston"
     },
     {
-      "name": "Mariah Carey",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Mariah Carey"
     },
     {
-      "name": "Madonna",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Madonna"
     },
     {
-      "name": "Prince",
-      "category": "Music",
-      "difficulty": "Medium"
+      "name": "Prince"
     },
     {
-      "name": "Snoop Dogg",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Snoop Dogg"
     },
     {
-      "name": "50 Cent",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "50 Cent"
     },
     {
-      "name": "Kanye West",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Kanye West"
     },
     {
-      "name": "Nicki Minaj",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Nicki Minaj"
     },
     {
-      "name": "Cardi B",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Cardi B"
     },
     {
-      "name": "Ariana Grande",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Ariana Grande"
     },
     {
-      "name": "Selena Gomez",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Selena Gomez"
     },
     {
-      "name": "Miley Cyrus",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Miley Cyrus"
     },
     {
-      "name": "The Weeknd",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "The Weeknd"
     },
     {
-      "name": "Ed Sheeran",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Ed Sheeran"
     },
     {
-      "name": "Shakira",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Shakira"
     },
     {
-      "name": "Jennifer Lopez",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Jennifer Lopez"
     },
     {
-      "name": "Post Malone",
-      "category": "Music",
-      "difficulty": "Medium"
+      "name": "Post Malone"
     },
     {
-      "name": "Megan Thee Stallion",
-      "category": "Music",
-      "difficulty": "Medium"
+      "name": "Megan Thee Stallion"
     },
     {
-      "name": "Travis Scott",
-      "category": "Music",
-      "difficulty": "Easy"
+      "name": "Travis Scott"
     },
     {
-      "name": "Goku",
-      "category": "Anime Character",
-      "difficulty": "Easy"
+      "name": "Goku"
     },
     {
-      "name": "Naruto Uzumaki",
-      "category": "Anime Character",
-      "difficulty": "Easy"
+      "name": "Naruto Uzumaki"
     },
     {
-      "name": "Monkey D. Luffy",
-      "category": "Anime Character",
-      "difficulty": "Medium"
+      "name": "Monkey D. Luffy"
     },
     {
-      "name": "Pikachu",
-      "category": "Game Character",
-      "difficulty": "Easy"
+      "name": "Pikachu"
     },
     {
-      "name": "Mario",
-      "category": "Game Character",
-      "difficulty": "Easy"
+      "name": "Mario"
     },
     {
-      "name": "Sonic the Hedgehog",
-      "category": "Game Character",
-      "difficulty": "Easy"
+      "name": "Sonic the Hedgehog"
     },
     {
-      "name": "Pac-Man",
-      "category": "Game Character",
-      "difficulty": "Easy"
+      "name": "Pac-Man"
     },
     {
-      "name": "Lara Croft",
-      "category": "Game Character",
-      "difficulty": "Medium"
+      "name": "Lara Croft"
     },
     {
-      "name": "Kratos",
-      "category": "Game Character",
-      "difficulty": "Medium"
+      "name": "Kratos"
     },
     {
-      "name": "Link",
-      "category": "Game Character",
-      "difficulty": "Medium"
+      "name": "Link"
     },
     {
-      "name": "Dora the Explorer",
-      "category": "TV Character",
-      "difficulty": "Easy"
+      "name": "Dora the Explorer"
     },
     {
-      "name": "Tom",
-      "category": "TV Character",
-      "difficulty": "Easy"
+      "name": "Tom"
     },
     {
-      "name": "Jerry",
-      "category": "TV Character",
-      "difficulty": "Easy"
+      "name": "Jerry"
     },
     {
-      "name": "Scooby-Doo",
-      "category": "TV Character",
-      "difficulty": "Easy"
+      "name": "Scooby-Doo"
     },
     {
-      "name": "Patrick Star",
-      "category": "TV Character",
-      "difficulty": "Easy"
+      "name": "Patrick Star"
     },
     {
-      "name": "Peter Griffin",
-      "category": "TV Character",
-      "difficulty": "Medium"
+      "name": "Peter Griffin"
     },
     {
-      "name": "Rick Sanchez",
-      "category": "TV Character",
-      "difficulty": "Medium"
+      "name": "Rick Sanchez"
     }
   ]
 }
