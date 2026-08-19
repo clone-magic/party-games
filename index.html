@@ -5703,23 +5703,10 @@
         }
 
         // ============================================================
-        //  LOAD DATA
+        //  LOAD DATA - FIXED VERSION
         // ============================================================
-        function loadFallbackData() {
-            console.log('📥 Using fallback data for testing');
-            charadesWords = [...FALLBACK_DATA.charades];
-            karaokeSongs = [...FALLBACK_DATA.karaoke];
-            fastTalkCategories = [...FALLBACK_DATA.fastTalk];
-            pictionaryWords = [...FALLBACK_DATA.pictionary];
-            hangmanWords = JSON.parse(JSON.stringify(FALLBACK_DATA.hangman));
-            truthLieData.truths = [...FALLBACK_DATA.truths];
-            truthLieData.lies = [...FALLBACK_DATA.lies];
-            roastLines = [...FALLBACK_DATA.roasts];
-            whoamiNames = [...FALLBACK_DATA.whoami];
-            console.log(`✅ Fallback data loaded: ${charadesWords.length} charades, ${whoamiNames.length} whoami, ${roastLines.length} roasts`);
-        }
 
-        async function loadData() {
+        async function loadDataFromJSON() {
             try {
                 const response = await fetch('data.json?t=' + Date.now());
                 if (!response.ok) {
@@ -5729,6 +5716,7 @@
 
                 console.log('📥 Raw data loaded:', Object.keys(data));
 
+                // Populate ALL data from JSON
                 charadesWords = data.charades || [];
                 karaokeSongs = data.karaoke || [];
                 fastTalkCategories = data.fastTalk || [];
@@ -5736,8 +5724,25 @@
                 truthLieData.truths = data.truths || [];
                 truthLieData.lies = data.lies || [];
                 roastLines = data.roasts || [];
-                whoamiNames = data.whoami || data.whoAmI || [];
 
+                // Handle whoami - support both formats
+                if (data.whoami && Array.isArray(data.whoami)) {
+                    if (data.whoami.length > 0 && typeof data.whoami[0] === 'object' && data.whoami[0].name) {
+                        whoamiNames = data.whoami.map(item => item.name);
+                    } else {
+                        whoamiNames = data.whoami;
+                    }
+                } else if (data.whoAmI && Array.isArray(data.whoAmI)) {
+                    if (data.whoAmI.length > 0 && typeof data.whoAmI[0] === 'object' && data.whoAmI[0].name) {
+                        whoamiNames = data.whoAmI.map(item => item.name);
+                    } else {
+                        whoamiNames = data.whoAmI;
+                    }
+                } else {
+                    whoamiNames = [];
+                }
+
+                // Handle hangman - support both formats
                 if (data.hangman && typeof data.hangman === 'object' && data.hangman.easy) {
                     hangmanWords = data.hangman;
                 } else if (Array.isArray(data.hangman)) {
@@ -5762,55 +5767,62 @@
                 console.log(`🔥 ${roastLines.length} roast lines`);
                 console.log(`🕵️ ${whoamiNames.length} whoami names`);
 
+                // ✅ Save to localStorage so it persists
                 saveGMData();
-                renderGameGrid();
-                renderAll();
-                renderGMData();
-                renderThemes();
                 return true;
             } catch (error) {
                 console.warn('❌ Error loading data.json:', error);
-                console.log('📥 Loading fallback data...');
-                loadFallbackData();
-                saveGMData();
-                renderGameGrid();
-                renderAll();
-                renderGMData();
-                renderThemes();
                 return false;
             }
         }
 
-        function loadPlayers() {
-            try {
-                const saved = localStorage.getItem('arcadePlayers');
-                if (saved) {
-                    const parsed = JSON.parse(saved);
-                    if (Array.isArray(parsed) && parsed.length <= MAX_PLAYERS) {
-                        players = parsed.map(p => ({
-                            ...p,
-                            history: p.history || [],
-                            streak: p.streak || 0,
-                            level: p.level || 1,
-                            totalGames: p.totalGames || 0,
-                            correctGuesses: p.correctGuesses || 0,
-                            achievements: p.achievements || [],
-                            emoji: p.emoji || EMOJIS[Math.floor(Math.random() * EMOJIS.length)],
-                            color: p.color || COLORS[Math.floor(Math.random() * COLORS.length)],
-                            team: p.team !== undefined ? p.team : null,
-                            roastCount: p.roastCount || 0
-                        }));
-                        return;
-                    }
-                }
-            } catch (e) {}
-            players = [];
+        function loadFallbackData() {
+            console.log('📥 Using fallback data for testing');
+            charadesWords = [...FALLBACK_DATA.charades];
+            karaokeSongs = [...FALLBACK_DATA.karaoke];
+            fastTalkCategories = [...FALLBACK_DATA.fastTalk];
+            pictionaryWords = [...FALLBACK_DATA.pictionary];
+            hangmanWords = JSON.parse(JSON.stringify(FALLBACK_DATA.hangman));
+            truthLieData.truths = [...FALLBACK_DATA.truths];
+            truthLieData.lies = [...FALLBACK_DATA.lies];
+            roastLines = [...FALLBACK_DATA.roasts];
+            whoamiNames = [...FALLBACK_DATA.whoami];
+            console.log(`✅ Fallback data loaded: ${charadesWords.length} charades, ${whoamiNames.length} whoami, ${roastLines.length} roasts`);
+            saveGMData();
         }
 
-        function savePlayers() {
+        function loadGMData() {
             try {
-                localStorage.setItem('arcadePlayers', JSON.stringify(players));
+                const saved = localStorage.getItem('arcadeGMData');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    // ✅ Only assign if arrays are empty (don't overwrite existing data)
+                    if (charadesWords.length === 0) charadesWords = data.charadesWords || [];
+                    if (karaokeSongs.length === 0) karaokeSongs = data.karaokeSongs || [];
+                    if (fastTalkCategories.length === 0) fastTalkCategories = data.fastTalkCategories || [];
+                    if (pictionaryWords.length === 0) pictionaryWords = data.pictionaryWords || [];
+
+                    // Check if hangmanWords is empty before loading
+                    let hangmanEmpty = true;
+                    for (const diff of ['easy', 'medium', 'hard', 'expert']) {
+                        if (hangmanWords[diff] && hangmanWords[diff].length > 0) {
+                            hangmanEmpty = false;
+                            break;
+                        }
+                    }
+                    if (hangmanEmpty && data.hangmanWords) {
+                        hangmanWords = data.hangmanWords;
+                    }
+
+                    if (truthLieData.truths.length === 0) truthLieData.truths = data.truthLieData?.truths || [];
+                    if (truthLieData.lies.length === 0) truthLieData.lies = data.truthLieData?.lies || [];
+                    if (roastLines.length === 0) roastLines = data.roastLines || [];
+                    if (whoamiNames.length === 0) whoamiNames = data.whoamiNames || [];
+
+                    return true;
+                }
             } catch (e) {}
+            return false;
         }
 
         function saveGMData() {
@@ -5828,23 +5840,84 @@
             } catch (e) {}
         }
 
-        function loadGMData() {
-            try {
-                const saved = localStorage.getItem('arcadeGMData');
-                if (saved) {
-                    const data = JSON.parse(saved);
-                    charadesWords = data.charadesWords || [];
-                    karaokeSongs = data.karaokeSongs || [];
-                    fastTalkCategories = data.fastTalkCategories || [];
-                    pictionaryWords = data.pictionaryWords || [];
-                    hangmanWords = data.hangmanWords || { easy: [], medium: [], hard: [], expert: [] };
-                    truthLieData = data.truthLieData || { truths: [], lies: [] };
-                    roastLines = data.roastLines || [];
-                    whoamiNames = data.whoamiNames || [];
-                    return true;
+        // ============================================================
+        //  INIT - FIXED VERSION
+        // ============================================================
+
+        async function init() {
+            loadThemePreference();
+            loadPlayers();
+
+            // ✅ STEP 1: Try to load from data.json FIRST
+            let dataLoaded = await loadDataFromJSON();
+
+            // ✅ STEP 2: If data.json failed, try localStorage
+            if (!dataLoaded) {
+                const hasLocalData = loadGMData();
+                if (hasLocalData) {
+                    console.log('✅ Data loaded from localStorage');
+                    dataLoaded = true;
                 }
-            } catch (e) {}
-            return false;
+            }
+
+            // ✅ STEP 3: Check if we have data, use fallback if not
+            let hasData = false;
+            for (const diff of ['easy', 'medium', 'hard', 'expert']) {
+                if (hangmanWords[diff] && hangmanWords[diff].length > 0) hasData = true;
+            }
+            if (whoamiNames.length > 0) hasData = true;
+            if (charadesWords.length > 0) hasData = true;
+            if (pictionaryWords.length > 0) hasData = true;
+            if (roastLines.length > 0) hasData = true;
+
+            if (!hasData) {
+                console.log('📥 No data found, loading fallback...');
+                loadFallbackData();
+                saveGMData();
+            } else if (!dataLoaded) {
+                // If we have data from localStorage but data.json failed, save it
+                saveGMData();
+            }
+
+            // ✅ STEP 4: Render everything
+            renderGameGrid();
+            renderAll();
+            setupGMTabs();
+            setupEventListeners();
+            renderGMData();
+            renderThemes();
+            loadSoundPreferences();
+            currentGameTimerSeconds = 30;
+
+            console.log('🎮 ARCADE PARTY loaded!');
+            console.log(`🕵️ WhoAmI: ${whoamiNames.length} names`);
+            console.log(`🧩 Hangman: ${hangmanWords.easy?.length || 0} easy, ${hangmanWords.medium?.length || 0} medium, ${hangmanWords.hard?.length || 0} hard, ${hangmanWords.expert?.length || 0} expert`);
+            console.log(`🎭 Charades: ${charadesWords.length} words`);
+            console.log(`🎨 Pictionary: ${pictionaryWords.length} words`);
+            console.log(`🎤 Karaoke: ${karaokeSongs.length} songs`);
+            console.log(`⏱️ Fast Talk: ${fastTalkCategories.length} categories`);
+            console.log(`🤥 Truths: ${truthLieData.truths.length}, Lies: ${truthLieData.lies.length}`);
+            console.log(`🔥 Roasts: ${roastLines.length} lines`);
+        }
+
+        // Keep the DOMContentLoaded listener
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if data is already loaded, if not, init will handle it
+            if (charadesWords.length === 0 || whoamiNames.length === 0) {
+                init();
+            } else {
+                // Data already loaded, just render
+                renderGameGrid();
+                renderAll();
+                renderGMData();
+                renderThemes();
+                loadSoundPreferences();
+            }
+        });
+
+        // Call init if not already called
+        if (typeof init === 'function') {
+            // init will be called by DOMContentLoaded or manually
         }
 
         // ============================================================
@@ -8714,64 +8787,10 @@
         }
 
         // ============================================================
-        //  INIT
+        //  INIT CALLED AT BOTTOM - FIXED
         // ============================================================
-        async function init() {
-            loadThemePreference();
-            loadPlayers();
-
-            const hasLocalData = loadGMData();
-
-            let hasData = false;
-            for (const diff of ['easy', 'medium', 'hard', 'expert']) {
-                if (hangmanWords[diff] && hangmanWords[diff].length > 0) hasData = true;
-            }
-            if (whoamiNames.length > 0) hasData = true;
-
-            if (!hasData) {
-                console.log('📥 Loading from data.json...');
-                await loadData();
-            } else {
-                console.log('✅ Data loaded from localStorage');
-                console.log(`🕵️ ${whoamiNames.length} whoami names loaded`);
-                console.log(`🧩 ${hangmanWords.easy?.length || 0} easy, ${hangmanWords.medium?.length || 0} medium, ${hangmanWords.hard?.length || 0} hard, ${hangmanWords.expert?.length || 0} expert hangman words`);
-            }
-
-            if (truthLieData.truths.length === 0 || truthLieData.lies.length === 0) {
-                await loadData();
-            }
-
-            renderGameGrid();
-            renderAll();
-            setupGMTabs();
-            setupEventListeners();
-            renderGMData();
-            renderThemes();
-            loadSoundPreferences();
-            currentGameTimerSeconds = 30;
-
-            console.log('🎮 ARCADE PARTY loaded!');
-            console.log(`🕵️ Final whoami count: ${whoamiNames.length}`);
-            console.log(`😀 ${EMOJIS.length} emojis available`);
-            console.log(`🔥 ${roastLines.length} roast lines available`);
-            console.log(`🧩 Hangman: ${hangmanWords.easy?.length || 0} easy, ${hangmanWords.medium?.length || 0} medium, ${hangmanWords.hard?.length || 0} hard, ${hangmanWords.expert?.length || 0} expert`);
-            console.log(`🎨 ${Object.keys(THEMES).length} themes available`);
-            console.log(`🎵 Sound system with alternatives loaded`);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            if (charadesWords.length === 0 || whoamiNames.length === 0) {
-                loadData().then(() => {
-                    renderGameGrid();
-                    renderAll();
-                    renderGMData();
-                    renderThemes();
-                    loadSoundPreferences();
-                });
-            }
-        });
-
-        init();
+        // init() is called from DOMContentLoaded above
+        // This ensures it runs after the page loads
     </script>
 </body>
 </html>
