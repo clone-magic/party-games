@@ -1,2475 +1,271 @@
 {
   "charades": [
-    "elephant",
-    "guitar",
-    "astronaut",
-    "penguin",
-    "helicopter",
-    "telescope",
-    "skateboard",
-    "volcano",
-    "tornado",
-    "mermaid",
-    "dragon",
-    "unicorn",
-    "pirate",
-    "knight",
-    "zombie",
-    "vampire",
-    "werewolf",
-    "robot",
-    "alien",
-    "superhero",
-    "ninja",
-    "samurai",
-    "gladiator",
-    "wizard",
-    "witch",
-    "fairy",
-    "genie",
-    "dinosaur",
-    "giraffe",
-    "dolphin",
-    "kangaroo",
-    "panda",
-    "koala",
-    "hedgehog",
-    "squirrel",
-    "butterfly",
-    "dragonfly",
-    "ladybug",
-    "spider",
-    "scorpion",
-    "crab",
-    "lobster",
-    "octopus",
-    "jellyfish",
-    "starfish",
-    "seahorse",
-    "whale",
-    "shark",
-    "orca",
-    "seal",
-    "walrus",
-    "polar",
-    "bear",
-    "lion",
-    "tiger",
-    "leopard",
-    "cheetah",
-    "panther",
-    "jaguar",
-    "wolf",
-    "fox",
-    "hyena",
-    "gazelle",
-    "zebra",
-    "rhino",
-    "hippo",
-    "crocodile",
-    "alligator",
-    "lizard",
-    "gecko",
-    "iguana",
-    "chameleon",
-    "snake",
-    "cobra",
-    "python",
-    "viper",
-    "turtle",
-    "tortoise",
-    "frog",
-    "toad",
-    "newt",
-    "salamander",
-    "parrot",
-    "eagle",
-    "hawk",
-    "falcon",
-    "owl",
-    "raven",
-    "crow",
-    "pigeon",
-    "sparrow",
-    "robin",
-    "bluebird",
-    "cardinal",
-    "woodpecker",
-    "hummingbird",
-    "ostrich",
-    "emu",
-    "kiwi",
-    "flamingo",
-    "swan",
-    "duck",
-    "goose",
-    "chicken",
-    "rooster",
-    "turkey",
-    "peacock",
-    "pheasant",
-    "quail",
-    "fishing",
-    "swimming",
-    "diving",
-    "surfing",
-    "skiing",
-    "snowboarding",
-    "ice",
-    "skating",
-    "rollerblading",
-    "biking",
-    "hiking",
-    "climbing",
-    "camping",
-    "cooking",
-    "baking",
-    "painting",
-    "drawing",
-    "sculpting",
-    "photography",
-    "dancing",
-    "singing",
-    "acting",
-    "directing",
-    "producing",
-    "writing",
-    "reading",
-    "meditation",
-    "yoga",
-    "gardening",
-    "woodworking",
-    "knitting",
-    "sewing",
-    "pottery",
-    "glassblowing",
-    "blacksmithing",
-    "archery",
-    "fencing",
-    "wrestling",
-    "boxing",
-    "karate",
-    "judo",
-    "taekwondo",
-    "kung",
-    "fu",
-    "capoeira",
-    "ballet",
-    "tap",
-    "jazz",
-    "modern",
-    "hip",
-    "hop",
-    "breakdance",
-    "salsa",
-    "tango",
-    "waltz",
-    "foxtrot",
-    "swing",
-    "lindy",
-    "rock",
-    "and",
-    "roll",
-    "country",
-    "blues",
-    "classical",
-    "opera",
-    "theatre",
-    "comedy",
-    "drama",
-    "horror",
-    "thriller",
-    "romance",
-    "adventure",
-    "fantasy",
-    "sci",
-    "fi",
-    "mystery",
-    "western",
-    "animation",
-    "documentary",
-    "musical",
-    "firefighter",
-    "police",
-    "doctor",
-    "nurse",
-    "teacher",
-    "pilot",
-    "train",
-    "conductor",
-    "bus",
-    "driver",
-    "taxi",
-    "chef",
-    "waiter",
-    "bartender",
-    "barista",
-    "architect",
-    "engineer",
-    "plumber",
-    "electrician",
-    "carpenter",
-    "mechanic",
-    "scientist",
-    "astronomer",
-    "geologist",
-    "biologist",
-    "chemist",
-    "physicist",
-    "mathematician",
-    "historian",
-    "philosopher",
-    "psychologist",
-    "sociologist",
-    "anthropologist",
-    "linguist",
-    "translator",
-    "interpreter",
-    "journalist",
-    "editor",
-    "publisher",
-    "librarian",
-    "curator",
-    "archivist"
+    "elephant", "guitar", "astronaut", "penguin", "helicopter", "telescope", "skateboard", "volcano", "tornado", "mermaid", "dragon", "unicorn", "pirate", "knight", "zombie", "vampire", "werewolf", "robot", "alien", "superhero", "ninja", "samurai", "gladiator", "wizard", "witch", "fairy", "genie", "dinosaur", "giraffe", "dolphin", "kangaroo", "panda", "koala", "hedgehog", "squirrel", "butterfly", "dragonfly", "ladybug", "spider", "scorpion", "crab", "lobster", "octopus", "jellyfish", "starfish", "seahorse", "whale", "shark", "orca", "seal", "walrus", "polar", "bear", "lion", "tiger", "leopard", "cheetah", "panther", "jaguar", "wolf", "fox", "hyena", "gazelle", "zebra", "rhino", "hippo", "crocodile", "alligator", "lizard", "gecko", "iguana", "chameleon", "snake", "cobra", "python", "viper", "turtle", "tortoise", "frog", "toad", "newt", "salamander", "parrot", "eagle", "hawk", "falcon", "owl", "raven", "crow", "pigeon", "sparrow", "robin", "bluebird", "cardinal", "woodpecker", "hummingbird", "ostrich", "emu", "kiwi", "flamingo", "swan", "duck", "goose", "chicken", "rooster", "turkey", "peacock", "pheasant", "quail", "fishing", "swimming", "diving", "surfing", "skiing", "snowboarding", "ice", "skating", "rollerblading", "biking", "hiking", "climbing", "camping", "cooking", "baking", "painting", "drawing", "sculpting", "photography", "dancing", "singing", "acting", "directing", "producing", "writing", "reading", "meditation", "yoga", "gardening", "woodworking", "knitting", "sewing", "pottery", "glassblowing", "blacksmithing", "archery", "fencing", "wrestling", "boxing", "karate", "judo", "taekwondo", "kung", "fu", "capoeira", "ballet", "tap", "jazz", "modern", "hip", "hop", "breakdance", "salsa", "tango", "waltz", "foxtrot", "swing", "lindy", "rock", "and", "roll", "country", "blues", "classical", "opera", "theatre", "comedy", "drama", "horror", "thriller", "romance", "adventure", "fantasy", "sci", "fi", "mystery", "western", "animation", "documentary", "musical", "firefighter", "police", "doctor", "nurse", "teacher", "pilot", "train", "conductor", "bus", "driver", "taxi", "chef", "waiter", "bartender", "barista", "architect", "engineer", "plumber", "electrician", "carpenter", "mechanic", "scientist", "astronomer", "geologist", "biologist", "chemist", "physicist", "mathematician", "historian", "philosopher", "psychologist", "sociologist", "anthropologist", "linguist", "translator", "interpreter", "journalist", "editor", "publisher", "librarian", "curator", "archivist"
   ],
   "karaoke": [
-    {
-      "title": "African Giant",
-      "artist": "Burna Boy"
-    },
-    {
-      "title": "Last Last",
-      "artist": "Burna Boy"
-    },
-    {
-      "title": "Essence",
-      "artist": "Wizkid ft Tems"
-    },
-    {
-      "title": "Calm Down",
-      "artist": "Rema"
-    },
-    {
-      "title": "Love Nwantiti",
-      "artist": "CKay"
-    },
-    {
-      "title": "Peru",
-      "artist": "Fireboy DML"
-    },
-    {
-      "title": "Sungba",
-      "artist": "Asake"
-    },
-    {
-      "title": "Rush",
-      "artist": "Ayra Starr"
-    },
-    {
-      "title": "Monalisa",
-      "artist": "Lojay"
-    },
-    {
-      "title": "Joha",
-      "artist": "Asake"
-    },
-    {
-      "title": "Bandana",
-      "artist": "Fireboy DML ft Asake"
-    },
-    {
-      "title": "Common Person",
-      "artist": "Burna Boy"
-    },
-    {
-      "title": "Sability",
-      "artist": "Ayra Starr"
-    },
-    {
-      "title": "Finesse",
-      "artist": "Pheelz ft BNXN"
-    },
-    {
-      "title": "Ku Lo Sa",
-      "artist": "Oxlade"
-    },
-    {
-      "title": "Playboy",
-      "artist": "Fireboy DML"
-    },
-    {
-      "title": "Peace Be Unto You",
-      "artist": "Asake"
-    },
-    {
-      "title": "Amapiano",
-      "artist": "Asake"
-    },
-    {
-      "title": "Terminator",
-      "artist": "Asake"
-    },
-    {
-      "title": "Lonely At The Top",
-      "artist": "Asake"
-    },
-    {
-      "title": "Duffel Bag",
-      "artist": "Rema"
-    },
-    {
-      "title": "Soundgasm",
-      "artist": "Rema"
-    },
-    {
-      "title": "Holiday",
-      "artist": "Rema"
-    },
-    {
-      "title": "Dumebi",
-      "artist": "Rema"
-    },
-    {
-      "title": "Woman",
-      "artist": "Rema"
-    },
-    {
-      "title": "Fever",
-      "artist": "Wizkid"
-    },
-    {
-      "title": "Joro",
-      "artist": "Wizkid"
-    },
-    {
-      "title": "Smile",
-      "artist": "Wizkid ft H.E.R."
-    },
-    {
-      "title": "Ginger",
-      "artist": "Wizkid ft Burna Boy"
-    },
-    {
-      "title": "Soco",
-      "artist": "Wizkid ft Starboy"
-    },
-    {
-      "title": "Ojuelegba",
-      "artist": "Wizkid"
-    },
-    {
-      "title": "Carry Me Go",
-      "artist": "Wizkid"
-    },
-    {
-      "title": "Manya",
-      "artist": "Wizkid"
-    },
-    {
-      "title": "Fall",
-      "artist": "Davido"
-    },
-    {
-      "title": "If",
-      "artist": "Davido"
-    },
-    {
-      "title": "Jowo",
-      "artist": "Davido"
-    },
-    {
-      "title": "Fem",
-      "artist": "Davido"
-    },
-    {
-      "title": "Risky",
-      "artist": "Davido ft Popcaan"
-    },
-    {
-      "title": "Skelewu",
-      "artist": "Davido"
-    },
-    {
-      "title": "Gobe",
-      "artist": "Davido"
-    },
-    {
-      "title": "Dami Duro",
-      "artist": "Davido"
-    },
-    {
-      "title": "Aye",
-      "artist": "Davido"
-    },
-    {
-      "title": "Assurance",
-      "artist": "Davido"
-    },
-    {
-      "title": "Blow My Mind",
-      "artist": "Davido ft Chris Brown"
-    },
-    {
-      "title": "Ye",
-      "artist": "Burna Boy"
-    },
-    {
-      "title": "On The Low",
-      "artist": "Burna Boy"
-    },
-    {
-      "title": "Anybody",
-      "artist": "Burna Boy"
-    },
-    {
-      "title": "Way Too Big",
-      "artist": "Burna Boy"
-    },
-    {
-      "title": "Dangote",
-      "artist": "Burna Boy"
-    },
-    {
-      "title": "Gbona",
-      "artist": "Burna Boy"
-    },
-    {
-      "title": "Killin Dem",
-      "artist": "Burna Boy"
-    },
-    {
-      "title": "Soke",
-      "artist": "Burna Boy"
-    },
-    {
-      "title": "Check And Balance",
-      "artist": "Burna Boy"
-    },
-    {
-      "title": "Collateral Damage",
-      "artist": "Burna Boy"
-    },
-    {
-      "title": "Omo Ilu",
-      "artist": "Burna Boy"
-    },
-    {
-      "title": "My Love",
-      "artist": "Iyanya ft Wizkid"
-    },
-    {
-      "title": "Kukere",
-      "artist": "Iyanya"
-    },
-    {
-      "title": "Ur Waist",
-      "artist": "Iyanya"
-    },
-    {
-      "title": "Mama",
-      "artist": "Mayorkun"
-    },
-    {
-      "title": "Geng",
-      "artist": "Mayorkun"
-    },
-    {
-      "title": "Of Lagos",
-      "artist": "Mayorkun"
-    },
-    {
-      "title": "Pele",
-      "artist": "Mayorkun"
-    },
-    {
-      "title": "Betty Butter",
-      "artist": "Mayorkun"
-    },
-    {
-      "title": "Holy Father",
-      "artist": "Mayorkun ft Davido"
-    },
-    {
-      "title": "Won Da Mo",
-      "artist": "Mayorkun"
-    },
-    {
-      "title": "Highway",
-      "artist": "Mayorkun"
-    },
-    {
-      "title": "Mafo",
-      "artist": "Naira Marley"
-    },
-    {
-      "title": "Soapy",
-      "artist": "Naira Marley"
-    },
-    {
-      "title": "Tesumole",
-      "artist": "Naira Marley"
-    },
-    {
-      "title": "Kojosese",
-      "artist": "Naira Marley"
-    },
-    {
-      "title": "Coming",
-      "artist": "Naira Marley"
-    },
-    {
-      "title": "Opotoyi",
-      "artist": "Naira Marley"
-    },
-    {
-      "title": "Puta",
-      "artist": "Naira Marley"
-    },
-    {
-      "title": "Aye",
-      "artist": "Naira Marley"
-    },
-    {
-      "title": "Shishi",
-      "artist": "Naira Marley"
-    },
-    {
-      "title": "Jaiye",
-      "artist": "Olamide"
-    },
-    {
-      "title": "Motigbana",
-      "artist": "Olamide"
-    },
-    {
-      "title": "Science Student",
-      "artist": "Olamide"
-    },
-    {
-      "title": "Who You Epp",
-      "artist": "Olamide"
-    },
-    {
-      "title": "Woske",
-      "artist": "Olamide"
-    },
-    {
-      "title": "Bobo",
-      "artist": "Olamide"
-    },
-    {
-      "title": "Omo Ologo",
-      "artist": "Olamide"
-    },
-    {
-      "title": "Melody",
-      "artist": "Olamide"
-    },
-    {
-      "title": "Falila Ketan",
-      "artist": "Olamide"
-    },
-    {
-      "title": "Green Light",
-      "artist": "Olamide"
-    },
-    {
-      "title": "Glory",
-      "artist": "Olamide"
-    },
-    {
-      "title": "Oghene",
-      "artist": "Olamide"
-    },
-    {
-      "title": "Kana",
-      "artist": "Olamide"
-    },
-    {
-      "title": "Nibo",
-      "artist": "Phyno"
-    },
-    {
-      "title": "Fada Fada",
-      "artist": "Phyno ft Olamide"
-    },
-    {
-      "title": "Connect",
-      "artist": "Phyno"
-    },
-    {
-      "title": "Man Of The Year",
-      "artist": "Phyno"
-    },
-    {
-      "title": "O Set",
-      "artist": "Phyno"
-    },
-    {
-      "title": "Gbo Gan",
-      "artist": "Phyno"
-    },
-    {
-      "title": "Ojuju",
-      "artist": "Phyno"
-    },
-    {
-      "title": "Nwoke Oma",
-      "artist": "Phyno"
-    },
-    {
-      "title": "Alright",
-      "artist": "Phyno"
-    },
-    {
-      "title": "Ride Or Die",
-      "artist": "Flavour"
-    },
-    {
-      "title": "Ada Ada",
-      "artist": "Flavour"
-    },
-    {
-      "title": "Nwa Baby",
-      "artist": "Flavour"
-    },
-    {
-      "title": "Oyi",
-      "artist": "Flavour"
-    },
-    {
-      "title": "Kwarikwa",
-      "artist": "Flavour"
-    },
-    {
-      "title": "Ijele",
-      "artist": "Flavour"
-    },
-    {
-      "title": "Ashawo",
-      "artist": "Flavour"
-    },
-    {
-      "title": "Golibe",
-      "artist": "Flavour"
-    },
-    {
-      "title": "Onyinye",
-      "artist": "Flavour"
-    },
-    {
-      "title": "Do Like That",
-      "artist": "Flavour"
-    },
-    {
-      "title": "Mannish",
-      "artist": "Flavour"
-    },
-    {
-      "title": "Chinny Baby",
-      "artist": "Flavour"
-    },
-    {
-      "title": "Personally",
-      "artist": "P-Square"
-    },
-    {
-      "title": "Chop My Money",
-      "artist": "P-Square"
-    },
-    {
-      "title": "Alingo",
-      "artist": "P-Square"
-    },
-    {
-      "title": "E No Easy",
-      "artist": "P-Square"
-    },
-    {
-      "title": "Ifunanya",
-      "artist": "P-Square"
-    },
-    {
-      "title": "Beautiful Onyinye",
-      "artist": "P-Square"
-    },
-    {
-      "title": "Shekini",
-      "artist": "P-Square"
-    },
-    {
-      "title": "Temptation",
-      "artist": "P-Square"
-    },
-    {
-      "title": "Bizzy Body",
-      "artist": "P-Square"
-    },
-    {
-      "title": "Chukwu Ugo",
-      "artist": "P-Square"
-    },
-    {
-      "title": "Fall In Love",
-      "artist": "D'banj"
-    },
-    {
-      "title": "Oliver Twist",
-      "artist": "D'banj"
-    },
-    {
-      "title": "Scape Goat",
-      "artist": "D'banj"
-    },
-    {
-      "title": "Top Of The World",
-      "artist": "D'banj"
-    },
-    {
-      "title": "Sister Caro",
-      "artist": "D'banj"
-    },
-    {
-      "title": "Mr Endowed",
-      "artist": "D'banj"
-    },
-    {
-      "title": "Why Me",
-      "artist": "D'banj"
-    },
-    {
-      "title": "Mobolowowon",
-      "artist": "D'banj"
-    },
-    {
-      "title": "Olorun Maje",
-      "artist": "D'banj"
-    },
-    {
-      "title": "Kokose",
-      "artist": "D'banj"
-    },
-    {
-      "title": "African Queen",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Implication",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Only Me",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Opo",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Gaaga Shuffle",
-      "artist": "2Baba"
-    },
-    {
-      "title": "No Shaking",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Nfana Ibaga",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Ole",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Baby",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Dance In The Rain",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Kele Kele Love",
-      "artist": "2Baba"
-    },
-    {
-      "title": "See Me So",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Right Here",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Ife Nwanyi",
-      "artist": "2Baba"
-    },
-    {
-      "title": "E Don Happen",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Pata Pata",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Hold On",
-      "artist": "2Baba"
-    },
-    {
-      "title": "I Go Die",
-      "artist": "2Baba"
-    },
-    {
-      "title": "My Baby",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Testify",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Sweet Mother",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Good Life",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Still Standing",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Call My Name",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Let Somebody Love You",
-      "artist": "2Baba"
-    },
-    {
-      "title": "All Of You",
-      "artist": "2Baba"
-    },
-    {
-      "title": "My Love",
-      "artist": "2Baba"
-    },
-    {
-      "title": "One Love",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Together",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Amaka",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Kele",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Bother You",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Falling In Love",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Be With You",
-      "artist": "2Baba"
-    },
-    {
-      "title": "Mood",
-      "artist": "Tiwa Savage"
-    },
-    {
-      "title": "Koroba",
-      "artist": "Tiwa Savage"
-    },
-    {
-      "title": "Park Well",
-      "artist": "Tiwa Savage"
-    },
-    {
-      "title": "49-99",
-      "artist": "Tiwa Savage"
-    },
-    {
-      "title": "Ma Lo",
-      "artist": "Tiwa Savage"
-    },
-    {
-      "title": "Ife Wa Gbona",
-      "artist": "Tiwa Savage"
-    },
-    {
-      "title": "Love In The Air",
-      "artist": "Tiwa Savage"
-    },
-    {
-      "title": "Don't Disturb Me",
-      "artist": "Tiwa Savage"
-    },
-    {
-      "title": "One Night Only",
-      "artist": "Tiwa Savage"
-    },
-    {
-      "title": "Ojere",
-      "artist": "Tiwa Savage"
-    },
-    {
-      "title": "Caro",
-      "artist": "Tiwa Savage"
-    },
-    {
-      "title": "Dangerous",
-      "artist": "Tiwa Savage"
-    },
-    {
-      "title": "Sweet Love",
-      "artist": "Tiwa Savage"
-    },
-    {
-      "title": "Pick Up",
-      "artist": "Tiwa Savage"
-    },
-    {
-      "title": "Shout Out",
-      "artist": "Tiwa Savage"
-    },
-    {
-      "title": "Baby Ko",
-      "artist": "Tiwa Savage"
-    },
-    {
-      "title": "Tshwala Bam",
-      "artist": "TitoM & Yuppe"
-    },
-    {
-      "title": "Kante",
-      "artist": "Davido"
-    },
-    {
-      "title": "No Wahala",
-      "artist": "1da Banton"
-    },
-    {
-      "title": "Jaiye",
-      "artist": "Rema"
-    },
-    {
-      "title": "Charm",
-      "artist": "Rema"
-    },
-    {
-      "title": "Hehehe",
-      "artist": "Rema"
-    },
-    {
-      "title": "DND",
-      "artist": "Rema"
-    },
-    {
-      "title": "Trouble",
-      "artist": "Rema"
-    },
-    {
-      "title": "Don't Call Me",
-      "artist": "Rema"
-    },
-    {
-      "title": "Benin Boys",
-      "artist": "Rema"
-    },
-    {
-      "title": "Ozeba",
-      "artist": "Rema"
-    },
-    {
-      "title": "Yayo",
-      "artist": "Rema"
-    },
-    {
-      "title": "Island",
-      "artist": "Rema"
-    },
-    {
-      "title": "Ginger Me",
-      "artist": "Rema"
-    },
-    {
-      "title": "Marrow",
-      "artist": "Rema"
-    }
+    {"title": "African Giant", "artist": "Burna Boy"},
+    {"title": "Last Last", "artist": "Burna Boy"},
+    {"title": "Essence", "artist": "Wizkid ft Tems"},
+    {"title": "Calm Down", "artist": "Rema"},
+    {"title": "Love Nwantiti", "artist": "CKay"},
+    {"title": "Peru", "artist": "Fireboy DML"},
+    {"title": "Sungba", "artist": "Asake"},
+    {"title": "Rush", "artist": "Ayra Starr"},
+    {"title": "Monalisa", "artist": "Lojay"},
+    {"title": "Joha", "artist": "Asake"},
+    {"title": "Bandana", "artist": "Fireboy DML ft Asake"},
+    {"title": "Common Person", "artist": "Burna Boy"},
+    {"title": "Sability", "artist": "Ayra Starr"},
+    {"title": "Finesse", "artist": "Pheelz ft BNXN"},
+    {"title": "Ku Lo Sa", "artist": "Oxlade"},
+    {"title": "Playboy", "artist": "Fireboy DML"},
+    {"title": "Peace Be Unto You", "artist": "Asake"},
+    {"title": "Amapiano", "artist": "Asake"},
+    {"title": "Terminator", "artist": "Asake"},
+    {"title": "Lonely At The Top", "artist": "Asake"},
+    {"title": "Duffel Bag", "artist": "Rema"},
+    {"title": "Soundgasm", "artist": "Rema"},
+    {"title": "Holiday", "artist": "Rema"},
+    {"title": "Dumebi", "artist": "Rema"},
+    {"title": "Woman", "artist": "Rema"},
+    {"title": "Fever", "artist": "Wizkid"},
+    {"title": "Joro", "artist": "Wizkid"},
+    {"title": "Smile", "artist": "Wizkid ft H.E.R."},
+    {"title": "Ginger", "artist": "Wizkid ft Burna Boy"},
+    {"title": "Soco", "artist": "Wizkid ft Starboy"},
+    {"title": "Ojuelegba", "artist": "Wizkid"},
+    {"title": "Carry Me Go", "artist": "Wizkid"},
+    {"title": "Manya", "artist": "Wizkid"},
+    {"title": "Fall", "artist": "Davido"},
+    {"title": "If", "artist": "Davido"},
+    {"title": "Jowo", "artist": "Davido"},
+    {"title": "Fem", "artist": "Davido"},
+    {"title": "Risky", "artist": "Davido ft Popcaan"},
+    {"title": "Skelewu", "artist": "Davido"},
+    {"title": "Gobe", "artist": "Davido"},
+    {"title": "Dami Duro", "artist": "Davido"},
+    {"title": "Aye", "artist": "Davido"},
+    {"title": "Assurance", "artist": "Davido"},
+    {"title": "Blow My Mind", "artist": "Davido ft Chris Brown"},
+    {"title": "Ye", "artist": "Burna Boy"},
+    {"title": "On The Low", "artist": "Burna Boy"},
+    {"title": "Anybody", "artist": "Burna Boy"},
+    {"title": "Way Too Big", "artist": "Burna Boy"},
+    {"title": "Dangote", "artist": "Burna Boy"},
+    {"title": "Gbona", "artist": "Burna Boy"},
+    {"title": "Killin Dem", "artist": "Burna Boy"},
+    {"title": "Soke", "artist": "Burna Boy"},
+    {"title": "Check And Balance", "artist": "Burna Boy"},
+    {"title": "Collateral Damage", "artist": "Burna Boy"},
+    {"title": "Omo Ilu", "artist": "Burna Boy"},
+    {"title": "My Love", "artist": "Iyanya ft Wizkid"},
+    {"title": "Kukere", "artist": "Iyanya"},
+    {"title": "Ur Waist", "artist": "Iyanya"},
+    {"title": "Mama", "artist": "Mayorkun"},
+    {"title": "Geng", "artist": "Mayorkun"},
+    {"title": "Of Lagos", "artist": "Mayorkun"},
+    {"title": "Pele", "artist": "Mayorkun"},
+    {"title": "Betty Butter", "artist": "Mayorkun"},
+    {"title": "Holy Father", "artist": "Mayorkun ft Davido"},
+    {"title": "Won Da Mo", "artist": "Mayorkun"},
+    {"title": "Highway", "artist": "Mayorkun"},
+    {"title": "Mafo", "artist": "Naira Marley"},
+    {"title": "Soapy", "artist": "Naira Marley"},
+    {"title": "Tesumole", "artist": "Naira Marley"},
+    {"title": "Kojosese", "artist": "Naira Marley"},
+    {"title": "Coming", "artist": "Naira Marley"},
+    {"title": "Opotoyi", "artist": "Naira Marley"},
+    {"title": "Puta", "artist": "Naira Marley"},
+    {"title": "Aye", "artist": "Naira Marley"},
+    {"title": "Shishi", "artist": "Naira Marley"},
+    {"title": "Jaiye", "artist": "Olamide"},
+    {"title": "Motigbana", "artist": "Olamide"},
+    {"title": "Science Student", "artist": "Olamide"},
+    {"title": "Who You Epp", "artist": "Olamide"},
+    {"title": "Woske", "artist": "Olamide"},
+    {"title": "Bobo", "artist": "Olamide"},
+    {"title": "Omo Ologo", "artist": "Olamide"},
+    {"title": "Melody", "artist": "Olamide"},
+    {"title": "Falila Ketan", "artist": "Olamide"},
+    {"title": "Green Light", "artist": "Olamide"},
+    {"title": "Glory", "artist": "Olamide"},
+    {"title": "Oghene", "artist": "Olamide"},
+    {"title": "Kana", "artist": "Olamide"},
+    {"title": "Nibo", "artist": "Phyno"},
+    {"title": "Fada Fada", "artist": "Phyno ft Olamide"},
+    {"title": "Connect", "artist": "Phyno"},
+    {"title": "Man Of The Year", "artist": "Phyno"},
+    {"title": "O Set", "artist": "Phyno"},
+    {"title": "Gbo Gan", "artist": "Phyno"},
+    {"title": "Ojuju", "artist": "Phyno"},
+    {"title": "Nwoke Oma", "artist": "Phyno"},
+    {"title": "Alright", "artist": "Phyno"},
+    {"title": "Ride Or Die", "artist": "Flavour"},
+    {"title": "Ada Ada", "artist": "Flavour"},
+    {"title": "Nwa Baby", "artist": "Flavour"},
+    {"title": "Oyi", "artist": "Flavour"},
+    {"title": "Kwarikwa", "artist": "Flavour"},
+    {"title": "Ijele", "artist": "Flavour"},
+    {"title": "Ashawo", "artist": "Flavour"},
+    {"title": "Golibe", "artist": "Flavour"},
+    {"title": "Onyinye", "artist": "Flavour"},
+    {"title": "Do Like That", "artist": "Flavour"},
+    {"title": "Mannish", "artist": "Flavour"},
+    {"title": "Chinny Baby", "artist": "Flavour"},
+    {"title": "Personally", "artist": "P-Square"},
+    {"title": "Chop My Money", "artist": "P-Square"},
+    {"title": "Alingo", "artist": "P-Square"},
+    {"title": "E No Easy", "artist": "P-Square"},
+    {"title": "Ifunanya", "artist": "P-Square"},
+    {"title": "Beautiful Onyinye", "artist": "P-Square"},
+    {"title": "Shekini", "artist": "P-Square"},
+    {"title": "Temptation", "artist": "P-Square"},
+    {"title": "Bizzy Body", "artist": "P-Square"},
+    {"title": "Chukwu Ugo", "artist": "P-Square"},
+    {"title": "Fall In Love", "artist": "D'banj"},
+    {"title": "Oliver Twist", "artist": "D'banj"},
+    {"title": "Scape Goat", "artist": "D'banj"},
+    {"title": "Top Of The World", "artist": "D'banj"},
+    {"title": "Sister Caro", "artist": "D'banj"},
+    {"title": "Mr Endowed", "artist": "D'banj"},
+    {"title": "Why Me", "artist": "D'banj"},
+    {"title": "Mobolowowon", "artist": "D'banj"},
+    {"title": "Olorun Maje", "artist": "D'banj"},
+    {"title": "Kokose", "artist": "D'banj"},
+    {"title": "African Queen", "artist": "2Baba"},
+    {"title": "Implication", "artist": "2Baba"},
+    {"title": "Only Me", "artist": "2Baba"},
+    {"title": "Opo", "artist": "2Baba"},
+    {"title": "Gaaga Shuffle", "artist": "2Baba"},
+    {"title": "No Shaking", "artist": "2Baba"},
+    {"title": "Nfana Ibaga", "artist": "2Baba"},
+    {"title": "Ole", "artist": "2Baba"},
+    {"title": "Baby", "artist": "2Baba"},
+    {"title": "Dance In The Rain", "artist": "2Baba"},
+    {"title": "Kele Kele Love", "artist": "2Baba"},
+    {"title": "See Me So", "artist": "2Baba"},
+    {"title": "Right Here", "artist": "2Baba"},
+    {"title": "Ife Nwanyi", "artist": "2Baba"},
+    {"title": "E Don Happen", "artist": "2Baba"},
+    {"title": "Pata Pata", "artist": "2Baba"},
+    {"title": "Hold On", "artist": "2Baba"},
+    {"title": "I Go Die", "artist": "2Baba"},
+    {"title": "My Baby", "artist": "2Baba"},
+    {"title": "Testify", "artist": "2Baba"},
+    {"title": "Sweet Mother", "artist": "2Baba"},
+    {"title": "Good Life", "artist": "2Baba"},
+    {"title": "Still Standing", "artist": "2Baba"},
+    {"title": "Call My Name", "artist": "2Baba"},
+    {"title": "Let Somebody Love You", "artist": "2Baba"},
+    {"title": "All Of You", "artist": "2Baba"},
+    {"title": "My Love", "artist": "2Baba"},
+    {"title": "One Love", "artist": "2Baba"},
+    {"title": "Together", "artist": "2Baba"},
+    {"title": "Amaka", "artist": "2Baba"},
+    {"title": "Kele", "artist": "2Baba"},
+    {"title": "Bother You", "artist": "2Baba"},
+    {"title": "Falling In Love", "artist": "2Baba"},
+    {"title": "Be With You", "artist": "2Baba"},
+    {"title": "Mood", "artist": "Tiwa Savage"},
+    {"title": "Koroba", "artist": "Tiwa Savage"},
+    {"title": "Park Well", "artist": "Tiwa Savage"},
+    {"title": "49-99", "artist": "Tiwa Savage"},
+    {"title": "Ma Lo", "artist": "Tiwa Savage"},
+    {"title": "Ife Wa Gbona", "artist": "Tiwa Savage"},
+    {"title": "Love In The Air", "artist": "Tiwa Savage"},
+    {"title": "Don't Disturb Me", "artist": "Tiwa Savage"},
+    {"title": "One Night Only", "artist": "Tiwa Savage"},
+    {"title": "Ojere", "artist": "Tiwa Savage"},
+    {"title": "Caro", "artist": "Tiwa Savage"},
+    {"title": "Dangerous", "artist": "Tiwa Savage"},
+    {"title": "Sweet Love", "artist": "Tiwa Savage"},
+    {"title": "Pick Up", "artist": "Tiwa Savage"},
+    {"title": "Shout Out", "artist": "Tiwa Savage"},
+    {"title": "Baby Ko", "artist": "Tiwa Savage"},
+    {"title": "Tshwala Bam", "artist": "TitoM & Yuppe"},
+    {"title": "Kante", "artist": "Davido"},
+    {"title": "No Wahala", "artist": "1da Banton"},
+    {"title": "Jaiye", "artist": "Rema"},
+    {"title": "Charm", "artist": "Rema"},
+    {"title": "Hehehe", "artist": "Rema"},
+    {"title": "DND", "artist": "Rema"},
+    {"title": "Trouble", "artist": "Rema"},
+    {"title": "Don't Call Me", "artist": "Rema"},
+    {"title": "Benin Boys", "artist": "Rema"},
+    {"title": "Ozeba", "artist": "Rema"},
+    {"title": "Yayo", "artist": "Rema"},
+    {"title": "Island", "artist": "Rema"},
+    {"title": "Ginger Me", "artist": "Rema"},
+    {"title": "Marrow", "artist": "Rema"}
   ],
   "hangman": [
-    "adventure",
-    "butterfly",
-    "chocolate",
-    "dinosaur",
-    "elephant",
-    "fountain",
-    "giraffe",
-    "harmony",
-    "island",
-    "jungle",
-    "kingdom",
-    "liberty",
-    "monster",
-    "nature",
-    "ocean",
-    "planet",
-    "queen",
-    "rainbow",
-    "silver",
-    "tiger",
-    "umbrella",
-    "victory",
-    "whisper",
-    "xylophone",
-    "yellow",
-    "zebra",
-    "angel",
-    "bridge",
-    "castle",
-    "dragon",
-    "eagle",
-    "flame",
-    "garden",
-    "heart",
-    "image",
-    "joker",
-    "knight",
-    "light",
-    "magic",
-    "night",
-    "orbit",
-    "peace",
-    "quest",
-    "river",
-    "storm",
-    "tower",
-    "uncle",
-    "valley",
-    "water",
-    "xenon",
-    "youth",
-    "zoo",
-    "apple",
-    "banana",
-    "cloud",
-    "dream",
-    "eclipse",
-    "forest",
-    "glass",
-    "happy",
-    "iron",
-    "jewel",
-    "kernel",
-    "labor",
-    "market",
-    "noble",
-    "orange",
-    "pencil",
-    "quartz",
-    "radar",
-    "sugar",
-    "table",
-    "umbra",
-    "vessel",
-    "winter",
-    "xerox",
-    "yield",
-    "action",
-    "balance",
-    "camera",
-    "danger",
-    "energy",
-    "flower",
-    "global",
-    "honest",
-    "ideal",
-    "jumper",
-    "loyal",
-    "mystery",
-    "nobody",
-    "object",
-    "people",
-    "result",
-    "travel",
-    "unique",
-    "value",
-    "window",
-    "young",
-    "bright",
-    "crystal",
-    "destiny",
-    "equator",
-    "freedom",
-    "glacier",
-    "horizon",
-    "infinite",
-    "justice",
-    "legend",
-    "morning",
-    "northern",
-    "oasis",
-    "passion",
-    "refuge",
-    "safari",
-    "temple",
-    "universe",
-    "voyage",
-    "wisdom",
-    "xenolith",
-    "yearning",
-    "zenith",
-    "academy",
-    "biscuit",
-    "cactus",
-    "desert",
-    "engine",
-    "flamingo",
-    "gondola",
-    "harvest",
-    "illness",
-    "jacket",
-    "kitchen",
-    "lantern",
-    "mercury",
-    "napkin",
-    "oxygen",
-    "puzzle",
-    "reptile",
-    "saturn",
-    "turtle",
-    "upgrade",
-    "vulture",
-    "walrus",
-    "xenial"
+    "adventure", "butterfly", "chocolate", "dinosaur", "elephant", "fountain", "giraffe", "harmony", "island", "jungle", "kingdom", "liberty", "monster", "nature", "ocean", "planet", "queen", "rainbow", "silver", "tiger", "umbrella", "victory", "whisper", "xylophone", "yellow", "zebra", "angel", "bridge", "castle", "dragon", "eagle", "flame", "garden", "heart", "image", "joker", "knight", "light", "magic", "night", "orbit", "peace", "quest", "river", "storm", "tower", "uncle", "valley", "water", "xenon", "youth", "zoo", "apple", "banana", "cloud", "dream", "eclipse", "forest", "glass", "happy", "iron", "jewel", "kernel", "labor", "market", "noble", "orange", "pencil", "quartz", "radar", "sugar", "table", "umbra", "vessel", "winter", "xerox", "yield", "action", "balance", "camera", "danger", "energy", "flower", "global", "honest", "ideal", "jumper", "loyal", "mystery", "nobody", "object", "people", "result", "travel", "unique", "value", "window", "young", "bright", "crystal", "destiny", "equator", "freedom", "glacier", "horizon", "infinite", "justice", "legend", "morning", "northern", "oasis", "passion", "refuge", "safari", "temple", "universe", "voyage", "wisdom", "xenolith", "yearning", "zenith", "academy", "biscuit", "cactus", "desert", "engine", "flamingo", "gondola", "harvest", "illness", "jacket", "kitchen", "lantern", "mercury", "napkin", "oxygen", "puzzle", "reptile", "saturn", "turtle", "upgrade", "vulture", "walrus", "xenial"
   ],
   "pictionary": [
-    "house",
-    "tree",
-    "car",
-    "dog",
-    "cat",
-    "sun",
-    "moon",
-    "star",
-    "fish",
-    "bird",
-    "apple",
-    "banana",
-    "pizza",
-    "cake",
-    "ice",
-    "cream",
-    "rain",
-    "snow",
-    "cloud",
-    "rainbow",
-    "mountain",
-    "river",
-    "lake",
-    "ocean",
-    "beach",
-    "desert",
-    "forest",
-    "flower",
-    "grass",
-    "leaf",
-    "rock",
-    "fire",
-    "water",
-    "wind",
-    "heart",
-    "smile",
-    "face",
-    "eye",
-    "mouth",
-    "hand",
-    "foot",
-    "chair",
-    "table",
-    "bed",
-    "door",
-    "window",
-    "book",
-    "pen",
-    "pencil",
-    "clock",
-    "key",
-    "phone",
-    "computer",
-    "television",
-    "radio",
-    "guitar",
-    "piano",
-    "drums",
-    "cup",
-    "plate",
-    "fork",
-    "spoon",
-    "knife",
-    "pot",
-    "pan",
-    "hat",
-    "shoe",
-    "shirt",
-    "pants",
-    "dress",
-    "coat",
-    "scarf",
-    "glove",
-    "mirror",
-    "comb",
-    "brush",
-    "soap",
-    "towel",
-    "shampoo",
-    "toothbrush",
-    "toothpaste",
-    "bottle",
-    "glass",
-    "box",
-    "bag",
-    "gift",
-    "present",
-    "ball",
-    "toy",
-    "train",
-    "boat",
-    "plane",
-    "bicycle",
-    "motorcycle",
-    "truck",
-    "bus",
-    "castle",
-    "tower",
-    "bridge",
-    "tunnel",
-    "rocket",
-    "satellite",
-    "telescope",
-    "microscope",
-    "stethoscope",
-    "syringe",
-    "bandage",
-    "crutch",
-    "wheelchair",
-    "cane",
-    "umbrella",
-    "lantern",
-    "flashlight",
-    "camera",
-    "binoculars",
-    "compass",
-    "map",
-    "calendar",
-    "diary",
-    "notebook",
-    "envelope",
-    "stamp",
-    "postcard"
+    "house", "tree", "car", "dog", "cat", "sun", "moon", "star", "fish", "bird", "apple", "banana", "pizza", "cake", "ice", "cream", "rain", "snow", "cloud", "rainbow", "mountain", "river", "lake", "ocean", "beach", "desert", "forest", "flower", "grass", "leaf", "rock", "fire", "water", "wind", "heart", "smile", "face", "eye", "mouth", "hand", "foot", "chair", "table", "bed", "door", "window", "book", "pen", "pencil", "clock", "key", "phone", "computer", "television", "radio", "guitar", "piano", "drums", "cup", "plate", "fork", "spoon", "knife", "pot", "pan", "hat", "shoe", "shirt", "pants", "dress", "coat", "scarf", "glove", "mirror", "comb", "brush", "soap", "towel", "shampoo", "toothbrush", "toothpaste", "bottle", "glass", "box", "bag", "gift", "present", "ball", "toy", "train", "boat", "plane", "bicycle", "motorcycle", "truck", "bus", "castle", "tower", "bridge", "tunnel", "rocket", "satellite", "telescope", "microscope", "stethoscope", "syringe", "bandage", "crutch", "wheelchair", "cane", "umbrella", "lantern", "flashlight", "camera", "binoculars", "compass", "map", "calendar", "diary", "notebook", "envelope", "stamp", "postcard"
   ],
   "fastTalk": [
-    {
-      "name": "Fruits",
-      "items": [
-        "apple",
-        "banana",
-        "orange",
-        "grape",
-        "strawberry",
-        "kiwi",
-        "mango",
-        "pineapple",
-        "watermelon",
-        "peach",
-        "plum",
-        "cherry",
-        "lemon",
-        "lime",
-        "coconut"
-      ]
-    },
-    {
-      "name": "Vegetables",
-      "items": [
-        "carrot",
-        "broccoli",
-        "spinach",
-        "kale",
-        "cabbage",
-        "lettuce",
-        "onion",
-        "garlic",
-        "pepper",
-        "tomato",
-        "potato",
-        "yam",
-        "cucumber",
-        "zucchini",
-        "eggplant"
-      ]
-    },
-    {
-      "name": "Countries",
-      "items": [
-        "nigeria",
-        "ghana",
-        "kenya",
-        "south africa",
-        "egypt",
-        "morocco",
-        "usa",
-        "canada",
-        "uk",
-        "france",
-        "germany",
-        "italy",
-        "spain",
-        "brazil",
-        "australia"
-      ]
-    },
-    {
-      "name": "Cities",
-      "items": [
-        "lagos",
-        "abuja",
-        "nairobi",
-        "cape town",
-        "cairo",
-        "casablanca",
-        "new york",
-        "london",
-        "paris",
-        "tokyo",
-        "sydney",
-        "rio",
-        "moscow",
-        "dubai",
-        "singapore"
-      ]
-    },
-    {
-      "name": "Animals",
-      "items": [
-        "lion",
-        "tiger",
-        "bear",
-        "eagle",
-        "shark",
-        "wolf",
-        "fox",
-        "elephant",
-        "giraffe",
-        "zebra",
-        "hippo",
-        "rhino",
-        "crocodile",
-        "snake",
-        "lizard"
-      ]
-    },
-    {
-      "name": "Birds",
-      "items": [
-        "eagle",
-        "hawk",
-        "falcon",
-        "owl",
-        "raven",
-        "crow",
-        "parrot",
-        "peacock",
-        "flamingo",
-        "swan",
-        "duck",
-        "goose",
-        "chicken",
-        "rooster",
-        "turkey"
-      ]
-    },
-    {
-      "name": "Fish",
-      "items": [
-        "salmon",
-        "tuna",
-        "cod",
-        "trout",
-        "bass",
-        "catfish",
-        "tilapia",
-        "mackerel",
-        "sardine",
-        "anchovy",
-        "herring",
-        "haddock",
-        "halibut",
-        "mahi",
-        "mahi"
-      ]
-    },
-    {
-      "name": "Sports",
-      "items": [
-        "soccer",
-        "basketball",
-        "tennis",
-        "cricket",
-        "rugby",
-        "baseball",
-        "golf",
-        "boxing",
-        "wrestling",
-        "swimming",
-        "athletics",
-        "cycling",
-        "skateboarding",
-        "surfing",
-        "skiing"
-      ]
-    },
-    {
-      "name": "Movies",
-      "items": [
-        "titanic",
-        "avatar",
-        "inception",
-        "gladiator",
-        "frozen",
-        "jaws",
-        "lion king",
-        "matrix",
-        "star wars",
-        "jurassic park",
-        "harry potter",
-        "lord of the rings",
-        "avengers",
-        "black panther",
-        "wakanda"
-      ]
-    },
-    {
-      "name": "Actors",
-      "items": [
-        "denzel",
-        "will",
-        "smith",
-        "johnny",
-        "depp",
-        "leonardo",
-        "dicaprio",
-        "tom",
-        "hanks",
-        "brad",
-        "pitt",
-        "angelina",
-        "jolie",
-        "jennifer",
-        "lawrence",
-        "ryan",
-        "gosling"
-      ]
-    },
-    {
-      "name": "Singers",
-      "items": [
-        "burna boy",
-        "wizkid",
-        "davido",
-        "rema",
-        "asake",
-        "ayra starr",
-        "tems",
-        "fireboy",
-        "ckay",
-        "oxlade",
-        "lojay",
-        "tiwa savage",
-        "yemi alade",
-        "simi",
-        "adekunle gold"
-      ]
-    },
-    {
-      "name": "Songs",
-      "items": [
-        "essence",
-        "calm down",
-        "love nwantiti",
-        "rush",
-        "sungba",
-        "joha",
-        "bandana",
-        "common person",
-        "sability",
-        "peru",
-        "monalisa",
-        "playboy",
-        "duffel bag",
-        "soundgasm",
-        "holiday"
-      ]
-    },
-    {
-      "name": "Foods",
-      "items": [
-        "rice",
-        "beans",
-        "yam",
-        "plantain",
-        "eba",
-        "amala",
-        "pounded yam",
-        "jollof",
-        "fried rice",
-        "pepper soup",
-        "egusi",
-        "okra",
-        "owambe",
-        "suya",
-        "kilishi"
-      ]
-    },
-    {
-      "name": "Drinks",
-      "items": [
-        "zobo",
-        "kunnu",
-        "fura",
-        "chapman",
-        "palm wine",
-        "ogogoro",
-        "coke",
-        "fanta",
-        "sprite",
-        "water",
-        "juice",
-        "smoothie",
-        "milkshake",
-        "tea",
-        "coffee"
-      ]
-    },
-    {
-      "name": "Colors",
-      "items": [
-        "red",
-        "blue",
-        "green",
-        "yellow",
-        "purple",
-        "orange",
-        "pink",
-        "brown",
-        "black",
-        "white",
-        "gold",
-        "silver",
-        "violet",
-        "indigo",
-        "turquoise"
-      ]
-    },
-    {
-      "name": "Shapes",
-      "items": [
-        "circle",
-        "square",
-        "triangle",
-        "rectangle",
-        "oval",
-        "diamond",
-        "star",
-        "heart",
-        "hexagon",
-        "octagon",
-        "pentagon",
-        "crescent",
-        "cross",
-        "arrow",
-        "spiral"
-      ]
-    },
-    {
-      "name": "Months",
-      "items": [
-        "january",
-        "february",
-        "march",
-        "april",
-        "may",
-        "june",
-        "july",
-        "august",
-        "september",
-        "october",
-        "november",
-        "december"
-      ]
-    },
-    {
-      "name": "Days",
-      "items": [
-        "monday",
-        "tuesday",
-        "wednesday",
-        "thursday",
-        "friday",
-        "saturday",
-        "sunday"
-      ]
-    },
-    {
-      "name": "Professions",
-      "items": [
-        "doctor",
-        "teacher",
-        "engineer",
-        "lawyer",
-        "pilot",
-        "nurse",
-        "architect",
-        "chef",
-        "firefighter",
-        "police",
-        "soldier",
-        "scientist",
-        "artist",
-        "musician",
-        "writer"
-      ]
-    },
-    {
-      "name": "Clothes",
-      "items": [
-        "shirt",
-        "pants",
-        "dress",
-        "skirt",
-        "jacket",
-        "coat",
-        "hat",
-        "scarf",
-        "glove",
-        "shoe",
-        "sneaker",
-        "boot",
-        "sandals",
-        "slippers",
-        "belt"
-      ]
-    },
-    {
-      "name": "Furniture",
-      "items": [
-        "chair",
-        "table",
-        "bed",
-        "desk",
-        "sofa",
-        "couch",
-        "bookshelf",
-        "drawer",
-        "wardrobe",
-        "mirror",
-        "lamp",
-        "rug",
-        "curtain",
-        "pillow",
-        "blanket"
-      ]
-    },
-    {
-      "name": "Transport",
-      "items": [
-        "car",
-        "bus",
-        "train",
-        "plane",
-        "bicycle",
-        "motorcycle",
-        "truck",
-        "boat",
-        "ship",
-        "helicopter",
-        "tram",
-        "taxi",
-        "scooter",
-        "skateboard",
-        "rollerblade"
-      ]
-    },
-    {
-      "name": "Body Parts",
-      "items": [
-        "head",
-        "arm",
-        "leg",
-        "hand",
-        "foot",
-        "eye",
-        "ear",
-        "nose",
-        "mouth",
-        "hair",
-        "neck",
-        "shoulder",
-        "knee",
-        "elbow",
-        "finger"
-      ]
-    },
-    {
-      "name": "School Subjects",
-      "items": [
-        "mathematics",
-        "english",
-        "science",
-        "history",
-        "geography",
-        "art",
-        "music",
-        "physics",
-        "chemistry",
-        "biology",
-        "economics",
-        "language",
-        "literature",
-        "religion",
-        "sports"
-      ]
-    },
-    {
-      "name": "Emotions",
-      "items": [
-        "happy",
-        "sad",
-        "angry",
-        "excited",
-        "scared",
-        "surprised",
-        "confused",
-        "proud",
-        "ashamed",
-        "jealous",
-        "love",
-        "hate",
-        "fear",
-        "joy",
-        "hope"
-      ]
-    },
-    {
-      "name": "Hobbies",
-      "items": [
-        "painting",
-        "drawing",
-        "reading",
-        "writing",
-        "gardening",
-        "cooking",
-        "baking",
-        "dancing",
-        "singing",
-        "playing",
-        "sports",
-        "fishing",
-        "hiking",
-        "camping",
-        "photography"
-      ]
-    },
-    {
-      "name": "Weather",
-      "items": [
-        "sunny",
-        "rainy",
-        "cloudy",
-        "windy",
-        "stormy",
-        "snowy",
-        "hot",
-        "cold",
-        "warm",
-        "cool",
-        "humid",
-        "foggy",
-        "icy",
-        "clear",
-        "overcast"
-      ]
-    },
-    {
-      "name": "Nigerian Foods",
-      "items": [
-        "jollof",
-        "fried rice",
-        "pepper soup",
-        "egusi",
-        "okra",
-        "amala",
-        "eba",
-        "pounded yam",
-        "suya",
-        "kilishi",
-        "akara",
-        "moi moi",
-        "ogbono",
-        "edikaikong",
-        "afang"
-      ]
-    },
-    {
-      "name": "Nigerian States",
-      "items": [
-        "lagos",
-        "abuja",
-        "rivers",
-        "kaduna",
-        "kano",
-        "oyo",
-        "ogun",
-        "delta",
-        "edo",
-        "imo",
-        "enugu",
-        "anambra",
-        "plateau",
-        "borno",
-        "sokoto"
-      ]
-    },
-    {
-      "name": "African Countries",
-      "items": [
-        "nigeria",
-        "ghana",
-        "kenya",
-        "south africa",
-        "egypt",
-        "morocco",
-        "angola",
-        "ethiopia",
-        "senegal",
-        "cote",
-        "ivoire",
-        "cameroon",
-        "tanzania",
-        "mozambique",
-        "zimbabwe"
-      ]
-    },
-    {
-      "name": "Desserts",
-      "items": [
-        "cake",
-        "ice cream",
-        "chocolate",
-        "pudding",
-        "mousse",
-        "pie",
-        "brownie",
-        "cookie",
-        "donut",
-        "pastry",
-        "jelly",
-        "candy",
-        "lollipop",
-        "milkshake",
-        "sundae"
-      ]
-    },
-    {
-      "name": "Actions",
-      "items": [
-        "running",
-        "jumping",
-        "swimming",
-        "dancing",
-        "singing",
-        "cooking",
-        "painting",
-        "drawing",
-        "writing",
-        "reading",
-        "driving",
-        "flying",
-        "fishing",
-        "hiking",
-        "camping"
-      ]
-    },
-    {
-      "name": "Music Genres",
-      "items": [
-        "afrobeats",
-        "highlife",
-        "juju",
-        "fuji",
-        "hip hop",
-        "rap",
-        "r&b",
-        "soul",
-        "jazz",
-        "blues",
-        "rock",
-        "pop",
-        "dancehall",
-        "reggae",
-        "gospel"
-      ]
-    },
-    {
-      "name": "Famous Landmarks",
-      "items": [
-        "eiffel tower",
-        "great wall",
-        "statue of liberty",
-        "pyramids",
-        "sydney opera house",
-        "taj mahal",
-        "colosseum",
-        "big ben",
-        "burj khalifa",
-        "christ the redeemer",
-        "acropolis",
-        "stonehenge",
-        "leaning tower",
-        "pisa"
-      ]
-    },
-    {
-      "name": "Mythical Creatures",
-      "items": [
-        "dragon",
-        "unicorn",
-        "mermaid",
-        "phoenix",
-        "griffin",
-        "centaur",
-        "pegasus",
-        "kraken",
-        "sphinx",
-        "hydra",
-        "chimera",
-        "werewolf",
-        "vampire",
-        "zombie",
-        "ghost"
-      ]
-    },
-    {
-      "name": "Space",
-      "items": [
-        "sun",
-        "moon",
-        "earth",
-        "mars",
-        "venus",
-        "jupiter",
-        "saturn",
-        "uranus",
-        "neptune",
-        "pluto",
-        "star",
-        "galaxy",
-        "nebula",
-        "asteroid",
-        "comet"
-      ]
-    },
-    {
-      "name": "Computers",
-      "items": [
-        "keyboard",
-        "mouse",
-        "screen",
-        "monitor",
-        "printer",
-        "scanner",
-        "speaker",
-        "microphone",
-        "camera",
-        "webcam",
-        "router",
-        "modem",
-        "drive",
-        "memory",
-        "processor"
-      ]
-    },
-    {
-      "name": "Internet",
-      "items": [
-        "google",
-        "youtube",
-        "facebook",
-        "instagram",
-        "twitter",
-        "whatsapp",
-        "tiktok",
-        "snapchat",
-        "telegram",
-        "reddit",
-        "linkedin",
-        "pinterest",
-        "zoom",
-        "skype",
-        "teams"
-      ]
-    },
-    {
-      "name": "Nigerian Celebrities",
-      "items": [
-        "burna boy",
-        "wizkid",
-        "davido",
-        "tiwa savage",
-        "yemi alade",
-        "adekunle gold",
-        "simi",
-        "olamide",
-        "phyno",
-        "flavour",
-        "2baba",
-        "d'banj",
-        "don jazzy",
-        "p-square",
-        "mavins"
-      ]
-    },
-    {
-      "name": "Afrobeats Songs 2024",
-      "items": [
-        "tshwala",
-        "bam",
-        "kante",
-        "no wahala",
-        "jaiye",
-        "charm",
-        "hehehe",
-        "dnd",
-        "trouble",
-        "don't call me",
-        "benin boys",
-        "ozeba",
-        "yayo",
-        "island",
-        "ginger me"
-      ]
-    },
-    {
-      "name": "Afrobeats Artists",
-      "items": [
-        "burna boy",
-        "wizkid",
-        "davido",
-        "rema",
-        "asake",
-        "ayra starr",
-        "tems",
-        "fireboy",
-        "ckay",
-        "oxlade",
-        "lojay",
-        "tiwa savage",
-        "yemi alade",
-        "simi",
-        "adekunle gold"
-      ]
-    },
-    {
-      "name": "Animals in Nigeria",
-      "items": [
-        "lion",
-        "elephant",
-        "leopard",
-        "buffalo",
-        "hyena",
-        "hippo",
-        "crocodile",
-        "monkey",
-        "gorilla",
-        "chimpanzee",
-        "antelope",
-        "gazelle",
-        "zebra",
-        "giraffe",
-        "rhino"
-      ]
-    },
-    {
-      "name": "Foods in Nigeria",
-      "items": [
-        "jollof rice",
-        "fried rice",
-        "pepper soup",
-        "egusi soup",
-        "okra soup",
-        "amala",
-        "eba",
-        "fufu",
-        "pounded yam",
-        "plantain",
-        "suya",
-        "kilishi",
-        "akara",
-        "moi moi",
-        "ogbono"
-      ]
-    },
-    {
-      "name": "Drinks in Nigeria",
-      "items": [
-        "zobo",
-        "kunnu",
-        "fura da nono",
-        "chapman",
-        "palm wine",
-        "ogogoro",
-        "coke",
-        "fanta",
-        "sprite",
-        "malt",
-        "guinness",
-        "star",
-        "heineken",
-        "desperados",
-        "smoothie"
-      ]
-    },
-    {
-      "name": "Books",
-      "items": [
-        "things fall apart",
-        "half of a yellow sun",
-        "americanah",
-        "the secret",
-        "purple hibiscus",
-        "nervous conditions",
-        "the alchemist",
-        "rich dad poor dad",
-        "think and grow rich",
-        "the power of now",
-        "eat that frog",
-        "atomic habits",
-        "the 5 love languages",
-        "the prophet",
-        "the art of war"
-      ]
-    },
-    {
-      "name": "Nollywood Movies",
-      "items": [
-        "living in bondage",
-        "nneka the pretty serpent",
-        "sugar rush",
-        "king of boys",
-        "the wedding party",
-        "chief daddy",
-        "the ghost and the tout",
-        "little drops",
-        "tenement",
-        "juju stories",
-        "alamanda",
-        "isoken",
-        "nijas",
-        "up north",
-        "the recruit"
-      ]
-    },
-    {
-      "name": "Languages",
-      "items": [
-        "english",
-        "yoruba",
-        "hausa",
-        "igbo",
-        "pidgin",
-        "french",
-        "spanish",
-        "portuguese",
-        "arabic",
-        "swahili",
-        "zulu",
-        "amharic",
-        "berber",
-        "fulani"
-      ]
-    },
-    {
-      "name": "Musical Instruments",
-      "items": [
-        "guitar",
-        "piano",
-        "drums",
-        "trumpet",
-        "saxophone",
-        "flute",
-        "violin",
-        "cello",
-        "banjo",
-        "ukulele",
-        "talking drum",
-        "xylophone",
-        "maracas",
-        "claves",
-        "synthesizer"
-      ]
-    },
-    {
-      "name": "Oceans",
-      "items": [
-        "atlantic",
-        "pacific",
-        "indian",
-        "southern",
-        "arctic"
-      ]
-    },
-    {
-      "name": "Continents",
-      "items": [
-        "africa",
-        "asia",
-        "europe",
-        "north america",
-        "south america",
-        "australia",
-        "antarctica"
-      ]
-    },
-    {
-      "name": "Nigerian Holidays",
-      "items": [
-        "independence day",
-        "children's day",
-        "workers' day",
-        "democracy day",
-        "sallah",
-        "christmas",
-        "boxing day",
-        "new year",
-        "easter",
-        "good friday",
-        "mawlid",
-        "eid fitr",
-        "eid adha"
-      ]
-    },
-    {
-      "name": "Popular Brands",
-      "items": [
-        "microsoft",
-        "apple",
-        "google",
-        "amazon",
-        "facebook",
-        "instagram",
-        "whatsapp",
-        "tiktok",
-        "spotify",
-        "netflix",
-        "youtube",
-        "twitter",
-        "uber",
-        "bolt",
-        "glovo"
-      ]
-    },
-    {
-      "name": "Nigerian Universities",
-      "items": [
-        "unilag",
-        "oau",
-        "uniben",
-        "uniuyo",
-        "uniabuja",
-        "ui",
-        "futo",
-        "futa",
-        "covenant",
-        "babcock",
-        "bells",
-        "kwasu",
-        "lasu",
-        "unijos",
-        "unn"
-      ]
-    },
-    {
-      "name": "Political Figures",
-      "items": [
-        "obasanjo",
-        "jonathan",
-        "buhari",
-        "tinubu",
-        "atim",
-        "abiola",
-        "awolowo",
-        "azikiwe",
-        "bello",
-        "oyegun",
-        "saraki",
-        "dogara",
-        "lawan",
-        "gbajabiamila",
-        "akpabio"
-      ]
-    },
-    {
-      "name": "Nigerian Media",
-      "items": [
-        "nbc",
-        "vanguard",
-        "punch",
-        "tribune",
-        "sun",
-        "daily trust",
-        "thisday",
-        "guardian",
-        "tell",
-        "newswatch",
-        "channelstv",
-        "aar",
-        "cool fm",
-        "beat fm",
-        "wazobia"
-      ]
-    },
-    {
-      "name": "Software",
-      "items": [
-        "excel",
-        "word",
-        "powerpoint",
-        "outlook",
-        "photoshop",
-        "illustrator",
-        "premiere",
-        "after effects",
-        "autocad",
-        "solidworks",
-        "python",
-        "java",
-        "html",
-        "css",
-        "javascript"
-      ]
-    },
-    {
-      "name": "Gaming Consoles",
-      "items": [
-        "playstation",
-        "xbox",
-        "nintendo",
-        "switch",
-        "ps5",
-        "ps4",
-        "xbox one",
-        "xbox series",
-        "gameboy",
-        "dreamcast",
-        "sega",
-        "atari",
-        "wii",
-        "gamecube",
-        "n64"
-      ]
-    },
-    {
-      "name": "Board Games",
-      "items": [
-        "monopoly",
-        "scrabble",
-        "chess",
-        "checkers",
-        "backgammon",
-        "ludo",
-        "snakes",
-        "ladders",
-        "draft",
-        "dominion",
-        "catan",
-        "pandemic",
-        "ticket",
-        "ride",
-        "clue"
-      ]
-    },
-    {
-      "name": "Card Games",
-      "items": [
-        "poker",
-        "blackjack",
-        "bridge",
-        "whist",
-        "craps",
-        "roulette",
-        "chemin",
-        "defer",
-        "baccarat",
-        "gin",
-        "rummy",
-        "solitaire",
-        "patience",
-        "canasta"
-      ]
-    },
-    {
-      "name": "Nigerian Slang",
-      "items": [
-        "wahala",
-        "sapa",
-        "gbese",
-        "gbedu",
-        "jaiye",
-        "lo",
-        "japa",
-        "ot",
-        "tube",
-        "shayo",
-        "gbon",
-        "ajebutter",
-        "arewa",
-        "baddest",
-        "selense"
-      ]
-    },
-    {
-      "name": "Internet Slang",
-      "items": [
-        "lol",
-        "omg",
-        "brb",
-        "gtg",
-        "ttyl",
-        "imo",
-        "imho",
-        "irl",
-        "afk",
-        "fyi",
-        "wtf",
-        "idk",
-        "smh",
-        "nvm",
-        "omw"
-      ]
-    }
+    {"name": "Fruits", "items": ["apple", "banana", "orange", "grape", "strawberry", "kiwi", "mango", "pineapple", "watermelon", "peach", "plum", "cherry", "lemon", "lime", "coconut"]},
+    {"name": "Vegetables", "items": ["carrot", "broccoli", "spinach", "kale", "cabbage", "lettuce", "onion", "garlic", "pepper", "tomato", "potato", "yam", "cucumber", "zucchini", "eggplant"]},
+    {"name": "Countries", "items": ["nigeria", "ghana", "kenya", "south africa", "egypt", "morocco", "usa", "canada", "uk", "france", "germany", "italy", "spain", "brazil", "australia"]},
+    {"name": "Cities", "items": ["lagos", "abuja", "nairobi", "cape town", "cairo", "casablanca", "new york", "london", "paris", "tokyo", "sydney", "rio", "moscow", "dubai", "singapore"]},
+    {"name": "Animals", "items": ["lion", "tiger", "bear", "eagle", "shark", "wolf", "fox", "elephant", "giraffe", "zebra", "hippo", "rhino", "crocodile", "snake", "lizard"]},
+    {"name": "Birds", "items": ["eagle", "hawk", "falcon", "owl", "raven", "crow", "parrot", "peacock", "flamingo", "swan", "duck", "goose", "chicken", "rooster", "turkey"]},
+    {"name": "Fish", "items": ["salmon", "tuna", "cod", "trout", "bass", "catfish", "tilapia", "mackerel", "sardine", "anchovy", "herring", "haddock", "halibut", "mahi", "mahi"]},
+    {"name": "Sports", "items": ["soccer", "basketball", "tennis", "cricket", "rugby", "baseball", "golf", "boxing", "wrestling", "swimming", "athletics", "cycling", "skateboarding", "surfing", "skiing"]},
+    {"name": "Movies", "items": ["titanic", "avatar", "inception", "gladiator", "frozen", "jaws", "lion king", "matrix", "star wars", "jurassic park", "harry potter", "lord of the rings", "avengers", "black panther", "wakanda"]},
+    {"name": "Actors", "items": ["denzel", "will", "smith", "johnny", "depp", "leonardo", "dicaprio", "tom", "hanks", "brad", "pitt", "angelina", "jolie", "jennifer", "lawrence", "ryan", "gosling"]},
+    {"name": "Singers", "items": ["burna boy", "wizkid", "davido", "rema", "asake", "ayra starr", "tems", "fireboy", "ckay", "oxlade", "lojay", "tiwa savage", "yemi alade", "simi", "adekunle gold"]},
+    {"name": "Songs", "items": ["essence", "calm down", "love nwantiti", "rush", "sungba", "joha", "bandana", "common person", "sability", "peru", "monalisa", "playboy", "duffel bag", "soundgasm", "holiday"]},
+    {"name": "Foods", "items": ["rice", "beans", "yam", "plantain", "eba", "amala", "pounded yam", "jollof", "fried rice", "pepper soup", "egusi", "okra", "owambe", "suya", "kilishi"]},
+    {"name": "Drinks", "items": ["zobo", "kunnu", "fura", "chapman", "palm wine", "ogogoro", "coke", "fanta", "sprite", "water", "juice", "smoothie", "milkshake", "tea", "coffee"]},
+    {"name": "Colors", "items": ["red", "blue", "green", "yellow", "purple", "orange", "pink", "brown", "black", "white", "gold", "silver", "violet", "indigo", "turquoise"]},
+    {"name": "Shapes", "items": ["circle", "square", "triangle", "rectangle", "oval", "diamond", "star", "heart", "hexagon", "octagon", "pentagon", "crescent", "cross", "arrow", "spiral"]},
+    {"name": "Months", "items": ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]},
+    {"name": "Days", "items": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]},
+    {"name": "Professions", "items": ["doctor", "teacher", "engineer", "lawyer", "pilot", "nurse", "architect", "chef", "firefighter", "police", "soldier", "scientist", "artist", "musician", "writer"]},
+    {"name": "Clothes", "items": ["shirt", "pants", "dress", "skirt", "jacket", "coat", "hat", "scarf", "glove", "shoe", "sneaker", "boot", "sandals", "slippers", "belt"]},
+    {"name": "Furniture", "items": ["chair", "table", "bed", "desk", "sofa", "couch", "bookshelf", "drawer", "wardrobe", "mirror", "lamp", "rug", "curtain", "pillow", "blanket"]},
+    {"name": "Transport", "items": ["car", "bus", "train", "plane", "bicycle", "motorcycle", "truck", "boat", "ship", "helicopter", "tram", "taxi", "scooter", "skateboard", "rollerblade"]},
+    {"name": "Body Parts", "items": ["head", "arm", "leg", "hand", "foot", "eye", "ear", "nose", "mouth", "hair", "neck", "shoulder", "knee", "elbow", "finger"]},
+    {"name": "School Subjects", "items": ["mathematics", "english", "science", "history", "geography", "art", "music", "physics", "chemistry", "biology", "economics", "language", "literature", "religion", "sports"]},
+    {"name": "Emotions", "items": ["happy", "sad", "angry", "excited", "scared", "surprised", "confused", "proud", "ashamed", "jealous", "love", "hate", "fear", "joy", "hope"]},
+    {"name": "Hobbies", "items": ["painting", "drawing", "reading", "writing", "gardening", "cooking", "baking", "dancing", "singing", "playing", "sports", "fishing", "hiking", "camping", "photography"]},
+    {"name": "Weather", "items": ["sunny", "rainy", "cloudy", "windy", "stormy", "snowy", "hot", "cold", "warm", "cool", "humid", "foggy", "icy", "clear", "overcast"]},
+    {"name": "Nigerian Foods", "items": ["jollof", "fried rice", "pepper soup", "egusi", "okra", "amala", "eba", "pounded yam", "suya", "kilishi", "akara", "moi moi", "ogbono", "edikaikong", "afang"]},
+    {"name": "Nigerian States", "items": ["lagos", "abuja", "rivers", "kaduna", "kano", "oyo", "ogun", "delta", "edo", "imo", "enugu", "anambra", "plateau", "borno", "sokoto"]},
+    {"name": "African Countries", "items": ["nigeria", "ghana", "kenya", "south africa", "egypt", "morocco", "angola", "ethiopia", "senegal", "cote", "ivoire", "cameroon", "tanzania", "mozambique", "zimbabwe"]},
+    {"name": "Desserts", "items": ["cake", "ice cream", "chocolate", "pudding", "mousse", "pie", "brownie", "cookie", "donut", "pastry", "jelly", "candy", "lollipop", "milkshake", "sundae"]},
+    {"name": "Actions", "items": ["running", "jumping", "swimming", "dancing", "singing", "cooking", "painting", "drawing", "writing", "reading", "driving", "flying", "fishing", "hiking", "camping"]},
+    {"name": "Music Genres", "items": ["afrobeats", "highlife", "juju", "fuji", "hip hop", "rap", "r&b", "soul", "jazz", "blues", "rock", "pop", "dancehall", "reggae", "gospel"]},
+    {"name": "Famous Landmarks", "items": ["eiffel tower", "great wall", "statue of liberty", "pyramids", "sydney opera house", "taj mahal", "colosseum", "big ben", "burj khalifa", "christ the redeemer", "acropolis", "stonehenge", "leaning tower", "pisa"]},
+    {"name": "Mythical Creatures", "items": ["dragon", "unicorn", "mermaid", "phoenix", "griffin", "centaur", "pegasus", "kraken", "sphinx", "hydra", "chimera", "werewolf", "vampire", "zombie", "ghost"]},
+    {"name": "Space", "items": ["sun", "moon", "earth", "mars", "venus", "jupiter", "saturn", "uranus", "neptune", "pluto", "star", "galaxy", "nebula", "asteroid", "comet"]},
+    {"name": "Computers", "items": ["keyboard", "mouse", "screen", "monitor", "printer", "scanner", "speaker", "microphone", "camera", "webcam", "router", "modem", "drive", "memory", "processor"]},
+    {"name": "Internet", "items": ["google", "youtube", "facebook", "instagram", "twitter", "whatsapp", "tiktok", "snapchat", "telegram", "reddit", "linkedin", "pinterest", "zoom", "skype", "teams"]},
+    {"name": "Nigerian Celebrities", "items": ["burna boy", "wizkid", "davido", "tiwa savage", "yemi alade", "adekunle gold", "simi", "olamide", "phyno", "flavour", "2baba", "d'banj", "don jazzy", "p-square", "mavins"]},
+    {"name": "Afrobeats Songs 2024", "items": ["tshwala", "bam", "kante", "no wahala", "jaiye", "charm", "hehehe", "dnd", "trouble", "don't call me", "benin boys", "ozeba", "yayo", "island", "ginger me"]},
+    {"name": "Afrobeats Artists", "items": ["burna boy", "wizkid", "davido", "rema", "asake", "ayra starr", "tems", "fireboy", "ckay", "oxlade", "lojay", "tiwa savage", "yemi alade", "simi", "adekunle gold"]},
+    {"name": "Animals in Nigeria", "items": ["lion", "elephant", "leopard", "buffalo", "hyena", "hippo", "crocodile", "monkey", "gorilla", "chimpanzee", "antelope", "gazelle", "zebra", "giraffe", "rhino"]},
+    {"name": "Foods in Nigeria", "items": ["jollof rice", "fried rice", "pepper soup", "egusi soup", "okra soup", "amala", "eba", "fufu", "pounded yam", "plantain", "suya", "kilishi", "akara", "moi moi", "ogbono"]},
+    {"name": "Drinks in Nigeria", "items": ["zobo", "kunnu", "fura da nono", "chapman", "palm wine", "ogogoro", "coke", "fanta", "sprite", "malt", "guinness", "star", "heineken", "desperados", "smoothie"]},
+    {"name": "Books", "items": ["things fall apart", "half of a yellow sun", "americanah", "the secret", "purple hibiscus", "nervous conditions", "the alchemist", "rich dad poor dad", "think and grow rich", "the power of now", "eat that frog", "atomic habits", "the 5 love languages", "the prophet", "the art of war"]},
+    {"name": "Nollywood Movies", "items": ["living in bondage", "nneka the pretty serpent", "sugar rush", "king of boys", "the wedding party", "chief daddy", "the ghost and the tout", "little drops", "tenement", "juju stories", "alamanda", "isoken", "nijas", "up north", "the recruit"]},
+    {"name": "Languages", "items": ["english", "yoruba", "hausa", "igbo", "pidgin", "french", "spanish", "portuguese", "arabic", "swahili", "zulu", "amharic", "berber", "fulani"]},
+    {"name": "Musical Instruments", "items": ["guitar", "piano", "drums", "trumpet", "saxophone", "flute", "violin", "cello", "banjo", "ukulele", "talking drum", "xylophone", "maracas", "claves", "synthesizer"]},
+    {"name": "Oceans", "items": ["atlantic", "pacific", "indian", "southern", "arctic"]},
+    {"name": "Continents", "items": ["africa", "asia", "europe", "north america", "south america", "australia", "antarctica"]},
+    {"name": "Nigerian Holidays", "items": ["independence day", "children's day", "workers' day", "democracy day", "sallah", "christmas", "boxing day", "new year", "easter", "good friday", "mawlid", "eid fitr", "eid adha"]},
+    {"name": "Popular Brands", "items": ["microsoft", "apple", "google", "amazon", "facebook", "instagram", "whatsapp", "tiktok", "spotify", "netflix", "youtube", "twitter", "uber", "bolt", "glovo"]},
+    {"name": "Nigerian Universities", "items": ["unilag", "oau", "uniben", "uniuyo", "uniabuja", "ui", "futo", "futa", "covenant", "babcock", "bells", "kwasu", "lasu", "unijos", "unn"]},
+    {"name": "Political Figures", "items": ["obasanjo", "jonathan", "buhari", "tinubu", "atim", "abiola", "awolowo", "azikiwe", "bello", "oyegun", "saraki", "dogara", "lawan", "gbajabiamila", "akpabio"]},
+    {"name": "Nigerian Media", "items": ["nbc", "vanguard", "punch", "tribune", "sun", "daily trust", "thisday", "guardian", "tell", "newswatch", "channelstv", "aar", "cool fm", "beat fm", "wazobia"]},
+    {"name": "Software", "items": ["excel", "word", "powerpoint", "outlook", "photoshop", "illustrator", "premiere", "after effects", "autocad", "solidworks", "python", "java", "html", "css", "javascript"]},
+    {"name": "Gaming Consoles", "items": ["playstation", "xbox", "nintendo", "switch", "ps5", "ps4", "xbox one", "xbox series", "gameboy", "dreamcast", "sega", "atari", "wii", "gamecube", "n64"]},
+    {"name": "Board Games", "items": ["monopoly", "scrabble", "chess", "checkers", "backgammon", "ludo", "snakes", "ladders", "draft", "dominion", "catan", "pandemic", "ticket", "ride", "clue"]},
+    {"name": "Card Games", "items": ["poker", "blackjack", "bridge", "whist", "craps", "roulette", "chemin", "defer", "baccarat", "gin", "rummy", "solitaire", "patience", "canasta"]},
+    {"name": "Nigerian Slang", "items": ["wahala", "sapa", "gbese", "gbedu", "jaiye", "lo", "japa", "ot", "tube", "shayo", "gbon", "ajebutter", "arewa", "baddest", "selense"]},
+    {"name": "Internet Slang", "items": ["lol", "omg", "brb", "gtg", "ttyl", "imo", "imho", "irl", "afk", "fyi", "wtf", "idk", "smh", "nvm", "omw"]}
   ],
   "truths": [
     "Bananas are berries, botanically speaking.",
@@ -2626,657 +422,358 @@
     "The Atlantic Ocean is larger than the Pacific Ocean."
   ],
   "roasts": [
-    "Roast someone about their dance moves!",
-    "Roast someone about their fashion choices!",
-    "Roast someone about their singing voice!",
-    "Roast someone about their cooking skills!",
-    "Roast someone about their driving!",
-    "Roast someone about their taste in music!",
-    "Roast someone about their sports skills!",
-    "Roast someone about their hairdo!",
-    "Roast someone about their accent!",
-    "Roast someone about their love life!",
-    "Roast someone about their job!",
-    "Roast someone about their sense of humor!",
-    "Roast someone about their looks!",
-    "Roast someone about their height!",
-    "Roast someone about their weight!",
-    "Roast someone about their age!",
-    "Roast someone about their phone!",
-    "Roast someone about their car!",
-    "Roast someone about their house!",
-    "Roast someone about their pet!",
-    "Roast someone about their food choices!",
-    "Roast someone about their handwriting!",
-    "Roast someone about their laugh!",
-    "Roast someone about their sneakers!",
-    "Roast someone about their watch!",
-    "Roast someone about their glasses!",
-    "Roast someone about their beard!",
-    "Roast someone about their mustache!",
-    "Roast someone about their eyebrows!",
-    "Roast someone about their teeth!",
-    "Roast someone about their nails!",
-    "Roast someone about their skin!",
-    "Roast someone about their voice!",
-    "Roast someone about their walk!",
-    "Roast someone about their talk!",
-    "Roast someone about their social media!",
-    "Roast someone about their selfies!",
-    "Roast someone about their photos!",
-    "Roast someone about their memes!",
-    "Roast someone about their jokes!",
-    "Roast someone about their stories!",
-    "Roast someone about their cooking!",
-    "Roast someone about their gardening!",
-    "Roast someone about their driving!",
-    "Roast someone about their parking!",
-    "Roast someone about their fashion sense!",
-    "Roast someone about their gym habits!",
-    "Roast someone about their eating habits!",
-    "Roast someone about their sleep schedule!",
-    "Roast someone about their work ethic!"
+    "You dance like nobody's watching... and that's exactly how it should stay.",
+    "Your fashion sense is like a surprise party - unpredictable, but always fun.",
+    "You sing with so much confidence, I almost believe you're a star.",
+    "Your cooking is an adventure - we never know what we're getting, but we're always curious.",
+    "You drive like you're in a movie chase scene... the blooper reel.",
+    "Your music taste is uniquely yours, and we love that for you.",
+    "You play sports like you're just happy to be here, and honestly, same.",
+    "Your hairstyle is giving 'I woke up like this' and we respect the confidence.",
+    "Your accent is like a fun remix of every language ever.",
+    "Your love life is a mystery novel - we're still reading, but we're invested.",
+    "You're the life of the party, even when the party is just you.",
+    "You're so funny, even when you're not trying - which is most of the time.",
+    "Your selfies are always a vibe - even the blurry ones.",
+    "You're tall and we appreciate you reaching things on high shelves.",
+    "You eat like you're enjoying life, and honestly, that's goals.",
+    "Your handwriting is like a secret code - only the chosen ones can read it.",
+    "Your laugh is so contagious, we can't help but join in.",
+    "Your sneakers are always fresh - do you even touch the ground?",
+    "Your watch tells time, but we're more interested in your style.",
+    "Your glasses make you look like a smart person, and you are!",
+    "Your beard is doing its best, and we support it.",
+    "Your mustache has character - like a guest star in a sitcom.",
+    "Your eyebrows are expressive - we can always tell what you're thinking.",
+    "Your smile lights up the room, even on a cloudy day.",
+    "You always look put together - are you secretly a celebrity?",
+    "Your voice is one of a kind, and we'd recognize it anywhere.",
+    "Your walk is confident - you own every room you enter.",
+    "You speak with such enthusiasm, we're hanging on every word.",
+    "Your social media is a vibe - we always know what you're up to.",
+    "Your selfie game is strong - you never take a bad photo.",
+    "Your posts always make us smile - keep them coming.",
+    "Your memes are legendary - you're the group's meme dealer.",
+    "Your jokes are so bad they're good, and we secretly love them.",
+    "Your stories are the highlight of any gathering - Nollywood level.",
+    "Your gardening is impressive - even the plants look happy.",
+    "Your parking skills are a work in progress, but you'll get there!",
+    "Your fashion choices are bold and we admire your bravery.",
+    "You're the most consistent gym-goer we know... in spirit.",
+    "You eat with such joy, it makes us hungry too.",
+    "Your sleep schedule is chaotic, but you're always full of energy.",
+    "You work hard and it shows - even when you're taking a break.",
+    "Your dance moves are so unique, they should be in a museum.",
+    "You have the confidence of a lion and the grace of a... well, we'll work on that.",
+    "Your fashion sense is ahead of its time - we're just not sure what time.",
+    "You cook like you're trying to create a new food group.",
+    "Your singing voice is so powerful, the neighbors are your biggest fans.",
+    "You drive like you're in a race, but you're always the last one.",
+    "Your taste in music is so good, even your playlist is confused.",
+    "You're so good at sports, the ball is scared of you.",
+    "Your hair is giving main character energy, and we're here for it.",
+    "Your accent is so unique, Siri would ask you to repeat yourself.",
+    "Your love life is a rom-com waiting to happen - we're rooting for you!",
+    "You're the funniest person we know, even when you're not trying.",
+    "Your selfies are so good, we're starting to think you're a model.",
+    "Your height is impressive - you could be a basketball player... if you could dribble.",
+    "Your eating habits are inspiring - you're living your best life.",
+    "Your handwriting is so unique, it could be a font.",
+    "Your laugh is the best sound in the room - no cap.",
+    "Your sneakers are so fresh, they should be in a museum.",
+    "Your watch is so fancy, it probably has its own Instagram.",
+    "Your glasses make you look so smart, we're intimidated.",
+    "Your beard is majestic - like a wise forest creature.",
+    "Your mustache is so iconic, it should have its own fan club.",
+    "Your eyebrows are so expressive, they should have their own show.",
+    "Your smile is so bright, it could power a small village.",
+    "You're so stylish, fashion designers are taking notes.",
+    "Your voice is so unique, it could be a ringtone.",
+    "Your walk is so confident, you should be on a runway.",
+    "Your speaking skills are so engaging, we could listen to you all day.",
+    "Your social media game is so strong, influencers are jealous.",
+    "Your selfie skills are so good, you should teach a class.",
+    "Your posts are so entertaining, we look forward to them.",
+    "Your memes are so on point, you're the MVP of the group chat.",
+    "Your jokes are so clever, we're still trying to figure them out.",
+    "Your stories are so captivating, they should be a Netflix series.",
+    "Your gardening skills are so impressive, plants gossip about you.",
+    "Your parking skills are improving - one day you'll nail it!",
+    "Your fashion sense is so bold, you could be on a magazine cover.",
+    "Your gym dedication is so strong, we're inspired just watching you.",
+    "You enjoy food so much, it's a pleasure to watch you eat.",
+    "Your sleep schedule is so chaotic, you could be a vampire.",
+    "Your work ethic is so strong, you make the rest of us look lazy.",
+    "You're so creative, ideas just flow out of you.",
+    "Your energy is so positive, it's contagious.",
+    "You have a heart of gold, and it shows in everything you do.",
+    "Your smile is so warm, it makes everyone feel welcome.",
+    "You're the kind of person everyone wants to be friends with.",
+    "Your presence makes any room brighter.",
+    "You're so reliable, we can always count on you.",
+    "Your kindness is unmatched - you're truly special.",
+    "You have a way of making people feel seen and heard.",
+    "Your optimism is inspiring - you see the best in everything.",
+    "You're so thoughtful - you always remember the little things.",
+    "Your sense of humor is one of a kind - we can't get enough.",
+    "You bring so much joy to those around you.",
+    "Your resilience is admirable - nothing can keep you down.",
+    "You're so talented - we're constantly impressed by you.",
+    "Your loyalty is unwavering - we're lucky to have you.",
+    "You have a way of making even the dullest moments fun.",
+    "Your empathy is your superpower - you always know how we feel.",
+    "You're so generous, you give without expecting anything back.",
+    "Your passion for life is contagious - keep being you!",
+    "You're the kind of person who makes the world a better place.",
+    "Your courage is inspiring - you're not afraid to be yourself.",
+    "You have a beautiful soul, and it radiates in everything you do.",
+    "You're so authentic - you never pretend to be someone you're not.",
+    "Your friendship is a gift we cherish every day."
   ],
   "whoAmI": [
-    {
-      "name": "Wizkid"
-    },
-    {
-      "name": "Davido"
-    },
-    {
-      "name": "Burna Boy"
-    },
-    {
-      "name": "Rema"
-    },
-    {
-      "name": "Asake"
-    },
-    {
-      "name": "Ayra Starr"
-    },
-    {
-      "name": "Tems"
-    },
-    {
-      "name": "Tiwa Savage"
-    },
-    {
-      "name": "Olamide"
-    },
-    {
-      "name": "Phyno"
-    },
-    {
-      "name": "2Baba"
-    },
-    {
-      "name": "D'banj"
-    },
-    {
-      "name": "Don Jazzy"
-    },
-    {
-      "name": "Yemi Alade"
-    },
-    {
-      "name": "Flavour"
-    },
-    {
-      "name": "Simi"
-    },
-    {
-      "name": "Mr Eazi"
-    },
-    {
-      "name": "Fireboy DML"
-    },
-    {
-      "name": "Oxlade"
-    },
-    {
-      "name": "Adekunle Gold"
-    },
-    {
-      "name": "Funke Akindele"
-    },
-    {
-      "name": "Genevieve Nnaji"
-    },
-    {
-      "name": "Ramsey Nouah"
-    },
-    {
-      "name": "Richard Mofe-Damijo"
-    },
-    {
-      "name": "Kunle Remi"
-    },
-    {
-      "name": "Yul Edochie"
-    },
-    {
-      "name": "Toyin Abraham"
-    },
-    {
-      "name": "Mercy Johnson"
-    },
-    {
-      "name": "Osita Iheme"
-    },
-    {
-      "name": "Chinedu Ikedieze"
-    },
-    {
-      "name": "Mr Ibu"
-    },
-    {
-      "name": "Pete Edochie"
-    },
-    {
-      "name": "Idris Elba"
-    },
-    {
-      "name": "Dwayne Johnson"
-    },
-    {
-      "name": "Leonardo DiCaprio"
-    },
-    {
-      "name": "Tom Hanks"
-    },
-    {
-      "name": "Will Smith"
-    },
-    {
-      "name": "Jackie Chan"
-    },
-    {
-      "name": "Keanu Reeves"
-    },
-    {
-      "name": "Zendaya"
-    },
-    {
-      "name": "Ryan Reynolds"
-    },
-    {
-      "name": "Morgan Freeman"
-    },
-    {
-      "name": "Angelina Jolie"
-    },
-    {
-      "name": "Jim Carrey"
-    },
-    {
-      "name": "Cristiano Ronaldo"
-    },
-    {
-      "name": "Lionel Messi"
-    },
-    {
-      "name": "Kylian Mbappe"
-    },
-    {
-      "name": "Neymar"
-    },
-    {
-      "name": "Mohamed Salah"
-    },
-    {
-      "name": "Victor Osimhen"
-    },
-    {
-      "name": "Jay-Jay Okocha"
-    },
-    {
-      "name": "Didier Drogba"
-    },
-    {
-      "name": "Sadio Mane"
-    },
-    {
-      "name": "Erling Haaland"
-    },
-    {
-      "name": "Michael Jackson"
-    },
-    {
-      "name": "Beyonce"
-    },
-    {
-      "name": "Rihanna"
-    },
-    {
-      "name": "Drake"
-    },
-    {
-      "name": "Taylor Swift"
-    },
-    {
-      "name": "Bruno Mars"
-    },
-    {
-      "name": "Adele"
-    },
-    {
-      "name": "Justin Bieber"
-    },
-    {
-      "name": "Eminem"
-    },
-    {
-      "name": "Lady Gaga"
-    },
-    {
-      "name": "Elvis Presley"
-    },
-    {
-      "name": "Bob Marley"
-    },
-    {
-      "name": "Harry Potter"
-    },
-    {
-      "name": "Spider-Man"
-    },
-    {
-      "name": "Batman"
-    },
-    {
-      "name": "Superman"
-    },
-    {
-      "name": "Iron Man"
-    },
-    {
-      "name": "Black Panther"
-    },
-    {
-      "name": "Wonder Woman"
-    },
-    {
-      "name": "Hulk"
-    },
-    {
-      "name": "Thor"
-    },
-    {
-      "name": "Captain America"
-    },
-    {
-      "name": "Deadpool"
-    },
-    {
-      "name": "Wolverine"
-    },
-    {
-      "name": "Darth Vader"
-    },
-    {
-      "name": "Elsa"
-    },
-    {
-      "name": "Simba"
-    },
-    {
-      "name": "Shrek"
-    },
-    {
-      "name": "Jack Sparrow"
-    },
-    {
-      "name": "Gollum"
-    },
-    {
-      "name": "Indiana Jones"
-    },
-    {
-      "name": "Homer Simpson"
-    },
-    {
-      "name": "SpongeBob SquarePants"
-    },
-    {
-      "name": "Mr Bean"
-    },
-    {
-      "name": "Wednesday Addams"
-    },
-    {
-      "name": "Walter White"
-    },
-    {
-      "name": "Sherlock Holmes"
-    },
-    {
-      "name": "James Bond"
-    },
-    {
-      "name": "Albert Einstein"
-    },
-    {
-      "name": "Nelson Mandela"
-    },
-    {
-      "name": "Martin Luther King Jr."
-    },
-    {
-      "name": "Cleopatra"
-    },
-    {
-      "name": "William Shakespeare"
-    },
-    {
-      "name": "Winston Churchill"
-    },
-    {
-      "name": "Steve Jobs"
-    },
-    {
-      "name": "Bill Gates"
-    },
-    {
-      "name": "Mark Zuckerberg"
-    },
-    {
-      "name": "Elon Musk"
-    },
-    {
-      "name": "P-Square"
-    },
-    {
-      "name": "Kizz Daniel"
-    },
-    {
-      "name": "Victony"
-    },
-    {
-      "name": "BNXN"
-    },
-    {
-      "name": "Shallipopi"
-    },
-    {
-      "name": "Korede Bello"
-    },
-    {
-      "name": "Tekno"
-    },
-    {
-      "name": "Runtown"
-    },
-    {
-      "name": "Wande Coal"
-    },
-    {
-      "name": "Johnny Drille"
-    },
-    {
-      "name": "Chike"
-    },
-    {
-      "name": "Lojay"
-    },
-    {
-      "name": "Zinoleesky"
-    },
-    {
-      "name": "Teni"
-    },
-    {
-      "name": "Niniola"
-    },
-    {
-      "name": "Mavin"
-    },
-    {
-      "name": "Falz"
-    },
-    {
-      "name": "MI Abaga"
-    },
-    {
-      "name": "Ice Prince"
-    },
-    {
-      "name": "Bovi"
-    },
-    {
-      "name": "AY Makun"
-    },
-    {
-      "name": "Basketmouth"
-    },
-    {
-      "name": "Nkem Owoh"
-    },
-    {
-      "name": "Kanayo O. Kanayo"
-    },
-    {
-      "name": "Ini Edo"
-    },
-    {
-      "name": "Stephanie Linus"
-    },
-    {
-      "name": "Adesua Etomi"
-    },
-    {
-      "name": "Alexx Ekubo"
-    },
-    {
-      "name": "Mike Ezuruonye"
-    },
-    {
-      "name": "Blossom Chukwujekwu"
-    },
-    {
-      "name": "Ireti Doyle"
-    },
-    {
-      "name": "John Boyega"
-    },
-    {
-      "name": "Robert Downey Jr."
-    },
-    {
-      "name": "Chris Hemsworth"
-    },
-    {
-      "name": "Chris Evans"
-    },
-    {
-      "name": "Scarlett Johansson"
-    },
-    {
-      "name": "Jennifer Aniston"
-    },
-    {
-      "name": "Brad Pitt"
-    },
-    {
-      "name": "George Clooney"
-    },
-    {
-      "name": "Johnny Depp"
-    },
-    {
-      "name": "Emma Watson"
-    },
-    {
-      "name": "Anne Hathaway"
-    },
-    {
-      "name": "Margot Robbie"
-    },
-    {
-      "name": "Cillian Murphy"
-    },
-    {
-      "name": "Pedro Pascal"
-    },
-    {
-      "name": "Jason Statham"
-    },
-    {
-      "name": "Arnold Schwarzenegger"
-    },
-    {
-      "name": "Kobe Bryant"
-    },
-    {
-      "name": "LeBron James"
-    },
-    {
-      "name": "Stephen Curry"
-    },
-    {
-      "name": "Michael Jordan"
-    },
-    {
-      "name": "Giannis Antetokounmpo"
-    },
-    {
-      "name": "Serena Williams"
-    },
-    {
-      "name": "Usain Bolt"
-    },
-    {
-      "name": "Simone Biles"
-    },
-    {
-      "name": "Tiger Woods"
-    },
-    {
-      "name": "Floyd Mayweather"
-    },
-    {
-      "name": "Tyson Fury"
-    },
-    {
-      "name": "Conor McGregor"
-    },
-    {
-      "name": "Novak Djokovic"
-    },
-    {
-      "name": "Rafael Nadal"
-    },
-    {
-      "name": "Roger Federer"
-    },
-    {
-      "name": "Whitney Houston"
-    },
-    {
-      "name": "Mariah Carey"
-    },
-    {
-      "name": "Madonna"
-    },
-    {
-      "name": "Prince"
-    },
-    {
-      "name": "Snoop Dogg"
-    },
-    {
-      "name": "50 Cent"
-    },
-    {
-      "name": "Kanye West"
-    },
-    {
-      "name": "Nicki Minaj"
-    },
-    {
-      "name": "Cardi B"
-    },
-    {
-      "name": "Ariana Grande"
-    },
-    {
-      "name": "Selena Gomez"
-    },
-    {
-      "name": "Miley Cyrus"
-    },
-    {
-      "name": "The Weeknd"
-    },
-    {
-      "name": "Ed Sheeran"
-    },
-    {
-      "name": "Shakira"
-    },
-    {
-      "name": "Jennifer Lopez"
-    },
-    {
-      "name": "Post Malone"
-    },
-    {
-      "name": "Megan Thee Stallion"
-    },
-    {
-      "name": "Travis Scott"
-    },
-    {
-      "name": "Goku"
-    },
-    {
-      "name": "Naruto Uzumaki"
-    },
-    {
-      "name": "Monkey D. Luffy"
-    },
-    {
-      "name": "Pikachu"
-    },
-    {
-      "name": "Mario"
-    },
-    {
-      "name": "Sonic the Hedgehog"
-    },
-    {
-      "name": "Pac-Man"
-    },
-    {
-      "name": "Lara Croft"
-    },
-    {
-      "name": "Kratos"
-    },
-    {
-      "name": "Link"
-    },
-    {
-      "name": "Dora the Explorer"
-    },
-    {
-      "name": "Tom"
-    },
-    {
-      "name": "Jerry"
-    },
-    {
-      "name": "Scooby-Doo"
-    },
-    {
-      "name": "Patrick Star"
-    },
-    {
-      "name": "Peter Griffin"
-    },
-    {
-      "name": "Rick Sanchez"
-    }
+    {"name": "Wizkid"},
+    {"name": "Davido"},
+    {"name": "Burna Boy"},
+    {"name": "Rema"},
+    {"name": "Asake"},
+    {"name": "Ayra Starr"},
+    {"name": "Tems"},
+    {"name": "Tiwa Savage"},
+    {"name": "Olamide"},
+    {"name": "Phyno"},
+    {"name": "2Baba"},
+    {"name": "D'banj"},
+    {"name": "Don Jazzy"},
+    {"name": "Yemi Alade"},
+    {"name": "Flavour"},
+    {"name": "Simi"},
+    {"name": "Mr Eazi"},
+    {"name": "Fireboy DML"},
+    {"name": "Oxlade"},
+    {"name": "Adekunle Gold"},
+    {"name": "Funke Akindele"},
+    {"name": "Genevieve Nnaji"},
+    {"name": "Ramsey Nouah"},
+    {"name": "Richard Mofe-Damijo"},
+    {"name": "Kunle Remi"},
+    {"name": "Yul Edochie"},
+    {"name": "Toyin Abraham"},
+    {"name": "Mercy Johnson"},
+    {"name": "Osita Iheme"},
+    {"name": "Chinedu Ikedieze"},
+    {"name": "Mr Ibu"},
+    {"name": "Pete Edochie"},
+    {"name": "Idris Elba"},
+    {"name": "Dwayne Johnson"},
+    {"name": "Leonardo DiCaprio"},
+    {"name": "Tom Hanks"},
+    {"name": "Will Smith"},
+    {"name": "Jackie Chan"},
+    {"name": "Keanu Reeves"},
+    {"name": "Zendaya"},
+    {"name": "Ryan Reynolds"},
+    {"name": "Morgan Freeman"},
+    {"name": "Angelina Jolie"},
+    {"name": "Jim Carrey"},
+    {"name": "Cristiano Ronaldo"},
+    {"name": "Lionel Messi"},
+    {"name": "Kylian Mbappe"},
+    {"name": "Neymar"},
+    {"name": "Mohamed Salah"},
+    {"name": "Victor Osimhen"},
+    {"name": "Jay-Jay Okocha"},
+    {"name": "Didier Drogba"},
+    {"name": "Sadio Mane"},
+    {"name": "Erling Haaland"},
+    {"name": "Michael Jackson"},
+    {"name": "Beyonce"},
+    {"name": "Rihanna"},
+    {"name": "Drake"},
+    {"name": "Taylor Swift"},
+    {"name": "Bruno Mars"},
+    {"name": "Adele"},
+    {"name": "Justin Bieber"},
+    {"name": "Eminem"},
+    {"name": "Lady Gaga"},
+    {"name": "Elvis Presley"},
+    {"name": "Bob Marley"},
+    {"name": "Harry Potter"},
+    {"name": "Spider-Man"},
+    {"name": "Batman"},
+    {"name": "Superman"},
+    {"name": "Iron Man"},
+    {"name": "Black Panther"},
+    {"name": "Wonder Woman"},
+    {"name": "Hulk"},
+    {"name": "Thor"},
+    {"name": "Captain America"},
+    {"name": "Deadpool"},
+    {"name": "Wolverine"},
+    {"name": "Doctor Strange"},
+    {"name": "Captain Marvel"},
+    {"name": "Black Widow"},
+    {"name": "Hawkeye"},
+    {"name": "Falcon"},
+    {"name": "Winter Soldier"},
+    {"name": "Vision"},
+    {"name": "Scarlet Witch"},
+    {"name": "Ant-Man"},
+    {"name": "Wasp"},
+    {"name": "Star-Lord"},
+    {"name": "Gamora"},
+    {"name": "Drax"},
+    {"name": "Rocket Raccoon"},
+    {"name": "Groot"},
+    {"name": "Mantis"},
+    {"name": "Nebula"},
+    {"name": "Shang-Chi"},
+    {"name": "Venom"},
+    {"name": "Joker"},
+    {"name": "Harley Quinn"},
+    {"name": "Catwoman"},
+    {"name": "Nightwing"},
+    {"name": "Robin"},
+    {"name": "Batgirl"},
+    {"name": "Flash"},
+    {"name": "Cyborg"},
+    {"name": "Aquaman"},
+    {"name": "Green Lantern"},
+    {"name": "Shazam"},
+    {"name": "Raven"},
+    {"name": "Beast Boy"},
+    {"name": "Starfire"},
+    {"name": "Deathstroke"},
+    {"name": "Black Adam"},
+    {"name": "Peacemaker"},
+    {"name": "Miles Morales"},
+    {"name": "Green Goblin"},
+    {"name": "Doctor Octopus"},
+    {"name": "Lex Luthor"},
+    {"name": "Darkseid"},
+    {"name": "Reverse Flash"},
+    {"name": "Green Arrow"},
+    {"name": "Black Canary"},
+    {"name": "Supergirl"},
+    {"name": "Elsa"},
+    {"name": "Simba"},
+    {"name": "Shrek"},
+    {"name": "Jack Sparrow"},
+    {"name": "Gollum"},
+    {"name": "Indiana Jones"},
+    {"name": "Homer Simpson"},
+    {"name": "SpongeBob SquarePants"},
+    {"name": "Mr Bean"},
+    {"name": "Wednesday Addams"},
+    {"name": "Walter White"},
+    {"name": "Sherlock Holmes"},
+    {"name": "James Bond"},
+    {"name": "Albert Einstein"},
+    {"name": "Nelson Mandela"},
+    {"name": "Martin Luther King Jr."},
+    {"name": "Cleopatra"},
+    {"name": "William Shakespeare"},
+    {"name": "Winston Churchill"},
+    {"name": "Steve Jobs"},
+    {"name": "Bill Gates"},
+    {"name": "Mark Zuckerberg"},
+    {"name": "Elon Musk"},
+    {"name": "P-Square"},
+    {"name": "Kizz Daniel"},
+    {"name": "Victony"},
+    {"name": "BNXN"},
+    {"name": "Shallipopi"},
+    {"name": "Korede Bello"},
+    {"name": "Tekno"},
+    {"name": "Runtown"},
+    {"name": "Wande Coal"},
+    {"name": "Johnny Drille"},
+    {"name": "Chike"},
+    {"name": "Lojay"},
+    {"name": "Zinoleesky"},
+    {"name": "Teni"},
+    {"name": "Niniola"},
+    {"name": "Mavin"},
+    {"name": "Falz"},
+    {"name": "MI Abaga"},
+    {"name": "Ice Prince"},
+    {"name": "Bovi"},
+    {"name": "AY Makun"},
+    {"name": "Basketmouth"},
+    {"name": "Nkem Owoh"},
+    {"name": "Kanayo O. Kanayo"},
+    {"name": "Ini Edo"},
+    {"name": "Stephanie Linus"},
+    {"name": "Adesua Etomi"},
+    {"name": "Alexx Ekubo"},
+    {"name": "Mike Ezuruonye"},
+    {"name": "Blossom Chukwujekwu"},
+    {"name": "Ireti Doyle"},
+    {"name": "John Boyega"},
+    {"name": "Robert Downey Jr."},
+    {"name": "Chris Hemsworth"},
+    {"name": "Chris Evans"},
+    {"name": "Scarlett Johansson"},
+    {"name": "Jennifer Aniston"},
+    {"name": "Brad Pitt"},
+    {"name": "George Clooney"},
+    {"name": "Johnny Depp"},
+    {"name": "Emma Watson"},
+    {"name": "Anne Hathaway"},
+    {"name": "Margot Robbie"},
+    {"name": "Cillian Murphy"},
+    {"name": "Pedro Pascal"},
+    {"name": "Jason Statham"},
+    {"name": "Arnold Schwarzenegger"},
+    {"name": "Kobe Bryant"},
+    {"name": "LeBron James"},
+    {"name": "Stephen Curry"},
+    {"name": "Michael Jordan"},
+    {"name": "Giannis Antetokounmpo"},
+    {"name": "Serena Williams"},
+    {"name": "Usain Bolt"},
+    {"name": "Simone Biles"},
+    {"name": "Tiger Woods"},
+    {"name": "Floyd Mayweather"},
+    {"name": "Tyson Fury"},
+    {"name": "Conor McGregor"},
+    {"name": "Novak Djokovic"},
+    {"name": "Rafael Nadal"},
+    {"name": "Roger Federer"},
+    {"name": "Whitney Houston"},
+    {"name": "Mariah Carey"},
+    {"name": "Madonna"},
+    {"name": "Prince"},
+    {"name": "Snoop Dogg"},
+    {"name": "50 Cent"},
+    {"name": "Kanye West"},
+    {"name": "Nicki Minaj"},
+    {"name": "Cardi B"},
+    {"name": "Ariana Grande"},
+    {"name": "Selena Gomez"},
+    {"name": "Miley Cyrus"},
+    {"name": "The Weeknd"},
+    {"name": "Ed Sheeran"},
+    {"name": "Shakira"},
+    {"name": "Jennifer Lopez"},
+    {"name": "Post Malone"},
+    {"name": "Megan Thee Stallion"},
+    {"name": "Travis Scott"},
+    {"name": "Goku"},
+    {"name": "Naruto Uzumaki"},
+    {"name": "Monkey D. Luffy"},
+    {"name": "Pikachu"},
+    {"name": "Mario"},
+    {"name": "Sonic the Hedgehog"},
+    {"name": "Pac-Man"},
+    {"name": "Lara Croft"},
+    {"name": "Kratos"},
+    {"name": "Link"},
+    {"name": "Dora the Explorer"},
+    {"name": "Tom"},
+    {"name": "Jerry"},
+    {"name": "Scooby-Doo"},
+    {"name": "Patrick Star"},
+    {"name": "Peter Griffin"},
+    {"name": "Rick Sanchez"}
   ]
 }
