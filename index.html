@@ -5015,9 +5015,7 @@
             const container = document.getElementById('adminInputContainer');
             container.classList.toggle('show');
             if (container.classList.contains('show')) {
-                setTimeout(() => {
-                    document.getElementById('adminCodeInput').focus();
-                }, 100);
+                document.getElementById('adminCodeInput').focus();
             }
         }
 
@@ -5705,10 +5703,23 @@
         }
 
         // ============================================================
-        //  LOAD DATA - FIXED VERSION
+        //  LOAD DATA
         // ============================================================
+        function loadFallbackData() {
+            console.log('📥 Using fallback data for testing');
+            charadesWords = [...FALLBACK_DATA.charades];
+            karaokeSongs = [...FALLBACK_DATA.karaoke];
+            fastTalkCategories = [...FALLBACK_DATA.fastTalk];
+            pictionaryWords = [...FALLBACK_DATA.pictionary];
+            hangmanWords = JSON.parse(JSON.stringify(FALLBACK_DATA.hangman));
+            truthLieData.truths = [...FALLBACK_DATA.truths];
+            truthLieData.lies = [...FALLBACK_DATA.lies];
+            roastLines = [...FALLBACK_DATA.roasts];
+            whoamiNames = [...FALLBACK_DATA.whoami];
+            console.log(`✅ Fallback data loaded: ${charadesWords.length} charades, ${whoamiNames.length} whoami, ${roastLines.length} roasts`);
+        }
 
-        async function loadDataFromJSON() {
+        async function loadData() {
             try {
                 const response = await fetch('data.json?t=' + Date.now());
                 if (!response.ok) {
@@ -5718,7 +5729,6 @@
 
                 console.log('📥 Raw data loaded:', Object.keys(data));
 
-                // Populate ALL data from JSON
                 charadesWords = data.charades || [];
                 karaokeSongs = data.karaoke || [];
                 fastTalkCategories = data.fastTalk || [];
@@ -5726,25 +5736,8 @@
                 truthLieData.truths = data.truths || [];
                 truthLieData.lies = data.lies || [];
                 roastLines = data.roasts || [];
+                whoamiNames = data.whoami || data.whoAmI || [];
 
-                // Handle whoami - support both formats
-                if (data.whoami && Array.isArray(data.whoami)) {
-                    if (data.whoami.length > 0 && typeof data.whoami[0] === 'object' && data.whoami[0].name) {
-                        whoamiNames = data.whoami.map(item => item.name);
-                    } else {
-                        whoamiNames = data.whoami;
-                    }
-                } else if (data.whoAmI && Array.isArray(data.whoAmI)) {
-                    if (data.whoAmI.length > 0 && typeof data.whoAmI[0] === 'object' && data.whoAmI[0].name) {
-                        whoamiNames = data.whoAmI.map(item => item.name);
-                    } else {
-                        whoamiNames = data.whoAmI;
-                    }
-                } else {
-                    whoamiNames = [];
-                }
-
-                // Handle hangman - support both formats
                 if (data.hangman && typeof data.hangman === 'object' && data.hangman.easy) {
                     hangmanWords = data.hangman;
                 } else if (Array.isArray(data.hangman)) {
@@ -5769,62 +5762,55 @@
                 console.log(`🔥 ${roastLines.length} roast lines`);
                 console.log(`🕵️ ${whoamiNames.length} whoami names`);
 
-                // ✅ Save to localStorage so it persists
                 saveGMData();
+                renderGameGrid();
+                renderAll();
+                renderGMData();
+                renderThemes();
                 return true;
             } catch (error) {
                 console.warn('❌ Error loading data.json:', error);
+                console.log('📥 Loading fallback data...');
+                loadFallbackData();
+                saveGMData();
+                renderGameGrid();
+                renderAll();
+                renderGMData();
+                renderThemes();
                 return false;
             }
         }
 
-        function loadFallbackData() {
-            console.log('📥 Using fallback data for testing');
-            charadesWords = [...FALLBACK_DATA.charades];
-            karaokeSongs = [...FALLBACK_DATA.karaoke];
-            fastTalkCategories = [...FALLBACK_DATA.fastTalk];
-            pictionaryWords = [...FALLBACK_DATA.pictionary];
-            hangmanWords = JSON.parse(JSON.stringify(FALLBACK_DATA.hangman));
-            truthLieData.truths = [...FALLBACK_DATA.truths];
-            truthLieData.lies = [...FALLBACK_DATA.lies];
-            roastLines = [...FALLBACK_DATA.roasts];
-            whoamiNames = [...FALLBACK_DATA.whoami];
-            console.log(`✅ Fallback data loaded: ${charadesWords.length} charades, ${whoamiNames.length} whoami, ${roastLines.length} roasts`);
-            saveGMData();
-        }
-
-        function loadGMData() {
+        function loadPlayers() {
             try {
-                const saved = localStorage.getItem('arcadeGMData');
+                const saved = localStorage.getItem('arcadePlayers');
                 if (saved) {
-                    const data = JSON.parse(saved);
-                    // ✅ Only assign if arrays are empty (don't overwrite existing data)
-                    if (charadesWords.length === 0) charadesWords = data.charadesWords || [];
-                    if (karaokeSongs.length === 0) karaokeSongs = data.karaokeSongs || [];
-                    if (fastTalkCategories.length === 0) fastTalkCategories = data.fastTalkCategories || [];
-                    if (pictionaryWords.length === 0) pictionaryWords = data.pictionaryWords || [];
-
-                    // Check if hangmanWords is empty before loading
-                    let hangmanEmpty = true;
-                    for (const diff of ['easy', 'medium', 'hard', 'expert']) {
-                        if (hangmanWords[diff] && hangmanWords[diff].length > 0) {
-                            hangmanEmpty = false;
-                            break;
-                        }
+                    const parsed = JSON.parse(saved);
+                    if (Array.isArray(parsed) && parsed.length <= MAX_PLAYERS) {
+                        players = parsed.map(p => ({
+                            ...p,
+                            history: p.history || [],
+                            streak: p.streak || 0,
+                            level: p.level || 1,
+                            totalGames: p.totalGames || 0,
+                            correctGuesses: p.correctGuesses || 0,
+                            achievements: p.achievements || [],
+                            emoji: p.emoji || EMOJIS[Math.floor(Math.random() * EMOJIS.length)],
+                            color: p.color || COLORS[Math.floor(Math.random() * COLORS.length)],
+                            team: p.team !== undefined ? p.team : null,
+                            roastCount: p.roastCount || 0
+                        }));
+                        return;
                     }
-                    if (hangmanEmpty && data.hangmanWords) {
-                        hangmanWords = data.hangmanWords;
-                    }
-
-                    if (truthLieData.truths.length === 0) truthLieData.truths = data.truthLieData?.truths || [];
-                    if (truthLieData.lies.length === 0) truthLieData.lies = data.truthLieData?.lies || [];
-                    if (roastLines.length === 0) roastLines = data.roastLines || [];
-                    if (whoamiNames.length === 0) whoamiNames = data.whoamiNames || [];
-
-                    return true;
                 }
             } catch (e) {}
-            return false;
+            players = [];
+        }
+
+        function savePlayers() {
+            try {
+                localStorage.setItem('arcadePlayers', JSON.stringify(players));
+            } catch (e) {}
         }
 
         function saveGMData() {
@@ -5842,64 +5828,23 @@
             } catch (e) {}
         }
 
-        // ============================================================
-        //  INIT - FIXED VERSION
-        // ============================================================
-
-        async function init() {
-            loadThemePreference();
-            loadPlayers();
-
-            // ✅ STEP 1: Try to load from data.json FIRST
-            let dataLoaded = await loadDataFromJSON();
-
-            // ✅ STEP 2: If data.json failed, try localStorage
-            if (!dataLoaded) {
-                const hasLocalData = loadGMData();
-                if (hasLocalData) {
-                    console.log('✅ Data loaded from localStorage');
-                    dataLoaded = true;
+        function loadGMData() {
+            try {
+                const saved = localStorage.getItem('arcadeGMData');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    charadesWords = data.charadesWords || [];
+                    karaokeSongs = data.karaokeSongs || [];
+                    fastTalkCategories = data.fastTalkCategories || [];
+                    pictionaryWords = data.pictionaryWords || [];
+                    hangmanWords = data.hangmanWords || { easy: [], medium: [], hard: [], expert: [] };
+                    truthLieData = data.truthLieData || { truths: [], lies: [] };
+                    roastLines = data.roastLines || [];
+                    whoamiNames = data.whoamiNames || [];
+                    return true;
                 }
-            }
-
-            // ✅ STEP 3: If still no data, use fallback
-            let hasData = false;
-            for (const diff of ['easy', 'medium', 'hard', 'expert']) {
-                if (hangmanWords[diff] && hangmanWords[diff].length > 0) hasData = true;
-            }
-            if (whoamiNames.length > 0) hasData = true;
-            if (charadesWords.length > 0) hasData = true;
-            if (pictionaryWords.length > 0) hasData = true;
-            if (roastLines.length > 0) hasData = true;
-
-            if (!hasData) {
-                console.log('📥 No data found, loading fallback...');
-                loadFallbackData();
-                saveGMData();
-            } else if (!dataLoaded) {
-                // If we have data from localStorage but data.json failed, save it
-                saveGMData();
-            }
-
-            // ✅ STEP 4: Render everything
-            renderGameGrid();
-            renderAll();
-            setupGMTabs();
-            setupEventListeners();
-            renderGMData();
-            renderThemes();
-            loadSoundPreferences();
-            currentGameTimerSeconds = 30;
-
-            console.log('🎮 ARCADE PARTY loaded!');
-            console.log(`🕵️ WhoAmI: ${whoamiNames.length} names`);
-            console.log(`🧩 Hangman: ${hangmanWords.easy?.length || 0} easy, ${hangmanWords.medium?.length || 0} medium, ${hangmanWords.hard?.length || 0} hard, ${hangmanWords.expert?.length || 0} expert`);
-            console.log(`🎭 Charades: ${charadesWords.length} words`);
-            console.log(`🎨 Pictionary: ${pictionaryWords.length} words`);
-            console.log(`🎤 Karaoke: ${karaokeSongs.length} songs`);
-            console.log(`⏱️ Fast Talk: ${fastTalkCategories.length} categories`);
-            console.log(`🤥 Truths: ${truthLieData.truths.length}, Lies: ${truthLieData.lies.length}`);
-            console.log(`🔥 Roasts: ${roastLines.length} lines`);
+            } catch (e) {}
+            return false;
         }
 
         // ============================================================
@@ -6034,7 +5979,7 @@
             createConfetti(15);
             playSound('success');
             if (teamModeEnabled && teams.length > 0) {
-                const teamIdx = (players.length - 1) % teams.length;
+                const teamIdx = players.length % teams.length;
                 assignPlayerToTeam(name, teamIdx);
             }
             return { success: true };
@@ -8272,23 +8217,15 @@
 
         function addGMCharades() {
             const input = document.getElementById('gmCharadesInput');
-            if (!input) return;
             const word = input.value.trim().toLowerCase();
-            if (!word) {
-                alert('Please enter a word!');
-                return;
-            }
-            if (!charadesWords) charadesWords = [];
-            if (charadesWords.includes(word)) {
-                alert('Word already exists!');
-                return;
-            }
-            charadesWords.push(word);
-            saveGMData();
-            renderGMCharades();
-            input.value = '';
-            createConfetti(15);
-            playSound('success');
+            if (word && !charadesWords.includes(word)) {
+                charadesWords.push(word);
+                saveGMData();
+                renderGMCharades();
+                input.value = '';
+                createConfetti(15);
+                playSound('success');
+            } else if (word) alert('Word already exists!');
         }
 
         function deleteGMCharades(index) { charadesWords.splice(index, 1);
@@ -8310,27 +8247,20 @@
         }
 
         function addGMKaraoke() {
-            const titleInput = document.getElementById('gmKaraokeTitle');
-            const artistInput = document.getElementById('gmKaraokeArtist');
-            if (!titleInput || !artistInput) return;
-            const title = titleInput.value.trim();
-            const artist = artistInput.value.trim();
-            if (!title || !artist) {
-                alert('Enter both title and artist!');
-                return;
-            }
-            if (!karaokeSongs) karaokeSongs = [];
-            if (karaokeSongs.some(s => s.title.toLowerCase() === title.toLowerCase() && s.artist.toLowerCase() === artist.toLowerCase())) {
-                alert('Song already exists!');
-                return;
-            }
-            karaokeSongs.push({ title, artist });
-            saveGMData();
-            renderGMKaraoke();
-            titleInput.value = '';
-            artistInput.value = '';
-            createConfetti(15);
-            playSound('success');
+            const title = document.getElementById('gmKaraokeTitle').value.trim();
+            const artist = document.getElementById('gmKaraokeArtist').value.trim();
+            if (title && artist) {
+                if (!karaokeSongs.some(s => s.title.toLowerCase() === title.toLowerCase() && s.artist.toLowerCase() ===
+                        artist.toLowerCase())) {
+                    karaokeSongs.push({ title, artist });
+                    saveGMData();
+                    renderGMKaraoke();
+                    document.getElementById('gmKaraokeTitle').value = '';
+                    document.getElementById('gmKaraokeArtist').value = '';
+                    createConfetti(15);
+                    playSound('success');
+                } else alert('Song already exists!');
+            } else alert('Enter both title and artist!');
         }
 
         function deleteGMKaraoke(index) { karaokeSongs.splice(index, 1);
@@ -8352,27 +8282,20 @@
         }
 
         function addGMCategory() {
-            const nameInput = document.getElementById('gmCategoryName');
-            const wordsInput = document.getElementById('gmCategoryWords');
-            if (!nameInput || !wordsInput) return;
-            const name = nameInput.value.trim();
-            const words = wordsInput.value.split(',').map(w => w.trim().toLowerCase()).filter(w => w);
-            if (!name || words.length === 0) {
-                alert('Enter category name and at least one word!');
-                return;
-            }
-            if (!fastTalkCategories) fastTalkCategories = [];
-            if (fastTalkCategories.some(c => c.name.toLowerCase() === name.toLowerCase())) {
-                alert('Category already exists!');
-                return;
-            }
-            fastTalkCategories.push({ name, items: words });
-            saveGMData();
-            renderGMCategories();
-            nameInput.value = '';
-            wordsInput.value = '';
-            createConfetti(15);
-            playSound('success');
+            const name = document.getElementById('gmCategoryName').value.trim();
+            const words = document.getElementById('gmCategoryWords').value.split(',').map(w => w.trim().toLowerCase())
+                .filter(w => w);
+            if (name && words.length > 0) {
+                if (!fastTalkCategories.some(c => c.name.toLowerCase() === name.toLowerCase())) {
+                    fastTalkCategories.push({ name, items: words });
+                    saveGMData();
+                    renderGMCategories();
+                    document.getElementById('gmCategoryName').value = '';
+                    document.getElementById('gmCategoryWords').value = '';
+                    createConfetti(15);
+                    playSound('success');
+                } else alert('Category already exists!');
+            } else alert('Enter category name and at least one word!');
         }
 
         function deleteGMCategory(index) { fastTalkCategories.splice(index, 1);
@@ -8394,24 +8317,15 @@
         }
 
         function addGMPictionary() {
-            const input = document.getElementById('gmPictionaryInput');
-            if (!input) return;
-            const word = input.value.trim().toLowerCase();
-            if (!word) {
-                alert('Please enter a word!');
-                return;
-            }
-            if (!pictionaryWords) pictionaryWords = [];
-            if (pictionaryWords.includes(word)) {
-                alert('Word already exists!');
-                return;
-            }
-            pictionaryWords.push(word);
-            saveGMData();
-            renderGMPictionary();
-            input.value = '';
-            createConfetti(15);
-            playSound('success');
+            const word = document.getElementById('gmPictionaryInput').value.trim().toLowerCase();
+            if (word && !pictionaryWords.includes(word)) {
+                pictionaryWords.push(word);
+                saveGMData();
+                renderGMPictionary();
+                document.getElementById('gmPictionaryInput').value = '';
+                createConfetti(15);
+                playSound('success');
+            } else if (word) alert('Word already exists!');
         }
 
         function deleteGMPictionary(index) { pictionaryWords.splice(index, 1);
@@ -8462,13 +8376,9 @@
         }
 
         function addGMHangman() {
-            const wordInput = document.getElementById('gmHangmanInput');
-            const defInput = document.getElementById('gmHangmanDefInput');
-            const diffSelect = document.getElementById('gmHangmanDifficulty');
-            if (!wordInput || !defInput || !diffSelect) return;
-            const word = wordInput.value.trim().toLowerCase();
-            const definition = defInput.value.trim();
-            const difficulty = diffSelect.value;
+            const word = document.getElementById('gmHangmanInput').value.trim().toLowerCase();
+            const definition = document.getElementById('gmHangmanDefInput').value.trim();
+            const difficulty = document.getElementById('gmHangmanDifficulty').value;
 
             if (!word) {
                 alert('Please enter a word!');
@@ -8482,16 +8392,18 @@
                 alert('Word must be at least 4 letters!');
                 return;
             }
-            if (!hangmanWords[difficulty]) hangmanWords[difficulty] = [];
-            if (hangmanWords[difficulty].some(w => w.word === word)) {
+
+            const diffWords = hangmanWords[difficulty] || [];
+            if (diffWords.some(w => w.word === word)) {
                 alert('Word already exists in this difficulty!');
                 return;
             }
+
             hangmanWords[difficulty].push({ word, definition: definition || 'No definition provided' });
             saveGMData();
             renderGMHangman();
-            wordInput.value = '';
-            defInput.value = '';
+            document.getElementById('gmHangmanInput').value = '';
+            document.getElementById('gmHangmanDefInput').value = '';
             createConfetti(15);
             playSound('success');
         }
@@ -8533,28 +8445,29 @@
         }
 
         function addGMTruthLie() {
-            const truth1Input = document.getElementById('gmTruth1');
-            const truth2Input = document.getElementById('gmTruth2');
-            const lieInput = document.getElementById('gmLie');
-            if (!truth1Input || !truth2Input || !lieInput) return;
-            const truth1 = truth1Input.value.trim();
-            const truth2 = truth2Input.value.trim();
-            const lie = lieInput.value.trim();
+            const truth1 = document.getElementById('gmTruth1').value.trim();
+            const truth2 = document.getElementById('gmTruth2').value.trim();
+            const lie = document.getElementById('gmLie').value.trim();
             let added = 0;
-            if (!truthLieData.truths) truthLieData.truths = [];
-            if (!truthLieData.lies) truthLieData.lies = [];
-            if (truth1) { truthLieData.truths.push(truth1);
-                added++; }
-            if (truth2) { truthLieData.truths.push(truth2);
-                added++; }
-            if (lie) { truthLieData.lies.push(lie);
-                added++; }
+            if (truth1) {
+                truthLieData.truths.push(truth1);
+                added++;
+            }
+            if (truth2) {
+                truthLieData.truths.push(truth2);
+                added++;
+            }
+            if (lie) {
+                truthLieData.lies.push(lie);
+                added++;
+            }
             if (added > 0) {
                 saveGMData();
                 renderGMTruthLie();
-                truth1Input.value = '';
-                truth2Input.value = '';
-                lieInput.value = '';
+                document.getElementById('gmTruthLieCategory').value = '';
+                document.getElementById('gmTruth1').value = '';
+                document.getElementById('gmTruth2').value = '';
+                document.getElementById('gmLie').value = '';
                 createConfetti(15);
                 playSound('success');
             } else {
@@ -8593,24 +8506,15 @@
         }
 
         function addGMRoast() {
-            const input = document.getElementById('gmRoastInput');
-            if (!input) return;
-            const prompt = input.value.trim();
-            if (!prompt) {
-                alert('Please enter a roast line!');
-                return;
-            }
-            if (!roastLines) roastLines = [];
-            if (roastLines.includes(prompt)) {
-                alert('Roast already exists!');
-                return;
-            }
-            roastLines.push(prompt);
-            saveGMData();
-            renderGMRoast();
-            input.value = '';
-            createConfetti(15);
-            playSound('success');
+            const prompt = document.getElementById('gmRoastInput').value.trim();
+            if (prompt && !roastLines.includes(prompt)) {
+                roastLines.push(prompt);
+                saveGMData();
+                renderGMRoast();
+                document.getElementById('gmRoastInput').value = '';
+                createConfetti(15);
+                playSound('success');
+            } else if (prompt) alert('Roast already exists!');
         }
 
         function deleteGMRoast(index) { roastLines.splice(index, 1);
@@ -8633,23 +8537,15 @@
 
         function addGMWhoami() {
             const input = document.getElementById('gmWhoamiInput');
-            if (!input) return;
             const name = input.value.trim();
-            if (!name) {
-                alert('Please enter a name!');
-                return;
-            }
-            if (!whoamiNames) whoamiNames = [];
-            if (whoamiNames.includes(name)) {
-                alert('Name already exists!');
-                return;
-            }
-            whoamiNames.push(name);
-            saveGMData();
-            renderGMWhoami();
-            input.value = '';
-            createConfetti(15);
-            playSound('success');
+            if (name && !whoamiNames.includes(name)) {
+                whoamiNames.push(name);
+                saveGMData();
+                renderGMWhoami();
+                input.value = '';
+                createConfetti(15);
+                playSound('success');
+            } else if (name) alert('Name already exists!');
         }
 
         function deleteGMWhoami(index) {
@@ -8680,7 +8576,7 @@
                 truths: truthLieData.truths,
                 lies: truthLieData.lies,
                 roastLines,
-                whoami: whoamiNames,
+                whoamiNames,
                 teams,
                 timestamp: new Date().toISOString()
             };
@@ -8712,7 +8608,6 @@
                             if (data.truths) truthLieData.truths = data.truths;
                             if (data.lies) truthLieData.lies = data.lies;
                             if (data.roastLines) roastLines = data.roastLines;
-                            if (data.whoami) whoamiNames = data.whoami;
                             if (data.whoamiNames) whoamiNames = data.whoamiNames;
                             if (data.teams) teams = data.teams;
                             savePlayers();
@@ -8802,63 +8697,81 @@
         }
 
         // ============================================================
-        //  EVENT LISTENERS - FIXED WITH NULL CHECKS
+        //  EVENT LISTENERS
         // ============================================================
         function setupEventListeners() {
-            // ✅ ADD PLAYER BUTTON
-            const addBtn = document.getElementById('addPlayerBtn');
-            if (addBtn) {
-                addBtn.addEventListener('click', () => {
-                    const input = document.getElementById('playerNameInput');
-                    if (!input) return;
-                    const name = input.value.trim();
-                    if (!name) {
-                        alert('Please enter a name!');
-                        return;
-                    }
-                    const result = addPlayer(name);
-                    if (!result.success) {
-                        alert(result.message);
-                    } else {
-                        input.value = '';
-                        input.focus();
-                    }
-                });
-            }
-
-            // ✅ PLAYER NAME INPUT - ENTER KEY
-            const nameInput = document.getElementById('playerNameInput');
-            if (nameInput) {
-                nameInput.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter') {
-                        e.preventDefault();
-                        const addBtn = document.getElementById('addPlayerBtn');
-                        if (addBtn) addBtn.click();
-                    }
-                });
-            }
-
-            // ✅ CLEAR ALL BUTTON
-            const clearBtn = document.getElementById('clearAllBtn');
-            if (clearBtn) {
-                clearBtn.addEventListener('click', clearAllPlayers);
-            }
+            document.getElementById('addPlayerBtn').addEventListener('click', () => {
+                const input = document.getElementById('playerNameInput');
+                const result = addPlayer(input.value);
+                if (!result.success) alert(result.message);
+                else { input.value = '';
+                    input.focus(); }
+            });
+            document.getElementById('playerNameInput').addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') document.getElementById('addPlayerBtn').click();
+            });
+            document.getElementById('clearAllBtn').addEventListener('click', clearAllPlayers);
         }
 
         // ============================================================
-        //  DOMContentLoaded - FINAL
+        //  INIT
         // ============================================================
+        async function init() {
+            loadThemePreference();
+            loadPlayers();
+
+            const hasLocalData = loadGMData();
+
+            let hasData = false;
+            for (const diff of ['easy', 'medium', 'hard', 'expert']) {
+                if (hangmanWords[diff] && hangmanWords[diff].length > 0) hasData = true;
+            }
+            if (whoamiNames.length > 0) hasData = true;
+
+            if (!hasData) {
+                console.log('📥 Loading from data.json...');
+                await loadData();
+            } else {
+                console.log('✅ Data loaded from localStorage');
+                console.log(`🕵️ ${whoamiNames.length} whoami names loaded`);
+                console.log(`🧩 ${hangmanWords.easy?.length || 0} easy, ${hangmanWords.medium?.length || 0} medium, ${hangmanWords.hard?.length || 0} hard, ${hangmanWords.expert?.length || 0} expert hangman words`);
+            }
+
+            if (truthLieData.truths.length === 0 || truthLieData.lies.length === 0) {
+                await loadData();
+            }
+
+            renderGameGrid();
+            renderAll();
+            setupGMTabs();
+            setupEventListeners();
+            renderGMData();
+            renderThemes();
+            loadSoundPreferences();
+            currentGameTimerSeconds = 30;
+
+            console.log('🎮 ARCADE PARTY loaded!');
+            console.log(`🕵️ Final whoami count: ${whoamiNames.length}`);
+            console.log(`😀 ${EMOJIS.length} emojis available`);
+            console.log(`🔥 ${roastLines.length} roast lines available`);
+            console.log(`🧩 Hangman: ${hangmanWords.easy?.length || 0} easy, ${hangmanWords.medium?.length || 0} medium, ${hangmanWords.hard?.length || 0} hard, ${hangmanWords.expert?.length || 0} expert`);
+            console.log(`🎨 ${Object.keys(THEMES).length} themes available`);
+            console.log(`🎵 Sound system with alternatives loaded`);
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             if (charadesWords.length === 0 || whoamiNames.length === 0) {
-                init();
-            } else {
-                renderGameGrid();
-                renderAll();
-                renderGMData();
-                renderThemes();
-                loadSoundPreferences();
+                loadData().then(() => {
+                    renderGameGrid();
+                    renderAll();
+                    renderGMData();
+                    renderThemes();
+                    loadSoundPreferences();
+                });
             }
         });
+
+        init();
     </script>
 </body>
 </html>
