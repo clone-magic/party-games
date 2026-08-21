@@ -6,7 +6,7 @@
     <title>🎮 ARCADE PARTY</title>
     <style>
         /* ============================================================
-           RESET & BASE - Blue Theme
+           RESET & BASE - Professional Theme
            ============================================================ */
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&display=swap');
 
@@ -2535,153 +2535,230 @@
             transform: scale(1.08);
         }
 
+        /* ============================================================
+           OPTIMIZED HANGMAN MODAL
+           ============================================================ */
         .hangman-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0.5rem;
         }
 
-        .hangman-svg {
-            display: block;
-            margin: 0 auto;
-            max-width: 100%;
+        .hangman-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.7rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .hangman-header .difficulty-badge {
+            padding: 0.15rem 0.8rem;
+            border-radius: 20px;
+            font-family: var(--font-display);
+            font-size: 0.5rem;
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-secondary);
+        }
+
+        .hangman-header .difficulty-badge.easy {
+            border-color: #2ecc71;
+            color: #2ecc71;
+        }
+        .hangman-header .difficulty-badge.medium {
+            border-color: #f39c12;
+            color: #f39c12;
+        }
+        .hangman-header .difficulty-badge.hard {
+            border-color: #e67e22;
+            color: #e67e22;
+        }
+        .hangman-header .difficulty-badge.expert {
+            border-color: #e74c3c;
+            color: #e74c3c;
+        }
+
+        .hangman-header .progress {
+            color: var(--theme-text-muted);
+            font-weight: 700;
+            font-size: 0.6rem;
+            font-family: var(--font-display);
+        }
+
+        .hangman-figure {
+            display: flex;
+            justify-content: center;
+            margin: 0.25rem 0;
+        }
+
+        .hangman-figure svg {
+            max-width: 200px;
             height: auto;
             background: var(--theme-bg-input);
-            border-radius: 14px;
+            border-radius: 12px;
             padding: 0.5rem;
             border: 2px solid var(--theme-border-color);
-            width: 300px;
-            height: 240px;
-        }
-
-        .hangman-part {
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            stroke: var(--theme-text-primary);
-        }
-
-        .hangman-part.show {
-            opacity: 1;
         }
 
         .hangman-word {
             font-family: var(--font-display);
-            font-size: 2.4rem;
-            letter-spacing: 14px;
-            margin: 0.5rem 0;
-            min-height: 3.5rem;
+            font-size: 2.2rem;
+            letter-spacing: 12px;
             text-align: center;
+            padding: 0.5rem;
+            min-height: 3.5rem;
             color: var(--theme-blue-electric);
             word-break: break-word;
             overflow-wrap: break-word;
         }
 
-        .hangman-word .letter-hidden {
+        .hangman-word .letter {
+            display: inline-block;
+            width: 1.8rem;
+            text-align: center;
+        }
+
+        .hangman-word .letter.hidden {
             color: var(--theme-text-muted);
         }
-        .hangman-word .letter-revealed {
+
+        .hangman-word .letter.revealed {
             color: var(--theme-blue-electric);
         }
 
         .hangman-guesses {
-            font-size: 0.7rem;
-            color: var(--theme-text-secondary);
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
             justify-content: center;
-            margin: 0.3rem 0;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            padding: 0.25rem;
+            flex-wrap: wrap;
+            min-height: 1.8rem;
+        }
+
+        .hangman-guesses .correct {
+            color: #2ecc71;
+            font-weight: 700;
         }
 
         .hangman-guesses .wrong {
             color: #e74c3c;
             font-weight: 700;
         }
-        .hangman-guesses .correct {
+
+        .hangman-status {
+            text-align: center;
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            padding: 0.25rem;
+            min-height: 1.8rem;
+        }
+
+        .hangman-status.win {
             color: #2ecc71;
-            font-weight: 700;
+        }
+
+        .hangman-status.lose {
+            color: #e74c3c;
         }
 
         .hangman-input-row {
             display: flex;
             gap: 0.5rem;
-            flex-wrap: wrap;
             justify-content: center;
             margin: 0.5rem 0;
         }
 
         .hangman-input-row input {
-            padding: 0.4rem 0.8rem;
-            border-radius: 30px;
-            border: 3px solid var(--theme-border-color);
-            background: var(--theme-bg-input);
-            color: var(--theme-text-primary);
-            font-size: 1.3rem;
-            width: 60px;
+            width: 48px;
+            padding: 0.4rem;
+            font-size: 1.4rem;
             text-align: center;
             font-family: var(--font-display);
-            transition: var(--transition);
+            border: 3px solid var(--theme-border-color);
+            border-radius: 12px;
+            background: var(--theme-bg-input);
+            color: var(--theme-text-primary);
             text-transform: uppercase;
+            transition: var(--transition);
         }
 
         .hangman-input-row input:focus {
-            outline: none;
             border-color: var(--theme-blue-electric);
-            box-shadow: 0 0 30px var(--theme-glow-blue);
+            outline: none;
+            box-shadow: 0 0 20px var(--theme-glow-blue);
         }
 
-        .hangman-input-row button {
-            padding: 0.35rem 1.2rem;
+        .hangman-input-row .primary-btn {
+            padding: 0.4rem 1.5rem;
             border-radius: 30px;
             border: none;
             font-weight: 700;
-            font-size: 0.65rem;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-body);
-            color: white;
-            box-shadow: 0 0 20px var(--theme-glow-blue);
+            font-size: 0.7rem;
             background: var(--theme-blue-bright);
+            color: white;
+            cursor: pointer;
+            font-family: var(--font-body);
+            box-shadow: 0 0 20px var(--theme-glow-blue);
+            transition: var(--transition);
         }
 
-        .hangman-input-row button:hover {
-            transform: scale(1.08);
+        .hangman-input-row .primary-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--theme-glow-blue-strong);
         }
-        .hangman-input-row button.hint-btn {
-            background: var(--theme-blue-electric);
-            color: var(--blue-dark);
-            box-shadow: 0 0 20px var(--theme-glow-blue-strong);
-        }
-        .hangman-input-row button.next-btn {
-            background: #2ecc71;
-            color: white;
-            box-shadow: 0 0 20px rgba(46, 204, 113, 0.3);
-        }
-        .hangman-input-row button.random-btn {
-            background: #f39c12;
-            color: white;
-            box-shadow: 0 0 20px rgba(243, 156, 18, 0.3);
-        }
-        .hangman-input-row button:disabled {
+
+        .hangman-input-row .primary-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
             transform: none !important;
         }
 
-        .hangman-status {
-            font-family: var(--font-display);
-            font-size: 0.8rem;
-            padding: 0.3rem 0;
-            text-align: center;
+        .hangman-actions {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin: 0.25rem 0;
+            flex-wrap: wrap;
         }
 
-        .hangman-status.win {
-            color: #2ecc71;
-            text-shadow: 0 0 30px rgba(46, 204, 113, 0.3);
+        .hangman-actions button {
+            padding: 0.25rem 0.8rem;
+            border-radius: 20px;
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-secondary);
+            font-size: 0.6rem;
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-weight: 700;
+            transition: var(--transition);
         }
-        .hangman-status.lose {
-            color: #e74c3c;
-            text-shadow: 0 0 30px rgba(231, 76, 60, 0.3);
+
+        .hangman-actions button:hover {
+            border-color: var(--theme-blue-electric);
+            color: var(--theme-text-primary);
+            transform: scale(1.05);
+        }
+
+        .hangman-actions .hint-btn {
+            background: var(--theme-blue-electric);
+            color: var(--blue-dark);
+            border-color: var(--theme-blue-electric);
+        }
+
+        .hangman-actions .random-btn {
+            background: #f39c12;
+            color: white;
+            border-color: #f39c12;
+        }
+
+        .hangman-actions .next-btn {
+            background: #2ecc71;
+            color: white;
+            border-color: #2ecc71;
         }
 
         .hangman-definition {
@@ -2712,36 +2789,6 @@
             font-size: 0.85rem;
             color: var(--theme-text-primary);
             font-weight: 600;
-        }
-
-        .hangman-difficulty-badge {
-            font-size: 0.4rem;
-            padding: 0.1rem 0.5rem;
-            border-radius: 12px;
-            background: var(--theme-bg-input);
-            border: 1px solid var(--theme-border-color);
-            color: var(--theme-text-muted);
-            font-family: var(--font-display);
-            letter-spacing: 1px;
-            display: inline-block;
-            margin-left: 0.5rem;
-        }
-
-        .hangman-difficulty-badge.easy {
-            border-color: #2ecc71;
-            color: #2ecc71;
-        }
-        .hangman-difficulty-badge.medium {
-            border-color: #f39c12;
-            color: #f39c12;
-        }
-        .hangman-difficulty-badge.hard {
-            border-color: #e67e22;
-            color: #e67e22;
-        }
-        .hangman-difficulty-badge.expert {
-            border-color: #e74c3c;
-            color: #e74c3c;
         }
 
         .hangman-difficulty-selector {
@@ -2796,6 +2843,45 @@
             border-color: #e74c3c;
             background: #e74c3c;
             color: white;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 480px) {
+            .hangman-word {
+                font-size: 1.6rem;
+                letter-spacing: 8px;
+            }
+            .hangman-word .letter {
+                width: 1.4rem;
+            }
+            .hangman-figure svg {
+                max-width: 160px;
+            }
+            .hangman-input-row input {
+                width: 40px;
+                font-size: 1.2rem;
+            }
+            .hangman-input-row .primary-btn {
+                padding: 0.3rem 1rem;
+                font-size: 0.6rem;
+            }
+            .hangman-actions button {
+                padding: 0.2rem 0.6rem;
+                font-size: 0.5rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hangman-word {
+                font-size: 1.2rem;
+                letter-spacing: 4px;
+            }
+            .hangman-word .letter {
+                width: 1rem;
+            }
+            .hangman-figure svg {
+                max-width: 130px;
+            }
         }
 
         .score-notification {
@@ -3077,7 +3163,6 @@
             box-shadow: 0 0 25px rgba(46, 204, 113, 0.5);
         }
 
-        /* Sound Settings Styles */
         .sound-settings {
             background: var(--theme-bg-card);
             border-radius: var(--card-radius);
@@ -3203,6 +3288,9 @@
             transform: scale(1.05);
         }
 
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
         @media (max-width: 768px) {
             :root {
                 --sidebar-width: 0px;
@@ -3643,39 +3731,36 @@
                 padding: 0.25rem 0.7rem;
             }
 
-            .hangman-svg {
-                width: 200px;
-                height: 180px;
-                padding: 0.3rem;
+            .hangman-figure svg {
+                max-width: 160px !important;
             }
             .hangman-word {
-                font-size: 1.1rem !important;
-                letter-spacing: 3px !important;
+                font-size: 1.4rem !important;
+                letter-spacing: 6px !important;
                 min-height: 2.5rem;
-                word-break: break-word;
-                overflow-wrap: break-word;
-                hyphens: auto;
             }
-            .hangman-figure {
-                font-size: 0.6rem;
-                min-height: 80px;
-                padding: 0.4rem;
+            .hangman-word .letter {
+                width: 1.2rem !important;
             }
             .hangman-guesses {
-                font-size: 0.55rem;
-                gap: 0.2rem;
+                font-size: 0.6rem;
+                gap: 0.3rem;
             }
             .hangman-input-row input {
-                width: 44px;
-                font-size: 1rem;
-                padding: 0.25rem 0.3rem;
+                width: 40px !important;
+                font-size: 1.2rem !important;
+                padding: 0.3rem !important;
             }
-            .hangman-input-row button {
-                font-size: 0.5rem;
-                padding: 0.25rem 0.6rem;
+            .hangman-input-row .primary-btn {
+                font-size: 0.55rem !important;
+                padding: 0.3rem 1rem !important;
+            }
+            .hangman-actions button {
+                font-size: 0.5rem !important;
+                padding: 0.2rem 0.6rem !important;
             }
             .hangman-status {
-                font-size: 0.65rem;
+                font-size: 0.6rem;
             }
             .hangman-difficulty-selector button {
                 font-size: 0.45rem;
@@ -4048,17 +4133,15 @@
                 padding: 0.2rem 0.5rem;
             }
 
-            .hangman-svg {
-                width: 160px;
-                height: 140px;
+            .hangman-figure svg {
+                max-width: 130px !important;
             }
             .hangman-word {
-                font-size: 0.9rem !important;
-                letter-spacing: 2px !important;
+                font-size: 1.1rem !important;
+                letter-spacing: 4px !important;
             }
-            .hangman-figure {
-                font-size: 0.5rem;
-                min-height: 60px;
+            .hangman-word .letter {
+                width: 0.9rem !important;
             }
             .hangman-difficulty-selector button {
                 font-size: 0.4rem;
@@ -4810,7 +4893,7 @@
         let adminAttempts = 0;
 
         // ============================================================
-        //  SOUND SYSTEM - NEW SOUND ALTERNATIVES
+        //  SOUND SYSTEM
         // ============================================================
         let soundEnabled = true;
 
@@ -4888,37 +4971,31 @@
             const selected = prefs[type] || defaults[type];
 
             const configs = {
-                // Point: Chime, Pop, Click
                 point: {
                     chime: { wave: 'triangle', freq: [600], dur: 150, gain: 0.05 },
                     pop: { wave: 'square', freq: [880], dur: 100, gain: 0.04 },
                     click: { wave: 'sine', freq: [523], dur: 100, gain: 0.06 }
                 },
-                // Level Up: Fanfare, Jingle, Victory
                 levelup: {
                     fanfare: { wave: 'sine', freq: [523, 659, 784, 1047], dur: 600, gain: 0.05 },
                     jingle: { wave: 'sine', freq: [440, 554, 659], dur: 450, gain: 0.05 },
                     victory: { wave: 'sine', freq: [1047, 784, 523], dur: 450, gain: 0.05 }
                 },
-                // Timer: Tick, Clock, Warning
                 timer: {
                     tick: { wave: 'sine', freq: [523], dur: 100, gain: 0.03 },
                     clock: { wave: 'square', freq: [880], dur: 200, gain: 0.03 },
                     warning: { wave: 'sawtooth', freq: [330], dur: 250, gain: 0.04 }
                 },
-                // Success: Cheer, Ding, Applause
                 success: {
                     cheer: { wave: 'sine', freq: [523, 659, 784, 659, 523], dur: 500, gain: 0.05 },
                     ding: { wave: 'sine', freq: [1047], dur: 150, gain: 0.06 },
                     applause: { wave: 'triangle', freq: [880], dur: 200, gain: 0.04 }
                 },
-                // Error: Buzzer, Thud, Scratch
                 error: {
                     buzzer: { wave: 'square', freq: [150], dur: 300, gain: 0.04 },
                     thud: { wave: 'sine', freq: [200], dur: 200, gain: 0.05 },
                     scratch: { wave: 'sawtooth', freq: [440, 220], dur: 350, gain: 0.04 }
                 },
-                // Roast: Gong, Boing, Explosion
                 roast: {
                     gong: { wave: 'sine', freq: [150, 100], dur: 350, gain: 0.04 },
                     boing: { wave: 'triangle', freq: [220, 110], dur: 300, gain: 0.05 },
@@ -5055,6 +5132,348 @@
         });
 
         // ============================================================
+        //  PROFESSIONAL THEMES
+        // ============================================================
+        const THEMES = {
+            'gothic-noir': {
+                name: 'Gothic Noir',
+                mood: 'Sophisticated · Moody · Dramatic',
+                colors: ['#1A1A1A', '#2D2D2D', '#8A8A8A', '#D4C4B7'],
+                variables: {
+                    '--theme-bg-primary': '#1A1A1A',
+                    '--theme-bg-secondary': '#2D2D2D',
+                    '--theme-bg-card': '#2D2D2D',
+                    '--theme-bg-card-hover': '#3A3A3A',
+                    '--theme-bg-input': '#2D2D2D',
+                    '--theme-bg-sidebar': '#0D0D0D',
+                    '--theme-bg-sidebar-hover': '#2D2D2D',
+                    '--theme-text-primary': '#F0EDE8',
+                    '--theme-text-secondary': '#B8B0A8',
+                    '--theme-text-muted': '#8A8A8A',
+                    '--theme-border-color': '#3A3A3A',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.6)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.8)',
+                    '--theme-blue-bright': '#B8A898',
+                    '--theme-blue-electric': '#D4C4B7',
+                    '--theme-glow-blue': 'rgba(212,196,183,0.2)',
+                    '--theme-glow-blue-strong': 'rgba(212,196,183,0.4)'
+                }
+            },
+            'quiet-luxury': {
+                name: 'Quiet Luxury',
+                mood: 'Elegant · Soft · Timeless',
+                colors: ['#F5E6D3', '#E8D5C4', '#D4A89B', '#8B6B61'],
+                variables: {
+                    '--theme-bg-primary': '#F5E6D3',
+                    '--theme-bg-secondary': '#EDDCCB',
+                    '--theme-bg-card': '#FFFFFF',
+                    '--theme-bg-card-hover': '#F5EDE6',
+                    '--theme-bg-input': '#EDDCCB',
+                    '--theme-bg-sidebar': '#3A2A22',
+                    '--theme-bg-sidebar-hover': '#5A4A42',
+                    '--theme-text-primary': '#3A2A22',
+                    '--theme-text-secondary': '#6A5A52',
+                    '--theme-text-muted': '#9A8A82',
+                    '--theme-border-color': '#E8D5C4',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.08)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.15)',
+                    '--theme-blue-bright': '#D4A89B',
+                    '--theme-blue-electric': '#8B6B61',
+                    '--theme-glow-blue': 'rgba(139,107,97,0.2)',
+                    '--theme-glow-blue-strong': 'rgba(139,107,97,0.4)'
+                }
+            },
+            'lush-forest': {
+                name: 'Lush Forest',
+                mood: 'Natural · Grounded · Organic',
+                colors: ['#1B4D3D', '#2D6A4F', '#40916C', '#52B788'],
+                variables: {
+                    '--theme-bg-primary': '#0F2A1F',
+                    '--theme-bg-secondary': '#1B4D3D',
+                    '--theme-bg-card': '#1B4D3D',
+                    '--theme-bg-card-hover': '#2D6A4F',
+                    '--theme-bg-input': '#1B4D3D',
+                    '--theme-bg-sidebar': '#0A1A12',
+                    '--theme-bg-sidebar-hover': '#1B4D3D',
+                    '--theme-text-primary': '#E8F0E8',
+                    '--theme-text-secondary': '#A0C0A8',
+                    '--theme-text-muted': '#6A8A72',
+                    '--theme-border-color': '#2D6A4F',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.5)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.7)',
+                    '--theme-blue-bright': '#40916C',
+                    '--theme-blue-electric': '#52B788',
+                    '--theme-glow-blue': 'rgba(82,183,136,0.2)',
+                    '--theme-glow-blue-strong': 'rgba(82,183,136,0.4)'
+                }
+            },
+            'autumn-leaves': {
+                name: 'Autumn Leaves',
+                mood: 'Warm · Cozy · Nostalgic',
+                colors: ['#D97A2B', '#C85A17', '#8B5A2B', '#F4A460'],
+                variables: {
+                    '--theme-bg-primary': '#2A1A0A',
+                    '--theme-bg-secondary': '#3A2A1A',
+                    '--theme-bg-card': '#3A2A1A',
+                    '--theme-bg-card-hover': '#4A3A2A',
+                    '--theme-bg-input': '#3A2A1A',
+                    '--theme-bg-sidebar': '#1A0A00',
+                    '--theme-bg-sidebar-hover': '#3A2A1A',
+                    '--theme-text-primary': '#F0E0D0',
+                    '--theme-text-secondary': '#C0A890',
+                    '--theme-text-muted': '#8A7A6A',
+                    '--theme-border-color': '#4A3A2A',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.5)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.7)',
+                    '--theme-blue-bright': '#D97A2B',
+                    '--theme-blue-electric': '#F4A460',
+                    '--theme-glow-blue': 'rgba(244,164,96,0.2)',
+                    '--theme-glow-blue-strong': 'rgba(244,164,96,0.4)'
+                }
+            },
+            'ocean-tide': {
+                name: 'Ocean Tide',
+                mood: 'Calming · Peaceful · Refreshing',
+                colors: ['#0077B6', '#00B4D8', '#90E0EF', '#CAF0F8'],
+                variables: {
+                    '--theme-bg-primary': '#E8F4F8',
+                    '--theme-bg-secondary': '#D4ECF5',
+                    '--theme-bg-card': '#FFFFFF',
+                    '--theme-bg-card-hover': '#F0F8FA',
+                    '--theme-bg-input': '#D4ECF5',
+                    '--theme-bg-sidebar': '#003A5C',
+                    '--theme-bg-sidebar-hover': '#005A7C',
+                    '--theme-text-primary': '#003A5C',
+                    '--theme-text-secondary': '#2A6A8C',
+                    '--theme-text-muted': '#6A9AAC',
+                    '--theme-border-color': '#B0D0E0',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.06)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.12)',
+                    '--theme-blue-bright': '#0077B6',
+                    '--theme-blue-electric': '#00B4D8',
+                    '--theme-glow-blue': 'rgba(0,180,216,0.2)',
+                    '--theme-glow-blue-strong': 'rgba(0,180,216,0.4)'
+                }
+            },
+            'urban-loft': {
+                name: 'Urban Loft',
+                mood: 'Modern · Industrial · Clean',
+                colors: ['#2C2C2C', '#8B4513', '#D3D3D3', '#F5F5F5'],
+                variables: {
+                    '--theme-bg-primary': '#F5F5F5',
+                    '--theme-bg-secondary': '#E8E8E8',
+                    '--theme-bg-card': '#FFFFFF',
+                    '--theme-bg-card-hover': '#F5F5F5',
+                    '--theme-bg-input': '#E8E8E8',
+                    '--theme-bg-sidebar': '#1A1A1A',
+                    '--theme-bg-sidebar-hover': '#2C2C2C',
+                    '--theme-text-primary': '#1A1A1A',
+                    '--theme-text-secondary': '#4A4A4A',
+                    '--theme-text-muted': '#8A8A8A',
+                    '--theme-border-color': '#D3D3D3',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.08)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.15)',
+                    '--theme-blue-bright': '#8B4513',
+                    '--theme-blue-electric': '#A05520',
+                    '--theme-glow-blue': 'rgba(139,69,19,0.15)',
+                    '--theme-glow-blue-strong': 'rgba(139,69,19,0.3)'
+                }
+            },
+            'retro-arcade': {
+                name: 'Retro Arcade',
+                mood: 'Classic · Pixelated · Fun',
+                colors: ['#FF00FF', '#00FFFF', '#000000', '#FFFFFF'],
+                variables: {
+                    '--theme-bg-primary': '#0A0A1A',
+                    '--theme-bg-secondary': '#1A0A2A',
+                    '--theme-bg-card': '#1A0A2A',
+                    '--theme-bg-card-hover': '#2A1A3A',
+                    '--theme-bg-input': '#1A0A2A',
+                    '--theme-bg-sidebar': '#05050A',
+                    '--theme-bg-sidebar-hover': '#1A0A2A',
+                    '--theme-text-primary': '#00FFFF',
+                    '--theme-text-secondary': '#FF00FF',
+                    '--theme-text-muted': '#8844AA',
+                    '--theme-border-color': '#FF00FF',
+                    '--theme-shadow': '0 8px 32px rgba(255,0,255,0.2)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,255,255,0.3)',
+                    '--theme-blue-bright': '#00FFFF',
+                    '--theme-blue-electric': '#FF00FF',
+                    '--theme-glow-blue': 'rgba(0,255,255,0.2)',
+                    '--theme-glow-blue-strong': 'rgba(255,0,255,0.3)'
+                }
+            },
+            'minimalist-white': {
+                name: 'Minimalist White',
+                mood: 'Clean · Professional · Modern',
+                colors: ['#FFFFFF', '#F5F5F5', '#E0E0E0', '#333333'],
+                variables: {
+                    '--theme-bg-primary': '#FFFFFF',
+                    '--theme-bg-secondary': '#F8F9FA',
+                    '--theme-bg-card': '#FFFFFF',
+                    '--theme-bg-card-hover': '#F5F5F5',
+                    '--theme-bg-input': '#F5F5F5',
+                    '--theme-bg-sidebar': '#1A1A1A',
+                    '--theme-bg-sidebar-hover': '#2D2D2D',
+                    '--theme-text-primary': '#1A1A1A',
+                    '--theme-text-secondary': '#4A4A4A',
+                    '--theme-text-muted': '#8A8A8A',
+                    '--theme-border-color': '#E5E5E5',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.06)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.12)',
+                    '--theme-blue-bright': '#2D7D9A',
+                    '--theme-blue-electric': '#1A5276',
+                    '--theme-glow-blue': 'rgba(26,82,118,0.1)',
+                    '--theme-glow-blue-strong': 'rgba(26,82,118,0.25)'
+                }
+            },
+            'corporate-blue': {
+                name: 'Corporate Blue',
+                mood: 'Trustworthy · Professional · Crisp',
+                colors: ['#1B3A5C', '#2E6B9E', '#4A90D9', '#FFFFFF'],
+                variables: {
+                    '--theme-bg-primary': '#F0F4F8',
+                    '--theme-bg-secondary': '#E8EDF2',
+                    '--theme-bg-card': '#FFFFFF',
+                    '--theme-bg-card-hover': '#F5F8FA',
+                    '--theme-bg-input': '#E8EDF2',
+                    '--theme-bg-sidebar': '#0F1F33',
+                    '--theme-bg-sidebar-hover': '#1A3A5C',
+                    '--theme-text-primary': '#0F1F33',
+                    '--theme-text-secondary': '#2E6B9E',
+                    '--theme-text-muted': '#6A8A9E',
+                    '--theme-border-color': '#D0DCE8',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.08)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.15)',
+                    '--theme-blue-bright': '#2E6B9E',
+                    '--theme-blue-electric': '#1B3A5C',
+                    '--theme-glow-blue': 'rgba(26,82,118,0.15)',
+                    '--theme-glow-blue-strong': 'rgba(26,82,118,0.3)'
+                }
+            },
+            'dark-professional': {
+                name: 'Dark Professional',
+                mood: 'Premium · Modern · Elegant',
+                colors: ['#1A1A1A', '#2D2D2D', '#C9A96E', '#FFFFFF'],
+                variables: {
+                    '--theme-bg-primary': '#0D0D0D',
+                    '--theme-bg-secondary': '#1A1A1A',
+                    '--theme-bg-card': '#1A1A1A',
+                    '--theme-bg-card-hover': '#2D2D2D',
+                    '--theme-bg-input': '#1A1A1A',
+                    '--theme-bg-sidebar': '#050505',
+                    '--theme-bg-sidebar-hover': '#1A1A1A',
+                    '--theme-text-primary': '#F5F5F5',
+                    '--theme-text-secondary': '#C9A96E',
+                    '--theme-text-muted': '#8A8A8A',
+                    '--theme-border-color': '#2D2D2D',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.6)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.8)',
+                    '--theme-blue-bright': '#C9A96E',
+                    '--theme-blue-electric': '#D4B88A',
+                    '--theme-glow-blue': 'rgba(201,169,110,0.15)',
+                    '--theme-glow-blue-strong': 'rgba(201,169,110,0.3)'
+                }
+            },
+            'soft-pastel-professional': {
+                name: 'Soft Pastel Professional',
+                mood: 'Approachable · Modern · Clean',
+                colors: ['#F5E6D3', '#E8D5C4', '#D4A89B', '#FFFFFF'],
+                variables: {
+                    '--theme-bg-primary': '#F8F5F2',
+                    '--theme-bg-secondary': '#F0EBE6',
+                    '--theme-bg-card': '#FFFFFF',
+                    '--theme-bg-card-hover': '#F8F5F2',
+                    '--theme-bg-input': '#F0EBE6',
+                    '--theme-bg-sidebar': '#3A2A22',
+                    '--theme-bg-sidebar-hover': '#5A4A42',
+                    '--theme-text-primary': '#3A2A22',
+                    '--theme-text-secondary': '#6A5A52',
+                    '--theme-text-muted': '#9A8A82',
+                    '--theme-border-color': '#E8D5C4',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.06)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.12)',
+                    '--theme-blue-bright': '#D4A89B',
+                    '--theme-blue-electric': '#8B6B61',
+                    '--theme-glow-blue': 'rgba(139,107,97,0.15)',
+                    '--theme-glow-blue-strong': 'rgba(139,107,97,0.3)'
+                }
+            },
+            'monochrome': {
+                name: 'Monochrome',
+                mood: 'Timeless · Elegant · Minimalist',
+                colors: ['#000000', '#333333', '#666666', '#FFFFFF'],
+                variables: {
+                    '--theme-bg-primary': '#FFFFFF',
+                    '--theme-bg-secondary': '#F0F0F0',
+                    '--theme-bg-card': '#FFFFFF',
+                    '--theme-bg-card-hover': '#F5F5F5',
+                    '--theme-bg-input': '#F0F0F0',
+                    '--theme-bg-sidebar': '#1A1A1A',
+                    '--theme-bg-sidebar-hover': '#333333',
+                    '--theme-text-primary': '#1A1A1A',
+                    '--theme-text-secondary': '#4A4A4A',
+                    '--theme-text-muted': '#8A8A8A',
+                    '--theme-border-color': '#D0D0D0',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.08)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.15)',
+                    '--theme-blue-bright': '#333333',
+                    '--theme-blue-electric': '#666666',
+                    '--theme-glow-blue': 'rgba(50,50,50,0.15)',
+                    '--theme-glow-blue-strong': 'rgba(50,50,50,0.3)'
+                }
+            },
+            'professional-gradient': {
+                name: 'Professional Gradient',
+                mood: 'Modern · Dynamic · Professional',
+                colors: ['#667EEA', '#764BA2', '#F0F4F8', '#FFFFFF'],
+                variables: {
+                    '--theme-bg-primary': '#F0F4F8',
+                    '--theme-bg-secondary': '#E8EDF5',
+                    '--theme-bg-card': '#FFFFFF',
+                    '--theme-bg-card-hover': '#F5F8FC',
+                    '--theme-bg-input': '#E8EDF5',
+                    '--theme-bg-sidebar': '#1A1A2E',
+                    '--theme-bg-sidebar-hover': '#2A2A4E',
+                    '--theme-text-primary': '#1A1A2E',
+                    '--theme-text-secondary': '#4A4A6E',
+                    '--theme-text-muted': '#8A8AAE',
+                    '--theme-border-color': '#D8D8E8',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.06)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.12)',
+                    '--theme-blue-bright': '#667EEA',
+                    '--theme-blue-electric': '#764BA2',
+                    '--theme-glow-blue': 'rgba(102,126,234,0.15)',
+                    '--theme-glow-blue-strong': 'rgba(118,75,162,0.25)'
+                }
+            },
+            'agency-clean': {
+                name: 'Agency Clean',
+                mood: 'Fresh · Modern · Creative',
+                colors: ['#FFFFFF', '#F8F9FA', '#2C3E50', '#3498DB'],
+                variables: {
+                    '--theme-bg-primary': '#FFFFFF',
+                    '--theme-bg-secondary': '#F8F9FA',
+                    '--theme-bg-card': '#FFFFFF',
+                    '--theme-bg-card-hover': '#F5F7FA',
+                    '--theme-bg-input': '#F8F9FA',
+                    '--theme-bg-sidebar': '#2C3E50',
+                    '--theme-bg-sidebar-hover': '#3D5166',
+                    '--theme-text-primary': '#2C3E50',
+                    '--theme-text-secondary': '#5A7A9A',
+                    '--theme-text-muted': '#8AA0B8',
+                    '--theme-border-color': '#E8ECF0',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.06)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.12)',
+                    '--theme-blue-bright': '#3498DB',
+                    '--theme-blue-electric': '#2C3E50',
+                    '--theme-glow-blue': 'rgba(52,152,219,0.15)',
+                    '--theme-glow-blue-strong': 'rgba(52,152,219,0.3)'
+                }
+            }
+        };
+
+        // ============================================================
         //  NAVIGATION
         // ============================================================
         let currentPage = 'home';
@@ -5142,375 +5561,64 @@
         }
 
         // ============================================================
-        //  THEME DEFINITIONS - WITH 5 NEW THEMES
+        //  THEME FUNCTIONS
         // ============================================================
-        const THEMES = {
-            'gothic-noir': {
-                name: 'Gothic Noir',
-                mood: 'Sophisticated · Moody · Dramatic',
-                colors: ['#1A1A1A', '#2D2D2D', '#8A8A8A', '#D4C4B7'],
-                variables: {
-                    '--theme-bg-primary': '#1A1A1A',
-                    '--theme-bg-secondary': '#2D2D2D',
-                    '--theme-bg-card': '#2D2D2D',
-                    '--theme-bg-card-hover': '#3A3A3A',
-                    '--theme-bg-input': '#2D2D2D',
-                    '--theme-bg-sidebar': '#0D0D0D',
-                    '--theme-bg-sidebar-hover': '#2D2D2D',
-                    '--theme-text-primary': '#F0EDE8',
-                    '--theme-text-secondary': '#B8B0A8',
-                    '--theme-text-muted': '#8A8A8A',
-                    '--theme-border-color': '#3A3A3A',
-                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.6)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.8)',
-                    '--theme-blue-bright': '#B8A898',
-                    '--theme-blue-electric': '#D4C4B7',
-                    '--theme-glow-blue': 'rgba(212,196,183,0.2)',
-                    '--theme-glow-blue-strong': 'rgba(212,196,183,0.4)'
+        let currentTheme = 'gothic-noir';
+
+        function applyTheme(themeId) {
+            const theme = THEMES[themeId];
+            if (!theme) return;
+            currentTheme = themeId;
+            const root = document.documentElement;
+            Object.entries(theme.variables).forEach(([key, value]) => {
+                root.style.setProperty(key, value);
+            });
+            document.querySelectorAll('.theme-card').forEach(card => {
+                card.classList.toggle('active-theme', card.dataset.theme === themeId);
+                const btn = card.querySelector('.theme-apply-btn');
+                if (btn) {
+                    btn.textContent = card.dataset.theme === themeId ? '✅ ACTIVE' : 'APPLY';
+                    btn.classList.toggle('active-btn', card.dataset.theme === themeId);
                 }
-            },
-            'neon-noir': {
-                name: 'Neon Noir',
-                mood: 'Futuristic · Edgy · Cyberpunk',
-                colors: ['#0A0A0A', '#39FF14', '#B026FF', '#00FFFF'],
-                variables: {
-                    '--theme-bg-primary': '#0A0A0A',
-                    '--theme-bg-secondary': '#1A1A1A',
-                    '--theme-bg-card': '#1A1A1A',
-                    '--theme-bg-card-hover': '#2A2A2A',
-                    '--theme-bg-input': '#1A1A1A',
-                    '--theme-bg-sidebar': '#050505',
-                    '--theme-bg-sidebar-hover': '#2A2A2A',
-                    '--theme-text-primary': '#F0F0F0',
-                    '--theme-text-secondary': '#B0B0B0',
-                    '--theme-text-muted': '#666666',
-                    '--theme-border-color': '#2A2A2A',
-                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.8)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.9)',
-                    '--theme-blue-bright': '#39FF14',
-                    '--theme-blue-electric': '#00FFFF',
-                    '--theme-glow-blue': 'rgba(0,255,255,0.15)',
-                    '--theme-glow-blue-strong': 'rgba(0,255,255,0.35)'
-                }
-            },
-            'quiet-luxury': {
-                name: 'Quiet Luxury',
-                mood: 'Elegant · Soft · Timeless',
-                colors: ['#F5E6D3', '#E8D5C4', '#D4A89B', '#8B6B61'],
-                variables: {
-                    '--theme-bg-primary': '#F5E6D3',
-                    '--theme-bg-secondary': '#EDDCCB',
-                    '--theme-bg-card': '#FFFFFF',
-                    '--theme-bg-card-hover': '#F5EDE6',
-                    '--theme-bg-input': '#EDDCCB',
-                    '--theme-bg-sidebar': '#3A2A22',
-                    '--theme-bg-sidebar-hover': '#5A4A42',
-                    '--theme-text-primary': '#3A2A22',
-                    '--theme-text-secondary': '#6A5A52',
-                    '--theme-text-muted': '#9A8A82',
-                    '--theme-border-color': '#E8D5C4',
-                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.08)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.15)',
-                    '--theme-blue-bright': '#D4A89B',
-                    '--theme-blue-electric': '#8B6B61',
-                    '--theme-glow-blue': 'rgba(139,107,97,0.2)',
-                    '--theme-glow-blue-strong': 'rgba(139,107,97,0.4)'
-                }
-            },
-            'lush-forest': {
-                name: 'Lush Forest',
-                mood: 'Natural · Grounded · Organic',
-                colors: ['#1B4D3D', '#2D6A4F', '#40916C', '#52B788'],
-                variables: {
-                    '--theme-bg-primary': '#0F2A1F',
-                    '--theme-bg-secondary': '#1B4D3D',
-                    '--theme-bg-card': '#1B4D3D',
-                    '--theme-bg-card-hover': '#2D6A4F',
-                    '--theme-bg-input': '#1B4D3D',
-                    '--theme-bg-sidebar': '#0A1A12',
-                    '--theme-bg-sidebar-hover': '#1B4D3D',
-                    '--theme-text-primary': '#E8F0E8',
-                    '--theme-text-secondary': '#A0C0A8',
-                    '--theme-text-muted': '#6A8A72',
-                    '--theme-border-color': '#2D6A4F',
-                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.5)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.7)',
-                    '--theme-blue-bright': '#40916C',
-                    '--theme-blue-electric': '#52B788',
-                    '--theme-glow-blue': 'rgba(82,183,136,0.2)',
-                    '--theme-glow-blue-strong': 'rgba(82,183,136,0.4)'
-                }
-            },
-            'zesty-lemon': {
-                name: 'Zesty Lemon',
-                mood: 'Cheerful · Sunny · Playful',
-                colors: ['#FFF3B0', '#FFE66D', '#F9C80E', '#F4A300'],
-                variables: {
-                    '--theme-bg-primary': '#FFFDF5',
-                    '--theme-bg-secondary': '#FFF8E0',
-                    '--theme-bg-card': '#FFFFFF',
-                    '--theme-bg-card-hover': '#FFFDF5',
-                    '--theme-bg-input': '#FFF8E0',
-                    '--theme-bg-sidebar': '#2A2000',
-                    '--theme-bg-sidebar-hover': '#4A3A0A',
-                    '--theme-text-primary': '#2A2000',
-                    '--theme-text-secondary': '#6A5A20',
-                    '--theme-text-muted': '#9A8A50',
-                    '--theme-border-color': '#FFE66D',
-                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.08)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.15)',
-                    '--theme-blue-bright': '#F9C80E',
-                    '--theme-blue-electric': '#F4A300',
-                    '--theme-glow-blue': 'rgba(244,163,0,0.2)',
-                    '--theme-glow-blue-strong': 'rgba(244,163,0,0.4)'
-                }
-            },
-            'autumn-leaves': {
-                name: 'Autumn Leaves',
-                mood: 'Warm · Cozy · Nostalgic',
-                colors: ['#D97A2B', '#C85A17', '#8B5A2B', '#F4A460'],
-                variables: {
-                    '--theme-bg-primary': '#2A1A0A',
-                    '--theme-bg-secondary': '#3A2A1A',
-                    '--theme-bg-card': '#3A2A1A',
-                    '--theme-bg-card-hover': '#4A3A2A',
-                    '--theme-bg-input': '#3A2A1A',
-                    '--theme-bg-sidebar': '#1A0A00',
-                    '--theme-bg-sidebar-hover': '#3A2A1A',
-                    '--theme-text-primary': '#F0E0D0',
-                    '--theme-text-secondary': '#C0A890',
-                    '--theme-text-muted': '#8A7A6A',
-                    '--theme-border-color': '#4A3A2A',
-                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.5)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.7)',
-                    '--theme-blue-bright': '#D97A2B',
-                    '--theme-blue-electric': '#F4A460',
-                    '--theme-glow-blue': 'rgba(244,164,96,0.2)',
-                    '--theme-glow-blue-strong': 'rgba(244,164,96,0.4)'
-                }
-            },
-            'pop-art': {
-                name: 'Pop Art',
-                mood: 'Bold · Playful · High-Energy',
-                colors: ['#FF0055', '#00D4FF', '#FFE600', '#FFFFFF'],
-                variables: {
-                    '--theme-bg-primary': '#FFFFFF',
-                    '--theme-bg-secondary': '#F0F0F0',
-                    '--theme-bg-card': '#FFFFFF',
-                    '--theme-bg-card-hover': '#F5F5F5',
-                    '--theme-bg-input': '#F0F0F0',
-                    '--theme-bg-sidebar': '#1A1A2E',
-                    '--theme-bg-sidebar-hover': '#2A2A4E',
-                    '--theme-text-primary': '#1A1A2E',
-                    '--theme-text-secondary': '#4A4A6E',
-                    '--theme-text-muted': '#8A8AAE',
-                    '--theme-border-color': '#E0E0E0',
-                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.1)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.2)',
-                    '--theme-blue-bright': '#FF0055',
-                    '--theme-blue-electric': '#00D4FF',
-                    '--theme-glow-blue': 'rgba(0,212,255,0.2)',
-                    '--theme-glow-blue-strong': 'rgba(0,212,255,0.4)'
-                }
-            },
-            'ocean-tide': {
-                name: 'Ocean Tide',
-                mood: 'Calming · Peaceful · Refreshing',
-                colors: ['#0077B6', '#00B4D8', '#90E0EF', '#CAF0F8'],
-                variables: {
-                    '--theme-bg-primary': '#E8F4F8',
-                    '--theme-bg-secondary': '#D4ECF5',
-                    '--theme-bg-card': '#FFFFFF',
-                    '--theme-bg-card-hover': '#F0F8FA',
-                    '--theme-bg-input': '#D4ECF5',
-                    '--theme-bg-sidebar': '#003A5C',
-                    '--theme-bg-sidebar-hover': '#005A7C',
-                    '--theme-text-primary': '#003A5C',
-                    '--theme-text-secondary': '#2A6A8C',
-                    '--theme-text-muted': '#6A9AAC',
-                    '--theme-border-color': '#B0D0E0',
-                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.06)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.12)',
-                    '--theme-blue-bright': '#0077B6',
-                    '--theme-blue-electric': '#00B4D8',
-                    '--theme-glow-blue': 'rgba(0,180,216,0.2)',
-                    '--theme-glow-blue-strong': 'rgba(0,180,216,0.4)'
-                }
-            },
-            'urban-loft': {
-                name: 'Urban Loft',
-                mood: 'Modern · Industrial · Clean',
-                colors: ['#2C2C2C', '#8B4513', '#D3D3D3', '#F5F5F5'],
-                variables: {
-                    '--theme-bg-primary': '#F5F5F5',
-                    '--theme-bg-secondary': '#E8E8E8',
-                    '--theme-bg-card': '#FFFFFF',
-                    '--theme-bg-card-hover': '#F5F5F5',
-                    '--theme-bg-input': '#E8E8E8',
-                    '--theme-bg-sidebar': '#1A1A1A',
-                    '--theme-bg-sidebar-hover': '#2C2C2C',
-                    '--theme-text-primary': '#1A1A1A',
-                    '--theme-text-secondary': '#4A4A4A',
-                    '--theme-text-muted': '#8A8A8A',
-                    '--theme-border-color': '#D3D3D3',
-                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.08)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.15)',
-                    '--theme-blue-bright': '#8B4513',
-                    '--theme-blue-electric': '#A05520',
-                    '--theme-glow-blue': 'rgba(139,69,19,0.15)',
-                    '--theme-glow-blue-strong': 'rgba(139,69,19,0.3)'
-                }
-            },
-            'cotton-candy': {
-                name: 'Cotton Candy Skies',
-                mood: 'Whimsical · Dreamy · Soft',
-                colors: ['#F8B4D9', '#D4A5D6', '#A8D8EA', '#FDFBF7'],
-                variables: {
-                    '--theme-bg-primary': '#FDFBF7',
-                    '--theme-bg-secondary': '#F8F0F5',
-                    '--theme-bg-card': '#FFFFFF',
-                    '--theme-bg-card-hover': '#FDFBF7',
-                    '--theme-bg-input': '#F8F0F5',
-                    '--theme-bg-sidebar': '#3A2A3A',
-                    '--theme-bg-sidebar-hover': '#5A4A5A',
-                    '--theme-text-primary': '#3A2A3A',
-                    '--theme-text-secondary': '#6A5A6A',
-                    '--theme-text-muted': '#9A8A9A',
-                    '--theme-border-color': '#E8D8E8',
-                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.06)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.12)',
-                    '--theme-blue-bright': '#D4A5D6',
-                    '--theme-blue-electric': '#A8D8EA',
-                    '--theme-glow-blue': 'rgba(168,216,234,0.2)',
-                    '--theme-glow-blue-strong': 'rgba(168,216,234,0.4)'
-                }
-            },
-            // 🆕 NEW THEME 11: SUPER MARIO BROS
-            'super-mario': {
-                name: 'Super Mario Bros',
-                mood: 'Retro · Playful · Nostalgic',
-                colors: ['#E52521', '#049CD8', '#FBD000', '#4CAF50'],
-                variables: {
-                    '--theme-bg-primary': '#1A0A0A',
-                    '--theme-bg-secondary': '#2A1010',
-                    '--theme-bg-card': '#3A1515',
-                    '--theme-bg-card-hover': '#4A2020',
-                    '--theme-bg-input': '#2A1010',
-                    '--theme-bg-sidebar': '#0A0505',
-                    '--theme-bg-sidebar-hover': '#2A1010',
-                    '--theme-text-primary': '#FFFFFF',
-                    '--theme-text-secondary': '#FBD000',
-                    '--theme-text-muted': '#AA8855',
-                    '--theme-border-color': '#4A2020',
-                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.7)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.9)',
-                    '--theme-blue-bright': '#049CD8',
-                    '--theme-blue-electric': '#E52521',
-                    '--theme-glow-blue': 'rgba(229,37,33,0.25)',
-                    '--theme-glow-blue-strong': 'rgba(229,37,33,0.5)'
-                }
-            },
-            // 🆕 NEW THEME 12: KING OF FIGHTERS
-            'king-of-fighters': {
-                name: 'King of Fighters',
-                mood: 'Intense · Competitive · Epic',
-                colors: ['#FFD700', '#DC143C', '#1A1A1A', '#FFFFFF'],
-                variables: {
-                    '--theme-bg-primary': '#0A0A0A',
-                    '--theme-bg-secondary': '#1A1A1A',
-                    '--theme-bg-card': '#2A1515',
-                    '--theme-bg-card-hover': '#3A2020',
-                    '--theme-bg-input': '#1A1A1A',
-                    '--theme-bg-sidebar': '#050505',
-                    '--theme-bg-sidebar-hover': '#2A1515',
-                    '--theme-text-primary': '#FFD700',
-                    '--theme-text-secondary': '#FFFFFF',
-                    '--theme-text-muted': '#AA8844',
-                    '--theme-border-color': '#DC143C',
-                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.8)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.95)',
-                    '--theme-blue-bright': '#DC143C',
-                    '--theme-blue-electric': '#FFD700',
-                    '--theme-glow-blue': 'rgba(255,215,0,0.25)',
-                    '--theme-glow-blue-strong': 'rgba(255,215,0,0.5)'
-                }
-            },
-            // 🆕 NEW THEME 13: RETRO ARCADE
-            'retro-arcade': {
-                name: 'Retro Arcade',
-                mood: 'Classic · Pixelated · Fun',
-                colors: ['#FF00FF', '#00FFFF', '#000000', '#FFFFFF'],
-                variables: {
-                    '--theme-bg-primary': '#0A0A1A',
-                    '--theme-bg-secondary': '#1A0A2A',
-                    '--theme-bg-card': '#1A0A2A',
-                    '--theme-bg-card-hover': '#2A1A3A',
-                    '--theme-bg-input': '#1A0A2A',
-                    '--theme-bg-sidebar': '#05050A',
-                    '--theme-bg-sidebar-hover': '#1A0A2A',
-                    '--theme-text-primary': '#00FFFF',
-                    '--theme-text-secondary': '#FF00FF',
-                    '--theme-text-muted': '#8844AA',
-                    '--theme-border-color': '#FF00FF',
-                    '--theme-shadow': '0 8px 32px rgba(255,0,255,0.2)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(0,255,255,0.3)',
-                    '--theme-blue-bright': '#00FFFF',
-                    '--theme-blue-electric': '#FF00FF',
-                    '--theme-glow-blue': 'rgba(0,255,255,0.2)',
-                    '--theme-glow-blue-strong': 'rgba(255,0,255,0.3)'
-                }
-            },
-            // 🆕 NEW THEME 14: CHAMPIONSHIP GOLD
-            'championship-gold': {
-                name: 'Championship Gold',
-                mood: 'Prestigious · Winner · Elite',
-                colors: ['#FFD700', '#C0A050', '#2C1810', '#FFFFFF'],
-                variables: {
-                    '--theme-bg-primary': '#1A0A05',
-                    '--theme-bg-secondary': '#2C1810',
-                    '--theme-bg-card': '#2C1810',
-                    '--theme-bg-card-hover': '#3C2820',
-                    '--theme-bg-input': '#2C1810',
-                    '--theme-bg-sidebar': '#0A0505',
-                    '--theme-bg-sidebar-hover': '#2C1810',
-                    '--theme-text-primary': '#FFD700',
-                    '--theme-text-secondary': '#C0A050',
-                    '--theme-text-muted': '#8A7A50',
-                    '--theme-border-color': '#C0A050',
-                    '--theme-shadow': '0 8px 32px rgba(255,215,0,0.15)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(255,215,0,0.25)',
-                    '--theme-blue-bright': '#FFD700',
-                    '--theme-blue-electric': '#FFFFFF',
-                    '--theme-glow-blue': 'rgba(255,215,0,0.2)',
-                    '--theme-glow-blue-strong': 'rgba(255,215,0,0.4)'
-                }
-            },
-            // 🆕 NEW THEME 15: BATTLE ROYALE
-            'battle-royale': {
-                name: 'Battle Royale',
-                mood: 'Intense · Survival · Action',
-                colors: ['#FF4500', '#FF6B00', '#1A0A0A', '#FFD700'],
-                variables: {
-                    '--theme-bg-primary': '#0A0505',
-                    '--theme-bg-secondary': '#1A0A0A',
-                    '--theme-bg-card': '#1A0A0A',
-                    '--theme-bg-card-hover': '#2A1515',
-                    '--theme-bg-input': '#1A0A0A',
-                    '--theme-bg-sidebar': '#050505',
-                    '--theme-bg-sidebar-hover': '#1A0A0A',
-                    '--theme-text-primary': '#FF6B00',
-                    '--theme-text-secondary': '#FFD700',
-                    '--theme-text-muted': '#884422',
-                    '--theme-border-color': '#FF4500',
-                    '--theme-shadow': '0 8px 32px rgba(255,69,0,0.2)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(255,69,0,0.35)',
-                    '--theme-blue-bright': '#FF4500',
-                    '--theme-blue-electric': '#FF6B00',
-                    '--theme-glow-blue': 'rgba(255,69,0,0.2)',
-                    '--theme-glow-blue-strong': 'rgba(255,107,0,0.4)'
-                }
+            });
+            localStorage.setItem('arcadeThemeId', themeId);
+            playSound('success');
+        }
+
+        function loadThemePreference() {
+            const saved = localStorage.getItem('arcadeThemeId');
+            if (saved && THEMES[saved]) {
+                applyTheme(saved);
+            } else {
+                applyTheme('gothic-noir');
             }
-        };
+        }
+
+        function renderThemes() {
+            const grid = document.getElementById('themesGrid');
+            grid.innerHTML = Object.entries(THEMES).map(([id, theme]) => `
+                <div class="theme-card" data-theme="${id}">
+                    <div class="theme-preview">
+                        ${theme.colors.map(c => `<div class="swatch" style="background:${c}"></div>`).join('')}
+                    </div>
+                    <div class="theme-name">${theme.name}</div>
+                    <div class="theme-mood">${theme.mood}</div>
+                    <button class="theme-apply-btn" onclick="applyTheme('${id}')">
+                        ${currentTheme === id ? '✅ ACTIVE' : 'APPLY'}
+                    </button>
+                </div>
+            `).join('');
+            document.querySelectorAll('.theme-card').forEach(card => {
+                if (card.dataset.theme === currentTheme) {
+                    card.classList.add('active-theme');
+                    const btn = card.querySelector('.theme-apply-btn');
+                    if (btn) {
+                        btn.textContent = '✅ ACTIVE';
+                        btn.classList.add('active-btn');
+                    }
+                }
+            });
+        }
 
         // ============================================================
         //  CONFIG
@@ -5562,7 +5670,6 @@
         let currentTurnIndex = 0;
         let teamModeEnabled = false;
         let teams = [];
-        let currentTheme = 'gothic-noir';
 
         let charadesWords = [];
         let karaokeSongs = [];
@@ -5643,64 +5750,6 @@
             "😅 [NAME] should change their name to 'Roast Central'!",
             "🎯 [NAME] has a target on their back and everyone's a sharpshooter!"
         ];
-
-        // ============================================================
-        //  THEME FUNCTIONS
-        // ============================================================
-        function applyTheme(themeId) {
-            const theme = THEMES[themeId];
-            if (!theme) return;
-            currentTheme = themeId;
-            const root = document.documentElement;
-            Object.entries(theme.variables).forEach(([key, value]) => {
-                root.style.setProperty(key, value);
-            });
-            document.querySelectorAll('.theme-card').forEach(card => {
-                card.classList.toggle('active-theme', card.dataset.theme === themeId);
-                const btn = card.querySelector('.theme-apply-btn');
-                if (btn) {
-                    btn.textContent = card.dataset.theme === themeId ? '✅ ACTIVE' : 'APPLY';
-                    btn.classList.toggle('active-btn', card.dataset.theme === themeId);
-                }
-            });
-            localStorage.setItem('arcadeThemeId', themeId);
-            playSound('success');
-        }
-
-        function loadThemePreference() {
-            const saved = localStorage.getItem('arcadeThemeId');
-            if (saved && THEMES[saved]) {
-                applyTheme(saved);
-            } else {
-                applyTheme('gothic-noir');
-            }
-        }
-
-        function renderThemes() {
-            const grid = document.getElementById('themesGrid');
-            grid.innerHTML = Object.entries(THEMES).map(([id, theme]) => `
-                <div class="theme-card" data-theme="${id}">
-                    <div class="theme-preview">
-                        ${theme.colors.map(c => `<div class="swatch" style="background:${c}"></div>`).join('')}
-                    </div>
-                    <div class="theme-name">${theme.name}</div>
-                    <div class="theme-mood">${theme.mood}</div>
-                    <button class="theme-apply-btn" onclick="applyTheme('${id}')">
-                        ${currentTheme === id ? '✅ ACTIVE' : 'APPLY'}
-                    </button>
-                </div>
-            `).join('');
-            document.querySelectorAll('.theme-card').forEach(card => {
-                if (card.dataset.theme === currentTheme) {
-                    card.classList.add('active-theme');
-                    const btn = card.querySelector('.theme-apply-btn');
-                    if (btn) {
-                        btn.textContent = '✅ ACTIVE';
-                        btn.classList.add('active-btn');
-                    }
-                }
-            });
-        }
 
         // ============================================================
         //  LOAD DATA
@@ -6582,12 +6631,12 @@
             const wordDisplay = document.querySelector('.word-display');
             const songTitle = document.querySelector('.song-display .title');
             const hangmanWord = document.querySelector('.hangman-word');
-            const hangmanRevealed = document.querySelectorAll('.hangman-word .letter-revealed');
+            const hangmanRevealed = document.querySelectorAll('.hangman-word .letter.revealed');
             const currentScore = document.getElementById('scoringCurrentScore');
             const plusButtons = document.querySelectorAll('.scoring-section .score-buttons .btn-plus');
             const hangmanButtons = document.querySelectorAll('.hangman-input-row button:not(.next-btn)');
             const hangmanHint = document.querySelector('.hangman-input-row .hint-btn');
-            const hangmanSvg = document.querySelector('.hangman-svg');
+            const hangmanSvg = document.querySelector('.hangman-figure svg');
             const changeBtn = document.querySelector('.change-btn');
 
             modalBox.style.borderColor = color.main;
@@ -6760,12 +6809,12 @@
 
             const wordDisplay = hangmanState.word.split('').map(letter =>
                 hangmanState.guessed.includes(letter) ?
-                `<span class="letter-revealed">${letter.toUpperCase()}</span>` :
-                `<span class="letter-hidden">_</span>`
-            ).join(' ');
+                `<span class="letter revealed">${letter.toUpperCase()}</span>` :
+                `<span class="letter hidden">_</span>`
+            ).join('');
 
-            const wrongLetters = hangmanState.guessed.filter(l => !hangmanState.word.includes(l)).join(' ');
-            const correctLetters = hangmanState.guessed.filter(l => hangmanState.word.includes(l)).join(' ');
+            const wrongLetters = hangmanState.guessed.filter(l => !hangmanState.word.includes(l));
+            const correctLetters = hangmanState.guessed.filter(l => hangmanState.word.includes(l));
             const isGameActive = !hangmanState.gameOver;
 
             let statusHTML = '';
@@ -6789,57 +6838,63 @@
 
             container.innerHTML = `
                 <div class="hangman-container">
-                    <div style="display:flex;justify-content:space-between;align-items:center;width:100%;flex-wrap:wrap;gap:0.3rem;">
-                        <span class="hangman-difficulty-badge ${hangmanState.difficulty}">${diffLabel}</span>
-                        <span style="font-size:0.5rem;color:var(--theme-text-muted);font-family:var(--font-display);">
-                            ${hangmanState.wrongGuesses}/${hangmanState.maxWrong}
-                        </span>
+                    <div class="hangman-header">
+                        <span class="difficulty-badge ${hangmanState.difficulty}">${diffLabel}</span>
+                        <span class="progress">❌ ${hangmanState.wrongGuesses}/${hangmanState.maxWrong}</span>
                     </div>
 
-                    <svg class="hangman-svg" viewBox="0 0 100 130" width="300" height="240">
-                        <line x1="50" y1="120" x2="50" y2="15" stroke="var(--theme-text-primary)" stroke-width="3"/>
-                        <line x1="50" y1="15" x2="20" y2="15" stroke="var(--theme-text-primary)" stroke-width="3"/>
-                        <line x1="20" y1="15" x2="20" y2="28" stroke="var(--theme-text-primary)" stroke-width="3"/>
+                    <div class="hangman-figure">
+                        <svg viewBox="0 0 100 130" width="200" height="160">
+                            <line x1="50" y1="120" x2="50" y2="15" stroke="var(--theme-text-primary)" stroke-width="3"/>
+                            <line x1="50" y1="15" x2="20" y2="15" stroke="var(--theme-text-primary)" stroke-width="3"/>
+                            <line x1="20" y1="15" x2="20" y2="28" stroke="var(--theme-text-primary)" stroke-width="3"/>
 
-                        <circle class="hangman-part ${hangmanState.wrongGuesses >= 1 ? 'show' : ''}" 
-                                cx="20" cy="42" r="12" stroke="var(--theme-text-primary)" stroke-width="2.5" fill="none"/>
+                            <circle class="hangman-part ${hangmanState.wrongGuesses >= 1 ? 'show' : ''}" 
+                                    cx="20" cy="42" r="12" stroke="var(--theme-text-primary)" stroke-width="2.5" fill="none"/>
 
-                        <line class="hangman-part ${hangmanState.wrongGuesses >= 2 ? 'show' : ''}" 
-                              x1="20" y1="54" x2="20" y2="78" stroke="var(--theme-text-primary)" stroke-width="2.5"/>
+                            <line class="hangman-part ${hangmanState.wrongGuesses >= 2 ? 'show' : ''}" 
+                                  x1="20" y1="54" x2="20" y2="78" stroke="var(--theme-text-primary)" stroke-width="2.5"/>
 
-                        <line class="hangman-part ${hangmanState.wrongGuesses >= 3 ? 'show' : ''}" 
-                              x1="20" y1="62" x2="5" y2="72" stroke="var(--theme-text-primary)" stroke-width="2.5"/>
+                            <line class="hangman-part ${hangmanState.wrongGuesses >= 3 ? 'show' : ''}" 
+                                  x1="20" y1="62" x2="5" y2="72" stroke="var(--theme-text-primary)" stroke-width="2.5"/>
 
-                        <line class="hangman-part ${hangmanState.wrongGuesses >= 4 ? 'show' : ''}" 
-                              x1="20" y1="62" x2="35" y2="72" stroke="var(--theme-text-primary)" stroke-width="2.5"/>
+                            <line class="hangman-part ${hangmanState.wrongGuesses >= 4 ? 'show' : ''}" 
+                                  x1="20" y1="62" x2="35" y2="72" stroke="var(--theme-text-primary)" stroke-width="2.5"/>
 
-                        <line class="hangman-part ${hangmanState.wrongGuesses >= 5 ? 'show' : ''}" 
-                              x1="20" y1="78" x2="8" y2="95" stroke="var(--theme-text-primary)" stroke-width="2.5"/>
+                            <line class="hangman-part ${hangmanState.wrongGuesses >= 5 ? 'show' : ''}" 
+                                  x1="20" y1="78" x2="8" y2="95" stroke="var(--theme-text-primary)" stroke-width="2.5"/>
 
-                        <line class="hangman-part ${hangmanState.wrongGuesses >= 6 ? 'show' : ''}" 
-                              x1="20" y1="78" x2="32" y2="95" stroke="var(--theme-text-primary)" stroke-width="2.5"/>
-                    </svg>
+                            <line class="hangman-part ${hangmanState.wrongGuesses >= 6 ? 'show' : ''}" 
+                                  x1="20" y1="78" x2="32" y2="95" stroke="var(--theme-text-primary)" stroke-width="2.5"/>
+                        </svg>
+                    </div>
 
                     ${statusHTML}
                     ${definitionHTML}
 
                     <div class="hangman-word">${wordDisplay}</div>
+                    
                     <div class="hangman-guesses">
-                        ${correctLetters ? `<span class="correct">✅ ${correctLetters}</span>` : ''}
-                        ${wrongLetters ? `<span class="wrong">❌ ${wrongLetters}</span>` : ''}
-                        <span>${hangmanState.wrongGuesses}/${hangmanState.maxWrong}</span>
+                        ${correctLetters.length > 0 ? `<span class="correct">✅ ${correctLetters.join(' ').toUpperCase()}</span>` : ''}
+                        ${wrongLetters.length > 0 ? `<span class="wrong">❌ ${wrongLetters.join(' ').toUpperCase()}</span>` : ''}
+                        ${correctLetters.length === 0 && wrongLetters.length === 0 ? '<span style="color:var(--theme-text-muted);font-size:0.6rem;">Guess a letter</span>' : ''}
                     </div>
+
                     <div class="hangman-input-row">
                         ${isGameActive ? `
                             <input type="text" id="hangmanInput" maxlength="1" placeholder="?" autofocus />
-                            <button onclick="hangmanGuess()">GUESS</button>
+                            <button class="primary-btn" onclick="hangmanGuess()">GUESS</button>
+                        ` : ''}
+                    </div>
+
+                    <div class="hangman-actions">
+                        ${isGameActive ? `
                             <button class="hint-btn" onclick="hangmanHint()">💡 HINT</button>
                             ${showRandomize ? `<button class="random-btn" onclick="randomizeHangmanWord()">🎲 RANDOM</button>` : ''}
-                            <button class="next-btn" onclick="nextTurnAndNewWord()">⏭️ NEXT TURN</button>
-                        ` : `
-                            <button class="next-btn" onclick="nextTurnAndNewWord()">⏭️ NEXT TURN</button>
-                        `}
+                        ` : ''}
+                        <button class="next-btn" onclick="nextTurnAndNewWord()">⏭️ NEXT TURN</button>
                     </div>
+
                     ${isExpert && isGameActive ? `
                         <div style="font-size:0.45rem;color:var(--theme-text-muted);margin-top:0.2rem;text-align:center;font-family:var(--font-display);letter-spacing:1px;">
                             🔬 EXPERT MODE: Hint reveals definition
@@ -7242,6 +7297,37 @@
         // ============================================================
         //  ROAST GAME
         // ============================================================
+        let selectedRoastsPerRound = 10;
+        let selectedTotalRounds = 3;
+        let customRoastCount = 10;
+        let customRoundCount = 3;
+
+        function setRoastPreset(val) {
+            selectedRoastsPerRound = val;
+            document.getElementById('customRoastCount').value = val;
+            playSound('point');
+        }
+
+        function setCustomRoastCount(val) {
+            let num = parseInt(val);
+            if (isNaN(num) || num < 1) num = 1;
+            if (num > 50) num = 50;
+            selectedRoastsPerRound = num;
+        }
+
+        function setRoundPreset(val) {
+            selectedTotalRounds = val;
+            document.getElementById('customRoundCount').value = val;
+            playSound('point');
+        }
+
+        function setCustomRoundCount(val) {
+            let num = parseInt(val);
+            if (isNaN(num) || num < 1) num = 1;
+            if (num > 10) num = 10;
+            selectedTotalRounds = num;
+        }
+
         function renderRoastSetup() {
             const container = document.getElementById('modalContent');
             const totalRoastsNeeded = selectedRoastsPerRound * selectedTotalRounds;
@@ -7293,51 +7379,6 @@
                     playSound('point');
                 });
             });
-        }
-
-        let selectedRoastsPerRound = 10;
-        let selectedTotalRounds = 3;
-        let customRoastCount = 10;
-        let customRoundCount = 3;
-
-        function setRoastPreset(val) {
-            selectedRoastsPerRound = val;
-            document.getElementById('customRoastCount').value = val;
-            updateRoastAvailableDisplay();
-            playSound('point');
-        }
-
-        function setCustomRoastCount(val) {
-            let num = parseInt(val);
-            if (isNaN(num) || num < 1) num = 1;
-            if (num > 50) num = 50;
-            selectedRoastsPerRound = num;
-            updateRoastAvailableDisplay();
-        }
-
-        function setRoundPreset(val) {
-            selectedTotalRounds = val;
-            document.getElementById('customRoundCount').value = val;
-            updateRoastAvailableDisplay();
-            playSound('point');
-        }
-
-        function setCustomRoundCount(val) {
-            let num = parseInt(val);
-            if (isNaN(num) || num < 1) num = 1;
-            if (num > 10) num = 10;
-            selectedTotalRounds = num;
-            updateRoastAvailableDisplay();
-        }
-
-        function updateRoastAvailableDisplay() {
-            const container = document.getElementById('modalContent');
-            const availableEl = container?.querySelector('.roast-available');
-            if (availableEl) {
-                const totalNeeded = selectedRoastsPerRound * selectedTotalRounds;
-                availableEl.innerHTML =
-                    `${roastLines.length} roasts available · ${players.length} players${roastLines.length > 0 ? ` · Total roasts: ${totalNeeded}` : ' ⚠️ Add roasts in Game Master!'}`;
-            }
         }
 
         function startRoastGame() {
