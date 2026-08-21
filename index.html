@@ -1,3 +1,6 @@
+Here's the complete fixed HTML with **Who Am I** and **Custom Question Amount** implemented:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -2571,7 +2574,7 @@
         }
 
         /* ============================================================
-           HANGMAN - FIXED SVG POSITIONING
+           HANGMAN
            ============================================================ */
         .hangman-container {
             max-width: 480px;
@@ -3486,28 +3489,6 @@
             color: var(--theme-text-muted);
             font-size: 0.7rem;
             padding: 2rem;
-        }
-
-        /* Custom Questions Button */
-        .bg-custom-btn {
-            background: var(--theme-blue-bright);
-            color: white;
-            border: none;
-            padding: 0.5rem 1.5rem;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 0.65rem;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-body);
-            box-shadow: 0 0 20px var(--theme-glow-blue);
-            width: 100%;
-            margin-top: 0.5rem;
-        }
-
-        .bg-custom-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 40px var(--theme-glow-blue-strong);
         }
 
         /* Brain Games Modal */
@@ -4461,16 +4442,16 @@
             </div>
 
             <!-- ==========================================================
-                 🧠 BRAIN GAMES PAGE
+                 🧠 BRAIN GAMES PAGE - WITH CUSTOM QUESTION COUNT
                  ========================================================== -->
 
             <div class="page" id="braingamesPage">
                 <div class="brain-games-container active" id="brainGamesContainer">
-                    
+
                     <!-- Setup Card -->
                     <div class="bg-setup-card" id="bgSetupCard">
                         <div class="setup-title">🧠 BRAIN GAMES</div>
-                        
+
                         <!-- Timer Row -->
                         <div class="bg-setup-row">
                             <label>⏱️ SET TIMER</label>
@@ -4486,8 +4467,8 @@
                                 <span>seconds</span>
                             </div>
                         </div>
-                        
-                        <!-- Questions Row -->
+
+                        <!-- Questions Row - WITH CUSTOM INPUT -->
                         <div class="bg-setup-row">
                             <label>📋 QUESTIONS</label>
                             <div class="preset-buttons" id="bgQtyPresets">
@@ -4497,36 +4478,36 @@
                                 <button class="qty-active" data-qty="20" onclick="bgSetQuestionCount(20, this)">20</button>
                                 <button class="qty-active" data-qty="all" onclick="bgSetQuestionCount('all', this)">All</button>
                             </div>
+                            <div class="custom-input" style="margin-top:0.4rem;">
+                                <label style="font-family:var(--font-display);font-size:0.45rem;color:var(--theme-text-muted);letter-spacing:1px;margin-right:0.3rem;">Custom:</label>
+                                <input type="number" id="bgCustomQty" value="10" min="1" max="999" onchange="bgSetCustomQuestionCount(this.value)" style="width:60px;padding:0.25rem 0.4rem;border-radius:16px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);font-size:0.7rem;text-align:center;font-family:var(--font-body);font-weight:700;" />
+                                <span style="font-size:0.55rem;color:var(--theme-text-muted);">questions</span>
+                            </div>
                             <div style="font-size:0.5rem;color:var(--theme-text-muted);margin-top:0.3rem;">
                                 <span id="bgTotalAvailable">0</span> questions available
                             </div>
                         </div>
-                        
+
                         <!-- Info Row -->
                         <div class="bg-setup-info">
                             <span class="info-item">👥 Players: <span class="value" id="bgPlayerCountSetup">0</span></span>
                             <span class="info-item">📊 Questions: <span class="value" id="bgQtyDisplay">10</span></span>
                             <span class="info-item">⏱️ Timer: <span class="value" id="bgTimerDisplay">30s</span></span>
                         </div>
-                        
+
                         <!-- Start Button -->
                         <button class="bg-start-btn" id="bgStartBtn" onclick="bgStartGame()">
                             🚀 START BRAIN GAMES
                         </button>
-                        
-                        <!-- Custom Questions Button -->
-                        <button class="bg-custom-btn" onclick="openCustomQuestionModal()">
-                            ✏️ CUSTOMIZE QUESTIONS
-                        </button>
-                        
+
                         <div class="bg-tip">💡 Select timer and question count, then click START!</div>
                     </div>
-                    
+
                     <!-- Empty State -->
                     <div id="bgEmptyState">
                         <div class="bg-empty-questions">❌ No questions added yet.<br>Add questions in <strong>Game Master → Brain Games</strong>!</div>
                     </div>
-                    
+
                 </div>
             </div>
 
@@ -7461,12 +7442,27 @@
             }, 50);
         }
 
-        // ---- WHO AM I ----
+        // ---- WHO AM I - FIXED ----
         function renderWhoAmI(container) {
+            // Get names from loaded data or fallback
             const names = whoamiNames.length > 0 ? whoamiNames : FALLBACK_DATA.whoami;
-            const name = getNextUnusedItem('whoami', names);
-            const isLong = name.length > 15;
 
+            // Get next unused name with tracking
+            const tracker = wordTracking.whoami;
+            let available = names.filter(name => !tracker.used.includes(name));
+
+            // If all names used, reset the tracker
+            if (available.length === 0) {
+                tracker.used = [];
+                available = names;
+            }
+
+            // Select a random name from available
+            const randomIndex = Math.floor(Math.random() * available.length);
+            const name = available[randomIndex];
+            tracker.used.push(name);
+
+            const isLong = name.length > 15;
             const playerName = getCurrentPlayerName() || '';
             const changeCount = changeCounts[playerName] || 0;
             const maxChanges = 3;
@@ -7475,10 +7471,10 @@
                 <p><strong>🕵️ WHO AM I?</strong></p>
                 <div class="word-display whoami ${isLong ? 'long-word' : ''}">${name.toUpperCase()}</div>
                 <div style="font-size:0.5rem;color:var(--theme-text-muted);text-align:center;margin-bottom:0.3rem;">
-                    📊 ${wordTracking.whoami.used.length} of ${names.length} names used
+                    📊 ${tracker.used.length} of ${names.length} names used
                 </div>
                 <div class="whoami-hint">
-                    🙈 ${getCurrentPlayer()?.name || 'Current player'} — CLOSE YOUR EYES! Everyone else can see the name.
+                    🙈 ${playerName || 'Current player'} — CLOSE YOUR EYES! Everyone else can see the name.
                 </div>
                 <p style="font-size:0.75rem;color:var(--theme-text-muted);">🗣️ Ask YES/NO questions to figure out who you are!</p>
                 <div class="game-actions">
@@ -8430,7 +8426,7 @@
         }
 
         // ============================================================
-        //  BG SETUP FUNCTIONS
+        //  BG SETUP FUNCTIONS - WITH CUSTOM QUESTION COUNT
         // ============================================================
 
         function bgInit() {
@@ -8477,19 +8473,23 @@
             document.querySelectorAll('#bgQtyPresets .qty-active').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             document.getElementById('bgQtyDisplay').textContent = count === 'all' ? 'All' : count;
+            document.getElementById('bgCustomQty').value = count === 'all' ? bgQuestions.length : count;
         }
 
-        // Custom Questions Button
-        function openCustomQuestionModal() {
-            // Navigate to GM tab with Brain Games selected
-            document.querySelectorAll('.gm-tabs button').forEach(b => b.classList.remove('active'));
-            const bgTab = document.querySelector('.gm-tabs button[data-tab="tab-braingames"]');
-            if (bgTab) {
-                bgTab.classList.add('active');
-                document.querySelectorAll('.gm-tab-content').forEach(c => c.classList.remove('active'));
-                document.getElementById('tab-braingames').classList.add('active');
-                navigateTo('gm');
-            }
+        function bgSetCustomQuestionCount(value) {
+            let val = parseInt(value);
+            if (isNaN(val) || val < 1) val = 1;
+            if (val > 999) val = 999;
+
+            // Remove active class from preset buttons
+            document.querySelectorAll('#bgQtyPresets .qty-active').forEach(b => b.classList.remove('active'));
+
+            // Store the custom value
+            bgQuestionCount = val;
+            document.getElementById('bgQtyDisplay').textContent = val;
+            document.getElementById('bgCustomQty').value = val;
+
+            playSound('point');
         }
 
         // ============================================================
@@ -8510,7 +8510,7 @@
             if (bgQuestionCount === 'all') {
                 bgTotalQuestions = bgQuestions.length;
             } else {
-                bgTotalQuestions = Math.min(bgQuestionCount, bgQuestions.length);
+                bgTotalQuestions = Math.min(parseInt(bgQuestionCount) || 10, bgQuestions.length);
             }
 
             if (bgTotalQuestions < 1) {
@@ -9583,7 +9583,7 @@
             renderGameGrid();
             renderAll();
             setupGMTabs();
-            setupEventListeners(); // ✅ ADDED: Ensures buttons work
+            setupEventListeners(); // ✅ Ensures buttons work
             renderGMData();
             renderThemes();
             loadSoundPreferences();
@@ -9617,3 +9617,4 @@
 
 </body>
 </html>
+```
