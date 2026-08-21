@@ -1,32 +1,49 @@
 const WebSocket = require('ws');
 const http = require('http');
 const fs = require('fs');
-const url = require('url');
+const path = require('path');
 
 const server = http.createServer((req, res) => {
-    const path = url.parse(req.url).pathname;
-
-    if (path === '/player' || path === '/player.html') {
-        fs.readFile('player.html', (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                res.end('player.html not found');
-            } else {
-                res.writeHead(200, { 'Content-Type': 'text/html' });
-                res.end(data);
-            }
-        });
-        return;
+    let filePath = req.url;
+    
+    // Handle root path - serve index.html
+    if (filePath === '/' || filePath === '/host') {
+        filePath = '/index.html';
     }
-
-    if (path === '/' || path === '/host') {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.end(`<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;url=/"></head><body>Redirecting...</body></html>`);
-        return;
+    
+    // Handle player path
+    if (filePath === '/player' || filePath === '/player.html') {
+        filePath = '/player.html';
     }
-
-    res.writeHead(404);
-    res.end('Not found');
+    
+    // Remove query parameters
+    if (filePath.includes('?')) {
+        filePath = filePath.split('?')[0];
+    }
+    
+    // Determine the full path
+    const fullPath = path.join(__dirname, filePath);
+    
+    // Check if file exists
+    fs.readFile(fullPath, (err, data) => {
+        if (err) {
+            console.log('File not found:', fullPath);
+            res.writeHead(404);
+            res.end('File not found');
+            return;
+        }
+        
+        // Set content type
+        let contentType = 'text/html';
+        if (filePath.endsWith('.css')) contentType = 'text/css';
+        else if (filePath.endsWith('.js')) contentType = 'application/javascript';
+        else if (filePath.endsWith('.json')) contentType = 'application/json';
+        else if (filePath.endsWith('.png')) contentType = 'image/png';
+        else if (filePath.endsWith('.jpg')) contentType = 'image/jpeg';
+        
+        res.writeHead(200, { 'Content-Type': contentType });
+        res.end(data);
+    });
 });
 
 const wss = new WebSocket.Server({ server });
@@ -222,10 +239,9 @@ function generateRoomCode() {
     return code;
 }
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
     console.log(`🎮 ARCADE PARTY Server running on port ${PORT}`);
     console.log(`📱 Host: http://localhost:${PORT}/host`);
     console.log(`📱 Players join at: http://localhost:${PORT}/player`);
-    console.log(`📱 Or use your local IP for other devices`);
 });
