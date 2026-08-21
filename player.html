@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>🎮 ARCADE PARTY - Player</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: #0a1628;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        .container {
+            width: 100%;
+            max-width: 500px;
+        }
+        .join-screen {
+            background: #121f33;
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid #1a2a4a;
+            text-align: center;
+        }
+        .join-screen h2 {
+            font-size: 1.5rem;
+            color: #00d4ff;
+            margin-bottom: 1.5rem;
+        }
+        .join-screen input {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border-radius: 30px;
+            border: 2px solid #1a2a4a;
+            background: #0a1628;
+            color: white;
+            font-size: 1rem;
+            text-align: center;
+            font-weight: 700;
+        }
+        .join-screen input:focus {
+            outline: none;
+            border-color: #00d4ff;
+        }
+        .join-btn {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 30px;
+            border: none;
+            background: #4A90D9;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.25);
+            transition: all 0.2s;
+        }
+        .join-btn:active {
+            transform: scale(0.95);
+        }
+        .game-screen {
+            display: none;
+            background: #121f33;
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 2px solid #1a2a4a;
+        }
+        .question-number {
+            font-size: 0.6rem;
+            color: #5a7a9a;
+            text-align: center;
+            font-weight: 700;
+        }
+        .question-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 0.8rem 0;
+            min-height: 3rem;
+        }
+        .timer-bar {
+            width: 100%;
+            height: 6px;
+            background: #1a2a4a;
+            border-radius: 3px;
+            margin: 0.5rem 0;
+            overflow: hidden;
+        }
+        .timer-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff, #4A90D9);
+            width: 100%;
+            transition: width 0.1s linear;
+            border-radius: 3px;
+        }
+        .timer-fill.warning {
+            background: linear-gradient(90deg, #e74c3c, #f39c12);
+        }
+        .score-display {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #00d4ff;
+            margin: 0.5rem 0;
+        }
+        .answer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin: 0.8rem 0;
+        }
+        .answer-btn {
+            padding: 1.2rem 0.5rem;
+            border-radius: 14px;
+            border: 3px solid transparent;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.15s;
+            color: white;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            touch-action: manipulation;
+            user-select: none;
+        }
+        .answer-btn .label {
+            font-size: 1.4rem;
+            font-weight: 800;
+            opacity: 0.4;
+        }
+        .answer-btn .text {
+            font-size: 0.9rem;
+        }
+        .answer-btn.a {
+            background: #4A90D9;
+        }
+        .answer-btn.b {
+            background: #E74C3C;
+        }
+        .answer-btn.c {
+            background: #2ECC71;
+        }
+        .answer-btn.d {
+            background: #F39C12;
+        }
+        .answer-btn:active {
+            transform: scale(0.92);
+        }
+        .answer-btn.selected {
+            border-color: white;
+            transform: scale(1.02);
+        }
+        .answer-btn.correct {
+            border-color: #2ecc71;
+            box-shadow: 0 0 40px rgba(46, 204, 113, 0.3);
+        }
+        .answer-btn.wrong {
+            border-color: #e74c3c;
+            box-shadow: 0 0 40px rgba(231, 76, 60, 0.3);
+        }
+        .answer-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        .player-name {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #5a7a9a;
+            margin-top: 0.5rem;
+        }
+        .waiting-screen {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            background: #121f33;
+            border-radius: 20px;
+            border: 2px solid #1a2a4a;
+        }
+        .waiting-screen .emoji {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+        .waiting-screen h3 {
+            font-size: 1rem;
+            color: #00d4ff;
+        }
+        .waiting-screen p {
+            color: #5a7a9a;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        .result-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 2rem;
+        }
+        .result-overlay.show {
+            display: flex;
+        }
+        .result-overlay .emoji {
+            font-size: 5rem;
+            margin-bottom: 0.5rem;
+        }
+        .result-overlay .points {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #00d4ff;
+        }
+        .result-overlay .message {
+            font-size: 1.2rem;
+            color: #5a7a9a;
+        }
+        @media (max-width: 400px) {
+            .answer-btn {
+                min-height: 65px;
+                padding: 0.8rem 0.3rem;
+                font-size: 0.8rem;
+            }
+            .answer-btn .label {
+                font-size: 1rem;
+            }
+            .question-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="join-screen" id="joinScreen">
+            <h2>🎮 ARCADE PARTY</h2>
+            <input type="text" id="roomInput" placeholder="Room Code" maxlength="6" style="text-transform:uppercase;">
+            <input type="text" id="nameInput" placeholder="Your Name" maxlength="15">
+            <button class="join-btn" onclick="joinGame()">🎯 JOIN</button>
+        </div>
+        <div class="waiting-screen" id="waitingScreen">
+            <span class="emoji">⏳</span>
+            <h3>WAITING FOR HOST</h3>
+            <p>Room: <span id="roomDisplay">----</span></p>
+            <p>You are: <span id="playerDisplay">Player</span></p>
+            <p id="playerCount" style="font-size:0.6rem;color:#3a5a7a;">0 players connected</p>
+        </div>
+        <div class="game-screen" id="gameScreen">
+            <div class="question-number" id="questionNumber">Q1/10</div>
+            <div class="question-text" id="questionText">Loading...</div>
+            <div class="timer-bar"><div class="timer-fill" id="timerFill"></div></div>
+            <div class="score-display" id="scoreDisplay">0</div>
+            <div class="answer-grid" id="answerGrid">
+                <button class="answer-btn a" data-answer="0"><span class="label">A</span><span class="text" id="opt0">Option 1</span></button>
+                <button class="answer-btn b" data-answer="1"><span class="label">B</span><span class="text" id="opt1">Option 2</span></button>
+                <button class="answer-btn c" data-answer="2"><span class="label">C</span><span class="text" id="opt2">Option 3</span></button>
+                <button class="answer-btn d" data-answer="3"><span class="label">D</span><span class="text" id="opt3">Option 4</span></button>
+            </div>
+            <div class="player-name" id="playerNameDisplay"></div>
+        </div>
+    </div>
+    <div class="result-overlay" id="resultOverlay">
+        <div class="emoji" id="resultEmoji">✅</div>
+        <div class="points" id="resultPoints">+1000</div>
+        <div class="message" id="resultMessage">Correct!</div>
+    </div>
+    <script>
+        let ws = null;
+        let playerId = '';
+        let playerName = '';
+        let roomCode = '';
+        let score = 0;
+        let answered = false;
+        let timerInterval = null;
+        let gameActive = false;
+
+        function connect() {
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const host = window.location.hostname;
+            ws = new WebSocket(`${protocol}//${host}:3000`);
+            ws.onopen = () => { console.log('✅ Connected');
+                if (roomCode && playerName) joinRoom(); };
+            ws.onmessage = (e) => { try { handleMessage(JSON.parse(e.data)); } catch (err) {} };
+            ws.onclose = () => { console.log('❌ Disconnected');
+                setTimeout(connect, 2000); };
+        }
+
+        function handleMessage(data) {
+            switch (data.type) {
+                case 'bg-player-joined':
+                    document.getElementById('joinScreen').style.display = 'none';
+                    document.getElementById('waitingScreen').style.display = 'block';
+                    document.getElementById('roomDisplay').textContent = roomCode;
+                    document.getElementById('playerDisplay').textContent = playerName;
+                    if (data.players) updatePlayerCount(Object.keys(data.players).length);
+                    break;
+                case 'bg-question':
+                    document.getElementById('waitingScreen').style.display = 'none';
+                    document.getElementById('gameScreen').style.display = 'block';
+                    document.getElementById('playerNameDisplay').textContent = `👤 ${playerName}`;
+                    gameActive = true;
+                    showQuestion(data);
+                    break;
+                case 'bg-end':
+                    gameActive = false;
+                    alert('🏁 Game Over! Final Score: ' + score);
+                    document.getElementById('gameScreen').style.display = 'none';
+                    document.getElementById('waitingScreen').style.display = 'block';
+                    document.getElementById('waitingScreen').querySelector('h3').textContent = 'GAME OVER!';
+                    document.getElementById('waitingScreen').querySelector('p').textContent = 'Host will start a new game soon.';
+                    break;
+                case 'bg-error':
+                    alert('❌ ' + data.message);
+                    break;
+            }
+        }
+
+        function joinGame() {
+            const room = document.getElementById('roomInput').value.trim().toUpperCase();
+            const name = document.getElementById('nameInput').value.trim();
+            if (!room) { alert('Enter room code!'); return; }
+            if (!name) { alert('Enter your name!'); return; }
+            if (room.length < 4) { alert('Room code must be 4+ characters!'); return; }
+            roomCode = room;
+            playerName = name;
+            playerId = 'p_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4);
+            connect();
+        }
+
+        function joinRoom() {
+            ws.send(JSON.stringify({ type: 'bg-player-join', roomCode, playerId, playerName }));
+        }
+
+        function showQuestion(data) {
+            answered = false;
+            const q = data.question;
+            document.getElementById('questionNumber').textContent = `Q${data.number}/${data.total}`;
+            document.getElementById('questionText').textContent = q.text;
+            document.getElementById('opt0').textContent = q.options[0] || 'Option 1';
+            document.getElementById('opt1').textContent = q.options[1] || 'Option 2';
+            document.getElementById('opt2').textContent = q.options[2] || 'Option 3';
+            document.getElementById('opt3').textContent = q.options[3] || 'Option 4';
+            document.querySelectorAll('.answer-btn').forEach(btn => {
+                btn.disabled = false;
+                btn.className = 'answer-btn ' + btn.dataset.answer;
+            });
+            startTimer(data.timer || 20);
+        }
+
+        function startTimer(seconds) {
+            if (timerInterval) clearInterval(timerInterval);
+            let timeLeft = seconds;
+            const fill = document.getElementById('timerFill');
+            fill.style.width = '100%';
+            fill.className = 'timer-fill';
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                const percent = (timeLeft / seconds) * 100;
+                fill.style.width = Math.max(0, percent) + '%';
+                fill.className = 'timer-fill' + (percent < 30 ? ' warning' : '');
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    if (!answered) {
+                        ws.send(JSON.stringify({ type: 'bg-player-answer', roomCode, playerId, answer: -1,
+                            timeTaken: seconds }));
+                        document.querySelectorAll('.answer-btn').forEach(b => b.disabled = true);
+                    }
+                }
+            }, 1000);
+        }
+
+        function submitAnswer(answer) {
+            if (answered || !gameActive) return;
+            answered = true;
+            const timeTaken = Math.round((100 - parseFloat(document.getElementById('timerFill').style.width || '100')) / 100 *
+                20);
+            document.querySelectorAll('.answer-btn').forEach(b => b.disabled = true);
+            document.querySelectorAll('.answer-btn').forEach(b => {
+                if (parseInt(b.dataset.answer) === answer) b.classList.add('selected');
+            });
+            ws.send(JSON.stringify({ type: 'bg-player-answer', roomCode, playerId, answer, timeTaken: Math.max(1,
+                    timeTaken) }));
+        }
+
+        function updatePlayerCount(count) {
+            document.getElementById('playerCount').textContent = count + ' players connected';
+        }
+
+        document.querySelectorAll('.answer-btn').forEach(btn => {
+            btn.addEventListener('click', function() { submitAnswer(parseInt(this.dataset.answer)); });
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && document.getElementById('joinScreen').style.display !== 'none') joinGame();
+        });
+        document.getElementById('roomInput').focus();
+    </script>
+</body>
+</html>
