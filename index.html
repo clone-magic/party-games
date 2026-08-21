@@ -4313,6 +4313,129 @@
                         <button data-tab="tab-braingames">🧠 Brain Games</button>
                     </div>
 
+                    <!-- Charades -->
+                    <div class="gm-tab-content active" id="tab-charades">
+                        <div class="gm-section">
+                            <h4>🎭 Charades Words <span id="charadesCount">0</span></h4>
+                            <div class="gm-input-row">
+                                <input type="text" id="gmCharadesInput" placeholder="Add word..." />
+                                <button onclick="addGMCharades()">➕ Add</button>
+                                <button class="gm-remove" onclick="clearGMCharades()">🗑️ Clear</button>
+                            </div>
+                            <div class="gm-item-list" id="gmCharadesList"></div>
+                        </div>
+                    </div>
+
+                    <!-- Karaoke -->
+                    <div class="gm-tab-content" id="tab-karaoke">
+                        <div class="gm-section">
+                            <h4>🎤 Karaoke Songs <span id="karaokeCount">0</span></h4>
+                            <div class="gm-input-row">
+                                <input type="text" id="gmKaraokeTitle" placeholder="Title..." />
+                                <input type="text" id="gmKaraokeArtist" placeholder="Artist..." />
+                                <button onclick="addGMKaraoke()">➕ Add</button>
+                                <button class="gm-remove" onclick="clearGMKaraoke()">🗑️ Clear</button>
+                            </div>
+                            <div class="gm-item-list" id="gmKaraokeList"></div>
+                        </div>
+                    </div>
+
+                    <!-- Fast Talk -->
+                    <div class="gm-tab-content" id="tab-fasttalk">
+                        <div class="gm-section">
+                            <h4>⏱️ Fast Talk Categories <span id="fastTalkCount">0</span></h4>
+                            <div class="gm-input-row">
+                                <input type="text" id="gmCategoryName" placeholder="Category..." />
+                                <input type="text" id="gmCategoryWords" placeholder="Words (comma)" />
+                                <button onclick="addGMCategory()">➕ Add</button>
+                                <button class="gm-remove" onclick="clearGMCategories()">🗑️ Clear</button>
+                            </div>
+                            <div class="gm-item-list" id="gmCategoryList"></div>
+                        </div>
+                    </div>
+
+                    <!-- Pictionary -->
+                    <div class="gm-tab-content" id="tab-pictionary">
+                        <div class="gm-section">
+                            <h4>🎨 Pictionary Words <span id="pictionaryCount">0</span></h4>
+                            <div class="gm-input-row">
+                                <input type="text" id="gmPictionaryInput" placeholder="Add word..." />
+                                <button onclick="addGMPictionary()">➕ Add</button>
+                                <button class="gm-remove" onclick="clearGMPictionary()">🗑️ Clear</button>
+                            </div>
+                            <div class="gm-item-list" id="gmPictionaryList"></div>
+                        </div>
+                    </div>
+
+                    <!-- Hangman -->
+                    <div class="gm-tab-content" id="tab-hangman">
+                        <div class="gm-section">
+                            <h4>🧩 Hangman Words <span id="hangmanCount">0</span></h4>
+                            <div class="gm-difficulty-filters" style="display:flex;gap:0.3rem;flex-wrap:wrap;margin-bottom:0.5rem;">
+                                <button class="gm-diff-filter active" data-diff="all" onclick="filterHangmanGM('all')" style="padding:0.2rem 0.8rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-secondary);font-size:0.5rem;cursor:pointer;font-family:var(--font-body);font-weight:700;">ALL</button>
+                                <button class="gm-diff-filter" data-diff="easy" onclick="filterHangmanGM('easy')" style="padding:0.2rem 0.8rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-secondary);font-size:0.5rem;cursor:pointer;font-family:var(--font-body);font-weight:700;">🟢 EASY</button>
+                                <button class="gm-diff-filter" data-diff="medium" onclick="filterHangmanGM('medium')" style="padding:0.2rem 0.8rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-secondary);font-size:0.5rem;cursor:pointer;font-family:var(--font-body);font-weight:700;">🟡 MEDIUM</button>
+                                <button class="gm-diff-filter" data-diff="hard" onclick="filterHangmanGM('hard')" style="padding:0.2rem 0.8rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-secondary);font-size:0.5rem;cursor:pointer;font-family:var(--font-body);font-weight:700;">🟠 HARD</button>
+                                <button class="gm-diff-filter" data-diff="expert" onclick="filterHangmanGM('expert')" style="padding:0.2rem 0.8rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-secondary);font-size:0.5rem;cursor:pointer;font-family:var(--font-body);font-weight:700;">🔴 EXPERT</button>
+                            </div>
+                            <div class="gm-input-row">
+                                <select id="gmHangmanDifficulty" style="flex:1;padding:0.5rem 1rem;border-radius:24px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);font-size:0.8rem;font-family:var(--font-body);">
+                                    <option value="easy">🟢 Easy</option>
+                                    <option value="medium">🟡 Medium</option>
+                                    <option value="hard">🟠 Hard</option>
+                                    <option value="expert">🔴 Expert</option>
+                                </select>
+                                <input type="text" id="gmHangmanInput" placeholder="Add word..." />
+                                <input type="text" id="gmHangmanDefInput" placeholder="Definition..." />
+                                <button onclick="addGMHangman()">➕ Add</button>
+                                <button class="gm-remove" onclick="clearGMHangman()">🗑️ Clear</button>
+                            </div>
+                            <div class="gm-item-list" id="gmHangmanList"></div>
+                        </div>
+                    </div>
+
+                    <!-- Truth & Lie -->
+                    <div class="gm-tab-content" id="tab-truthlie">
+                        <div class="gm-section">
+                            <h4>🤥 Truth & Lie <span id="truthLieCount">0</span></h4>
+                            <div class="gm-input-row">
+                                <input type="text" id="gmTruthLieCategory" placeholder="Category..." />
+                                <input type="text" id="gmTruth1" placeholder="Truth 1..." />
+                                <input type="text" id="gmTruth2" placeholder="Truth 2..." />
+                                <input type="text" id="gmLie" placeholder="Lie..." />
+                                <button onclick="addGMTruthLie()">➕ Add</button>
+                                <button class="gm-remove" onclick="clearGMTruthLie()">🗑️ Clear</button>
+                            </div>
+                            <div class="gm-item-list" id="gmTruthLieList"></div>
+                        </div>
+                    </div>
+
+                    <!-- Roast -->
+                    <div class="gm-tab-content" id="tab-roast">
+                        <div class="gm-section">
+                            <h4>🔥 Roast Lines <span id="roastCount">0</span></h4>
+                            <div class="gm-input-row">
+                                <input type="text" id="gmRoastInput" placeholder="Add roast line..." />
+                                <button onclick="addGMRoast()">➕ Add</button>
+                                <button class="gm-remove" onclick="clearGMRoast()">🗑️ Clear</button>
+                            </div>
+                            <div class="gm-item-list" id="gmRoastList"></div>
+                        </div>
+                    </div>
+
+                    <!-- Who Am I -->
+                    <div class="gm-tab-content" id="tab-whoami">
+                        <div class="gm-section">
+                            <h4>🕵️ Who Am I - Names <span id="whoamiCount">0</span></h4>
+                            <div class="gm-input-row">
+                                <input type="text" id="gmWhoamiInput" placeholder="Add name..." />
+                                <button onclick="addGMWhoami()">➕ Add</button>
+                                <button class="gm-remove" onclick="clearGMWhoami()">🗑️ Clear</button>
+                            </div>
+                            <div class="gm-item-list" id="gmWhoamiList"></div>
+                        </div>
+                    </div>
+
                     <!-- Brain Games GM Tab -->
                     <div class="gm-tab-content" id="tab-braingames">
                         <div class="bg-gm-section">
@@ -4361,21 +4484,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Other GM tabs (placeholder) -->
-                    <div class="gm-tab-content active" id="tab-charades">
-                        <div class="gm-section">
-                            <h4>🎭 Charades Words <span id="charadesCount">0</span></h4>
-                            <div class="gm-input-row">
-                                <input type="text" id="gmCharadesInput" placeholder="Add word..." />
-                                <button onclick="addGMCharades()">➕ Add</button>
-                                <button class="gm-remove" onclick="clearGMCharades()">🗑️ Clear</button>
-                            </div>
-                            <div class="gm-item-list" id="gmCharadesList"></div>
-                        </div>
-                    </div>
-
-                    <!-- Other GM tabs... (keep existing) -->
 
                 </div>
             </div>
@@ -5510,8 +5618,139 @@
         }
 
         // ============================================================
-        //  PLAYER FUNCTIONS
+        //  PLAYER FUNCTIONS - MOVED UP FOR PROPER HOISTING
         // ============================================================
+
+        function savePlayers() {
+            try {
+                localStorage.setItem('arcadePlayers', JSON.stringify(players));
+            } catch (e) {}
+        }
+
+        function getCurrentPlayer() {
+            return players.length > 0 ? players[currentTurnIndex % players.length] : null;
+        }
+
+        function getCurrentTeam() {
+            if (!teamModeEnabled || teams.length === 0) return null;
+            const current = getCurrentPlayer();
+            if (!current) return null;
+            if (current.team !== null && teams[current.team]) {
+                return teams[current.team];
+            }
+            return null;
+        }
+
+        function getCurrentPlayerName() {
+            const current = getCurrentPlayer();
+            if (!current) return null;
+            return current.name;
+        }
+
+        function renderPlayerTags() {
+            const container = document.getElementById('playerTags');
+            if (players.length === 0) {
+                container.innerHTML =
+                    '<span style="color:var(--theme-text-muted);font-size:0.65rem;">No players yet. Add some!</span>';
+                return;
+            }
+
+            container.innerHTML = players.map((p, i) => {
+                const isActive = i === currentTurnIndex;
+                return `
+                    <div class="player-avatar ${isActive ? 'active-turn' : ''}">
+                        <div class="avatar-circle" onclick="changePlayerEmoji(${i})" style="background:${p.color || COLORS[i % COLORS.length]}">
+                            <span class="avatar-emoji">${p.emoji || '😀'}</span>
+                        </div>
+                        <span class="avatar-name">${p.name}</span>
+                        ${isActive ? '👑' : ''}
+                        ${teamModeEnabled && teams.length > 0 ? `
+                            <select class="team-assign" onchange="assignPlayerToTeam('${p.name}', this.value === 'unassigned' ? -1 : parseInt(this.value))">
+                                ${teams.map((t, idx) => `
+                                    <option value="${idx}" ${p.team === idx ? 'selected' : ''}>${t.name}</option>
+                                `).join('')}
+                                <option value="unassigned" ${p.team === null ? 'selected' : ''}>🚫 None</option>
+                            </select>
+                        ` : ''}
+                        <span class="avatar-points">${p.points}</span>
+                        <span style="font-size:0.45rem;color:var(--color-roast);font-weight:700;">🔥${p.roastCount || 0}</span>
+                        <button class="remove-btn" onclick="removePlayer(${i})">✕</button>
+                    </div>
+                `;
+            }).join('');
+            document.getElementById('playerCountBadge').textContent = `👥 ${players.length}`;
+        }
+
+        function renderTeams() {
+            const container = document.getElementById('teamList');
+            if (!teamModeEnabled || teams.length === 0) {
+                container.innerHTML =
+                    `<div style="color:var(--theme-text-muted);font-size:0.65rem;padding:0.2rem;">Enable Team Mode to start</div>`;
+                return;
+            }
+            teams.forEach(t => {
+                t.points = players.filter(p => t.members.includes(p.name)).reduce((sum, p) => sum + p.points, 0);
+            });
+
+            container.innerHTML = teams.map((t, idx) => {
+                const isActive = idx === getActiveTeamIndex();
+                const availablePlayers = players.filter(p => !t.members.includes(p.name));
+
+                return `
+                    <div class="team-card ${isActive ? 'active-team' : ''}">
+                        <div class="team-name">
+                            <span class="team-dot" style="background:${t.color}"></span>
+                            ${t._editing ? `
+                                <input class="team-name-input" type="text" value="${t.name}" 
+                                    onblur="finishTeamEdit(${idx}, this.value)" 
+                                    onkeydown="if(event.key==='Enter'){this.blur()}" 
+                                    autofocus />
+                            ` : `
+                                <span>${t.name}</span>
+                                <button class="team-edit-btn" onclick="startTeamEdit(${idx})" title="Edit name">✏️</button>
+                            `}
+                            <span class="team-score">${t.points} pts</span>
+                        </div>
+                        <div class="team-members" style="font-size:0.5rem;color:var(--theme-text-muted);">
+                            ${t.members.length > 0 ? t.members.join(', ') : '<span style="color:var(--theme-text-muted);font-style:italic;">No members</span>'}
+                        </div>
+                        <div class="team-member-controls">
+                            ${t.members.map(member => `
+                                <span class="member-tag">
+                                    ${member}
+                                    <button class="remove-member" onclick="removePlayerFromTeam('${member}')" title="Remove from team">✕</button>
+                                </span>
+                            `).join('')}
+                            ${availablePlayers.length > 0 ? `
+                                <select class="add-member-select" onchange="addPlayerToTeam(this.value, ${idx}); this.value='';">
+                                    <option value="">➕ Add</option>
+                                    ${availablePlayers.map(p => `<option value="${p.name}">${p.name}</option>`).join('')}
+                                </select>
+                            ` : `
+                                <span class="no-members">✓ All players assigned</span>
+                            `}
+                            <span class="member-count-badge">${t.members.length}</span>
+                        </div>
+                        <div style="margin-top:0.15rem;display:flex;gap:0.3rem;flex-wrap:wrap;">
+                            <button onclick="removeTeam(${idx})" style="background:var(--theme-bg-input);border:1px solid var(--theme-border-color);border-radius:10px;padding:0.05rem 0.5rem;font-size:0.4rem;color:var(--theme-text-muted);cursor:pointer;font-family:var(--font-body);font-weight:700;">🗑️</button>
+                            <button onclick="setTeamTurn(${idx})" style="background:var(--theme-glow-blue);border:1px solid var(--theme-blue-electric);border-radius:10px;padding:0.05rem 0.5rem;font-size:0.4rem;color:var(--theme-blue-electric);cursor:pointer;font-family:var(--font-body);font-weight:700;">👑 SET TURN</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderAll() {
+            renderPlayerTags();
+            renderTeams();
+            updateModalHeader();
+            if (currentPage === 'players') renderLeaderboardFull();
+        }
+
+        // ============================================================
+        //  PLAYER FUNCTIONS - Using renderAll() and savePlayers()
+        // ============================================================
+
         function addPlayer(name) {
             name = name.trim();
             if (!name) return { success: false, message: 'Please enter a name.' };
@@ -5584,32 +5823,6 @@
             savePlayers();
             renderAll();
             playSound('success');
-        }
-
-        function getCurrentPlayer() {
-            return players.length > 0 ? players[currentTurnIndex % players.length] : null;
-        }
-
-        function getCurrentTeam() {
-            if (!teamModeEnabled || teams.length === 0) return null;
-            const current = getCurrentPlayer();
-            if (!current) return null;
-            if (current.team !== null && teams[current.team]) {
-                return teams[current.team];
-            }
-            return null;
-        }
-
-        function getCurrentPlayerName() {
-            const current = getCurrentPlayer();
-            if (!current) return null;
-            return current.name;
-        }
-
-        function savePlayers() {
-            try {
-                localStorage.setItem('arcadePlayers', JSON.stringify(players));
-            } catch (e) {}
         }
 
         // ============================================================
@@ -5775,6 +5988,10 @@
             savePlayers();
         }
 
+        function addPlayerToTeam(playerName, teamIndex) {
+            assignPlayerToTeam(playerName, teamIndex);
+        }
+
         // ============================================================
         //  SCORING
         // ============================================================
@@ -5901,40 +6118,6 @@
             `).join('');
         }
 
-        function renderPlayerTags() {
-            const container = document.getElementById('playerTags');
-            if (players.length === 0) {
-                container.innerHTML =
-                    '<span style="color:var(--theme-text-muted);font-size:0.65rem;">No players yet. Add some!</span>';
-                return;
-            }
-
-            container.innerHTML = players.map((p, i) => {
-                const isActive = i === currentTurnIndex;
-                return `
-                    <div class="player-avatar ${isActive ? 'active-turn' : ''}">
-                        <div class="avatar-circle" onclick="changePlayerEmoji(${i})" style="background:${p.color || COLORS[i % COLORS.length]}">
-                            <span class="avatar-emoji">${p.emoji || '😀'}</span>
-                        </div>
-                        <span class="avatar-name">${p.name}</span>
-                        ${isActive ? '👑' : ''}
-                        ${teamModeEnabled && teams.length > 0 ? `
-                            <select class="team-assign" onchange="assignPlayerToTeam('${p.name}', this.value === 'unassigned' ? -1 : parseInt(this.value))">
-                                ${teams.map((t, idx) => `
-                                    <option value="${idx}" ${p.team === idx ? 'selected' : ''}>${t.name}</option>
-                                `).join('')}
-                                <option value="unassigned" ${p.team === null ? 'selected' : ''}>🚫 None</option>
-                            </select>
-                        ` : ''}
-                        <span class="avatar-points">${p.points}</span>
-                        <span style="font-size:0.45rem;color:var(--color-roast);font-weight:700;">🔥${p.roastCount || 0}</span>
-                        <button class="remove-btn" onclick="removePlayer(${i})">✕</button>
-                    </div>
-                `;
-            }).join('');
-            document.getElementById('playerCountBadge').textContent = `👥 ${players.length}`;
-        }
-
         function renderLeaderboardFull() {
             const list = document.getElementById('lbFullList');
             const activeVal = getActivePointValue();
@@ -6026,65 +6209,6 @@
             });
         }
 
-        function renderTeams() {
-            const container = document.getElementById('teamList');
-            if (!teamModeEnabled || teams.length === 0) {
-                container.innerHTML =
-                    `<div style="color:var(--theme-text-muted);font-size:0.65rem;padding:0.2rem;">Enable Team Mode to start</div>`;
-                return;
-            }
-            teams.forEach(t => {
-                t.points = players.filter(p => t.members.includes(p.name)).reduce((sum, p) => sum + p.points, 0);
-            });
-
-            container.innerHTML = teams.map((t, idx) => {
-                const isActive = idx === getActiveTeamIndex();
-                const availablePlayers = players.filter(p => !t.members.includes(p.name));
-
-                return `
-                    <div class="team-card ${isActive ? 'active-team' : ''}">
-                        <div class="team-name">
-                            <span class="team-dot" style="background:${t.color}"></span>
-                            ${t._editing ? `
-                                <input class="team-name-input" type="text" value="${t.name}" 
-                                    onblur="finishTeamEdit(${idx}, this.value)" 
-                                    onkeydown="if(event.key==='Enter'){this.blur()}" 
-                                    autofocus />
-                            ` : `
-                                <span>${t.name}</span>
-                                <button class="team-edit-btn" onclick="startTeamEdit(${idx})" title="Edit name">✏️</button>
-                            `}
-                            <span class="team-score">${t.points} pts</span>
-                        </div>
-                        <div class="team-members" style="font-size:0.5rem;color:var(--theme-text-muted);">
-                            ${t.members.length > 0 ? t.members.join(', ') : '<span style="color:var(--theme-text-muted);font-style:italic;">No members</span>'}
-                        </div>
-                        <div class="team-member-controls">
-                            ${t.members.map(member => `
-                                <span class="member-tag">
-                                    ${member}
-                                    <button class="remove-member" onclick="removePlayerFromTeam('${member}')" title="Remove from team">✕</button>
-                                </span>
-                            `).join('')}
-                            ${availablePlayers.length > 0 ? `
-                                <select class="add-member-select" onchange="addPlayerToTeam(this.value, ${idx}); this.value='';">
-                                    <option value="">➕ Add</option>
-                                    ${availablePlayers.map(p => `<option value="${p.name}">${p.name}</option>`).join('')}
-                                </select>
-                            ` : `
-                                <span class="no-members">✓ All players assigned</span>
-                            `}
-                            <span class="member-count-badge">${t.members.length}</span>
-                        </div>
-                        <div style="margin-top:0.15rem;display:flex;gap:0.3rem;flex-wrap:wrap;">
-                            <button onclick="removeTeam(${idx})" style="background:var(--theme-bg-input);border:1px solid var(--theme-border-color);border-radius:10px;padding:0.05rem 0.5rem;font-size:0.4rem;color:var(--theme-text-muted);cursor:pointer;font-family:var(--font-body);font-weight:700;">🗑️</button>
-                            <button onclick="setTeamTurn(${idx})" style="background:var(--theme-glow-blue);border:1px solid var(--theme-blue-electric);border-radius:10px;padding:0.05rem 0.5rem;font-size:0.4rem;color:var(--theme-blue-electric);cursor:pointer;font-family:var(--font-body);font-weight:700;">👑 SET TURN</button>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
         function startTeamEdit(index) {
             teams.forEach(t => t._editing = false);
             teams[index]._editing = true;
@@ -6107,11 +6231,43 @@
             }
         }
 
-        function renderAll() {
-            renderPlayerTags();
-            renderTeams();
-            updateModalHeader();
-            if (currentPage === 'players') renderLeaderboardFull();
+        function updateModalHeader() {
+            const current = getCurrentPlayer();
+            const currentTeam = getCurrentTeam();
+            const turnEl = document.getElementById('turnIndicator');
+            if (teamModeEnabled && currentTeam) {
+                const memberCount = currentTeam.members.length;
+                turnEl.textContent = `👑 ${currentTeam.name} (${currentTeam.points} pts) · ${memberCount} members`;
+            } else if (current) {
+                const achievements = getAchievementEmoji(current.achievements);
+                const teamName = (current.team !== null && teams[current.team]) ? ` (${teams[current.team].name})` : '';
+                turnEl.textContent = `👤 ${current.emoji} ${current.name}${teamName} (${current.points} pts) ${achievements}`;
+            } else {
+                turnEl.textContent = '👤 No players';
+            }
+        }
+
+        function getActiveTeamIndex() {
+            if (!teamModeEnabled || teams.length === 0) return -1;
+            const current = getCurrentPlayer();
+            if (!current) return -1;
+            return current.team !== null && current.team < teams.length ? current.team : -1;
+        }
+
+        function getNextTeamIndex() {
+            if (teams.length === 0) return -1;
+            const currentTeamIdx = getActiveTeamIndex();
+            if (currentTeamIdx === -1) return 0;
+            let nextIdx = (currentTeamIdx + 1) % teams.length;
+            let attempts = 0;
+            while (attempts < teams.length) {
+                if (teams[nextIdx].members.length > 0) {
+                    return nextIdx;
+                }
+                nextIdx = (nextIdx + 1) % teams.length;
+                attempts++;
+            }
+            return -1;
         }
 
         // ============================================================
@@ -6228,22 +6384,6 @@
         document.getElementById('closeModalBtn').addEventListener('click', closeModal);
         overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-
-        function updateModalHeader() {
-            const current = getCurrentPlayer();
-            const currentTeam = getCurrentTeam();
-            const turnEl = document.getElementById('turnIndicator');
-            if (teamModeEnabled && currentTeam) {
-                const memberCount = currentTeam.members.length;
-                turnEl.textContent = `👑 ${currentTeam.name} (${currentTeam.points} pts) · ${memberCount} members`;
-            } else if (current) {
-                const achievements = getAchievementEmoji(current.achievements);
-                const teamName = (current.team !== null && teams[current.team]) ? ` (${teams[current.team].name})` : '';
-                turnEl.textContent = `👤 ${current.emoji} ${current.name}${teamName} (${current.points} pts) ${achievements}`;
-            } else {
-                turnEl.textContent = '👤 No players';
-            }
-        }
 
         // ============================================================
         //  TIMER
@@ -6547,29 +6687,6 @@
                 restartTimer();
             }
             playSound('point');
-        }
-
-        function getNextTeamIndex() {
-            if (teams.length === 0) return -1;
-            const currentTeamIdx = getActiveTeamIndex();
-            if (currentTeamIdx === -1) return 0;
-            let nextIdx = (currentTeamIdx + 1) % teams.length;
-            let attempts = 0;
-            while (attempts < teams.length) {
-                if (teams[nextIdx].members.length > 0) {
-                    return nextIdx;
-                }
-                nextIdx = (nextIdx + 1) % teams.length;
-                attempts++;
-            }
-            return -1;
-        }
-
-        function getActiveTeamIndex() {
-            if (!teamModeEnabled || teams.length === 0) return -1;
-            const current = getCurrentPlayer();
-            if (!current) return -1;
-            return current.team !== null && current.team < teams.length ? current.team : -1;
         }
 
         function createScoringUI() {
@@ -8963,7 +9080,7 @@
             renderGameGrid();
             renderAll();
             setupGMTabs();
-            setupEventListeners();
+            setupEventListeners(); // ✅ ADDED: Ensures buttons work
             renderGMData();
             renderThemes();
             loadSoundPreferences();
