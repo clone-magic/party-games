@@ -2571,7 +2571,7 @@
         }
 
         /* ============================================================
-           HANGMAN
+           HANGMAN - FIXED SVG POSITIONING
            ============================================================ */
         .hangman-container {
             max-width: 480px;
@@ -2625,16 +2625,30 @@
         .hangman-figure {
             display: flex;
             justify-content: center;
-            margin: 0.25rem 0;
+            align-items: center;
+            width: 100%;
+            padding: 0.3rem 0;
         }
 
         .hangman-figure svg {
+            display: block;
+            margin: 0 auto;
             max-width: 200px;
+            width: 100%;
             height: auto;
             background: var(--theme-bg-input);
             border-radius: 12px;
             padding: 0.5rem;
             border: 2px solid var(--theme-border-color);
+        }
+
+        .hangman-figure svg .hangman-part {
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .hangman-figure svg .hangman-part.show {
+            opacity: 1;
         }
 
         .hangman-word {
@@ -3297,7 +3311,7 @@
         }
 
         /* ============================================================
-           BRAIN GAMES - COMPLETE REWRITE
+           BRAIN GAMES
            ============================================================ */
         .brain-games-container {
             display: none;
@@ -3309,7 +3323,6 @@
             animation: pageIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        /* Setup Card */
         .bg-setup-card {
             background: var(--theme-bg-card);
             border-radius: var(--card-radius);
@@ -3475,7 +3488,29 @@
             padding: 2rem;
         }
 
-        /* BRAIN GAMES MODAL - Matches Charades/Pictionary */
+        /* Custom Questions Button */
+        .bg-custom-btn {
+            background: var(--theme-blue-bright);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.65rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            box-shadow: 0 0 20px var(--theme-glow-blue);
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .bg-custom-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 40px var(--theme-glow-blue-strong);
+        }
+
+        /* Brain Games Modal */
         .bg-modal-content {
             padding: 0.5rem 0;
         }
@@ -3857,76 +3892,354 @@
             background: rgba(231, 76, 60, 0.1);
         }
 
-        /* Responsive Brain Games */
+        /* Responsive */
         @media (max-width: 768px) {
+            :root {
+                --sidebar-width: 0px;
+                --bottom-nav-height: 64px;
+            }
+
+            .sidebar {
+                position: fixed;
+                bottom: 0;
+                top: auto;
+                left: 0;
+                width: 100%;
+                height: var(--bottom-nav-height);
+                flex-direction: row;
+                padding: 0.2rem 0.2rem;
+                border-right: none;
+                border-top: 2px solid var(--theme-blue-bright);
+                box-shadow: 0 -4px 40px var(--theme-glow-blue);
+                overflow-x: auto;
+                overflow-y: hidden;
+                justify-content: space-around;
+                align-items: center;
+                background: var(--theme-bg-sidebar);
+                gap: 0;
+                border-radius: 0;
+            }
+
+            .sidebar .brand {
+                display: none;
+            }
+
+            .sidebar .nav-item {
+                flex-direction: column;
+                padding: 0.15rem 0.15rem;
+                font-size: 0.4rem;
+                gap: 0.05rem;
+                flex: 1;
+                min-width: 40px;
+                justify-content: center;
+                align-items: center;
+                border-radius: 8px;
+                text-align: center;
+                height: 100%;
+            }
+
+            .sidebar .nav-item span:last-child {
+                display: block;
+                font-size: 0.4rem;
+                line-height: 1.1;
+                white-space: nowrap;
+            }
+
+            .sidebar .nav-item .icon {
+                font-size: 1.1rem;
+                width: auto;
+            }
+
+            .sidebar .nav-item.gm-toggle {
+                margin-top: 0;
+                border-top: none;
+                padding-top: 0.15rem;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 0.6rem 0.6rem calc(var(--bottom-nav-height) + 0.6rem) 0.6rem;
+            }
+
             .bg-setup-card {
                 padding: 1rem;
             }
-            
+
             .bg-options-grid {
                 gap: 0.4rem;
             }
-            
+
             .bg-option-btn {
                 padding: 0.6rem;
                 font-size: 0.85rem;
                 min-height: 60px;
             }
-            
+
             .bg-option-btn .text {
                 font-size: 0.85rem;
             }
-            
+
             .bg-question-text {
                 font-size: 1.2rem;
                 padding: 0.3rem 0 0.8rem 0;
             }
-            
+
             .bg-question-text.long {
                 font-size: 1rem;
             }
-            
+
             .bg-modal-header .header-item {
                 font-size: 0.55rem;
             }
-            
+
             .bg-feedback {
                 font-size: 0.75rem;
                 padding: 0.4rem;
             }
-            
+
             .bg-controls button {
                 padding: 0.4rem 1rem;
                 font-size: 0.55rem;
             }
-            
+
             .bg-setup-row .preset-buttons button {
                 font-size: 0.5rem;
                 padding: 0.2rem 0.6rem;
             }
+
+            .hangman-figure svg {
+                max-width: 160px;
+            }
+
+            .hangman-word {
+                font-size: 1.4rem !important;
+                letter-spacing: 6px !important;
+                min-height: 2.5rem;
+            }
+
+            .hangman-word .letter {
+                width: 1.2rem !important;
+            }
+
+            .hangman-input-row input {
+                width: 40px !important;
+                font-size: 1.2rem !important;
+                padding: 0.3rem !important;
+            }
+
+            .player-avatar {
+                font-size: 0.5rem;
+                padding: 0.1rem 0.3rem 0.1rem 0.1rem;
+                gap: 0.15rem;
+            }
+
+            .player-avatar .avatar-circle {
+                width: 28px;
+                height: 28px;
+            }
+            .player-avatar .avatar-emoji {
+                font-size: 0.7rem;
+            }
+            .player-avatar .avatar-points {
+                font-size: 0.4rem;
+            }
+            .player-avatar .avatar-name {
+                font-size: 0.4rem;
+            }
+
+            .game-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.4rem;
+            }
+
+            .game-card {
+                min-height: 120px;
+                padding: 0.6rem 0.3rem;
+            }
+            .game-card .emoji {
+                font-size: 1.8rem;
+            }
+            .game-card .title {
+                font-size: 0.5rem;
+            }
+            .game-card .desc {
+                display: none;
+            }
+            .game-card .play-badge {
+                font-size: 0.4rem;
+                padding: 0.1rem 0.6rem;
+            }
+
+            .modal-box {
+                padding: 0.8rem;
+                max-height: 92vh;
+                border-radius: 16px 16px 0 0;
+                max-width: 100%;
+            }
+
+            .modal-box .game-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.2rem;
+                padding-bottom: 0.4rem;
+                margin-bottom: 0.5rem;
+            }
+            .modal-box .game-header h2 {
+                font-size: 0.65rem;
+            }
+            .modal-box .game-header .game-info .timer-display {
+                font-size: 1.6rem;
+                min-width: 40px;
+                margin-right: 0;
+                order: 0;
+            }
+
+            .word-display {
+                font-size: 1.4rem !important;
+                letter-spacing: 2px !important;
+                padding: 0.6rem 0.3rem !important;
+            }
+
+            .word-display.long-word {
+                font-size: 1rem !important;
+                letter-spacing: 1px !important;
+            }
+
+            .word-display.whoami {
+                font-size: 1.8rem !important;
+                letter-spacing: 2px !important;
+            }
+
+            .scoring-section .score-buttons button {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.55rem;
+                min-width: 40px;
+                min-height: 40px;
+            }
+
+            .team-card {
+                min-width: 80px;
+                padding: 0.3rem 0.4rem;
+            }
+
+            .lb-full-item {
+                padding: 0.3rem 0.4rem;
+                gap: 0.2rem;
+            }
         }
 
         @media (max-width: 400px) {
+            .game-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.3rem;
+            }
+            .game-card {
+                min-height: 100px;
+                padding: 0.4rem 0.2rem;
+            }
+            .game-card .emoji {
+                font-size: 1.4rem;
+            }
+            .game-card .title {
+                font-size: 0.45rem;
+            }
+
             .bg-option-btn {
                 padding: 0.4rem;
                 font-size: 0.7rem;
                 min-height: 50px;
             }
-            
             .bg-option-btn .text {
                 font-size: 0.7rem;
             }
-            
             .bg-question-text {
                 font-size: 1rem;
             }
-            
             .bg-question-text.long {
                 font-size: 0.85rem;
             }
-            
-            .bg-modal-header .header-item {
+
+            .hangman-figure svg {
+                max-width: 130px;
+            }
+            .hangman-word {
+                font-size: 1.1rem !important;
+                letter-spacing: 4px !important;
+            }
+            .hangman-word .letter {
+                width: 0.9rem !important;
+            }
+
+            .player-avatar .avatar-circle {
+                width: 24px;
+                height: 24px;
+            }
+            .player-avatar .avatar-emoji {
+                font-size: 0.6rem;
+            }
+            .player-avatar .avatar-points {
+                font-size: 0.4rem;
+            }
+            .player-avatar .avatar-name {
+                font-size: 0.4rem;
+            }
+
+            .scoring-section .score-buttons button {
+                padding: 0.3rem 0.4rem;
                 font-size: 0.45rem;
+                min-width: 32px;
+                min-height: 32px;
+            }
+        }
+
+        @media (pointer: coarse) {
+            button,
+            .nav-item,
+            .game-card,
+            .theme-card,
+            .team-card,
+            .option,
+            .star,
+            .player-avatar,
+            .lb-full-actions button {
+                cursor: default;
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
+            }
+            input,
+            textarea {
+                font-size: 16px !important;
+            }
+        }
+
+        @media (pointer: fine) {
+            button,
+            .nav-item,
+            .game-card,
+            .theme-card,
+            .team-card,
+            .option,
+            .star,
+            .player-avatar {
+                cursor: pointer;
+            }
+            .sidebar .nav-item:hover {
+                background: var(--theme-bg-sidebar-hover);
+                color: var(--theme-text-primary);
+                transform: translateX(3px);
+            }
+            .game-card:hover {
+                transform: translateY(-6px) scale(1.02);
+            }
+            .game-card:hover .emoji {
+                transform: scale(1.15) rotate(-5deg);
+            }
+            .theme-card:hover {
+                transform: translateY(-4px);
+            }
+            .team-card:hover {
+                border-color: var(--theme-blue-bright);
+                transform: translateY(-2px);
             }
         }
     </style>
@@ -4199,6 +4512,11 @@
                         <!-- Start Button -->
                         <button class="bg-start-btn" id="bgStartBtn" onclick="bgStartGame()">
                             🚀 START BRAIN GAMES
+                        </button>
+                        
+                        <!-- Custom Questions Button -->
+                        <button class="bg-custom-btn" onclick="openCustomQuestionModal()">
+                            ✏️ CUSTOMIZE QUESTIONS
                         </button>
                         
                         <div class="bg-tip">💡 Select timer and question count, then click START!</div>
@@ -4624,11 +4942,16 @@
                 "Wonder Woman", "Hulk", "Thor", "Captain America", "Deadpool"
             ],
             brainGames: [
-                { text: "What is the capital of France?", options: ["Paris", "London", "Berlin", "Madrid"], correct: 0, category: "Geography" },
+                { text: "What is the capital of France?", options: ["Paris", "London", "Berlin", "Madrid"], correct: 0,
+                    category: "Geography" },
                 { text: "What is 7 × 8?", options: ["48", "56", "64", "72"], correct: 1, category: "Math" },
-                { text: "Which planet is known as the Red Planet?", options: ["Venus", "Mars", "Jupiter", "Saturn"], correct: 1, category: "Science" },
-                { text: "What is the chemical symbol for water?", options: ["H2O", "CO2", "NaCl", "HCl"], correct: 0, category: "Science" },
-                { text: "Who painted the Mona Lisa?", options: ["Michelangelo", "Leonardo da Vinci", "Raphael", "Donatello"], correct: 1, category: "Art" }
+                { text: "Which planet is known as the Red Planet?", options: ["Venus", "Mars", "Jupiter", "Saturn"],
+                    correct: 1, category: "Science" },
+                { text: "What is the chemical symbol for water?", options: ["H2O", "CO2", "NaCl", "HCl"], correct: 0,
+                    category: "Science" },
+                { text: "Who painted the Mona Lisa?", options: ["Michelangelo", "Leonardo da Vinci", "Raphael",
+                        "Donatello"
+                    ], correct: 1, category: "Art" }
             ]
         };
 
@@ -4736,6 +5059,59 @@
         };
 
         let hangmanGMFilter = 'all';
+
+        // ============================================================
+        //  WORD TRACKING - Prevents repetition across ALL games
+        // ============================================================
+        let wordTracking = {
+            charades: { used: [], currentCategory: null },
+            pictionary: { used: [], currentCategory: null },
+            karaoke: { used: [], currentCategory: null },
+            truthlie: { used: [], currentCategory: null },
+            fasttalk: { used: [], currentCategory: null },
+            whoami: { used: [], currentCategory: null },
+            hangman: { used: [], currentCategory: null }
+        };
+
+        function getNextUnusedItem(gameId, itemList, categoryKey = null) {
+            const tracker = wordTracking[gameId];
+            if (!tracker) return itemList[0] || null;
+
+            if (categoryKey) {
+                if (!tracker[categoryKey]) {
+                    tracker[categoryKey] = { used: [] };
+                }
+                const available = itemList.filter(item => !tracker[categoryKey].used.includes(item));
+                if (available.length === 0) {
+                    tracker[categoryKey].used = [];
+                    return itemList[0] || null;
+                }
+                const selected = available[Math.floor(Math.random() * available.length)];
+                tracker[categoryKey].used.push(selected);
+                return selected;
+            }
+
+            const available = itemList.filter(item => !tracker.used.includes(item));
+            if (available.length === 0) {
+                tracker.used = [];
+                return itemList[0] || null;
+            }
+            const selected = available[Math.floor(Math.random() * available.length)];
+            tracker.used.push(selected);
+            return selected;
+        }
+
+        function resetWordTracking(gameId) {
+            if (wordTracking[gameId]) {
+                wordTracking[gameId].used = [];
+            }
+        }
+
+        function resetAllWordTracking() {
+            Object.keys(wordTracking).forEach(key => {
+                wordTracking[key] = { used: [], currentCategory: null };
+            });
+        }
 
         // ============================================================
         //  ROAST GAME STATE
@@ -6635,6 +7011,9 @@
             playSound('success');
         }
 
+        // ============================================================
+        //  NEXT TURN - FOLLOWS PLAYER/TEAM ORDER (NO RANDOMIZATION)
+        // ============================================================
         function nextTurn() {
             if (players.length === 0) return;
 
@@ -6643,31 +7022,47 @@
                 changeCounts[playerName] = 0;
             }
 
+            // Reset word tracking for all games on turn change
+            resetAllWordTracking();
+
             if (teamModeEnabled && teams.length > 0) {
-                const nextTeamIdx = getNextTeamIndex();
-                if (nextTeamIdx !== -1) {
-                    const team = teams[nextTeamIdx];
-                    if (team.members.length > 0) {
-                        const memberName = team.members[0];
-                        const playerIdx = players.findIndex(p => p.name === memberName);
-                        if (playerIdx !== -1) {
-                            currentTurnIndex = playerIdx;
-                        } else {
-                            for (let i = 0; i < players.length; i++) {
-                                if (players[i].team === nextTeamIdx) {
-                                    currentTurnIndex = i;
-                                    break;
-                                }
+                // Get current team index
+                let currentTeamIdx = getActiveTeamIndex();
+                if (currentTeamIdx === -1) currentTeamIdx = 0;
+
+                // Move to next team in order (not random)
+                let nextTeamIdx = (currentTeamIdx + 1) % teams.length;
+                let attempts = 0;
+                while (attempts < teams.length) {
+                    if (teams[nextTeamIdx].members.length > 0) {
+                        break;
+                    }
+                    nextTeamIdx = (nextTeamIdx + 1) % teams.length;
+                    attempts++;
+                }
+
+                if (attempts < teams.length && teams[nextTeamIdx].members.length > 0) {
+                    // Find the first player in the team
+                    const memberName = teams[nextTeamIdx].members[0];
+                    const playerIdx = players.findIndex(p => p.name === memberName);
+                    if (playerIdx !== -1) {
+                        currentTurnIndex = playerIdx;
+                    } else {
+                        // Find any player in this team
+                        for (let i = 0; i < players.length; i++) {
+                            if (players[i].team === nextTeamIdx) {
+                                currentTurnIndex = i;
+                                break;
                             }
                         }
                     }
-                } else {
-                    currentTurnIndex = (currentTurnIndex + 1) % players.length;
                 }
             } else {
+                // Move to next player in order (not random)
                 currentTurnIndex = (currentTurnIndex + 1) % players.length;
             }
 
+            // Reset used items for the new turn
             usedItemsInRound = {
                 charades: [],
                 pictionary: [],
@@ -6780,8 +7175,7 @@
         // ---- CHARADES ----
         function renderCharades(container) {
             const words = charadesWords.length > 0 ? charadesWords : FALLBACK_DATA.charades;
-            const word = getRandomUnusedItem(words, usedItemsInRound.charades);
-            usedItemsInRound.charades.push(word);
+            const word = getNextUnusedItem('charades', words);
             const isLong = word.length > 10;
 
             const playerName = getCurrentPlayerName() || '';
@@ -6792,6 +7186,9 @@
                 <p><strong>🎭 ACT THIS OUT SILENTLY:</strong></p>
                 <div class="word-display ${isLong ? 'long-word' : ''}">${word.toUpperCase()}</div>
                 <p style="font-size:0.75rem;color:var(--theme-text-muted);">👀 Others guess! Use scoring buttons below.</p>
+                <div style="font-size:0.5rem;color:var(--theme-text-muted);margin-bottom:0.3rem;text-align:center;">
+                    📊 ${wordTracking.charades.used.length} of ${words.length} words used
+                </div>
                 <div class="game-actions">
                     <button class="change-btn" onclick="changeItem('charades', 'charades', 'Word', 3)" ${changeCount >= maxChanges ? 'disabled' : ''}>
                         🔄 CHANGE WORD ${changeCount}/${maxChanges}
@@ -6805,8 +7202,7 @@
         // ---- PICTIONARY ----
         function renderPictionary(container) {
             const words = pictionaryWords.length > 0 ? pictionaryWords : FALLBACK_DATA.pictionary;
-            const word = getRandomUnusedItem(words, usedItemsInRound.pictionary);
-            usedItemsInRound.pictionary.push(word);
+            const word = getNextUnusedItem('pictionary', words);
             const isLong = word.length > 10;
 
             const playerName = getCurrentPlayerName() || '';
@@ -6817,6 +7213,9 @@
                 <p><strong>🎨 DRAW THIS:</strong></p>
                 <div class="word-display ${isLong ? 'long-word' : ''}">${word.toUpperCase()}</div>
                 <p style="font-size:0.75rem;color:var(--theme-text-muted);">🖍️ Others guess! Use scoring buttons below.</p>
+                <div style="font-size:0.5rem;color:var(--theme-text-muted);margin-bottom:0.3rem;text-align:center;">
+                    📊 ${wordTracking.pictionary.used.length} of ${words.length} words used
+                </div>
                 <div class="game-actions">
                     <button class="change-btn" onclick="changeItem('pictionary', 'pictionary', 'Word', 3)" ${changeCount >= maxChanges ? 'disabled' : ''}>
                         🔄 CHANGE WORD ${changeCount}/${maxChanges}
@@ -6830,8 +7229,7 @@
         // ---- KARAOKE ----
         function renderKaraoke(container) {
             const songs = karaokeSongs.length > 0 ? karaokeSongs : FALLBACK_DATA.karaoke;
-            const song = getRandomUnusedItem(songs, usedItemsInRound.karaoke);
-            usedItemsInRound.karaoke.push(song);
+            const song = getNextUnusedItem('karaoke', songs);
 
             const playerName = getCurrentPlayerName() || '';
             const changeCount = changeCounts[playerName] || 0;
@@ -6842,6 +7240,9 @@
                 <div class="song-display">
                     <div class="title">${song.title}</div>
                     <div class="artist">🎵 ${song.artist}</div>
+                </div>
+                <div style="font-size:0.5rem;color:var(--theme-text-muted);margin-bottom:0.3rem;text-align:center;">
+                    📊 ${wordTracking.karaoke.used.length} of ${songs.length} songs used
                 </div>
                 <p style="font-size:0.75rem;color:var(--theme-text-muted);">🎤 Sing your heart out! Rate the performance:</p>
                 <div class="rating-stars" id="karaokeStars">
@@ -6883,8 +7284,43 @@
         // ---- FAST TALK ----
         function renderFastTalk(container) {
             const categories = fastTalkCategories.length > 0 ? fastTalkCategories : FALLBACK_DATA.fastTalk;
-            const cat = getRandomUnusedItem(categories, usedItemsInRound.fasttalk);
-            usedItemsInRound.fasttalk.push(cat);
+
+            // Find a category with unused items
+            let cat = null;
+            let attempts = 0;
+            const usedTracker = wordTracking.fasttalk;
+
+            while (attempts < categories.length) {
+                const testCat = categories[usedTracker.currentCategory || 0];
+                if (!usedTracker[testCat.name]) {
+                    usedTracker[testCat.name] = { used: [] };
+                }
+                if (usedTracker[testCat.name].used.length < testCat.items.length) {
+                    cat = testCat;
+                    break;
+                }
+                usedTracker.currentCategory = (usedTracker.currentCategory || 0) + 1;
+                attempts++;
+            }
+
+            if (!cat) {
+                // Reset all categories
+                Object.keys(usedTracker).forEach(key => {
+                    if (key !== 'currentCategory' && key !== 'used') {
+                        usedTracker[key].used = [];
+                    }
+                });
+                usedTracker.currentCategory = 0;
+                cat = categories[0];
+                if (!usedTracker[cat.name]) {
+                    usedTracker[cat.name] = { used: [] };
+                }
+            }
+
+            // Get the current item to display
+            const currentItem = usedTracker[cat.name].used.length < cat.items.length ?
+                cat.items.filter(item => !usedTracker[cat.name].used.includes(item))[0] :
+                cat.items[0];
 
             const playerName = getCurrentPlayerName() || '';
             const changeCount = changeCounts[playerName] || 0;
@@ -6893,11 +7329,16 @@
             container.innerHTML = `
                 <p><strong>⏱️ FAST TALK: <span style="color:var(--theme-blue-electric);">${cat.name.toUpperCase()}</span></strong></p>
                 <p style="font-size:0.75rem;color:var(--theme-text-muted);">Name as many ${cat.name.toLowerCase()} as you can!</p>
+                <div style="font-size:0.5rem;color:var(--theme-text-muted);text-align:center;margin-bottom:0.3rem;">
+                    📊 ${usedTracker[cat.name].used.length} of ${cat.items.length} items used in this category
+                </div>
                 <div style="display:flex;gap:0.4rem;flex-wrap:wrap;justify-content:center;margin:0.3rem 0;">
                     <input type="text" id="categoryInput" placeholder="Name one..." style="flex:1;min-width:100px;padding:0.35rem 0.8rem;border-radius:30px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);font-size:0.75rem;font-family:var(--font-body);transition:var(--transition);">
                     <button id="submitCategory" style="padding:0.25rem 1rem;border-radius:30px;border:none;font-weight:700;font-size:0.55rem;cursor:pointer;background:var(--theme-blue-bright);color:white;font-family:var(--font-body);box-shadow:0 0 20px var(--theme-glow-blue);transition:var(--transition);">SUBMIT</button>
+                    <button onclick="revealFastTalkItems('${cat.name}')" style="padding:0.25rem 1rem;border-radius:30px;border:none;font-weight:700;font-size:0.55rem;cursor:pointer;background:#f39c12;color:white;font-family:var(--font-body);transition:var(--transition);">📋 REVEAL ALL</button>
                 </div>
                 <div id="categoryFeedback" class="feedback"></div>
+                <div id="fastTalkReveal" style="display:none;"></div>
                 <div class="game-actions">
                     <button class="change-btn" onclick="changeItem('fast-talk', 'fasttalk', 'Category', 3)" ${changeCount >= maxChanges ? 'disabled' : ''}>
                         📂 CHANGE CATEGORY ${changeCount}/${maxChanges}
@@ -6936,6 +7377,28 @@
             }, 50);
         }
 
+        function revealFastTalkItems(categoryName) {
+            const categories = fastTalkCategories.length > 0 ? fastTalkCategories : FALLBACK_DATA.fastTalk;
+            const cat = categories.find(c => c.name === categoryName);
+            if (!cat) return;
+
+            const revealDiv = document.getElementById('fastTalkReveal');
+            if (!revealDiv) return;
+
+            const itemsList = cat.items.map(item =>
+                `<span style="display:inline-block;background:var(--theme-bg-input);padding:0.2rem 0.8rem;border-radius:12px;margin:0.2rem;font-size:0.7rem;border:1px solid var(--theme-border-color);color:var(--theme-text-primary);">${item}</span>`
+            ).join('');
+
+            revealDiv.style.display = 'block';
+            revealDiv.innerHTML = `
+                <div style="margin-top:0.5rem;padding:0.5rem;background:var(--theme-bg-card);border-radius:12px;border:2px solid var(--theme-blue-electric);">
+                    <div style="font-family:var(--font-display);font-size:0.45rem;color:var(--theme-text-muted);margin-bottom:0.3rem;text-align:center;">📋 ALL ITEMS IN ${cat.name.toUpperCase()}</div>
+                    <div style="display:flex;flex-wrap:wrap;gap:0.3rem;justify-content:center;">${itemsList}</div>
+                </div>
+            `;
+            playSound('success');
+        }
+
         // ---- TRUTH & LIE ----
         function renderTruthLie(container) {
             const playerName = getCurrentPlayerName() || '';
@@ -6948,6 +7411,9 @@
             container.innerHTML = `
                 <p><strong>🤥 TWO TRUTHS & A LIE</strong></p>
                 <p style="color:var(--theme-text-muted);font-size:0.75rem;">📂 Random Facts</p>
+                <div style="font-size:0.5rem;color:var(--theme-text-muted);text-align:center;margin-bottom:0.3rem;">
+                    📊 ${wordTracking.truthlie.used.length} fact sets used
+                </div>
                 <div class="truth-lie-box" id="truthLieBox">
                     ${options.map((opt, idx) => `
                         <div class="option" data-islie="${opt.isLie}" data-index="${idx}">
@@ -6998,8 +7464,7 @@
         // ---- WHO AM I ----
         function renderWhoAmI(container) {
             const names = whoamiNames.length > 0 ? whoamiNames : FALLBACK_DATA.whoami;
-            const name = getRandomUnusedItem(names, usedItemsInRound.whoami);
-            usedItemsInRound.whoami.push(name);
+            const name = getNextUnusedItem('whoami', names);
             const isLong = name.length > 15;
 
             const playerName = getCurrentPlayerName() || '';
@@ -7009,6 +7474,9 @@
             container.innerHTML = `
                 <p><strong>🕵️ WHO AM I?</strong></p>
                 <div class="word-display whoami ${isLong ? 'long-word' : ''}">${name.toUpperCase()}</div>
+                <div style="font-size:0.5rem;color:var(--theme-text-muted);text-align:center;margin-bottom:0.3rem;">
+                    📊 ${wordTracking.whoami.used.length} of ${names.length} names used
+                </div>
                 <div class="whoami-hint">
                     🙈 ${getCurrentPlayer()?.name || 'Current player'} — CLOSE YOUR EYES! Everyone else can see the name.
                 </div>
@@ -7024,7 +7492,7 @@
         }
 
         // ============================================================
-        //  HANGMAN
+        //  HANGMAN - FIXED SVG POSITIONING
         // ============================================================
         function getHangmanWordForDifficulty(difficulty) {
             const words = hangmanWords[difficulty] || [];
@@ -7140,28 +7608,35 @@
                     </div>
 
                     <div class="hangman-figure">
-                        <svg viewBox="0 0 100 130" width="200" height="160">
-                            <line x1="50" y1="120" x2="50" y2="15" stroke="var(--theme-text-primary)" stroke-width="3"/>
-                            <line x1="50" y1="15" x2="20" y2="15" stroke="var(--theme-text-primary)" stroke-width="3"/>
-                            <line x1="20" y1="15" x2="20" y2="28" stroke="var(--theme-text-primary)" stroke-width="3"/>
+                        <svg viewBox="0 0 100 120" width="180" height="150">
+                            <line x1="10" y1="115" x2="90" y2="115" stroke="var(--theme-text-primary)" stroke-width="3" stroke-linecap="round"/>
+                            <line x1="50" y1="115" x2="50" y2="10" stroke="var(--theme-text-primary)" stroke-width="3" stroke-linecap="round"/>
+                            <line x1="50" y1="10" x2="20" y2="10" stroke="var(--theme-text-primary)" stroke-width="3" stroke-linecap="round"/>
+                            <line x1="20" y1="10" x2="20" y2="25" stroke="var(--theme-text-primary)" stroke-width="3" stroke-linecap="round"/>
 
                             <circle class="hangman-part ${hangmanState.wrongGuesses >= 1 ? 'show' : ''}" 
-                                    cx="20" cy="42" r="12" stroke="var(--theme-text-primary)" stroke-width="2.5" fill="none"/>
+                                    cx="20" cy="38" r="12" stroke="var(--theme-text-primary)" stroke-width="2.5" fill="none"
+                                    style="transition: opacity 0.3s ease; ${hangmanState.wrongGuesses >= 1 ? 'opacity:1;' : 'opacity:0;'}"/>
 
                             <line class="hangman-part ${hangmanState.wrongGuesses >= 2 ? 'show' : ''}" 
-                                  x1="20" y1="54" x2="20" y2="78" stroke="var(--theme-text-primary)" stroke-width="2.5"/>
+                                  x1="20" y1="50" x2="20" y2="72" stroke="var(--theme-text-primary)" stroke-width="2.5" stroke-linecap="round"
+                                  style="transition: opacity 0.3s ease; ${hangmanState.wrongGuesses >= 2 ? 'opacity:1;' : 'opacity:0;'}"/>
 
                             <line class="hangman-part ${hangmanState.wrongGuesses >= 3 ? 'show' : ''}" 
-                                  x1="20" y1="62" x2="5" y2="72" stroke="var(--theme-text-primary)" stroke-width="2.5"/>
+                                  x1="20" y1="58" x2="6" y2="66" stroke="var(--theme-text-primary)" stroke-width="2.5" stroke-linecap="round"
+                                  style="transition: opacity 0.3s ease; ${hangmanState.wrongGuesses >= 3 ? 'opacity:1;' : 'opacity:0;'}"/>
 
                             <line class="hangman-part ${hangmanState.wrongGuesses >= 4 ? 'show' : ''}" 
-                                  x1="20" y1="62" x2="35" y2="72" stroke="var(--theme-text-primary)" stroke-width="2.5"/>
+                                  x1="20" y1="58" x2="34" y2="66" stroke="var(--theme-text-primary)" stroke-width="2.5" stroke-linecap="round"
+                                  style="transition: opacity 0.3s ease; ${hangmanState.wrongGuesses >= 4 ? 'opacity:1;' : 'opacity:0;'}"/>
 
                             <line class="hangman-part ${hangmanState.wrongGuesses >= 5 ? 'show' : ''}" 
-                                  x1="20" y1="78" x2="8" y2="95" stroke="var(--theme-text-primary)" stroke-width="2.5"/>
+                                  x1="20" y1="72" x2="8" y2="88" stroke="var(--theme-text-primary)" stroke-width="2.5" stroke-linecap="round"
+                                  style="transition: opacity 0.3s ease; ${hangmanState.wrongGuesses >= 5 ? 'opacity:1;' : 'opacity:0;'}"/>
 
                             <line class="hangman-part ${hangmanState.wrongGuesses >= 6 ? 'show' : ''}" 
-                                  x1="20" y1="78" x2="32" y2="95" stroke="var(--theme-text-primary)" stroke-width="2.5"/>
+                                  x1="20" y1="72" x2="32" y2="88" stroke="var(--theme-text-primary)" stroke-width="2.5" stroke-linecap="round"
+                                  style="transition: opacity 0.3s ease; ${hangmanState.wrongGuesses >= 6 ? 'opacity:1;' : 'opacity:0;'}"/>
                         </svg>
                     </div>
 
@@ -8004,6 +8479,19 @@
             document.getElementById('bgQtyDisplay').textContent = count === 'all' ? 'All' : count;
         }
 
+        // Custom Questions Button
+        function openCustomQuestionModal() {
+            // Navigate to GM tab with Brain Games selected
+            document.querySelectorAll('.gm-tabs button').forEach(b => b.classList.remove('active'));
+            const bgTab = document.querySelector('.gm-tabs button[data-tab="tab-braingames"]');
+            if (bgTab) {
+                bgTab.classList.add('active');
+                document.querySelectorAll('.gm-tab-content').forEach(c => c.classList.remove('active'));
+                document.getElementById('tab-braingames').classList.add('active');
+                navigateTo('gm');
+            }
+        }
+
         // ============================================================
         //  BG START GAME - OPENS MODAL (Matches Charades/Pictionary)
         // ============================================================
@@ -8342,15 +8830,17 @@
             truthLieData.lies = [...FALLBACK_DATA.lies];
             roastLines = [...FALLBACK_DATA.roasts];
             whoamiNames = [...FALLBACK_DATA.whoami];
-            
+
             // 🧠 Load Brain Games from fallback
             if (FALLBACK_DATA.brainGames && FALLBACK_DATA.brainGames.length > 0) {
                 bgQuestions = [...FALLBACK_DATA.brainGames];
                 saveBGQuestions();
                 console.log(`🧠 Loaded ${bgQuestions.length} Brain Games from fallback`);
             }
-            
-            console.log(`✅ Fallback data loaded: ${charadesWords.length} charades, ${whoamiNames.length} whoami, ${roastLines.length} roasts, ${bgQuestions.length} brain games`);
+
+            console.log(
+                `✅ Fallback data loaded: ${charadesWords.length} charades, ${whoamiNames.length} whoami, ${roastLines.length} roasts, ${bgQuestions.length} brain games`
+                );
         }
 
         async function loadData() {
@@ -8387,9 +8877,14 @@
                     if (!loadBGQuestions()) {
                         // If no localStorage either, use defaults
                         bgQuestions = [
-                            { text: 'What is the capital of France?', options: ['Paris', 'London', 'Berlin', 'Madrid'], correct: 0, category: 'Geography' },
-                            { text: 'What is 7 × 8?', options: ['48', '56', '64', '72'], correct: 1, category: 'Math' },
-                            { text: 'Which planet is known as the Red Planet?', options: ['Venus', 'Mars', 'Jupiter', 'Saturn'], correct: 1, category: 'Science' }
+                            { text: 'What is the capital of France?', options: ['Paris', 'London', 'Berlin',
+                                    'Madrid'
+                                ], correct: 0, category: 'Geography' },
+                            { text: 'What is 7 × 8?', options: ['48', '56', '64', '72'], correct: 1,
+                            category: 'Math' },
+                            { text: 'Which planet is known as the Red Planet?', options: ['Venus', 'Mars',
+                                    'Jupiter', 'Saturn'
+                                ], correct: 1, category: 'Science' }
                         ];
                         saveBGQuestions();
                     }
@@ -8401,10 +8896,14 @@
                 } else if (Array.isArray(data.hangman)) {
                     const words = data.hangman;
                     const total = words.length;
-                    const easy = words.slice(0, Math.floor(total * 0.3)).map(w => ({ word: w, definition: 'Guess the word!' }));
-                    const medium = words.slice(Math.floor(total * 0.3), Math.floor(total * 0.6)).map(w => ({ word: w, definition: 'Guess the word!' }));
-                    const hard = words.slice(Math.floor(total * 0.6), Math.floor(total * 0.85)).map(w => ({ word: w, definition: 'Guess the word!' }));
-                    const expert = words.slice(Math.floor(total * 0.85)).map(w => ({ word: w, definition: 'Guess the word!' }));
+                    const easy = words.slice(0, Math.floor(total * 0.3)).map(w => ({ word: w,
+                        definition: 'Guess the word!' }));
+                    const medium = words.slice(Math.floor(total * 0.3), Math.floor(total * 0.6)).map(w => ({ word: w,
+                        definition: 'Guess the word!' }));
+                    const hard = words.slice(Math.floor(total * 0.6), Math.floor(total * 0.85)).map(w => ({ word: w,
+                        definition: 'Guess the word!' }));
+                    const expert = words.slice(Math.floor(total * 0.85)).map(w => ({ word: w,
+                        definition: 'Guess the word!' }));
                     hangmanWords = { easy, medium, hard, expert };
                 } else {
                     hangmanWords = JSON.parse(JSON.stringify(FALLBACK_DATA.hangman));
@@ -8413,7 +8912,9 @@
                 console.log('✅ Data loaded from data.json');
                 console.log(`🎭 ${charadesWords.length} charades words`);
                 console.log(`🎤 ${karaokeSongs.length} karaoke songs`);
-                console.log(`🧩 ${hangmanWords.easy?.length || 0} easy, ${hangmanWords.medium?.length || 0} medium, ${hangmanWords.hard?.length || 0} hard, ${hangmanWords.expert?.length || 0} expert hangman words`);
+                console.log(
+                    `🧩 ${hangmanWords.easy?.length || 0} easy, ${hangmanWords.medium?.length || 0} medium, ${hangmanWords.hard?.length || 0} hard, ${hangmanWords.expert?.length || 0} expert hangman words`
+                    );
                 console.log(`🧠 ${bgQuestions.length} brain games questions`);
 
                 saveGMData();
@@ -9061,7 +9562,9 @@
             } else {
                 console.log('✅ Data loaded from localStorage');
                 console.log(`🕵️ ${whoamiNames.length} whoami names loaded`);
-                console.log(`🧩 ${hangmanWords.easy?.length || 0} easy, ${hangmanWords.medium?.length || 0} medium, ${hangmanWords.hard?.length || 0} hard, ${hangmanWords.expert?.length || 0} expert hangman words`);
+                console.log(
+                    `🧩 ${hangmanWords.easy?.length || 0} easy, ${hangmanWords.medium?.length || 0} medium, ${hangmanWords.hard?.length || 0} hard, ${hangmanWords.expert?.length || 0} expert hangman words`
+                    );
             }
 
             if (truthLieData.truths.length === 0 || truthLieData.lies.length === 0) {
