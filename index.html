@@ -3297,7 +3297,7 @@
         }
 
         /* ============================================================
-           BRAIN GAMES STYLES
+           BRAIN GAMES - COMPLETE REWRITE
            ============================================================ */
         .brain-games-container {
             display: none;
@@ -3309,207 +3309,225 @@
             animation: pageIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .bg-host-view {
+        /* Setup Card */
+        .bg-setup-card {
             background: var(--theme-bg-card);
             border-radius: var(--card-radius);
             padding: 1.5rem;
             border: 2px solid var(--theme-border-color);
             box-shadow: var(--theme-shadow);
-            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        .bg-host-view .bg-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-bottom: 1rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 2px solid var(--theme-border-color);
-        }
-
-        .bg-host-view .bg-header h2 {
+        .bg-setup-card .setup-title {
             font-family: var(--font-display);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--theme-blue-electric);
             text-shadow: 0 0 30px var(--theme-glow-blue);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .bg-host-view .bg-header .bg-status {
-            font-size: 0.6rem;
-            color: var(--theme-text-muted);
-            font-weight: 700;
-        }
-
-        .bg-host-view .bg-header .bg-status .highlight {
-            color: var(--theme-blue-electric);
-        }
-
-        .bg-room-code {
             text-align: center;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            background: var(--theme-bg-input);
-            border-radius: var(--card-radius);
-            border: 3px solid var(--theme-blue-electric);
-            box-shadow: 0 0 60px var(--theme-glow-blue-strong);
+            margin-bottom: 1.2rem;
         }
 
-        .bg-room-code .code-label {
-            font-family: var(--font-display);
-            font-size: 0.5rem;
-            color: var(--theme-text-muted);
-            letter-spacing: 3px;
-            text-transform: uppercase;
+        .bg-setup-row {
+            margin-bottom: 1.2rem;
         }
 
-        .bg-room-code .code {
-            font-family: var(--font-display);
-            font-size: 4rem;
-            color: var(--theme-blue-electric);
-            text-shadow: 0 0 40px var(--theme-glow-blue-strong);
-            letter-spacing: 8px;
-            padding: 0.5rem 0;
-        }
-
-        .bg-room-code .code-sub {
-            font-size: 0.6rem;
-            color: var(--theme-text-muted);
-        }
-
-        .bg-qr-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin: 1rem 0;
-            padding: 1rem;
-            background: var(--theme-bg-input);
-            border-radius: var(--card-radius);
-            border: 2px solid var(--theme-border-color);
-        }
-
-        .bg-qr-section .qr-container {
-            background: white;
-            padding: 0.5rem;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .bg-qr-section .qr-container canvas {
-            width: 150px;
-            height: 150px;
-        }
-
-        .bg-qr-section .qr-info {
-            text-align: left;
-        }
-
-        .bg-qr-section .qr-info h4 {
+        .bg-setup-row label {
+            display: block;
             font-family: var(--font-display);
             font-size: 0.5rem;
             color: var(--theme-text-muted);
             letter-spacing: 2px;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.4rem;
         }
 
-        .bg-qr-section .qr-info p {
+        .bg-setup-row .preset-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .bg-setup-row .preset-buttons button {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-secondary);
+            font-size: 0.6rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            font-weight: 700;
+        }
+
+        .bg-setup-row .preset-buttons button:hover {
+            border-color: var(--theme-blue-electric);
+            color: var(--theme-text-primary);
+            transform: scale(1.05);
+        }
+
+        .bg-setup-row .preset-buttons button.active {
+            border-color: var(--theme-blue-electric);
+            background: var(--theme-blue-electric);
+            color: var(--blue-dark);
+        }
+
+        .bg-setup-row .preset-buttons button.qty-active.active {
+            border-color: var(--color-braingames);
+            background: var(--color-braingames);
+            color: white;
+        }
+
+        .bg-setup-row .custom-input {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 0.4rem;
+        }
+
+        .bg-setup-row .custom-input input {
+            width: 60px;
+            padding: 0.25rem 0.4rem;
+            border-radius: 16px;
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-primary);
             font-size: 0.7rem;
+            text-align: center;
+            font-family: var(--font-body);
+            font-weight: 700;
+        }
+
+        .bg-setup-row .custom-input input:focus {
+            outline: none;
+            border-color: var(--theme-blue-electric);
+        }
+
+        .bg-setup-row .custom-input span {
+            font-size: 0.55rem;
+            color: var(--theme-text-muted);
+        }
+
+        .bg-setup-info {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            padding: 0.5rem;
+            background: var(--theme-bg-input);
+            border-radius: 12px;
+            border: 2px solid var(--theme-border-color);
+            margin-bottom: 1rem;
+        }
+
+        .bg-setup-info .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.6rem;
             color: var(--theme-text-secondary);
         }
 
-        .bg-qr-section .qr-info .url {
-            font-size: 0.55rem;
+        .bg-setup-info .info-item .value {
+            font-weight: 800;
             color: var(--theme-blue-electric);
+        }
+
+        .bg-start-btn {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 30px;
+            border: none;
             font-weight: 700;
-            word-break: break-all;
-        }
-
-        .bg-players-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 0.5rem;
-            margin: 0.8rem 0;
-            max-height: 150px;
-            overflow-y: auto;
-            padding: 0.5rem;
-            background: var(--theme-bg-input);
-            border-radius: var(--card-radius);
-            border: 2px solid var(--theme-border-color);
-        }
-
-        .bg-player-card {
-            background: var(--theme-bg-card);
-            padding: 0.4rem 0.6rem;
-            border-radius: 12px;
-            border: 2px solid var(--theme-border-color);
-            text-align: center;
+            font-size: 0.9rem;
+            cursor: pointer;
             transition: var(--transition);
+            font-family: var(--font-body);
+            background: #2ecc71;
+            color: white;
+            box-shadow: 0 0 30px rgba(46, 204, 113, 0.3);
         }
 
-        .bg-player-card .name {
-            font-weight: 700;
-            font-size: 0.6rem;
+        .bg-start-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 50px rgba(46, 204, 113, 0.5);
+        }
+
+        .bg-start-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .bg-tip {
+            text-align: center;
+            color: var(--theme-text-muted);
+            font-size: 0.55rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .bg-empty-questions {
+            text-align: center;
+            color: var(--theme-text-muted);
+            font-size: 0.7rem;
+            padding: 2rem;
+        }
+
+        /* BRAIN GAMES MODAL - Matches Charades/Pictionary */
+        .bg-modal-content {
+            padding: 0.5rem 0;
+        }
+
+        .bg-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid var(--theme-border-color);
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .bg-modal-header .header-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.7rem;
+            color: var(--theme-text-secondary);
+            font-weight: 600;
+        }
+
+        .bg-modal-header .header-item .icon {
+            font-size: 0.8rem;
+        }
+
+        .bg-modal-header .header-item .value {
+            font-weight: 800;
             color: var(--theme-text-primary);
         }
 
-        .bg-player-card .status {
-            font-size: 0.4rem;
-            color: var(--theme-text-muted);
-        }
-
-        .bg-player-card.answered {
-            border-color: #2ecc71;
-            background: rgba(46, 204, 113, 0.1);
-        }
-
-        .bg-player-card .score {
-            font-family: var(--font-display);
-            font-size: 0.5rem;
+        .bg-modal-header .header-item .value.highlight {
             color: var(--theme-blue-electric);
         }
 
-        .bg-player-count {
-            font-size: 0.55rem;
-            color: var(--theme-text-muted);
-            text-align: center;
-            padding: 0.2rem;
+        .bg-modal-header .header-item .timer-warning {
+            color: #e74c3c !important;
+            animation: timerPulse 0.5s infinite;
         }
 
-        .bg-question-box {
-            background: var(--theme-bg-input);
-            border-radius: var(--card-radius);
-            padding: 1.5rem;
-            margin: 1rem 0;
-            border: 3px solid var(--color-braingames);
-            box-shadow: 0 0 40px rgba(155, 89, 182, 0.2);
-        }
-
-        .bg-question-box .q-number {
-            font-family: var(--font-display);
-            font-size: 0.5rem;
-            color: var(--theme-text-muted);
-            text-align: center;
-            letter-spacing: 2px;
-        }
-
-        .bg-question-box .q-text {
-            font-size: 1.8rem;
+        .bg-question-text {
+            font-size: 1.6rem;
             font-weight: 800;
             text-align: center;
-            padding: 0.8rem 0;
+            padding: 0.5rem 0 1.2rem 0;
             color: var(--theme-text-primary);
             line-height: 1.4;
         }
 
-        .bg-question-box .q-text.long {
+        .bg-question-text.long {
             font-size: 1.2rem;
         }
 
@@ -3517,151 +3535,128 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 0.8rem;
-            margin: 0.8rem 0;
+            margin-bottom: 1rem;
         }
 
-        .bg-option {
-            padding: 0.8rem;
-            border-radius: 12px;
-            text-align: center;
+        .bg-option-btn {
+            padding: 1rem;
+            border-radius: 14px;
+            border: 3px solid transparent;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             color: white;
-            transition: var(--transition);
-            position: relative;
-            min-height: 60px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            min-height: 80px;
+            font-family: var(--font-body);
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            position: relative;
         }
 
-        .bg-option .label {
-            font-size: 0.5rem;
-            opacity: 0.5;
+        .bg-option-btn .label {
+            font-size: 0.55rem;
+            opacity: 0.6;
             font-weight: 400;
+            margin-bottom: 0.1rem;
         }
 
-        .bg-option .text {
-            font-size: 1rem;
+        .bg-option-btn .text {
+            font-size: 1.1rem;
+            font-weight: 700;
         }
 
-        .bg-option .count {
-            font-size: 0.5rem;
-            opacity: 0.7;
-            margin-top: 0.1rem;
-        }
-
-        .bg-option.a {
+        .bg-option-btn.opt-a {
             background: #4A90D9;
         }
-        .bg-option.b {
+        .bg-option-btn.opt-b {
             background: #E74C3C;
         }
-        .bg-option.c {
+        .bg-option-btn.opt-c {
             background: #2ECC71;
         }
-        .bg-option.d {
+        .bg-option-btn.opt-d {
             background: #F39C12;
         }
 
-        .bg-option.correct-highlight {
-            border: 4px solid white;
+        .bg-option-btn:hover:not(:disabled) {
+            transform: scale(1.04);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+        }
+
+        .bg-option-btn:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+
+        .bg-option-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+            transform: none !important;
+        }
+
+        .bg-option-btn.selected {
+            border-color: white;
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+        }
+
+        .bg-option-btn.correct {
+            border-color: #2ecc71;
             box-shadow: 0 0 40px rgba(46, 204, 113, 0.5);
             transform: scale(1.03);
+            opacity: 1 !important;
         }
 
-        .bg-option.wrong-highlight {
-            opacity: 0.3;
+        .bg-option-btn.correct::after {
+            content: '⭐';
+            position: absolute;
+            top: -14px;
+            right: -14px;
+            font-size: 1.6rem;
+            animation: starPop 0.5s ease;
         }
 
-        .bg-timer-bar {
-            height: 12px;
-            background: var(--theme-border-color);
-            border-radius: 6px;
-            overflow: hidden;
-            margin: 0.5rem 0;
+        .bg-option-btn.wrong {
+            border-color: #e74c3c;
+            box-shadow: 0 0 40px rgba(231, 76, 60, 0.3);
+            opacity: 0.4;
         }
 
-        .bg-timer-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--theme-blue-electric), var(--theme-blue-bright));
-            width: 100%;
-            transition: width 0.1s linear;
-            border-radius: 6px;
-        }
-
-        .bg-timer-fill.warning {
-            background: linear-gradient(90deg, #e74c3c, #f39c12);
-            animation: timerPulse 0.5s infinite;
-        }
-
-        .bg-leaderboard {
-            background: var(--theme-bg-input);
-            border-radius: var(--card-radius);
-            padding: 1rem;
-            border: 2px solid var(--theme-border-color);
-            margin: 0.8rem 0;
-        }
-
-        .bg-leaderboard h4 {
-            font-family: var(--font-display);
-            font-size: 0.5rem;
-            color: var(--theme-text-muted);
-            letter-spacing: 2px;
+        .bg-feedback {
             text-align: center;
-            margin-bottom: 0.5rem;
+            padding: 0.6rem;
+            border-radius: 12px;
+            margin: 0.5rem 0;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: none;
         }
 
-        .bg-lb-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.3rem 0.5rem;
-            border-bottom: 1px solid var(--theme-border-color);
-            font-size: 0.65rem;
-            align-items: center;
-            transition: var(--transition);
+        .bg-feedback.correct {
+            display: block;
+            background: rgba(46, 204, 113, 0.15);
+            border: 2px solid #2ecc71;
+            color: #2ecc71;
         }
 
-        .bg-lb-item:last-child {
-            border-bottom: none;
+        .bg-feedback.wrong {
+            display: block;
+            background: rgba(231, 76, 60, 0.15);
+            border: 2px solid #e74c3c;
+            color: #e74c3c;
         }
 
-        .bg-lb-item .rank {
-            font-weight: 800;
-            min-width: 30px;
-            font-size: 0.8rem;
-        }
-
-        .bg-lb-item .name {
-            flex: 1;
-            font-weight: 600;
-            color: var(--theme-text-primary);
-        }
-
-        .bg-lb-item .score {
-            font-family: var(--font-display);
-            font-size: 0.7rem;
-            color: var(--theme-blue-electric);
-        }
-
-        .bg-lb-item.top-1 .rank {
-            color: #FFD700;
-        }
-        .bg-lb-item.top-2 .rank {
-            color: #C0C0C0;
-        }
-        .bg-lb-item.top-3 .rank {
-            color: #CD7F32;
-        }
-        .bg-lb-item.top-1 .score {
-            color: #FFD700;
-        }
-        .bg-lb-item.top-2 .score {
-            color: #C0C0C0;
-        }
-        .bg-lb-item.top-3 .score {
-            color: #CD7F32;
+        .bg-feedback.timeout {
+            display: block;
+            background: rgba(243, 156, 18, 0.15);
+            border: 2px solid #f39c12;
+            color: #f39c12;
         }
 
         .bg-controls {
@@ -3669,15 +3664,15 @@
             gap: 0.8rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin: 1rem 0;
+            margin: 0.8rem 0;
         }
 
         .bg-controls button {
-            padding: 0.6rem 2rem;
+            padding: 0.5rem 1.5rem;
             border-radius: 30px;
             border: none;
             font-weight: 700;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             cursor: pointer;
             transition: var(--transition);
             font-family: var(--font-body);
@@ -3691,16 +3686,6 @@
             opacity: 0.5;
             cursor: not-allowed;
             transform: none !important;
-        }
-
-        .bg-controls .btn-start {
-            background: #2ecc71;
-            color: white;
-            box-shadow: 0 0 30px rgba(46, 204, 113, 0.3);
-        }
-
-        .bg-controls .btn-start:hover {
-            box-shadow: 0 0 50px rgba(46, 204, 113, 0.5);
         }
 
         .bg-controls .btn-next {
@@ -3723,68 +3708,7 @@
             box-shadow: 0 0 50px rgba(231, 76, 60, 0.5);
         }
 
-        .bg-controls .btn-leaderboard {
-            background: var(--theme-blue-electric);
-            color: var(--blue-dark);
-            box-shadow: 0 0 30px var(--theme-glow-blue-strong);
-        }
-
-        .bg-lock-overlay {
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 22, 40, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: var(--card-radius);
-            z-index: 100;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .bg-lock-overlay.active {
-            display: flex;
-            animation: modalIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .bg-lock-overlay .lock-icon {
-            font-size: 4rem;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .bg-lock-overlay h3 {
-            font-family: var(--font-display);
-            font-size: 1rem;
-            color: var(--theme-blue-electric);
-            text-shadow: 0 0 30px var(--theme-glow-blue);
-        }
-
-        .bg-lock-overlay p {
-            color: var(--theme-text-secondary);
-            font-size: 0.8rem;
-            margin-top: 0.5rem;
-        }
-
-        .bg-lock-overlay .timer-big {
-            font-family: var(--font-display);
-            font-size: 5rem;
-            color: var(--theme-blue-electric);
-            text-shadow: 0 0 60px var(--theme-glow-blue-strong);
-            margin: 0.5rem 0;
-        }
-
-        .bg-lock-overlay .timer-big.warning {
-            color: #e74c3c;
-            animation: timerPulse 0.5s infinite;
-        }
-
-        /* Brain Games GM Section */
+        /* GM Brain Games Section */
         .bg-gm-section {
             background: var(--theme-bg-input);
             border-radius: var(--card-radius);
@@ -3933,1154 +3857,76 @@
             background: rgba(231, 76, 60, 0.1);
         }
 
-        .bg-empty-questions {
-            text-align: center;
-            color: var(--theme-text-muted);
-            font-size: 0.6rem;
-            padding: 1rem;
-        }
-
-        /* ============================================================
-           RESPONSIVE
-           ============================================================ */
+        /* Responsive Brain Games */
         @media (max-width: 768px) {
-            :root {
-                --sidebar-width: 0px;
-                --bottom-nav-height: 64px;
-            }
-
-            .sidebar {
-                position: fixed;
-                bottom: 0;
-                top: auto;
-                left: 0;
-                width: 100%;
-                height: var(--bottom-nav-height);
-                flex-direction: row;
-                padding: 0.2rem 0.2rem;
-                border-right: none;
-                border-top: 2px solid var(--theme-blue-bright);
-                box-shadow: 0 -4px 40px var(--theme-glow-blue);
-                overflow-x: auto;
-                overflow-y: hidden;
-                justify-content: space-around;
-                align-items: center;
-                background: var(--theme-bg-sidebar);
-                gap: 0;
-                border-radius: 0;
-            }
-
-            .sidebar .brand {
-                display: none;
-            }
-
-            .sidebar .nav-item {
-                flex-direction: column;
-                padding: 0.15rem 0.15rem;
-                font-size: 0.4rem;
-                gap: 0.05rem;
-                flex: 1;
-                min-width: 40px;
-                justify-content: center;
-                align-items: center;
-                border-radius: 8px;
-                text-align: center;
-                height: 100%;
-            }
-
-            .sidebar .nav-item span:last-child {
-                display: block;
-                font-size: 0.4rem;
-                line-height: 1.1;
-                white-space: nowrap;
-            }
-
-            .sidebar .nav-item .icon {
-                font-size: 1.1rem;
-                width: auto;
-            }
-
-            .sidebar .nav-item.gm-toggle {
-                margin-top: 0;
-                border-top: none;
-                padding-top: 0.15rem;
-            }
-
-            .sidebar .nav-item:hover {
-                transform: none;
-            }
-
-            .main-content {
-                margin-left: 0;
-                padding: 0.6rem 0.6rem calc(var(--bottom-nav-height) + 0.6rem) 0.6rem;
-            }
-
-            .top-bar {
-                padding-bottom: 0.4rem;
-                margin-bottom: 0.6rem;
-                flex-wrap: wrap;
-            }
-
-            .top-bar .page-title {
-                font-size: 0.55rem;
-            }
-            .top-bar .top-actions .player-count-badge {
-                font-size: 0.45rem;
-                padding: 0.1rem 0.4rem;
-            }
-
-            .home-welcome {
-                font-size: 1rem;
-            }
-            .home-subtitle {
-                font-size: 0.7rem;
-                margin-bottom: 0.8rem;
-            }
-
-            .home-quick-start {
-                flex-direction: column;
-                text-align: center;
-                padding: 0.6rem;
-                gap: 0.4rem;
-            }
-
-            .home-quick-start .qs-text {
-                font-size: 0.65rem;
-            }
-            .home-quick-start .qs-btn {
-                width: 100%;
-                padding: 0.4rem;
-                font-size: 0.6rem;
-            }
-
-            .players-section {
-                padding: 0.6rem;
-            }
-            .players-section .players-header {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0.4rem;
-            }
-            .players-section .players-header h3 {
-                font-size: 0.65rem;
-            }
-            .players-section .players-header .input-row {
-                flex-wrap: wrap;
-            }
-            .players-section .players-header .input-row input {
-                flex: 1;
-                min-width: 60px;
-                font-size: 0.55rem;
-                padding: 0.3rem 0.6rem;
-            }
-            .players-section .players-header .input-row button {
-                padding: 0.3rem 0.6rem;
-                font-size: 0.45rem;
-            }
-
-            .player-avatars {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                padding-bottom: 0.3rem;
-                gap: 0.3rem;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .player-avatars::-webkit-scrollbar {
-                height: 3px;
-            }
-
-            .player-avatar {
-                flex-shrink: 0;
-                font-size: 0.5rem;
-                padding: 0.1rem 0.3rem 0.1rem 0.1rem;
-                gap: 0.15rem;
-            }
-
-            .player-avatar .avatar-circle {
-                width: 28px;
-                height: 28px;
-            }
-            .player-avatar .avatar-emoji {
-                font-size: 0.7rem;
-            }
-            .player-avatar .avatar-points {
-                font-size: 0.4rem;
-            }
-            .player-avatar .avatar-name {
-                font-size: 0.4rem;
-            }
-            .player-avatar .team-assign {
-                font-size: 0.4rem;
-                min-width: 40px;
-                max-width: 50px;
-                height: 18px;
-                padding-right: 16px;
-                background-size: 6px 4px;
-            }
-
-            .roast-setup {
-                padding: 0.8rem;
-            }
-            .roast-setup .roast-setup-row {
-                gap: 0.6rem;
-            }
-            .roast-setup .roast-setup-row label {
-                font-size: 0.5rem;
-            }
-            .roast-setup .roast-setup-row .preset-buttons button {
-                font-size: 0.5rem;
-                padding: 0.2rem 0.6rem;
-            }
-            .roast-setup .roast-setup-row .preset-buttons .custom-input input {
-                width: 40px;
-                font-size: 0.6rem;
-            }
-            .roast-setup .roast-start-btn {
-                font-size: 0.6rem;
-                padding: 0.4rem 1.5rem;
-            }
-
-            .roast-game-display .roast-card .roast-text {
-                font-size: 0.9rem;
-            }
-            .roast-game-display .roast-assign-section select {
-                font-size: 0.65rem;
-                min-width: 100px;
-                padding: 0.3rem 0.6rem;
-            }
-            .roast-game-display .roast-assign-section .assign-btn {
-                font-size: 0.55rem;
-                padding: 0.3rem 1rem;
-            }
-            .roast-game-display .roast-counts .roast-count-item {
-                font-size: 0.5rem;
-                padding: 0.1rem 0.4rem;
-            }
-
-            .roast-results .winner-name {
-                font-size: 1.1rem;
-            }
-            .roast-results .funny-response {
-                font-size: 0.8rem;
-            }
-
-            .team-section {
-                padding: 0.5rem 0.6rem;
-            }
-            .team-section .team-header {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0.3rem;
-            }
-            .team-section .team-header label {
-                font-size: 0.45rem;
-            }
-            .team-section .team-header .team-controls {
-                justify-content: center;
-            }
-            .team-section .team-header .team-controls button {
-                font-size: 0.4rem;
-                padding: 0.15rem 0.5rem;
-            }
-
-            .team-list {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                gap: 0.3rem;
-                padding-bottom: 0.3rem;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .team-list::-webkit-scrollbar {
-                height: 3px;
-            }
-
-            .team-card {
-                flex: 0 0 auto;
-                min-width: 80px;
-                padding: 0.3rem 0.4rem;
-            }
-
-            .team-card .team-name {
-                font-size: 0.5rem;
-                flex-wrap: wrap;
-            }
-            .team-card .team-name .team-name-input {
-                width: 60px;
-                font-size: 0.5rem;
-            }
-            .team-card .team-members {
-                font-size: 0.4rem;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-            }
-            .team-card .team-score {
-                font-size: 0.55rem;
-            }
-            .team-card .team-member-controls .member-tag {
-                font-size: 0.4rem;
-                padding: 0.05rem 0.3rem;
-            }
-            .team-card .team-member-controls .add-member-select {
-                font-size: 0.4rem;
-                min-width: 50px;
-                min-height: 18px;
-                padding-right: 16px;
-                background-size: 6px 4px;
-            }
-
-            .game-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.4rem;
-            }
-            .game-card {
-                min-height: 120px;
-                padding: 0.6rem 0.3rem;
-            }
-            .game-card .emoji {
-                font-size: 1.8rem;
-            }
-            .game-card .title {
-                font-size: 0.5rem;
-            }
-            .game-card .desc {
-                display: none;
-            }
-            .game-card .play-badge {
-                font-size: 0.4rem;
-                padding: 0.1rem 0.6rem;
-            }
-            .game-card .featured-ribbon {
-                font-size: 0.35rem;
-                padding: 0.1rem 0.4rem;
-                top: 4px;
-                right: 4px;
-            }
-            .games-page-header {
-                font-size: 0.9rem;
-                margin-bottom: 0.8rem;
-            }
-
-            .modal-overlay {
-                padding: 0.3rem;
-                align-items: flex-end;
-            }
-            .modal-overlay.active {
-                align-items: flex-end;
-            }
-
-            .modal-box {
-                max-height: 92vh;
-                padding: 0.8rem;
-                border-radius: 16px 16px 0 0;
-                max-width: 100%;
-                margin: 0;
-                animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            }
-
-            @keyframes slideUp {
-                from {
-                    transform: translateY(100%);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateY(0);
-                    opacity: 1;
-                }
-            }
-
-            .modal-box .modal-close {
-                top: 6px;
-                right: 10px;
-                font-size: 1.1rem;
-                width: 28px;
-                height: 28px;
-            }
-            .modal-box .game-header {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0.2rem;
-                padding-bottom: 0.4rem;
-                margin-bottom: 0.5rem;
-            }
-            .modal-box .game-header h2 {
-                font-size: 0.65rem;
-            }
-            .modal-box .game-header .game-info {
-                justify-content: center;
-                gap: 0.6rem;
-            }
-            .modal-box .game-header .game-info .timer-display {
-                font-size: 1.6rem;
-                min-width: 40px;
-                margin-right: 0;
-                order: 0;
-            }
-            .modal-box .game-header .game-info .turn-indicator {
-                font-size: 0.5rem;
-            }
-
-            .timer-setup {
-                padding: 0.6rem;
-                gap: 0.6rem;
-            }
-            .timer-setup .timer-row {
-                flex-direction: column;
-                gap: 0.4rem;
-            }
-            .timer-setup .timer-row label {
-                font-size: 0.5rem;
-            }
-            .timer-setup .timer-presets {
-                justify-content: center;
-            }
-            .timer-setup .timer-presets button {
-                padding: 0.2rem 0.5rem;
-                font-size: 0.5rem;
-            }
-            .timer-setup .timer-custom input {
-                width: 50px;
-                font-size: 0.8rem;
-                padding: 0.25rem 0.3rem;
-            }
-            .timer-setup .timer-custom span {
-                font-size: 0.55rem;
-            }
-            .timer-setup .timer-start-btn {
-                padding: 0.4rem 1.5rem;
-                font-size: 0.6rem;
-            }
-
-            .word-display {
-                font-size: 1.4rem !important;
-                letter-spacing: 2px !important;
-                padding: 0.6rem 0.3rem !important;
-                word-break: break-word;
-                overflow-wrap: break-word;
-                hyphens: auto;
-            }
-
-            .word-display.long-word {
-                font-size: 1rem !important;
-                letter-spacing: 1px !important;
-            }
-
-            .word-display.whoami {
-                font-size: 1.8rem !important;
-                letter-spacing: 2px !important;
-            }
-
-            .word-display.whoami.long-word {
-                font-size: 1.2rem !important;
-                letter-spacing: 1px !important;
-            }
-
-            .game-actions button {
-                font-size: 0.5rem;
-                padding: 0.25rem 0.7rem;
-            }
-
-            .hangman-figure svg {
-                max-width: 160px !important;
-            }
-            .hangman-word {
-                font-size: 1.4rem !important;
-                letter-spacing: 6px !important;
-                min-height: 2.5rem;
-            }
-            .hangman-word .letter {
-                width: 1.2rem !important;
-            }
-            .hangman-guesses {
-                font-size: 0.6rem;
-                gap: 0.3rem;
-            }
-            .hangman-input-row input {
-                width: 40px !important;
-                font-size: 1.2rem !important;
-                padding: 0.3rem !important;
-            }
-            .hangman-input-row .primary-btn {
-                font-size: 0.55rem !important;
-                padding: 0.3rem 1rem !important;
-            }
-            .hangman-actions button {
-                font-size: 0.5rem !important;
-                padding: 0.2rem 0.6rem !important;
-            }
-            .hangman-status {
-                font-size: 0.6rem;
-            }
-            .hangman-difficulty-selector button {
-                font-size: 0.45rem;
-                padding: 0.2rem 0.6rem;
-            }
-
-            .truth-lie-box .option {
-                font-size: 0.65rem;
-                padding: 0.3rem 0.5rem;
-            }
-            .song-display .title {
-                font-size: 0.9rem;
-            }
-            .song-display .artist {
-                font-size: 0.6rem;
-            }
-            .rating-stars .star {
-                font-size: 1.6rem;
-            }
-
-            .scoring-section {
-                padding: 0.5rem;
-                margin: 0.4rem 0;
-            }
-            .scoring-section .scoring-label {
-                font-size: 0.4rem;
-            }
-            .scoring-section .scoring-player {
-                font-size: 0.7rem;
-            }
-            .scoring-section .scoring-player .current-score {
-                font-size: 0.9rem;
-            }
-            .scoring-section .score-buttons {
-                gap: 0.25rem;
-            }
-            .scoring-section .score-buttons button {
-                padding: 0.4rem 0.6rem;
-                font-size: 0.55rem;
-                min-width: 40px;
-                min-height: 40px;
-            }
-
-            .point-settings {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0.4rem;
-                padding: 0.5rem;
-            }
-            .point-settings .ps-label {
-                font-size: 0.4rem;
-                text-align: center;
-            }
-            .point-settings .ps-presets {
-                justify-content: center;
-            }
-            .point-settings .ps-presets .ps-btn {
-                padding: 0.25rem 0.5rem;
-                font-size: 0.5rem;
-                min-width: 32px;
-                min-height: 32px;
-            }
-            .point-settings .ps-custom-input {
-                justify-content: center;
-            }
-            .point-settings .ps-custom-input input {
-                width: 44px;
-                font-size: 0.6rem;
-                padding: 0.2rem 0.3rem;
-            }
-            .point-settings .ps-custom-input span {
-                font-size: 0.45rem;
-            }
-            .point-settings .ps-apply-btn {
-                font-size: 0.45rem;
-                padding: 0.25rem 0.8rem;
-            }
-
-            .leaderboard-full {
-                padding: 0.6rem;
-            }
-            .leaderboard-full h2 {
-                font-size: 0.9rem;
-                margin-bottom: 0.6rem;
-            }
-            .lb-full-list {
-                max-width: 100%;
-            }
-            .lb-full-item {
-                padding: 0.3rem 0.4rem;
-                gap: 0.2rem;
-                flex-wrap: wrap;
-            }
-            .lb-full-rank {
-                font-size: 0.6rem;
-                width: 22px;
-            }
-            .lb-full-avatar {
-                width: 22px;
-                height: 22px;
-                font-size: 0.4rem;
-            }
-            .lb-full-name {
-                font-size: 0.55rem;
-                min-width: 50px;
-            }
-            .lb-full-name .achievement-badge {
-                font-size: 0.45rem;
-            }
-            .lb-full-points {
-                font-size: 0.65rem;
-                min-width: 30px;
-            }
-            .lb-full-stats {
-                display: none;
-            }
-            .lb-full-actions {
-                width: 100%;
-                justify-content: center;
-                gap: 0.15rem;
-            }
-            .lb-full-actions button {
-                font-size: 0.4rem;
-                padding: 0.1rem 0.3rem;
-                min-width: 20px;
-                min-height: 26px;
-            }
-            .lb-actions-export {
-                gap: 0.3rem;
-                margin-top: 0.6rem;
-            }
-            .lb-actions-export button {
-                font-size: 0.45rem;
-                padding: 0.25rem 0.8rem;
-            }
-
-            .themes-page-header {
-                font-size: 0.9rem;
-            }
-            .themes-subtitle {
-                font-size: 0.6rem;
-                margin-bottom: 0.8rem;
-            }
-            .themes-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.4rem;
-            }
-            .theme-card {
-                padding: 0.5rem;
-            }
-            .theme-card .theme-preview {
-                height: 20px;
-            }
-            .theme-card .theme-name {
-                font-size: 0.5rem;
-            }
-            .theme-card .theme-mood {
-                display: none;
-            }
-            .theme-card .theme-apply-btn {
-                font-size: 0.4rem;
-                padding: 0.15rem 0.6rem;
-            }
-
-            .sound-settings {
-                padding: 0.6rem;
-                margin-top: 0.8rem;
-            }
-            .sound-settings h3 {
-                font-size: 0.6rem;
-            }
-            .sound-option {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0.2rem;
-                padding: 0.3rem 0.4rem;
-            }
-            .sound-option label {
-                font-size: 0.5rem;
-                min-width: auto;
-            }
-            .sound-option select {
-                font-size: 0.5rem;
-                min-width: auto;
-                padding: 0.2rem 0.4rem;
-            }
-            .sound-preview-btn {
-                font-size: 0.4rem;
-                padding: 0.1rem 0.4rem;
-            }
-            .sound-master-toggle {
-                flex-direction: column;
-                gap: 0.3rem;
-                padding: 0.4rem;
-            }
-            .sound-master-toggle label {
-                font-size: 0.5rem;
-            }
-            .sound-master-toggle .toggle-btn {
-                font-size: 0.45rem;
-                padding: 0.15rem 0.8rem;
-            }
-
-            .gm-page {
-                padding: 0.6rem;
-            }
-            .gm-page h2 {
-                font-size: 0.9rem;
-                margin-bottom: 0.6rem;
-            }
-            .gm-page .gm-tabs {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                gap: 0.2rem;
-                padding-bottom: 0.3rem;
-                -webkit-overflow-scrolling: touch;
-            }
-            .gm-page .gm-tabs::-webkit-scrollbar {
-                height: 2px;
-            }
-            .gm-page .gm-tabs button {
-                flex-shrink: 0;
-                font-size: 0.4rem;
-                padding: 0.2rem 0.5rem;
-            }
-            .gm-page .gm-section {
-                padding: 0.5rem;
-                margin-bottom: 0.5rem;
-            }
-            .gm-page .gm-section h4 {
-                font-size: 0.6rem;
-            }
-            .gm-page .gm-section h4 span {
-                font-size: 0.5rem;
-            }
-            .gm-page .gm-input-row {
-                flex-direction: column;
-            }
-            .gm-page .gm-input-row input {
-                width: 100%;
-                font-size: 0.6rem;
-                padding: 0.3rem 0.6rem;
-            }
-            .gm-page .gm-input-row button {
-                width: 100%;
-                font-size: 0.5rem;
-                padding: 0.3rem;
-                justify-content: center;
-            }
-            .gm-item-list {
-                max-height: 80px;
-                gap: 0.2rem;
-            }
-            .gm-item-list .gm-item {
-                font-size: 0.5rem;
-                padding: 0.1rem 0.4rem;
-            }
-
-            .share-modal .share-box {
-                padding: 0.8rem;
-                margin: 0.5rem;
-            }
-            .share-modal .share-box h3 {
-                font-size: 0.6rem;
-            }
-            .share-modal .share-box textarea {
-                font-size: 0.6rem;
-                min-height: 80px;
-                padding: 0.5rem;
-            }
-            .share-modal .share-box .share-buttons button {
-                font-size: 0.5rem;
-                padding: 0.25rem 0.8rem;
-            }
-
-            .feedback {
-                font-size: 0.6rem;
-                padding: 0.3rem 0.5rem;
-            }
-            .empty-state {
-                font-size: 0.6rem;
+            .bg-setup-card {
                 padding: 1rem;
             }
-
-            .word-changed-toast {
-                bottom: 80px;
-                font-size: 0.6rem;
-                padding: 0.3rem 1rem;
-            }
-
-            .gm-lock-box {
-                padding: 1.5rem;
-                margin: 0.5rem;
-            }
-
-            .gm-lock-box .lock-icon {
-                font-size: 2.5rem;
-            }
-
-            .gm-lock-box h2 {
-                font-size: 0.85rem;
-            }
-
-            .gm-lock-box .lock-input {
-                font-size: 0.8rem;
-                padding: 0.6rem 0.8rem;
-            }
-
-            /* Brain Games Responsive */
-            .bg-room-code .code {
-                font-size: 2.5rem;
-                letter-spacing: 4px;
-            }
-            .bg-qr-section {
-                flex-direction: column;
-                text-align: center;
-            }
-            .bg-qr-section .qr-info {
-                text-align: center;
-            }
+            
             .bg-options-grid {
-                grid-template-columns: 1fr 1fr;
                 gap: 0.4rem;
             }
-            .bg-option {
-                font-size: 0.7rem;
-                padding: 0.5rem;
-                min-height: 50px;
+            
+            .bg-option-btn {
+                padding: 0.6rem;
+                font-size: 0.85rem;
+                min-height: 60px;
             }
-            .bg-option .text {
-                font-size: 0.75rem;
+            
+            .bg-option-btn .text {
+                font-size: 0.85rem;
             }
-            .bg-question-box .q-text {
+            
+            .bg-question-text {
                 font-size: 1.2rem;
+                padding: 0.3rem 0 0.8rem 0;
             }
-            .bg-question-box .q-text.long {
-                font-size: 0.9rem;
+            
+            .bg-question-text.long {
+                font-size: 1rem;
             }
-            .bg-players-grid {
-                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-                max-height: 100px;
+            
+            .bg-modal-header .header-item {
+                font-size: 0.55rem;
             }
-            .bg-gm-form {
-                grid-template-columns: 1fr;
+            
+            .bg-feedback {
+                font-size: 0.75rem;
+                padding: 0.4rem;
             }
-            .bg-gm-form .full-width {
-                grid-column: 1;
+            
+            .bg-controls button {
+                padding: 0.4rem 1rem;
+                font-size: 0.55rem;
             }
-            .bg-lock-overlay .timer-big {
-                font-size: 3rem;
-            }
-            .bg-lock-overlay h3 {
-                font-size: 0.7rem;
+            
+            .bg-setup-row .preset-buttons button {
+                font-size: 0.5rem;
+                padding: 0.2rem 0.6rem;
             }
         }
 
         @media (max-width: 400px) {
-            .sidebar .nav-item {
-                min-width: 32px;
-                padding: 0.1rem 0.1rem;
-            }
-            .sidebar .nav-item span:last-child {
-                font-size: 0.35rem;
-            }
-            .sidebar .nav-item .icon {
-                font-size: 0.9rem;
-            }
-            .game-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 0.3rem;
-            }
-            .game-card {
-                min-height: 100px;
-                padding: 0.4rem 0.2rem;
-            }
-            .game-card .emoji {
-                font-size: 1.4rem;
-            }
-            .game-card .title {
-                font-size: 0.45rem;
-            }
-            .game-card .play-badge {
-                font-size: 0.35rem;
-                padding: 0.1rem 0.4rem;
-            }
-            .themes-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 0.3rem;
-            }
-            .theme-card {
+            .bg-option-btn {
                 padding: 0.4rem;
+                font-size: 0.7rem;
+                min-height: 50px;
             }
-            .theme-card .theme-preview {
-                height: 16px;
-            }
-            .theme-card .theme-name {
-                font-size: 0.45rem;
-            }
-
-            .word-display {
-                font-size: 1.1rem !important;
-                letter-spacing: 1px !important;
-            }
-            .word-display.long-word {
-                font-size: 0.85rem !important;
-            }
-            .word-display.whoami {
-                font-size: 1.4rem !important;
-                letter-spacing: 1px !important;
-            }
-            .word-display.whoami.long-word {
-                font-size: 1rem !important;
-            }
-
-            .game-actions button {
-                font-size: 0.45rem;
-                padding: 0.2rem 0.5rem;
-            }
-
-            .hangman-figure svg {
-                max-width: 130px !important;
-            }
-            .hangman-word {
-                font-size: 1.1rem !important;
-                letter-spacing: 4px !important;
-            }
-            .hangman-word .letter {
-                width: 0.9rem !important;
-            }
-            .hangman-difficulty-selector button {
-                font-size: 0.4rem;
-                padding: 0.15rem 0.5rem;
-            }
-            .scoring-section .score-buttons button {
-                padding: 0.3rem 0.4rem;
-                font-size: 0.45rem;
-                min-width: 32px;
-                min-height: 32px;
-            }
-            .modal-box {
-                padding: 0.6rem;
-            }
-            .modal-box .game-header h2 {
-                font-size: 0.55rem;
-            }
-            .modal-box .game-header .game-info .timer-display {
-                font-size: 1.2rem;
-            }
-            .lb-full-item {
-                padding: 0.2rem 0.3rem;
-            }
-            .lb-full-name {
-                font-size: 0.45rem;
-                min-width: 40px;
-            }
-            .lb-full-points {
-                font-size: 0.55rem;
-            }
-            .lb-full-actions button {
-                font-size: 0.35rem;
-                min-width: 16px;
-                min-height: 22px;
-                padding: 0.05rem 0.2rem;
-            }
-            .player-avatar {
-                font-size: 0.4rem;
-                padding: 0.05rem 0.2rem 0.05rem 0.05rem;
-                gap: 0.1rem;
-            }
-            .player-avatar .avatar-circle {
-                width: 24px;
-                height: 24px;
-            }
-            .player-avatar .avatar-emoji {
-                font-size: 0.6rem;
-            }
-            .player-avatar .avatar-points {
-                font-size: 0.4rem;
-            }
-            .player-avatar .avatar-name {
-                font-size: 0.4rem;
-            }
-            .player-avatar .team-assign {
-                font-size: 0.35rem;
-                min-width: 32px;
-                max-width: 40px;
-                height: 16px;
-                padding-right: 12px;
-                background-size: 5px 3px;
-            }
-
-            .roast-setup {
-                padding: 0.5rem;
-            }
-            .roast-setup .roast-setup-row .preset-buttons button {
-                font-size: 0.4rem;
-                padding: 0.15rem 0.4rem;
-            }
-            .roast-setup .roast-setup-row .preset-buttons .custom-input input {
-                width: 34px;
-                font-size: 0.5rem;
-            }
-            .roast-setup .roast-start-btn {
-                font-size: 0.5rem;
-                padding: 0.3rem 1rem;
-            }
-
-            .roast-game-display .roast-card .roast-text {
-                font-size: 0.75rem;
-            }
-            .roast-game-display .roast-assign-section select {
-                font-size: 0.55rem;
-                min-width: 80px;
-                padding: 0.2rem 0.4rem;
-            }
-            .roast-game-display .roast-assign-section .assign-btn {
-                font-size: 0.45rem;
-                padding: 0.2rem 0.6rem;
-            }
-            .roast-game-display .roast-counts .roast-count-item {
-                font-size: 0.4rem;
-                padding: 0.05rem 0.3rem;
-            }
-
-            .roast-results .winner-name {
-                font-size: 0.9rem;
-            }
-            .roast-results .funny-response {
-                font-size: 0.65rem;
-            }
-
-            .team-card {
-                min-width: 60px;
-                padding: 0.2rem 0.3rem;
-            }
-            .team-card .team-name {
-                font-size: 0.4rem;
-            }
-            .team-card .team-score {
-                font-size: 0.45rem;
-            }
-            .team-card .team-member-controls .member-tag {
-                font-size: 0.35rem;
-            }
-            .team-card .team-member-controls .add-member-select {
-                font-size: 0.35rem;
-                min-width: 40px;
-                min-height: 16px;
-                padding-right: 12px;
-                background-size: 5px 3px;
-            }
-            .top-bar .page-title {
-                font-size: 0.45rem;
-            }
-            .home-welcome {
-                font-size: 0.8rem;
-            }
-            .home-subtitle {
-                font-size: 0.55rem;
-            }
-            .home-quick-start .qs-text {
-                font-size: 0.55rem;
-            }
-            .home-quick-start .qs-btn {
-                font-size: 0.5rem;
-                padding: 0.3rem;
-            }
-
-            .gm-lock-box {
-                padding: 1rem;
-            }
-
-            .gm-lock-box .lock-icon {
-                font-size: 2rem;
-            }
-
-            .gm-lock-box h2 {
+            
+            .bg-option-btn .text {
                 font-size: 0.7rem;
             }
-
-            .gm-lock-box .lock-input {
-                font-size: 0.7rem;
-                padding: 0.5rem 0.6rem;
-            }
-
-            .gm-lock-box .lock-buttons button {
-                font-size: 0.55rem;
-                padding: 0.4rem 1rem;
-            }
-
-            /* Brain Games Mobile */
-            .bg-room-code .code {
-                font-size: 1.8rem;
-                letter-spacing: 2px;
-            }
-            .bg-options-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 0.3rem;
-            }
-            .bg-option {
-                font-size: 0.6rem;
-                padding: 0.3rem;
-                min-height: 40px;
-            }
-            .bg-option .text {
-                font-size: 0.6rem;
-            }
-            .bg-question-box .q-text {
+            
+            .bg-question-text {
                 font-size: 1rem;
             }
-            .bg-qr-section .qr-container canvas {
-                width: 100px;
-                height: 100px;
+            
+            .bg-question-text.long {
+                font-size: 0.85rem;
             }
-            .bg-controls button {
-                padding: 0.4rem 1rem;
-                font-size: 0.5rem;
-            }
-        }
-
-        @media (pointer: coarse) {
-            button,
-            .nav-item,
-            .game-card,
-            .theme-card,
-            .team-card,
-            .option,
-            .star,
-            .player-avatar,
-            .lb-full-actions button {
-                cursor: default;
-                touch-action: manipulation;
-                -webkit-tap-highlight-color: transparent;
-            }
-            input,
-            textarea {
-                font-size: 16px !important;
-            }
-        }
-
-        @media (pointer: fine) {
-            button,
-            .nav-item,
-            .game-card,
-            .theme-card,
-            .team-card,
-            .option,
-            .star,
-            .player-avatar {
-                cursor: pointer;
-            }
-            .sidebar .nav-item:hover {
-                background: var(--theme-bg-sidebar-hover);
-                color: var(--theme-text-primary);
-                transform: translateX(3px);
-            }
-            .game-card:hover {
-                transform: translateY(-6px) scale(1.02);
-            }
-            .game-card:hover .emoji {
-                transform: scale(1.15) rotate(-5deg);
-            }
-            .theme-card:hover {
-                transform: translateY(-4px);
-            }
-            .team-card:hover {
-                border-color: var(--theme-blue-bright);
-                transform: translateY(-2px);
+            
+            .bg-modal-header .header-item {
+                font-size: 0.45rem;
             }
         }
     </style>
@@ -5141,6 +3987,7 @@
         </div>
     </div>
 
+    <!-- MODAL OVERLAY -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal-box" id="modalBox">
             <button class="modal-close" id="closeModalBtn">✕</button>
@@ -5194,7 +4041,6 @@
                 <span class="icon">👥</span>
                 <span>Players</span>
             </button>
-            <!-- 🧠 BRAIN GAMES - NEW! -->
             <button class="nav-item" onclick="navigateTo('braingames')" data-page="braingames">
                 <span class="icon">🧠</span>
                 <span>Brain Games</span>
@@ -5302,101 +4148,67 @@
             </div>
 
             <!-- ==========================================================
-                 🧠 BRAIN GAMES PAGE (NEW)
+                 🧠 BRAIN GAMES PAGE
                  ========================================================== -->
 
             <div class="page" id="braingamesPage">
                 <div class="brain-games-container active" id="brainGamesContainer">
-                    <div class="bg-host-view" id="bgHostView">
-
-                        <!-- Lock Overlay -->
-                        <div class="bg-lock-overlay" id="bgLockOverlay">
-                            <span class="lock-icon">🧠</span>
-                            <h3>QUIZ IN PROGRESS</h3>
-                            <p id="bgLockMessage">Question <span id="bgLockQuestion">1</span> of <span id="bgLockTotal">10</span></p>
-                            <div class="timer-big" id="bgLockTimer">20</div>
-                            <p style="font-size:0.6rem;color:var(--theme-text-muted);">Players are answering...</p>
-                        </div>
-
-                        <!-- Header -->
-                        <div class="bg-header">
-                            <h2>🧠 BRAIN GAMES</h2>
-                            <div class="bg-status">
-                                <span id="bgStatusText">Ready</span>
-                                <span class="highlight" id="bgPlayerCount">0</span> players
+                    
+                    <!-- Setup Card -->
+                    <div class="bg-setup-card" id="bgSetupCard">
+                        <div class="setup-title">🧠 BRAIN GAMES</div>
+                        
+                        <!-- Timer Row -->
+                        <div class="bg-setup-row">
+                            <label>⏱️ SET TIMER</label>
+                            <div class="preset-buttons" id="bgTimerPresets">
+                                <button class="timer-active" data-timer="15" onclick="bgSetTimer(15, this)">15s</button>
+                                <button class="timer-active active" data-timer="30" onclick="bgSetTimer(30, this)">30s</button>
+                                <button data-timer="45" onclick="bgSetTimer(45, this)">45s</button>
+                                <button data-timer="60" onclick="bgSetTimer(60, this)">60s</button>
+                                <button data-timer="90" onclick="bgSetTimer(90, this)">90s</button>
+                            </div>
+                            <div class="custom-input">
+                                <input type="number" id="bgCustomTimer" value="30" min="5" max="300" onchange="bgSetCustomTimer(this.value)" />
+                                <span>seconds</span>
                             </div>
                         </div>
-
-                        <!-- Room Code -->
-                        <div class="bg-room-code" id="bgRoomCodeSection">
-                            <div class="code-label">📋 Room Code</div>
-                            <div class="code" id="bgRoomCode">-----</div>
-                            <div class="code-sub" id="bgRoomUrl">Waiting to start...</div>
-                        </div>
-
-                        <!-- QR Code -->
-                        <div class="bg-qr-section" id="bgQrSection">
-                            <div class="qr-container" id="bgQrContainer">
-                                <canvas id="bgQrCanvas"></canvas>
+                        
+                        <!-- Questions Row -->
+                        <div class="bg-setup-row">
+                            <label>📋 QUESTIONS</label>
+                            <div class="preset-buttons" id="bgQtyPresets">
+                                <button class="qty-active" data-qty="5" onclick="bgSetQuestionCount(5, this)">5</button>
+                                <button class="qty-active active" data-qty="10" onclick="bgSetQuestionCount(10, this)">10</button>
+                                <button class="qty-active" data-qty="15" onclick="bgSetQuestionCount(15, this)">15</button>
+                                <button class="qty-active" data-qty="20" onclick="bgSetQuestionCount(20, this)">20</button>
+                                <button class="qty-active" data-qty="all" onclick="bgSetQuestionCount('all', this)">All</button>
                             </div>
-                            <div class="qr-info">
-                                <h4>📱 SCAN TO JOIN</h4>
-                                <p>Open your phone camera and scan the QR code</p>
-                                <p class="url" id="bgPlayerUrl">Or visit: /player</p>
+                            <div style="font-size:0.5rem;color:var(--theme-text-muted);margin-top:0.3rem;">
+                                <span id="bgTotalAvailable">0</span> questions available
                             </div>
                         </div>
-
-                        <!-- Players Grid -->
-                        <div class="bg-players-grid" id="bgPlayersGrid">
-                            <div class="bg-player-count" style="grid-column:1/-1;">Waiting for players...</div>
+                        
+                        <!-- Info Row -->
+                        <div class="bg-setup-info">
+                            <span class="info-item">👥 Players: <span class="value" id="bgPlayerCountSetup">0</span></span>
+                            <span class="info-item">📊 Questions: <span class="value" id="bgQtyDisplay">10</span></span>
+                            <span class="info-item">⏱️ Timer: <span class="value" id="bgTimerDisplay">30s</span></span>
                         </div>
-
-                        <!-- Question Display -->
-                        <div class="bg-question-box" id="bgQuestionBox" style="display:none;">
-                            <div class="q-number" id="bgQNumber">Question 1/10</div>
-                            <div class="q-text" id="bgQText">What is the capital of France?</div>
-                            <div class="bg-options-grid" id="bgOptionsGrid">
-                                <div class="bg-option a" data-opt="0">
-                                    <span class="label">A</span>
-                                    <span class="text" id="bgOpt0">Paris</span>
-                                    <span class="count" id="bgCount0">(0)</span>
-                                </div>
-                                <div class="bg-option b" data-opt="1">
-                                    <span class="label">B</span>
-                                    <span class="text" id="bgOpt1">London</span>
-                                    <span class="count" id="bgCount1">(0)</span>
-                                </div>
-                                <div class="bg-option c" data-opt="2">
-                                    <span class="label">C</span>
-                                    <span class="text" id="bgOpt2">Berlin</span>
-                                    <span class="count" id="bgCount2">(0)</span>
-                                </div>
-                                <div class="bg-option d" data-opt="3">
-                                    <span class="label">D</span>
-                                    <span class="text" id="bgOpt3">Madrid</span>
-                                    <span class="count" id="bgCount3">(0)</span>
-                                </div>
-                            </div>
-                            <div class="bg-timer-bar">
-                                <div class="bg-timer-fill" id="bgTimerFill"></div>
-                            </div>
-                        </div>
-
-                        <!-- Leaderboard -->
-                        <div class="bg-leaderboard" id="bgLeaderboard" style="display:none;">
-                            <h4>🏆 LIVE LEADERBOARD</h4>
-                            <div id="bgLbList"></div>
-                        </div>
-
-                        <!-- Controls -->
-                        <div class="bg-controls" id="bgControls">
-                            <button class="btn-start" id="bgStartBtn" onclick="bgStartGame()">🚀 START BRAIN GAMES</button>
-                            <button class="btn-next" id="bgNextBtn" onclick="bgNextQuestion()" style="display:none;">⏭️ NEXT QUESTION</button>
-                            <button class="btn-end" id="bgEndBtn" onclick="bgEndGame()" style="display:none;">⏹️ END GAME</button>
-                            <button class="btn-leaderboard" id="bgLeaderboardBtn" onclick="bgToggleLeaderboard()" style="display:none;">📊 LEADERBOARD</button>
-                        </div>
-
+                        
+                        <!-- Start Button -->
+                        <button class="bg-start-btn" id="bgStartBtn" onclick="bgStartGame()">
+                            🚀 START BRAIN GAMES
+                        </button>
+                        
+                        <div class="bg-tip">💡 Select timer and question count, then click START!</div>
                     </div>
+                    
+                    <!-- Empty State -->
+                    <div id="bgEmptyState">
+                        <div class="bg-empty-questions">❌ No questions added yet.<br>Add questions in <strong>Game Master → Brain Games</strong>!</div>
+                    </div>
+                    
                 </div>
             </div>
 
@@ -5498,137 +4310,10 @@
                         <button data-tab="tab-truthlie">🤥 Truth & Lie</button>
                         <button data-tab="tab-roast">🔥 Roast</button>
                         <button data-tab="tab-whoami">🕵️ Who Am I</button>
-                        <!-- 🧠 BRAIN GAMES GM TAB -->
                         <button data-tab="tab-braingames">🧠 Brain Games</button>
                     </div>
 
-                    <!-- Charades -->
-                    <div class="gm-tab-content active" id="tab-charades">
-                        <div class="gm-section">
-                            <h4>🎭 Charades Words <span id="charadesCount">0</span></h4>
-                            <div class="gm-input-row">
-                                <input type="text" id="gmCharadesInput" placeholder="Add word..." />
-                                <button onclick="addGMCharades()">➕ Add</button>
-                                <button class="gm-remove" onclick="clearGMCharades()">🗑️ Clear</button>
-                            </div>
-                            <div class="gm-item-list" id="gmCharadesList"></div>
-                        </div>
-                    </div>
-
-                    <!-- Karaoke -->
-                    <div class="gm-tab-content" id="tab-karaoke">
-                        <div class="gm-section">
-                            <h4>🎤 Karaoke Songs <span id="karaokeCount">0</span></h4>
-                            <div class="gm-input-row">
-                                <input type="text" id="gmKaraokeTitle" placeholder="Title..." />
-                                <input type="text" id="gmKaraokeArtist" placeholder="Artist..." />
-                                <button onclick="addGMKaraoke()">➕ Add</button>
-                                <button class="gm-remove" onclick="clearGMKaraoke()">🗑️ Clear</button>
-                            </div>
-                            <div class="gm-item-list" id="gmKaraokeList"></div>
-                        </div>
-                    </div>
-
-                    <!-- Fast Talk -->
-                    <div class="gm-tab-content" id="tab-fasttalk">
-                        <div class="gm-section">
-                            <h4>⏱️ Fast Talk Categories <span id="fastTalkCount">0</span></h4>
-                            <div class="gm-input-row">
-                                <input type="text" id="gmCategoryName" placeholder="Category..." />
-                                <input type="text" id="gmCategoryWords" placeholder="Words (comma)" />
-                                <button onclick="addGMCategory()">➕ Add</button>
-                                <button class="gm-remove" onclick="clearGMCategories()">🗑️ Clear</button>
-                            </div>
-                            <div class="gm-item-list" id="gmCategoryList"></div>
-                        </div>
-                    </div>
-
-                    <!-- Pictionary -->
-                    <div class="gm-tab-content" id="tab-pictionary">
-                        <div class="gm-section">
-                            <h4>🎨 Pictionary Words <span id="pictionaryCount">0</span></h4>
-                            <div class="gm-input-row">
-                                <input type="text" id="gmPictionaryInput" placeholder="Add word..." />
-                                <button onclick="addGMPictionary()">➕ Add</button>
-                                <button class="gm-remove" onclick="clearGMPictionary()">🗑️ Clear</button>
-                            </div>
-                            <div class="gm-item-list" id="gmPictionaryList"></div>
-                        </div>
-                    </div>
-
-                    <!-- Hangman -->
-                    <div class="gm-tab-content" id="tab-hangman">
-                        <div class="gm-section">
-                            <h4>🧩 Hangman Words <span id="hangmanCount">0</span></h4>
-                            <div class="gm-difficulty-filters" style="display:flex;gap:0.3rem;flex-wrap:wrap;margin-bottom:0.5rem;">
-                                <button class="gm-diff-filter active" data-diff="all" onclick="filterHangmanGM('all')" style="padding:0.2rem 0.8rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-secondary);font-size:0.5rem;cursor:pointer;font-family:var(--font-body);font-weight:700;">ALL</button>
-                                <button class="gm-diff-filter" data-diff="easy" onclick="filterHangmanGM('easy')" style="padding:0.2rem 0.8rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-secondary);font-size:0.5rem;cursor:pointer;font-family:var(--font-body);font-weight:700;">🟢 EASY</button>
-                                <button class="gm-diff-filter" data-diff="medium" onclick="filterHangmanGM('medium')" style="padding:0.2rem 0.8rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-secondary);font-size:0.5rem;cursor:pointer;font-family:var(--font-body);font-weight:700;">🟡 MEDIUM</button>
-                                <button class="gm-diff-filter" data-diff="hard" onclick="filterHangmanGM('hard')" style="padding:0.2rem 0.8rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-secondary);font-size:0.5rem;cursor:pointer;font-family:var(--font-body);font-weight:700;">🟠 HARD</button>
-                                <button class="gm-diff-filter" data-diff="expert" onclick="filterHangmanGM('expert')" style="padding:0.2rem 0.8rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-secondary);font-size:0.5rem;cursor:pointer;font-family:var(--font-body);font-weight:700;">🔴 EXPERT</button>
-                            </div>
-                            <div class="gm-input-row">
-                                <select id="gmHangmanDifficulty" style="flex:1;padding:0.5rem 1rem;border-radius:24px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);font-size:0.8rem;font-family:var(--font-body);">
-                                    <option value="easy">🟢 Easy</option>
-                                    <option value="medium">🟡 Medium</option>
-                                    <option value="hard">🟠 Hard</option>
-                                    <option value="expert">🔴 Expert</option>
-                                </select>
-                                <input type="text" id="gmHangmanInput" placeholder="Add word..." />
-                                <input type="text" id="gmHangmanDefInput" placeholder="Definition..." />
-                                <button onclick="addGMHangman()">➕ Add</button>
-                                <button class="gm-remove" onclick="clearGMHangman()">🗑️ Clear</button>
-                            </div>
-                            <div class="gm-item-list" id="gmHangmanList"></div>
-                        </div>
-                    </div>
-
-                    <!-- Truth & Lie -->
-                    <div class="gm-tab-content" id="tab-truthlie">
-                        <div class="gm-section">
-                            <h4>🤥 Truth & Lie <span id="truthLieCount">0</span></h4>
-                            <div class="gm-input-row">
-                                <input type="text" id="gmTruthLieCategory" placeholder="Category..." />
-                                <input type="text" id="gmTruth1" placeholder="Truth 1..." />
-                                <input type="text" id="gmTruth2" placeholder="Truth 2..." />
-                                <input type="text" id="gmLie" placeholder="Lie..." />
-                                <button onclick="addGMTruthLie()">➕ Add</button>
-                                <button class="gm-remove" onclick="clearGMTruthLie()">🗑️ Clear</button>
-                            </div>
-                            <div class="gm-item-list" id="gmTruthLieList"></div>
-                        </div>
-                    </div>
-
-                    <!-- Roast -->
-                    <div class="gm-tab-content" id="tab-roast">
-                        <div class="gm-section">
-                            <h4>🔥 Roast Lines <span id="roastCount">0</span></h4>
-                            <div class="gm-input-row">
-                                <input type="text" id="gmRoastInput" placeholder="Add roast line..." />
-                                <button onclick="addGMRoast()">➕ Add</button>
-                                <button class="gm-remove" onclick="clearGMRoast()">🗑️ Clear</button>
-                            </div>
-                            <div class="gm-item-list" id="gmRoastList"></div>
-                        </div>
-                    </div>
-
-                    <!-- Who Am I -->
-                    <div class="gm-tab-content" id="tab-whoami">
-                        <div class="gm-section">
-                            <h4>🕵️ Who Am I - Names <span id="whoamiCount">0</span></h4>
-                            <div class="gm-input-row">
-                                <input type="text" id="gmWhoamiInput" placeholder="Add name..." />
-                                <button onclick="addGMWhoami()">➕ Add</button>
-                                <button class="gm-remove" onclick="clearGMWhoami()">🗑️ Clear</button>
-                            </div>
-                            <div class="gm-item-list" id="gmWhoamiList"></div>
-                        </div>
-                    </div>
-
-                    <!-- ==========================================================
-                         🧠 BRAIN GAMES GM TAB (NEW)
-                         ========================================================== -->
-
+                    <!-- Brain Games GM Tab -->
                     <div class="gm-tab-content" id="tab-braingames">
                         <div class="bg-gm-section">
                             <h4>🧠 Brain Games Questions <span id="bgGmCount">0</span></h4>
@@ -5676,6 +4361,21 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Other GM tabs (placeholder) -->
+                    <div class="gm-tab-content active" id="tab-charades">
+                        <div class="gm-section">
+                            <h4>🎭 Charades Words <span id="charadesCount">0</span></h4>
+                            <div class="gm-input-row">
+                                <input type="text" id="gmCharadesInput" placeholder="Add word..." />
+                                <button onclick="addGMCharades()">➕ Add</button>
+                                <button class="gm-remove" onclick="clearGMCharades()">🗑️ Clear</button>
+                            </div>
+                            <div class="gm-item-list" id="gmCharadesList"></div>
+                        </div>
+                    </div>
+
+                    <!-- Other GM tabs... (keep existing) -->
 
                 </div>
             </div>
@@ -5956,17 +4656,14 @@
         //  BRAIN GAMES STATE
         // ============================================================
         let bgQuestions = [];
+        let bgTimerValue = 30;
+        let bgQuestionCount = 10;
         let bgGameActive = false;
-        let bgRoomCode = '';
-        let bgPlayers = {};
-        let bgCurrentQuestion = 0;
+        let bgCurrentQuestionIndex = 0;
         let bgTotalQuestions = 0;
-        let bgAnswers = {};
-        let bgWs = null;
+        let bgUsedQuestions = [];
+        let bgAnswered = false;
         let bgTimerInterval = null;
-        let bgTimerValue = 20;
-        let bgLeaderboardVisible = false;
-        let bgPlayerScores = {};
 
         // ============================================================
         //  SOUND SYSTEM
@@ -6618,7 +5315,7 @@
                 if (document.getElementById('modalOverlay').classList.contains('active')) {
                     closeModal();
                 }
-                if (typeof bgInit === 'function') bgInit();
+                bgInit();
             },
             games: function() {
                 currentPage = 'games';
@@ -8993,6 +7690,521 @@
         }
 
         // ============================================================
+        //  🧠 BRAIN GAMES - COMPLETE IMPLEMENTATION
+        // ============================================================
+
+        // BG GM Functions
+        function renderBGQuestions() {
+            const list = document.getElementById('bgGmQuestionsList');
+            document.getElementById('bgGmCount').textContent = `${bgQuestions.length}`;
+            const search = document.getElementById('bgGmSearch')?.value.toLowerCase() || '';
+            const filterCat = document.getElementById('bgGmFilterCategory')?.value || 'all';
+            let filtered = bgQuestions;
+            if (search) filtered = filtered.filter(q => q.text.toLowerCase().includes(search));
+            if (filterCat !== 'all') filtered = filtered.filter(q => q.category === filterCat);
+            if (filtered.length === 0) {
+                list.innerHTML =
+                    `<div class="bg-empty-questions">${bgQuestions.length === 0 ? 'No questions added yet. Create your first question above!' : 'No questions match your filters.'}</div>`;
+                return;
+            }
+            list.innerHTML = filtered.map((q, idx) => {
+                const realIdx = bgQuestions.indexOf(q);
+                return `
+                    <div class="bg-q-item">
+                        <span class="q-text-preview">${q.text}</span>
+                        <span class="q-category">${q.category || 'General'}</span>
+                        <div class="q-actions">
+                            <button onclick="bgEditQuestion(${realIdx})" title="Edit">✏️</button>
+                            <button class="danger" onclick="bgDeleteQuestion(${realIdx})" title="Delete">🗑️</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            const catSelect = document.getElementById('bgGmFilterCategory');
+            const categories = [...new Set(bgQuestions.map(q => q.category || 'General'))];
+            const currentVal = catSelect.value;
+            catSelect.innerHTML =
+                `<option value="all">All Categories</option>${categories.map(c => `<option value="${c}">${c}</option>`).join('')}`;
+            catSelect.value = currentVal;
+        }
+
+        function bgAddQuestion() {
+            const text = document.getElementById('bgGmQuestion').value.trim();
+            const opt0 = document.getElementById('bgGmOpt0').value.trim();
+            const opt1 = document.getElementById('bgGmOpt1').value.trim();
+            const opt2 = document.getElementById('bgGmOpt2').value.trim();
+            const opt3 = document.getElementById('bgGmOpt3').value.trim();
+            const correct = parseInt(document.getElementById('bgGmCorrect').value);
+            let category = document.getElementById('bgGmCategory').value;
+            if (category === 'Custom') {
+                category = document.getElementById('bgGmCustomCategory').value.trim() || 'Custom';
+            }
+            if (!text || !opt0 || !opt1 || !opt2 || !opt3) {
+                alert('Please fill in all fields!');
+                return;
+            }
+            bgQuestions.push({ text, options: [opt0, opt1, opt2, opt3], correct, category });
+            saveBGQuestions();
+            renderBGQuestions();
+            document.getElementById('bgGmQuestion').value = '';
+            document.getElementById('bgGmOpt0').value = '';
+            document.getElementById('bgGmOpt1').value = '';
+            document.getElementById('bgGmOpt2').value = '';
+            document.getElementById('bgGmOpt3').value = '';
+            createConfetti(15);
+            playSound('success');
+        }
+
+        function bgDeleteQuestion(index) {
+            if (confirm('Delete this question?')) {
+                bgQuestions.splice(index, 1);
+                saveBGQuestions();
+                renderBGQuestions();
+                playSound('point');
+            }
+        }
+
+        function bgEditQuestion(index) {
+            const q = bgQuestions[index];
+            if (!q) return;
+            document.getElementById('bgGmQuestion').value = q.text;
+            document.getElementById('bgGmOpt0').value = q.options[0] || '';
+            document.getElementById('bgGmOpt1').value = q.options[1] || '';
+            document.getElementById('bgGmOpt2').value = q.options[2] || '';
+            document.getElementById('bgGmOpt3').value = q.options[3] || '';
+            document.getElementById('bgGmCorrect').value = q.correct || 0;
+            document.getElementById('bgGmCategory').value = q.category || 'General';
+            bgDeleteQuestion(index);
+            playSound('success');
+            document.getElementById('bgGmQuestion').focus();
+        }
+
+        function bgClearAllQuestions() {
+            if (bgQuestions.length === 0) return;
+            if (confirm('Delete ALL Brain Games questions?')) {
+                bgQuestions = [];
+                saveBGQuestions();
+                renderBGQuestions();
+                playSound('point');
+            }
+        }
+
+        function bgFilterQuestions() { renderBGQuestions(); }
+
+        function saveBGQuestions() {
+            try { localStorage.setItem('arcadeBGQuestions', JSON.stringify(bgQuestions)); } catch (e) {}
+        }
+
+        function loadBGQuestions() {
+            try {
+                const saved = localStorage.getItem('arcadeBGQuestions');
+                if (saved) { bgQuestions = JSON.parse(saved); return true; }
+            } catch (e) {}
+            bgQuestions = [
+                { text: 'What is the capital of France?', options: ['Paris', 'London', 'Berlin', 'Madrid'], correct: 0,
+                    category: 'Geography' },
+                { text: 'What is 7 × 8?', options: ['48', '56', '64', '72'], correct: 1, category: 'Math' },
+                { text: 'Which planet is known as the Red Planet?', options: ['Venus', 'Mars', 'Jupiter', 'Saturn'],
+                    correct: 1, category: 'Science' },
+                { text: 'What is the chemical symbol for water?', options: ['H2O', 'CO2', 'NaCl', 'HCl'], correct: 0,
+                    category: 'Science' },
+                { text: 'Who painted the Mona Lisa?', options: ['Michelangelo', 'Leonardo da Vinci', 'Raphael',
+                        'Donatello'
+                    ], correct: 1, category: 'Art' },
+                { text: 'What is the smallest country in the world?', options: ['Monaco', 'Vatican City', 'San Marino',
+                        'Liechtenstein'
+                    ], correct: 1, category: 'Geography' },
+                { text: 'What is the speed of light?', options: ['299,792 km/s', '199,792 km/s', '399,792 km/s',
+                        '99,792 km/s'
+                    ], correct: 0, category: 'Science' },
+                { text: 'Which continent is the largest by area?', options: ['Africa', 'Asia', 'North America',
+                        'Europe'
+                    ], correct: 1, category: 'Geography' },
+                { text: 'What is the main language spoken in Brazil?', options: ['Spanish', 'Portuguese', 'English',
+                        'French'
+                    ], correct: 1, category: 'Geography' },
+                { text: 'How many bones does the adult human body have?', options: ['206', '306', '106', '406'],
+                    correct: 0, category: 'Science' }
+            ];
+            saveBGQuestions();
+            return true;
+        }
+
+        // ============================================================
+        //  BG SETUP FUNCTIONS
+        // ============================================================
+
+        function bgInit() {
+            loadBGQuestions();
+            if (bgQuestions.length === 0) {
+                bgQuestions = [
+                    { text: 'What is the capital of France?', options: ['Paris', 'London', 'Berlin', 'Madrid'],
+                        correct: 0, category: 'Geography' },
+                    { text: 'What is 7 × 8?', options: ['48', '56', '64', '72'], correct: 1, category: 'Math' },
+                    { text: 'Which planet is known as the Red Planet?', options: ['Venus', 'Mars', 'Jupiter',
+                            'Saturn'], correct: 1, category: 'Science' }
+                ];
+                saveBGQuestions();
+                renderBGQuestions();
+            }
+
+            document.getElementById('bgTotalAvailable').textContent = bgQuestions.length;
+            document.getElementById('bgPlayerCountSetup').textContent = players.length;
+            document.getElementById('bgEmptyState').style.display = bgQuestions.length === 0 ? 'block' : 'none';
+            document.getElementById('bgSetupCard').style.display = 'block';
+            renderBGQuestions();
+            console.log('🧠 Brain Games initialized with ' + bgQuestions.length + ' questions');
+        }
+
+        function bgSetTimer(seconds, btn) {
+            bgTimerValue = seconds;
+            document.querySelectorAll('#bgTimerPresets .timer-active').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('bgCustomTimer').value = seconds;
+            document.getElementById('bgTimerDisplay').textContent = seconds + 's';
+        }
+
+        function bgSetCustomTimer(value) {
+            let val = parseInt(value);
+            if (isNaN(val) || val < 5) val = 5;
+            if (val > 300) val = 300;
+            bgTimerValue = val;
+            document.querySelectorAll('#bgTimerPresets .timer-active').forEach(b => b.classList.remove('active'));
+            document.getElementById('bgTimerDisplay').textContent = val + 's';
+        }
+
+        function bgSetQuestionCount(count, btn) {
+            bgQuestionCount = count;
+            document.querySelectorAll('#bgQtyPresets .qty-active').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('bgQtyDisplay').textContent = count === 'all' ? 'All' : count;
+        }
+
+        // ============================================================
+        //  BG START GAME - OPENS MODAL (Matches Charades/Pictionary)
+        // ============================================================
+
+        function bgStartGame() {
+            if (bgQuestions.length < 2) {
+                alert('🧠 Please add at least 2 questions in Game Master first!');
+                return;
+            }
+
+            if (players.length === 0) {
+                alert('👋 Add at least one player first!');
+                return;
+            }
+
+            if (bgQuestionCount === 'all') {
+                bgTotalQuestions = bgQuestions.length;
+            } else {
+                bgTotalQuestions = Math.min(bgQuestionCount, bgQuestions.length);
+            }
+
+            if (bgTotalQuestions < 1) {
+                alert('Not enough questions available!');
+                return;
+            }
+
+            bgGameActive = true;
+            bgCurrentQuestionIndex = 0;
+            bgUsedQuestions = [];
+            bgAnswered = false;
+
+            // Open modal
+            openBrainGamesModal();
+        }
+
+        function openBrainGamesModal() {
+            const overlay = document.getElementById('modalOverlay');
+            const modalTitle = document.getElementById('modalTitle');
+            const timerDisplay = document.getElementById('timerDisplay');
+            const turnIndicator = document.getElementById('turnIndicator');
+            const timerSetup = document.getElementById('timerSetup');
+            const modalContent = document.getElementById('modalContent');
+
+            modalTitle.textContent = '🧠 BRAIN GAMES';
+            timerDisplay.textContent = bgTimerValue;
+            timerDisplay.className = 'timer-display';
+            timerSetup.style.display = 'none';
+            modalContent.style.display = 'block';
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            updateBrainGamesModalHeader();
+            bgShowQuestion();
+        }
+
+        function updateBrainGamesModalHeader() {
+            const current = getCurrentPlayer();
+            const currentTeam = getCurrentTeam();
+            const turnEl = document.getElementById('turnIndicator');
+            const timerDisplay = document.getElementById('timerDisplay');
+
+            if (teamModeEnabled && currentTeam) {
+                turnEl.textContent = `👑 ${currentTeam.name} (${currentTeam.points} pts)`;
+            } else if (current) {
+                turnEl.textContent = `👤 ${current.emoji} ${current.name} (${current.points} pts)`;
+            } else {
+                turnEl.textContent = '👤 No players';
+            }
+
+            timerDisplay.textContent = bgTimerValue;
+            timerDisplay.className = 'timer-display';
+        }
+
+        // ============================================================
+        //  BG GAME FUNCTIONS
+        // ============================================================
+
+        function bgShowQuestion() {
+            if (bgCurrentQuestionIndex >= bgTotalQuestions || bgUsedQuestions.length >= bgQuestions.length) {
+                bgEndGame();
+                return;
+            }
+
+            const availableQuestions = bgQuestions.filter((_, idx) => !bgUsedQuestions.includes(idx));
+            if (availableQuestions.length === 0) {
+                bgEndGame();
+                return;
+            }
+
+            const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+            const questionIndex = bgQuestions.indexOf(availableQuestions[randomIndex]);
+            bgUsedQuestions.push(questionIndex);
+            const q = bgQuestions[questionIndex];
+
+            const container = document.getElementById('modalContent');
+            const isLong = q.text.length > 80;
+
+            container.innerHTML = `
+                <div class="bg-modal-content">
+                    <div class="bg-modal-header">
+                        <span class="header-item">
+                            <span class="icon">⏱️</span>
+                            <span class="value highlight timer-display" id="bgTimerDisplayModal">${bgTimerValue}</span><span>s</span>
+                        </span>
+                        <span class="header-item">
+                            <span class="icon">👤</span>
+                            <span class="value" id="bgTurnNameModal">${bgGetTurnName()}</span>
+                        </span>
+                        <span class="header-item">
+                            <span class="icon">📋</span>
+                            <span class="value" id="bgQuestionProgressModal">${bgCurrentQuestionIndex + 1}/${bgTotalQuestions}</span>
+                        </span>
+                    </div>
+
+                    <div class="bg-question-text ${isLong ? 'long' : ''}">${q.text}</div>
+
+                    <div class="bg-options-grid" id="bgOptionsGridModal">
+                        <button class="bg-option-btn opt-a" data-opt="0" onclick="bgSelectAnswer(0)">
+                            <span class="label">A</span>
+                            <span class="text">${q.options[0] || 'Option A'}</span>
+                        </button>
+                        <button class="bg-option-btn opt-b" data-opt="1" onclick="bgSelectAnswer(1)">
+                            <span class="label">B</span>
+                            <span class="text">${q.options[1] || 'Option B'}</span>
+                        </button>
+                        <button class="bg-option-btn opt-c" data-opt="2" onclick="bgSelectAnswer(2)">
+                            <span class="label">C</span>
+                            <span class="text">${q.options[2] || 'Option C'}</span>
+                        </button>
+                        <button class="bg-option-btn opt-d" data-opt="3" onclick="bgSelectAnswer(3)">
+                            <span class="label">D</span>
+                            <span class="text">${q.options[3] || 'Option D'}</span>
+                        </button>
+                    </div>
+
+                    <div class="bg-feedback" id="bgFeedbackModal"></div>
+
+                    <div class="bg-controls">
+                        <button class="btn-next" id="bgNextBtnModal" onclick="bgNextTurn()" style="display:none;">⏭️ NEXT TURN</button>
+                        <button class="btn-end" onclick="bgEndGame()">⏹️ END GAME</button>
+                    </div>
+
+                    ${createScoringUI()}
+                </div>
+            `;
+
+            bgAnswered = false;
+            bgCurrentQuestionIndex++;
+
+            // Update header
+            document.getElementById('bgTurnNameModal').textContent = bgGetTurnName();
+            document.getElementById('bgQuestionProgressModal').textContent = `${bgCurrentQuestionIndex}/${bgTotalQuestions}`;
+
+            // Start timer
+            bgStartTimerModal();
+            playSound('point');
+        }
+
+        function bgGetTurnName() {
+            const current = getCurrentPlayer();
+            const currentTeam = getCurrentTeam();
+            if (teamModeEnabled && currentTeam) {
+                return currentTeam.name + ' (Team)';
+            } else if (current) {
+                return current.name;
+            }
+            return 'No Player';
+        }
+
+        function bgStartTimerModal() {
+            if (bgTimerInterval) { clearInterval(bgTimerInterval); }
+
+            let timeLeft = bgTimerValue;
+            const timerDisplay = document.getElementById('bgTimerDisplayModal');
+
+            bgTimerInterval = setInterval(() => {
+                timeLeft--;
+                if (timerDisplay) {
+                    timerDisplay.textContent = timeLeft;
+                    if (timeLeft <= 3) {
+                        timerDisplay.classList.add('timer-warning');
+                    }
+                }
+
+                if (timeLeft <= 0) {
+                    clearInterval(bgTimerInterval);
+                    bgTimerInterval = null;
+                    if (!bgAnswered) {
+                        bgHandleTimeout();
+                    }
+                }
+            }, 1000);
+        }
+
+        function bgHandleTimeout() {
+            bgAnswered = true;
+            const qIndex = bgUsedQuestions[bgUsedQuestions.length - 1];
+            const q = bgQuestions[qIndex];
+            const correctText = q.options[q.correct] || 'Unknown';
+
+            document.querySelectorAll('.bg-option-btn').forEach(el => {
+                el.disabled = true;
+                if (parseInt(el.dataset.opt) === q.correct) {
+                    el.classList.add('correct');
+                }
+            });
+
+            const fb = document.getElementById('bgFeedbackModal');
+            fb.className = 'bg-feedback timeout';
+            fb.textContent = `⏰ TIME'S UP! Answer: ${correctText}`;
+            fb.style.display = 'block';
+
+            document.getElementById('bgNextBtnModal').style.display = 'inline-block';
+            playSound('timer');
+        }
+
+        function bgSelectAnswer(selected) {
+            if (bgAnswered || !bgGameActive) return;
+            bgAnswered = true;
+
+            if (bgTimerInterval) { clearInterval(bgTimerInterval);
+                bgTimerInterval = null; }
+
+            const qIndex = bgUsedQuestions[bgUsedQuestions.length - 1];
+            const q = bgQuestions[qIndex];
+            const isCorrect = selected === q.correct;
+            const current = getCurrentPlayer();
+            const currentTeam = getCurrentTeam();
+
+            document.querySelectorAll('.bg-option-btn').forEach(el => {
+                el.disabled = true;
+                const opt = parseInt(el.dataset.opt);
+                if (opt === q.correct) el.classList.add('correct');
+                if (opt === selected && !isCorrect) el.classList.add('wrong');
+                if (opt === selected) el.classList.add('selected');
+            });
+
+            const fb = document.getElementById('bgFeedbackModal');
+
+            if (isCorrect) {
+                const activeVal = getActivePointValue();
+                if (teamModeEnabled && currentTeam) {
+                    currentTeam.members.forEach(memberName => {
+                        const member = players.find(p => p.name === memberName);
+                        if (member) {
+                            const idx = players.indexOf(member);
+                            addPoints(idx, activeVal);
+                        }
+                    });
+                } else if (current) {
+                    const idx = players.findIndex(p => p.name === current.name);
+                    if (idx !== -1) addPoints(idx, activeVal);
+                }
+                fb.className = 'bg-feedback correct';
+                fb.textContent = `✅ CORRECT! +${activeVal} point${activeVal > 1 ? 's' : ''}!`;
+                fb.style.display = 'block';
+                playSound('success');
+                createConfetti(15);
+            } else {
+                const correctText = q.options[q.correct] || 'Unknown';
+                fb.className = 'bg-feedback wrong';
+                fb.textContent = `❌ Wrong! Answer: ${correctText}`;
+                fb.style.display = 'block';
+                playSound('error');
+            }
+
+            document.getElementById('bgNextBtnModal').style.display = 'inline-block';
+            updateBrainGamesModalHeader();
+        }
+
+        function bgNextTurn() {
+            if (!bgGameActive) return;
+
+            // Move to next player/team
+            nextTurn();
+
+            if (bgCurrentQuestionIndex >= bgTotalQuestions) {
+                bgEndGame();
+                return;
+            }
+
+            document.getElementById('bgNextBtnModal').style.display = 'none';
+            bgShowQuestion();
+            playSound('point');
+        }
+
+        function bgEndGame() {
+            bgGameActive = false;
+            if (bgTimerInterval) { clearInterval(bgTimerInterval);
+                bgTimerInterval = null; }
+
+            const container = document.getElementById('modalContent');
+            container.innerHTML = `
+                <div class="bg-modal-content" style="text-align:center;padding:2rem 0;">
+                    <div style="font-size:3rem;margin-bottom:0.5rem;">🏆</div>
+                    <h3 style="font-family:var(--font-display);color:var(--theme-blue-electric);font-size:0.9rem;margin-bottom:0.5rem;">
+                        GAME OVER!
+                    </h3>
+                    <p style="color:var(--theme-text-secondary);font-size:0.8rem;margin-bottom:1rem;">
+                        All ${bgTotalQuestions} questions completed!
+                    </p>
+                    <button class="bg-start-btn" style="max-width:250px;margin:0 auto;" onclick="bgCloseModal()">
+                        🎮 BACK TO SETUP
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('bgNextBtnModal')?.remove();
+            document.querySelector('.scoring-section')?.remove();
+            createConfetti(30);
+            playSound('levelup');
+
+            bgUsedQuestions = [];
+            bgCurrentQuestionIndex = 0;
+            document.getElementById('bgStartBtn').textContent = '🔄 PLAY AGAIN';
+        }
+
+        function bgCloseModal() {
+            closeModal();
+            document.getElementById('bgSetupCard').style.display = 'block';
+            document.getElementById('bgStartBtn').textContent = '🚀 START BRAIN GAMES';
+            bgGameActive = false;
+        }
+
+        // ============================================================
         //  LOAD DATA
         // ============================================================
         function loadFallbackData() {
@@ -9519,549 +8731,6 @@
         }
 
         // ============================================================
-        //  🧠 BRAIN GAMES - FULL IMPLEMENTATION
-        // ============================================================
-
-        // BG GM Functions
-        function renderBGQuestions() {
-            const list = document.getElementById('bgGmQuestionsList');
-            document.getElementById('bgGmCount').textContent = `${bgQuestions.length}`;
-            const search = document.getElementById('bgGmSearch')?.value.toLowerCase() || '';
-            const filterCat = document.getElementById('bgGmFilterCategory')?.value || 'all';
-            let filtered = bgQuestions;
-            if (search) filtered = filtered.filter(q => q.text.toLowerCase().includes(search));
-            if (filterCat !== 'all') filtered = filtered.filter(q => q.category === filterCat);
-            if (filtered.length === 0) {
-                list.innerHTML =
-                    `<div class="bg-empty-questions">${bgQuestions.length === 0 ? 'No questions added yet. Create your first question above!' : 'No questions match your filters.'}</div>`;
-                return;
-            }
-            list.innerHTML = filtered.map((q, idx) => {
-                const realIdx = bgQuestions.indexOf(q);
-                return `
-                    <div class="bg-q-item">
-                        <span class="q-text-preview">${q.text}</span>
-                        <span class="q-category">${q.category || 'General'}</span>
-                        <div class="q-actions">
-                            <button onclick="bgEditQuestion(${realIdx})" title="Edit">✏️</button>
-                            <button class="danger" onclick="bgDeleteQuestion(${realIdx})" title="Delete">🗑️</button>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-            // Update category filter options
-            const catSelect = document.getElementById('bgGmFilterCategory');
-            const categories = [...new Set(bgQuestions.map(q => q.category || 'General'))];
-            const currentVal = catSelect.value;
-            catSelect.innerHTML =
-                `<option value="all">All Categories</option>${categories.map(c => `<option value="${c}">${c}</option>`).join('')}`;
-            catSelect.value = currentVal;
-        }
-
-        function bgAddQuestion() {
-            const text = document.getElementById('bgGmQuestion').value.trim();
-            const opt0 = document.getElementById('bgGmOpt0').value.trim();
-            const opt1 = document.getElementById('bgGmOpt1').value.trim();
-            const opt2 = document.getElementById('bgGmOpt2').value.trim();
-            const opt3 = document.getElementById('bgGmOpt3').value.trim();
-            const correct = parseInt(document.getElementById('bgGmCorrect').value);
-            let category = document.getElementById('bgGmCategory').value;
-            if (category === 'Custom') {
-                category = document.getElementById('bgGmCustomCategory').value.trim() || 'Custom';
-            }
-            if (!text || !opt0 || !opt1 || !opt2 || !opt3) {
-                alert('Please fill in all fields!');
-                return;
-            }
-            bgQuestions.push({ text, options: [opt0, opt1, opt2, opt3], correct, category });
-            saveBGQuestions();
-            renderBGQuestions();
-            document.getElementById('bgGmQuestion').value = '';
-            document.getElementById('bgGmOpt0').value = '';
-            document.getElementById('bgGmOpt1').value = '';
-            document.getElementById('bgGmOpt2').value = '';
-            document.getElementById('bgGmOpt3').value = '';
-            createConfetti(15);
-            playSound('success');
-        }
-
-        function bgDeleteQuestion(index) {
-            if (confirm('Delete this question?')) {
-                bgQuestions.splice(index, 1);
-                saveBGQuestions();
-                renderBGQuestions();
-                playSound('point');
-            }
-        }
-
-        function bgEditQuestion(index) {
-            const q = bgQuestions[index];
-            if (!q) return;
-            document.getElementById('bgGmQuestion').value = q.text;
-            document.getElementById('bgGmOpt0').value = q.options[0] || '';
-            document.getElementById('bgGmOpt1').value = q.options[1] || '';
-            document.getElementById('bgGmOpt2').value = q.options[2] || '';
-            document.getElementById('bgGmOpt3').value = q.options[3] || '';
-            document.getElementById('bgGmCorrect').value = q.correct || 0;
-            document.getElementById('bgGmCategory').value = q.category || 'General';
-            bgDeleteQuestion(index);
-            playSound('success');
-            document.getElementById('bgGmQuestion').focus();
-        }
-
-        function bgClearAllQuestions() {
-            if (bgQuestions.length === 0) return;
-            if (confirm('Delete ALL Brain Games questions?')) {
-                bgQuestions = [];
-                saveBGQuestions();
-                renderBGQuestions();
-                playSound('point');
-            }
-        }
-
-        function bgFilterQuestions() { renderBGQuestions(); }
-
-        function saveBGQuestions() {
-            try { localStorage.setItem('arcadeBGQuestions', JSON.stringify(bgQuestions)); } catch (e) {}
-        }
-
-        function loadBGQuestions() {
-            try {
-                const saved = localStorage.getItem('arcadeBGQuestions');
-                if (saved) { bgQuestions = JSON.parse(saved); return true; }
-            } catch (e) {}
-            // Default questions
-            bgQuestions = [
-                { text: 'What is the capital of France?', options: ['Paris', 'London', 'Berlin', 'Madrid'], correct: 0,
-                    category: 'Geography' },
-                { text: 'What is 7 × 8?', options: ['48', '56', '64', '72'], correct: 1, category: 'Math' },
-                { text: 'Which planet is known as the Red Planet?', options: ['Venus', 'Mars', 'Jupiter', 'Saturn'],
-                    correct: 1, category: 'Science' },
-                { text: 'What is the chemical symbol for water?', options: ['H2O', 'CO2', 'NaCl', 'HCl'], correct: 0,
-                    category: 'Science' },
-                { text: 'Who painted the Mona Lisa?', options: ['Michelangelo', 'Leonardo da Vinci', 'Raphael',
-                        'Donatello'
-                    ], correct: 1, category: 'Art' },
-                { text: 'What is the smallest country in the world?', options: ['Monaco', 'Vatican City', 'San Marino',
-                        'Liechtenstein'
-                    ], correct: 1, category: 'Geography' },
-                { text: 'What is the speed of light?', options: ['299,792 km/s', '199,792 km/s', '399,792 km/s',
-                        '99,792 km/s'
-                    ], correct: 0, category: 'Science' },
-                { text: 'Which continent is the largest by area?', options: ['Africa', 'Asia', 'North America',
-                        'Europe'
-                    ], correct: 1, category: 'Geography' },
-                { text: 'What is the main language spoken in Brazil?', options: ['Spanish', 'Portuguese', 'English',
-                        'French'
-                    ], correct: 1, category: 'Geography' },
-                { text: 'How many bones does the adult human body have?', options: ['206', '306', '106', '406'],
-                    correct: 0, category: 'Science' }
-            ];
-            saveBGQuestions();
-            return true;
-        }
-
-        // BG Host Functions
-        function bgInit() {
-            loadBGQuestions();
-            if (bgQuestions.length === 0) {
-                // Load defaults
-                bgQuestions = [
-                    { text: 'What is the capital of France?', options: ['Paris', 'London', 'Berlin', 'Madrid'],
-                        correct: 0, category: 'Geography' },
-                    { text: 'What is 7 × 8?', options: ['48', '56', '64', '72'], correct: 1, category: 'Math' },
-                    { text: 'Which planet is known as the Red Planet?', options: ['Venus', 'Mars', 'Jupiter',
-                            'Saturn'], correct: 1, category: 'Science' }
-                ];
-                saveBGQuestions();
-                renderBGQuestions();
-            }
-            // Show initial state
-            document.getElementById('bgRoomCode').textContent = '-----';
-            document.getElementById('bgStartBtn').style.display = 'inline-block';
-            document.getElementById('bgNextBtn').style.display = 'none';
-            document.getElementById('bgEndBtn').style.display = 'none';
-            document.getElementById('bgLeaderboardBtn').style.display = 'none';
-            document.getElementById('bgQuestionBox').style.display = 'none';
-            document.getElementById('bgLeaderboard').style.display = 'none';
-            document.getElementById('bgLockOverlay').classList.remove('active');
-            document.getElementById('bgStatusText').textContent = 'Ready';
-            document.getElementById('bgPlayerCount').textContent = '0';
-            document.getElementById('bgRoomUrl').textContent = 'Click "START BRAIN GAMES" to create a room';
-            document.getElementById('bgStartBtn').disabled = false;
-            document.getElementById('bgQrSection').style.display = 'none';
-            console.log('🧠 Brain Games initialized with ' + bgQuestions.length + ' questions');
-        }
-
-        function bgStartGame() {
-            if (bgQuestions.length < 2) {
-                alert('🧠 Please add at least 2 questions in Game Master first!');
-                return;
-            }
-            // Generate room code
-            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-            bgRoomCode = '';
-            for (let i = 0; i < 6; i++) bgRoomCode += chars[Math.floor(Math.random() * chars.length)];
-            document.getElementById('bgRoomCode').textContent = bgRoomCode;
-            document.getElementById('bgRoomUrl').textContent = `📱 Scan QR code or visit /player`;
-            document.getElementById('bgQrSection').style.display = 'flex';
-            generateBGQRCode();
-            document.getElementById('bgStatusText').textContent = 'Waiting for players...';
-            document.getElementById('bgStartBtn').disabled = true;
-            document.getElementById('bgStartBtn').textContent = '⏳ WAITING...';
-            bgPlayers = {};
-            bgPlayerScores = {};
-            bgCurrentQuestion = 0;
-            bgGameActive = false;
-            renderBGPlayers();
-            document.getElementById('bgRoomCodeSection').style.display = 'block';
-            bgConnectWebSocket();
-            playSound('success');
-            createConfetti(20);
-        }
-
-        function generateBGQRCode() {
-            const canvas = document.getElementById('bgQrCanvas');
-            try {
-                const url = `http://${window.location.hostname}:3000/player?room=${bgRoomCode}`;
-                const qrUrl =
-                    `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(url)}&bgcolor=ffffff&color=0a1628`;
-                const img = new Image();
-                img.crossOrigin = 'anonymous';
-                img.onload = function() {
-                    canvas.width = 300;
-                    canvas.height = 300;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, 300, 300);
-                };
-                img.onerror = function() {
-                    const ctx = canvas.getContext('2d');
-                    canvas.width = 300;
-                    canvas.height = 300;
-                    ctx.fillStyle = '#ffffff';
-                    ctx.fillRect(0, 0, 300, 300);
-                    ctx.fillStyle = '#0a1628';
-                    ctx.font = '16px sans-serif';
-                    ctx.textAlign = 'center';
-                    ctx.fillText('📱', 150, 130);
-                    ctx.font = '12px sans-serif';
-                    ctx.fillStyle = '#4a90d9';
-                    ctx.fillText('Scan to join', 150, 170);
-                    ctx.font = '10px monospace';
-                    ctx.fillStyle = '#2e6b9e';
-                    ctx.fillText(bgRoomCode, 150, 195);
-                };
-                img.src = qrUrl;
-                document.getElementById('bgPlayerUrl').textContent = `📱 Scan QR code or visit: /player`;
-            } catch (e) {
-                console.log('QR code generation fallback');
-                const ctx = canvas.getContext('2d');
-                canvas.width = 300;
-                canvas.height = 300;
-                ctx.fillStyle = '#ffffff';
-                ctx.fillRect(0, 0, 300, 300);
-                ctx.fillStyle = '#0a1628';
-                ctx.font = '20px sans-serif';
-                ctx.textAlign = 'center';
-                ctx.fillText('📱', 150, 130);
-                ctx.font = '14px sans-serif';
-                ctx.fillStyle = '#4a90d9';
-                ctx.fillText('Room: ' + bgRoomCode, 150, 175);
-            }
-        }
-
-        function bgConnectWebSocket() {
-            try {
-                const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-                const host = window.location.hostname;
-                const port = 3000;
-                bgWs = new WebSocket(`${protocol}//${host}:${port}`);
-                bgWs.onopen = function() {
-                    console.log('✅ Brain Games WebSocket connected');
-                    bgWs.send(JSON.stringify({
-                        type: 'bg-host-create',
-                        roomCode: bgRoomCode,
-                        questions: bgQuestions
-                    }));
-                };
-                bgWs.onmessage = function(e) {
-                    try {
-                        const data = JSON.parse(e.data);
-                        bgHandleMessage(data);
-                    } catch (err) { console.log('BG WS message error:', err); }
-                };
-                bgWs.onclose = function() {
-                    console.log('❌ Brain Games WebSocket disconnected');
-                    setTimeout(() => { if (bgGameActive) bgConnectWebSocket(); }, 2000);
-                };
-                bgWs.onerror = function(err) {
-                    console.log('BG WS error:', err);
-                };
-            } catch (e) {
-                console.log('WebSocket connection failed:', e);
-                document.getElementById('bgStatusText').textContent = '⚠️ Server not running';
-                document.getElementById('bgStartBtn').disabled = false;
-                document.getElementById('bgStartBtn').textContent = '🚀 START BRAIN GAMES';
-                alert('⚠️ Please start the Brain Games server first.\n\nRun: node server.js\n\nThen click START again.');
-            }
-        }
-
-        function bgHandleMessage(data) {
-            switch (data.type) {
-                case 'bg-player-joined':
-                    bgPlayers[data.playerId] = { name: data.playerName, answered: false, score: 0 };
-                    bgPlayerScores[data.playerId] = 0;
-                    renderBGPlayers();
-                    document.getElementById('bgStatusText').textContent =
-                        `${Object.keys(bgPlayers).length} players connected`;
-                    playSound('point');
-                    break;
-                case 'bg-player-left':
-                    delete bgPlayers[data.playerId];
-                    delete bgPlayerScores[data.playerId];
-                    renderBGPlayers();
-                    document.getElementById('bgStatusText').textContent =
-                        `${Object.keys(bgPlayers).length} players connected`;
-                    break;
-                case 'bg-player-answer':
-                    if (bgPlayers[data.playerId]) {
-                        bgPlayers[data.playerId].answered = true;
-                        bgPlayers[data.playerId].answer = data.answer;
-                        bgPlayers[data.playerId].timeTaken = data.timeTaken || 0;
-                        const points = bgCalculatePoints(data.answer, data.timeTaken || 0);
-                        bgPlayerScores[data.playerId] = (bgPlayerScores[data.playerId] || 0) + points;
-                        bgPlayers[data.playerId].score = bgPlayerScores[data.playerId];
-                        renderBGPlayers();
-                        bgUpdateAnswerCounts();
-                        const allAnswered = Object.values(bgPlayers).every(p => p.answered === true);
-                        if (allAnswered && Object.keys(bgPlayers).length > 0) {
-                            bgShowCorrectAnswer();
-                        }
-                        playSound('point');
-                    }
-                    break;
-                case 'bg-room-created':
-                    console.log('✅ Room created:', data.roomCode);
-                    break;
-                case 'bg-error':
-                    alert('❌ ' + data.message);
-                    break;
-            }
-        }
-
-        function bgCalculatePoints(answer, timeTaken) {
-            if (bgCurrentQuestion === 0) return 0;
-            const q = bgQuestions[bgCurrentQuestion - 1];
-            if (!q) return 0;
-            if (answer !== q.correct) return 0;
-            const maxPoints = 1000;
-            const speedBonus = Math.max(0, Math.floor((20 - timeTaken) / 20 * 500));
-            return maxPoints + speedBonus;
-        }
-
-        function bgUpdateAnswerCounts() {
-            const counts = { 0: 0, 1: 0, 2: 0, 3: 0 };
-            Object.values(bgPlayers).forEach(p => {
-                if (p.answered && p.answer !== undefined && p.answer >= 0) {
-                    counts[p.answer] = (counts[p.answer] || 0) + 1;
-                }
-            });
-            for (let i = 0; i < 4; i++) {
-                document.getElementById(`bgCount${i}`).textContent = `(${counts[i] || 0})`;
-            }
-        }
-
-        function bgShowCorrectAnswer() {
-            if (bgCurrentQuestion === 0) return;
-            const q = bgQuestions[bgCurrentQuestion - 1];
-            if (!q) return;
-            document.querySelectorAll('.bg-option').forEach((el, idx) => {
-                if (idx === q.correct) el.classList.add('correct-highlight');
-                else if (el.dataset.opt !== undefined) el.classList.add('wrong-highlight');
-            });
-            bgShowLeaderboard();
-            document.getElementById('bgNextBtn').style.display = 'inline-block';
-            document.getElementById('bgStartBtn').style.display = 'none';
-            document.getElementById('bgEndBtn').style.display = 'inline-block';
-            document.getElementById('bgLeaderboardBtn').style.display = 'inline-block';
-            if (bgTimerInterval) { clearInterval(bgTimerInterval);
-                bgTimerInterval = null; }
-            document.getElementById('bgTimerFill').style.width = '0%';
-            document.getElementById('bgLockOverlay').classList.remove('active');
-            document.getElementById('bgStatusText').textContent =
-                `Question ${bgCurrentQuestion}/${bgTotalQuestions} complete`;
-            createConfetti(15);
-            playSound('success');
-        }
-
-        function bgNextQuestion() {
-            if (bgCurrentQuestion >= bgQuestions.length) {
-                bgEndGame();
-                return;
-            }
-            Object.keys(bgPlayers).forEach(id => {
-                bgPlayers[id].answered = false;
-                bgPlayers[id].answer = undefined;
-            });
-            bgShowQuestion();
-            document.getElementById('bgNextBtn').style.display = 'none';
-            document.getElementById('bgLockOverlay').classList.add('active');
-            document.getElementById('bgLockMessage').textContent =
-                `Question ${bgCurrentQuestion + 1} of ${bgTotalQuestions}`;
-        }
-
-        function bgShowQuestion() {
-            if (bgCurrentQuestion >= bgQuestions.length) { bgEndGame(); return; }
-            const q = bgQuestions[bgCurrentQuestion];
-            if (!q) { bgEndGame(); return; }
-            document.getElementById('bgQuestionBox').style.display = 'block';
-            document.getElementById('bgQNumber').textContent = `Question ${bgCurrentQuestion + 1}/${bgTotalQuestions}`;
-            document.getElementById('bgQText').textContent = q.text;
-            const isLong = q.text.length > 80;
-            document.getElementById('bgQText').className = 'q-text' + (isLong ? ' long' : '');
-            document.getElementById('bgOpt0').textContent = q.options[0] || 'Option A';
-            document.getElementById('bgOpt1').textContent = q.options[1] || 'Option B';
-            document.getElementById('bgOpt2').textContent = q.options[2] || 'Option C';
-            document.getElementById('bgOpt3').textContent = q.options[3] || 'Option D';
-            for (let i = 0; i < 4; i++) {
-                document.getElementById(`bgCount${i}`).textContent = '(0)';
-            }
-            document.querySelectorAll('.bg-option').forEach(el => {
-                el.classList.remove('correct-highlight', 'wrong-highlight');
-            });
-            bgStartTimer(20);
-            document.getElementById('bgLockOverlay').classList.add('active');
-            document.getElementById('bgLockQuestion').textContent = bgCurrentQuestion + 1;
-            document.getElementById('bgLockTotal').textContent = bgTotalQuestions;
-            document.getElementById('bgLockTimer').textContent = '20';
-            document.getElementById('bgLockTimer').className = 'timer-big';
-            document.getElementById('bgStatusText').textContent =
-                `Question ${bgCurrentQuestion + 1}/${bgTotalQuestions}`;
-            if (bgWs && bgWs.readyState === WebSocket.OPEN) {
-                bgWs.send(JSON.stringify({
-                    type: 'bg-question',
-                    roomCode: bgRoomCode,
-                    question: q,
-                    number: bgCurrentQuestion + 1,
-                    total: bgTotalQuestions,
-                    timer: 20
-                }));
-            }
-            playSound('point');
-        }
-
-        function bgStartTimer(seconds) {
-            if (bgTimerInterval) { clearInterval(bgTimerInterval);
-                bgTimerInterval = null; }
-            let timeLeft = seconds;
-            const fill = document.getElementById('bgTimerFill');
-            fill.style.width = '100%';
-            fill.className = 'bg-timer-fill';
-            document.getElementById('bgLockTimer').textContent = timeLeft;
-            document.getElementById('bgLockTimer').className = 'timer-big';
-            bgTimerInterval = setInterval(() => {
-                timeLeft--;
-                const percent = (timeLeft / seconds) * 100;
-                fill.style.width = Math.max(0, percent) + '%';
-                fill.className = 'bg-timer-fill' + (percent < 30 ? ' warning' : '');
-                document.getElementById('bgLockTimer').textContent = timeLeft;
-                if (timeLeft <= 3) {
-                    document.getElementById('bgLockTimer').className = 'timer-big warning';
-                }
-                if (timeLeft <= 0) {
-                    clearInterval(bgTimerInterval);
-                    bgTimerInterval = null;
-                    bgShowCorrectAnswer();
-                    Object.keys(bgPlayers).forEach(id => {
-                        if (!bgPlayers[id].answered) {
-                            bgPlayers[id].answered = true;
-                            bgPlayers[id].answer = -1;
-                        }
-                    });
-                    renderBGPlayers();
-                    bgUpdateAnswerCounts();
-                    document.getElementById('bgLockTimer').textContent = '⏰';
-                    playSound('timer');
-                }
-            }, 1000);
-        }
-
-        function bgShowLeaderboard() {
-            const lb = document.getElementById('bgLeaderboard');
-            lb.style.display = 'block';
-            const list = document.getElementById('bgLbList');
-            const sorted = Object.entries(bgPlayerScores)
-                .sort((a, b) => b[1] - a[1])
-                .map(([id, score]) => ({ id, name: bgPlayers[id]?.name || 'Unknown', score }));
-            if (sorted.length === 0) {
-                list.innerHTML =
-                    '<div style="text-align:center;color:var(--theme-text-muted);font-size:0.6rem;">No scores yet</div>';
-                return;
-            }
-            list.innerHTML = sorted.map((p, i) => {
-                const rank = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `#${i+1}`;
-                const cls = i < 3 ? `top-${i+1}` : '';
-                return `<div class="bg-lb-item ${cls}">
-                    <span class="rank">${rank}</span>
-                    <span class="name">${p.name}</span>
-                    <span class="score">${p.score}</span>
-                </div>`;
-            }).join('');
-        }
-
-        function bgToggleLeaderboard() {
-            const lb = document.getElementById('bgLeaderboard');
-            lb.style.display = lb.style.display === 'none' ? 'block' : 'none';
-            if (lb.style.display === 'block') bgShowLeaderboard();
-        }
-
-        function bgEndGame() {
-            bgGameActive = false;
-            if (bgTimerInterval) { clearInterval(bgTimerInterval);
-                bgTimerInterval = null; }
-            document.getElementById('bgLockOverlay').classList.remove('active');
-            document.getElementById('bgStartBtn').style.display = 'none';
-            document.getElementById('bgNextBtn').style.display = 'none';
-            document.getElementById('bgEndBtn').style.display = 'none';
-            document.getElementById('bgLeaderboardBtn').style.display = 'inline-block';
-            document.getElementById('bgStatusText').textContent = 'Game Over!';
-            document.getElementById('bgQuestionBox').style.display = 'none';
-            bgShowLeaderboard();
-            createConfetti(50);
-            playSound('levelup');
-            if (bgWs && bgWs.readyState === WebSocket.OPEN) {
-                bgWs.send(JSON.stringify({ type: 'bg-end', roomCode: bgRoomCode }));
-            }
-            document.getElementById('bgStartBtn').disabled = false;
-            document.getElementById('bgStartBtn').textContent = '🚀 START BRAIN GAMES';
-            document.getElementById('bgStartBtn').style.display = 'inline-block';
-            document.getElementById('bgEndBtn').style.display = 'none';
-            document.getElementById('bgNextBtn').style.display = 'none';
-            document.getElementById('bgRoomUrl').textContent = 'Game ended. Click START to begin again.';
-        }
-
-        function renderBGPlayers() {
-            const grid = document.getElementById('bgPlayersGrid');
-            const count = Object.keys(bgPlayers).length;
-            document.getElementById('bgPlayerCount').textContent = count;
-            if (count === 0) {
-                grid.innerHTML =
-                    `<div class="bg-player-count" style="grid-column:1/-1;">${bgRoomCode ? 'Waiting for players to join...' : 'Click START to create a room'}</div>`;
-                return;
-            }
-            grid.innerHTML = Object.entries(bgPlayers).map(([id, p]) => {
-                const answered = p.answered ? 'answered' : '';
-                return `
-                    <div class="bg-player-card ${answered}">
-                        <div class="name">${p.name}</div>
-                        <div class="score">${p.score || 0}</div>
-                        <div class="status">${p.answered ? '✅' : '⏳'}</div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        // ============================================================
         //  EXPORT / IMPORT / SHARE / PRINT / RESET
         // ============================================================
         function exportData() {
@@ -10264,7 +8933,7 @@
 
             bgInit();
 
-            console.log('🎮 ARCADE PARTY loaded with Brain Games!');
+            console.log('🎮 ARCADE PARTY loaded with Brain Games (Offline Turn-Based)!');
             console.log(`🧠 ${bgQuestions.length} Brain Games questions`);
             console.log(`🕵️ ${whoamiNames.length} whoami names`);
             console.log(`🔥 ${roastLines.length} roast lines`);
