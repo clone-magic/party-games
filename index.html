@@ -4514,6 +4514,13 @@
                 "2Baba", "D'banj", "Don Jazzy", "Yemi Alade", "Flavour",
                 "Spider-Man", "Batman", "Superman", "Iron Man", "Black Panther",
                 "Wonder Woman", "Hulk", "Thor", "Captain America", "Deadpool"
+            ],
+            brainGames: [
+                { text: "What is the capital of France?", options: ["Paris", "London", "Berlin", "Madrid"], correct: 0, category: "Geography" },
+                { text: "What is 7 × 8?", options: ["48", "56", "64", "72"], correct: 1, category: "Math" },
+                { text: "Which planet is known as the Red Planet?", options: ["Venus", "Mars", "Jupiter", "Saturn"], correct: 1, category: "Science" },
+                { text: "What is the chemical symbol for water?", options: ["H2O", "CO2", "NaCl", "HCl"], correct: 0, category: "Science" },
+                { text: "Who painted the Mona Lisa?", options: ["Michelangelo", "Leonardo da Vinci", "Raphael", "Donatello"], correct: 1, category: "Art" }
             ]
         };
 
@@ -8205,7 +8212,7 @@
         }
 
         // ============================================================
-        //  LOAD DATA
+        //  LOAD DATA - UPDATED WITH BRAIN GAMES
         // ============================================================
         function loadFallbackData() {
             console.log('📥 Using fallback data for testing');
@@ -8218,7 +8225,15 @@
             truthLieData.lies = [...FALLBACK_DATA.lies];
             roastLines = [...FALLBACK_DATA.roasts];
             whoamiNames = [...FALLBACK_DATA.whoami];
-            console.log(`✅ Fallback data loaded: ${charadesWords.length} charades, ${whoamiNames.length} whoami, ${roastLines.length} roasts`);
+            
+            // 🧠 Load Brain Games from fallback
+            if (FALLBACK_DATA.brainGames && FALLBACK_DATA.brainGames.length > 0) {
+                bgQuestions = [...FALLBACK_DATA.brainGames];
+                saveBGQuestions();
+                console.log(`🧠 Loaded ${bgQuestions.length} Brain Games from fallback`);
+            }
+            
+            console.log(`✅ Fallback data loaded: ${charadesWords.length} charades, ${whoamiNames.length} whoami, ${roastLines.length} roasts, ${bgQuestions.length} brain games`);
         }
 
         async function loadData() {
@@ -8231,6 +8246,7 @@
 
                 console.log('📥 Raw data loaded:', Object.keys(data));
 
+                // Load all game data
                 charadesWords = data.charades || [];
                 karaokeSongs = data.karaoke || [];
                 fastTalkCategories = data.fastTalk || [];
@@ -8240,18 +8256,38 @@
                 roastLines = data.roasts || [];
                 whoamiNames = data.whoami || data.whoAmI || [];
 
+                // 🧠 LOAD BRAIN GAMES FROM data.json
+                if (data.brainGames && data.brainGames.length > 0) {
+                    bgQuestions = data.brainGames;
+                    saveBGQuestions();
+                    console.log(`🧠 Loaded ${bgQuestions.length} Brain Games from data.json`);
+                } else if (data.bgQuestions && data.bgQuestions.length > 0) {
+                    bgQuestions = data.bgQuestions;
+                    saveBGQuestions();
+                    console.log(`🧠 Loaded ${bgQuestions.length} Brain Games from data.json (bgQuestions field)`);
+                } else {
+                    console.log('🧠 No Brain Games found in data.json, using localStorage or fallback');
+                    if (!loadBGQuestions()) {
+                        // If no localStorage either, use defaults
+                        bgQuestions = [
+                            { text: 'What is the capital of France?', options: ['Paris', 'London', 'Berlin', 'Madrid'], correct: 0, category: 'Geography' },
+                            { text: 'What is 7 × 8?', options: ['48', '56', '64', '72'], correct: 1, category: 'Math' },
+                            { text: 'Which planet is known as the Red Planet?', options: ['Venus', 'Mars', 'Jupiter', 'Saturn'], correct: 1, category: 'Science' }
+                        ];
+                        saveBGQuestions();
+                    }
+                }
+
+                // Load Hangman
                 if (data.hangman && typeof data.hangman === 'object' && data.hangman.easy) {
                     hangmanWords = data.hangman;
                 } else if (Array.isArray(data.hangman)) {
                     const words = data.hangman;
                     const total = words.length;
                     const easy = words.slice(0, Math.floor(total * 0.3)).map(w => ({ word: w, definition: 'Guess the word!' }));
-                    const medium = words.slice(Math.floor(total * 0.3), Math.floor(total * 0.6)).map(w => ({ word: w,
-                        definition: 'Guess the word!' }));
-                    const hard = words.slice(Math.floor(total * 0.6), Math.floor(total * 0.85)).map(w => ({ word: w,
-                        definition: 'Guess the word!' }));
-                    const expert = words.slice(Math.floor(total * 0.85)).map(w => ({ word: w,
-                        definition: 'Guess the word!' }));
+                    const medium = words.slice(Math.floor(total * 0.3), Math.floor(total * 0.6)).map(w => ({ word: w, definition: 'Guess the word!' }));
+                    const hard = words.slice(Math.floor(total * 0.6), Math.floor(total * 0.85)).map(w => ({ word: w, definition: 'Guess the word!' }));
+                    const expert = words.slice(Math.floor(total * 0.85)).map(w => ({ word: w, definition: 'Guess the word!' }));
                     hangmanWords = { easy, medium, hard, expert };
                 } else {
                     hangmanWords = JSON.parse(JSON.stringify(FALLBACK_DATA.hangman));
@@ -8261,17 +8297,14 @@
                 console.log(`🎭 ${charadesWords.length} charades words`);
                 console.log(`🎤 ${karaokeSongs.length} karaoke songs`);
                 console.log(`🧩 ${hangmanWords.easy?.length || 0} easy, ${hangmanWords.medium?.length || 0} medium, ${hangmanWords.hard?.length || 0} hard, ${hangmanWords.expert?.length || 0} expert hangman words`);
-                console.log(`🎨 ${pictionaryWords.length} pictionary words`);
-                console.log(`⏱️ ${fastTalkCategories.length} fast talk categories`);
-                console.log(`🤥 ${truthLieData.truths.length} truths + ${truthLieData.lies.length} lies`);
-                console.log(`🔥 ${roastLines.length} roast lines`);
-                console.log(`🕵️ ${whoamiNames.length} whoami names`);
+                console.log(`🧠 ${bgQuestions.length} brain games questions`);
 
                 saveGMData();
                 renderGameGrid();
                 renderAll();
                 renderGMData();
                 renderThemes();
+                if (typeof renderBGQuestions === 'function') renderBGQuestions();
                 return true;
             } catch (error) {
                 console.warn('❌ Error loading data.json:', error);
@@ -8919,7 +8952,12 @@
             }
 
             if (bgQuestions.length === 0) {
-                loadBGQuestions();
+                // Try loading from data.json first
+                await loadData();
+                // If still empty, use fallback
+                if (bgQuestions.length === 0) {
+                    loadBGQuestions();
+                }
             }
 
             renderGameGrid();
