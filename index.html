@@ -1733,6 +1733,7 @@
             margin-bottom: 0.6rem;
             padding-bottom: 0.5rem;
             border-bottom: 2px solid var(--theme-border-color);
+            position: relative;
         }
 
         .modal-box .game-header h2 {
@@ -1742,6 +1743,7 @@
             align-items: center;
             gap: 0.4rem;
             color: var(--theme-blue-electric);
+            flex: 0 0 auto;
         }
 
         .modal-box .game-header .game-info {
@@ -1749,8 +1751,8 @@
             align-items: center;
             gap: 0.8rem;
             flex-wrap: wrap;
+            justify-content: center;
             flex: 1;
-            justify-content: flex-end;
         }
 
         .modal-box .game-header .game-info .turn-indicator {
@@ -3497,7 +3499,7 @@
             padding: 2rem;
         }
 
-        /* Brain Games Modal - MATCHES OTHER GAMES NOW */
+        /* Brain Games Modal */
         .bg-modal-content {
             padding: 0.2rem 0;
         }
@@ -4033,6 +4035,7 @@
                 padding-bottom: 0.3rem;
                 margin-bottom: 0.3rem;
                 flex-wrap: wrap;
+                justify-content: center;
             }
             .modal-box .game-header h2 {
                 font-size: 0.6rem;
@@ -4258,8 +4261,8 @@
             <div class="game-header">
                 <h2 id="modalTitle">🎮 GAME</h2>
                 <div class="game-info">
-                    <span class="turn-indicator" id="turnIndicator">👤 No player</span>
                     <span class="timer-display" id="timerDisplay">30</span>
+                    <span class="turn-indicator" id="turnIndicator">👤 No player</span>
                 </div>
             </div>
             <div class="timer-setup" id="timerSetup">
@@ -7429,21 +7432,40 @@
             }, 50);
         }
 
-        // ---- WHO AM I - FIXED ----
+        // ---- WHO AM I - FULLY FIXED ----
         function renderWhoAmI(container) {
-            const names = whoamiNames.length > 0 ? whoamiNames : FALLBACK_DATA.whoami;
+            // Ensure we have names
+            let names = [];
+            if (whoamiNames && whoamiNames.length > 0) {
+                // Extract names if they're objects
+                names = whoamiNames.map(n => {
+                    if (typeof n === 'string') return n;
+                    if (typeof n === 'object' && n !== null) {
+                        return n.name || n.value || n.text || String(n);
+                    }
+                    return String(n);
+                }).filter(n => n && n.length > 0);
+            }
 
+            // If still no names, use fallback
+            if (names.length === 0) {
+                names = FALLBACK_DATA.whoami || [];
+            }
+
+            // If STILL no names, show error message
             if (!names || names.length === 0) {
                 container.innerHTML = `
-                    <div style="text-align:center;padding:1rem;">
-                        <p style="font-size:1rem;">🕵️ WHO AM I?</p>
-                        <p style="color:var(--theme-text-muted);font-size:0.7rem;">No names available. Please add names in <strong>Game Master → Who Am I</strong>!</p>
+                    <div style="text-align:center;padding:1.5rem;">
+                        <p style="font-size:1.2rem;">🕵️ WHO AM I?</p>
+                        <p style="color:var(--theme-text-muted);font-size:0.8rem;margin-top:0.5rem;">No names available.</p>
+                        <p style="color:var(--theme-text-muted);font-size:0.7rem;">Please add names in <strong>Game Master → Who Am I</strong>!</p>
                     </div>
                     ${createScoringUI()}
                 `;
                 return;
             }
 
+            // Ensure tracker exists
             if (!wordTracking.whoami) {
                 wordTracking.whoami = { used: [], currentCategory: null };
             }
@@ -7451,11 +7473,13 @@
             const tracker = wordTracking.whoami;
             let available = names.filter(name => !tracker.used.includes(name));
 
+            // If all names used, reset tracker
             if (available.length === 0) {
                 tracker.used = [];
                 available = [...names];
             }
 
+            // Select a random name
             const randomIndex = Math.floor(Math.random() * available.length);
             const name = available[randomIndex];
             tracker.used.push(name);
@@ -8527,7 +8551,7 @@
             const timerSetup = document.getElementById('timerSetup');
             const modalContent = document.getElementById('modalContent');
 
-            // Set header like other games
+            // Set header like other games - timer centered
             modalTitle.textContent = '🧠 BRAIN GAMES';
             timerDisplay.textContent = bgTimerValue;
             timerDisplay.style.display = 'block';
@@ -8841,7 +8865,13 @@
                 truthLieData.truths = data.truths || [];
                 truthLieData.lies = data.lies || [];
                 roastLines = data.roasts || [];
-                whoamiNames = data.whoami || data.whoAmI || [];
+                if (data.whoami) {
+                    whoamiNames = data.whoami;
+                } else if (data.whoAmI) {
+                    whoamiNames = data.whoAmI;
+                } else {
+                    whoamiNames = [];
+                }
 
                 if (data.brainGames && data.brainGames.length > 0) {
                     bgQuestions = data.brainGames;
@@ -9323,44 +9353,73 @@
                 renderGMRoast(); }
         }
 
-        // ---- WHO AM I GM - FIXED [object Object] ----
+        // ---- WHO AM I GM - FULLY FIXED ----
         function renderGMWhoami() {
             const list = document.getElementById('gmWhoamiList');
-            document.getElementById('whoamiCount').textContent = `${whoamiNames.length}`;
-            // Ensure we display strings, not objects
-            list.innerHTML = whoamiNames.map((n, i) => {
-                // If it's an object, try to extract the name
-                let displayName = n;
-                if (typeof n === 'object' && n !== null) {
-                    displayName = n.name || n.value || n.text || JSON.stringify(n);
-                }
+
+            // Ensure whoamiNames is an array of strings
+            let names = [];
+            if (whoamiNames && whoamiNames.length > 0) {
+                names = whoamiNames.map(n => {
+                    if (typeof n === 'string') return n;
+                    if (typeof n === 'object' && n !== null) {
+                        return n.name || n.value || n.text || String(n);
+                    }
+                    return String(n);
+                }).filter(n => n && n.length > 0);
+            }
+
+            // If still empty, use fallback
+            if (names.length === 0) {
+                names = FALLBACK_DATA.whoami || [];
+            }
+
+            // Update the count
+            document.getElementById('whoamiCount').textContent = `${names.length}`;
+
+            // Render the list
+            list.innerHTML = names.map((n, i) => {
+                const displayName = typeof n === 'string' ? n : String(n);
                 return `<span class="gm-item">🕵️ ${displayName} <button class="gm-del" onclick="deleteGMWhoami(${i})">✕</button></span>`;
             }).join('');
+
+            // If no names, show message
+            if (names.length === 0) {
+                list.innerHTML = '<span style="color:var(--theme-text-muted);font-size:0.6rem;">No names added yet. Add some above!</span>';
+            }
         }
 
         function addGMWhoami() {
             const input = document.getElementById('gmWhoamiInput');
             const name = input.value.trim();
-            if (name) {
-                // Check if name already exists (as string)
-                const exists = whoamiNames.some(n => {
-                    if (typeof n === 'string') return n.toLowerCase() === name.toLowerCase();
-                    if (typeof n === 'object' && n !== null) {
-                        return (n.name || n.value || n.text || '').toLowerCase() === name.toLowerCase();
-                    }
-                    return false;
-                });
-                if (!exists) {
-                    whoamiNames.push(name);
-                    saveGMData();
-                    renderGMWhoami();
-                    input.value = '';
-                    createConfetti(15);
-                    playSound('success');
-                } else {
-                    alert('Name already exists!');
-                }
+
+            if (!name) {
+                alert('Please enter a name!');
+                return;
             }
+
+            // Check if name already exists (as string)
+            const exists = whoamiNames.some(n => {
+                if (typeof n === 'string') return n.toLowerCase() === name.toLowerCase();
+                if (typeof n === 'object' && n !== null) {
+                    const val = n.name || n.value || n.text || '';
+                    return val.toLowerCase() === name.toLowerCase();
+                }
+                return false;
+            });
+
+            if (exists) {
+                alert('Name already exists!');
+                return;
+            }
+
+            // Push as string
+            whoamiNames.push(name);
+            saveGMData();
+            renderGMWhoami();
+            input.value = '';
+            createConfetti(15);
+            playSound('success');
         }
 
         function deleteGMWhoami(index) {
