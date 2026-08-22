@@ -2583,7 +2583,7 @@
         }
 
         /* ============================================================
-           HANGMAN
+           HANGMAN - CENTERED SVG, NO BACKGROUND
            ============================================================ */
         .hangman-container {
             max-width: 480px;
@@ -2636,7 +2636,7 @@
 
         .hangman-figure {
             display: flex;
-            justify-content: flex-end;
+            justify-content: center;
             align-items: center;
             width: 100%;
             padding: 0.1rem 0;
@@ -2647,10 +2647,8 @@
             max-width: 170px;
             width: 100%;
             height: auto;
-            background: var(--theme-bg-input);
             border-radius: 10px;
             padding: 0.3rem;
-            border: 2px solid var(--theme-border-color);
         }
 
         .hangman-figure svg .hangman-part {
@@ -3499,7 +3497,7 @@
             padding: 2rem;
         }
 
-        /* Brain Games Modal */
+        /* Brain Games Modal - MATCHES OTHER GAMES NOW */
         .bg-modal-content {
             padding: 0.2rem 0;
         }
@@ -4411,7 +4409,7 @@
             </div>
 
             <!-- ==========================================================
-                 🧠 BRAIN GAMES PAGE - WITH CUSTOM QUESTION COUNT
+                 🧠 BRAIN GAMES PAGE
                  ========================================================== -->
 
             <div class="page" id="braingamesPage">
@@ -4437,7 +4435,7 @@
                             </div>
                         </div>
 
-                        <!-- Questions Row - WITH CUSTOM INPUT -->
+                        <!-- Questions Row -->
                         <div class="bg-setup-row">
                             <label>📋 QUESTIONS</label>
                             <div class="preset-buttons" id="bgQtyPresets">
@@ -4689,7 +4687,7 @@
                         </div>
                     </div>
 
-                    <!-- Who Am I -->
+                    <!-- Who Am I - FIXED [object Object] issue -->
                     <div class="gm-tab-content" id="tab-whoami">
                         <div class="gm-section">
                             <h4>🕵️ Who Am I - Names <span id="whoamiCount">0</span></h4>
@@ -5009,7 +5007,7 @@
         let hangmanGMFilter = 'all';
 
         // ============================================================
-        //  WORD TRACKING - Prevents repetition across ALL games
+        //  WORD TRACKING
         // ============================================================
         let wordTracking = {
             charades: { used: [], currentCategory: null },
@@ -5047,12 +5045,6 @@
             const selected = available[Math.floor(Math.random() * available.length)];
             tracker.used.push(selected);
             return selected;
-        }
-
-        function resetWordTracking(gameId) {
-            if (wordTracking[gameId]) {
-                wordTracking[gameId].used = [];
-            }
         }
 
         function resetAllWordTracking() {
@@ -5942,7 +5934,7 @@
         }
 
         // ============================================================
-        //  PLAYER FUNCTIONS - MOVED UP FOR PROPER HOISTING
+        //  PLAYER FUNCTIONS
         // ============================================================
 
         function savePlayers() {
@@ -6072,7 +6064,7 @@
         }
 
         // ============================================================
-        //  PLAYER FUNCTIONS - Using renderAll() and savePlayers()
+        //  PLAYER FUNCTIONS
         // ============================================================
 
         function addPlayer(name) {
@@ -6677,8 +6669,7 @@
             stopTimer();
             overlay.classList.remove('active');
             document.body.style.overflow = '';
-            
-            // Reset game state and show setup
+
             changeCounts = {};
             usedItemsInRound = {
                 charades: [],
@@ -6699,7 +6690,6 @@
             hangmanState.won = false;
             hangmanState.definitionRevealed = false;
 
-            // Show setup view for the current game
             const container = document.getElementById('modalContent');
             const timerSetup = document.getElementById('timerSetup');
             const timerDisplay = document.getElementById('timerDisplay');
@@ -6987,7 +6977,7 @@
         }
 
         // ============================================================
-        //  NEXT TURN - FOLLOWS PLAYER/TEAM ORDER (NO RANDOMIZATION)
+        //  NEXT TURN
         // ============================================================
         function nextTurn() {
             if (players.length === 0) return;
@@ -6997,15 +6987,12 @@
                 changeCounts[playerName] = 0;
             }
 
-            // Reset word tracking for all games on turn change
             resetAllWordTracking();
 
             if (teamModeEnabled && teams.length > 0) {
-                // Get current team index
                 let currentTeamIdx = getActiveTeamIndex();
                 if (currentTeamIdx === -1) currentTeamIdx = 0;
 
-                // Move to next team in order (not random)
                 let nextTeamIdx = (currentTeamIdx + 1) % teams.length;
                 let attempts = 0;
                 while (attempts < teams.length) {
@@ -7017,13 +7004,11 @@
                 }
 
                 if (attempts < teams.length && teams[nextTeamIdx].members.length > 0) {
-                    // Find the first player in the team
                     const memberName = teams[nextTeamIdx].members[0];
                     const playerIdx = players.findIndex(p => p.name === memberName);
                     if (playerIdx !== -1) {
                         currentTurnIndex = playerIdx;
                     } else {
-                        // Find any player in this team
                         for (let i = 0; i < players.length; i++) {
                             if (players[i].team === nextTeamIdx) {
                                 currentTurnIndex = i;
@@ -7033,11 +7018,9 @@
                     }
                 }
             } else {
-                // Move to next player in order (not random)
                 currentTurnIndex = (currentTurnIndex + 1) % players.length;
             }
 
-            // Reset used items for the new turn
             usedItemsInRound = {
                 charades: [],
                 pictionary: [],
@@ -7260,12 +7243,10 @@
         function renderFastTalk(container) {
             const categories = fastTalkCategories.length > 0 ? fastTalkCategories : FALLBACK_DATA.fastTalk;
 
-            // Find a category with unused items - fixed rotation
             let cat = null;
             let attempts = 0;
             const usedTracker = wordTracking.fasttalk;
 
-            // Initialize currentCategory if not set
             if (usedTracker.currentCategory === null || usedTracker.currentCategory === undefined) {
                 usedTracker.currentCategory = 0;
             }
@@ -7273,23 +7254,20 @@
             while (attempts < categories.length) {
                 const catIndex = usedTracker.currentCategory % categories.length;
                 const testCat = categories[catIndex];
-                
+
                 if (!usedTracker[testCat.name]) {
                     usedTracker[testCat.name] = { used: [] };
                 }
-                
-                // If this category still has unused items, use it
+
                 if (usedTracker[testCat.name].used.length < testCat.items.length) {
                     cat = testCat;
                     break;
                 }
-                
-                // Otherwise move to next category
+
                 usedTracker.currentCategory = (usedTracker.currentCategory + 1) % categories.length;
                 attempts++;
             }
 
-            // If all categories are fully used, reset all and start from first
             if (!cat) {
                 Object.keys(usedTracker).forEach(key => {
                     if (key !== 'currentCategory' && key !== 'used') {
@@ -7303,7 +7281,6 @@
                 }
             }
 
-            // Get the current item to display
             let currentItem = null;
             const availableItems = cat.items.filter(item => !usedTracker[cat.name].used.includes(item));
             if (availableItems.length > 0) {
@@ -7454,10 +7431,8 @@
 
         // ---- WHO AM I - FIXED ----
         function renderWhoAmI(container) {
-            // Get names from loaded data or fallback
             const names = whoamiNames.length > 0 ? whoamiNames : FALLBACK_DATA.whoami;
 
-            // If still no names, show a message
             if (!names || names.length === 0) {
                 container.innerHTML = `
                     <div style="text-align:center;padding:1rem;">
@@ -7469,22 +7444,18 @@
                 return;
             }
 
-            // Ensure tracker exists
             if (!wordTracking.whoami) {
                 wordTracking.whoami = { used: [], currentCategory: null };
             }
 
-            // Get next unused name with tracking
             const tracker = wordTracking.whoami;
             let available = names.filter(name => !tracker.used.includes(name));
 
-            // If all names used, reset the tracker
             if (available.length === 0) {
                 tracker.used = [];
                 available = [...names];
             }
 
-            // Select a random name from available
             const randomIndex = Math.floor(Math.random() * available.length);
             const name = available[randomIndex];
             tracker.used.push(name);
@@ -7515,7 +7486,7 @@
         }
 
         // ============================================================
-        //  HANGMAN - FIXED SVG RIGHT-ALIGNED
+        //  HANGMAN - CENTERED SVG, NO BACKGROUND
         // ============================================================
         function getHangmanWordForDifficulty(difficulty) {
             const words = hangmanWords[difficulty] || [];
@@ -7667,7 +7638,7 @@
                     ${definitionHTML}
 
                     <div class="hangman-word">${wordDisplay}</div>
-                    
+
                     <div class="hangman-guesses">
                         ${correctLetters.length > 0 ? `<span class="correct">✅ ${correctLetters.join(' ').toUpperCase()}</span>` : ''}
                         ${wrongLetters.length > 0 ? `<span class="wrong">❌ ${wrongLetters.join(' ').toUpperCase()}</span>` : ''}
@@ -8312,10 +8283,9 @@
         }
 
         // ============================================================
-        //  🧠 BRAIN GAMES - COMPLETE IMPLEMENTATION
+        //  🧠 BRAIN GAMES
         // ============================================================
 
-        // BG GM Functions
         function renderBGQuestions() {
             const list = document.getElementById('bgGmQuestionsList');
             document.getElementById('bgGmCount').textContent = `${bgQuestions.length}`;
@@ -8453,7 +8423,7 @@
         }
 
         // ============================================================
-        //  BG SETUP FUNCTIONS - WITH CUSTOM QUESTION COUNT
+        //  BG SETUP FUNCTIONS
         // ============================================================
 
         function bgInit() {
@@ -8507,20 +8477,15 @@
             let val = parseInt(value);
             if (isNaN(val) || val < 1) val = 1;
             if (val > 999) val = 999;
-
-            // Remove active class from preset buttons
             document.querySelectorAll('#bgQtyPresets .qty-active').forEach(b => b.classList.remove('active'));
-
-            // Store the custom value
             bgQuestionCount = val;
             document.getElementById('bgQtyDisplay').textContent = val;
             document.getElementById('bgCustomQty').value = val;
-
             playSound('point');
         }
 
         // ============================================================
-        //  BG START GAME - OPENS MODAL WITH SINGLE HEADER
+        //  BG START GAME - MATCHES OTHER GAMES
         // ============================================================
 
         function bgStartGame() {
@@ -8550,7 +8515,7 @@
             bgUsedQuestions = [];
             bgAnswered = false;
 
-            // Open modal with single header
+            // Open modal like other games
             openBrainGamesModal();
         }
 
@@ -8562,9 +8527,13 @@
             const timerSetup = document.getElementById('timerSetup');
             const modalContent = document.getElementById('modalContent');
 
-            // Set the main header - timer and turn info right next to title
-            modalTitle.textContent = `🧠 BRAIN GAMES  ⏱️ ${bgTimerValue}s  👤 ${bgGetTurnName()}`;
-            timerDisplay.style.display = 'none';
+            // Set header like other games
+            modalTitle.textContent = '🧠 BRAIN GAMES';
+            timerDisplay.textContent = bgTimerValue;
+            timerDisplay.style.display = 'block';
+            timerDisplay.className = 'timer-display';
+            turnIndicator.textContent = '👤 ' + bgGetTurnName();
+
             timerSetup.style.display = 'none';
             modalContent.style.display = 'block';
             overlay.classList.add('active');
@@ -8573,9 +8542,16 @@
             bgShowQuestion();
         }
 
-        // ============================================================
-        //  BG GAME FUNCTIONS - WITH SINGLE HEADER
-        // ============================================================
+        function bgGetTurnName() {
+            const current = getCurrentPlayer();
+            const currentTeam = getCurrentTeam();
+            if (teamModeEnabled && currentTeam) {
+                return currentTeam.name + ' (Team)';
+            } else if (current) {
+                return current.name;
+            }
+            return 'No Player';
+        }
 
         function bgShowQuestion() {
             if (bgCurrentQuestionIndex >= bgTotalQuestions || bgUsedQuestions.length >= bgQuestions.length) {
@@ -8597,18 +8573,18 @@
             const container = document.getElementById('modalContent');
             const isLong = q.text.length > 80;
 
-            // Update the header with current turn and timer
-            const modalTitle = document.getElementById('modalTitle');
-            modalTitle.textContent = `🧠 BRAIN GAMES  ⏱️ ${bgTimerValue}s  👤 ${bgGetTurnName()}`;
+            // Update header like other games
+            const timerDisplay = document.getElementById('timerDisplay');
+            const turnIndicator = document.getElementById('turnIndicator');
+            timerDisplay.textContent = bgTimerValue;
+            timerDisplay.className = 'timer-display';
+            turnIndicator.textContent = '👤 ' + bgGetTurnName();
 
             container.innerHTML = `
                 <div class="bg-modal-content">
                     <div style="display:flex;justify-content:space-between;align-items:center;padding:0.2rem 0 0.4rem 0;border-bottom:2px solid var(--theme-border-color);margin-bottom:0.6rem;flex-wrap:wrap;gap:0.3rem;">
                         <span style="font-size:0.55rem;color:var(--theme-text-secondary);font-weight:600;">
                             📋 ${bgCurrentQuestionIndex + 1}/${bgTotalQuestions}
-                        </span>
-                        <span style="font-size:0.55rem;color:var(--theme-text-secondary);font-weight:600;" id="bgTimerDisplayModal">
-                            ⏱️ ${bgTimerValue}s
                         </span>
                     </div>
 
@@ -8650,31 +8626,37 @@
             // Start timer
             bgStartTimerModal();
             playSound('point');
-        }
 
-        function bgGetTurnName() {
-            const current = getCurrentPlayer();
-            const currentTeam = getCurrentTeam();
-            if (teamModeEnabled && currentTeam) {
-                return currentTeam.name + ' (Team)';
-            } else if (current) {
-                return current.name;
+            // Apply colors
+            const colorKey = 'braingames';
+            const color = GAME_COLORS[colorKey] || GAME_COLORS.charades;
+            const modalBox = document.getElementById('modalBox');
+            if (modalBox) {
+                modalBox.style.borderColor = color.main;
+                modalBox.style.boxShadow = `0 0 80px ${color.glow}`;
             }
-            return 'No Player';
+            const title = document.getElementById('modalTitle');
+            if (title) title.style.color = color.main;
+            const timerDisp = document.getElementById('timerDisplay');
+            if (timerDisp && !timerDisp.classList.contains('warning')) {
+                timerDisp.style.color = color.main;
+            }
         }
 
         function bgStartTimerModal() {
             if (bgTimerInterval) { clearInterval(bgTimerInterval); }
 
             let timeLeft = bgTimerValue;
-            const timerDisplay = document.getElementById('bgTimerDisplayModal');
+            const timerDisplay = document.getElementById('timerDisplay');
 
             bgTimerInterval = setInterval(() => {
                 timeLeft--;
                 if (timerDisplay) {
-                    timerDisplay.textContent = `⏱️ ${timeLeft}s`;
+                    timerDisplay.textContent = timeLeft;
                     if (timeLeft <= 3) {
-                        timerDisplay.style.color = '#e74c3c';
+                        timerDisplay.classList.add('warning');
+                    } else {
+                        timerDisplay.classList.remove('warning');
                     }
                 }
 
@@ -8766,7 +8748,6 @@
         function bgNextTurn() {
             if (!bgGameActive) return;
 
-            // Move to next player/team
             nextTurn();
 
             if (bgCurrentQuestionIndex >= bgTotalQuestions) {
@@ -8818,7 +8799,7 @@
         }
 
         // ============================================================
-        //  LOAD DATA - UPDATED WITH BRAIN GAMES
+        //  LOAD DATA
         // ============================================================
         function loadFallbackData() {
             console.log('📥 Using fallback data for testing');
@@ -8832,7 +8813,6 @@
             roastLines = [...FALLBACK_DATA.roasts];
             whoamiNames = [...FALLBACK_DATA.whoami];
 
-            // 🧠 Load Brain Games from fallback
             if (FALLBACK_DATA.brainGames && FALLBACK_DATA.brainGames.length > 0) {
                 bgQuestions = [...FALLBACK_DATA.brainGames];
                 saveBGQuestions();
@@ -8854,7 +8834,6 @@
 
                 console.log('📥 Raw data loaded:', Object.keys(data));
 
-                // Load all game data
                 charadesWords = data.charades || [];
                 karaokeSongs = data.karaoke || [];
                 fastTalkCategories = data.fastTalk || [];
@@ -8864,7 +8843,6 @@
                 roastLines = data.roasts || [];
                 whoamiNames = data.whoami || data.whoAmI || [];
 
-                // 🧠 LOAD BRAIN GAMES FROM data.json
                 if (data.brainGames && data.brainGames.length > 0) {
                     bgQuestions = data.brainGames;
                     saveBGQuestions();
@@ -8876,7 +8854,6 @@
                 } else {
                     console.log('🧠 No Brain Games found in data.json, using localStorage or fallback');
                     if (!loadBGQuestions()) {
-                        // If no localStorage either, use defaults
                         bgQuestions = [
                             { text: 'What is the capital of France?', options: ['Paris', 'London', 'Berlin',
                                     'Madrid'
@@ -8891,7 +8868,6 @@
                     }
                 }
 
-                // Load Hangman
                 if (data.hangman && typeof data.hangman === 'object' && data.hangman.easy) {
                     hangmanWords = data.hangman;
                 } else if (Array.isArray(data.hangman)) {
@@ -9347,25 +9323,44 @@
                 renderGMRoast(); }
         }
 
+        // ---- WHO AM I GM - FIXED [object Object] ----
         function renderGMWhoami() {
             const list = document.getElementById('gmWhoamiList');
             document.getElementById('whoamiCount').textContent = `${whoamiNames.length}`;
-            list.innerHTML = whoamiNames.map((n, i) =>
-                `<span class="gm-item">🕵️ ${n} <button class="gm-del" onclick="deleteGMWhoami(${i})">✕</button></span>`
-            ).join('');
+            // Ensure we display strings, not objects
+            list.innerHTML = whoamiNames.map((n, i) => {
+                // If it's an object, try to extract the name
+                let displayName = n;
+                if (typeof n === 'object' && n !== null) {
+                    displayName = n.name || n.value || n.text || JSON.stringify(n);
+                }
+                return `<span class="gm-item">🕵️ ${displayName} <button class="gm-del" onclick="deleteGMWhoami(${i})">✕</button></span>`;
+            }).join('');
         }
 
         function addGMWhoami() {
             const input = document.getElementById('gmWhoamiInput');
             const name = input.value.trim();
-            if (name && !whoamiNames.includes(name)) {
-                whoamiNames.push(name);
-                saveGMData();
-                renderGMWhoami();
-                input.value = '';
-                createConfetti(15);
-                playSound('success');
-            } else if (name) alert('Name already exists!');
+            if (name) {
+                // Check if name already exists (as string)
+                const exists = whoamiNames.some(n => {
+                    if (typeof n === 'string') return n.toLowerCase() === name.toLowerCase();
+                    if (typeof n === 'object' && n !== null) {
+                        return (n.name || n.value || n.text || '').toLowerCase() === name.toLowerCase();
+                    }
+                    return false;
+                });
+                if (!exists) {
+                    whoamiNames.push(name);
+                    saveGMData();
+                    renderGMWhoami();
+                    input.value = '';
+                    createConfetti(15);
+                    playSound('success');
+                } else {
+                    alert('Name already exists!');
+                }
+            }
         }
 
         function deleteGMWhoami(index) {
@@ -9573,9 +9568,7 @@
             }
 
             if (bgQuestions.length === 0) {
-                // Try loading from data.json first
                 await loadData();
-                // If still empty, use fallback
                 if (bgQuestions.length === 0) {
                     loadBGQuestions();
                 }
