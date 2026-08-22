@@ -4307,9 +4307,6 @@
                 <button class="timer-start-btn" id="timerStartBtn" onclick="startGameWithTimer()">🚀 START GAME</button>
             </div>
             <div class="game-content" id="modalContent"></div>
-            <div style="text-align:center;font-size:0.45rem;color:var(--theme-text-muted);margin-top:0.5rem;font-family:var(--font-display);letter-spacing:2px;">
-                ⚡ USE SCORING BUTTONS BELOW ⚡
-            </div>
         </div>
     </div>
 
@@ -4496,8 +4493,6 @@
                         <button class="bg-start-btn" id="bgStartBtn" onclick="bgStartGame()">
                             🚀 START BRAIN GAMES
                         </button>
-
-                        <div class="bg-tip">💡 Select timer and question count, then click START!</div>
                     </div>
 
                     <!-- Empty State -->
@@ -7077,7 +7072,7 @@
             const activeVal = getActivePointValue();
             return `
                 <div class="scoring-section">
-                    <div class="scoring-label">🎯 SCORE THIS ROUND</div>
+                    <div class="scoring-label">⚡ SCORE</div>
                     <div class="scoring-player">
                         ${teamModeEnabled ? 'TEAM: ' : ''}
                         <span style="color:var(--theme-blue-electric);">${displayName}</span>
@@ -7444,6 +7439,18 @@
             // Get names from loaded data or fallback
             const names = whoamiNames.length > 0 ? whoamiNames : FALLBACK_DATA.whoami;
 
+            // If still no names, show a message
+            if (!names || names.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align:center;padding:2rem;">
+                        <p style="font-size:1.2rem;">🕵️ WHO AM I?</p>
+                        <p style="color:var(--theme-text-muted);">No names available. Please add names in <strong>Game Master → Who Am I</strong>!</p>
+                    </div>
+                    ${createScoringUI()}
+                `;
+                return;
+            }
+
             // Get next unused name with tracking
             const tracker = wordTracking.whoami;
             let available = names.filter(name => !tracker.used.includes(name));
@@ -7451,7 +7458,7 @@
             // If all names used, reset the tracker
             if (available.length === 0) {
                 tracker.used = [];
-                available = names;
+                available = [...names];
             }
 
             // Select a random name from available
