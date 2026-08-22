@@ -1667,7 +1667,7 @@
             z-index: 9999;
             justify-content: center;
             align-items: center;
-            padding: 1.5rem;
+            padding: 0.5rem;
         }
 
         .modal-overlay.active {
@@ -1688,33 +1688,34 @@
 
         .modal-box {
             background: var(--theme-bg-secondary);
-            border-radius: 24px;
-            max-height: 90vh;
+            border-radius: 20px;
+            max-height: 95vh;
             overflow-y: auto;
-            max-width: 800px;
+            max-width: 780px;
             width: 100%;
-            padding: 2rem;
+            padding: 1.2rem 1.5rem 1rem 1.5rem;
             position: relative;
             box-shadow: 0 0 80px var(--theme-glow-blue-strong);
         }
 
         .modal-box .modal-close {
             position: absolute;
-            top: 12px;
-            right: 16px;
-            font-size: 1.4rem;
+            top: 10px;
+            right: 14px;
+            font-size: 1.2rem;
             cursor: pointer;
             color: var(--theme-text-muted);
             transition: var(--transition);
             background: none;
             border: none;
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: var(--font-body);
+            z-index: 10;
         }
 
         .modal-box .modal-close:hover {
@@ -1728,44 +1729,43 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            padding-bottom: 0.8rem;
+            gap: 0.3rem;
+            margin-bottom: 0.6rem;
+            padding-bottom: 0.5rem;
             border-bottom: 2px solid var(--theme-border-color);
         }
 
         .modal-box .game-header h2 {
             font-family: var(--font-display);
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
             color: var(--theme-blue-electric);
         }
 
         .modal-box .game-header .game-info {
             display: flex;
             align-items: center;
-            gap: 1.2rem;
+            gap: 0.8rem;
             flex-wrap: wrap;
             flex: 1;
             justify-content: flex-end;
         }
 
         .modal-box .game-header .game-info .turn-indicator {
-            font-size: 0.65rem;
+            font-size: 0.55rem;
             color: var(--theme-text-secondary);
             font-weight: 600;
         }
 
         .modal-box .game-header .game-info .timer-display {
             font-family: var(--font-display);
-            font-size: 2rem;
-            min-width: 60px;
+            font-size: 1.6rem;
+            min-width: 48px;
             text-align: center;
-            order: -1;
-            margin-right: auto;
             color: var(--theme-blue-electric);
+            line-height: 1;
         }
 
         .modal-box .game-header .game-info .timer-display.warning {
@@ -1788,48 +1788,49 @@
         .timer-setup {
             background: var(--theme-bg-input);
             border-radius: 16px;
-            padding: 1.5rem 1.5rem;
+            padding: 1rem 1.2rem;
             border: 2px solid var(--theme-border-color);
-            margin-bottom: 1rem;
+            margin-bottom: 0.6rem;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1rem;
+            gap: 0.6rem;
         }
 
         .timer-setup .timer-row {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 1.2rem;
+            gap: 0.8rem;
             flex-wrap: wrap;
             width: 100%;
         }
 
         .timer-setup .timer-row label {
             font-family: var(--font-display);
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             color: var(--theme-text-muted);
             letter-spacing: 1px;
         }
 
         .timer-setup .timer-presets {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.4rem;
             flex-wrap: wrap;
         }
 
         .timer-setup .timer-presets button {
-            padding: 0.4rem 1.2rem;
-            border-radius: 24px;
+            padding: 0.35rem 1rem;
+            border-radius: 20px;
             border: 2px solid var(--theme-border-color);
             background: var(--theme-bg-input);
             color: var(--theme-text-secondary);
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             cursor: pointer;
             transition: var(--transition);
             font-family: var(--font-body);
             font-weight: 700;
+            min-height: 36px;
         }
 
         .timer-setup .timer-presets button:hover {
@@ -1847,20 +1848,21 @@
         .timer-setup .timer-custom {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
         }
 
         .timer-setup .timer-custom input {
-            width: 70px;
-            padding: 0.4rem 0.5rem;
-            border-radius: 24px;
+            width: 60px;
+            padding: 0.3rem 0.4rem;
+            border-radius: 20px;
             border: 2px solid var(--theme-border-color);
             background: var(--theme-bg-input);
             color: var(--theme-text-primary);
-            font-size: 1rem;
+            font-size: 0.9rem;
             text-align: center;
             font-family: var(--font-body);
             font-weight: 700;
+            min-height: 36px;
         }
 
         .timer-setup .timer-custom input:focus {
@@ -1869,23 +1871,24 @@
         }
 
         .timer-setup .timer-custom span {
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             color: var(--theme-text-muted);
             font-weight: 600;
         }
 
         .timer-setup .timer-start-btn {
-            padding: 0.6rem 2.5rem;
+            padding: 0.5rem 2rem;
             border-radius: 30px;
             border: none;
             font-weight: 700;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             cursor: pointer;
             transition: var(--transition);
             font-family: var(--font-body);
             color: white;
             box-shadow: 0 0 30px var(--theme-glow-blue);
             background: var(--theme-blue-bright);
+            min-height: 44px;
         }
 
         .timer-setup .timer-start-btn:hover {
@@ -1895,8 +1898,8 @@
 
         .modal-box .game-content {
             color: var(--theme-text-secondary);
-            line-height: 1.7;
-            min-height: 150px;
+            line-height: 1.6;
+            min-height: 100px;
         }
 
         /* ============================================================
@@ -1905,44 +1908,45 @@
         .roast-setup {
             background: var(--theme-bg-input);
             border-radius: 16px;
-            padding: 1.5rem;
+            padding: 1rem 1.2rem;
             border: 2px solid var(--theme-border-color);
-            margin-bottom: 1rem;
+            margin-bottom: 0.6rem;
         }
 
         .roast-setup .roast-setup-row {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 1.2rem;
+            gap: 1rem;
             flex-wrap: wrap;
-            margin: 0.5rem 0;
+            margin: 0.3rem 0;
         }
 
         .roast-setup .roast-setup-row label {
             font-family: var(--font-display);
-            font-size: 0.6rem;
+            font-size: 0.5rem;
             color: var(--theme-text-muted);
             letter-spacing: 1px;
         }
 
         .roast-setup .roast-setup-row .preset-buttons {
             display: flex;
-            gap: 0.4rem;
+            gap: 0.3rem;
             flex-wrap: wrap;
         }
 
         .roast-setup .roast-setup-row .preset-buttons button {
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
+            padding: 0.25rem 0.8rem;
+            border-radius: 16px;
             border: 2px solid var(--theme-border-color);
             background: var(--theme-bg-input);
             color: var(--theme-text-secondary);
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             cursor: pointer;
             transition: var(--transition);
             font-family: var(--font-body);
             font-weight: 700;
+            min-height: 32px;
         }
 
         .roast-setup .roast-setup-row .preset-buttons button:hover {
@@ -1960,20 +1964,21 @@
         .roast-setup .roast-setup-row .preset-buttons .custom-input {
             display: flex;
             align-items: center;
-            gap: 0.3rem;
+            gap: 0.2rem;
         }
 
         .roast-setup .roast-setup-row .preset-buttons .custom-input input {
-            width: 50px;
-            padding: 0.25rem 0.4rem;
-            border-radius: 16px;
+            width: 44px;
+            padding: 0.2rem 0.3rem;
+            border-radius: 14px;
             border: 2px solid var(--theme-border-color);
             background: var(--theme-bg-input);
             color: var(--theme-text-primary);
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             text-align: center;
             font-family: var(--font-body);
             font-weight: 700;
+            min-height: 32px;
         }
 
         .roast-setup .roast-setup-row .preset-buttons .custom-input input:focus {
@@ -1982,18 +1987,19 @@
         }
 
         .roast-setup .roast-start-btn {
-            padding: 0.6rem 2.5rem;
+            padding: 0.5rem 2rem;
             border-radius: 30px;
             border: none;
             font-weight: 700;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             cursor: pointer;
             transition: var(--transition);
             font-family: var(--font-body);
             color: white;
             box-shadow: 0 0 30px var(--theme-glow-blue);
             background: var(--theme-blue-bright);
-            margin-top: 0.5rem;
+            margin-top: 0.3rem;
+            min-height: 44px;
         }
 
         .roast-setup .roast-start-btn:hover {
@@ -2003,20 +2009,20 @@
 
         .roast-setup .roast-available {
             text-align: center;
-            font-size: 0.5rem;
+            font-size: 0.45rem;
             color: var(--theme-text-muted);
-            margin-top: 0.3rem;
+            margin-top: 0.2rem;
         }
 
         .roast-game-display {
-            padding: 0.5rem 0;
+            padding: 0.2rem 0;
         }
 
         .roast-game-display .roast-progress {
-            font-size: 0.6rem;
+            font-size: 0.5rem;
             color: var(--theme-text-muted);
             text-align: center;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
             font-family: var(--font-display);
             letter-spacing: 1px;
         }
@@ -2027,18 +2033,18 @@
 
         .roast-game-display .roast-card {
             background: var(--theme-bg-input);
-            border-radius: 16px;
-            padding: 1.5rem;
+            border-radius: 14px;
+            padding: 1rem;
             border: 3px solid var(--color-roast);
-            box-shadow: 0 0 40px rgba(231, 76, 60, 0.15);
+            box-shadow: 0 0 30px rgba(231, 76, 60, 0.12);
             text-align: center;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
         }
 
         .roast-game-display .roast-card .roast-text {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             color: var(--theme-text-primary);
-            line-height: 1.6;
+            line-height: 1.5;
             font-weight: 600;
             font-style: italic;
         }
@@ -2052,24 +2058,25 @@
 
         .roast-game-display .roast-assign-section {
             display: flex;
-            gap: 0.6rem;
+            gap: 0.4rem;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            margin: 0.5rem 0;
+            margin: 0.3rem 0;
         }
 
         .roast-game-display .roast-assign-section select {
-            padding: 0.4rem 1rem;
-            border-radius: 30px;
+            padding: 0.3rem 0.8rem;
+            border-radius: 24px;
             border: 2px solid var(--theme-border-color);
             background: var(--theme-bg-input);
             color: var(--theme-text-primary);
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-family: var(--font-body);
-            min-width: 140px;
+            min-width: 120px;
             cursor: pointer;
             transition: var(--transition);
+            min-height: 36px;
         }
 
         .roast-game-display .roast-assign-section select:focus {
@@ -2084,17 +2091,18 @@
         }
 
         .roast-game-display .roast-assign-section .assign-btn {
-            padding: 0.4rem 1.5rem;
-            border-radius: 30px;
+            padding: 0.3rem 1.2rem;
+            border-radius: 24px;
             border: none;
             font-weight: 700;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             cursor: pointer;
             transition: var(--transition);
             font-family: var(--font-body);
             background: var(--color-roast);
             color: white;
             box-shadow: 0 0 20px rgba(231, 76, 60, 0.3);
+            min-height: 36px;
         }
 
         .roast-game-display .roast-assign-section .assign-btn:hover {
@@ -2109,16 +2117,17 @@
         }
 
         .roast-game-display .roast-assign-section .skip-btn {
-            padding: 0.4rem 1rem;
-            border-radius: 30px;
+            padding: 0.3rem 0.8rem;
+            border-radius: 24px;
             border: 2px solid var(--theme-border-color);
             background: var(--theme-bg-input);
             color: var(--theme-text-secondary);
-            font-size: 0.6rem;
+            font-size: 0.5rem;
             cursor: pointer;
             transition: var(--transition);
             font-family: var(--font-body);
             font-weight: 700;
+            min-height: 36px;
         }
 
         .roast-game-display .roast-assign-section .skip-btn:hover {
@@ -2130,19 +2139,19 @@
         .roast-game-display .roast-counts {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.4rem;
+            gap: 0.3rem;
             justify-content: center;
-            margin: 0.5rem 0;
-            padding: 0.5rem;
+            margin: 0.3rem 0;
+            padding: 0.3rem;
             background: var(--theme-bg-input);
-            border-radius: 12px;
+            border-radius: 10px;
             border: 2px solid var(--theme-border-color);
         }
 
         .roast-game-display .roast-counts .roast-count-item {
-            padding: 0.15rem 0.6rem;
-            border-radius: 20px;
-            font-size: 0.6rem;
+            padding: 0.1rem 0.5rem;
+            border-radius: 16px;
+            font-size: 0.5rem;
             font-weight: 700;
             background: var(--theme-bg-card);
             border: 1px solid var(--theme-border-color);
@@ -2151,8 +2160,8 @@
 
         .roast-game-display .roast-counts .roast-count-item.leading {
             border-color: var(--color-roast);
-            background: rgba(231, 76, 60, 0.15);
-            box-shadow: 0 0 20px rgba(231, 76, 60, 0.15);
+            background: rgba(231, 76, 60, 0.12);
+            box-shadow: 0 0 15px rgba(231, 76, 60, 0.12);
         }
 
         .roast-game-display .roast-counts .roast-count-item .count {
@@ -2162,50 +2171,50 @@
 
         .roast-results {
             text-align: center;
-            padding: 1rem 0;
+            padding: 0.5rem 0;
         }
 
         .roast-results .winner-emoji {
-            font-size: 4rem;
+            font-size: 3rem;
             display: block;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.2rem;
         }
 
         .roast-results .winner-name {
             font-family: var(--font-display);
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: var(--color-roast);
             text-shadow: 0 0 30px rgba(231, 76, 60, 0.3);
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.2rem;
         }
 
         .roast-results .funny-response {
-            font-size: 1rem;
+            font-size: 0.85rem;
             color: var(--theme-text-secondary);
             font-style: italic;
-            margin-bottom: 0.5rem;
-            padding: 0.5rem;
+            margin-bottom: 0.3rem;
+            padding: 0.4rem;
             background: var(--theme-bg-input);
-            border-radius: 12px;
+            border-radius: 10px;
             border-left: 4px solid var(--color-roast);
         }
 
         .roast-results .results-list {
             display: flex;
             flex-direction: column;
-            gap: 0.3rem;
-            max-width: 300px;
-            margin: 0.5rem auto;
+            gap: 0.2rem;
+            max-width: 280px;
+            margin: 0.3rem auto;
         }
 
         .roast-results .results-list .result-item {
             display: flex;
             justify-content: space-between;
-            padding: 0.2rem 0.6rem;
-            border-radius: 8px;
+            padding: 0.15rem 0.5rem;
+            border-radius: 6px;
             background: var(--theme-bg-input);
             border: 1px solid var(--theme-border-color);
-            font-size: 0.7rem;
+            font-size: 0.6rem;
         }
 
         .roast-results .results-list .result-item .roast-count {
@@ -2215,24 +2224,25 @@
 
         .roast-results .results-actions {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.4rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 0.8rem;
+            margin-top: 0.5rem;
         }
 
         .roast-results .results-actions button {
-            padding: 0.4rem 1.5rem;
-            border-radius: 30px;
+            padding: 0.3rem 1.2rem;
+            border-radius: 24px;
             border: none;
             font-weight: 700;
-            font-size: 0.65rem;
+            font-size: 0.55rem;
             cursor: pointer;
             transition: var(--transition);
             font-family: var(--font-body);
             background: var(--theme-blue-bright);
             color: white;
             box-shadow: 0 0 20px var(--theme-glow-blue);
+            min-height: 36px;
         }
 
         .roast-results .results-actions button:hover {
@@ -2261,58 +2271,59 @@
            ============================================================ */
         .word-display {
             font-family: var(--font-display);
-            font-size: 2.8rem;
+            font-size: 2.2rem;
             text-align: center;
-            padding: 1.2rem 0;
-            letter-spacing: 6px;
+            padding: 0.6rem 0;
+            letter-spacing: 4px;
             border: 3px dashed var(--theme-border-color);
-            border-radius: 16px;
+            border-radius: 14px;
             background: var(--theme-bg-input);
-            margin: 0.5rem 0;
+            margin: 0.3rem 0;
             color: var(--theme-blue-electric);
             word-break: break-word;
             overflow-wrap: break-word;
         }
 
         .word-display.long-word {
-            font-size: 2rem;
-            letter-spacing: 3px;
+            font-size: 1.6rem;
+            letter-spacing: 2px;
         }
 
         .word-display.whoami {
-            font-size: 3.2rem;
-            letter-spacing: 4px;
+            font-size: 2.6rem;
+            letter-spacing: 3px;
             color: var(--theme-blue-electric);
             border-color: var(--color-whoami);
             border-style: solid;
-            background: rgba(142, 68, 173, 0.1);
-            box-shadow: 0 0 40px rgba(142, 68, 173, 0.2);
+            background: rgba(142, 68, 173, 0.08);
+            box-shadow: 0 0 30px rgba(142, 68, 173, 0.15);
         }
 
         .word-display.whoami.long-word {
-            font-size: 2.2rem;
-            letter-spacing: 2px;
+            font-size: 1.8rem;
+            letter-spacing: 1.5px;
         }
 
         .game-actions {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.4rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin: 0.3rem 0;
+            margin: 0.2rem 0;
         }
 
         .game-actions button {
-            padding: 0.3rem 1rem;
-            border-radius: 30px;
+            padding: 0.25rem 0.8rem;
+            border-radius: 24px;
             border: 2px solid var(--theme-border-color);
             background: var(--theme-bg-input);
             color: var(--theme-text-secondary);
-            font-size: 0.6rem;
+            font-size: 0.5rem;
             cursor: pointer;
             transition: var(--transition);
             font-family: var(--font-body);
             font-weight: 700;
+            min-height: 32px;
         }
 
         .game-actions button:hover {
@@ -2361,46 +2372,46 @@
         }
 
         .whoami-hint {
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             color: var(--theme-text-muted);
             text-align: center;
-            padding: 0.3rem;
+            padding: 0.2rem;
             border: 1px dashed var(--theme-border-color);
-            border-radius: 8px;
-            margin: 0.3rem 0;
+            border-radius: 6px;
+            margin: 0.2rem 0;
         }
 
         .song-display {
             background: var(--theme-bg-input);
-            padding: 1rem;
-            border-radius: 16px;
+            padding: 0.6rem;
+            border-radius: 14px;
             text-align: center;
             border: 3px solid var(--theme-border-color);
-            margin: 0.5rem 0;
+            margin: 0.3rem 0;
         }
 
         .song-display .title {
             font-family: var(--font-display);
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--theme-blue-electric);
         }
 
         .song-display .artist {
             color: var(--theme-text-muted);
-            font-size: 0.75rem;
-            margin-top: 0.2rem;
+            font-size: 0.65rem;
+            margin-top: 0.1rem;
         }
 
         .truth-lie-box .option {
-            padding: 0.5rem 0.8rem;
-            margin: 0.3rem 0;
-            border-radius: 12px;
+            padding: 0.4rem 0.6rem;
+            margin: 0.2rem 0;
+            border-radius: 10px;
             background: var(--theme-bg-input);
             border: 2px solid var(--theme-border-color);
             cursor: pointer;
             transition: var(--transition);
             font-weight: 600;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: var(--theme-text-secondary);
         }
 
@@ -2412,13 +2423,13 @@
 
         .truth-lie-box .option.selected-correct {
             border-color: #2ecc71;
-            background: rgba(46, 204, 113, 0.2);
+            background: rgba(46, 204, 113, 0.15);
             animation: bounceIn 0.4s ease;
         }
 
         .truth-lie-box .option.selected-wrong {
             border-color: #e74c3c;
-            background: rgba(231, 76, 60, 0.15);
+            background: rgba(231, 76, 60, 0.12);
             animation: shake 0.4s ease;
         }
 
@@ -2428,29 +2439,29 @@
                 transform: translateX(0);
             }
             25% {
-                transform: translateX(-10px);
+                transform: translateX(-8px);
             }
             75% {
-                transform: translateX(10px);
+                transform: translateX(8px);
             }
         }
 
         .rating-stars {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.3rem;
             justify-content: center;
-            margin: 0.5rem 0;
+            margin: 0.3rem 0;
         }
 
         .rating-stars .star {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             cursor: pointer;
             transition: var(--transition);
             color: var(--theme-text-muted);
         }
 
         .rating-stars .star:hover {
-            transform: scale(1.4);
+            transform: scale(1.3);
             color: var(--theme-blue-electric);
         }
 
@@ -2464,21 +2475,21 @@
                 transform: scale(1);
             }
             50% {
-                transform: scale(1.5) rotate(-10deg);
+                transform: scale(1.4) rotate(-8deg);
             }
             100% {
-                transform: scale(1.1);
+                transform: scale(1.05);
             }
         }
 
         .feedback {
             background: var(--theme-bg-input);
-            padding: 0.5rem 0.8rem;
-            border-radius: 12px;
-            margin: 0.4rem 0;
+            padding: 0.3rem 0.6rem;
+            border-radius: 10px;
+            margin: 0.2rem 0;
             border-left: 4px solid var(--theme-blue-electric);
             color: var(--theme-text-secondary);
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             display: none;
         }
 
@@ -2497,77 +2508,78 @@
 
         .scoring-section {
             background: var(--theme-bg-input);
-            border-radius: 14px;
-            padding: 0.8rem 1rem;
-            margin: 0.8rem 0;
+            border-radius: 12px;
+            padding: 0.4rem 0.8rem;
+            margin: 0.4rem 0;
             border: 2px solid var(--theme-border-color);
             text-align: center;
         }
 
         .scoring-section .scoring-label {
             font-family: var(--font-display);
-            font-size: 0.45rem;
+            font-size: 0.4rem;
             color: var(--theme-text-muted);
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
         }
 
         .scoring-section .scoring-player {
-            font-size: 0.85rem;
+            font-size: 0.7rem;
             font-weight: 700;
             color: var(--theme-text-primary);
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.15rem;
         }
 
         .scoring-section .scoring-player .current-score {
             font-family: var(--font-display);
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             color: var(--theme-blue-electric);
         }
 
         .scoring-section .score-buttons {
             display: flex;
-            gap: 0.4rem;
+            gap: 0.3rem;
             justify-content: center;
             flex-wrap: wrap;
         }
 
         .scoring-section .score-buttons button {
-            padding: 0.35rem 0.9rem;
-            border-radius: 30px;
+            padding: 0.25rem 0.7rem;
+            border-radius: 24px;
             border: none;
             font-weight: 700;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             cursor: pointer;
             transition: var(--transition);
             font-family: var(--font-body);
-            min-width: 40px;
+            min-width: 36px;
+            min-height: 32px;
         }
 
         .scoring-section .score-buttons button.btn-minus {
             background: #e74c3c;
             color: white;
-            box-shadow: 0 0 20px rgba(231, 76, 60, 0.3);
+            box-shadow: 0 0 15px rgba(231, 76, 60, 0.25);
         }
 
         .scoring-section .score-buttons button.btn-minus:hover {
-            transform: scale(1.08) rotate(-5deg);
+            transform: scale(1.06) rotate(-3deg);
         }
         .scoring-section .score-buttons button.btn-plus {
             background: var(--theme-blue-bright);
             color: white;
-            box-shadow: 0 0 20px var(--theme-glow-blue);
+            box-shadow: 0 0 15px var(--theme-glow-blue);
         }
         .scoring-section .score-buttons button.btn-plus:hover {
-            transform: scale(1.08) rotate(5deg);
+            transform: scale(1.06) rotate(3deg);
         }
         .scoring-section .score-buttons button.btn-green {
             background: #2ecc71;
             color: white;
-            box-shadow: 0 0 20px rgba(46, 204, 113, 0.3);
+            box-shadow: 0 0 15px rgba(46, 204, 113, 0.25);
         }
         .scoring-section .score-buttons button.btn-green:hover {
-            transform: scale(1.08);
+            transform: scale(1.06);
         }
 
         /* ============================================================
@@ -2576,23 +2588,23 @@
         .hangman-container {
             max-width: 480px;
             margin: 0 auto;
-            padding: 0.5rem;
+            padding: 0.2rem;
         }
 
         .hangman-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.25rem 0.5rem;
-            font-size: 0.7rem;
-            margin-bottom: 0.25rem;
+            padding: 0.15rem 0.3rem;
+            font-size: 0.6rem;
+            margin-bottom: 0.1rem;
         }
 
         .hangman-header .difficulty-badge {
-            padding: 0.15rem 0.8rem;
-            border-radius: 20px;
+            padding: 0.1rem 0.6rem;
+            border-radius: 16px;
             font-family: var(--font-display);
-            font-size: 0.5rem;
+            font-size: 0.45rem;
             border: 2px solid var(--theme-border-color);
             background: var(--theme-bg-input);
             color: var(--theme-text-secondary);
@@ -2618,27 +2630,26 @@
         .hangman-header .progress {
             color: var(--theme-text-muted);
             font-weight: 700;
-            font-size: 0.6rem;
+            font-size: 0.5rem;
             font-family: var(--font-display);
         }
 
         .hangman-figure {
             display: flex;
-            justify-content: center;
+            justify-content: flex-end;
             align-items: center;
             width: 100%;
-            padding: 0.3rem 0;
+            padding: 0.1rem 0;
         }
 
         .hangman-figure svg {
             display: block;
-            margin: 0 auto;
-            max-width: 200px;
+            max-width: 170px;
             width: 100%;
             height: auto;
             background: var(--theme-bg-input);
-            border-radius: 12px;
-            padding: 0.5rem;
+            border-radius: 10px;
+            padding: 0.3rem;
             border: 2px solid var(--theme-border-color);
         }
 
@@ -2653,11 +2664,11 @@
 
         .hangman-word {
             font-family: var(--font-display);
-            font-size: 2.2rem;
-            letter-spacing: 12px;
+            font-size: 1.8rem;
+            letter-spacing: 10px;
             text-align: center;
-            padding: 0.5rem;
-            min-height: 3.5rem;
+            padding: 0.3rem;
+            min-height: 2.8rem;
             color: var(--theme-blue-electric);
             word-break: break-word;
             overflow-wrap: break-word;
@@ -2665,7 +2676,7 @@
 
         .hangman-word .letter {
             display: inline-block;
-            width: 1.8rem;
+            width: 1.5rem;
             text-align: center;
         }
 
@@ -2680,11 +2691,11 @@
         .hangman-guesses {
             display: flex;
             justify-content: center;
-            gap: 0.5rem;
-            font-size: 0.75rem;
-            padding: 0.25rem;
+            gap: 0.3rem;
+            font-size: 0.65rem;
+            padding: 0.15rem;
             flex-wrap: wrap;
-            min-height: 1.8rem;
+            min-height: 1.5rem;
         }
 
         .hangman-guesses .correct {
@@ -2700,9 +2711,9 @@
         .hangman-status {
             text-align: center;
             font-family: var(--font-display);
-            font-size: 0.7rem;
-            padding: 0.25rem;
-            min-height: 1.8rem;
+            font-size: 0.6rem;
+            padding: 0.15rem;
+            min-height: 1.5rem;
         }
 
         .hangman-status.win {
@@ -2715,23 +2726,24 @@
 
         .hangman-input-row {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.4rem;
             justify-content: center;
-            margin: 0.5rem 0;
+            margin: 0.3rem 0;
         }
 
         .hangman-input-row input {
-            width: 48px;
-            padding: 0.4rem;
-            font-size: 1.4rem;
+            width: 42px;
+            padding: 0.3rem;
+            font-size: 1.2rem;
             text-align: center;
             font-family: var(--font-display);
             border: 3px solid var(--theme-border-color);
-            border-radius: 12px;
+            border-radius: 10px;
             background: var(--theme-bg-input);
             color: var(--theme-text-primary);
             text-transform: uppercase;
             transition: var(--transition);
+            min-height: 40px;
         }
 
         .hangman-input-row input:focus {
@@ -2741,17 +2753,18 @@
         }
 
         .hangman-input-row .primary-btn {
-            padding: 0.4rem 1.5rem;
-            border-radius: 30px;
+            padding: 0.3rem 1.2rem;
+            border-radius: 24px;
             border: none;
             font-weight: 700;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             background: var(--theme-blue-bright);
             color: white;
             cursor: pointer;
             font-family: var(--font-body);
             box-shadow: 0 0 20px var(--theme-glow-blue);
             transition: var(--transition);
+            min-height: 40px;
         }
 
         .hangman-input-row .primary-btn:hover {
@@ -2767,23 +2780,24 @@
 
         .hangman-actions {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.3rem;
             justify-content: center;
-            margin: 0.25rem 0;
+            margin: 0.15rem 0;
             flex-wrap: wrap;
         }
 
         .hangman-actions button {
-            padding: 0.25rem 0.8rem;
-            border-radius: 20px;
+            padding: 0.2rem 0.6rem;
+            border-radius: 16px;
             border: 2px solid var(--theme-border-color);
             background: var(--theme-bg-input);
             color: var(--theme-text-secondary);
-            font-size: 0.6rem;
+            font-size: 0.5rem;
             cursor: pointer;
             font-family: var(--font-body);
             font-weight: 700;
             transition: var(--transition);
+            min-height: 30px;
         }
 
         .hangman-actions button:hover {
@@ -2812,11 +2826,11 @@
 
         .hangman-definition {
             background: var(--theme-bg-input);
-            border-radius: 12px;
-            padding: 0.5rem 1rem;
-            margin: 0.5rem 0;
+            border-radius: 10px;
+            padding: 0.3rem 0.8rem;
+            margin: 0.3rem 0;
             border-left: 4px solid var(--theme-blue-electric);
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             color: var(--theme-text-secondary);
             display: none;
             text-align: left;
@@ -2829,36 +2843,37 @@
 
         .hangman-definition .def-label {
             font-family: var(--font-display);
-            font-size: 0.45rem;
+            font-size: 0.4rem;
             color: var(--theme-text-muted);
             letter-spacing: 2px;
         }
 
         .hangman-definition .def-text {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: var(--theme-text-primary);
             font-weight: 600;
         }
 
         .hangman-difficulty-selector {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.4rem;
             flex-wrap: wrap;
             justify-content: center;
-            margin: 0.5rem 0;
+            margin: 0.3rem 0;
         }
 
         .hangman-difficulty-selector button {
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
+            padding: 0.25rem 0.8rem;
+            border-radius: 16px;
             border: 2px solid var(--theme-border-color);
             background: var(--theme-bg-input);
             color: var(--theme-text-secondary);
-            font-size: 0.55rem;
+            font-size: 0.5rem;
             cursor: pointer;
             transition: var(--transition);
             font-family: var(--font-body);
             font-weight: 700;
+            min-height: 34px;
         }
 
         .hangman-difficulty-selector button:hover {
@@ -2904,15 +2919,15 @@
             transform: translateX(-50%);
             background: var(--theme-bg-card);
             border: 3px solid var(--theme-blue-electric);
-            border-radius: 16px;
-            padding: 0.5rem 1.5rem;
+            border-radius: 14px;
+            padding: 0.4rem 1.2rem;
             z-index: 9998;
             display: none;
             animation: notifSlide 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             text-align: center;
             box-shadow: 0 0 60px var(--theme-glow-blue-strong);
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: var(--theme-text-primary);
         }
 
@@ -2924,11 +2939,11 @@
         }
         .score-notification .notif-change.positive {
             color: #2ecc71;
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
         .score-notification .notif-change.negative {
             color: #e74c3c;
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
 
         @keyframes notifSlide {
@@ -2949,15 +2964,15 @@
             transform: translateX(-50%);
             background: var(--theme-bg-card);
             border: 2px solid var(--theme-blue-electric);
-            border-radius: 12px;
-            padding: 0.5rem 1.5rem;
+            border-radius: 10px;
+            padding: 0.3rem 1.2rem;
             z-index: 9997;
             display: none;
             animation: notifSlide 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             text-align: center;
             box-shadow: 0 0 40px var(--theme-glow-blue-strong);
             font-weight: 700;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             color: var(--theme-text-primary);
         }
 
@@ -3362,16 +3377,18 @@
         }
 
         .bg-setup-row .preset-buttons button {
-            padding: 0.3rem 0.8rem;
+            padding: 0.45rem 1rem;
             border-radius: 20px;
             border: 2px solid var(--theme-border-color);
             background: var(--theme-bg-input);
             color: var(--theme-text-secondary);
-            font-size: 0.6rem;
+            font-size: 0.7rem;
             cursor: pointer;
             transition: var(--transition);
             font-family: var(--font-body);
             font-weight: 700;
+            min-height: 44px;
+            min-width: 50px;
         }
 
         .bg-setup-row .preset-buttons button:hover {
@@ -3401,15 +3418,16 @@
 
         .bg-setup-row .custom-input input {
             width: 60px;
-            padding: 0.25rem 0.4rem;
+            padding: 0.35rem 0.4rem;
             border-radius: 16px;
             border: 2px solid var(--theme-border-color);
             background: var(--theme-bg-input);
             color: var(--theme-text-primary);
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             text-align: center;
             font-family: var(--font-body);
             font-weight: 700;
+            min-height: 38px;
         }
 
         .bg-setup-row .custom-input input:focus {
@@ -3460,6 +3478,7 @@
             background: #2ecc71;
             color: white;
             box-shadow: 0 0 30px rgba(46, 204, 113, 0.3);
+            min-height: 52px;
         }
 
         .bg-start-btn:hover {
@@ -3473,14 +3492,6 @@
             transform: none !important;
         }
 
-        .bg-tip {
-            text-align: center;
-            color: var(--theme-text-muted);
-            font-size: 0.55rem;
-            margin-top: 0.5rem;
-            font-style: italic;
-        }
-
         .bg-empty-questions {
             text-align: center;
             color: var(--theme-text-muted);
@@ -3490,73 +3501,35 @@
 
         /* Brain Games Modal */
         .bg-modal-content {
-            padding: 0.5rem 0;
-        }
-
-        .bg-modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.5rem 0;
-            border-bottom: 2px solid var(--theme-border-color);
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .bg-modal-header .header-item {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-size: 0.7rem;
-            color: var(--theme-text-secondary);
-            font-weight: 600;
-        }
-
-        .bg-modal-header .header-item .icon {
-            font-size: 0.8rem;
-        }
-
-        .bg-modal-header .header-item .value {
-            font-weight: 800;
-            color: var(--theme-text-primary);
-        }
-
-        .bg-modal-header .header-item .value.highlight {
-            color: var(--theme-blue-electric);
-        }
-
-        .bg-modal-header .header-item .timer-warning {
-            color: #e74c3c !important;
-            animation: timerPulse 0.5s infinite;
+            padding: 0.2rem 0;
         }
 
         .bg-question-text {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: 800;
             text-align: center;
-            padding: 0.5rem 0 1.2rem 0;
+            padding: 0.3rem 0 0.8rem 0;
             color: var(--theme-text-primary);
-            line-height: 1.4;
+            line-height: 1.3;
         }
 
         .bg-question-text.long {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
 
         .bg-options-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 0.8rem;
-            margin-bottom: 1rem;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
         }
 
         .bg-option-btn {
-            padding: 1rem;
-            border-radius: 14px;
+            padding: 0.7rem;
+            border-radius: 12px;
             border: 3px solid transparent;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             color: white;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -3565,7 +3538,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 80px;
+            min-height: 60px;
             font-family: var(--font-body);
             user-select: none;
             -webkit-tap-highlight-color: transparent;
@@ -3573,14 +3546,14 @@
         }
 
         .bg-option-btn .label {
-            font-size: 0.55rem;
+            font-size: 0.45rem;
             opacity: 0.6;
             font-weight: 400;
-            margin-bottom: 0.1rem;
+            margin-bottom: 0.05rem;
         }
 
         .bg-option-btn .text {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             font-weight: 700;
         }
 
@@ -3598,9 +3571,9 @@
         }
 
         .bg-option-btn:hover:not(:disabled) {
-            transform: scale(1.04);
-            border-color: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+            transform: scale(1.03);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
         }
 
         .bg-option-btn:active:not(:disabled) {
@@ -3615,80 +3588,81 @@
 
         .bg-option-btn.selected {
             border-color: white;
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+            transform: scale(1.03);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
         }
 
         .bg-option-btn.correct {
             border-color: #2ecc71;
-            box-shadow: 0 0 40px rgba(46, 204, 113, 0.5);
-            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(46, 204, 113, 0.4);
+            transform: scale(1.02);
             opacity: 1 !important;
         }
 
         .bg-option-btn.correct::after {
             content: '⭐';
             position: absolute;
-            top: -14px;
-            right: -14px;
-            font-size: 1.6rem;
+            top: -12px;
+            right: -12px;
+            font-size: 1.4rem;
             animation: starPop 0.5s ease;
         }
 
         .bg-option-btn.wrong {
             border-color: #e74c3c;
-            box-shadow: 0 0 40px rgba(231, 76, 60, 0.3);
+            box-shadow: 0 0 30px rgba(231, 76, 60, 0.25);
             opacity: 0.4;
         }
 
         .bg-feedback {
             text-align: center;
-            padding: 0.6rem;
-            border-radius: 12px;
-            margin: 0.5rem 0;
+            padding: 0.4rem;
+            border-radius: 10px;
+            margin: 0.3rem 0;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             display: none;
         }
 
         .bg-feedback.correct {
             display: block;
-            background: rgba(46, 204, 113, 0.15);
+            background: rgba(46, 204, 113, 0.12);
             border: 2px solid #2ecc71;
             color: #2ecc71;
         }
 
         .bg-feedback.wrong {
             display: block;
-            background: rgba(231, 76, 60, 0.15);
+            background: rgba(231, 76, 60, 0.12);
             border: 2px solid #e74c3c;
             color: #e74c3c;
         }
 
         .bg-feedback.timeout {
             display: block;
-            background: rgba(243, 156, 18, 0.15);
+            background: rgba(243, 156, 18, 0.12);
             border: 2px solid #f39c12;
             color: #f39c12;
         }
 
         .bg-controls {
             display: flex;
-            gap: 0.8rem;
+            gap: 0.5rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin: 0.8rem 0;
+            margin: 0.4rem 0;
         }
 
         .bg-controls button {
-            padding: 0.5rem 1.5rem;
-            border-radius: 30px;
+            padding: 0.4rem 1.2rem;
+            border-radius: 24px;
             border: none;
             font-weight: 700;
-            font-size: 0.65rem;
+            font-size: 0.55rem;
             cursor: pointer;
             transition: var(--transition);
             font-family: var(--font-body);
+            min-height: 38px;
         }
 
         .bg-controls button:hover {
@@ -3704,21 +3678,21 @@
         .bg-controls .btn-next {
             background: var(--theme-blue-bright);
             color: white;
-            box-shadow: 0 0 30px var(--theme-glow-blue);
+            box-shadow: 0 0 20px var(--theme-glow-blue);
         }
 
         .bg-controls .btn-next:hover {
-            box-shadow: 0 0 50px var(--theme-glow-blue-strong);
+            box-shadow: 0 0 40px var(--theme-glow-blue-strong);
         }
 
         .bg-controls .btn-end {
             background: #e74c3c;
             color: white;
-            box-shadow: 0 0 30px rgba(231, 76, 60, 0.3);
+            box-shadow: 0 0 20px rgba(231, 76, 60, 0.25);
         }
 
         .bg-controls .btn-end:hover {
-            box-shadow: 0 0 50px rgba(231, 76, 60, 0.5);
+            box-shadow: 0 0 40px rgba(231, 76, 60, 0.4);
         }
 
         /* GM Brain Games Section */
@@ -3944,65 +3918,64 @@
             }
 
             .bg-options-grid {
-                gap: 0.4rem;
+                gap: 0.3rem;
             }
 
             .bg-option-btn {
-                padding: 0.6rem;
-                font-size: 0.85rem;
-                min-height: 60px;
+                padding: 0.4rem;
+                font-size: 0.75rem;
+                min-height: 50px;
             }
 
             .bg-option-btn .text {
-                font-size: 0.85rem;
+                font-size: 0.75rem;
             }
 
             .bg-question-text {
-                font-size: 1.2rem;
-                padding: 0.3rem 0 0.8rem 0;
+                font-size: 1.1rem;
+                padding: 0.2rem 0 0.6rem 0;
             }
 
             .bg-question-text.long {
-                font-size: 1rem;
-            }
-
-            .bg-modal-header .header-item {
-                font-size: 0.55rem;
+                font-size: 0.9rem;
             }
 
             .bg-feedback {
-                font-size: 0.75rem;
-                padding: 0.4rem;
+                font-size: 0.65rem;
+                padding: 0.3rem;
             }
 
             .bg-controls button {
-                padding: 0.4rem 1rem;
-                font-size: 0.55rem;
+                padding: 0.3rem 0.8rem;
+                font-size: 0.5rem;
             }
 
             .bg-setup-row .preset-buttons button {
-                font-size: 0.5rem;
-                padding: 0.2rem 0.6rem;
+                font-size: 0.55rem;
+                padding: 0.35rem 0.7rem;
+                min-height: 38px;
+                min-width: 40px;
             }
 
             .hangman-figure svg {
-                max-width: 160px;
+                max-width: 140px;
             }
 
             .hangman-word {
-                font-size: 1.4rem !important;
-                letter-spacing: 6px !important;
-                min-height: 2.5rem;
+                font-size: 1.3rem !important;
+                letter-spacing: 5px !important;
+                min-height: 2.2rem;
             }
 
             .hangman-word .letter {
-                width: 1.2rem !important;
+                width: 1rem !important;
             }
 
             .hangman-input-row input {
-                width: 40px !important;
-                font-size: 1.2rem !important;
-                padding: 0.3rem !important;
+                width: 36px !important;
+                font-size: 1rem !important;
+                padding: 0.25rem !important;
+                min-height: 36px;
             }
 
             .player-avatar {
@@ -4049,33 +4022,35 @@
             }
 
             .modal-box {
-                padding: 0.8rem;
+                padding: 0.6rem 0.8rem 0.6rem 0.8rem;
                 max-height: 92vh;
                 border-radius: 16px 16px 0 0;
                 max-width: 100%;
             }
 
             .modal-box .game-header {
-                flex-direction: column;
-                align-items: stretch;
+                flex-direction: row;
+                align-items: center;
                 gap: 0.2rem;
-                padding-bottom: 0.4rem;
-                margin-bottom: 0.5rem;
+                padding-bottom: 0.3rem;
+                margin-bottom: 0.3rem;
+                flex-wrap: wrap;
             }
             .modal-box .game-header h2 {
-                font-size: 0.65rem;
+                font-size: 0.6rem;
             }
             .modal-box .game-header .game-info .timer-display {
-                font-size: 1.6rem;
-                min-width: 40px;
-                margin-right: 0;
-                order: 0;
+                font-size: 1.3rem;
+                min-width: 36px;
+            }
+            .modal-box .game-header .game-info .turn-indicator {
+                font-size: 0.45rem;
             }
 
             .word-display {
-                font-size: 1.4rem !important;
+                font-size: 1.3rem !important;
                 letter-spacing: 2px !important;
-                padding: 0.6rem 0.3rem !important;
+                padding: 0.4rem 0.2rem !important;
             }
 
             .word-display.long-word {
@@ -4084,15 +4059,15 @@
             }
 
             .word-display.whoami {
-                font-size: 1.8rem !important;
-                letter-spacing: 2px !important;
+                font-size: 1.6rem !important;
+                letter-spacing: 1.5px !important;
             }
 
             .scoring-section .score-buttons button {
-                padding: 0.4rem 0.6rem;
-                font-size: 0.55rem;
-                min-width: 40px;
-                min-height: 40px;
+                padding: 0.3rem 0.5rem;
+                font-size: 0.5rem;
+                min-width: 34px;
+                min-height: 34px;
             }
 
             .team-card {
@@ -4123,29 +4098,29 @@
             }
 
             .bg-option-btn {
-                padding: 0.4rem;
-                font-size: 0.7rem;
-                min-height: 50px;
+                padding: 0.3rem;
+                font-size: 0.65rem;
+                min-height: 44px;
             }
             .bg-option-btn .text {
-                font-size: 0.7rem;
+                font-size: 0.65rem;
             }
             .bg-question-text {
-                font-size: 1rem;
+                font-size: 0.95rem;
             }
             .bg-question-text.long {
-                font-size: 0.85rem;
+                font-size: 0.8rem;
             }
 
             .hangman-figure svg {
-                max-width: 130px;
+                max-width: 110px;
             }
             .hangman-word {
-                font-size: 1.1rem !important;
-                letter-spacing: 4px !important;
+                font-size: 1rem !important;
+                letter-spacing: 3px !important;
             }
             .hangman-word .letter {
-                width: 0.9rem !important;
+                width: 0.8rem !important;
             }
 
             .player-avatar .avatar-circle {
@@ -4163,10 +4138,10 @@
             }
 
             .scoring-section .score-buttons button {
-                padding: 0.3rem 0.4rem;
+                padding: 0.25rem 0.35rem;
                 font-size: 0.45rem;
-                min-width: 32px;
-                min-height: 32px;
+                min-width: 30px;
+                min-height: 30px;
             }
         }
 
@@ -4285,8 +4260,8 @@
             <div class="game-header">
                 <h2 id="modalTitle">🎮 GAME</h2>
                 <div class="game-info">
-                    <span class="timer-display" id="timerDisplay">30</span>
                     <span class="turn-indicator" id="turnIndicator">👤 No player</span>
+                    <span class="timer-display" id="timerDisplay">30</span>
                 </div>
             </div>
             <div class="timer-setup" id="timerSetup">
@@ -4301,7 +4276,7 @@
                     </div>
                     <div class="timer-custom">
                         <input type="number" id="customTimerInput" value="30" min="5" max="300" onchange="setCustomTimer(this.value)" />
-                        <span>seconds</span>
+                        <span>s</span>
                     </div>
                 </div>
                 <button class="timer-start-btn" id="timerStartBtn" onclick="startGameWithTimer()">🚀 START GAME</button>
@@ -6702,13 +6677,8 @@
             stopTimer();
             overlay.classList.remove('active');
             document.body.style.overflow = '';
-            selectedGameId = null;
-            selectedGameData = null;
-            document.getElementById('timerSetup').style.display = 'flex';
-            document.getElementById('timerDisplay').style.display = 'block';
-            document.getElementById('timerDisplay').textContent = currentGameTimerSeconds || 30;
-            document.getElementById('modalContent').style.display = 'none';
-
+            
+            // Reset game state and show setup
             changeCounts = {};
             usedItemsInRound = {
                 charades: [],
@@ -6728,6 +6698,38 @@
             hangmanState.gameOver = false;
             hangmanState.won = false;
             hangmanState.definitionRevealed = false;
+
+            // Show setup view for the current game
+            const container = document.getElementById('modalContent');
+            const timerSetup = document.getElementById('timerSetup');
+            const timerDisplay = document.getElementById('timerDisplay');
+
+            if (selectedGameId === 'roast') {
+                timerSetup.style.display = 'none';
+                timerDisplay.style.display = 'none';
+                renderRoastSetup();
+            } else if (selectedGameId === 'hangman') {
+                timerSetup.style.display = 'flex';
+                timerDisplay.style.display = 'block';
+                renderHangmanDifficultySelector();
+            } else {
+                timerSetup.style.display = 'flex';
+                timerDisplay.style.display = 'block';
+                container.style.display = 'none';
+                container.innerHTML = '';
+                timerDisplay.textContent = currentGameTimerSeconds || 30;
+                document.getElementById('customTimerInput').value = currentGameTimerSeconds || 30;
+                document.querySelectorAll('.timer-presets button').forEach(b => b.classList.remove('active'));
+                const defaultPreset = document.querySelector(
+                    `.timer-presets button[onclick*="${currentGameTimerSeconds || 30}"]`);
+                if (defaultPreset) defaultPreset.classList.add('active');
+                updateModalHeader();
+                const colorKey = selectedGameId?.replace('-', '') || 'charades';
+                applyGameColors(colorKey);
+            }
+
+            selectedGameId = null;
+            selectedGameData = null;
         }
 
         document.getElementById('closeModalBtn').addEventListener('click', closeModal);
@@ -7156,10 +7158,10 @@
             const maxChanges = 3;
 
             container.innerHTML = `
-                <p><strong>🎭 ACT THIS OUT SILENTLY:</strong></p>
+                <p style="font-size:0.65rem;font-weight:600;">🎭 ACT THIS OUT SILENTLY:</p>
                 <div class="word-display ${isLong ? 'long-word' : ''}">${word.toUpperCase()}</div>
-                <p style="font-size:0.75rem;color:var(--theme-text-muted);">👀 Others guess! Use scoring buttons below.</p>
-                <div style="font-size:0.5rem;color:var(--theme-text-muted);margin-bottom:0.3rem;text-align:center;">
+                <p style="font-size:0.6rem;color:var(--theme-text-muted);">👀 Others guess! Use scoring buttons below.</p>
+                <div style="font-size:0.4rem;color:var(--theme-text-muted);margin-bottom:0.2rem;text-align:center;">
                     📊 ${wordTracking.charades.used.length} of ${words.length} words used
                 </div>
                 <div class="game-actions">
@@ -7183,10 +7185,10 @@
             const maxChanges = 3;
 
             container.innerHTML = `
-                <p><strong>🎨 DRAW THIS:</strong></p>
+                <p style="font-size:0.65rem;font-weight:600;">🎨 DRAW THIS:</p>
                 <div class="word-display ${isLong ? 'long-word' : ''}">${word.toUpperCase()}</div>
-                <p style="font-size:0.75rem;color:var(--theme-text-muted);">🖍️ Others guess! Use scoring buttons below.</p>
-                <div style="font-size:0.5rem;color:var(--theme-text-muted);margin-bottom:0.3rem;text-align:center;">
+                <p style="font-size:0.6rem;color:var(--theme-text-muted);">🖍️ Others guess! Use scoring buttons below.</p>
+                <div style="font-size:0.4rem;color:var(--theme-text-muted);margin-bottom:0.2rem;text-align:center;">
                     📊 ${wordTracking.pictionary.used.length} of ${words.length} words used
                 </div>
                 <div class="game-actions">
@@ -7209,15 +7211,15 @@
             const maxChanges = 3;
 
             container.innerHTML = `
-                <p><strong>🎤 KARAOKE SHOWDOWN!</strong></p>
+                <p style="font-size:0.65rem;font-weight:600;">🎤 KARAOKE SHOWDOWN!</p>
                 <div class="song-display">
                     <div class="title">${song.title}</div>
                     <div class="artist">🎵 ${song.artist}</div>
                 </div>
-                <div style="font-size:0.5rem;color:var(--theme-text-muted);margin-bottom:0.3rem;text-align:center;">
+                <div style="font-size:0.4rem;color:var(--theme-text-muted);margin-bottom:0.2rem;text-align:center;">
                     📊 ${wordTracking.karaoke.used.length} of ${songs.length} songs used
                 </div>
-                <p style="font-size:0.75rem;color:var(--theme-text-muted);">🎤 Sing your heart out! Rate the performance:</p>
+                <p style="font-size:0.6rem;color:var(--theme-text-muted);">🎤 Sing your heart out! Rate the performance:</p>
                 <div class="rating-stars" id="karaokeStars">
                     <span class="star" data-rating="1">⭐</span>
                     <span class="star" data-rating="2">⭐</span>
@@ -7254,33 +7256,44 @@
             }, 50);
         }
 
-        // ---- FAST TALK ----
+        // ---- FAST TALK - FIXED CATEGORY ROTATION ----
         function renderFastTalk(container) {
             const categories = fastTalkCategories.length > 0 ? fastTalkCategories : FALLBACK_DATA.fastTalk;
 
-            // Find a category with unused items
+            // Find a category with unused items - fixed rotation
             let cat = null;
             let attempts = 0;
             const usedTracker = wordTracking.fasttalk;
 
+            // Initialize currentCategory if not set
+            if (usedTracker.currentCategory === null || usedTracker.currentCategory === undefined) {
+                usedTracker.currentCategory = 0;
+            }
+
             while (attempts < categories.length) {
-                const testCat = categories[usedTracker.currentCategory || 0];
+                const catIndex = usedTracker.currentCategory % categories.length;
+                const testCat = categories[catIndex];
+                
                 if (!usedTracker[testCat.name]) {
                     usedTracker[testCat.name] = { used: [] };
                 }
+                
+                // If this category still has unused items, use it
                 if (usedTracker[testCat.name].used.length < testCat.items.length) {
                     cat = testCat;
                     break;
                 }
-                usedTracker.currentCategory = (usedTracker.currentCategory || 0) + 1;
+                
+                // Otherwise move to next category
+                usedTracker.currentCategory = (usedTracker.currentCategory + 1) % categories.length;
                 attempts++;
             }
 
+            // If all categories are fully used, reset all and start from first
             if (!cat) {
-                // Reset all categories
                 Object.keys(usedTracker).forEach(key => {
                     if (key !== 'currentCategory' && key !== 'used') {
-                        usedTracker[key].used = [];
+                        usedTracker[key] = { used: [] };
                     }
                 });
                 usedTracker.currentCategory = 0;
@@ -7291,24 +7304,29 @@
             }
 
             // Get the current item to display
-            const currentItem = usedTracker[cat.name].used.length < cat.items.length ?
-                cat.items.filter(item => !usedTracker[cat.name].used.includes(item))[0] :
-                cat.items[0];
+            let currentItem = null;
+            const availableItems = cat.items.filter(item => !usedTracker[cat.name].used.includes(item));
+            if (availableItems.length > 0) {
+                currentItem = availableItems[0];
+            } else {
+                usedTracker[cat.name].used = [];
+                currentItem = cat.items[0];
+            }
 
             const playerName = getCurrentPlayerName() || '';
             const changeCount = changeCounts[playerName] || 0;
             const maxChanges = 3;
 
             container.innerHTML = `
-                <p><strong>⏱️ FAST TALK: <span style="color:var(--theme-blue-electric);">${cat.name.toUpperCase()}</span></strong></p>
-                <p style="font-size:0.75rem;color:var(--theme-text-muted);">Name as many ${cat.name.toLowerCase()} as you can!</p>
-                <div style="font-size:0.5rem;color:var(--theme-text-muted);text-align:center;margin-bottom:0.3rem;">
+                <p style="font-size:0.65rem;font-weight:600;">⏱️ FAST TALK: <span style="color:var(--theme-blue-electric);">${cat.name.toUpperCase()}</span></p>
+                <p style="font-size:0.6rem;color:var(--theme-text-muted);">Name as many ${cat.name.toLowerCase()} as you can!</p>
+                <div style="font-size:0.4rem;color:var(--theme-text-muted);text-align:center;margin-bottom:0.2rem;">
                     📊 ${usedTracker[cat.name].used.length} of ${cat.items.length} items used in this category
                 </div>
-                <div style="display:flex;gap:0.4rem;flex-wrap:wrap;justify-content:center;margin:0.3rem 0;">
-                    <input type="text" id="categoryInput" placeholder="Name one..." style="flex:1;min-width:100px;padding:0.35rem 0.8rem;border-radius:30px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);font-size:0.75rem;font-family:var(--font-body);transition:var(--transition);">
-                    <button id="submitCategory" style="padding:0.25rem 1rem;border-radius:30px;border:none;font-weight:700;font-size:0.55rem;cursor:pointer;background:var(--theme-blue-bright);color:white;font-family:var(--font-body);box-shadow:0 0 20px var(--theme-glow-blue);transition:var(--transition);">SUBMIT</button>
-                    <button onclick="revealFastTalkItems('${cat.name}')" style="padding:0.25rem 1rem;border-radius:30px;border:none;font-weight:700;font-size:0.55rem;cursor:pointer;background:#f39c12;color:white;font-family:var(--font-body);transition:var(--transition);">📋 REVEAL ALL</button>
+                <div style="display:flex;gap:0.3rem;flex-wrap:wrap;justify-content:center;margin:0.2rem 0;">
+                    <input type="text" id="categoryInput" placeholder="Name one..." style="flex:1;min-width:80px;padding:0.25rem 0.6rem;border-radius:24px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);font-size:0.65rem;font-family:var(--font-body);min-height:32px;">
+                    <button id="submitCategory" style="padding:0.2rem 0.8rem;border-radius:24px;border:none;font-weight:700;font-size:0.5rem;cursor:pointer;background:var(--theme-blue-bright);color:white;font-family:var(--font-body);box-shadow:0 0 15px var(--theme-glow-blue);min-height:32px;">SUBMIT</button>
+                    <button onclick="revealFastTalkItems('${cat.name}')" style="padding:0.2rem 0.8rem;border-radius:24px;border:none;font-weight:700;font-size:0.5rem;cursor:pointer;background:#f39c12;color:white;font-family:var(--font-body);min-height:32px;">📋 REVEAL</button>
                 </div>
                 <div id="categoryFeedback" class="feedback"></div>
                 <div id="fastTalkReveal" style="display:none;"></div>
@@ -7359,14 +7377,14 @@
             if (!revealDiv) return;
 
             const itemsList = cat.items.map(item =>
-                `<span style="display:inline-block;background:var(--theme-bg-input);padding:0.2rem 0.8rem;border-radius:12px;margin:0.2rem;font-size:0.7rem;border:1px solid var(--theme-border-color);color:var(--theme-text-primary);">${item}</span>`
+                `<span style="display:inline-block;background:var(--theme-bg-input);padding:0.15rem 0.6rem;border-radius:10px;margin:0.15rem;font-size:0.6rem;border:1px solid var(--theme-border-color);color:var(--theme-text-primary);">${item}</span>`
             ).join('');
 
             revealDiv.style.display = 'block';
             revealDiv.innerHTML = `
-                <div style="margin-top:0.5rem;padding:0.5rem;background:var(--theme-bg-card);border-radius:12px;border:2px solid var(--theme-blue-electric);">
-                    <div style="font-family:var(--font-display);font-size:0.45rem;color:var(--theme-text-muted);margin-bottom:0.3rem;text-align:center;">📋 ALL ITEMS IN ${cat.name.toUpperCase()}</div>
-                    <div style="display:flex;flex-wrap:wrap;gap:0.3rem;justify-content:center;">${itemsList}</div>
+                <div style="margin-top:0.3rem;padding:0.3rem;background:var(--theme-bg-card);border-radius:10px;border:2px solid var(--theme-blue-electric);">
+                    <div style="font-family:var(--font-display);font-size:0.4rem;color:var(--theme-text-muted);margin-bottom:0.2rem;text-align:center;">📋 ALL ITEMS IN ${cat.name.toUpperCase()}</div>
+                    <div style="display:flex;flex-wrap:wrap;gap:0.2rem;justify-content:center;">${itemsList}</div>
                 </div>
             `;
             playSound('success');
@@ -7382,9 +7400,9 @@
             const letters = ['A', 'B', 'C'];
 
             container.innerHTML = `
-                <p><strong>🤥 TWO TRUTHS & A LIE</strong></p>
-                <p style="color:var(--theme-text-muted);font-size:0.75rem;">📂 Random Facts</p>
-                <div style="font-size:0.5rem;color:var(--theme-text-muted);text-align:center;margin-bottom:0.3rem;">
+                <p style="font-size:0.65rem;font-weight:600;">🤥 TWO TRUTHS & A LIE</p>
+                <p style="color:var(--theme-text-muted);font-size:0.55rem;">📂 Random Facts</p>
+                <div style="font-size:0.4rem;color:var(--theme-text-muted);text-align:center;margin-bottom:0.2rem;">
                     📊 ${wordTracking.truthlie.used.length} fact sets used
                 </div>
                 <div class="truth-lie-box" id="truthLieBox">
@@ -7442,13 +7460,18 @@
             // If still no names, show a message
             if (!names || names.length === 0) {
                 container.innerHTML = `
-                    <div style="text-align:center;padding:2rem;">
-                        <p style="font-size:1.2rem;">🕵️ WHO AM I?</p>
-                        <p style="color:var(--theme-text-muted);">No names available. Please add names in <strong>Game Master → Who Am I</strong>!</p>
+                    <div style="text-align:center;padding:1rem;">
+                        <p style="font-size:1rem;">🕵️ WHO AM I?</p>
+                        <p style="color:var(--theme-text-muted);font-size:0.7rem;">No names available. Please add names in <strong>Game Master → Who Am I</strong>!</p>
                     </div>
                     ${createScoringUI()}
                 `;
                 return;
+            }
+
+            // Ensure tracker exists
+            if (!wordTracking.whoami) {
+                wordTracking.whoami = { used: [], currentCategory: null };
             }
 
             // Get next unused name with tracking
@@ -7472,15 +7495,15 @@
             const maxChanges = 3;
 
             container.innerHTML = `
-                <p><strong>🕵️ WHO AM I?</strong></p>
+                <p style="font-size:0.65rem;font-weight:600;">🕵️ WHO AM I?</p>
                 <div class="word-display whoami ${isLong ? 'long-word' : ''}">${name.toUpperCase()}</div>
-                <div style="font-size:0.5rem;color:var(--theme-text-muted);text-align:center;margin-bottom:0.3rem;">
+                <div style="font-size:0.4rem;color:var(--theme-text-muted);text-align:center;margin-bottom:0.2rem;">
                     📊 ${tracker.used.length} of ${names.length} names used
                 </div>
                 <div class="whoami-hint">
                     🙈 ${playerName || 'Current player'} — CLOSE YOUR EYES! Everyone else can see the name.
                 </div>
-                <p style="font-size:0.75rem;color:var(--theme-text-muted);">🗣️ Ask YES/NO questions to figure out who you are!</p>
+                <p style="font-size:0.6rem;color:var(--theme-text-muted);">🗣️ Ask YES/NO questions to figure out who you are!</p>
                 <div class="game-actions">
                     <button class="change-btn" onclick="changeItem('whoami', 'whoami', 'Character', 3)" ${changeCount >= maxChanges ? 'disabled' : ''}>
                         🕵️ CHANGE CHARACTER ${changeCount}/${maxChanges}
@@ -7492,7 +7515,7 @@
         }
 
         // ============================================================
-        //  HANGMAN - FIXED SVG POSITIONING
+        //  HANGMAN - FIXED SVG RIGHT-ALIGNED
         // ============================================================
         function getHangmanWordForDifficulty(difficulty) {
             const words = hangmanWords[difficulty] || [];
@@ -7608,18 +7631,18 @@
                     </div>
 
                     <div class="hangman-figure">
-                        <svg viewBox="0 0 100 120" width="180" height="150">
-                            <line x1="10" y1="115" x2="90" y2="115" stroke="var(--theme-text-primary)" stroke-width="3" stroke-linecap="round"/>
-                            <line x1="50" y1="115" x2="50" y2="10" stroke="var(--theme-text-primary)" stroke-width="3" stroke-linecap="round"/>
-                            <line x1="50" y1="10" x2="20" y2="10" stroke="var(--theme-text-primary)" stroke-width="3" stroke-linecap="round"/>
-                            <line x1="20" y1="10" x2="20" y2="25" stroke="var(--theme-text-primary)" stroke-width="3" stroke-linecap="round"/>
+                        <svg viewBox="0 0 100 120" width="170" height="140">
+                            <line x1="10" y1="115" x2="90" y2="115" stroke="var(--theme-text-primary)" stroke-width="2.5" stroke-linecap="round"/>
+                            <line x1="50" y1="115" x2="50" y2="10" stroke="var(--theme-text-primary)" stroke-width="2.5" stroke-linecap="round"/>
+                            <line x1="50" y1="10" x2="20" y2="10" stroke="var(--theme-text-primary)" stroke-width="2.5" stroke-linecap="round"/>
+                            <line x1="20" y1="10" x2="20" y2="25" stroke="var(--theme-text-primary)" stroke-width="2.5" stroke-linecap="round"/>
 
                             <circle class="hangman-part ${hangmanState.wrongGuesses >= 1 ? 'show' : ''}" 
-                                    cx="20" cy="38" r="12" stroke="var(--theme-text-primary)" stroke-width="2.5" fill="none"
+                                    cx="20" cy="38" r="11" stroke="var(--theme-text-primary)" stroke-width="2.5" fill="none"
                                     style="transition: opacity 0.3s ease; ${hangmanState.wrongGuesses >= 1 ? 'opacity:1;' : 'opacity:0;'}"/>
 
                             <line class="hangman-part ${hangmanState.wrongGuesses >= 2 ? 'show' : ''}" 
-                                  x1="20" y1="50" x2="20" y2="72" stroke="var(--theme-text-primary)" stroke-width="2.5" stroke-linecap="round"
+                                  x1="20" y1="49" x2="20" y2="72" stroke="var(--theme-text-primary)" stroke-width="2.5" stroke-linecap="round"
                                   style="transition: opacity 0.3s ease; ${hangmanState.wrongGuesses >= 2 ? 'opacity:1;' : 'opacity:0;'}"/>
 
                             <line class="hangman-part ${hangmanState.wrongGuesses >= 3 ? 'show' : ''}" 
@@ -7648,7 +7671,7 @@
                     <div class="hangman-guesses">
                         ${correctLetters.length > 0 ? `<span class="correct">✅ ${correctLetters.join(' ').toUpperCase()}</span>` : ''}
                         ${wrongLetters.length > 0 ? `<span class="wrong">❌ ${wrongLetters.join(' ').toUpperCase()}</span>` : ''}
-                        ${correctLetters.length === 0 && wrongLetters.length === 0 ? '<span style="color:var(--theme-text-muted);font-size:0.6rem;">Guess a letter</span>' : ''}
+                        ${correctLetters.length === 0 && wrongLetters.length === 0 ? '<span style="color:var(--theme-text-muted);font-size:0.5rem;">Guess a letter</span>' : ''}
                     </div>
 
                     <div class="hangman-input-row">
@@ -7667,12 +7690,12 @@
                     </div>
 
                     ${isExpert && isGameActive ? `
-                        <div style="font-size:0.45rem;color:var(--theme-text-muted);margin-top:0.2rem;text-align:center;font-family:var(--font-display);letter-spacing:1px;">
+                        <div style="font-size:0.4rem;color:var(--theme-text-muted);margin-top:0.15rem;text-align:center;font-family:var(--font-display);letter-spacing:1px;">
                             🔬 EXPERT MODE: Hint reveals definition
                         </div>
                     ` : ''}
                     ${!isExpert && isGameActive && showRandomize ? `
-                        <div style="font-size:0.45rem;color:var(--theme-text-muted);margin-top:0.2rem;text-align:center;font-family:var(--font-display);letter-spacing:1px;">
+                        <div style="font-size:0.4rem;color:var(--theme-text-muted);margin-top:0.15rem;text-align:center;font-family:var(--font-display);letter-spacing:1px;">
                             🎲 RANDOM: Get a new word without changing player
                         </div>
                     ` : ''}
@@ -7915,32 +7938,32 @@
             const container = document.getElementById('modalContent');
             container.style.display = 'block';
             container.innerHTML = `
-                <div style="text-align:center;padding:0.5rem 0;">
-                    <h3 style="font-family:var(--font-display);font-size:0.8rem;color:var(--theme-blue-electric);margin-bottom:0.5rem;">
+                <div style="text-align:center;padding:0.3rem 0;">
+                    <h3 style="font-family:var(--font-display);font-size:0.7rem;color:var(--theme-blue-electric);margin-bottom:0.3rem;">
                         🧩 HANGMAN
                     </h3>
-                    <p style="color:var(--theme-text-muted);font-size:0.7rem;margin-bottom:0.8rem;">
+                    <p style="color:var(--theme-text-muted);font-size:0.6rem;margin-bottom:0.5rem;">
                         Choose a difficulty level to start
                     </p>
                     <div class="hangman-difficulty-selector">
                         <button class="easy-btn active" data-diff="easy" onclick="selectHangmanDifficulty('easy', this)">
                             🟢 Easy
-                            <span style="font-size:0.4rem;display:block;color:var(--theme-text-muted);">${hangmanWords.easy?.length || 0} words</span>
+                            <span style="font-size:0.35rem;display:block;color:var(--theme-text-muted);">${hangmanWords.easy?.length || 0} words</span>
                         </button>
                         <button class="medium-btn" data-diff="medium" onclick="selectHangmanDifficulty('medium', this)">
                             🟡 Medium
-                            <span style="font-size:0.4rem;display:block;color:var(--theme-text-muted);">${hangmanWords.medium?.length || 0} words</span>
+                            <span style="font-size:0.35rem;display:block;color:var(--theme-text-muted);">${hangmanWords.medium?.length || 0} words</span>
                         </button>
                         <button class="hard-btn" data-diff="hard" onclick="selectHangmanDifficulty('hard', this)">
                             🟠 Hard
-                            <span style="font-size:0.4rem;display:block;color:var(--theme-text-muted);">${hangmanWords.hard?.length || 0} words</span>
+                            <span style="font-size:0.35rem;display:block;color:var(--theme-text-muted);">${hangmanWords.hard?.length || 0} words</span>
                         </button>
                         <button class="expert-btn" data-diff="expert" onclick="selectHangmanDifficulty('expert', this)">
                             🔴 Expert
-                            <span style="font-size:0.4rem;display:block;color:var(--theme-text-muted);">${hangmanWords.expert?.length || 0} words</span>
+                            <span style="font-size:0.35rem;display:block;color:var(--theme-text-muted);">${hangmanWords.expert?.length || 0} words</span>
                         </button>
                     </div>
-                    <p style="font-size:0.5rem;color:var(--theme-text-muted);margin-top:0.5rem;">
+                    <p style="font-size:0.45rem;color:var(--theme-text-muted);margin-top:0.3rem;">
                         Select a difficulty, then click the <span style="color:var(--theme-blue-electric);">START GAME</span> button above
                     </p>
                 </div>
@@ -7995,7 +8018,7 @@
             const totalRoastsNeeded = selectedRoastsPerRound * selectedTotalRounds;
             container.innerHTML = `
                 <div class="roast-setup">
-                    <h3 style="text-align:center;color:var(--theme-blue-electric);font-family:var(--font-display);font-size:0.7rem;margin-bottom:0.8rem;">
+                    <h3 style="text-align:center;color:var(--theme-blue-electric);font-family:var(--font-display);font-size:0.6rem;margin-bottom:0.5rem;">
                         🔥 ROAST BATTLE SETUP
                     </h3>
                     <div class="roast-setup-row">
@@ -8007,7 +8030,7 @@
                             <button onclick="setRoastPreset(20)" data-val="20">20</button>
                             <div class="custom-input">
                                 <input type="number" id="customRoastCount" value="10" min="1" max="50" onchange="setCustomRoastCount(this.value)" />
-                                <span style="font-size:0.5rem;color:var(--theme-text-muted);">custom</span>
+                                <span style="font-size:0.45rem;color:var(--theme-text-muted);">custom</span>
                             </div>
                         </div>
                     </div>
@@ -8019,11 +8042,11 @@
                             <button onclick="setRoundPreset(5)" data-val="5">5</button>
                             <div class="custom-input">
                                 <input type="number" id="customRoundCount" value="3" min="1" max="10" onchange="setCustomRoundCount(this.value)" />
-                                <span style="font-size:0.5rem;color:var(--theme-text-muted);">custom</span>
+                                <span style="font-size:0.45rem;color:var(--theme-text-muted);">custom</span>
                             </div>
                         </div>
                     </div>
-                    <div style="text-align:center;margin-top:0.5rem;">
+                    <div style="text-align:center;margin-top:0.3rem;">
                         <button class="roast-start-btn" onclick="startRoastGame()">🔥 START ROAST BATTLE</button>
                     </div>
                     <div class="roast-available">
@@ -8153,7 +8176,7 @@
                     </div>
 
                     <div class="roast-counts">
-                        ${countsHTML || '<span style="color:var(--theme-text-muted);font-size:0.6rem;">No roasts assigned yet</span>'}
+                        ${countsHTML || '<span style="color:var(--theme-text-muted);font-size:0.5rem;">No roasts assigned yet</span>'}
                     </div>
 
                     <div id="roastFeedback" class="feedback"></div>
@@ -8267,7 +8290,7 @@
                         <div class="winner-name">🤷 No one got roasted!</div>
                     `}
                     <div class="funny-response">${funnyResponse}</div>
-                    <div style="font-family:var(--font-display);font-size:0.5rem;color:var(--theme-text-muted);margin-bottom:0.5rem;">
+                    <div style="font-family:var(--font-display);font-size:0.45rem;color:var(--theme-text-muted);margin-bottom:0.3rem;">
                         📊 FINAL RESULTS
                     </div>
                     <div class="results-list">
@@ -8497,7 +8520,7 @@
         }
 
         // ============================================================
-        //  BG START GAME - OPENS MODAL (Matches Charades/Pictionary)
+        //  BG START GAME - OPENS MODAL WITH SINGLE HEADER
         // ============================================================
 
         function bgStartGame() {
@@ -8527,7 +8550,7 @@
             bgUsedQuestions = [];
             bgAnswered = false;
 
-            // Open modal
+            // Open modal with single header
             openBrainGamesModal();
         }
 
@@ -8539,38 +8562,19 @@
             const timerSetup = document.getElementById('timerSetup');
             const modalContent = document.getElementById('modalContent');
 
-            modalTitle.textContent = '🧠 BRAIN GAMES';
-            timerDisplay.textContent = bgTimerValue;
-            timerDisplay.className = 'timer-display';
+            // Set the main header - timer and turn info right next to title
+            modalTitle.textContent = `🧠 BRAIN GAMES  ⏱️ ${bgTimerValue}s  👤 ${bgGetTurnName()}`;
+            timerDisplay.style.display = 'none';
             timerSetup.style.display = 'none';
             modalContent.style.display = 'block';
             overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
 
-            updateBrainGamesModalHeader();
             bgShowQuestion();
         }
 
-        function updateBrainGamesModalHeader() {
-            const current = getCurrentPlayer();
-            const currentTeam = getCurrentTeam();
-            const turnEl = document.getElementById('turnIndicator');
-            const timerDisplay = document.getElementById('timerDisplay');
-
-            if (teamModeEnabled && currentTeam) {
-                turnEl.textContent = `👑 ${currentTeam.name} (${currentTeam.points} pts)`;
-            } else if (current) {
-                turnEl.textContent = `👤 ${current.emoji} ${current.name} (${current.points} pts)`;
-            } else {
-                turnEl.textContent = '👤 No players';
-            }
-
-            timerDisplay.textContent = bgTimerValue;
-            timerDisplay.className = 'timer-display';
-        }
-
         // ============================================================
-        //  BG GAME FUNCTIONS
+        //  BG GAME FUNCTIONS - WITH SINGLE HEADER
         // ============================================================
 
         function bgShowQuestion() {
@@ -8593,20 +8597,18 @@
             const container = document.getElementById('modalContent');
             const isLong = q.text.length > 80;
 
+            // Update the header with current turn and timer
+            const modalTitle = document.getElementById('modalTitle');
+            modalTitle.textContent = `🧠 BRAIN GAMES  ⏱️ ${bgTimerValue}s  👤 ${bgGetTurnName()}`;
+
             container.innerHTML = `
                 <div class="bg-modal-content">
-                    <div class="bg-modal-header">
-                        <span class="header-item">
-                            <span class="icon">⏱️</span>
-                            <span class="value highlight timer-display" id="bgTimerDisplayModal">${bgTimerValue}</span><span>s</span>
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:0.2rem 0 0.4rem 0;border-bottom:2px solid var(--theme-border-color);margin-bottom:0.6rem;flex-wrap:wrap;gap:0.3rem;">
+                        <span style="font-size:0.55rem;color:var(--theme-text-secondary);font-weight:600;">
+                            📋 ${bgCurrentQuestionIndex + 1}/${bgTotalQuestions}
                         </span>
-                        <span class="header-item">
-                            <span class="icon">👤</span>
-                            <span class="value" id="bgTurnNameModal">${bgGetTurnName()}</span>
-                        </span>
-                        <span class="header-item">
-                            <span class="icon">📋</span>
-                            <span class="value" id="bgQuestionProgressModal">${bgCurrentQuestionIndex + 1}/${bgTotalQuestions}</span>
+                        <span style="font-size:0.55rem;color:var(--theme-text-secondary);font-weight:600;" id="bgTimerDisplayModal">
+                            ⏱️ ${bgTimerValue}s
                         </span>
                     </div>
 
@@ -8645,10 +8647,6 @@
             bgAnswered = false;
             bgCurrentQuestionIndex++;
 
-            // Update header
-            document.getElementById('bgTurnNameModal').textContent = bgGetTurnName();
-            document.getElementById('bgQuestionProgressModal').textContent = `${bgCurrentQuestionIndex}/${bgTotalQuestions}`;
-
             // Start timer
             bgStartTimerModal();
             playSound('point');
@@ -8674,9 +8672,9 @@
             bgTimerInterval = setInterval(() => {
                 timeLeft--;
                 if (timerDisplay) {
-                    timerDisplay.textContent = timeLeft;
+                    timerDisplay.textContent = `⏱️ ${timeLeft}s`;
                     if (timeLeft <= 3) {
-                        timerDisplay.classList.add('timer-warning');
+                        timerDisplay.style.color = '#e74c3c';
                     }
                 }
 
@@ -8763,7 +8761,6 @@
             }
 
             document.getElementById('bgNextBtnModal').style.display = 'inline-block';
-            updateBrainGamesModalHeader();
         }
 
         function bgNextTurn() {
@@ -8789,15 +8786,15 @@
 
             const container = document.getElementById('modalContent');
             container.innerHTML = `
-                <div class="bg-modal-content" style="text-align:center;padding:2rem 0;">
-                    <div style="font-size:3rem;margin-bottom:0.5rem;">🏆</div>
-                    <h3 style="font-family:var(--font-display);color:var(--theme-blue-electric);font-size:0.9rem;margin-bottom:0.5rem;">
+                <div class="bg-modal-content" style="text-align:center;padding:1.5rem 0;">
+                    <div style="font-size:2.5rem;margin-bottom:0.3rem;">🏆</div>
+                    <h3 style="font-family:var(--font-display);color:var(--theme-blue-electric);font-size:0.8rem;margin-bottom:0.3rem;">
                         GAME OVER!
                     </h3>
-                    <p style="color:var(--theme-text-secondary);font-size:0.8rem;margin-bottom:1rem;">
+                    <p style="color:var(--theme-text-secondary);font-size:0.7rem;margin-bottom:0.8rem;">
                         All ${bgTotalQuestions} questions completed!
                     </p>
-                    <button class="bg-start-btn" style="max-width:250px;margin:0 auto;" onclick="bgCloseModal()">
+                    <button class="bg-start-btn" style="max-width:220px;margin:0 auto;padding:0.5rem;font-size:0.7rem;min-height:44px;" onclick="bgCloseModal()">
                         🎮 BACK TO SETUP
                     </button>
                 </div>
@@ -9587,7 +9584,7 @@
             renderGameGrid();
             renderAll();
             setupGMTabs();
-            setupEventListeners(); // ✅ Ensures buttons work
+            setupEventListeners();
             renderGMData();
             renderThemes();
             loadSoundPreferences();
@@ -9595,12 +9592,11 @@
 
             bgInit();
 
-            console.log('🎮 ARCADE PARTY loaded with Brain Games (Offline Turn-Based)!');
+            console.log('🎮 ARCADE PARTY loaded with all fixes!');
             console.log(`🧠 ${bgQuestions.length} Brain Games questions`);
             console.log(`🕵️ ${whoamiNames.length} whoami names`);
             console.log(`🔥 ${roastLines.length} roast lines`);
             console.log(`🎨 ${Object.keys(THEMES).length} themes available`);
-            console.log(`🎵 Sound system with alternatives loaded`);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
