@@ -127,7 +127,6 @@
 
 **Password:** `clone1234#`
 
-**Admin Code:** `ADMIN2026` (for admin override)
 
 ### What You Can Customize
 
