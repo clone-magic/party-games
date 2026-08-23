@@ -2649,7 +2649,6 @@
             max-width: 170px;
             width: 100%;
             height: auto;
-            /* No background, no border-radius, no shadow - clean SVG only */
             background: transparent;
             padding: 0;
         }
@@ -4691,7 +4690,7 @@
                         </div>
                     </div>
 
-                    <!-- Who Am I - FIXED -->
+                    <!-- Who Am I -->
                     <div class="gm-tab-content" id="tab-whoami">
                         <div class="gm-section">
                             <h4>🕵️ Who Am I - Names <span id="whoamiCount">0</span></h4>
@@ -5018,7 +5017,7 @@
             pictionary: { used: [], currentCategory: null },
             karaoke: { used: [], currentCategory: null },
             truthlie: { used: [], currentCategory: null },
-            fasttalk: { used: [], currentCategory: null },
+            fasttalk: { used: [], currentCategory: null, currentCategoryIndex: 0 },
             whoami: { used: [], currentCategory: null },
             hangman: { used: [], currentCategory: null }
         };
@@ -5054,6 +5053,9 @@
         function resetAllWordTracking() {
             Object.keys(wordTracking).forEach(key => {
                 wordTracking[key] = { used: [], currentCategory: null };
+                if (key === 'fasttalk') {
+                    wordTracking[key].currentCategoryIndex = 0;
+                }
             });
         }
 
@@ -6869,8 +6871,8 @@
                 hangmanWord.style.textShadow = `0 0 30px ${color.glow}`;
             }
             if (hangmanSvg) {
-                // Only apply border color, no background or shadow
-                hangmanSvg.style.borderColor = color.main;
+                // No background, no shadow, just clean SVG
+                hangmanSvg.style.border = 'none';
                 hangmanSvg.style.boxShadow = 'none';
             }
             hangmanRevealed.forEach(el => {
@@ -7024,6 +7026,15 @@
                 }
             } else {
                 currentTurnIndex = (currentTurnIndex + 1) % players.length;
+            }
+
+            // Advance Fast Talk category on next turn
+            if (fastTalkCategories.length > 0) {
+                if (!wordTracking.fasttalk) {
+                    wordTracking.fasttalk = { currentCategoryIndex: 0 };
+                }
+                wordTracking.fasttalk.currentCategoryIndex = (wordTracking.fasttalk.currentCategoryIndex + 1) % fastTalkCategories
+                    .length;
             }
 
             usedItemsInRound = {
@@ -7244,135 +7255,110 @@
             }, 50);
         }
 
-        // ---- FAST TALK - FIXED CATEGORY ROTATION ----
+        // ---- FAST TALK - ROUND-BASED FIXED ----
         function renderFastTalk(container) {
             const categories = fastTalkCategories.length > 0 ? fastTalkCategories : FALLBACK_DATA.fastTalk;
 
-            let cat = null;
-            let attempts = 0;
-            const usedTracker = wordTracking.fasttalk;
-
-            // Initialize currentCategory if not set
-            if (usedTracker.currentCategory === null || usedTracker.currentCategory === undefined) {
-                usedTracker.currentCategory = 0;
+            // If no categories, show message
+            if (!categories || categories.length === 0) {
+                container.innerHTML = `
+                    <p style="font-size:0.65rem;font-weight:600;">⏱️ FAST TALK</p>
+                    <p style="color:var(--theme-text-muted);font-size:0.7rem;">No categories available. Please add categories in Game Master!</p>
+                    <div class="game-actions">
+                        <button class="next-turn-btn" onclick="nextTurn()">⏭️ NEXT TURN</button>
+                    </div>
+                    ${createScoringUI()}
+                `;
+                return;
             }
 
-            // Try to find a category with unused items
-            while (attempts < categories.length * 2) {
-                const catIndex = usedTracker.currentCategory % categories.length;
-                const testCat = categories[catIndex];
-
-                if (!testCat) break;
-
-                if (!usedTracker[testCat.name]) {
-                    usedTracker[testCat.name] = { used: [] };
-                }
-
-                // Check if this category has items left
-                const availableItems = testCat.items.filter(item => !usedTracker[testCat.name].used.includes(item));
-                if (availableItems.length > 0) {
-                    cat = testCat;
-                    break;
-                }
-
-                // Move to next category
-                usedTracker.currentCategory = (usedTracker.currentCategory + 1) % categories.length;
-                attempts++;
+            // Get current category index - round-based
+            if (!wordTracking.fasttalk) {
+                wordTracking.fasttalk = { currentCategoryIndex: 0 };
             }
 
-            // If no category found (all exhausted), reset all and start from first
-            if (!cat) {
-                // Reset all category trackers
-                Object.keys(usedTracker).forEach(key => {
-                    if (key !== 'currentCategory' && key !== 'used') {
-                        usedTracker[key] = { used: [] };
-                    }
-                });
-                usedTracker.currentCategory = 0;
-                cat = categories[0] || null;
-
-                if (!cat) {
-                    // No categories at all
-                    container.innerHTML = `
-                        <p style="font-size:0.65rem;font-weight:600;">⏱️ FAST TALK</p>
-                        <p style="color:var(--theme-text-muted);font-size:0.7rem;">No categories available. Please add categories in Game Master!</p>
-                        ${createScoringUI()}
-                    `;
-                    return;
-                }
-
-                if (!usedTracker[cat.name]) {
-                    usedTracker[cat.name] = { used: [] };
-                }
+            // Ensure index is within bounds
+            if (wordTracking.fasttalk.currentCategoryIndex >= categories.length) {
+                wordTracking.fasttalk.currentCategoryIndex = 0;
             }
 
-            // Get available items for this category
-            let availableItems = cat.items.filter(item => !usedTracker[cat.name].used.includes(item));
-
-            // If no items left in this category, reset and use all
-            if (availableItems.length === 0) {
-                usedTracker[cat.name].used = [];
-                availableItems = cat.items;
-                // Move to next category for next time
-                usedTracker.currentCategory = (usedTracker.currentCategory + 1) % categories.length;
-            }
-
-            // Display the first available item
-            const currentItem = availableItems[0] || cat.items[0];
+            const cat = categories[wordTracking.fasttalk.currentCategoryIndex];
+            const totalCategories = categories.length;
+            const currentRound = wordTracking.fasttalk.currentCategoryIndex + 1;
 
             const playerName = getCurrentPlayerName() || '';
             const changeCount = changeCounts[playerName] || 0;
             const maxChanges = 3;
 
+            // Build the items list for reveal
+            const itemsList = cat.items.map(item =>
+                `<span style="display:inline-block;background:var(--theme-bg-input);padding:0.15rem 0.6rem;border-radius:10px;margin:0.15rem;font-size:0.6rem;border:1px solid var(--theme-border-color);color:var(--theme-text-primary);">${item}</span>`
+            ).join('');
+
             container.innerHTML = `
-                <p style="font-size:0.65rem;font-weight:600;">⏱️ FAST TALK: <span style="color:var(--theme-blue-electric);">${cat.name.toUpperCase()}</span></p>
-                <p style="font-size:0.6rem;color:var(--theme-text-muted);">Name as many ${cat.name.toLowerCase()} as you can!</p>
-                <div style="font-size:0.4rem;color:var(--theme-text-muted);text-align:center;margin-bottom:0.2rem;">
-                    📊 ${usedTracker[cat.name].used.length} of ${cat.items.length} items used in this category
+                <p style="font-size:0.65rem;font-weight:600;">⏱️ FAST TALK</p>
+                <div style="text-align:center;margin:0.3rem 0;">
+                    <span style="font-size:1.1rem;font-weight:800;color:var(--theme-blue-electric);">${cat.name.toUpperCase()}</span>
+                    <span style="font-size:0.45rem;color:var(--theme-text-muted);display:block;margin-top:0.1rem;">Round ${currentRound}/${totalCategories}</span>
                 </div>
-                <div style="display:flex;gap:0.3rem;flex-wrap:wrap;justify-content:center;margin:0.2rem 0;">
-                    <input type="text" id="categoryInput" placeholder="Name one..." style="flex:1;min-width:80px;padding:0.25rem 0.6rem;border-radius:24px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);font-size:0.65rem;font-family:var(--font-body);min-height:32px;">
-                    <button id="submitCategory" style="padding:0.2rem 0.8rem;border-radius:24px;border:none;font-weight:700;font-size:0.5rem;cursor:pointer;background:var(--theme-blue-bright);color:white;font-family:var(--font-body);box-shadow:0 0 15px var(--theme-glow-blue);min-height:32px;">SUBMIT</button>
-                    <button onclick="revealFastTalkItems('${cat.name}')" style="padding:0.2rem 0.8rem;border-radius:24px;border:none;font-weight:700;font-size:0.5rem;cursor:pointer;background:#f39c12;color:white;font-family:var(--font-body);min-height:32px;">📋 REVEAL</button>
-                </div>
-                <div id="categoryFeedback" class="feedback"></div>
-                <div id="fastTalkReveal" style="display:none;"></div>
-                <div class="game-actions">
-                    <button class="change-btn" onclick="changeItem('fast-talk', 'fasttalk', 'Category', 3)" ${changeCount >= maxChanges ? 'disabled' : ''}>
+                <p style="font-size:0.6rem;color:var(--theme-text-muted);text-align:center;">Name as many ${cat.name.toLowerCase()} as you can!</p>
+                <div style="display:flex;gap:0.3rem;flex-wrap:wrap;justify-content:center;margin:0.3rem 0;">
+                    <button onclick="revealFastTalkItems('${cat.name}')" style="padding:0.25rem 1rem;border-radius:24px;border:none;font-weight:700;font-size:0.5rem;cursor:pointer;background:#f39c12;color:white;font-family:var(--font-body);min-height:32px;box-shadow:0 0 15px rgba(243,156,18,0.3);">📋 REVEAL ALL</button>
+                    <button class="change-btn" onclick="changeFastTalkCategory()" ${changeCount >= maxChanges ? 'disabled' : ''} style="padding:0.25rem 1rem;border-radius:24px;border:none;font-weight:700;font-size:0.5rem;cursor:pointer;background:var(--theme-blue-bright);color:white;font-family:var(--font-body);min-height:32px;box-shadow:0 0 15px var(--theme-glow-blue);">
                         📂 CHANGE CATEGORY ${changeCount}/${maxChanges}
                     </button>
-                    <button class="next-turn-btn" onclick="nextTurn()">⏭️ NEXT TURN</button>
+                    <button class="next-turn-btn" onclick="nextTurn()" style="padding:0.25rem 1rem;border-radius:24px;border:none;font-weight:700;font-size:0.5rem;cursor:pointer;background:var(--theme-blue-electric);color:var(--blue-dark);font-family:var(--font-body);min-height:32px;box-shadow:0 0 15px var(--theme-glow-blue-strong);">⏭️ NEXT TURN</button>
+                </div>
+                <div id="fastTalkReveal" style="display:none;margin-top:0.3rem;padding:0.3rem;background:var(--theme-bg-card);border-radius:10px;border:2px solid var(--theme-blue-electric);">
+                    <div style="font-family:var(--font-display);font-size:0.4rem;color:var(--theme-text-muted);margin-bottom:0.2rem;text-align:center;">📋 ALL ITEMS IN ${cat.name.toUpperCase()}</div>
+                    <div style="display:flex;flex-wrap:wrap;gap:0.2rem;justify-content:center;">${itemsList}</div>
                 </div>
                 ${createScoringUI()}
             `;
-            setTimeout(() => {
-                const input = document.getElementById('categoryInput');
-                const submitBtn = document.getElementById('submitCategory');
-                const fb = document.getElementById('categoryFeedback');
-                if (submitBtn) {
-                    submitBtn.onclick = () => {
-                        const guess = input.value.trim().toLowerCase();
-                        if (cat.items.some(i => guess.includes(i.toLowerCase()))) {
-                            fb.style.display = 'block';
-                            fb.className = 'feedback success';
-                            fb.innerHTML = `✅ "${input.value}" is in the category! Use scoring buttons!`;
-                            input.value = '';
-                            playSound('success');
-                        } else {
-                            fb.style.display = 'block';
-                            fb.className = 'feedback error';
-                            fb.innerHTML = `❌ "${input.value}" isn't in the ${cat.name} category.`;
-                            input.value = '';
-                            playSound('error');
-                        }
-                    };
+        }
+
+        function changeFastTalkCategory() {
+            const currentPlayer = getCurrentPlayer();
+            if (!currentPlayer) {
+                alert('No active player!');
+                return;
+            }
+
+            const playerName = currentPlayer.name;
+            if (!changeCounts[playerName]) {
+                changeCounts[playerName] = 0;
+            }
+
+            const maxChanges = 3;
+            if (changeCounts[playerName] >= maxChanges) {
+                showChangeToast(`⚠️ Max ${maxChanges} changes per turn!`);
+                playSound('error');
+                return;
+            }
+
+            changeCounts[playerName]++;
+
+            // Advance to next category
+            if (fastTalkCategories.length > 0) {
+                if (!wordTracking.fasttalk) {
+                    wordTracking.fasttalk = { currentCategoryIndex: 0 };
                 }
-                if (input) {
-                    input.addEventListener('keydown', (e) => {
-                        if (e.key === 'Enter' && submitBtn) submitBtn.click();
-                    });
-                }
-            }, 50);
+                wordTracking.fasttalk.currentCategoryIndex = (wordTracking.fasttalk.currentCategoryIndex + 1) % fastTalkCategories
+                    .length;
+            }
+
+            // Hide reveal if showing
+            const revealDiv = document.getElementById('fastTalkReveal');
+            if (revealDiv) revealDiv.style.display = 'none';
+
+            // Refresh the game content
+            if (selectedGameId && selectedGameData) {
+                refreshGameContent(selectedGameId, selectedGameData);
+                restartTimer();
+            }
+
+            showChangeToast(`📂 Category changed! (${changeCounts[playerName]}/${maxChanges})`);
+            playSound('success');
         }
 
         function revealFastTalkItems(categoryName) {
@@ -7383,16 +7369,20 @@
             const revealDiv = document.getElementById('fastTalkReveal');
             if (!revealDiv) return;
 
+            // Toggle reveal
+            if (revealDiv.style.display === 'block') {
+                revealDiv.style.display = 'none';
+                return;
+            }
+
             const itemsList = cat.items.map(item =>
                 `<span style="display:inline-block;background:var(--theme-bg-input);padding:0.15rem 0.6rem;border-radius:10px;margin:0.15rem;font-size:0.6rem;border:1px solid var(--theme-border-color);color:var(--theme-text-primary);">${item}</span>`
             ).join('');
 
             revealDiv.style.display = 'block';
             revealDiv.innerHTML = `
-                <div style="margin-top:0.3rem;padding:0.3rem;background:var(--theme-bg-card);border-radius:10px;border:2px solid var(--theme-blue-electric);">
-                    <div style="font-family:var(--font-display);font-size:0.4rem;color:var(--theme-text-muted);margin-bottom:0.2rem;text-align:center;">📋 ALL ITEMS IN ${cat.name.toUpperCase()}</div>
-                    <div style="display:flex;flex-wrap:wrap;gap:0.2rem;justify-content:center;">${itemsList}</div>
-                </div>
+                <div style="font-family:var(--font-display);font-size:0.4rem;color:var(--theme-text-muted);margin-bottom:0.2rem;text-align:center;">📋 ALL ITEMS IN ${cat.name.toUpperCase()}</div>
+                <div style="display:flex;flex-wrap:wrap;gap:0.2rem;justify-content:center;">${itemsList}</div>
             `;
             playSound('success');
         }
@@ -7464,7 +7454,6 @@
             // Ensure we have names
             let names = [];
             if (whoamiNames && whoamiNames.length > 0) {
-                // Extract names if they're objects
                 names = whoamiNames.map(n => {
                     if (typeof n === 'string') return n;
                     if (typeof n === 'object' && n !== null) {
@@ -7474,12 +7463,10 @@
                 }).filter(n => n && n.length > 0);
             }
 
-            // If still no names, use fallback
             if (names.length === 0) {
                 names = FALLBACK_DATA.whoami || [];
             }
 
-            // If STILL no names, show error message
             if (!names || names.length === 0) {
                 container.innerHTML = `
                     <div style="text-align:center;padding:1.5rem;">
@@ -7492,7 +7479,6 @@
                 return;
             }
 
-            // Ensure tracker exists
             if (!wordTracking.whoami) {
                 wordTracking.whoami = { used: [], currentCategory: null };
             }
@@ -7500,13 +7486,11 @@
             const tracker = wordTracking.whoami;
             let available = names.filter(name => !tracker.used.includes(name));
 
-            // If all names used, reset tracker
             if (available.length === 0) {
                 tracker.used = [];
                 available = [...names];
             }
 
-            // Select a random name
             const randomIndex = Math.floor(Math.random() * available.length);
             const name = available[randomIndex];
             tracker.used.push(name);
@@ -7899,6 +7883,15 @@
                 }
             } else {
                 currentTurnIndex = (currentTurnIndex + 1) % players.length;
+            }
+
+            // Advance Fast Talk category on next turn
+            if (fastTalkCategories.length > 0) {
+                if (!wordTracking.fasttalk) {
+                    wordTracking.fasttalk = { currentCategoryIndex: 0 };
+                }
+                wordTracking.fasttalk.currentCategoryIndex = (wordTracking.fasttalk.currentCategoryIndex + 1) % fastTalkCategories
+                    .length;
             }
 
             usedItemsInRound = {
@@ -8566,7 +8559,6 @@
             bgUsedQuestions = [];
             bgAnswered = false;
 
-            // Open modal like other games
             openBrainGamesModal();
         }
 
@@ -8578,7 +8570,6 @@
             const timerSetup = document.getElementById('timerSetup');
             const modalContent = document.getElementById('modalContent');
 
-            // Set header like other games - timer centered
             modalTitle.textContent = '🧠 BRAIN GAMES';
             timerDisplay.textContent = bgTimerValue;
             timerDisplay.style.display = 'block';
@@ -8624,7 +8615,6 @@
             const container = document.getElementById('modalContent');
             const isLong = q.text.length > 80;
 
-            // Update header like other games
             const timerDisplay = document.getElementById('timerDisplay');
             const turnIndicator = document.getElementById('turnIndicator');
             timerDisplay.textContent = bgTimerValue;
@@ -8674,11 +8664,9 @@
             bgAnswered = false;
             bgCurrentQuestionIndex++;
 
-            // Start timer
             bgStartTimerModal();
             playSound('point');
 
-            // Apply colors
             const colorKey = 'braingames';
             const color = GAME_COLORS[colorKey] || GAME_COLORS.charades;
             const modalBox = document.getElementById('modalBox');
@@ -9384,7 +9372,6 @@
         function renderGMWhoami() {
             const list = document.getElementById('gmWhoamiList');
 
-            // Ensure whoamiNames is an array of strings
             let names = [];
             if (whoamiNames && whoamiNames.length > 0) {
                 names = whoamiNames.map(n => {
@@ -9396,21 +9383,17 @@
                 }).filter(n => n && n.length > 0);
             }
 
-            // If still empty, use fallback
             if (names.length === 0) {
                 names = FALLBACK_DATA.whoami || [];
             }
 
-            // Update the count
             document.getElementById('whoamiCount').textContent = `${names.length}`;
 
-            // Render the list
             list.innerHTML = names.map((n, i) => {
                 const displayName = typeof n === 'string' ? n : String(n);
                 return `<span class="gm-item">🕵️ ${displayName} <button class="gm-del" onclick="deleteGMWhoami(${i})">✕</button></span>`;
             }).join('');
 
-            // If no names, show message
             if (names.length === 0) {
                 list.innerHTML = '<span style="color:var(--theme-text-muted);font-size:0.6rem;">No names added yet. Add some above!</span>';
             }
@@ -9425,7 +9408,6 @@
                 return;
             }
 
-            // Check if name already exists (as string)
             const exists = whoamiNames.some(n => {
                 if (typeof n === 'string') return n.toLowerCase() === name.toLowerCase();
                 if (typeof n === 'object' && n !== null) {
@@ -9440,7 +9422,6 @@
                 return;
             }
 
-            // Push as string
             whoamiNames.push(name);
             saveGMData();
             renderGMWhoami();
@@ -9669,13 +9650,19 @@
             loadSoundPreferences();
             currentGameTimerSeconds = 30;
 
+            // Initialize Fast Talk category index
+            if (!wordTracking.fasttalk) {
+                wordTracking.fasttalk = { currentCategoryIndex: 0 };
+            }
+
             bgInit();
 
-            console.log('🎮 ARCADE PARTY loaded with all fixes!');
+            console.log('🎮 ARCADE PARTY loaded with Fast Talk fix and all improvements!');
             console.log(`🧠 ${bgQuestions.length} Brain Games questions`);
             console.log(`🕵️ ${whoamiNames.length} whoami names`);
             console.log(`🔥 ${roastLines.length} roast lines`);
             console.log(`🎨 ${Object.keys(THEMES).length} themes available`);
+            console.log(`⏱️ Fast Talk has ${fastTalkCategories.length} categories`);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -9686,6 +9673,9 @@
                     renderGMData();
                     renderThemes();
                     loadSoundPreferences();
+                    if (!wordTracking.fasttalk) {
+                        wordTracking.fasttalk = { currentCategoryIndex: 0 };
+                    }
                     bgInit();
                 });
             }
