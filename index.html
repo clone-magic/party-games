@@ -2585,7 +2585,7 @@
         }
 
         /* ============================================================
-           HANGMAN - CENTERED SVG, NO BACKGROUND
+           HANGMAN - CLEAN SVG, NO BACKGROUND, MORE SPACE BETWEEN LETTERS
            ============================================================ */
         .hangman-container {
             max-width: 480px;
@@ -2649,8 +2649,9 @@
             max-width: 170px;
             width: 100%;
             height: auto;
-            border-radius: 10px;
-            padding: 0.3rem;
+            /* No background, no border-radius, no shadow - clean SVG only */
+            background: transparent;
+            padding: 0;
         }
 
         .hangman-figure svg .hangman-part {
@@ -2665,7 +2666,7 @@
         .hangman-word {
             font-family: var(--font-display);
             font-size: 1.8rem;
-            letter-spacing: 10px;
+            letter-spacing: 18px;
             text-align: center;
             padding: 0.3rem;
             min-height: 2.8rem;
@@ -2676,7 +2677,7 @@
 
         .hangman-word .letter {
             display: inline-block;
-            width: 1.5rem;
+            width: 1.8rem;
             text-align: center;
         }
 
@@ -3963,12 +3964,12 @@
 
             .hangman-word {
                 font-size: 1.3rem !important;
-                letter-spacing: 5px !important;
+                letter-spacing: 12px !important;
                 min-height: 2.2rem;
             }
 
             .hangman-word .letter {
-                width: 1rem !important;
+                width: 1.2rem !important;
             }
 
             .hangman-input-row input {
@@ -4118,10 +4119,10 @@
             }
             .hangman-word {
                 font-size: 1rem !important;
-                letter-spacing: 3px !important;
+                letter-spacing: 8px !important;
             }
             .hangman-word .letter {
-                width: 0.8rem !important;
+                width: 0.9rem !important;
             }
 
             .player-avatar .avatar-circle {
@@ -4690,7 +4691,7 @@
                         </div>
                     </div>
 
-                    <!-- Who Am I - FIXED [object Object] issue -->
+                    <!-- Who Am I - FIXED -->
                     <div class="gm-tab-content" id="tab-whoami">
                         <div class="gm-section">
                             <h4>🕵️ Who Am I - Names <span id="whoamiCount">0</span></h4>
@@ -6868,8 +6869,9 @@
                 hangmanWord.style.textShadow = `0 0 30px ${color.glow}`;
             }
             if (hangmanSvg) {
+                // Only apply border color, no background or shadow
                 hangmanSvg.style.borderColor = color.main;
-                hangmanSvg.style.boxShadow = `0 0 20px ${color.glow}`;
+                hangmanSvg.style.boxShadow = 'none';
             }
             hangmanRevealed.forEach(el => {
                 el.style.color = color.main;
@@ -7250,48 +7252,73 @@
             let attempts = 0;
             const usedTracker = wordTracking.fasttalk;
 
+            // Initialize currentCategory if not set
             if (usedTracker.currentCategory === null || usedTracker.currentCategory === undefined) {
                 usedTracker.currentCategory = 0;
             }
 
-            while (attempts < categories.length) {
+            // Try to find a category with unused items
+            while (attempts < categories.length * 2) {
                 const catIndex = usedTracker.currentCategory % categories.length;
                 const testCat = categories[catIndex];
+
+                if (!testCat) break;
 
                 if (!usedTracker[testCat.name]) {
                     usedTracker[testCat.name] = { used: [] };
                 }
 
-                if (usedTracker[testCat.name].used.length < testCat.items.length) {
+                // Check if this category has items left
+                const availableItems = testCat.items.filter(item => !usedTracker[testCat.name].used.includes(item));
+                if (availableItems.length > 0) {
                     cat = testCat;
                     break;
                 }
 
+                // Move to next category
                 usedTracker.currentCategory = (usedTracker.currentCategory + 1) % categories.length;
                 attempts++;
             }
 
+            // If no category found (all exhausted), reset all and start from first
             if (!cat) {
+                // Reset all category trackers
                 Object.keys(usedTracker).forEach(key => {
                     if (key !== 'currentCategory' && key !== 'used') {
                         usedTracker[key] = { used: [] };
                     }
                 });
                 usedTracker.currentCategory = 0;
-                cat = categories[0];
+                cat = categories[0] || null;
+
+                if (!cat) {
+                    // No categories at all
+                    container.innerHTML = `
+                        <p style="font-size:0.65rem;font-weight:600;">⏱️ FAST TALK</p>
+                        <p style="color:var(--theme-text-muted);font-size:0.7rem;">No categories available. Please add categories in Game Master!</p>
+                        ${createScoringUI()}
+                    `;
+                    return;
+                }
+
                 if (!usedTracker[cat.name]) {
                     usedTracker[cat.name] = { used: [] };
                 }
             }
 
-            let currentItem = null;
-            const availableItems = cat.items.filter(item => !usedTracker[cat.name].used.includes(item));
-            if (availableItems.length > 0) {
-                currentItem = availableItems[0];
-            } else {
+            // Get available items for this category
+            let availableItems = cat.items.filter(item => !usedTracker[cat.name].used.includes(item));
+
+            // If no items left in this category, reset and use all
+            if (availableItems.length === 0) {
                 usedTracker[cat.name].used = [];
-                currentItem = cat.items[0];
+                availableItems = cat.items;
+                // Move to next category for next time
+                usedTracker.currentCategory = (usedTracker.currentCategory + 1) % categories.length;
             }
+
+            // Display the first available item
+            const currentItem = availableItems[0] || cat.items[0];
 
             const playerName = getCurrentPlayerName() || '';
             const changeCount = changeCounts[playerName] || 0;
@@ -7510,7 +7537,7 @@
         }
 
         // ============================================================
-        //  HANGMAN - CENTERED SVG, NO BACKGROUND
+        //  HANGMAN - CENTERED SVG, NO BACKGROUND, SPACE BETWEEN LETTERS
         // ============================================================
         function getHangmanWordForDifficulty(difficulty) {
             const words = hangmanWords[difficulty] || [];
