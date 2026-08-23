@@ -5060,6 +5060,53 @@
         }
 
         // ============================================================
+        //  FAST TALK - RANDOM CATEGORY SELECTION
+        // ============================================================
+        function getRandomFastTalkCategory() {
+            const categories = fastTalkCategories;
+            if (!categories || categories.length === 0) return null;
+            if (categories.length === 1) return categories[0];
+
+            // Ensure tracker exists
+            if (!wordTracking.fasttalk) {
+                wordTracking.fasttalk = { currentCategoryIndex: 0 };
+            }
+
+            const currentIndex = wordTracking.fasttalk.currentCategoryIndex;
+            let newIndex;
+            let attempts = 0;
+            const maxAttempts = 50;
+
+            do {
+                newIndex = Math.floor(Math.random() * categories.length);
+                attempts++;
+            } while (newIndex === currentIndex && categories.length > 1 && attempts < maxAttempts);
+
+            // If we somehow got the same index (shouldn't happen with attempts limit), just pick a different one
+            if (newIndex === currentIndex && categories.length > 1) {
+                newIndex = (currentIndex + 1) % categories.length;
+            }
+
+            wordTracking.fasttalk.currentCategoryIndex = newIndex;
+            return categories[newIndex];
+        }
+
+        function advanceFastTalkCategory() {
+            const categories = fastTalkCategories;
+            if (!categories || categories.length === 0) return;
+
+            // If only one category, just keep it
+            if (categories.length === 1) {
+                if (!wordTracking.fasttalk) {
+                    wordTracking.fasttalk = { currentCategoryIndex: 0 };
+                }
+                return categories[0];
+            }
+
+            return getRandomFastTalkCategory();
+        }
+
+        // ============================================================
         //  ROAST GAME STATE
         // ============================================================
         let roastGameState = {
@@ -6871,7 +6918,6 @@
                 hangmanWord.style.textShadow = `0 0 30px ${color.glow}`;
             }
             if (hangmanSvg) {
-                // No background, no shadow, just clean SVG
                 hangmanSvg.style.border = 'none';
                 hangmanSvg.style.boxShadow = 'none';
             }
@@ -6984,7 +7030,7 @@
         }
 
         // ============================================================
-        //  NEXT TURN
+        //  NEXT TURN - Also advances Fast Talk category
         // ============================================================
         function nextTurn() {
             if (players.length === 0) return;
@@ -7028,14 +7074,14 @@
                 currentTurnIndex = (currentTurnIndex + 1) % players.length;
             }
 
-            // Advance Fast Talk category on next turn
+            // ✅ ADVANCE FAST TALK CATEGORY - RANDOM
             if (fastTalkCategories.length > 0) {
-                if (!wordTracking.fasttalk) {
-                    wordTracking.fasttalk = { currentCategoryIndex: 0 };
-                }
-                wordTracking.fasttalk.currentCategoryIndex = (wordTracking.fasttalk.currentCategoryIndex + 1) % fastTalkCategories
-                    .length;
+                getRandomFastTalkCategory();
             }
+
+            // Hide reveal if showing
+            const revealDiv = document.getElementById('fastTalkReveal');
+            if (revealDiv) revealDiv.style.display = 'none';
 
             usedItemsInRound = {
                 charades: [],
@@ -7255,7 +7301,7 @@
             }, 50);
         }
 
-        // ---- FAST TALK - ROUND-BASED FIXED ----
+        // ---- FAST TALK - RANDOM CATEGORY FLIPPING ----
         function renderFastTalk(container) {
             const categories = fastTalkCategories.length > 0 ? fastTalkCategories : FALLBACK_DATA.fastTalk;
 
@@ -7263,7 +7309,7 @@
             if (!categories || categories.length === 0) {
                 container.innerHTML = `
                     <p style="font-size:0.65rem;font-weight:600;">⏱️ FAST TALK</p>
-                    <p style="color:var(--theme-text-muted);font-size:0.7rem;">No categories available. Please add categories in Game Master!</p>
+                    <p style="color:var(--theme-text-muted);font-size:0.7rem;text-align:center;">No categories available. Please add categories in Game Master!</p>
                     <div class="game-actions">
                         <button class="next-turn-btn" onclick="nextTurn()">⏭️ NEXT TURN</button>
                     </div>
@@ -7272,17 +7318,24 @@
                 return;
             }
 
-            // Get current category index - round-based
+            // Ensure tracker exists
             if (!wordTracking.fasttalk) {
                 wordTracking.fasttalk = { currentCategoryIndex: 0 };
             }
 
-            // Ensure index is within bounds
-            if (wordTracking.fasttalk.currentCategoryIndex >= categories.length) {
-                wordTracking.fasttalk.currentCategoryIndex = 0;
+            // Get current category (or random if not set)
+            let cat = null;
+            if (wordTracking.fasttalk.currentCategoryIndex < categories.length) {
+                cat = categories[wordTracking.fasttalk.currentCategoryIndex];
             }
 
-            const cat = categories[wordTracking.fasttalk.currentCategoryIndex];
+            // If no valid category, pick random
+            if (!cat) {
+                const randomIndex = Math.floor(Math.random() * categories.length);
+                wordTracking.fasttalk.currentCategoryIndex = randomIndex;
+                cat = categories[randomIndex];
+            }
+
             const totalCategories = categories.length;
             const currentRound = wordTracking.fasttalk.currentCategoryIndex + 1;
 
@@ -7299,13 +7352,13 @@
                 <p style="font-size:0.65rem;font-weight:600;">⏱️ FAST TALK</p>
                 <div style="text-align:center;margin:0.3rem 0;">
                     <span style="font-size:1.1rem;font-weight:800;color:var(--theme-blue-electric);">${cat.name.toUpperCase()}</span>
-                    <span style="font-size:0.45rem;color:var(--theme-text-muted);display:block;margin-top:0.1rem;">Round ${currentRound}/${totalCategories}</span>
+                    <span style="font-size:0.4rem;color:var(--theme-text-muted);display:block;margin-top:0.05rem;">🎲 Random · ${currentRound} of ${totalCategories}</span>
                 </div>
                 <p style="font-size:0.6rem;color:var(--theme-text-muted);text-align:center;">Name as many ${cat.name.toLowerCase()} as you can!</p>
                 <div style="display:flex;gap:0.3rem;flex-wrap:wrap;justify-content:center;margin:0.3rem 0;">
                     <button onclick="revealFastTalkItems('${cat.name}')" style="padding:0.25rem 1rem;border-radius:24px;border:none;font-weight:700;font-size:0.5rem;cursor:pointer;background:#f39c12;color:white;font-family:var(--font-body);min-height:32px;box-shadow:0 0 15px rgba(243,156,18,0.3);">📋 REVEAL ALL</button>
                     <button class="change-btn" onclick="changeFastTalkCategory()" ${changeCount >= maxChanges ? 'disabled' : ''} style="padding:0.25rem 1rem;border-radius:24px;border:none;font-weight:700;font-size:0.5rem;cursor:pointer;background:var(--theme-blue-bright);color:white;font-family:var(--font-body);min-height:32px;box-shadow:0 0 15px var(--theme-glow-blue);">
-                        📂 CHANGE CATEGORY ${changeCount}/${maxChanges}
+                        🎲 RANDOM CATEGORY ${changeCount}/${maxChanges}
                     </button>
                     <button class="next-turn-btn" onclick="nextTurn()" style="padding:0.25rem 1rem;border-radius:24px;border:none;font-weight:700;font-size:0.5rem;cursor:pointer;background:var(--theme-blue-electric);color:var(--blue-dark);font-family:var(--font-body);min-height:32px;box-shadow:0 0 15px var(--theme-glow-blue-strong);">⏭️ NEXT TURN</button>
                 </div>
@@ -7338,13 +7391,9 @@
 
             changeCounts[playerName]++;
 
-            // Advance to next category
+            // ✅ Pick random category
             if (fastTalkCategories.length > 0) {
-                if (!wordTracking.fasttalk) {
-                    wordTracking.fasttalk = { currentCategoryIndex: 0 };
-                }
-                wordTracking.fasttalk.currentCategoryIndex = (wordTracking.fasttalk.currentCategoryIndex + 1) % fastTalkCategories
-                    .length;
+                getRandomFastTalkCategory();
             }
 
             // Hide reveal if showing
@@ -7357,7 +7406,7 @@
                 restartTimer();
             }
 
-            showChangeToast(`📂 Category changed! (${changeCounts[playerName]}/${maxChanges})`);
+            showChangeToast(`🎲 Random category! (${changeCounts[playerName]}/${maxChanges})`);
             playSound('success');
         }
 
@@ -7451,7 +7500,6 @@
 
         // ---- WHO AM I - FULLY FIXED ----
         function renderWhoAmI(container) {
-            // Ensure we have names
             let names = [];
             if (whoamiNames && whoamiNames.length > 0) {
                 names = whoamiNames.map(n => {
@@ -7885,13 +7933,9 @@
                 currentTurnIndex = (currentTurnIndex + 1) % players.length;
             }
 
-            // Advance Fast Talk category on next turn
+            // ✅ Advance Fast Talk category - random
             if (fastTalkCategories.length > 0) {
-                if (!wordTracking.fasttalk) {
-                    wordTracking.fasttalk = { currentCategoryIndex: 0 };
-                }
-                wordTracking.fasttalk.currentCategoryIndex = (wordTracking.fasttalk.currentCategoryIndex + 1) % fastTalkCategories
-                    .length;
+                getRandomFastTalkCategory();
             }
 
             usedItemsInRound = {
@@ -9650,19 +9694,19 @@
             loadSoundPreferences();
             currentGameTimerSeconds = 30;
 
-            // Initialize Fast Talk category index
+            // Initialize Fast Talk
             if (!wordTracking.fasttalk) {
                 wordTracking.fasttalk = { currentCategoryIndex: 0 };
             }
 
             bgInit();
 
-            console.log('🎮 ARCADE PARTY loaded with Fast Talk fix and all improvements!');
+            console.log('🎮 ARCADE PARTY loaded with Fast Talk random category flipping!');
             console.log(`🧠 ${bgQuestions.length} Brain Games questions`);
             console.log(`🕵️ ${whoamiNames.length} whoami names`);
             console.log(`🔥 ${roastLines.length} roast lines`);
             console.log(`🎨 ${Object.keys(THEMES).length} themes available`);
-            console.log(`⏱️ Fast Talk has ${fastTalkCategories.length} categories`);
+            console.log(`⏱️ Fast Talk has ${fastTalkCategories.length} categories (random flipping enabled)`);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
