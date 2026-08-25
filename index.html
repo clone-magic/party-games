@@ -81,26 +81,6 @@
             --color-whoami-light: #a569bd;
             --color-braingames: #9b59b6;
             --color-braingames-light: #af7ac5;
-            --color-wheel: #FF6B6B;
-            --color-hotpotato: #F39C12;
-            --color-meter: #2ECC71;
-        }
-
-        /* ============================================================
-           STANDALONE GAME CSS
-           ============================================================ */
-        .game-wheel { background: var(--color-wheel); }
-        .game-hotpotato { background: var(--color-hotpotato); }
-        .game-meter { background: var(--color-meter); }
-
-        @keyframes bounce {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
         }
 
         /* ============================================================
@@ -1249,15 +1229,6 @@
         }
         .game-card.game-whoami {
             background: var(--color-whoami);
-        }
-        .game-card.game-wheel {
-            background: var(--color-wheel);
-        }
-        .game-card.game-hotpotato {
-            background: var(--color-hotpotato);
-        }
-        .game-card.game-meter {
-            background: var(--color-meter);
         }
 
         /* ============================================================
@@ -3874,57 +3845,6 @@
             background: rgba(231, 76, 60, 0.1);
         }
 
-        /* ============================================================
-           GM SPIN WHEEL
-           ============================================================ */
-        .gm-wheel-segment {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.3rem 0.6rem;
-            background: var(--theme-bg-input);
-            border-radius: 10px;
-            border: 2px solid var(--theme-border-color);
-            margin-bottom: 0.3rem;
-        }
-
-        .gm-wheel-segment .color-preview {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            flex-shrink: 0;
-            border: 2px solid var(--theme-border-color);
-        }
-
-        .gm-wheel-segment .segment-label {
-            font-weight: 700;
-            font-size: 0.7rem;
-            color: var(--theme-text-primary);
-            flex: 1;
-        }
-
-        .gm-wheel-segment .segment-value {
-            font-size: 0.6rem;
-            color: var(--theme-text-muted);
-            font-weight: 600;
-        }
-
-        .gm-wheel-segment .gm-del {
-            cursor: pointer;
-            color: #e74c3c;
-            font-weight: bold;
-            font-size: 0.7rem;
-            transition: var(--transition);
-            background: none;
-            border: none;
-            padding: 0 0.2rem;
-        }
-
-        .gm-wheel-segment .gm-del:hover {
-            color: var(--theme-blue-electric);
-            transform: scale(1.3);
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
             :root {
@@ -4161,11 +4081,6 @@
                 padding: 0.3rem 0.4rem;
                 gap: 0.2rem;
             }
-
-            .gm-wheel-segment {
-                flex-wrap: wrap;
-                padding: 0.2rem 0.4rem;
-            }
         }
 
         @media (max-width: 400px) {
@@ -4229,13 +4144,6 @@
                 font-size: 0.45rem;
                 min-width: 30px;
                 min-height: 30px;
-            }
-
-            .gm-wheel-segment .segment-label {
-                font-size: 0.5rem;
-            }
-            .gm-wheel-segment .segment-value {
-                font-size: 0.45rem;
             }
         }
 
@@ -4671,10 +4579,6 @@
                         <button data-tab="tab-roast">🔥 Roast</button>
                         <button data-tab="tab-whoami">🕵️ Who Am I</button>
                         <button data-tab="tab-braingames">🧠 Brain Games</button>
-                        <!-- NEW GM TABS -->
-                        <button data-tab="tab-spinwheel">🎡 Spin Wheel</button>
-                        <button data-tab="tab-hotpotato">🥔 Hot Potato</button>
-                        <button data-tab="tab-beatmeter">📊 Beat Meter</button>
                     </div>
 
                     <!-- Charades -->
@@ -4849,104 +4753,6 @@
                         </div>
                     </div>
 
-                    <!-- ==========================================================
-                         SPIN WHEEL GM TAB
-                         ========================================================== -->
-                    <div class="gm-tab-content" id="tab-spinwheel">
-                        <div class="gm-section">
-                            <h4>🎡 Spin Wheel Segments <span id="spinWheelCount">0</span></h4>
-                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.4rem;margin-bottom:0.5rem;">
-                                <input type="text" id="gmWheelLabel" placeholder="Label (e.g. +1)" style="padding:0.4rem 0.8rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);" />
-                                <input type="text" id="gmWheelValue" placeholder="Value (e.g. 1 or 'steal')" style="padding:0.4rem 0.8rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);" />
-                                <input type="color" id="gmWheelColor" value="#2ECC71" style="padding:0.2rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);height:44px;cursor:pointer;" />
-                            </div>
-                            <button onclick="addGMWheelSegment()" style="width:100%;padding:0.5rem;border-radius:24px;border:none;font-weight:700;background:var(--theme-blue-bright);color:white;cursor:pointer;font-family:var(--font-body);min-height:44px;">➕ Add Segment</button>
-                            <div class="gm-item-list" id="gmWheelList" style="max-height:200px;margin-top:0.5rem;"></div>
-                            <div style="margin-top:0.5rem;display:flex;gap:0.3rem;flex-wrap:wrap;">
-                                <button class="gm-remove" onclick="clearGMWheel()">🗑️ Clear All</button>
-                                <button onclick="resetDefaultWheel()" style="padding:0.3rem 1rem;border-radius:24px;border:none;font-weight:700;background:#f39c12;color:white;cursor:pointer;font-family:var(--font-body);">🔄 Reset Defaults</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ==========================================================
-                         HOT POTATO GM TAB
-                         ========================================================== -->
-                    <div class="gm-tab-content" id="tab-hotpotato">
-                        <div class="gm-section">
-                            <h4>🥔 Hot Potato Settings</h4>
-                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
-                                <div>
-                                    <label style="font-size:0.5rem;color:var(--theme-text-muted);font-family:var(--font-display);display:block;margin-bottom:0.2rem;">Min Timer (seconds)</label>
-                                    <input type="number" id="gmPotatoMin" value="5" min="3" max="10" style="width:100%;padding:0.4rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);" />
-                                </div>
-                                <div>
-                                    <label style="font-size:0.5rem;color:var(--theme-text-muted);font-family:var(--font-display);display:block;margin-bottom:0.2rem;">Max Timer (seconds)</label>
-                                    <input type="number" id="gmPotatoMax" value="12" min="6" max="20" style="width:100%;padding:0.4rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);" />
-                                </div>
-                                <div>
-                                    <label style="font-size:0.5rem;color:var(--theme-text-muted);font-family:var(--font-display);display:block;margin-bottom:0.2rem;">Penalty Points</label>
-                                    <input type="number" id="gmPotatoPenalty" value="2" min="1" max="5" style="width:100%;padding:0.4rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);" />
-                                </div>
-                                <div>
-                                    <label style="font-size:0.5rem;color:var(--theme-text-muted);font-family:var(--font-display);display:block;margin-bottom:0.2rem;">Default Timer</label>
-                                    <input type="number" id="gmPotatoDefaultTimer" value="10" min="5" max="30" style="width:100%;padding:0.4rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);" />
-                                </div>
-                            </div>
-                            <div style="margin-top:0.5rem;display:flex;gap:0.3rem;flex-wrap:wrap;">
-                                <button onclick="savePotatoSettingsUI()" style="padding:0.4rem 1.5rem;border-radius:24px;border:none;font-weight:700;background:var(--theme-blue-bright);color:white;cursor:pointer;font-family:var(--font-body);">💾 Save Settings</button>
-                                <button onclick="resetDefaultPotato()" style="padding:0.4rem 1.5rem;border-radius:24px;border:none;font-weight:700;background:#f39c12;color:white;cursor:pointer;font-family:var(--font-body);">🔄 Reset Defaults</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ==========================================================
-                         BEAT METER GM TAB
-                         ========================================================== -->
-                    <div class="gm-tab-content" id="tab-beatmeter">
-                        <div class="gm-section">
-                            <h4>📊 Beat Meter Settings</h4>
-                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
-                                <div>
-                                    <label style="font-size:0.5rem;color:var(--theme-text-muted);font-family:var(--font-display);display:block;margin-bottom:0.2rem;">Target Zone Min (%)</label>
-                                    <input type="number" id="gmMeterMin" value="70" min="40" max="90" style="width:100%;padding:0.4rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);" />
-                                </div>
-                                <div>
-                                    <label style="font-size:0.5rem;color:var(--theme-text-muted);font-family:var(--font-display);display:block;margin-bottom:0.2rem;">Target Zone Max (%)</label>
-                                    <input type="number" id="gmMeterMax" value="85" min="50" max="95" style="width:100%;padding:0.4rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);" />
-                                </div>
-                                <div>
-                                    <label style="font-size:0.5rem;color:var(--theme-text-muted);font-family:var(--font-display);display:block;margin-bottom:0.2rem;">Perfect Zone (±%)</label>
-                                    <input type="number" id="gmMeterPerfect" value="2" min="1" max="5" style="width:100%;padding:0.4rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);" />
-                                </div>
-                                <div>
-                                    <label style="font-size:0.5rem;color:var(--theme-text-muted);font-family:var(--font-display);display:block;margin-bottom:0.2rem;">Perfect Points</label>
-                                    <input type="number" id="gmMeterPerfectPoints" value="5" min="1" max="10" style="width:100%;padding:0.4rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);" />
-                                </div>
-                                <div>
-                                    <label style="font-size:0.5rem;color:var(--theme-text-muted);font-family:var(--font-display);display:block;margin-bottom:0.2rem;">Good Points</label>
-                                    <input type="number" id="gmMeterGoodPoints" value="3" min="1" max="5" style="width:100%;padding:0.4rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);" />
-                                </div>
-                                <div>
-                                    <label style="font-size:0.5rem;color:var(--theme-text-muted);font-family:var(--font-display);display:block;margin-bottom:0.2rem;">OK Points</label>
-                                    <input type="number" id="gmMeterOkPoints" value="1" min="0" max="3" style="width:100%;padding:0.4rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);" />
-                                </div>
-                                <div>
-                                    <label style="font-size:0.5rem;color:var(--theme-text-muted);font-family:var(--font-display);display:block;margin-bottom:0.2rem;">Attempts Per Turn</label>
-                                    <input type="number" id="gmMeterAttempts" value="3" min="1" max="5" style="width:100%;padding:0.4rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);" />
-                                </div>
-                                <div>
-                                    <label style="font-size:0.5rem;color:var(--theme-text-muted);font-family:var(--font-display);display:block;margin-bottom:0.2rem;">Default Timer</label>
-                                    <input type="number" id="gmMeterDefaultTimer" value="8" min="3" max="20" style="width:100%;padding:0.4rem;border-radius:12px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);" />
-                                </div>
-                            </div>
-                            <div style="margin-top:0.5rem;display:flex;gap:0.3rem;flex-wrap:wrap;">
-                                <button onclick="saveMeterSettingsUI()" style="padding:0.4rem 1.5rem;border-radius:24px;border:none;font-weight:700;background:var(--theme-blue-bright);color:white;cursor:pointer;font-family:var(--font-body);">💾 Save Settings</button>
-                                <button onclick="resetDefaultMeter()" style="padding:0.4rem 1.5rem;border-radius:24px;border:none;font-weight:700;background:#f39c12;color:white;cursor:pointer;font-family:var(--font-body);">🔄 Reset Defaults</button>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
 
@@ -4954,7 +4760,7 @@
     </div>
 
     <!-- ============================================================
-         JAVASCRIPT - Main Application
+         JAVASCRIPT
          ============================================================ -->
 
     <script>
@@ -5132,14 +4938,10 @@
             karaoke: { main: '#2C3E50', light: '#4A6078', text: '#FFFFFF', glow: 'rgba(44,62,80,0.4)' },
             fasttalk: { main: '#00BCD4', light: '#33D4E8', text: '#FFFFFF', glow: 'rgba(0,188,212,0.4)' },
             roast: { main: '#E74C3C', light: '#F06A5A', text: '#FFFFFF', glow: 'rgba(231,76,60,0.4)' },
-            whoami: { main: '#8E44AD', light: '#A569BD', text: '#FFFFFF', glow: 'rgba(142,68,173,0.4)' },
-            wheel: { main: '#FF6B6B', light: '#FF8E8E', text: '#FFFFFF', glow: 'rgba(255,107,107,0.4)' },
-            hotpotato: { main: '#F39C12', light: '#F5B041', text: '#FFFFFF', glow: 'rgba(243,156,18,0.4)' },
-            meter: { main: '#2ECC71', light: '#58D68D', text: '#FFFFFF', glow: 'rgba(46,204,113,0.4)' }
+            whoami: { main: '#8E44AD', light: '#A569BD', text: '#FFFFFF', glow: 'rgba(142,68,173,0.4)' }
         };
 
-        // GAMES array - will be extended by standalone modules
-        let GAMES = [
+        const GAMES = [
             { id: 'charades', emoji: '🎭', title: 'CHARADES', desc: 'Act it out!', color: 'game-charades' },
             { id: 'hangman', emoji: '🧩', title: 'HANGMAN', desc: 'Guess the word!', color: 'game-hangman' },
             { id: 'truth-lie', emoji: '🤥', title: 'TRUTH & LIE', desc: 'Find the lie!', color: 'game-truthlie' },
@@ -5147,10 +4949,7 @@
             { id: 'karaoke', emoji: '🎤', title: 'KARAOKE', desc: 'Sing it loud!', color: 'game-karaoke' },
             { id: 'fast-talk', emoji: '⏱️', title: 'FAST TALK', desc: 'Think fast!', color: 'game-fasttalk' },
             { id: 'roast', emoji: '🔥', title: 'ROAST', desc: 'Assign the roast!', color: 'game-roast' },
-            { id: 'whoami', emoji: '🕵️', title: 'WHO AM I?', desc: 'Guess the character!', color: 'game-whoami' },
-            { id: 'wheel', emoji: '🎡', title: 'SPIN THE WHEEL', desc: 'Spin & win!', color: 'game-wheel' },
-            { id: 'hotpotato', emoji: '🥔', title: 'HOT POTATO', desc: 'Pass or explode!', color: 'game-hotpotato' },
-            { id: 'meter', emoji: '📊', title: 'BEAT THE METER', desc: 'Stop at the sweet spot!', color: 'game-meter' }
+            { id: 'whoami', emoji: '🕵️', title: 'WHO AM I?', desc: 'Guess the character!', color: 'game-whoami' }
         ];
 
         // ============================================================
@@ -5169,20 +4968,6 @@
         let truthLieData = { truths: [], lies: [] };
         let roastLines = [];
         let whoamiNames = [];
-
-        // === NEW: Game-specific settings ===
-        let spinWheelSegments = [];
-        let potatoSettings = { minTimer: 5, maxTimer: 12, penaltyPoints: 2, defaultTimer: 10 };
-        let meterSettings = {
-            targetMin: 70,
-            targetMax: 85,
-            perfectZone: 2,
-            perfectPoints: 5,
-            goodPoints: 3,
-            okPoints: 1,
-            attemptsPerTurn: 3,
-            defaultTimer: 8
-        };
 
         let timerInterval = null;
         let timerSeconds = 30;
@@ -5283,6 +5068,7 @@
             if (!categories || categories.length === 0) return null;
             if (categories.length === 1) return categories[0];
 
+            // Ensure tracker exists
             if (!wordTracking.fasttalk) {
                 wordTracking.fasttalk = { currentCategoryIndex: 0 };
             }
@@ -5297,6 +5083,7 @@
                 attempts++;
             } while (newIndex === currentIndex && categories.length > 1 && attempts < maxAttempts);
 
+            // If we somehow got the same index (shouldn't happen with attempts limit), just pick a different one
             if (newIndex === currentIndex && categories.length > 1) {
                 newIndex = (currentIndex + 1) % categories.length;
             }
@@ -5308,12 +5095,15 @@
         function advanceFastTalkCategory() {
             const categories = fastTalkCategories;
             if (!categories || categories.length === 0) return;
+
+            // If only one category, just keep it
             if (categories.length === 1) {
                 if (!wordTracking.fasttalk) {
                     wordTracking.fasttalk = { currentCategoryIndex: 0 };
                 }
                 return categories[0];
             }
+
             return getRandomFastTalkCategory();
         }
 
@@ -6687,8 +6477,6 @@
         // ============================================================
         function renderGameGrid() {
             const grid = document.getElementById('gameGrid');
-
-            // Use the GAMES array (includes new games)
             grid.innerHTML = GAMES.map((game, i) => `
                 <div class="game-card ${game.color}" onclick="launchGame('${game.id}')" style="animation-delay: ${i * 0.05}s">
                     ${game.id === 'charades' ? '<span class="featured-ribbon">⭐ FEATURED</span>' : ''}
@@ -6870,19 +6658,13 @@
 
             const game = GAMES.find(g => g.id === gameId);
             if (game) {
-                // For new games, hide timer setup (they handle their own timing)
-                if (gameId === 'wheel' || gameId === 'hotpotato' || gameId === 'meter') {
-                    document.getElementById('timerDisplay').style.display = 'none';
-                    document.getElementById('timerSetup').style.display = 'none';
-                } else {
-                    document.getElementById('timerDisplay').style.display = 'block';
-                    document.getElementById('timerDisplay').textContent = currentGameTimerSeconds || 30;
-                    document.getElementById('customTimerInput').value = currentGameTimerSeconds || 30;
-                    document.querySelectorAll('.timer-presets button').forEach(b => b.classList.remove('active'));
-                    const defaultPreset = document.querySelector(
-                        `.timer-presets button[onclick*="${currentGameTimerSeconds || 30}"]`);
-                    if (defaultPreset) defaultPreset.classList.add('active');
-                }
+                document.getElementById('timerDisplay').style.display = 'block';
+                document.getElementById('timerDisplay').textContent = currentGameTimerSeconds || 30;
+                document.getElementById('customTimerInput').value = currentGameTimerSeconds || 30;
+                document.querySelectorAll('.timer-presets button').forEach(b => b.classList.remove('active'));
+                const defaultPreset = document.querySelector(
+                    `.timer-presets button[onclick*="${currentGameTimerSeconds || 30}"]`);
+                if (defaultPreset) defaultPreset.classList.add('active');
                 openModal(gameId, game);
             }
         }
@@ -6909,37 +6691,6 @@
             roastGameState.roundComplete = false;
             roastGameState.gameComplete = false;
             roastGameState.results = [];
-
-            // New games - render immediately
-            if (gameId === 'wheel') {
-                document.getElementById('timerSetup').style.display = 'none';
-                document.getElementById('timerDisplay').style.display = 'none';
-                document.getElementById('modalContent').style.display = 'block';
-                renderSpinWheel(document.getElementById('modalContent'));
-                updateModalHeader();
-                applyGameColors('wheel');
-                return;
-            }
-
-            if (gameId === 'hotpotato') {
-                document.getElementById('timerSetup').style.display = 'none';
-                document.getElementById('timerDisplay').style.display = 'none';
-                document.getElementById('modalContent').style.display = 'block';
-                renderHotPotato(document.getElementById('modalContent'));
-                updateModalHeader();
-                applyGameColors('hotpotato');
-                return;
-            }
-
-            if (gameId === 'meter') {
-                document.getElementById('timerSetup').style.display = 'none';
-                document.getElementById('timerDisplay').style.display = 'none';
-                document.getElementById('modalContent').style.display = 'block';
-                renderBeatMeter(document.getElementById('modalContent'));
-                updateModalHeader();
-                applyGameColors('meter');
-                return;
-            }
 
             if (gameId === 'roast') {
                 document.getElementById('timerSetup').style.display = 'none';
@@ -7005,11 +6756,6 @@
                 timerSetup.style.display = 'flex';
                 timerDisplay.style.display = 'block';
                 renderHangmanDifficultySelector();
-            } else if (selectedGameId === 'wheel' || selectedGameId === 'hotpotato' || selectedGameId === 'meter') {
-                timerSetup.style.display = 'none';
-                timerDisplay.style.display = 'none';
-                container.style.display = 'none';
-                container.innerHTML = '';
             } else {
                 timerSetup.style.display = 'flex';
                 timerDisplay.style.display = 'block';
@@ -7128,61 +6874,6 @@
                     display.classList.remove('warning');
                 }
             }
-        }
-
-        // ============================================================
-        //  REFRESH GAME CONTENT
-        // ============================================================
-        function refreshGameContent(gameId, gameData) {
-            // New games
-            if (gameId === 'wheel') {
-                const container = document.getElementById('modalContent');
-                container.style.display = 'block';
-                renderSpinWheel(container);
-                updateModalHeader();
-                applyGameColors('wheel');
-                return;
-            }
-            if (gameId === 'hotpotato') {
-                const container = document.getElementById('modalContent');
-                container.style.display = 'block';
-                renderHotPotato(container);
-                updateModalHeader();
-                applyGameColors('hotpotato');
-                return;
-            }
-            if (gameId === 'meter') {
-                const container = document.getElementById('modalContent');
-                container.style.display = 'block';
-                renderBeatMeter(container);
-                updateModalHeader();
-                applyGameColors('meter');
-                return;
-            }
-
-            // Built-in games
-            if (gameId === 'roast') {
-                return;
-            }
-            if (gameId === 'hangman') {
-                return;
-            }
-
-            const container = document.getElementById('modalContent');
-            container.style.display = 'block';
-            container.innerHTML = '';
-            const colorKey = gameId.replace('-', '');
-            applyGameColors(colorKey);
-            if (gameId === 'truth-lie') renderTruthLie(container);
-            else if (gameId === 'charades') renderCharades(container);
-            else if (gameId === 'pictionary') renderPictionary(container);
-            else if (gameId === 'karaoke') renderKaraoke(container);
-            else if (gameId === 'fast-talk') renderFastTalk(container);
-            else if (gameId === 'whoami') renderWhoAmI(container);
-            updateModalHeader();
-            setTimeout(() => {
-                applyGameColors(colorKey);
-            }, 50);
         }
 
         function applyGameColors(gameId) {
@@ -7384,7 +7075,7 @@
                 currentTurnIndex = (currentTurnIndex + 1) % players.length;
             }
 
-            // ADVANCE FAST TALK CATEGORY - RANDOM
+            // ✅ ADVANCE FAST TALK CATEGORY - RANDOM
             if (fastTalkCategories.length > 0) {
                 getRandomFastTalkCategory();
             }
@@ -7475,6 +7166,31 @@
                     }
                 });
             }, 300);
+        }
+
+        function refreshGameContent(gameId, gameData) {
+            if (gameId === 'roast') {
+                return;
+            }
+            if (gameId === 'hangman') {
+                return;
+            }
+
+            const container = document.getElementById('modalContent');
+            container.style.display = 'block';
+            container.innerHTML = '';
+            const colorKey = gameId.replace('-', '');
+            applyGameColors(colorKey);
+            if (gameId === 'truth-lie') renderTruthLie(container);
+            else if (gameId === 'charades') renderCharades(container);
+            else if (gameId === 'pictionary') renderPictionary(container);
+            else if (gameId === 'karaoke') renderKaraoke(container);
+            else if (gameId === 'fast-talk') renderFastTalk(container);
+            else if (gameId === 'whoami') renderWhoAmI(container);
+            updateModalHeader();
+            setTimeout(() => {
+                applyGameColors(colorKey);
+            }, 50);
         }
 
         // ---- CHARADES ----
@@ -7676,7 +7392,7 @@
 
             changeCounts[playerName]++;
 
-            // Pick random category
+            // ✅ Pick random category
             if (fastTalkCategories.length > 0) {
                 getRandomFastTalkCategory();
             }
@@ -7783,7 +7499,7 @@
             }, 50);
         }
 
-        // ---- WHO AM I ----
+        // ---- WHO AM I - FULLY FIXED ----
         function renderWhoAmI(container) {
             let names = [];
             if (whoamiNames && whoamiNames.length > 0) {
@@ -7854,7 +7570,7 @@
         }
 
         // ============================================================
-        //  HANGMAN
+        //  HANGMAN - CENTERED SVG, NO BACKGROUND, SPACE BETWEEN LETTERS
         // ============================================================
         function getHangmanWordForDifficulty(difficulty) {
             const words = hangmanWords[difficulty] || [];
@@ -8218,7 +7934,7 @@
                 currentTurnIndex = (currentTurnIndex + 1) % players.length;
             }
 
-            // Advance Fast Talk category - random
+            // ✅ Advance Fast Talk category - random
             if (fastTalkCategories.length > 0) {
                 getRandomFastTalkCategory();
             }
@@ -8656,7 +8372,7 @@
         }
 
         // ============================================================
-        //  BRAIN GAMES
+        //  🧠 BRAIN GAMES
         // ============================================================
 
         function renderBGQuestions() {
@@ -8858,7 +8574,7 @@
         }
 
         // ============================================================
-        //  BG START GAME
+        //  BG START GAME - MATCHES OTHER GAMES
         // ============================================================
 
         function bgStartGame() {
@@ -9217,25 +8933,6 @@
                     whoamiNames = [];
                 }
 
-                // Load new game data
-                if (data.spinWheel && data.spinWheel.segments) {
-                    spinWheelSegments = data.spinWheel.segments;
-                    saveSpinWheelData();
-                    console.log(`🎡 Loaded ${spinWheelSegments.length} wheel segments from data.json`);
-                }
-
-                if (data.hotPotato) {
-                    potatoSettings = data.hotPotato;
-                    savePotatoSettings();
-                    console.log(`🥔 Loaded hot potato settings from data.json`);
-                }
-
-                if (data.beatMeter) {
-                    meterSettings = data.beatMeter;
-                    saveMeterSettings();
-                    console.log(`📊 Loaded beat meter settings from data.json`);
-                }
-
                 if (data.brainGames && data.brainGames.length > 0) {
                     bgQuestions = data.brainGames;
                     saveBGQuestions();
@@ -9368,1127 +9065,6 @@
         }
 
         // ============================================================
-        //  NEW GM FUNCTIONS
-        // ============================================================
-
-        // ---- SPIN WHEEL GM ----
-        function loadSpinWheelData() {
-            try {
-                const saved = localStorage.getItem('arcadeSpinWheel');
-                if (saved) {
-                    spinWheelSegments = JSON.parse(saved);
-                    return;
-                }
-            } catch (e) {}
-            // Defaults
-            spinWheelSegments = [
-                { label: '+1', value: 1, color: '#2ECC71' },
-                { label: '+3', value: 3, color: '#3498DB' },
-                { label: '+5', value: 5, color: '#9B59B6' },
-                { label: '−1', value: -1, color: '#E74C3C' },
-                { label: '−3', value: -3, color: '#E67E22' },
-                { label: 'STEAL', value: 'steal', color: '#F1C40F' },
-                { label: 'SKIP', value: 'skip', color: '#95A5A6' },
-                { label: '+10', value: 10, color: '#1ABC9C' }
-            ];
-            saveSpinWheelData();
-        }
-
-        function saveSpinWheelData() {
-            try {
-                localStorage.setItem('arcadeSpinWheel', JSON.stringify(spinWheelSegments));
-            } catch (e) {}
-        }
-
-        function renderGMWheel() {
-            const list = document.getElementById('gmWheelList');
-            document.getElementById('spinWheelCount').textContent = `${spinWheelSegments.length}`;
-            list.innerHTML = spinWheelSegments.map((seg, i) =>
-                `<div class="gm-wheel-segment">
-                    <span class="color-preview" style="background:${seg.color};"></span>
-                    <span class="segment-label">${seg.label}</span>
-                    <span class="segment-value">${seg.value}</span>
-                    <button class="gm-del" onclick="deleteGMWheelSegment(${i})">✕</button>
-                </div>`
-            ).join('');
-        }
-
-        function addGMWheelSegment() {
-            const label = document.getElementById('gmWheelLabel').value.trim();
-            const value = document.getElementById('gmWheelValue').value.trim();
-            const color = document.getElementById('gmWheelColor').value;
-            if (!label || !value) { alert('Enter label and value!'); return; }
-            const numValue = parseInt(value);
-            spinWheelSegments.push({
-                label,
-                value: isNaN(numValue) ? value : numValue,
-                color
-            });
-            saveSpinWheelData();
-            renderGMWheel();
-            document.getElementById('gmWheelLabel').value = '';
-            document.getElementById('gmWheelValue').value = '';
-            createConfetti(10);
-            playSound('success');
-        }
-
-        function deleteGMWheelSegment(index) {
-            spinWheelSegments.splice(index, 1);
-            saveSpinWheelData();
-            renderGMWheel();
-        }
-
-        function clearGMWheel() {
-            if (spinWheelSegments.length === 0 || confirm('Clear all segments?')) {
-                spinWheelSegments = [];
-                saveSpinWheelData();
-                renderGMWheel();
-            }
-        }
-
-        function resetDefaultWheel() {
-            if (confirm('Reset to default segments?')) {
-                spinWheelSegments = [
-                    { label: '+1', value: 1, color: '#2ECC71' },
-                    { label: '+3', value: 3, color: '#3498DB' },
-                    { label: '+5', value: 5, color: '#9B59B6' },
-                    { label: '−1', value: -1, color: '#E74C3C' },
-                    { label: '−3', value: -3, color: '#E67E22' },
-                    { label: 'STEAL', value: 'steal', color: '#F1C40F' },
-                    { label: 'SKIP', value: 'skip', color: '#95A5A6' },
-                    { label: '+10', value: 10, color: '#1ABC9C' }
-                ];
-                saveSpinWheelData();
-                renderGMWheel();
-                playSound('success');
-            }
-        }
-
-        // ---- HOT POTATO GM ----
-        function loadPotatoSettings() {
-            try {
-                const saved = localStorage.getItem('arcadePotatoSettings');
-                if (saved) {
-                    potatoSettings = JSON.parse(saved);
-                    return;
-                }
-            } catch (e) {}
-            potatoSettings = { minTimer: 5, maxTimer: 12, penaltyPoints: 2, defaultTimer: 10 };
-            savePotatoSettings();
-        }
-
-        function savePotatoSettings() {
-            try {
-                localStorage.setItem('arcadePotatoSettings', JSON.stringify(potatoSettings));
-            } catch (e) {}
-            showChangeToast('💾 Potato settings saved!');
-            playSound('success');
-        }
-
-        function renderGMPotato() {
-            document.getElementById('gmPotatoMin').value = potatoSettings.minTimer;
-            document.getElementById('gmPotatoMax').value = potatoSettings.maxTimer;
-            document.getElementById('gmPotatoPenalty').value = potatoSettings.penaltyPoints;
-            document.getElementById('gmPotatoDefaultTimer').value = potatoSettings.defaultTimer;
-        }
-
-        function savePotatoSettingsUI() {
-            potatoSettings.minTimer = parseInt(document.getElementById('gmPotatoMin').value) || 5;
-            potatoSettings.maxTimer = parseInt(document.getElementById('gmPotatoMax').value) || 12;
-            potatoSettings.penaltyPoints = parseInt(document.getElementById('gmPotatoPenalty').value) || 2;
-            potatoSettings.defaultTimer = parseInt(document.getElementById('gmPotatoDefaultTimer').value) || 10;
-            savePotatoSettings();
-            renderGMPotato();
-            playSound('success');
-        }
-
-        function resetDefaultPotato() {
-            if (confirm('Reset to default settings?')) {
-                potatoSettings = { minTimer: 5, maxTimer: 12, penaltyPoints: 2, defaultTimer: 10 };
-                savePotatoSettings();
-                renderGMPotato();
-                playSound('success');
-            }
-        }
-
-        // ---- BEAT METER GM ----
-        function loadMeterSettings() {
-            try {
-                const saved = localStorage.getItem('arcadeMeterSettings');
-                if (saved) {
-                    meterSettings = JSON.parse(saved);
-                    return;
-                }
-            } catch (e) {}
-            meterSettings = {
-                targetMin: 70,
-                targetMax: 85,
-                perfectZone: 2,
-                perfectPoints: 5,
-                goodPoints: 3,
-                okPoints: 1,
-                attemptsPerTurn: 3,
-                defaultTimer: 8
-            };
-            saveMeterSettings();
-        }
-
-        function saveMeterSettings() {
-            try {
-                localStorage.setItem('arcadeMeterSettings', JSON.stringify(meterSettings));
-            } catch (e) {}
-            showChangeToast('💾 Meter settings saved!');
-            playSound('success');
-        }
-
-        function renderGMMeter() {
-            document.getElementById('gmMeterMin').value = meterSettings.targetMin;
-            document.getElementById('gmMeterMax').value = meterSettings.targetMax;
-            document.getElementById('gmMeterPerfect').value = meterSettings.perfectZone;
-            document.getElementById('gmMeterPerfectPoints').value = meterSettings.perfectPoints;
-            document.getElementById('gmMeterGoodPoints').value = meterSettings.goodPoints;
-            document.getElementById('gmMeterOkPoints').value = meterSettings.okPoints;
-            document.getElementById('gmMeterAttempts').value = meterSettings.attemptsPerTurn;
-            document.getElementById('gmMeterDefaultTimer').value = meterSettings.defaultTimer;
-        }
-
-        function saveMeterSettingsUI() {
-            meterSettings.targetMin = parseInt(document.getElementById('gmMeterMin').value) || 70;
-            meterSettings.targetMax = parseInt(document.getElementById('gmMeterMax').value) || 85;
-            meterSettings.perfectZone = parseInt(document.getElementById('gmMeterPerfect').value) || 2;
-            meterSettings.perfectPoints = parseInt(document.getElementById('gmMeterPerfectPoints').value) || 5;
-            meterSettings.goodPoints = parseInt(document.getElementById('gmMeterGoodPoints').value) || 3;
-            meterSettings.okPoints = parseInt(document.getElementById('gmMeterOkPoints').value) || 1;
-            meterSettings.attemptsPerTurn = parseInt(document.getElementById('gmMeterAttempts').value) || 3;
-            meterSettings.defaultTimer = parseInt(document.getElementById('gmMeterDefaultTimer').value) || 8;
-            saveMeterSettings();
-            renderGMMeter();
-            playSound('success');
-        }
-
-        function resetDefaultMeter() {
-            if (confirm('Reset to default settings?')) {
-                meterSettings = {
-                    targetMin: 70,
-                    targetMax: 85,
-                    perfectZone: 2,
-                    perfectPoints: 5,
-                    goodPoints: 3,
-                    okPoints: 1,
-                    attemptsPerTurn: 3,
-                    defaultTimer: 8
-                };
-                saveMeterSettings();
-                renderGMMeter();
-                playSound('success');
-            }
-        }
-
-        // ============================================================
-        //  RENDER NEW GAMES
-        // ============================================================
-
-        // ---- SPIN THE WHEEL ----
-function renderSpinWheel(container) {
-    const players = window.players || [];
-    const currentPlayer = window.getCurrentPlayer ? window.getCurrentPlayer() : null;
-    
-    // Use GM segments or defaults
-    let segments = spinWheelSegments.length > 0 ? spinWheelSegments : [
-        { label: '+1', value: 1, color: '#2ECC71' },
-        { label: '+3', value: 3, color: '#3498DB' },
-        { label: '+5', value: 5, color: '#9B59B6' },
-        { label: '−1', value: -1, color: '#E74C3C' },
-        { label: '−3', value: -3, color: '#E67E22' },
-        { label: 'STEAL', value: 'steal', color: '#F1C40F' },
-        { label: 'SKIP', value: 'skip', color: '#95A5A6' },
-        { label: '+10', value: 10, color: '#1ABC9C' }
-    ];
-
-    // Challenge modes
-    const CHALLENGE_BANK = {
-        office: {
-            label: '💼 Office Friendly',
-            icon: '💼',
-            color: '#4CAF50',
-            questions: [
-                "What's your favorite work memory?",
-                "What's the best advice you've ever received?",
-                "If you could have any superpower at work, what would it be?",
-                "What's a skill you wish you had?",
-                "What's the most interesting thing you've learned recently?",
-                "Who do you admire most and why?",
-                "What's your dream job?",
-                "What's a hidden talent you have?",
-                "What's the best book you've ever read?",
-                "What's your favorite way to relax?",
-                "What's a goal you're working towards?",
-                "What's the best vacation you've ever taken?",
-                "What's something you're proud of?",
-                "What's your favorite movie and why?",
-                "What would you do with a million dollars?",
-                "What's a tradition you love?",
-                "What's the best meal you've ever had?",
-                "What's something you'd like to learn?",
-                "What's your biggest accomplishment?",
-                "What makes you happy?"
-            ],
-            dares: [
-                "Do your best celebrity impression",
-                "Tell a funny story from your past",
-                "Show a photo from your childhood",
-                "Sing a song out loud",
-                "Do a happy dance",
-                "Tell a joke (make everyone laugh)",
-                "Do 5 pushups",
-                "Speak in an accent for 1 minute",
-                "Draw something with your eyes closed",
-                "Walk like a runway model",
-                "Do a magic trick (or attempt one)",
-                "Recite a poem from memory",
-                "Make up a rap about the person to your right",
-                "Do your best robot dance",
-                "Act out a scene from your favorite movie",
-                "Balance a book on your head",
-                "Talk like a pirate for 30 seconds",
-                "Do your best animal impression",
-                "Tell a motivational speech",
-                "Challenge someone to a thumb war"
-            ]
-        },
-        balanced: {
-            label: '⚖️ Balanced',
-            icon: '⚖️',
-            color: '#FF9800',
-            questions: [
-                "What's your biggest fear?",
-                "What's the most adventurous thing you've done?",
-                "What's your biggest dream?",
-                "What's a secret skill you have?",
-                "What's the best compliment you've ever received?",
-                "What's something you'd change about your past?",
-                "What makes you feel alive?",
-                "What's your proudest moment?",
-                "What's a belief you hold strongly?",
-                "What's the best piece of advice you've given?",
-                "What's a risk you want to take?",
-                "What's something you're grateful for today?",
-                "What's your favorite memory with friends?",
-                "What's a challenge you've overcome?",
-                "What would you tell your younger self?",
-                "What's the most beautiful place you've seen?",
-                "What's a cause you care about?",
-                "What's your biggest motivation in life?",
-                "What's something you'd love to create?",
-                "What's a lesson life taught you?"
-            ],
-            dares: [
-                "Do 10 pushups right now",
-                "Speak in an accent for 1 minute",
-                "Tell a secret about yourself",
-                "Do your best impression of someone famous",
-                "Sing a song in a funny voice",
-                "Dance for 30 seconds",
-                "Tell a story using only emojis",
-                "Do a handstand (or try)",
-                "Recite the alphabet backwards",
-                "Act out an animal and have others guess",
-                "Make up a song about the current moment",
-                "Do a dramatic reading of a grocery list",
-                "Walk like a robot for 1 minute",
-                "Tell a joke in a different language",
-                "Do your best opera singing",
-                "Imitate someone in the room",
-                "Create a new dance move and name it",
-                "Talk without using the letter 'e' for 30 seconds",
-                "Do a magic trick (even if it fails)",
-                "Tell the funniest story you know"
-            ]
-        },
-        spicy: {
-            label: '🌶️ Spicy',
-            icon: '🌶️',
-            color: '#F44336',
-            questions: [
-                "Who in this room is most likely to become famous?",
-                "What's the most rebellious thing you've done?",
-                "What's the wildest party you've been to?",
-                "Who's the most attractive person here?",
-                "What's the biggest lie you've told to your parents?",
-                "What's the most embarrassing thing that happened to you?",
-                "Who would you swap lives with for a day?",
-                "What's your biggest guilty pleasure?",
-                "What's the worst date you've ever been on?",
-                "Who in this room is the worst secret-keeper?",
-                "What's the most spontaneous thing you've done?",
-                "Who's the most dramatic person here?",
-                "What's a secret talent you have?",
-                "What's the most risky thing you've done?",
-                "Who in this room would survive a zombie apocalypse?",
-                "What's your most controversial opinion?",
-                "What's the funniest thing you've done while drunk?",
-                "Who's the best flirt in this room?",
-                "What's the most trouble you've ever been in?",
-                "What's a secret you've never told anyone here?"
-            ],
-            dares: [
-                "Whisper something to your neighbor (must make them blush)",
-                "Do your best seductive dance for 15 seconds",
-                "Tell a 'never have I ever' confession",
-                "Give a lap dance (air version is fine)",
-                "Flirt with the person to your left",
-                "Do a dramatic confession of love to someone here",
-                "Talk like you're in a romance movie for 1 minute",
-                "Tell a story with only body language",
-                "Sensually eat a piece of food",
-                "Speak in a sexy whisper for 2 minutes",
-                "Give someone a massage for 30 seconds",
-                "Do a strip tease (just take off your jacket/sweater)",
-                "Stare deeply into someone's eyes for 30 seconds",
-                "Say something flirty to everyone in the room",
-                "Do your best impression of someone flirting",
-                "Write your number on a napkin and give it to someone",
-                "Do a slow-motion walk across the room",
-                "Whisper a pickup line to someone",
-                "Give a compliment that sounds like an insult",
-                "Make eye contact with someone for 60 seconds without laughing"
-            ]
-        },
-        adult: {
-            label: '🔞 Adult (18+)',
-            icon: '🔞',
-            color: '#9C27B0',
-            requiresConfirmation: true,
-            questions: [
-                "What's the most adventurous place you've had sex?",
-                "What's your wildest sexual fantasy?",
-                "What's the craziest thing you've done with an ex?",
-                "What's your favorite position?",
-                "What's the most embarrassing sexual experience you've had?",
-                "What's a secret kink you have?",
-                "What's the most spontaneous sexual encounter you've had?",
-                "What's your biggest turn-on?",
-                "What's something you've always wanted to try in bed?",
-                "What's the worst sexual experience you've had?",
-                "What's your 'number' and are you happy with it?",
-                "What's the best sexual advice you've ever received?",
-                "What's a fetish you find interesting?",
-                "What's the longest you've gone without sex?",
-                "What's your go-to move in bed?",
-                "What's the most public place you've done it?",
-                "What's your opinion on toys in the bedroom?",
-                "What's a sexual deal-breaker for you?",
-                "What's the most romantic sexual experience you've had?",
-                "What's a sexual boundary you have?"
-            ],
-            dares: [
-                "Share a screenshot of your most recent 'spicy' text",
-                "Do your best impression of your partner in bed",
-                "Tell a detailed sexual fantasy",
-                "Describe your ideal one-night stand",
-                "Reveal the naughtiest thing in your search history",
-                "Share your favorite sexy song and explain why",
-                "Describe your first time (if comfortable)",
-                "Tell a story of your most embarrassing sexual moment",
-                "Share your go-to 'move' in detail",
-                "Describe what you find most attractive about someone here",
-                "Reveal a secret sexual desire you've never shared",
-                "Share your opinion on open relationships",
-                "Describe your perfect sexual scenario",
-                "Tell us your 'hall pass' celebrity",
-                "Share a fantasy you've never acted on",
-                "Describe the worst pickup line you've used",
-                "Reveal a sexual experience you regret",
-                "Share what you'd want to do to someone here (respectfully)",
-                "Describe your ideal romantic getaway",
-                "Tell us about a dream you've had about someone here"
-            ]
-        }
-    };
-
-    // === STATE ===
-    let wheelIsSpinning = false;
-    let wheelCurrentRotation = 0;
-    let wheelAnimationFrame = null;
-    let wheelUsedChallenges = [];
-    let wheelCurrentMode = 'balanced';
-    let wheelChallengeType = 'mixed';
-    let wheelIsAdultModeEnabled = false;
-
-    // === GET CHALLENGE ===
-    function getChallenge(mode, type) {
-        const selectedMode = mode || wheelCurrentMode;
-        const selectedType = type || wheelChallengeType;
-
-        let actualMode = selectedMode;
-        if (actualMode === 'mixed') {
-            const modes = ['office', 'balanced', 'spicy'];
-            if (wheelIsAdultModeEnabled) {
-                modes.push('adult');
-            }
-            actualMode = modes[Math.floor(Math.random() * modes.length)];
-        }
-
-        const category = CHALLENGE_BANK[actualMode];
-        if (!category) return { text: 'No challenges available!', type: 'none', category: 'none' };
-
-        let useQuestion = true;
-        if (selectedType === 'questions') useQuestion = true;
-        else if (selectedType === 'dares') useQuestion = false;
-        else useQuestion = Math.random() < 0.5;
-
-        const pool = useQuestion ? category.questions : category.dares;
-        const challengeTypeText = useQuestion ? 'question' : 'dare';
-
-        let available = pool;
-        if (wheelUsedChallenges.length > 0) {
-            available = pool.filter(c => !wheelUsedChallenges.includes(c));
-            if (available.length === 0) {
-                wheelUsedChallenges = [];
-                available = pool;
-            }
-        }
-
-        const challenge = available[Math.floor(Math.random() * available.length)];
-        wheelUsedChallenges.push(challenge);
-
-        return {
-            text: challenge,
-            type: challengeTypeText,
-            category: actualMode,
-            categoryLabel: category.label,
-            categoryIcon: category.icon,
-            color: category.color
-        };
-    }
-
-    // === RENDER SETTINGS ===
-    function renderSettings() {
-        const settingsDiv = document.getElementById('wheelSettings');
-        if (!settingsDiv) return;
-
-        settingsDiv.innerHTML = `
-            <div style="margin: 0.5rem 0; padding: 0.5rem; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-                <div style="display: flex; flex-wrap: wrap; gap: 0.3rem; align-items: center; justify-content: center;">
-                    <div style="display: flex; gap: 0.3rem; flex-wrap: wrap;">
-                        ${['office','balanced','spicy','adult','mixed'].map(mode => {
-                            const bank = CHALLENGE_BANK[mode];
-                            if (!bank) return '';
-                            const isAdult = mode === 'adult';
-                            const isSelected = wheelCurrentMode === mode;
-                            return `
-                                <button class="wheel-mode-btn" data-mode="${mode}" style="
-                                    padding: 0.25rem 0.6rem;
-                                    border-radius: 16px;
-                                    border: 2px solid ${bank.color};
-                                    background: ${isSelected ? bank.color : 'transparent'};
-                                    color: ${isSelected ? 'white' : bank.color};
-                                    font-weight: 700;
-                                    font-size: 0.55rem;
-                                    cursor: pointer;
-                                    min-height: 28px;
-                                    transition: all 0.2s;
-                                    ${isAdult && !wheelIsAdultModeEnabled ? 'opacity:0.4;' : ''}
-                                ">
-                                    ${bank.icon} ${bank.label.split(' ')[0]}
-                                </button>
-                            `;
-                        }).join('')}
-                    </div>
-                    <div style="display: flex; gap: 0.2rem; flex-wrap: wrap;">
-                        ${['mixed','questions','dares'].map(type => {
-                            const labels = { mixed: '📝+🎯', questions: '📝 Q', dares: '🎯 D' };
-                            const isSelected = wheelChallengeType === type;
-                            return `
-                                <button class="wheel-type-btn" data-type="${type}" style="
-                                    padding: 0.15rem 0.4rem;
-                                    border-radius: 12px;
-                                    border: 1px solid ${isSelected ? 'white' : 'rgba(255,255,255,0.2)'};
-                                    background: ${isSelected ? 'rgba(255,255,255,0.15)' : 'transparent'};
-                                    color: white;
-                                    font-size: 0.45rem;
-                                    cursor: pointer;
-                                    min-height: 24px;
-                                    transition: all 0.2s;
-                                ">
-                                    ${labels[type] || type}
-                                </button>
-                            `;
-                        }).join('')}
-                    </div>
-                </div>
-                <div style="text-align: center; margin-top: 0.2rem; font-size: 0.45rem; color: var(--theme-text-secondary);">
-                    ${CHALLENGE_BANK[wheelCurrentMode]?.label || 'Select a mode'} • ${wheelChallengeType === 'mixed' ? 'Questions & Dares' : wheelChallengeType === 'questions' ? 'Questions Only' : 'Dares Only'}
-                </div>
-            </div>
-        `;
-
-        settingsDiv.querySelectorAll('.wheel-mode-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const mode = this.dataset.mode;
-
-                if (mode === 'adult' && !wheelIsAdultModeEnabled) {
-                    if (confirm('🔞 Adult mode contains explicit content.\n\nAre you 18+ and sure you want to enable it?')) {
-                        wheelIsAdultModeEnabled = true;
-                        wheelCurrentMode = 'adult';
-                        renderSettings();
-                        renderWheelContent();
-                        if (window.showChangeToast) {
-                            window.showChangeToast('🔞 Adult mode enabled!');
-                        }
-                    }
-                    return;
-                }
-
-                wheelCurrentMode = mode;
-                renderSettings();
-                renderWheelContent();
-                if (window.showChangeToast) {
-                    window.showChangeToast(`Mode: ${CHALLENGE_BANK[mode]?.label || mode}`);
-                }
-            });
-        });
-
-        settingsDiv.querySelectorAll('.wheel-type-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                wheelChallengeType = this.dataset.type;
-                renderSettings();
-                renderWheelContent();
-                if (window.showChangeToast) {
-                    window.showChangeToast(`Type: ${this.textContent.trim()}`);
-                }
-            });
-        });
-    }
-
-    // === DRAW WHEEL ===
-    function drawWheel(segments, rotation = 0) {
-        const canvas = document.getElementById('wheelCanvas');
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        const size = canvas.width;
-        const radius = size / 2 - 8;
-        const centerX = size / 2;
-        const centerY = size / 2;
-        const segmentAngle = (2 * Math.PI) / segments.length;
-
-        ctx.clearRect(0, 0, size, size);
-
-        segments.forEach((seg, i) => {
-            const startAngle = i * segmentAngle + rotation;
-            const endAngle = startAngle + segmentAngle;
-
-            ctx.beginPath();
-            ctx.moveTo(centerX, centerY);
-            ctx.arc(centerX, centerY, radius, startAngle, endAngle);
-            ctx.closePath();
-
-            const grad = ctx.createRadialGradient(centerX, centerY, 10, centerX, centerY, radius);
-            grad.addColorStop(0, '#FFFFFF');
-            grad.addColorStop(0.3, seg.color);
-            grad.addColorStop(1, seg.color);
-            ctx.fillStyle = grad;
-            ctx.fill();
-
-            ctx.strokeStyle = 'rgba(255,255,255,0.5)';
-            ctx.lineWidth = 2;
-            ctx.stroke();
-
-            ctx.save();
-            ctx.translate(centerX, centerY);
-            ctx.rotate(startAngle + segmentAngle / 2);
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = 'bold 12px Nunito, sans-serif';
-            ctx.shadowColor = 'rgba(0,0,0,0.5)';
-            ctx.shadowBlur = 4;
-
-            let label = seg.label;
-            if (label.length > 10) label = label.substring(0, 9) + '…';
-            ctx.fillText(label, radius * 0.65, 0);
-            ctx.restore();
-        });
-
-        const grad = ctx.createRadialGradient(centerX - 5, centerY - 5, 5, centerX, centerY, 25);
-        grad.addColorStop(0, '#FFFFFF');
-        grad.addColorStop(0.7, '#F0F0F0');
-        grad.addColorStop(1, '#CCCCCC');
-        ctx.beginPath();
-        ctx.arc(centerX, centerY, 22, 0, 2 * Math.PI);
-        ctx.fillStyle = grad;
-        ctx.fill();
-        ctx.strokeStyle = 'rgba(0,0,0,0.2)';
-        ctx.lineWidth = 3;
-        ctx.stroke();
-
-        ctx.fillStyle = '#333';
-        ctx.font = 'bold 11px Nunito, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText('SPIN', centerX, centerY);
-
-        const pointerX = centerX;
-        const pointerY = 12;
-        ctx.beginPath();
-        ctx.moveTo(pointerX - 12, pointerY);
-        ctx.lineTo(pointerX, pointerY - 28);
-        ctx.lineTo(pointerX + 12, pointerY);
-        ctx.closePath();
-        ctx.fillStyle = '#E74C3C';
-        ctx.fill();
-        ctx.shadowColor = 'rgba(231,76,60,0.5)';
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = 'transparent';
-    }
-
-    // === SPIN ===
-    function spinWheel(segments) {
-        if (wheelIsSpinning) return;
-        if (players.length < 2) {
-            alert('Add at least 2 players first!');
-            return;
-        }
-
-        wheelIsSpinning = true;
-        const spinBtn = document.getElementById('spinBtn');
-        if (spinBtn) {
-            spinBtn.disabled = true;
-            spinBtn.textContent = '🎰 SPINNING...';
-            spinBtn.style.opacity = '0.5';
-        }
-        document.getElementById('wheelResult').innerHTML = '🎰 Spinning...';
-
-        const totalRotation = 5 + Math.random() * 10;
-        const extraAngle = Math.random() * (2 * Math.PI);
-        const targetRotation = totalRotation * 2 * Math.PI + extraAngle;
-        const startRotation = wheelCurrentRotation;
-        const duration = 3000 + Math.random() * 1000;
-        const startTime = performance.now();
-
-        function animate(time) {
-            const elapsed = time - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const ease = 1 - Math.pow(1 - progress, 3);
-            const currentAngle = startRotation + targetRotation * ease;
-            wheelCurrentRotation = currentAngle;
-            drawWheel(segments, currentAngle);
-            if (progress < 1) {
-                wheelAnimationFrame = requestAnimationFrame(animate);
-            } else {
-                wheelCurrentRotation = currentAngle;
-                drawWheel(segments, currentAngle);
-                finishSpin(segments);
-            }
-        }
-
-        wheelAnimationFrame = requestAnimationFrame(animate);
-    }
-
-    // === FINISH SPIN ===
-    function finishSpin(segments) {
-        wheelIsSpinning = false;
-        const spinBtn = document.getElementById('spinBtn');
-        if (spinBtn) {
-            spinBtn.disabled = false;
-            spinBtn.textContent = '🎰 SPIN';
-            spinBtn.style.opacity = '1';
-        }
-
-        const segmentAngle = (2 * Math.PI) / segments.length;
-        let normalized = wheelCurrentRotation % (2 * Math.PI);
-        if (normalized < 0) normalized += 2 * Math.PI;
-
-        let index = 0;
-        for (let i = 0; i < segments.length; i++) {
-            const start = i * segmentAngle + normalized;
-            const end = start + segmentAngle;
-            let startNorm = start % (2 * Math.PI);
-            if (startNorm < 0) startNorm += 2 * Math.PI;
-            let endNorm = end % (2 * Math.PI);
-            if (endNorm < 0) endNorm += 2 * Math.PI;
-            if (startNorm < endNorm) {
-                if (0 >= startNorm && 0 < endNorm) { index = i; break; }
-            } else {
-                if (0 >= startNorm || 0 < endNorm) { index = i; break; }
-            }
-        }
-        if (index >= segments.length) index = 0;
-
-        const result = segments[index];
-        const resultEl = document.getElementById('wheelResult');
-
-        // Get a challenge
-        const challenge = getChallenge();
-
-        // Display the result
-        const playerName = result.label;
-        const challengeText = challenge.text;
-        const categoryIcon = challenge.categoryIcon || '🎯';
-        const typeIcon = challenge.type === 'question' ? '📝' : '🎯';
-        const categoryLabel = challenge.categoryLabel || '';
-
-        let resultHTML = `
-            <div style="font-size:1.2rem;margin-bottom:0.3rem;color:${result.color};">
-                🎯 <strong>${playerName}</strong>
-            </div>
-            <div style="font-size:0.9rem;padding:0.6rem;background:rgba(255,255,255,0.08);border-radius:10px;margin:0.2rem 0;border-left:4px solid ${challenge.color || '#FF6B6B'};text-align:left;">
-                ${typeIcon} <span style="font-weight:600;">${challengeText}</span>
-            </div>
-            <div style="font-size:0.6rem;color:var(--theme-text-secondary);margin-top:0.2rem;">
-                ${categoryIcon} ${categoryLabel} • ${challenge.type === 'question' ? 'Question' : 'Dare'}
-            </div>
-        `;
-
-        resultEl.innerHTML = resultHTML;
-
-        if (window.createConfetti) {
-            window.createConfetti(25);
-        }
-        if (window.playSound) {
-            window.playSound('success');
-        }
-
-        if (wheelUsedChallenges.length > 50) {
-            wheelUsedChallenges = wheelUsedChallenges.slice(-20);
-        }
-    }
-
-    // === RENDER WHEEL CONTENT ===
-    function renderWheelContent() {
-        const segments = getSegments();
-        
-        if (players.length >= 2) {
-            drawWheel(segments);
-            document.getElementById('spinBtn').addEventListener('click', () => spinWheel(segments));
-            document.getElementById('wheelCanvas').addEventListener('click', () => spinWheel(segments));
-        } else {
-            drawWheel(segments);
-        }
-    }
-
-    // === MAIN RENDER ===
-    // Render settings first
-    const settingsDiv = document.createElement('div');
-    settingsDiv.id = 'wheelSettings';
-    container.appendChild(settingsDiv);
-    renderSettings();
-
-    const wheelHTML = `
-        <div style="text-align:center;padding:0.3rem 0;">
-            <p style="font-size:0.65rem;font-weight:600;color:var(--theme-text-secondary);margin-bottom:0.2rem;">
-                🎡 ${players.length > 0 ? 'Spin to challenge!' : 'Add players first!'}
-            </p>
-            <canvas id="wheelCanvas" width="280" height="280" style="max-width:100%;height:auto;cursor:pointer;touch-action:manipulation;border-radius:50%;box-shadow:0 0 40px rgba(255,107,107,0.3);"></canvas>
-            <div style="margin-top:0.5rem;display:flex;gap:0.4rem;justify-content:center;flex-wrap:wrap;">
-                <button id="spinBtn" style="padding:0.5rem 2rem;border-radius:30px;border:none;font-weight:700;font-size:0.8rem;cursor:pointer;background:var(--theme-blue-bright);color:white;box-shadow:0 0 20px var(--theme-glow-blue);font-family:var(--font-body);min-height:44px;" ${players.length < 2 ? 'disabled style="opacity:0.5;cursor:not-allowed;"' : ''}>
-                    🎰 SPIN
-                </button>
-                <button id="backToGamesBtn" style="padding:0.4rem 1.2rem;border-radius:30px;border:none;font-weight:700;font-size:0.6rem;cursor:pointer;background:var(--theme-bg-input);color:var(--theme-text-secondary);border:2px solid var(--theme-border-color);font-family:var(--font-body);min-height:44px;">
-                    ⬅️ BACK TO GAMES
-                </button>
-            </div>
-            <div id="wheelResult" style="margin-top:0.5rem;min-height:3rem;font-size:1rem;font-weight:700;color:var(--theme-text-primary);padding:0.5rem;background:rgba(255,255,255,0.05);border-radius:12px;border:1px solid rgba(255,255,255,0.05);"></div>
-            ${players.length < 2 ? '<div style="color:#FF6B6B;font-size:0.55rem;margin-top:0.3rem;">⚠️ Add at least 2 players on the Home page!</div>' : ''}
-            ${window.createScoringUI ? window.createScoringUI() : ''}
-        </div>
-    `;
-
-    let wheelContainer = document.getElementById('wheelContainer');
-    if (!wheelContainer) {
-        wheelContainer = document.createElement('div');
-        wheelContainer.id = 'wheelContainer';
-        container.appendChild(wheelContainer);
-    }
-    wheelContainer.innerHTML = wheelHTML;
-
-    // Draw the wheel
-    renderWheelContent();
-
-    // Back to Games button
-    document.getElementById('backToGamesBtn').addEventListener('click', function(e) {
-        e.stopPropagation();
-        if (window.closeModal) {
-            window.closeModal();
-        } else {
-            const overlay = document.getElementById('modalOverlay');
-            if (overlay) {
-                overlay.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        }
-        if (window.navigateTo) {
-            window.navigateTo('games');
-        }
-    });
-}
-        // ---- HOT POTATO ----
-        let potatoGameState = {
-            timer: 0,
-            interval: null,
-            isExploding: false,
-            passCount: 0
-        };
-
-        function renderHotPotato(container) {
-            const current = getCurrentPlayer();
-            const name = current ? current.name : 'No player';
-            const settings = potatoSettings;
-
-            potatoGameState.isExploding = false;
-            potatoGameState.passCount = 0;
-
-            container.innerHTML = `
-                <div style="text-align:center;padding:0.5rem 0;">
-                    <div style="font-size:4rem;animation:${potatoGameState.isExploding ? 'shake 0.1s infinite' : 'bounce 1s infinite'};">
-                        ${potatoGameState.isExploding ? '💥' : '🥔'}
-                    </div>
-                    <p style="font-size:0.7rem;font-weight:600;color:var(--theme-text-secondary);">
-                        🔥 ${name} has the potato!
-                    </p>
-                    <div style="font-size:2.5rem;font-family:var(--font-display);color:var(--theme-blue-electric);" id="potatoTimerDisplay">
-                        ${potatoGameState.timer || '?'}
-                    </div>
-                    <div style="display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;margin-top:0.3rem;">
-                        <button id="passBtn" style="padding:0.5rem 2rem;border-radius:30px;border:none;font-weight:700;font-size:0.9rem;cursor:pointer;background:var(--theme-blue-bright);color:white;box-shadow:0 0 20px var(--theme-glow-blue);font-family:var(--font-body);min-height:44px;">
-                            🏃 PASS
-                        </button>
-                        <button onclick="nextTurn()" style="padding:0.5rem 1.5rem;border-radius:30px;border:none;font-weight:700;font-size:0.65rem;cursor:pointer;background:var(--theme-blue-electric);color:var(--blue-dark);font-family:var(--font-body);min-height:44px;">
-                            ⏭️ NEXT TURN
-                        </button>
-                    </div>
-                    <div id="potatoStatus" style="margin-top:0.3rem;font-size:0.7rem;color:var(--theme-text-muted);">
-                        Passes: ${potatoGameState.passCount}
-                    </div>
-                    ${createScoringUI()}
-                </div>
-            `;
-
-            document.getElementById('passBtn').addEventListener('click', passPotato);
-            startPotatoTimer();
-        }
-
-        function startPotatoTimer() {
-            if (potatoGameState.interval) clearInterval(potatoGameState.interval);
-            const settings = potatoSettings;
-            potatoGameState.timer = Math.floor(Math.random() * (settings.maxTimer - settings.minTimer + 1)) + settings
-            .minTimer;
-            const display = document.getElementById('potatoTimerDisplay');
-            if (display) display.textContent = potatoGameState.timer;
-
-            potatoGameState.interval = setInterval(() => {
-                potatoGameState.timer--;
-                const display = document.getElementById('potatoTimerDisplay');
-                if (display) {
-                    display.textContent = potatoGameState.timer;
-                    if (potatoGameState.timer <= 3) display.style.color = '#E74C3C';
-                }
-                if (potatoGameState.timer <= 0) {
-                    clearInterval(potatoGameState.interval);
-                    explodePotato();
-                }
-            }, 1000);
-        }
-
-        function passPotato() {
-            if (potatoGameState.isExploding) return;
-            if (potatoGameState.interval) clearInterval(potatoGameState.interval);
-            potatoGameState.passCount++;
-
-            const current = getCurrentPlayer();
-            if (current) {
-                showChangeToast(`🔥 ${current.name} passed!`);
-                playSound('point');
-            }
-
-            nextTurn();
-
-            setTimeout(() => {
-                if (selectedGameId === 'hotpotato') {
-                    const container = document.getElementById('modalContent');
-                    renderHotPotato(container);
-                }
-            }, 300);
-        }
-
-        function explodePotato() {
-            potatoGameState.isExploding = true;
-            const current = getCurrentPlayer();
-            const settings = potatoSettings;
-
-            if (current) {
-                const idx = players.findIndex(p => p.name === current.name);
-                if (idx !== -1) {
-                    addPoints(idx, -settings.penaltyPoints);
-                    showChangeToast(`💥 BOOM! ${current.name} loses ${settings.penaltyPoints} points!`);
-                    createConfetti(30);
-                    playSound('error');
-                }
-            }
-
-            const container = document.getElementById('modalContent');
-            container.innerHTML = `
-                <div style="text-align:center;padding:2rem 0;">
-                    <div style="font-size:5rem;animation:shake 0.1s infinite;">💥</div>
-                    <h3 style="font-family:var(--font-display);color:#E74C3C;font-size:1.5rem;">BOOM!</h3>
-                    <p style="color:var(--theme-text-secondary);font-size:0.8rem;">${current ? current.name : 'Someone'} lost ${settings.penaltyPoints} points!</p>
-                    <button onclick="resetPotatoGame()" style="margin-top:0.5rem;padding:0.5rem 2rem;border-radius:30px;border:none;font-weight:700;font-size:0.7rem;cursor:pointer;background:var(--theme-blue-bright);color:white;font-family:var(--font-body);">
-                        🥔 NEW POTATO
-                    </button>
-                </div>
-            `;
-        }
-
-        function resetPotatoGame() {
-            potatoGameState.isExploding = false;
-            potatoGameState.passCount = 0;
-            if (potatoGameState.interval) clearInterval(potatoGameState.interval);
-            nextTurn();
-            const container = document.getElementById('modalContent');
-            renderHotPotato(container);
-        }
-
-        // ---- BEAT THE METER ----
-        let meterGameState = {
-            value: 0,
-            direction: 1,
-            interval: null,
-            isStopped: false,
-            attempts: 0,
-            bestScore: 0
-        };
-
-        function renderBeatMeter(container) {
-            const current = getCurrentPlayer();
-            const name = current ? current.name : 'No player';
-            const settings = meterSettings;
-
-            meterGameState.attempts = 0;
-            meterGameState.bestScore = 0;
-            meterGameState.isStopped = false;
-            meterGameState.value = 0;
-            meterGameState.direction = 1;
-
-            container.innerHTML = `
-                <div style="text-align:center;padding:0.5rem 0;">
-                    <p style="font-size:0.7rem;font-weight:600;color:var(--theme-text-secondary);">
-                        📊 ${name} — Stop in the <span style="color:#2ECC71;">GREEN</span> zone!
-                    </p>
-                    <div style="position:relative;width:100%;max-width:320px;margin:0.3rem auto;height:40px;background:var(--theme-bg-input);border-radius:20px;overflow:hidden;border:3px solid var(--theme-border-color);">
-                        <div id="meterFill" style="position:absolute;left:0;top:0;height:100%;width:0%;background:var(--theme-blue-bright);transition:none;border-radius:20px;"></div>
-                        <div style="position:absolute;left:${settings.targetMin}%;right:${100 - settings.targetMax}%;top:0;height:100%;background:rgba(46,204,113,0.25);border-left:2px solid #2ECC71;border-right:2px solid #2ECC71;pointer-events:none;"></div>
-                        <div style="position:absolute;left:${settings.targetMin}%;top:0;height:100%;border-left:2px solid #2ECC71;pointer-events:none;"></div>
-                        <div style="position:absolute;right:${100 - settings.targetMax}%;top:0;height:100%;border-right:2px solid #2ECC71;pointer-events:none;"></div>
-                        <div style="position:absolute;left:50%;top:-4px;width:4px;height:48px;background:#E74C3C;transform:translateX(-50%);pointer-events:none;"></div>
-                        <div style="position:absolute;left:0;top:0;width:100%;height:100%;display:flex;justify-content:space-between;padding:0 6px;font-size:0.35rem;color:var(--theme-text-muted);line-height:40px;pointer-events:none;font-weight:700;">
-                            <span>0%</span>
-                            <span style="color:#2ECC71;">${settings.targetMin}%</span>
-                            <span style="color:#2ECC71;">${settings.targetMax}%</span>
-                            <span>100%</span>
-                        </div>
-                        <div id="meterValue" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:0.6rem;font-weight:800;color:white;text-shadow:0 1px 4px rgba(0,0,0,0.5);pointer-events:none;z-index:2;">0%</div>
-                    </div>
-                    <div style="display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;margin-top:0.3rem;">
-                        <button id="stopBtn" style="padding:0.5rem 2rem;border-radius:30px;border:none;font-weight:700;font-size:0.9rem;cursor:pointer;background:#E74C3C;color:white;box-shadow:0 0 20px rgba(231,76,60,0.3);font-family:var(--font-body);min-height:44px;">
-                            ✋ STOP
-                        </button>
-                        <button onclick="nextTurn()" style="padding:0.5rem 1.5rem;border-radius:30px;border:none;font-weight:700;font-size:0.65rem;cursor:pointer;background:var(--theme-blue-electric);color:var(--blue-dark);font-family:var(--font-body);min-height:44px;">
-                            ⏭️ NEXT TURN
-                        </button>
-                    </div>
-                    <div id="meterResult" style="margin-top:0.3rem;min-height:2rem;font-size:0.8rem;font-weight:700;color:var(--theme-text-secondary);">
-                        Attempt ${meterGameState.attempts + 1}/${settings.attemptsPerTurn}
-                    </div>
-                    ${createScoringUI()}
-                </div>
-            `;
-
-            document.getElementById('stopBtn').addEventListener('click', stopMeter);
-            startMeter();
-        }
-
-        function startMeter() {
-            if (meterGameState.interval) clearInterval(meterGameState.interval);
-            meterGameState.interval = setInterval(() => {
-                if (meterGameState.isStopped) return;
-                meterGameState.value += meterGameState.direction * 1.2;
-                if (meterGameState.value >= 100) { meterGameState.value = 100;
-                    meterGameState.direction = -1; }
-                if (meterGameState.value <= 0) { meterGameState.value = 0;
-                    meterGameState.direction = 1; }
-                updateMeter();
-            }, 30);
-        }
-
-        function updateMeter() {
-            const fill = document.getElementById('meterFill');
-            const value = document.getElementById('meterValue');
-            if (fill) fill.style.width = meterGameState.value + '%';
-            if (value) value.textContent = Math.round(meterGameState.value) + '%';
-        }
-
-        function stopMeter() {
-            if (meterGameState.isStopped) return;
-            meterGameState.isStopped = true;
-            if (meterGameState.interval) clearInterval(meterGameState.interval);
-
-            const value = meterGameState.value;
-            const settings = meterSettings;
-            const result = document.getElementById('meterResult');
-
-            let points = 0;
-            let message = '';
-
-            if (value >= settings.targetMin && value <= settings.targetMax) {
-                const center = (settings.targetMin + settings.targetMax) / 2;
-                if (Math.abs(value - center) <= settings.perfectZone) {
-                    points = settings.perfectPoints;
-                    message = `🎯 PERFECT! +${points} points!`;
-                    createConfetti(40);
-                    playSound('levelup');
-                } else {
-                    points = settings.goodPoints;
-                    message = `✅ GOOD! +${points} points!`;
-                    createConfetti(20);
-                    playSound('success');
-                }
-            } else if ((value >= 40 && value < settings.targetMin) || (value > settings.targetMax && value <= 95)) {
-                points = settings.okPoints;
-                message = `👍 OK! +${points} point${points > 1 ? 's' : ''}!`;
-                playSound('point');
-            } else {
-                message = '❌ Miss! 0 points';
-                playSound('error');
-            }
-
-            if (points > meterGameState.bestScore) meterGameState.bestScore = points;
-
-            const current = getCurrentPlayer();
-            if (current && points > 0) {
-                const idx = players.findIndex(p => p.name === current.name);
-                if (idx !== -1) addPoints(idx, points);
-            }
-
-            result.innerHTML = `${message} (${Math.round(value)}%)`;
-
-            meterGameState.attempts++;
-            if (meterGameState.attempts >= settings.attemptsPerTurn) {
-                document.getElementById('stopBtn').disabled = true;
-                result.innerHTML += `<br>🏆 Best: ${meterGameState.bestScore} points — Click NEXT TURN!`;
-            } else {
-                setTimeout(() => {
-                    if (!meterGameState.isStopped) return;
-                    document.getElementById('stopBtn').disabled = false;
-                    result.innerHTML = `Attempt ${meterGameState.attempts + 1}/${settings.attemptsPerTurn}`;
-                    meterGameState.isStopped = false;
-                    startMeter();
-                }, 1200);
-            }
-        }
-
-        // ============================================================
         //  GM FUNCTIONS
         // ============================================================
         function setupGMTabs() {
@@ -10515,9 +9091,6 @@ function renderSpinWheel(container) {
             renderGMRoast();
             renderGMWhoami();
             renderBGQuestions();
-            renderGMWheel();
-            renderGMPotato();
-            renderGMMeter();
         }
 
         function renderGMCharades() {
@@ -10840,6 +9413,7 @@ function renderSpinWheel(container) {
                 renderGMRoast(); }
         }
 
+        // ---- WHO AM I GM - FULLY FIXED ----
         function renderGMWhoami() {
             const list = document.getElementById('gmWhoamiList');
 
@@ -10932,9 +9506,6 @@ function renderSpinWheel(container) {
                 whoamiNames,
                 teams,
                 bgQuestions,
-                spinWheelSegments,
-                potatoSettings,
-                meterSettings,
                 timestamp: new Date().toISOString()
             };
             const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
@@ -10968,15 +9539,9 @@ function renderSpinWheel(container) {
                             if (data.whoamiNames) whoamiNames = data.whoamiNames;
                             if (data.teams) teams = data.teams;
                             if (data.bgQuestions) bgQuestions = data.bgQuestions;
-                            if (data.spinWheelSegments) spinWheelSegments = data.spinWheelSegments;
-                            if (data.potatoSettings) potatoSettings = data.potatoSettings;
-                            if (data.meterSettings) meterSettings = data.meterSettings;
                             savePlayers();
                             saveGMData();
                             saveBGQuestions();
-                            saveSpinWheelData();
-                            savePotatoSettings();
-                            saveMeterSettings();
                             renderAll();
                             renderGMData();
                             renderTeams();
@@ -11093,11 +9658,6 @@ function renderSpinWheel(container) {
             loadGMData();
             loadBGQuestions();
 
-            // Load new game data
-            loadSpinWheelData();
-            loadPotatoSettings();
-            loadMeterSettings();
-
             let hasData = false;
             for (const diff of ['easy', 'medium', 'hard', 'expert']) {
                 if (hangmanWords[diff] && hangmanWords[diff].length > 0) hasData = true;
@@ -11148,9 +9708,6 @@ function renderSpinWheel(container) {
             console.log(`🔥 ${roastLines.length} roast lines`);
             console.log(`🎨 ${Object.keys(THEMES).length} themes available`);
             console.log(`⏱️ Fast Talk has ${fastTalkCategories.length} categories (random flipping enabled)`);
-            console.log(`🎡 ${spinWheelSegments.length} wheel segments loaded`);
-            console.log(`🥔 Hot Potato settings loaded`);
-            console.log(`📊 Beat Meter settings loaded`);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -11171,13 +9728,6 @@ function renderSpinWheel(container) {
 
         init();
     </script>
-
-    <!-- ============================================================
-         STANDALONE GAME MODULES - UNCOMMENT TO USE
-         ============================================================ --> 
-    <script src="games/spin-wheel.js"></script>
-    <script src="games/hot-potato.js"></script>
-    <script src="games/beat-meter.js"></script>
 
 </body>
 </html>
