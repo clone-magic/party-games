@@ -2,6 +2,7 @@
 //  SPIN THE WHEEL - Player Challenge Edition
 //  Features: Player names on wheel, Challenge categories,
 //  Question/Dare bank with 3 modes + Adult mode
+//  Setup Modal + Main Modal (No turn-based)
 // ============================================================
 
 (function() {
@@ -17,8 +18,7 @@
     let currentRotation = 0;
     let animationFrame = null;
     let usedChallenges = [];
-    let currentMode = 'balanced'; // 'office' | 'balanced' | 'spicy' | 'adult' | 'mixed'
-    let challengeType = 'mixed'; // 'questions' | 'dares' | 'mixed'
+    let isSetupComplete = false;
 
     // ============================================================
     //  CHALLENGE DATA BANK
@@ -224,13 +224,14 @@
     };
 
     // ============================================================
-    //  SETTINGS & CONFIG
+    //  SETTINGS
     // ============================================================
-    const SETTINGS = {
+    let SETTINGS = {
         mode: 'balanced',
         challengeType: 'mixed', // 'questions' | 'dares' | 'mixed'
         repeatPrevention: true,
-        showCategory: true
+        showCategory: true,
+        players: []
     };
 
     // ============================================================
@@ -259,42 +260,15 @@
     }
 
     // ============================================================
-    //  GET SEGMENTS (PLAYER NAMES)
-    // ============================================================
-    function getSegments() {
-        if (!window.players || window.players.length === 0) {
-            return [
-                { label: 'No Players', value: 'none', color: '#95A5A6' }
-            ];
-        }
-
-        const colors = [
-            '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4',
-            '#FFEAA7', '#DDA0DD', '#FF8A5C', '#A29BFE',
-            '#FD79A8', '#00B894', '#E17055', '#74B9FF',
-            '#55EFC4', '#FDCB6E', '#E84393', '#00CEC9'
-        ];
-
-        return window.players.map((p, i) => ({
-            label: p.name,
-            value: p.name,
-            color: p.color || colors[i % colors.length],
-            playerId: i
-        }));
-    }
-
-    // ============================================================
     //  GET CHALLENGE
     // ============================================================
     function getChallenge(mode = null, type = null) {
         const selectedMode = mode || SETTINGS.mode;
         const selectedType = type || SETTINGS.challengeType;
 
-        // If mode is 'mixed', pick random mode
         let actualMode = selectedMode;
         if (actualMode === 'mixed') {
             const modes = ['office', 'balanced', 'spicy'];
-            // Only include adult if confirmed
             if (window.adultModeEnabled) {
                 modes.push('adult');
             }
@@ -304,7 +278,6 @@
         const category = CHALLENGE_BANK[actualMode];
         if (!category) return { text: 'No challenges available!', type: 'none', category: 'none' };
 
-        // Determine if question or dare
         let useQuestion = true;
         if (selectedType === 'questions') useQuestion = true;
         else if (selectedType === 'dares') useQuestion = false;
@@ -313,11 +286,9 @@
         const pool = useQuestion ? category.questions : category.dares;
         const challengeTypeText = useQuestion ? 'question' : 'dare';
 
-        // Filter out used challenges if repeat prevention is on
         let available = pool;
         if (SETTINGS.repeatPrevention) {
             available = pool.filter(c => !usedChallenges.includes(c));
-            // If all used, reset
             if (available.length === 0) {
                 usedChallenges = [];
                 available = pool;
@@ -338,135 +309,284 @@
     }
 
     // ============================================================
-    //  RENDER SETTINGS UI
+    //  GET SEGMENTS (PLAYER NAMES)
     // ============================================================
-    function renderSettings(container) {
-        const settingsHTML = `
-            <div style="margin: 0.5rem 0; padding: 0.5rem; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; justify-content: center;">
-                    <div style="display: flex; gap: 0.3rem; flex-wrap: wrap;">
-                        <button class="mode-btn" data-mode="office" style="padding: 0.3rem 0.8rem; border-radius: 20px; border: 2px solid #4CAF50; background: ${SETTINGS.mode === 'office' ? '#4CAF50' : 'transparent'}; color: ${SETTINGS.mode === 'office' ? 'white' : '#4CAF50'}; font-weight: 700; font-size: 0.6rem; cursor: pointer; min-height: 32px;">
-                            💼 Office
-                        </button>
-                        <button class="mode-btn" data-mode="balanced" style="padding: 0.3rem 0.8rem; border-radius: 20px; border: 2px solid #FF9800; background: ${SETTINGS.mode === 'balanced' ? '#FF9800' : 'transparent'}; color: ${SETTINGS.mode === 'balanced' ? 'white' : '#FF9800'}; font-weight: 700; font-size: 0.6rem; cursor: pointer; min-height: 32px;">
-                            ⚖️ Balanced
-                        </button>
-                        <button class="mode-btn" data-mode="spicy" style="padding: 0.3rem 0.8rem; border-radius: 20px; border: 2px solid #F44336; background: ${SETTINGS.mode === 'spicy' ? '#F44336' : 'transparent'}; color: ${SETTINGS.mode === 'spicy' ? 'white' : '#F44336'}; font-weight: 700; font-size: 0.6rem; cursor: pointer; min-height: 32px;">
-                            🌶️ Spicy
-                        </button>
-                        <button class="mode-btn" data-mode="adult" style="padding: 0.3rem 0.8rem; border-radius: 20px; border: 2px solid #9C27B0; background: ${SETTINGS.mode === 'adult' ? '#9C27B0' : 'transparent'}; color: ${SETTINGS.mode === 'adult' ? 'white' : '#9C27B0'}; font-weight: 700; font-size: 0.6rem; cursor: pointer; min-height: 32px;" id="adultModeBtn">
-                            🔞 Adult
-                        </button>
-                        <button class="mode-btn" data-mode="mixed" style="padding: 0.3rem 0.8rem; border-radius: 20px; border: 2px solid #00BCD4; background: ${SETTINGS.mode === 'mixed' ? '#00BCD4' : 'transparent'}; color: ${SETTINGS.mode === 'mixed' ? 'white' : '#00BCD4'}; font-weight: 700; font-size: 0.6rem; cursor: pointer; min-height: 32px;">
-                            🎲 Mixed
-                        </button>
+    function getSegments() {
+        if (!SETTINGS.players || SETTINGS.players.length === 0) {
+            return [{ label: 'No Players', value: 'none', color: '#95A5A6' }];
+        }
+
+        const colors = [
+            '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4',
+            '#FFEAA7', '#DDA0DD', '#FF8A5C', '#A29BFE',
+            '#FD79A8', '#00B894', '#E17055', '#74B9FF',
+            '#55EFC4', '#FDCB6E', '#E84393', '#00CEC9'
+        ];
+
+        return SETTINGS.players.map((name, i) => ({
+            label: name,
+            value: name,
+            color: colors[i % colors.length],
+            playerId: i
+        }));
+    }
+
+    // ============================================================
+    //  RENDER SETUP MODAL
+    // ============================================================
+    function renderSetupModal() {
+        const modal = document.createElement('div');
+        modal.id = 'wheelSetupModal';
+        modal.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            backdrop-filter: blur(8px);
+            animation: fadeIn 0.3s ease;
+        `;
+
+        const playerList = SETTINGS.players.map((name, i) => 
+            `<div style="display:flex;justify-content:space-between;align-items:center;padding:0.3rem 0.5rem;background:rgba(255,255,255,0.05);border-radius:6px;margin-bottom:0.3rem;">
+                <span style="color:white;font-weight:600;">${i+1}. ${name}</span>
+                <button class="remove-player-btn" data-index="${i}" style="background:rgba(255,0,0,0.3);border:none;color:white;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:14px;">✕</button>
+            </div>`
+        ).join('');
+
+        modal.innerHTML = `
+            <div style="background:var(--theme-bg-card);border-radius:24px;padding:2rem;max-width:500px;width:90%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.8);border:1px solid rgba(255,255,255,0.1);">
+                <h2 style="text-align:center;color:white;margin-bottom:1.5rem;">🎡 Spin The Wheel Setup</h2>
+                
+                <!-- Player Management -->
+                <div style="margin-bottom:1.5rem;">
+                    <label style="color:var(--theme-text-secondary);font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.3rem;">👥 Add Players</label>
+                    <div style="display:flex;gap:0.5rem;margin-bottom:0.5rem;">
+                        <input id="playerNameInput" type="text" placeholder="Enter player name..." style="flex:1;padding:0.5rem;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.05);color:white;font-size:0.9rem;">
+                        <button id="addPlayerBtn" style="padding:0.5rem 1.2rem;border-radius:8px;border:none;background:var(--theme-blue-bright);color:white;font-weight:700;cursor:pointer;white-space:nowrap;">Add</button>
                     </div>
-                    <div style="display: flex; gap: 0.3rem; flex-wrap: wrap;">
-                        <button class="type-btn" data-type="mixed" style="padding: 0.2rem 0.6rem; border-radius: 15px; border: 1px solid #888; background: ${SETTINGS.challengeType === 'mixed' ? '#888' : 'transparent'}; color: ${SETTINGS.challengeType === 'mixed' ? 'white' : '#888'}; font-size: 0.5rem; cursor: pointer; min-height: 28px;">
-                            📝 + 🎯
-                        </button>
-                        <button class="type-btn" data-type="questions" style="padding: 0.2rem 0.6rem; border-radius: 15px; border: 1px solid #888; background: ${SETTINGS.challengeType === 'questions' ? '#888' : 'transparent'}; color: ${SETTINGS.challengeType === 'questions' ? 'white' : '#888'}; font-size: 0.5rem; cursor: pointer; min-height: 28px;">
-                            📝 Questions
-                        </button>
-                        <button class="type-btn" data-type="dares" style="padding: 0.2rem 0.6rem; border-radius: 15px; border: 1px solid #888; background: ${SETTINGS.challengeType === 'dares' ? '#888' : 'transparent'}; color: ${SETTINGS.challengeType === 'dares' ? 'white' : '#888'}; font-size: 0.5rem; cursor: pointer; min-height: 28px;">
-                            🎯 Dares
-                        </button>
+                    <div id="playerList" style="max-height:150px;overflow-y:auto;background:rgba(0,0,0,0.2);border-radius:8px;padding:0.5rem;">
+                        ${playerList || '<div style="color:var(--theme-text-secondary);text-align:center;padding:0.5rem;">No players added yet</div>'}
                     </div>
                 </div>
-                <div style="text-align: center; margin-top: 0.3rem; font-size: 0.5rem; color: var(--theme-text-secondary);">
-                    ${CHALLENGE_BANK[SETTINGS.mode]?.label || 'Select a mode'} • ${SETTINGS.challengeType === 'mixed' ? 'Questions & Dares' : SETTINGS.challengeType === 'questions' ? 'Questions Only' : 'Dares Only'}
+
+                <!-- Mode Selection -->
+                <div style="margin-bottom:1rem;">
+                    <label style="color:var(--theme-text-secondary);font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.3rem;">🎯 Challenge Mode</label>
+                    <div style="display:flex;gap:0.4rem;flex-wrap:wrap;">
+                        ${['office','balanced','spicy','adult','mixed'].map(mode => {
+                            const bank = CHALLENGE_BANK[mode];
+                            if (!bank) return '';
+                            const isAdult = mode === 'adult';
+                            return `
+                                <button class="setup-mode-btn" data-mode="${mode}" style="
+                                    padding:0.4rem 0.8rem;
+                                    border-radius:20px;
+                                    border:2px solid ${bank.color};
+                                    background: ${SETTINGS.mode === mode ? bank.color : 'transparent'};
+                                    color: ${SETTINGS.mode === mode ? 'white' : bank.color};
+                                    font-weight:700;
+                                    font-size:0.65rem;
+                                    cursor:pointer;
+                                    flex:1;
+                                    min-width:80px;
+                                    ${isAdult && !window.adultModeEnabled ? 'opacity:0.5;' : ''}
+                                ">
+                                    ${bank.icon} ${bank.label.split(' ')[0]}
+                                    ${isAdult ? '🔞' : ''}
+                                </button>
+                            `;
+                        }).join('')}
+                    </div>
+                    <div style="margin-top:0.3rem;font-size:0.6rem;color:var(--theme-text-secondary);text-align:center;">
+                        ${CHALLENGE_BANK[SETTINGS.mode]?.label || 'Select a mode'}
+                    </div>
                 </div>
+
+                <!-- Challenge Type -->
+                <div style="margin-bottom:1.5rem;">
+                    <label style="color:var(--theme-text-secondary);font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.3rem;">📝 Challenge Type</label>
+                    <div style="display:flex;gap:0.4rem;">
+                        ${['mixed','questions','dares'].map(type => ({
+                            value: type,
+                            label: type === 'mixed' ? '📝 + 🎯' : type === 'questions' ? '📝 Questions' : '🎯 Dares'
+                        })).map(({value, label}) => `
+                            <button class="setup-type-btn" data-type="${value}" style="
+                                padding:0.3rem 0.8rem;
+                                border-radius:15px;
+                                border:1px solid ${SETTINGS.challengeType === value ? 'white' : 'rgba(255,255,255,0.3)'};
+                                background: ${SETTINGS.challengeType === value ? 'rgba(255,255,255,0.2)' : 'transparent'};
+                                color: white;
+                                font-size:0.6rem;
+                                cursor:pointer;
+                                flex:1;
+                            ">
+                                ${label}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <!-- Options -->
+                <div style="margin-bottom:1.5rem;display:flex;gap:1rem;align-items:center;">
+                    <label style="color:var(--theme-text-secondary);font-size:0.7rem;display:flex;align-items:center;gap:0.3rem;cursor:pointer;">
+                        <input type="checkbox" id="repeatPrevention" ${SETTINGS.repeatPrevention ? 'checked' : ''}>
+                        🔄 Prevent repeats
+                    </label>
+                </div>
+
+                <!-- Start Button -->
+                <button id="startGameBtn" style="
+                    width:100%;
+                    padding:0.8rem;
+                    border-radius:12px;
+                    border:none;
+                    background: linear-gradient(135deg, #00C853, #00E676);
+                    color:white;
+                    font-weight:700;
+                    font-size:1rem;
+                    cursor:pointer;
+                    box-shadow:0 4px 20px rgba(0,200,80,0.3);
+                    transition:transform 0.2s;
+                ">
+                    🚀 Start Game
+                </button>
+
+                ${SETTINGS.players.length === 0 ? '<div style="color:#FF6B6B;font-size:0.7rem;text-align:center;margin-top:0.5rem;">⚠️ Add at least 2 players to start!</div>' : ''}
             </div>
         `;
 
-        // Insert settings before the wheel
-        const settingsDiv = document.createElement('div');
-        settingsDiv.id = 'challengeSettings';
-        settingsDiv.innerHTML = settingsHTML;
-        container.insertBefore(settingsDiv, container.firstChild);
+        document.body.appendChild(modal);
 
         // ---- Event Listeners ----
+        // Add Player
+        document.getElementById('addPlayerBtn').addEventListener('click', function() {
+            const input = document.getElementById('playerNameInput');
+            const name = input.value.trim();
+            if (name && !SETTINGS.players.includes(name)) {
+                SETTINGS.players.push(name);
+                renderSetupModal();
+            } else if (SETTINGS.players.includes(name)) {
+                alert('Player already added!');
+            }
+            input.value = '';
+            input.focus();
+        });
+
+        document.getElementById('playerNameInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('addPlayerBtn').click();
+            }
+        });
+
+        // Remove Player
+        document.querySelectorAll('.remove-player-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const index = parseInt(this.dataset.index);
+                SETTINGS.players.splice(index, 1);
+                renderSetupModal();
+            });
+        });
+
         // Mode buttons
-        document.querySelectorAll('.mode-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
+        document.querySelectorAll('.setup-mode-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
                 const mode = this.dataset.mode;
                 
-                // Adult mode requires confirmation
                 if (mode === 'adult' && !window.adultModeEnabled) {
                     if (confirm('🔞 Adult mode contains explicit content.\n\nAre you 18+ and sure you want to enable it?')) {
                         window.adultModeEnabled = true;
                         SETTINGS.mode = 'adult';
-                        renderSettings(container);
-                        renderWheel(container);
+                        renderSetupModal();
                     }
                     return;
                 }
 
                 SETTINGS.mode = mode;
-                renderSettings(container);
-                renderWheel(container);
-                
-                // Show feedback
-                const modeLabel = CHALLENGE_BANK[mode]?.label || mode;
-                if (window.showChangeToast) {
-                    window.showChangeToast(`Mode: ${modeLabel}`);
-                }
+                renderSetupModal();
             });
         });
 
         // Type buttons
-        document.querySelectorAll('.type-btn').forEach(btn => {
+        document.querySelectorAll('.setup-type-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 SETTINGS.challengeType = this.dataset.type;
-                renderSettings(container);
-                renderWheel(container);
+                renderSetupModal();
             });
+        });
+
+        // Repeat Prevention
+        document.getElementById('repeatPrevention').addEventListener('change', function() {
+            SETTINGS.repeatPrevention = this.checked;
+        });
+
+        // Start Game
+        document.getElementById('startGameBtn').addEventListener('click', function() {
+            if (SETTINGS.players.length < 2) {
+                alert('Please add at least 2 players!');
+                return;
+            }
+            
+            // Close setup modal
+            const modal = document.getElementById('wheelSetupModal');
+            if (modal) modal.remove();
+            
+            isSetupComplete = true;
+            
+            // Render the main game
+            const container = document.getElementById(GAME_ID);
+            if (container) {
+                renderMainGame(container);
+            }
         });
     }
 
     // ============================================================
-    //  RENDER WHEEL
+    //  RENDER MAIN GAME
     // ============================================================
-    function renderWheel(container) {
+    function renderMainGame(container) {
         const segments = getSegments();
-        const currentPlayer = window.getCurrentPlayer ? window.getCurrentPlayer() : null;
-        const playerName = currentPlayer ? currentPlayer.name : 'No player';
-
-        // Check if settings already exists, if not, render it
-        if (!document.getElementById('challengeSettings')) {
-            renderSettings(container);
-        }
-
-        const wheelHTML = `
+        
+        container.innerHTML = `
             <div style="text-align:center;padding:0.5rem 0;">
-                <p style="font-size:0.7rem;font-weight:600;color:var(--theme-text-secondary);margin-bottom:0.3rem;">
-                    🎯 ${playerName}'s turn to spin
-                </p>
+                <!-- Settings Summary -->
+                <div style="margin-bottom:0.5rem;display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;font-size:0.6rem;color:var(--theme-text-secondary);">
+                    <span>${CHALLENGE_BANK[SETTINGS.mode]?.icon || '🎯'} ${CHALLENGE_BANK[SETTINGS.mode]?.label || 'Balanced'}</span>
+                    <span>•</span>
+                    <span>${SETTINGS.challengeType === 'mixed' ? '📝+🎯' : SETTINGS.challengeType === 'questions' ? '📝 Questions' : '🎯 Dares'}</span>
+                    <span>•</span>
+                    <span>👥 ${SETTINGS.players.length} players</span>
+                    <button id="reopenSetupBtn" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:12px;padding:0.2rem 0.6rem;color:white;font-size:0.55rem;cursor:pointer;">⚙️ Edit</button>
+                </div>
+
+                <!-- Wheel -->
                 <canvas id="wheelCanvas" width="280" height="280" style="max-width:100%;height:auto;cursor:pointer;touch-action:manipulation;border-radius:50%;box-shadow:0 0 40px rgba(255,107,107,0.3);"></canvas>
-                <div style="margin-top:0.5rem;display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;">
-                    <button id="spinBtn" style="padding:0.5rem 2rem;border-radius:30px;border:none;font-weight:700;font-size:0.8rem;cursor:pointer;background:var(--theme-blue-bright);color:white;box-shadow:0 0 20px var(--theme-glow-blue);font-family:var(--font-body);min-height:44px;">
+                
+                <!-- Spin Button -->
+                <div style="margin-top:0.8rem;">
+                    <button id="spinBtn" style="padding:0.8rem 3rem;border-radius:30px;border:none;font-weight:700;font-size:1rem;cursor:pointer;background:var(--theme-blue-bright);color:white;box-shadow:0 0 30px var(--theme-glow-blue);font-family:var(--font-body);min-height:44px;transition:transform 0.2s;">
                         🎰 SPIN
                     </button>
-                    <button onclick="window.nextTurn ? window.nextTurn() : null" style="padding:0.5rem 1.5rem;border-radius:30px;border:none;font-weight:700;font-size:0.65rem;cursor:pointer;background:var(--theme-blue-electric);color:var(--blue-dark);font-family:var(--font-body);min-height:44px;">
-                        ⏭️ NEXT PLAYER
-                    </button>
                 </div>
-                <div id="wheelResult" style="margin-top:0.5rem;min-height:3rem;font-size:1rem;font-weight:700;color:var(--theme-blue-electric);padding:0.5rem;background:rgba(255,255,255,0.05);border-radius:12px;"></div>
+
+                <!-- Result Display -->
+                <div id="wheelResult" style="margin-top:1rem;min-height:4rem;font-size:1.1rem;font-weight:700;color:var(--theme-text-primary);padding:0.8rem;background:rgba(255,255,255,0.05);border-radius:16px;border:1px solid rgba(255,255,255,0.05);"></div>
             </div>
         `;
 
-        // Update or create wheel container
-        let wheelContainer = document.getElementById('wheelContainer');
-        if (!wheelContainer) {
-            wheelContainer = document.createElement('div');
-            wheelContainer.id = 'wheelContainer';
-            container.appendChild(wheelContainer);
-        }
-        wheelContainer.innerHTML = wheelHTML;
-
         drawWheel(segments);
+        
         document.getElementById('spinBtn').addEventListener('click', () => spinWheel(segments));
         document.getElementById('wheelCanvas').addEventListener('click', () => spinWheel(segments));
+        
+        document.getElementById('reopenSetupBtn').addEventListener('click', function() {
+            renderSetupModal();
+        });
     }
 
     // ============================================================
@@ -514,7 +634,6 @@
             ctx.shadowColor = 'rgba(0,0,0,0.5)';
             ctx.shadowBlur = 4;
             
-            // Truncate long names
             let label = seg.label;
             if (label.length > 10) label = label.substring(0, 9) + '…';
             ctx.fillText(label, radius * 0.65, 0);
@@ -560,19 +679,15 @@
     // ============================================================
     function spinWheel(segments) {
         if (isSpinning) return;
-        if (window.players && window.players.length === 0) {
-            alert('Add players first!');
-            return;
-        }
-
-        if (segments.length === 1 && segments[0].label === 'No Players') {
-            alert('Add players first!');
+        if (SETTINGS.players.length < 2) {
+            alert('Add at least 2 players first!');
             return;
         }
 
         isSpinning = true;
         document.getElementById('spinBtn').disabled = true;
-        document.getElementById('wheelResult').textContent = '🎰 Spinning...';
+        document.getElementById('spinBtn').style.opacity = '0.5';
+        document.getElementById('wheelResult').innerHTML = '🎰 Spinning...';
 
         const totalRotation = 5 + Math.random() * 10;
         const extraAngle = Math.random() * (2 * Math.PI);
@@ -606,6 +721,7 @@
     function finishSpin(segments) {
         isSpinning = false;
         document.getElementById('spinBtn').disabled = false;
+        document.getElementById('spinBtn').style.opacity = '1';
 
         const segmentAngle = (2 * Math.PI) / segments.length;
         let normalized = currentRotation % (2 * Math.PI);
@@ -640,15 +756,14 @@
         const typeIcon = challenge.type === 'question' ? '📝' : '🎯';
         const categoryLabel = challenge.categoryLabel || '';
 
-        // Build result display
         let resultHTML = `
-            <div style="font-size: 1.2rem; margin-bottom: 0.3rem;">
-                🎯 <strong>${playerName}</strong>!
+            <div style="font-size:1.2rem;margin-bottom:0.3rem;color:${result.color};">
+                🎯 <strong>${playerName}</strong>
             </div>
-            <div style="font-size: 0.9rem; padding: 0.5rem; background: rgba(255,255,255,0.05); border-radius: 8px; margin: 0.3rem 0;">
-                ${typeIcon} <span style="font-weight: 600;">${challengeText}</span>
+            <div style="font-size:0.9rem;padding:0.8rem;background:rgba(255,255,255,0.08);border-radius:12px;margin:0.3rem 0;border-left:3px solid ${challenge.color || '#FF6B6B'};">
+                ${typeIcon} <span style="font-weight:600;">${challengeText}</span>
             </div>
-            <div style="font-size: 0.6rem; color: var(--theme-text-secondary);">
+            <div style="font-size:0.6rem;color:var(--theme-text-secondary);margin-top:0.2rem;">
                 ${categoryIcon} ${categoryLabel} • ${challenge.type === 'question' ? 'Question' : 'Dare'}
             </div>
         `;
@@ -656,9 +771,9 @@
         resultEl.innerHTML = resultHTML;
         resultEl.style.color = 'var(--theme-text-primary)';
 
-        // Confetti for all spins (it's fun!)
+        // Confetti
         if (window.createConfetti) {
-            window.createConfetti(20);
+            window.createConfetti(25);
         }
         if (window.playSound) {
             window.playSound('success');
@@ -670,12 +785,17 @@
     // ============================================================
     window.GAME_MODULES = window.GAME_MODULES || {};
     window.GAME_MODULES[GAME_ID] = {
-        render: renderWheel,
+        render: function(container) {
+            if (!isSetupComplete) {
+                renderSetupModal();
+            } else {
+                renderMainGame(container);
+            }
+        },
         id: GAME_ID,
         title: GAME_TITLE
     };
 
-    // Expose challenge bank for external use
     window.CHALLENGE_BANK = CHALLENGE_BANK;
     window.getChallenge = getChallenge;
     window.SETTINGS = SETTINGS;
