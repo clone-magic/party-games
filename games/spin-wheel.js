@@ -1,38 +1,22 @@
 // ============================================================
-//  SPIN THE WHEEL - Standalone Game Module
-//  Depends on: players, addPoints, nextTurn, createConfetti
+//  SPIN THE WHEEL - Fully Integrated with data.json + GM
 // ============================================================
 
 (function() {
     'use strict';
 
-    // ---- GAME CONFIG ----
     const GAME_ID = 'wheel';
     const GAME_EMOJI = '🎡';
     const GAME_TITLE = 'SPIN THE WHEEL';
     const GAME_DESC = 'Spin & win!';
     const GAME_COLOR = 'game-wheel';
 
-    // ---- WHEEL SEGMENTS ----
-    const SEGMENTS = [
-        { label: '+1', value: 1, color: '#2ECC71' },
-        { label: '+3', value: 3, color: '#3498DB' },
-        { label: '+5', value: 5, color: '#9B59B6' },
-        { label: '−1', value: -1, color: '#E74C3C' },
-        { label: '−3', value: -3, color: '#E67E22' },
-        { label: 'STEAL', value: 'steal', color: '#F1C40F' },
-        { label: 'SKIP', value: 'skip', color: '#95A5A6' },
-        { label: '+10', value: 10, color: '#1ABC9C' }
-    ];
-
-    // ---- STATE ----
     let isSpinning = false;
     let currentRotation = 0;
     let animationFrame = null;
 
     // ---- REGISTER GAME ----
     function registerGame() {
-        // Add to GAMES array if not already there
         if (!window.GAMES) window.GAMES = [];
         if (!window.GAMES.find(g => g.id === GAME_ID)) {
             window.GAMES.push({
@@ -43,8 +27,6 @@
                 color: GAME_COLOR
             });
         }
-
-        // Add color
         if (!window.GAME_COLORS) window.GAME_COLORS = {};
         if (!window.GAME_COLORS[GAME_ID]) {
             window.GAME_COLORS[GAME_ID] = {
@@ -56,10 +38,29 @@
         }
     }
 
+    // ---- GET SEGMENTS FROM GM ----
+    function getSegments() {
+        if (window.spinWheelSegments && window.spinWheelSegments.length > 0) {
+            return window.spinWheelSegments;
+        }
+        // Fallback
+        return [
+            { label: '+1', value: 1, color: '#2ECC71' },
+            { label: '+3', value: 3, color: '#3498DB' },
+            { label: '+5', value: 5, color: '#9B59B6' },
+            { label: '−1', value: -1, color: '#E74C3C' },
+            { label: '−3', value: -3, color: '#E67E22' },
+            { label: 'STEAL', value: 'steal', color: '#F1C40F' },
+            { label: 'SKIP', value: 'skip', color: '#95A5A6' },
+            { label: '+10', value: 10, color: '#1ABC9C' }
+        ];
+    }
+
     // ---- RENDER WHEEL ----
     function renderWheel(container) {
         const currentPlayer = window.getCurrentPlayer ? window.getCurrentPlayer() : null;
         const playerName = currentPlayer ? currentPlayer.name : 'No player';
+        const segments = getSegments();
 
         container.innerHTML = `
             <div style="text-align:center;padding:0.5rem 0;">
@@ -82,14 +83,13 @@
             </div>
         `;
 
-        drawWheel();
-
-        document.getElementById('spinBtn').addEventListener('click', spinWheel);
-        document.getElementById('wheelCanvas').addEventListener('click', spinWheel);
+        drawWheel(segments);
+        document.getElementById('spinBtn').addEventListener('click', () => spinWheel(segments));
+        document.getElementById('wheelCanvas').addEventListener('click', () => spinWheel(segments));
     }
 
     // ---- DRAW WHEEL ----
-    function drawWheel(rotation = 0) {
+    function drawWheel(segments, rotation = 0) {
         const canvas = document.getElementById('wheelCanvas');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
@@ -97,12 +97,11 @@
         const radius = size / 2 - 8;
         const centerX = size / 2;
         const centerY = size / 2;
-        const segmentAngle = (2 * Math.PI) / SEGMENTS.length;
+        const segmentAngle = (2 * Math.PI) / segments.length;
 
         ctx.clearRect(0, 0, size, size);
 
-        // Draw segments
-        SEGMENTS.forEach((seg, i) => {
+        segments.forEach((seg, i) => {
             const startAngle = i * segmentAngle + rotation;
             const endAngle = startAngle + segmentAngle;
 
@@ -111,7 +110,6 @@
             ctx.arc(centerX, centerY, radius, startAngle, endAngle);
             ctx.closePath();
 
-            // Gradient fill
             const grad = ctx.createRadialGradient(centerX, centerY, 10, centerX, centerY, radius);
             grad.addColorStop(0, '#FFFFFF');
             grad.addColorStop(0.3, seg.color);
@@ -123,7 +121,6 @@
             ctx.lineWidth = 2;
             ctx.stroke();
 
-            // Text
             ctx.save();
             ctx.translate(centerX, centerY);
             ctx.rotate(startAngle + segmentAngle / 2);
@@ -166,13 +163,10 @@
         ctx.closePath();
         ctx.fillStyle = '#E74C3C';
         ctx.fill();
-        ctx.shadowColor = 'rgba(231,76,60,0.5)';
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = 'transparent';
     }
 
     // ---- SPIN WHEEL ----
-    function spinWheel() {
+    function spinWheel(segments) {
         if (isSpinning) return;
         if (window.players && window.players.length === 0) {
             alert('Add players first!');
@@ -183,10 +177,9 @@
         document.getElementById('spinBtn').disabled = true;
         document.getElementById('wheelResult').textContent = '🎰 Spinning...';
 
-        const totalRotation = 5 + Math.random() * 10; // 5-15 full rotations
+        const totalRotation = 5 + Math.random() * 10;
         const extraAngle = Math.random() * (2 * Math.PI);
         const targetRotation = totalRotation * 2 * Math.PI + extraAngle;
-
         const startRotation = currentRotation;
         const duration = 3000 + Math.random() * 1000;
         const startTime = performance.now();
@@ -194,20 +187,16 @@
         function animate(time) {
             const elapsed = time - startTime;
             const progress = Math.min(elapsed / duration, 1);
-
-            // Easing: cubic ease-out
             const ease = 1 - Math.pow(1 - progress, 3);
             const currentAngle = startRotation + targetRotation * ease;
-
             currentRotation = currentAngle;
-            drawWheel(currentAngle);
-
+            drawWheel(segments, currentAngle);
             if (progress < 1) {
                 animationFrame = requestAnimationFrame(animate);
             } else {
                 currentRotation = currentAngle;
-                drawWheel(currentAngle);
-                finishSpin();
+                drawWheel(segments, currentAngle);
+                finishSpin(segments);
             }
         }
 
@@ -215,55 +204,33 @@
     }
 
     // ---- FINISH SPIN ----
-    function finishSpin() {
+    function finishSpin(segments) {
         isSpinning = false;
         document.getElementById('spinBtn').disabled = false;
 
-        const segmentAngle = (2 * Math.PI) / SEGMENTS.length;
-        // Normalize rotation to 0-2PI
+        const segmentAngle = (2 * Math.PI) / segments.length;
         let normalized = currentRotation % (2 * Math.PI);
         if (normalized < 0) normalized += 2 * Math.PI;
 
-        // The pointer is at top (0°), so segment is from the top
-        // Find which segment the pointer points to
-        // Pointer is at angle 0 (top), so we need the segment that contains angle 0
-        // We check which segment's range contains the pointer angle
         let index = 0;
-        for (let i = 0; i < SEGMENTS.length; i++) {
+        for (let i = 0; i < segments.length; i++) {
             const start = i * segmentAngle + normalized;
             const end = start + segmentAngle;
-            // Check if pointer (0) is within this segment's range
-            // We need to check modulo
-            let pointerAngle = 0;
-            // Adjust for wrapping
             let startNorm = start % (2 * Math.PI);
             if (startNorm < 0) startNorm += 2 * Math.PI;
             let endNorm = end % (2 * Math.PI);
             if (endNorm < 0) endNorm += 2 * Math.PI;
-
             if (startNorm < endNorm) {
-                if (pointerAngle >= startNorm && pointerAngle < endNorm) {
-                    index = i;
-                    break;
-                }
+                if (0 >= startNorm && 0 < endNorm) { index = i; break; }
             } else {
-                // Wraps around
-                if (pointerAngle >= startNorm || pointerAngle < endNorm) {
-                    index = i;
-                    break;
-                }
+                if (0 >= startNorm || 0 < endNorm) { index = i; break; }
             }
         }
+        if (index >= segments.length) index = 0;
 
-        // Fallback
-        if (index >= SEGMENTS.length) index = 0;
-
-        const result = SEGMENTS[index];
+        const result = segments[index];
         const resultEl = document.getElementById('wheelResult');
-
-        // Apply result
         applyResult(result);
-
         resultEl.textContent = `🎯 ${result.label}!`;
         if (result.value === 'steal') {
             resultEl.textContent = '🤑 STEAL! Take 2 from the leader!';
@@ -277,32 +244,20 @@
             resultEl.style.color = '#E74C3C';
             window.playSound ? window.playSound('error') : null;
         }
-
-        // Show confetti for good results
         if (result.value === 'steal' || result.value === 10 || result.value === 5) {
             window.createConfetti ? window.createConfetti(40) : null;
             window.playSound ? window.playSound('levelup') : null;
         }
-
-        // Auto-next after delay
-        setTimeout(() => {
-            // Don't auto-next if it's a skip
-            if (result.value !== 'skip') {
-                // Let user control next turn
-            }
-        }, 1500);
     }
 
     // ---- APPLY RESULT ----
     function applyResult(result) {
         const current = window.getCurrentPlayer ? window.getCurrentPlayer() : null;
         if (!current) return;
-
         const idx = window.players ? window.players.findIndex(p => p.name === current.name) : -1;
         if (idx === -1) return;
 
         if (result.value === 'steal') {
-            // Find highest scorer
             const sorted = [...window.players].sort((a, b) => b.points - a.points);
             if (sorted.length > 1 && sorted[0].name !== current.name) {
                 const victim = sorted[0];
@@ -317,9 +272,7 @@
             }
         } else if (result.value === 'skip') {
             window.showChangeToast ? window.showChangeToast('⏭️ Skipping next turn!') : null;
-            setTimeout(() => {
-                window.nextTurn ? window.nextTurn() : null;
-            }, 500);
+            setTimeout(() => { window.nextTurn ? window.nextTurn() : null; }, 500);
         } else {
             window.addPoints ? window.addPoints(idx, result.value) : null;
         }
@@ -333,11 +286,6 @@
         title: GAME_TITLE
     };
 
-    // ---- AUTO-REGISTER ----
     registerGame();
-
-    // ---- CSS TO ADD TO index.html ----
-    // .game-wheel { background: #FF6B6B; }
-
     console.log(`🎡 ${GAME_TITLE} loaded!`);
 })();
