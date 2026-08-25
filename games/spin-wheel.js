@@ -1,7 +1,8 @@
 // ============================================================
-//  SPIN THE WHEEL - Fully Integrated Player Challenge Edition
-//  Uses main player system, no turn-based, challenge modes
-//  Depends on: window.players, window.addPoints, window.nextTurn
+//  SPIN THE WHEEL - Standalone Challenge Edition
+//  Fully integrated with main system via window.*
+//  Depends on: window.players, window.addPoints, 
+//              window.createConfetti, window.playSound
 // ============================================================
 
 (function() {
@@ -228,6 +229,7 @@
     //  REGISTER GAME
     // ============================================================
     function registerGame() {
+        // Add to GAMES array
         if (!window.GAMES) window.GAMES = [];
         if (!window.GAMES.find(g => g.id === GAME_ID)) {
             window.GAMES.push({
@@ -239,6 +241,7 @@
             });
         }
 
+        // Add colors
         if (!window.GAME_COLORS) window.GAME_COLORS = {};
         if (!window.GAME_COLORS[GAME_ID]) {
             window.GAME_COLORS[GAME_ID] = {
@@ -277,7 +280,7 @@
     // ============================================================
     //  GET CHALLENGE
     // ============================================================
-    function getChallenge(mode = null, type = null) {
+    function getChallenge(mode, type) {
         const selectedMode = mode || currentMode;
         const selectedType = type || challengeType;
 
@@ -391,6 +394,7 @@
         }
         settingsDiv.innerHTML = settingsHTML;
 
+        // Event listeners
         settingsDiv.querySelectorAll('.wheel-mode-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.stopPropagation();
@@ -428,70 +432,6 @@
                     window.showChangeToast(`Type: ${this.textContent.trim()}`);
                 }
             });
-        });
-    }
-
-    // ============================================================
-    //  RENDER WHEEL
-    // ============================================================
-    function renderWheel(container) {
-        const segments = getSegments();
-        const currentPlayer = window.getCurrentPlayer ? window.getCurrentPlayer() : null;
-        const playerName = currentPlayer ? currentPlayer.name : 'No player';
-        const players = window.players || [];
-
-        renderSettings(container);
-
-        const wheelHTML = `
-            <div style="text-align:center;padding:0.3rem 0;">
-                <p style="font-size:0.65rem;font-weight:600;color:var(--theme-text-secondary);margin-bottom:0.2rem;">
-                    🎡 ${players.length > 0 ? 'Spin to challenge!' : 'Add players first!'}
-                </p>
-                <canvas id="wheelCanvas" width="280" height="280" style="max-width:100%;height:auto;cursor:pointer;touch-action:manipulation;border-radius:50%;box-shadow:0 0 40px rgba(255,107,107,0.3);"></canvas>
-                <div style="margin-top:0.5rem;display:flex;gap:0.4rem;justify-content:center;flex-wrap:wrap;">
-                    <button id="spinBtn" style="padding:0.5rem 2rem;border-radius:30px;border:none;font-weight:700;font-size:0.8rem;cursor:pointer;background:var(--theme-blue-bright);color:white;box-shadow:0 0 20px var(--theme-glow-blue);font-family:var(--font-body);min-height:44px;" ${players.length < 2 ? 'disabled style="opacity:0.5;cursor:not-allowed;"' : ''}>
-                        🎰 SPIN
-                    </button>
-                    <button id="backToGamesBtn" style="padding:0.4rem 1.2rem;border-radius:30px;border:none;font-weight:700;font-size:0.6rem;cursor:pointer;background:var(--theme-bg-input);color:var(--theme-text-secondary);border:2px solid var(--theme-border-color);font-family:var(--font-body);min-height:44px;">
-                        ⬅️ BACK TO GAMES
-                    </button>
-                </div>
-                <div id="wheelResult" style="margin-top:0.5rem;min-height:3rem;font-size:1rem;font-weight:700;color:var(--theme-text-primary);padding:0.5rem;background:rgba(255,255,255,0.05);border-radius:12px;border:1px solid rgba(255,255,255,0.05);"></div>
-                ${players.length < 2 ? '<div style="color:#FF6B6B;font-size:0.55rem;margin-top:0.3rem;">⚠️ Add at least 2 players on the Home page!</div>' : ''}
-                ${window.createScoringUI ? window.createScoringUI() : ''}
-            </div>
-        `;
-
-        let wheelContainer = document.getElementById('wheelContainer');
-        if (!wheelContainer) {
-            wheelContainer = document.createElement('div');
-            wheelContainer.id = 'wheelContainer';
-            container.appendChild(wheelContainer);
-        }
-        wheelContainer.innerHTML = wheelHTML;
-
-        if (players.length >= 2) {
-            drawWheel(segments);
-            document.getElementById('spinBtn').addEventListener('click', () => spinWheel(segments));
-            document.getElementById('wheelCanvas').addEventListener('click', () => spinWheel(segments));
-        } else {
-            drawWheel(segments);
-        }
-
-        document.getElementById('backToGamesBtn').addEventListener('click', function(e) {
-            e.stopPropagation();
-            if (window.closeModal) {
-                window.closeModal();
-            } else {
-                const overlay = document.getElementById('modalOverlay');
-                if (overlay) {
-                    overlay.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            }
-            if (window.navigateTo) {
-                window.navigateTo('games');
-            }
         });
     }
 
@@ -546,6 +486,7 @@
             ctx.restore();
         });
 
+        // Center circle
         const grad = ctx.createRadialGradient(centerX - 5, centerY - 5, 5, centerX, centerY, 25);
         grad.addColorStop(0, '#FFFFFF');
         grad.addColorStop(0.7, '#F0F0F0');
@@ -564,6 +505,7 @@
         ctx.textBaseline = 'middle';
         ctx.fillText('SPIN', centerX, centerY);
 
+        // Pointer
         const pointerX = centerX;
         const pointerY = 12;
         ctx.beginPath();
@@ -659,8 +601,10 @@
         const result = segments[index];
         const resultEl = document.getElementById('wheelResult');
 
+        // Get a challenge
         const challenge = getChallenge();
 
+        // Display the result
         const playerName = result.label;
         const challengeText = challenge.text;
         const categoryIcon = challenge.categoryIcon || '🎯';
@@ -681,6 +625,7 @@
 
         resultEl.innerHTML = resultHTML;
 
+        // Confetti
         if (window.createConfetti) {
             window.createConfetti(25);
         }
@@ -688,9 +633,79 @@
             window.playSound('success');
         }
 
+        // Reset used challenges occasionally
         if (usedChallenges.length > 50) {
             usedChallenges = usedChallenges.slice(-20);
         }
+    }
+
+    // ============================================================
+    //  RENDER WHEEL
+    // ============================================================
+    function renderWheel(container) {
+        const players = window.players || [];
+        const currentPlayer = window.getCurrentPlayer ? window.getCurrentPlayer() : null;
+        const playerName = currentPlayer ? currentPlayer.name : 'No player';
+
+        // Render settings first
+        renderSettings(container);
+
+        const wheelHTML = `
+            <div style="text-align:center;padding:0.3rem 0;">
+                <p style="font-size:0.65rem;font-weight:600;color:var(--theme-text-secondary);margin-bottom:0.2rem;">
+                    🎡 ${players.length > 0 ? 'Spin to challenge!' : 'Add players first!'}
+                </p>
+                <canvas id="wheelCanvas" width="280" height="280" style="max-width:100%;height:auto;cursor:pointer;touch-action:manipulation;border-radius:50%;box-shadow:0 0 40px rgba(255,107,107,0.3);"></canvas>
+                <div style="margin-top:0.5rem;display:flex;gap:0.4rem;justify-content:center;flex-wrap:wrap;">
+                    <button id="spinBtn" style="padding:0.5rem 2rem;border-radius:30px;border:none;font-weight:700;font-size:0.8rem;cursor:pointer;background:var(--theme-blue-bright);color:white;box-shadow:0 0 20px var(--theme-glow-blue);font-family:var(--font-body);min-height:44px;" ${players.length < 2 ? 'disabled style="opacity:0.5;cursor:not-allowed;"' : ''}>
+                        🎰 SPIN
+                    </button>
+                    <button id="backToGamesBtn" style="padding:0.4rem 1.2rem;border-radius:30px;border:none;font-weight:700;font-size:0.6rem;cursor:pointer;background:var(--theme-bg-input);color:var(--theme-text-secondary);border:2px solid var(--theme-border-color);font-family:var(--font-body);min-height:44px;">
+                        ⬅️ BACK TO GAMES
+                    </button>
+                </div>
+                <div id="wheelResult" style="margin-top:0.5rem;min-height:3rem;font-size:1rem;font-weight:700;color:var(--theme-text-primary);padding:0.5rem;background:rgba(255,255,255,0.05);border-radius:12px;border:1px solid rgba(255,255,255,0.05);"></div>
+                ${players.length < 2 ? '<div style="color:#FF6B6B;font-size:0.55rem;margin-top:0.3rem;">⚠️ Add at least 2 players on the Home page!</div>' : ''}
+                ${window.createScoringUI ? window.createScoringUI() : ''}
+            </div>
+        `;
+
+        let wheelContainer = document.getElementById('wheelContainer');
+        if (!wheelContainer) {
+            wheelContainer = document.createElement('div');
+            wheelContainer.id = 'wheelContainer';
+            container.appendChild(wheelContainer);
+        }
+        wheelContainer.innerHTML = wheelHTML;
+
+        // Get segments and draw
+        const segments = getSegments();
+        if (players.length >= 2) {
+            drawWheel(segments);
+            document.getElementById('spinBtn').addEventListener('click', () => spinWheel(segments));
+            document.getElementById('wheelCanvas').addEventListener('click', () => spinWheel(segments));
+        } else {
+            drawWheel(segments);
+        }
+
+        // Back to Games button
+        document.getElementById('backToGamesBtn').addEventListener('click', function(e) {
+            e.stopPropagation();
+            // Close the modal
+            if (window.closeModal) {
+                window.closeModal();
+            } else {
+                const overlay = document.getElementById('modalOverlay');
+                if (overlay) {
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+            // Navigate to games page
+            if (window.navigateTo) {
+                window.navigateTo('games');
+            }
+        });
     }
 
     // ============================================================
