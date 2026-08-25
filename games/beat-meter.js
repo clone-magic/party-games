@@ -1,5 +1,5 @@
 // ============================================================
-//  BEAT THE METER - Standalone Game Module
+//  BEAT THE METER - Fully Integrated with data.json + GM
 // ============================================================
 
 (function() {
@@ -16,8 +16,24 @@
     let meterInterval = null;
     let isStopped = false;
     let attempts = 0;
-    let maxAttempts = 3;
     let bestScore = 0;
+
+    // ---- GET SETTINGS FROM GM ----
+    function getSettings() {
+        if (window.meterSettings) {
+            return window.meterSettings;
+        }
+        return {
+            targetMin: 70,
+            targetMax: 85,
+            perfectZone: 2,
+            perfectPoints: 5,
+            goodPoints: 3,
+            okPoints: 1,
+            attemptsPerTurn: 3,
+            defaultTimer: 8
+        };
+    }
 
     function registerGame() {
         if (!window.GAMES) window.GAMES = [];
@@ -44,9 +60,11 @@
     function renderMeter(container) {
         const current = window.getCurrentPlayer ? window.getCurrentPlayer() : null;
         const name = current ? current.name : 'No player';
+        const settings = getSettings();
 
-        const targetMin = 70;
-        const targetMax = 85;
+        attempts = 0;
+        bestScore = 0;
+        isStopped = false;
 
         container.innerHTML = `
             <div style="text-align:center;padding:0.5rem 0;">
@@ -55,14 +73,14 @@
                 </p>
                 <div style="position:relative;width:100%;max-width:320px;margin:0.3rem auto;height:40px;background:var(--theme-bg-input);border-radius:20px;overflow:hidden;border:3px solid var(--theme-border-color);">
                     <div id="meterFill" style="position:absolute;left:0;top:0;height:100%;width:0%;background:var(--theme-blue-bright);transition:none;border-radius:20px;"></div>
-                    <div style="position:absolute;left:${targetMin}%;right:${100 - targetMax}%;top:0;height:100%;background:rgba(46,204,113,0.25);border-left:2px solid #2ECC71;border-right:2px solid #2ECC71;pointer-events:none;"></div>
-                    <div style="position:absolute;left:${targetMin}%;top:0;height:100%;border-left:2px solid #2ECC71;pointer-events:none;"></div>
-                    <div style="position:absolute;right:${100 - targetMax}%;top:0;height:100%;border-right:2px solid #2ECC71;pointer-events:none;"></div>
+                    <div style="position:absolute;left:${settings.targetMin}%;right:${100 - settings.targetMax}%;top:0;height:100%;background:rgba(46,204,113,0.25);border-left:2px solid #2ECC71;border-right:2px solid #2ECC71;pointer-events:none;"></div>
+                    <div style="position:absolute;left:${settings.targetMin}%;top:0;height:100%;border-left:2px solid #2ECC71;pointer-events:none;"></div>
+                    <div style="position:absolute;right:${100 - settings.targetMax}%;top:0;height:100%;border-right:2px solid #2ECC71;pointer-events:none;"></div>
                     <div style="position:absolute;left:50%;top:-4px;width:4px;height:48px;background:#E74C3C;transform:translateX(-50%);pointer-events:none;"></div>
                     <div style="position:absolute;left:0;top:0;width:100%;height:100%;display:flex;justify-content:space-between;padding:0 6px;font-size:0.35rem;color:var(--theme-text-muted);line-height:40px;pointer-events:none;font-weight:700;">
                         <span>0%</span>
-                        <span style="color:#2ECC71;">${targetMin}%</span>
-                        <span style="color:#2ECC71;">${targetMax}%</span>
+                        <span style="color:#2ECC71;">${settings.targetMin}%</span>
+                        <span style="color:#2ECC71;">${settings.targetMax}%</span>
                         <span>100%</span>
                     </div>
                     <div id="meterValue" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:0.6rem;font-weight:800;color:white;text-shadow:0 1px 4px rgba(0,0,0,0.5);pointer-events:none;z-index:2;">0%</div>
@@ -76,7 +94,7 @@
                     </button>
                 </div>
                 <div id="meterResult" style="margin-top:0.3rem;min-height:2rem;font-size:0.8rem;font-weight:700;color:var(--theme-text-secondary);">
-                    Attempt ${attempts + 1}/${maxAttempts}
+                    Attempt ${attempts + 1}/${settings.attemptsPerTurn}
                 </div>
                 ${window.createScoringUI ? window.createScoringUI() : ''}
             </div>
@@ -85,7 +103,6 @@
         isStopped = false;
         meterValue = 0;
         meterDirection = 1;
-
         document.getElementById('stopBtn').addEventListener('click', stopMeter);
         startMeter();
     }
@@ -95,10 +112,8 @@
         meterInterval = setInterval(() => {
             if (isStopped) return;
             meterValue += meterDirection * 1.2;
-            if (meterValue >= 100) { meterValue = 100;
-                meterDirection = -1; }
-            if (meterValue <= 0) { meterValue = 0;
-                meterDirection = 1; }
+            if (meterValue >= 100) { meterValue = 100; meterDirection = -1; }
+            if (meterValue <= 0) { meterValue = 0; meterDirection = 1; }
             updateMeter();
         }, 30);
     }
@@ -116,29 +131,28 @@
         if (meterInterval) clearInterval(meterInterval);
 
         const value = meterValue;
-        const targetMin = 70;
-        const targetMax = 85;
+        const settings = getSettings();
         const result = document.getElementById('meterResult');
 
         let points = 0;
         let message = '';
 
-        if (value >= targetMin && value <= targetMax) {
-            // In green zone
-            if (Math.abs(value - 80) < 2) {
-                points = 5;
-                message = '🎯 PERFECT! +5 points!';
+        if (value >= settings.targetMin && value <= settings.targetMax) {
+            const center = (settings.targetMin + settings.targetMax) / 2;
+            if (Math.abs(value - center) <= settings.perfectZone) {
+                points = settings.perfectPoints;
+                message = `🎯 PERFECT! +${points} points!`;
                 window.createConfetti ? window.createConfetti(40) : null;
                 window.playSound ? window.playSound('levelup') : null;
             } else {
-                points = 3;
-                message = '✅ GOOD! +3 points!';
+                points = settings.goodPoints;
+                message = `✅ GOOD! +${points} points!`;
                 window.createConfetti ? window.createConfetti(20) : null;
                 window.playSound ? window.playSound('success') : null;
             }
-        } else if ((value >= 40 && value < 70) || (value > 85 && value <= 95)) {
-            points = 1;
-            message = '👍 OK! +1 point!';
+        } else if ((value >= 40 && value < settings.targetMin) || (value > settings.targetMax && value <= 95)) {
+            points = settings.okPoints;
+            message = `👍 OK! +${points} point${points > 1 ? 's' : ''}!`;
             window.playSound ? window.playSound('point') : null;
         } else {
             message = '❌ Miss! 0 points';
@@ -147,7 +161,6 @@
 
         if (points > bestScore) bestScore = points;
 
-        // Apply points
         const current = window.getCurrentPlayer ? window.getCurrentPlayer() : null;
         if (current && points > 0) {
             const idx = window.players ? window.players.findIndex(p => p.name === current.name) : -1;
@@ -159,14 +172,14 @@
         result.innerHTML = `${message} (${Math.round(value)}%)`;
 
         attempts++;
-        if (attempts >= maxAttempts) {
+        if (attempts >= settings.attemptsPerTurn) {
             document.getElementById('stopBtn').disabled = true;
             result.innerHTML += `<br>🏆 Best: ${bestScore} points — Click NEXT TURN!`;
         } else {
             setTimeout(() => {
                 if (!isStopped) return;
                 document.getElementById('stopBtn').disabled = false;
-                result.innerHTML = `Attempt ${attempts + 1}/${maxAttempts}`;
+                result.innerHTML = `Attempt ${attempts + 1}/${settings.attemptsPerTurn}`;
                 isStopped = false;
                 startMeter();
             }, 1200);
