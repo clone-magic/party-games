@@ -383,7 +383,6 @@
             </div>
         `;
 
-        // Find or create settings container
         let settingsDiv = document.getElementById('wheelSettings');
         if (!settingsDiv) {
             settingsDiv = document.createElement('div');
@@ -392,7 +391,6 @@
         }
         settingsDiv.innerHTML = settingsHTML;
 
-        // ---- Event Listeners ----
         settingsDiv.querySelectorAll('.wheel-mode-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.stopPropagation();
@@ -442,10 +440,8 @@
         const playerName = currentPlayer ? currentPlayer.name : 'No player';
         const players = window.players || [];
 
-        // Render settings first
         renderSettings(container);
 
-        // Build wheel HTML
         const wheelHTML = `
             <div style="text-align:center;padding:0.3rem 0;">
                 <p style="font-size:0.65rem;font-weight:600;color:var(--theme-text-secondary);margin-bottom:0.2rem;">
@@ -479,14 +475,11 @@
             document.getElementById('spinBtn').addEventListener('click', () => spinWheel(segments));
             document.getElementById('wheelCanvas').addEventListener('click', () => spinWheel(segments));
         } else {
-            // Draw empty wheel
             drawWheel(segments);
         }
 
-        // Back to Games button
         document.getElementById('backToGamesBtn').addEventListener('click', function(e) {
             e.stopPropagation();
-            // Close the modal
             if (window.closeModal) {
                 window.closeModal();
             } else {
@@ -496,7 +489,6 @@
                     document.body.style.overflow = '';
                 }
             }
-            // Navigate to games page
             if (window.navigateTo) {
                 window.navigateTo('games');
             }
@@ -554,7 +546,6 @@
             ctx.restore();
         });
 
-        // Center circle
         const grad = ctx.createRadialGradient(centerX - 5, centerY - 5, 5, centerX, centerY, 25);
         grad.addColorStop(0, '#FFFFFF');
         grad.addColorStop(0.7, '#F0F0F0');
@@ -573,7 +564,6 @@
         ctx.textBaseline = 'middle';
         ctx.fillText('SPIN', centerX, centerY);
 
-        // Pointer
         const pointerX = centerX;
         const pointerY = 12;
         ctx.beginPath();
@@ -669,10 +659,8 @@
         const result = segments[index];
         const resultEl = document.getElementById('wheelResult');
 
-        // Get a challenge
         const challenge = getChallenge();
 
-        // Display the result
         const playerName = result.label;
         const challengeText = challenge.text;
         const categoryIcon = challenge.categoryIcon || '🎯';
@@ -693,7 +681,6 @@
 
         resultEl.innerHTML = resultHTML;
 
-        // Confetti
         if (window.createConfetti) {
             window.createConfetti(25);
         }
@@ -701,7 +688,6 @@
             window.playSound('success');
         }
 
-        // Reset used challenges occasionally
         if (usedChallenges.length > 50) {
             usedChallenges = usedChallenges.slice(-20);
         }
@@ -717,7 +703,6 @@
         title: GAME_TITLE
     };
 
-    // Expose for external use
     window.CHALLENGE_BANK = CHALLENGE_BANK;
     window.getChallenge = getChallenge;
 
