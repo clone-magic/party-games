@@ -19,6 +19,7 @@
     let animationFrame = null;
     let usedChallenges = [];
     let isSetupComplete = false;
+    let setupModalElement = null;
 
     // ============================================================
     //  CHALLENGE DATA BANK
@@ -228,7 +229,7 @@
     // ============================================================
     let SETTINGS = {
         mode: 'balanced',
-        challengeType: 'mixed', // 'questions' | 'dares' | 'mixed'
+        challengeType: 'mixed',
         repeatPrevention: true,
         showCategory: true,
         players: []
@@ -335,6 +336,12 @@
     //  RENDER SETUP MODAL
     // ============================================================
     function renderSetupModal() {
+        // Remove existing modal if any
+        if (setupModalElement) {
+            setupModalElement.remove();
+            setupModalElement = null;
+        }
+
         const modal = document.createElement('div');
         modal.id = 'wheelSetupModal';
         modal.style.cssText = `
@@ -343,7 +350,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -352,79 +359,84 @@
             animation: fadeIn 0.3s ease;
         `;
 
-        const playerList = SETTINGS.players.map((name, i) => 
-            `<div style="display:flex;justify-content:space-between;align-items:center;padding:0.3rem 0.5rem;background:rgba(255,255,255,0.05);border-radius:6px;margin-bottom:0.3rem;">
-                <span style="color:white;font-weight:600;">${i+1}. ${name}</span>
-                <button class="remove-player-btn" data-index="${i}" style="background:rgba(255,0,0,0.3);border:none;color:white;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:14px;">✕</button>
-            </div>`
-        ).join('');
+        const playerListHtml = SETTINGS.players.length > 0 
+            ? SETTINGS.players.map((name, i) => `
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:0.4rem 0.6rem;background:rgba(255,255,255,0.08);border-radius:8px;margin-bottom:0.3rem;border-left:3px solid ${['#FF6B6B','#4ECDC4','#45B7D1','#96CEB4','#FFEAA7','#DDA0DD','#FF8A5C','#A29BFE','#FD79A8','#00B894','#E17055','#74B9FF','#55EFC4','#FDCB6E','#E84393','#00CEC9'][i % 16]};">
+                    <span style="color:white;font-weight:600;font-size:0.9rem;">${i+1}. ${name}</span>
+                    <button class="remove-player-btn" data-index="${i}" style="background:rgba(255,0,0,0.3);border:none;color:white;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:16px;transition:background 0.2s;">✕</button>
+                </div>
+            `).join('')
+            : '<div style="color:var(--theme-text-secondary);text-align:center;padding:0.8rem;font-size:0.9rem;">👤 No players added yet</div>';
 
         modal.innerHTML = `
-            <div style="background:var(--theme-bg-card);border-radius:24px;padding:2rem;max-width:500px;width:90%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.8);border:1px solid rgba(255,255,255,0.1);">
-                <h2 style="text-align:center;color:white;margin-bottom:1.5rem;">🎡 Spin The Wheel Setup</h2>
+            <div style="background:var(--theme-bg-card);border-radius:24px;padding:2rem;max-width:520px;width:92%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.8);border:1px solid rgba(255,255,255,0.1);">
+                <h2 style="text-align:center;color:white;margin-bottom:1.5rem;font-size:1.5rem;">🎡 Spin The Wheel</h2>
                 
                 <!-- Player Management -->
                 <div style="margin-bottom:1.5rem;">
-                    <label style="color:var(--theme-text-secondary);font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.3rem;">👥 Add Players</label>
+                    <label style="color:var(--theme-text-secondary);font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.4rem;">👥 Add Players</label>
                     <div style="display:flex;gap:0.5rem;margin-bottom:0.5rem;">
-                        <input id="playerNameInput" type="text" placeholder="Enter player name..." style="flex:1;padding:0.5rem;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.05);color:white;font-size:0.9rem;">
-                        <button id="addPlayerBtn" style="padding:0.5rem 1.2rem;border-radius:8px;border:none;background:var(--theme-blue-bright);color:white;font-weight:700;cursor:pointer;white-space:nowrap;">Add</button>
+                        <input id="playerNameInput" type="text" placeholder="Enter player name..." style="flex:1;padding:0.6rem;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);color:white;font-size:0.9rem;outline:none;">
+                        <button id="addPlayerBtn" style="padding:0.6rem 1.5rem;border-radius:10px;border:none;background:linear-gradient(135deg,#4CAF50,#45a049);color:white;font-weight:700;cursor:pointer;white-space:nowrap;transition:transform 0.2s;">➕ Add</button>
                     </div>
-                    <div id="playerList" style="max-height:150px;overflow-y:auto;background:rgba(0,0,0,0.2);border-radius:8px;padding:0.5rem;">
-                        ${playerList || '<div style="color:var(--theme-text-secondary);text-align:center;padding:0.5rem;">No players added yet</div>'}
+                    <div id="playerList" style="max-height:160px;overflow-y:auto;background:rgba(0,0,0,0.3);border-radius:10px;padding:0.6rem;border:1px solid rgba(255,255,255,0.05);">
+                        ${playerListHtml}
+                    </div>
+                    <div style="margin-top:0.3rem;font-size:0.65rem;color:var(--theme-text-secondary);text-align:right;">
+                        ${SETTINGS.players.length} player${SETTINGS.players.length !== 1 ? 's' : ''} added
                     </div>
                 </div>
 
                 <!-- Mode Selection -->
                 <div style="margin-bottom:1rem;">
-                    <label style="color:var(--theme-text-secondary);font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.3rem;">🎯 Challenge Mode</label>
+                    <label style="color:var(--theme-text-secondary);font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.4rem;">🎯 Challenge Mode</label>
                     <div style="display:flex;gap:0.4rem;flex-wrap:wrap;">
                         ${['office','balanced','spicy','adult','mixed'].map(mode => {
                             const bank = CHALLENGE_BANK[mode];
                             if (!bank) return '';
                             const isAdult = mode === 'adult';
+                            const isSelected = SETTINGS.mode === mode;
                             return `
                                 <button class="setup-mode-btn" data-mode="${mode}" style="
                                     padding:0.4rem 0.8rem;
                                     border-radius:20px;
                                     border:2px solid ${bank.color};
-                                    background: ${SETTINGS.mode === mode ? bank.color : 'transparent'};
-                                    color: ${SETTINGS.mode === mode ? 'white' : bank.color};
+                                    background: ${isSelected ? bank.color : 'transparent'};
+                                    color: ${isSelected ? 'white' : bank.color};
                                     font-weight:700;
                                     font-size:0.65rem;
                                     cursor:pointer;
                                     flex:1;
-                                    min-width:80px;
-                                    ${isAdult && !window.adultModeEnabled ? 'opacity:0.5;' : ''}
+                                    min-width:70px;
+                                    transition:all 0.2s;
+                                    ${isAdult && !window.adultModeEnabled ? 'opacity:0.4;' : ''}
                                 ">
                                     ${bank.icon} ${bank.label.split(' ')[0]}
-                                    ${isAdult ? '🔞' : ''}
                                 </button>
                             `;
                         }).join('')}
-                    </div>
-                    <div style="margin-top:0.3rem;font-size:0.6rem;color:var(--theme-text-secondary);text-align:center;">
-                        ${CHALLENGE_BANK[SETTINGS.mode]?.label || 'Select a mode'}
                     </div>
                 </div>
 
                 <!-- Challenge Type -->
                 <div style="margin-bottom:1.5rem;">
-                    <label style="color:var(--theme-text-secondary);font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.3rem;">📝 Challenge Type</label>
+                    <label style="color:var(--theme-text-secondary);font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.4rem;">📝 Challenge Type</label>
                     <div style="display:flex;gap:0.4rem;">
-                        ${['mixed','questions','dares'].map(type => ({
-                            value: type,
-                            label: type === 'mixed' ? '📝 + 🎯' : type === 'questions' ? '📝 Questions' : '🎯 Dares'
-                        })).map(({value, label}) => `
+                        ${[
+                            {value: 'mixed', label: '📝 + 🎯 Mixed'},
+                            {value: 'questions', label: '📝 Questions'},
+                            {value: 'dares', label: '🎯 Dares'}
+                        ].map(({value, label}) => `
                             <button class="setup-type-btn" data-type="${value}" style="
-                                padding:0.3rem 0.8rem;
+                                padding:0.4rem 0.8rem;
                                 border-radius:15px;
-                                border:1px solid ${SETTINGS.challengeType === value ? 'white' : 'rgba(255,255,255,0.3)'};
-                                background: ${SETTINGS.challengeType === value ? 'rgba(255,255,255,0.2)' : 'transparent'};
+                                border:2px solid ${SETTINGS.challengeType === value ? 'white' : 'rgba(255,255,255,0.2)'};
+                                background: ${SETTINGS.challengeType === value ? 'rgba(255,255,255,0.15)' : 'transparent'};
                                 color: white;
                                 font-size:0.6rem;
                                 cursor:pointer;
                                 flex:1;
+                                transition:all 0.2s;
                             ">
                                 ${label}
                             </button>
@@ -433,9 +445,9 @@
                 </div>
 
                 <!-- Options -->
-                <div style="margin-bottom:1.5rem;display:flex;gap:1rem;align-items:center;">
-                    <label style="color:var(--theme-text-secondary);font-size:0.7rem;display:flex;align-items:center;gap:0.3rem;cursor:pointer;">
-                        <input type="checkbox" id="repeatPrevention" ${SETTINGS.repeatPrevention ? 'checked' : ''}>
+                <div style="margin-bottom:1.5rem;display:flex;gap:1rem;align-items:center;padding:0.3rem 0;">
+                    <label style="color:var(--theme-text-secondary);font-size:0.75rem;display:flex;align-items:center;gap:0.4rem;cursor:pointer;">
+                        <input type="checkbox" id="repeatPrevention" ${SETTINGS.repeatPrevention ? 'checked' : ''} style="width:16px;height:16px;cursor:pointer;">
                         🔄 Prevent repeats
                     </label>
                 </div>
@@ -443,58 +455,74 @@
                 <!-- Start Button -->
                 <button id="startGameBtn" style="
                     width:100%;
-                    padding:0.8rem;
-                    border-radius:12px;
+                    padding:0.9rem;
+                    border-radius:14px;
                     border:none;
-                    background: linear-gradient(135deg, #00C853, #00E676);
+                    background: ${SETTINGS.players.length >= 2 ? 'linear-gradient(135deg, #00C853, #00E676)' : 'linear-gradient(135deg, #666, #888)'};
                     color:white;
                     font-weight:700;
-                    font-size:1rem;
-                    cursor:pointer;
-                    box-shadow:0 4px 20px rgba(0,200,80,0.3);
+                    font-size:1.1rem;
+                    cursor: ${SETTINGS.players.length >= 2 ? 'pointer' : 'not-allowed'};
+                    box-shadow: ${SETTINGS.players.length >= 2 ? '0 4px 20px rgba(0,200,80,0.3)' : 'none'};
                     transition:transform 0.2s;
+                    opacity: ${SETTINGS.players.length >= 2 ? '1' : '0.6'};
                 ">
-                    🚀 Start Game
+                    ${SETTINGS.players.length >= 2 ? '🚀 Start Game' : `⚠️ Add ${2 - SETTINGS.players.length} more player${2 - SETTINGS.players.length !== 1 ? 's' : ''}`}
                 </button>
-
-                ${SETTINGS.players.length === 0 ? '<div style="color:#FF6B6B;font-size:0.7rem;text-align:center;margin-top:0.5rem;">⚠️ Add at least 2 players to start!</div>' : ''}
             </div>
         `;
 
         document.body.appendChild(modal);
+        setupModalElement = modal;
 
         // ---- Event Listeners ----
         // Add Player
-        document.getElementById('addPlayerBtn').addEventListener('click', function() {
-            const input = document.getElementById('playerNameInput');
-            const name = input.value.trim();
-            if (name && !SETTINGS.players.includes(name)) {
+        const addBtn = document.getElementById('addPlayerBtn');
+        const input = document.getElementById('playerNameInput');
+        
+        if (addBtn) {
+            addBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const name = input.value.trim();
+                if (!name) {
+                    alert('Please enter a name!');
+                    return;
+                }
+                if (SETTINGS.players.includes(name)) {
+                    alert(`"${name}" is already in the list!`);
+                    input.value = '';
+                    return;
+                }
                 SETTINGS.players.push(name);
-                renderSetupModal();
-            } else if (SETTINGS.players.includes(name)) {
-                alert('Player already added!');
-            }
-            input.value = '';
-            input.focus();
-        });
-
-        document.getElementById('playerNameInput').addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                document.getElementById('addPlayerBtn').click();
-            }
-        });
-
-        // Remove Player
-        document.querySelectorAll('.remove-player-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const index = parseInt(this.dataset.index);
-                SETTINGS.players.splice(index, 1);
+                input.value = '';
+                input.focus();
                 renderSetupModal();
             });
+        }
+
+        if (input) {
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const addBtn = document.getElementById('addPlayerBtn');
+                    if (addBtn) addBtn.click();
+                }
+            });
+        }
+
+        // Remove Player - Using event delegation
+        modal.addEventListener('click', function(e) {
+            if (e.target.classList.contains('remove-player-btn')) {
+                const index = parseInt(e.target.dataset.index);
+                if (!isNaN(index) && index >= 0 && index < SETTINGS.players.length) {
+                    SETTINGS.players.splice(index, 1);
+                    renderSetupModal();
+                }
+            }
         });
 
         // Mode buttons
-        document.querySelectorAll('.setup-mode-btn').forEach(btn => {
+        modal.querySelectorAll('.setup-mode-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const mode = this.dataset.mode;
                 
@@ -513,7 +541,7 @@
         });
 
         // Type buttons
-        document.querySelectorAll('.setup-type-btn').forEach(btn => {
+        modal.querySelectorAll('.setup-type-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 SETTINGS.challengeType = this.dataset.type;
                 renderSetupModal();
@@ -521,29 +549,37 @@
         });
 
         // Repeat Prevention
-        document.getElementById('repeatPrevention').addEventListener('change', function() {
-            SETTINGS.repeatPrevention = this.checked;
-        });
+        const repeatCheckbox = document.getElementById('repeatPrevention');
+        if (repeatCheckbox) {
+            repeatCheckbox.addEventListener('change', function() {
+                SETTINGS.repeatPrevention = this.checked;
+            });
+        }
 
         // Start Game
-        document.getElementById('startGameBtn').addEventListener('click', function() {
-            if (SETTINGS.players.length < 2) {
-                alert('Please add at least 2 players!');
-                return;
-            }
-            
-            // Close setup modal
-            const modal = document.getElementById('wheelSetupModal');
-            if (modal) modal.remove();
-            
-            isSetupComplete = true;
-            
-            // Render the main game
-            const container = document.getElementById(GAME_ID);
-            if (container) {
-                renderMainGame(container);
-            }
-        });
+        const startBtn = document.getElementById('startGameBtn');
+        if (startBtn) {
+            startBtn.addEventListener('click', function() {
+                if (SETTINGS.players.length < 2) {
+                    alert(`Please add at least 2 players! (Currently: ${SETTINGS.players.length})`);
+                    return;
+                }
+                
+                // Close setup modal
+                if (setupModalElement) {
+                    setupModalElement.remove();
+                    setupModalElement = null;
+                }
+                
+                isSetupComplete = true;
+                
+                // Render the main game
+                const container = document.getElementById(GAME_ID);
+                if (container) {
+                    renderMainGame(container);
+                }
+            });
+        }
     }
 
     // ============================================================
@@ -555,13 +591,13 @@
         container.innerHTML = `
             <div style="text-align:center;padding:0.5rem 0;">
                 <!-- Settings Summary -->
-                <div style="margin-bottom:0.5rem;display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;font-size:0.6rem;color:var(--theme-text-secondary);">
+                <div style="margin-bottom:0.8rem;display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;font-size:0.65rem;color:var(--theme-text-secondary);">
                     <span>${CHALLENGE_BANK[SETTINGS.mode]?.icon || '🎯'} ${CHALLENGE_BANK[SETTINGS.mode]?.label || 'Balanced'}</span>
                     <span>•</span>
                     <span>${SETTINGS.challengeType === 'mixed' ? '📝+🎯' : SETTINGS.challengeType === 'questions' ? '📝 Questions' : '🎯 Dares'}</span>
                     <span>•</span>
                     <span>👥 ${SETTINGS.players.length} players</span>
-                    <button id="reopenSetupBtn" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:12px;padding:0.2rem 0.6rem;color:white;font-size:0.55rem;cursor:pointer;">⚙️ Edit</button>
+                    <button id="reopenSetupBtn" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:12px;padding:0.2rem 0.6rem;color:white;font-size:0.55rem;cursor:pointer;transition:background 0.2s;">⚙️ Edit</button>
                 </div>
 
                 <!-- Wheel -->
@@ -685,8 +721,12 @@
         }
 
         isSpinning = true;
-        document.getElementById('spinBtn').disabled = true;
-        document.getElementById('spinBtn').style.opacity = '0.5';
+        const spinBtn = document.getElementById('spinBtn');
+        if (spinBtn) {
+            spinBtn.disabled = true;
+            spinBtn.style.opacity = '0.5';
+            spinBtn.textContent = '🎰 SPINNING...';
+        }
         document.getElementById('wheelResult').innerHTML = '🎰 Spinning...';
 
         const totalRotation = 5 + Math.random() * 10;
@@ -720,8 +760,12 @@
     // ============================================================
     function finishSpin(segments) {
         isSpinning = false;
-        document.getElementById('spinBtn').disabled = false;
-        document.getElementById('spinBtn').style.opacity = '1';
+        const spinBtn = document.getElementById('spinBtn');
+        if (spinBtn) {
+            spinBtn.disabled = false;
+            spinBtn.style.opacity = '1';
+            spinBtn.textContent = '🎰 SPIN';
+        }
 
         const segmentAngle = (2 * Math.PI) / segments.length;
         let normalized = currentRotation % (2 * Math.PI);
@@ -757,23 +801,22 @@
         const categoryLabel = challenge.categoryLabel || '';
 
         let resultHTML = `
-            <div style="font-size:1.2rem;margin-bottom:0.3rem;color:${result.color};">
+            <div style="font-size:1.3rem;margin-bottom:0.4rem;color:${result.color};">
                 🎯 <strong>${playerName}</strong>
             </div>
-            <div style="font-size:0.9rem;padding:0.8rem;background:rgba(255,255,255,0.08);border-radius:12px;margin:0.3rem 0;border-left:3px solid ${challenge.color || '#FF6B6B'};">
+            <div style="font-size:0.95rem;padding:0.8rem;background:rgba(255,255,255,0.08);border-radius:12px;margin:0.3rem 0;border-left:4px solid ${challenge.color || '#FF6B6B'};text-align:left;">
                 ${typeIcon} <span style="font-weight:600;">${challengeText}</span>
             </div>
-            <div style="font-size:0.6rem;color:var(--theme-text-secondary);margin-top:0.2rem;">
+            <div style="font-size:0.65rem;color:var(--theme-text-secondary);margin-top:0.3rem;">
                 ${categoryIcon} ${categoryLabel} • ${challenge.type === 'question' ? 'Question' : 'Dare'}
             </div>
         `;
 
         resultEl.innerHTML = resultHTML;
-        resultEl.style.color = 'var(--theme-text-primary)';
 
         // Confetti
         if (window.createConfetti) {
-            window.createConfetti(25);
+            window.createConfetti(30);
         }
         if (window.playSound) {
             window.playSound('success');
@@ -786,7 +829,7 @@
     window.GAME_MODULES = window.GAME_MODULES || {};
     window.GAME_MODULES[GAME_ID] = {
         render: function(container) {
-            if (!isSetupComplete) {
+            if (!isSetupComplete || SETTINGS.players.length < 2) {
                 renderSetupModal();
             } else {
                 renderMainGame(container);
