@@ -11089,15 +11089,15 @@
                     whoamiNames = [];
                 }
 
-                if (data.dontSayIt && data.dontSayIt.length > 0) {
-                    dontSayItData = data.dontSayIt;
-                    saveDontSayItData();
-                    console.log(`🚫 Loaded ${dontSayItData.length} Don't Say It entries from data.json`);
-                } else if (!loadDontSayItData()) {
-                    dontSayItData = [...FALLBACK_DATA.dontSayIt];
-                    saveDontSayItData();
-                    console.log(`🚫 Using fallback Don't Say It data (${dontSayItData.length} entries)`);
-                }
+                if (data.describeGuess && data.describeGuess.dontSayIt && data.describeGuess.dontSayIt.length > 0) {
+    dontSayItData = data.describeGuess.dontSayIt;
+    saveDontSayItData();
+    console.log(`🚫 Loaded ${dontSayItData.length} Don't Say It entries from data.json`);
+} else if (!loadDontSayItData()) {
+    dontSayItData = [...FALLBACK_DATA.dontSayIt];
+    saveDontSayItData();
+    console.log(`🚫 Using fallback Don't Say It data (${dontSayItData.length} entries)`);
+}
 
                 if (data.brainGames && data.brainGames.length > 0) {
                     bgQuestions = data.brainGames;
