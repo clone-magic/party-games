@@ -81,6 +81,14 @@
             --color-whoami-light: #a569bd;
             --color-braingames: #9b59b6;
             --color-braingames-light: #af7ac5;
+            --color-describeit: #f39c12;
+            --color-describeit-light: #f5b342;
+            --color-rapidfire: #00bcd4;
+            --color-rapidfire-light: #33d4e8;
+            --color-dontsayit: #e74c3c;
+            --color-dontsayit-light: #f06a5a;
+            --color-hardmode: #8e44ad;
+            --color-hardmode-light: #a569bd;
         }
 
         /* ============================================================
@@ -1406,6 +1414,520 @@
         }
 
         /* ============================================================
+           DESCRIBE & GUESS PAGE
+           ============================================================ */
+        .describe-guess-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.5rem 0;
+        }
+
+        .dg-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .dg-title {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--theme-blue-electric);
+            text-shadow: 0 0 30px var(--theme-glow-blue);
+            letter-spacing: 2px;
+        }
+
+        .dg-subtitle {
+            color: var(--theme-text-secondary);
+            font-size: 0.85rem;
+            margin-top: 0.2rem;
+        }
+
+        .dg-mode-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .dg-mode-card {
+            background: var(--theme-bg-card);
+            border-radius: var(--card-radius);
+            padding: 1.5rem 1rem;
+            border: 2px solid var(--theme-border-color);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--theme-shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .dg-mode-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--theme-blue-electric);
+            box-shadow: var(--theme-shadow-hover), 0 0 30px var(--theme-glow-blue);
+        }
+
+        .dg-mode-card:active {
+            transform: scale(0.96);
+        }
+
+        .dg-mode-card .dg-mode-icon {
+            font-size: 2.5rem;
+        }
+
+        .dg-mode-card .dg-mode-name {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            color: var(--theme-text-primary);
+            letter-spacing: 1px;
+        }
+
+        .dg-mode-card .dg-mode-desc {
+            font-size: 0.6rem;
+            color: var(--theme-text-secondary);
+            line-height: 1.4;
+            min-height: 2.8rem;
+        }
+
+        .dg-mode-card .dg-mode-tags {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .dg-mode-card .dg-tag {
+            font-size: 0.45rem;
+            background: var(--theme-bg-input);
+            padding: 0.15rem 0.6rem;
+            border-radius: 12px;
+            border: 1px solid var(--theme-border-color);
+            color: var(--theme-text-muted);
+            font-weight: 600;
+        }
+
+        .dg-mode-card .dg-play-btn {
+            margin-top: 0.3rem;
+            padding: 0.4rem 1.5rem;
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.6rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            background: var(--theme-blue-bright);
+            color: white;
+            box-shadow: 0 0 20px var(--theme-glow-blue);
+        }
+
+        .dg-mode-card .dg-play-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px var(--theme-glow-blue-strong);
+        }
+
+        .dg-mode-card .dg-play-btn:active {
+            transform: scale(0.95);
+        }
+
+        .dg-mode-card.mode-describe-it:hover {
+            border-color: var(--color-describeit);
+        }
+        .dg-mode-card.mode-rapid-fire:hover {
+            border-color: var(--color-rapidfire);
+        }
+        .dg-mode-card.mode-dont-say-it:hover {
+            border-color: var(--color-dontsayit);
+        }
+        .dg-mode-card.mode-hard-mode:hover {
+            border-color: var(--color-hardmode);
+        }
+
+        .dg-info-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            padding: 0.8rem 1.2rem;
+            background: var(--theme-bg-card);
+            border-radius: var(--card-radius);
+            border: 2px solid var(--theme-border-color);
+            box-shadow: var(--theme-shadow);
+        }
+
+        .dg-info-bar .dg-info-item {
+            font-size: 0.6rem;
+            color: var(--theme-text-secondary);
+            font-weight: 600;
+        }
+
+        .dg-info-bar .dg-info-item strong {
+            color: var(--theme-blue-electric);
+        }
+
+        /* ============================================================
+           DG GAME MODAL STYLES
+           ============================================================ */
+        .dg-game-container {
+            padding: 0.2rem 0;
+        }
+
+        .dg-stats-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.3rem 0.5rem;
+            background: var(--theme-bg-input);
+            border-radius: 10px;
+            border: 2px solid var(--theme-border-color);
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            font-size: 0.55rem;
+            color: var(--theme-text-secondary);
+            font-weight: 600;
+        }
+
+        .dg-stats-bar .dg-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+        }
+
+        .dg-stats-bar .dg-stat .stat-value {
+            color: var(--theme-blue-electric);
+            font-weight: 800;
+        }
+
+        .dg-stats-bar .dg-stat .stat-value.correct {
+            color: #2ecc71;
+        }
+        .dg-stats-bar .dg-stat .stat-value.incorrect {
+            color: #e74c3c;
+        }
+
+        .dg-word-display {
+            background: var(--theme-bg-input);
+            border-radius: 14px;
+            padding: 1rem;
+            text-align: center;
+            border: 3px solid var(--theme-border-color);
+            margin-bottom: 0.5rem;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dg-word-display .dg-secret-word {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--theme-blue-electric);
+            letter-spacing: 3px;
+            word-break: break-word;
+        }
+
+        .dg-word-display .dg-secret-word.long-word {
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+        }
+
+        .dg-word-display .dg-forbidden-label {
+            font-size: 0.5rem;
+            color: var(--theme-text-muted);
+            font-family: var(--font-display);
+            letter-spacing: 2px;
+            margin-bottom: 0.2rem;
+        }
+
+        .dg-word-display .dg-forbidden-words {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            justify-content: center;
+            margin-top: 0.2rem;
+        }
+
+        .dg-word-display .dg-forbidden-words .dg-forbidden-word {
+            background: rgba(231, 76, 60, 0.15);
+            border: 2px solid var(--color-dontsayit);
+            padding: 0.1rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--color-dontsayit);
+        }
+
+        .dg-word-display .dg-restriction-label {
+            font-size: 0.5rem;
+            color: var(--theme-text-muted);
+            font-family: var(--font-display);
+            letter-spacing: 2px;
+            margin-top: 0.2rem;
+        }
+
+        .dg-word-display .dg-restriction-label .word-count {
+            color: var(--theme-blue-electric);
+            font-size: 0.7rem;
+        }
+
+        .dg-word-counter {
+            display: flex;
+            gap: 0.2rem;
+            justify-content: center;
+            margin-top: 0.2rem;
+            flex-wrap: wrap;
+        }
+
+        .dg-word-counter .word-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid var(--theme-border-color);
+            transition: var(--transition);
+        }
+
+        .dg-word-counter .word-dot.used {
+            background: var(--theme-blue-electric);
+            border-color: var(--theme-blue-electric);
+        }
+
+        .dg-word-counter .word-dot.used.warning {
+            background: var(--color-dontsayit);
+            border-color: var(--color-dontsayit);
+        }
+
+        .dg-game-actions {
+            display: flex;
+            gap: 0.4rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 0.3rem 0;
+        }
+
+        .dg-game-actions button {
+            padding: 0.35rem 1rem;
+            border-radius: 24px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.55rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            min-height: 36px;
+        }
+
+        .dg-game-actions button:hover {
+            transform: scale(1.05);
+        }
+
+        .dg-game-actions button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .dg-game-actions .dg-correct-btn {
+            background: #2ecc71;
+            color: white;
+            box-shadow: 0 0 15px rgba(46, 204, 113, 0.3);
+        }
+
+        .dg-game-actions .dg-correct-btn:hover {
+            box-shadow: 0 0 30px rgba(46, 204, 113, 0.5);
+        }
+
+        .dg-game-actions .dg-skip-btn {
+            background: var(--theme-bg-input);
+            color: var(--theme-text-secondary);
+            border: 2px solid var(--theme-border-color);
+        }
+
+        .dg-game-actions .dg-skip-btn:hover {
+            border-color: var(--theme-blue-electric);
+            color: var(--theme-text-primary);
+        }
+
+        .dg-game-actions .dg-change-btn {
+            background: var(--theme-blue-bright);
+            color: white;
+            border-color: var(--theme-blue-bright);
+            box-shadow: 0 0 15px var(--theme-glow-blue);
+        }
+
+        .dg-game-actions .dg-change-btn:hover {
+            box-shadow: 0 0 30px var(--theme-glow-blue-strong);
+        }
+
+        .dg-game-actions .dg-penalty-btn {
+            background: #e74c3c;
+            color: white;
+            box-shadow: 0 0 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .dg-game-actions .dg-penalty-btn:hover {
+            box-shadow: 0 0 30px rgba(231, 76, 60, 0.5);
+        }
+
+        .dg-game-actions .dg-next-turn-btn {
+            background: var(--theme-blue-electric);
+            color: var(--blue-dark);
+            border-color: var(--theme-blue-electric);
+            box-shadow: 0 0 15px var(--theme-glow-blue-strong);
+        }
+
+        .dg-game-actions .dg-next-turn-btn:hover {
+            box-shadow: 0 0 30px var(--theme-glow-blue-strong);
+        }
+
+        .dg-game-actions .dg-mark-word-btn {
+            background: var(--color-hardmode);
+            color: white;
+            border-color: var(--color-hardmode);
+            box-shadow: 0 0 15px rgba(142, 68, 173, 0.3);
+        }
+
+        .dg-game-actions .dg-mark-word-btn:hover {
+            box-shadow: 0 0 30px rgba(142, 68, 173, 0.5);
+        }
+
+        .dg-game-actions .dg-mark-word-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .dg-game-actions .dg-skip-wait-btn {
+            background: #f39c12;
+            color: white;
+            border-color: #f39c12;
+            box-shadow: 0 0 15px rgba(243, 156, 18, 0.3);
+        }
+
+        .dg-game-actions .dg-skip-wait-btn:hover {
+            box-shadow: 0 0 30px rgba(243, 156, 18, 0.5);
+        }
+
+        .dg-feedback {
+            background: var(--theme-bg-input);
+            padding: 0.3rem 0.6rem;
+            border-radius: 10px;
+            margin: 0.2rem 0;
+            border-left: 4px solid var(--theme-blue-electric);
+            color: var(--theme-text-secondary);
+            font-size: 0.65rem;
+            display: none;
+            text-align: center;
+        }
+
+        .dg-feedback.success {
+            display: block;
+            border-left-color: #2ecc71;
+        }
+        .dg-feedback.error {
+            display: block;
+            border-left-color: #e74c3c;
+        }
+        .dg-feedback.info {
+            display: block;
+            border-left-color: var(--theme-blue-electric);
+        }
+
+        /* DG Results */
+        .dg-results {
+            text-align: center;
+            padding: 0.5rem 0;
+        }
+
+        .dg-results .dg-result-emoji {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .dg-results .dg-result-title {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            color: var(--theme-blue-electric);
+            margin-bottom: 0.3rem;
+        }
+
+        .dg-results .dg-result-stats {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0.3rem;
+            background: var(--theme-bg-input);
+            border-radius: 10px;
+            border: 2px solid var(--theme-border-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .dg-results .dg-result-stats .stat-item {
+            font-size: 0.6rem;
+            color: var(--theme-text-secondary);
+            font-weight: 600;
+        }
+
+        .dg-results .dg-result-stats .stat-item .stat-num {
+            color: var(--theme-blue-electric);
+            font-weight: 800;
+            font-size: 0.8rem;
+        }
+
+        .dg-results .dg-result-stats .stat-item .stat-num.correct {
+            color: #2ecc71;
+        }
+        .dg-results .dg-result-stats .stat-item .stat-num.incorrect {
+            color: #e74c3c;
+        }
+
+        .dg-results .dg-result-actions {
+            display: flex;
+            gap: 0.4rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .dg-results .dg-result-actions button {
+            padding: 0.3rem 1.2rem;
+            border-radius: 24px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.55rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            min-height: 36px;
+        }
+
+        .dg-results .dg-result-actions button:hover {
+            transform: scale(1.05);
+        }
+
+        .dg-results .dg-result-actions .dg-play-again-btn {
+            background: var(--theme-blue-bright);
+            color: white;
+            box-shadow: 0 0 20px var(--theme-glow-blue);
+        }
+
+        .dg-results .dg-result-actions .dg-close-btn {
+            background: var(--theme-bg-input);
+            color: var(--theme-text-secondary);
+            border: 2px solid var(--theme-border-color);
+        }
+
+        .dg-results .dg-result-actions .dg-close-btn:hover {
+            border-color: var(--theme-blue-electric);
+            color: var(--theme-text-primary);
+        }
+
+        /* ============================================================
            GM LOCK OVERLAY
            ============================================================ */
         .gm-lock-overlay {
@@ -2572,17 +3094,6 @@
             background: var(--theme-blue-bright);
             color: white;
             box-shadow: 0 0 15px var(--theme-glow-blue);
-        }
-        .scoring-section .score-buttons button.btn-plus:hover {
-            transform: scale(1.06) rotate(3deg);
-        }
-        .scoring-section .score-buttons button.btn-green {
-            background: #2ecc71;
-            color: white;
-            box-shadow: 0 0 15px rgba(46, 204, 113, 0.25);
-        }
-        .scoring-section .score-buttons button.btn-green:hover {
-            transform: scale(1.06);
         }
 
         /* ============================================================
@@ -3845,7 +4356,153 @@
             background: rgba(231, 76, 60, 0.1);
         }
 
+        /* DG GM Section */
+        .dg-gm-section {
+            background: var(--theme-bg-input);
+            border-radius: var(--card-radius);
+            padding: 1.2rem;
+            border: 2px solid var(--theme-border-color);
+            margin-bottom: 1rem;
+        }
+
+        .dg-gm-section h4 {
+            color: var(--theme-text-secondary);
+            font-size: 0.8rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+        }
+
+        .dg-gm-section h4 span {
+            font-family: var(--font-display);
+            font-size: 0.6rem;
+            color: var(--theme-blue-electric);
+        }
+
+        .dg-gm-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+        }
+
+        .dg-gm-form .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .dg-gm-form input {
+            padding: 0.4rem 0.8rem;
+            border-radius: 12px;
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-primary);
+            font-size: 0.7rem;
+            font-family: var(--font-body);
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .dg-gm-form input:focus {
+            outline: none;
+            border-color: var(--theme-blue-electric);
+            box-shadow: 0 0 20px var(--theme-glow-blue);
+        }
+
+        .dg-gm-form input::placeholder {
+            color: var(--theme-text-muted);
+        }
+
+        .dg-gm-form .gm-btn {
+            padding: 0.4rem 1.2rem;
+            border-radius: 12px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.6rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            background: var(--theme-blue-bright);
+            color: white;
+            box-shadow: 0 0 15px var(--theme-glow-blue);
+        }
+
+        .dg-gm-form .gm-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .dg-gm-form .gm-btn.danger {
+            background: #e74c3c;
+            box-shadow: 0 0 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .dg-questions-list {
+            max-height: 200px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            padding: 0.2rem 0;
+        }
+
+        .dg-q-item {
+            background: var(--theme-bg-card);
+            padding: 0.4rem 0.8rem;
+            border-radius: 10px;
+            border: 1px solid var(--theme-border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.6rem;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .dg-q-item .q-text-preview {
+            color: var(--theme-text-primary);
+            flex: 1;
+            font-weight: 600;
+        }
+
+        .dg-q-item .q-text-preview .forbidden-preview {
+            font-size: 0.4rem;
+            color: var(--theme-text-muted);
+            font-weight: 400;
+        }
+
+        .dg-q-item .q-actions {
+            display: flex;
+            gap: 0.3rem;
+        }
+
+        .dg-q-item .q-actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.6rem;
+            padding: 0.1rem 0.3rem;
+            border-radius: 6px;
+            transition: var(--transition);
+            color: var(--theme-text-muted);
+        }
+
+        .dg-q-item .q-actions button:hover {
+            background: var(--theme-bg-input);
+            color: var(--theme-text-primary);
+        }
+
+        .dg-q-item .q-actions button.danger:hover {
+            color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+        }
+
         /* Responsive */
+        @media (max-width: 1024px) {
+            .dg-mode-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
             :root {
                 --sidebar-width: 0px;
@@ -4081,6 +4738,93 @@
                 padding: 0.3rem 0.4rem;
                 gap: 0.2rem;
             }
+
+            .dg-mode-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+            }
+
+            .dg-mode-card .dg-mode-desc {
+                font-size: 0.5rem;
+                min-height: 2.2rem;
+            }
+
+            .dg-mode-card .dg-mode-name {
+                font-size: 0.6rem;
+            }
+
+            .dg-mode-card .dg-mode-icon {
+                font-size: 2rem;
+            }
+
+            .dg-stats-bar {
+                font-size: 0.45rem;
+            }
+
+            .dg-word-display .dg-secret-word {
+                font-size: 1.4rem;
+            }
+
+            .dg-word-display .dg-secret-word.long-word {
+                font-size: 1rem;
+            }
+
+            .dg-game-actions button {
+                font-size: 0.45rem;
+                padding: 0.25rem 0.6rem;
+                min-height: 30px;
+            }
+
+            .dg-info-bar .dg-info-item {
+                font-size: 0.5rem;
+            }
+
+            .bg-gm-form {
+                grid-template-columns: 1fr;
+            }
+
+            .dg-gm-form {
+                grid-template-columns: 1fr;
+            }
+
+            .gm-page .gm-tabs button {
+                font-size: 0.5rem;
+                padding: 0.3rem 0.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dg-mode-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.5rem;
+            }
+
+            .dg-mode-card {
+                padding: 0.8rem 0.5rem;
+            }
+
+            .dg-mode-card .dg-mode-desc {
+                font-size: 0.45rem;
+                min-height: 1.8rem;
+            }
+
+            .dg-mode-card .dg-mode-name {
+                font-size: 0.5rem;
+            }
+
+            .dg-mode-card .dg-mode-icon {
+                font-size: 1.6rem;
+            }
+
+            .dg-mode-card .dg-tag {
+                font-size: 0.4rem;
+                padding: 0.1rem 0.4rem;
+            }
+
+            .dg-mode-card .dg-play-btn {
+                font-size: 0.5rem;
+                padding: 0.3rem 1rem;
+            }
         }
 
         @media (max-width: 400px) {
@@ -4145,6 +4889,29 @@
                 min-width: 30px;
                 min-height: 30px;
             }
+
+            .dg-mode-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.4rem;
+            }
+
+            .dg-mode-card .dg-mode-desc {
+                display: none;
+            }
+
+            .dg-mode-card .dg-mode-tags {
+                gap: 0.2rem;
+            }
+
+            .dg-mode-card .dg-tag {
+                font-size: 0.35rem;
+                padding: 0.05rem 0.3rem;
+            }
+
+            .gm-page .gm-tabs button {
+                font-size: 0.4rem;
+                padding: 0.2rem 0.4rem;
+            }
         }
 
         @media (pointer: coarse) {
@@ -4156,7 +4923,8 @@
             .option,
             .star,
             .player-avatar,
-            .lb-full-actions button {
+            .lb-full-actions button,
+            .dg-mode-card {
                 cursor: default;
                 touch-action: manipulation;
                 -webkit-tap-highlight-color: transparent;
@@ -4195,6 +4963,11 @@
             .team-card:hover {
                 border-color: var(--theme-blue-bright);
                 transform: translateY(-2px);
+            }
+            .dg-mode-card:hover {
+                transform: translateY(-4px);
+                border-color: var(--theme-blue-electric);
+                box-shadow: var(--theme-shadow-hover), 0 0 30px var(--theme-glow-blue);
             }
         }
     </style>
@@ -4275,6 +5048,7 @@
                         <button onclick="setTimerPreset(45)">45s</button>
                         <button onclick="setTimerPreset(60)">60s</button>
                         <button onclick="setTimerPreset(90)">90s</button>
+                        <button onclick="setTimerPreset(120)">120s</button>
                     </div>
                     <div class="timer-custom">
                         <input type="number" id="customTimerInput" value="30" min="5" max="300" onchange="setCustomTimer(this.value)" />
@@ -4309,6 +5083,10 @@
             <button class="nav-item" onclick="navigateTo('braingames')" data-page="braingames">
                 <span class="icon">🧠</span>
                 <span>Brain Games</span>
+            </button>
+            <button class="nav-item" onclick="navigateTo('describe-guess')" data-page="describe-guess">
+                <span class="icon">💬</span>
+                <span>Describe & Guess</span>
             </button>
             <button class="nav-item" onclick="navigateTo('games')" data-page="games">
                 <span class="icon">🎮</span>
@@ -4418,12 +5196,8 @@
 
             <div class="page" id="braingamesPage">
                 <div class="brain-games-container active" id="brainGamesContainer">
-
-                    <!-- Setup Card -->
                     <div class="bg-setup-card" id="bgSetupCard">
                         <div class="setup-title">🧠 BRAIN GAMES</div>
-
-                        <!-- Timer Row -->
                         <div class="bg-setup-row">
                             <label>⏱️ SET TIMER</label>
                             <div class="preset-buttons" id="bgTimerPresets">
@@ -4438,8 +5212,6 @@
                                 <span>seconds</span>
                             </div>
                         </div>
-
-                        <!-- Questions Row -->
                         <div class="bg-setup-row">
                             <label>📋 QUESTIONS</label>
                             <div class="preset-buttons" id="bgQtyPresets">
@@ -4458,25 +5230,83 @@
                                 <span id="bgTotalAvailable">0</span> questions available
                             </div>
                         </div>
-
-                        <!-- Info Row -->
                         <div class="bg-setup-info">
                             <span class="info-item">👥 Players: <span class="value" id="bgPlayerCountSetup">0</span></span>
                             <span class="info-item">📊 Questions: <span class="value" id="bgQtyDisplay">10</span></span>
                             <span class="info-item">⏱️ Timer: <span class="value" id="bgTimerDisplay">30s</span></span>
                         </div>
-
-                        <!-- Start Button -->
                         <button class="bg-start-btn" id="bgStartBtn" onclick="bgStartGame()">
                             🚀 START BRAIN GAMES
                         </button>
                     </div>
-
-                    <!-- Empty State -->
                     <div id="bgEmptyState">
                         <div class="bg-empty-questions">❌ No questions added yet.<br>Add questions in <strong>Game Master → Brain Games</strong>!</div>
                     </div>
+                </div>
+            </div>
 
+            <!-- ==========================================================
+                 💬 DESCRIBE & GUESS PAGE
+                 ========================================================== -->
+
+            <div class="page" id="describeGuessPage">
+                <div class="describe-guess-container">
+                    <div class="dg-header">
+                        <div class="dg-title">💬 DESCRIBE & GUESS</div>
+                        <div class="dg-subtitle">Choose your game mode</div>
+                    </div>
+
+                    <div class="dg-mode-grid" id="dgModeGrid">
+                        <div class="dg-mode-card mode-describe-it" data-mode="describe-it" onclick="dgSelectMode('describe-it')">
+                            <div class="dg-mode-icon">🎯</div>
+                            <div class="dg-mode-name">DESCRIBE IT</div>
+                            <div class="dg-mode-desc">Standard description game. Describe freely without saying the answer.</div>
+                            <div class="dg-mode-tags">
+                                <span class="dg-tag">⏱️ 60s</span>
+                                <span class="dg-tag">🎯 Medium</span>
+                            </div>
+                            <button class="dg-play-btn">▶ PLAY</button>
+                        </div>
+
+                        <div class="dg-mode-card mode-rapid-fire" data-mode="rapid-fire" onclick="dgSelectMode('rapid-fire')">
+                            <div class="dg-mode-icon">⚡</div>
+                            <div class="dg-mode-name">RAPID FIRE</div>
+                            <div class="dg-mode-desc">Race against the clock! Each team gets their own round.</div>
+                            <div class="dg-mode-tags">
+                                <span class="dg-tag">⏱️ 90s</span>
+                                <span class="dg-tag">⚡ Fast</span>
+                            </div>
+                            <button class="dg-play-btn">▶ PLAY</button>
+                        </div>
+
+                        <div class="dg-mode-card mode-dont-say-it" data-mode="dont-say-it" onclick="dgSelectMode('dont-say-it')">
+                            <div class="dg-mode-icon">🚫</div>
+                            <div class="dg-mode-name">DON'T SAY IT</div>
+                            <div class="dg-mode-desc">Describe WITHOUT using forbidden words! Challenge your skills.</div>
+                            <div class="dg-mode-tags">
+                                <span class="dg-tag">⏱️ 60s</span>
+                                <span class="dg-tag">🚫 Forbidden</span>
+                            </div>
+                            <button class="dg-play-btn">▶ PLAY</button>
+                        </div>
+
+                        <div class="dg-mode-card mode-hard-mode" data-mode="hard-mode" onclick="dgSelectMode('hard-mode')">
+                            <div class="dg-mode-icon">💀</div>
+                            <div class="dg-mode-name">HARD MODE</div>
+                            <div class="dg-mode-desc">Only 5 words allowed to describe! Mark words as you use them.</div>
+                            <div class="dg-mode-tags">
+                                <span class="dg-tag">⏱️ 45s</span>
+                                <span class="dg-tag">💀 5 Words</span>
+                            </div>
+                            <button class="dg-play-btn">▶ PLAY</button>
+                        </div>
+                    </div>
+
+                    <div class="dg-info-bar">
+                        <span class="dg-info-item">👥 Current players: <strong id="dgPlayerCount">0</strong></span>
+                        <span class="dg-info-item">🏆 Scoring: 1 point per correct answer</span>
+                        <span class="dg-info-item">💡 All modes use the same scoring system</span>
+                    </div>
                 </div>
             </div>
 
@@ -4497,8 +5327,6 @@
                 <div class="themes-page-header">🎨 CHOOSE YOUR THEME</div>
                 <div class="themes-subtitle">Pick a color theme that sets the mood for your party!</div>
                 <div class="themes-grid" id="themesGrid"></div>
-
-                <!-- Sound Settings -->
                 <div class="sound-settings" id="soundSettings">
                     <h3>🎵 SOUND EFFECTS</h3>
                     <div class="sound-master-toggle">
@@ -4579,6 +5407,7 @@
                         <button data-tab="tab-roast">🔥 Roast</button>
                         <button data-tab="tab-whoami">🕵️ Who Am I</button>
                         <button data-tab="tab-braingames">🧠 Brain Games</button>
+                        <button data-tab="tab-describeguess">💬 Describe & Guess</button>
                     </div>
 
                     <!-- Charades -->
@@ -4708,8 +5537,6 @@
                     <div class="gm-tab-content" id="tab-braingames">
                         <div class="bg-gm-section">
                             <h4>🧠 Brain Games Questions <span id="bgGmCount">0</span></h4>
-
-                            <!-- Add Question Form -->
                             <div class="bg-gm-form">
                                 <div class="full-width">
                                     <input type="text" id="bgGmQuestion" placeholder="Question text..." />
@@ -4736,8 +5563,6 @@
                                 <input type="text" id="bgGmCustomCategory" placeholder="Custom category..." style="display:none;" />
                                 <button class="gm-btn full-width" onclick="bgAddQuestion()">➕ Add Question</button>
                             </div>
-
-                            <!-- Question List -->
                             <div style="margin-top:0.8rem;">
                                 <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.5rem;">
                                     <input type="text" id="bgGmSearch" placeholder="Search questions..." style="flex:1;padding:0.3rem 0.8rem;border-radius:30px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);font-size:0.6rem;font-family:var(--font-body);" />
@@ -4749,6 +5574,47 @@
                                 <div class="bg-questions-list" id="bgGmQuestionsList">
                                     <div class="bg-empty-questions">No questions added yet. Create your first question above!</div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Describe & Guess GM Tab -->
+                    <div class="gm-tab-content" id="tab-describeguess">
+                        <div class="dg-gm-section">
+                            <h4>🚫 Don't Say It - Word Bank <span id="dgGmCount">0</span></h4>
+                            <p style="font-size:0.55rem;color:var(--theme-text-muted);margin-bottom:0.5rem;">
+                                Add words with their forbidden words. The describer must describe the word without saying any forbidden words.
+                            </p>
+                            <div class="dg-gm-form">
+                                <div class="full-width">
+                                    <input type="text" id="dgGmWord" placeholder="Secret word..." />
+                                </div>
+                                <div class="full-width">
+                                    <input type="text" id="dgGmForbidden" placeholder="Forbidden words (comma separated)..." />
+                                </div>
+                                <button class="gm-btn" onclick="dgAddGmEntry()">➕ Add</button>
+                                <button class="gm-btn danger" onclick="dgClearGmEntries()">🗑️ Clear All</button>
+                            </div>
+                            <div style="margin-top:0.8rem;">
+                                <div class="dg-questions-list" id="dgGmList">
+                                    <div class="bg-empty-questions">No entries added yet. Add some above!</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gm-section" style="margin-top:0.5rem;">
+                            <h4>📋 Mode Information</h4>
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;font-size:0.6rem;color:var(--theme-text-secondary);">
+                                <div>🎯 <strong>Describe It</strong>: Uses Charades + Pictionary words</div>
+                                <div>⚡ <strong>Rapid Fire</strong>: Uses Charades words (no limit)</div>
+                                <div>🚫 <strong>Don't Say It</strong>: Uses the word bank above</div>
+                                <div>💀 <strong>Hard Mode</strong>: Uses WhoAmI + longer Charades words</div>
+                            </div>
+                            <div style="margin-top:0.5rem;padding:0.5rem;background:var(--theme-bg-card);border-radius:8px;border:1px solid var(--theme-border-color);">
+                                <p style="font-size:0.5rem;color:var(--theme-text-muted);">
+                                    💡 <strong>Tip:</strong> Forbidden words should be closely associated with the secret word to make the game challenging.
+                                    Example: "wedding" → forbidden: "bride, groom, marriage, ring"
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -4771,7 +5637,14 @@
             charades: [
                 "elephant", "guitar", "astronaut", "penguin", "helicopter",
                 "telescope", "skateboard", "volcano", "tornado", "mermaid",
-                "dragon", "unicorn", "pirate", "knight", "zombie"
+                "dragon", "unicorn", "pirate", "knight", "zombie",
+                "dolphin", "eagle", "flamingo", "giraffe", "hippopotamus",
+                "igloo", "jacket", "kangaroo", "lighthouse", "mushroom",
+                "necklace", "octopus", "pancake", "quilt", "rainbow",
+                "snowman", "toothbrush", "umbrella", "vampire", "waterfall",
+                "xylophone", "yacht", "zipper", "alligator", "barn",
+                "cactus", "daisy", "escalator", "fireplace", "geyser",
+                "hammock", "icicle", "jellyfish", "kite", "lobster"
             ],
             karaoke: [
                 { title: "African Giant", artist: "Burna Boy" },
@@ -4781,17 +5654,32 @@
                 { title: "Love Nwantiti", artist: "CKay" },
                 { title: "Peru", artist: "Fireboy DML" },
                 { title: "Sungba", artist: "Asake" },
-                { title: "Rush", artist: "Ayra Starr" }
+                { title: "Rush", artist: "Ayra Starr" },
+                { title: "Cough (Odo)", artist: "Kizz Daniel" },
+                { title: "Buga", artist: "Kizz Daniel" },
+                { title: "Finesse", artist: "Pheelz" },
+                { title: "Feel", artist: "Davido" }
             ],
             fastTalk: [
-                { name: "Fruits", items: ["apple", "banana", "orange", "grape", "strawberry"] },
-                { name: "Vegetables", items: ["carrot", "broccoli", "spinach", "kale", "cabbage"] },
-                { name: "Countries", items: ["nigeria", "ghana", "kenya", "south africa", "egypt"] },
-                { name: "Cities", items: ["lagos", "abuja", "nairobi", "cape town", "cairo"] }
+                { name: "Fruits", items: ["apple", "banana", "orange", "grape", "strawberry", "mango", "pineapple",
+                        "watermelon", "kiwi", "peach"
+                    ] },
+                { name: "Vegetables", items: ["carrot", "broccoli", "spinach", "kale", "cabbage", "lettuce", "onion",
+                        "garlic", "pepper", "tomato"
+                    ] },
+                { name: "Countries", items: ["nigeria", "ghana", "kenya", "south africa", "egypt", "brazil", "india",
+                        "china", "australia", "canada"
+                    ] },
+                { name: "Cities", items: ["lagos", "abuja", "nairobi", "cape town", "cairo", "london", "paris", "new york",
+                        "tokyo", "sydney"
+                    ] }
             ],
             pictionary: [
                 "house", "tree", "car", "dog", "cat", "sun", "moon", "star", "fish", "bird",
-                "apple", "banana", "pizza", "cake", "ice", "cream", "rain", "snow", "cloud", "rainbow"
+                "apple", "banana", "pizza", "cake", "ice", "cream", "rain", "snow", "cloud", "rainbow",
+                "bicycle", "airplane", "train", "ship", "rocket", "castle", "tower", "bridge", "tunnel", "mountain",
+                "river", "lake", "ocean", "desert", "forest", "garden", "farm", "zoo", "museum", "theater",
+                "guitar", "drum", "piano", "trumpet", "violin", "microphone", "headphones", "speaker", "radio", "television"
             ],
             hangman: {
                 easy: [
@@ -4889,7 +5777,10 @@
                 "Ayra Starr", "Tems", "Tiwa Savage", "Olamide", "Phyno",
                 "2Baba", "D'banj", "Don Jazzy", "Yemi Alade", "Flavour",
                 "Spider-Man", "Batman", "Superman", "Iron Man", "Black Panther",
-                "Wonder Woman", "Hulk", "Thor", "Captain America", "Deadpool"
+                "Wonder Woman", "Hulk", "Thor", "Captain America", "Deadpool",
+                "Dwayne Johnson", "Tom Cruise", "Leonardo DiCaprio", "Will Smith", "Denzel Washington",
+                "Beyoncé", "Rihanna", "Taylor Swift", "Adele", "Lady Gaga",
+                "Messi", "Ronaldo", "Neymar", "Serena Williams", "Tiger Woods"
             ],
             brainGames: [
                 { text: "What is the capital of France?", options: ["Paris", "London", "Berlin", "Madrid"], correct: 0,
@@ -4902,6 +5793,38 @@
                 { text: "Who painted the Mona Lisa?", options: ["Michelangelo", "Leonardo da Vinci", "Raphael",
                         "Donatello"
                     ], correct: 1, category: "Art" }
+            ],
+            dontSayIt: [
+                { word: "wedding", forbidden: ["bride", "groom", "marriage", "ring", "wedding"] },
+                { word: "beach", forbidden: ["sand", "ocean", "waves", "sun", "beach"] },
+                { word: "television", forbidden: ["tv", "watch", "show", "remote", "screen"] },
+                { word: "pizza", forbidden: ["cheese", "tomato", "crust", "oven", "delivery"] },
+                { word: "airplane", forbidden: ["fly", "wing", "pilot", "airport", "sky"] },
+                { word: "coffee", forbidden: ["cup", "bean", "brew", "morning", "caffeine"] },
+                { word: "library", forbidden: ["book", "read", "quiet", "shelf", "library"] },
+                { word: "hospital", forbidden: ["doctor", "nurse", "patient", "medicine", "hospital"] },
+                { word: "school", forbidden: ["teacher", "student", "class", "learn", "grade"] },
+                { word: "restaurant", forbidden: ["food", "menu", "table", "order", "restaurant"] },
+                { word: "mountain", forbidden: ["hill", "peak", "climb", "snow", "summit"] },
+                { word: "ocean", forbidden: ["water", "waves", "deep", "blue", "fish"] },
+                { word: "guitar", forbidden: ["string", "music", "strum", "rock", "band"] },
+                { word: "camera", forbidden: ["photo", "lens", "picture", "flash", "snap"] },
+                { word: "bicycle", forbidden: ["pedal", "wheel", "ride", "helmet", "cycle"] },
+                { word: "keyboard", forbidden: ["type", "keys", "computer", "click", "letters"] },
+                { word: "umbrella", forbidden: ["rain", "shelter", "handle", "cover", "drops"] },
+                { word: "clock", forbidden: ["time", "hour", "minute", "tick", "second"] },
+                { word: "mirror", forbidden: ["reflection", "glass", "look", "face", "image"] },
+                { word: "book", forbidden: ["page", "read", "cover", "story", "author"] },
+                { word: "key", forbidden: ["door", "lock", "open", "metal", "chain"] },
+                { word: "fire", forbidden: ["burn", "flame", "heat", "smoke", "ash"] },
+                { word: "bread", forbidden: ["bake", "dough", "loaf", "toast", "flour"] },
+                { word: "train", forbidden: ["rail", "station", "track", "commute", "engine"] },
+                { word: "garden", forbidden: ["flower", "plant", "grow", "soil", "bloom"] },
+                { word: "lock", forbidden: ["key", "secure", "open", "padlock", "bolt"] },
+                { word: "needle", forbidden: ["sew", "thread", "sharp", "stitch", "eye"] },
+                { word: "newspaper", forbidden: ["news", "paper", "read", "headline", "article"] },
+                { word: "candle", forbidden: ["light", "wax", "flame", "glow", "stick"] },
+                { word: "wallet", forbidden: ["money", "card", "cash", "purse", "billfold"] }
             ]
         };
 
@@ -4938,7 +5861,12 @@
             karaoke: { main: '#2C3E50', light: '#4A6078', text: '#FFFFFF', glow: 'rgba(44,62,80,0.4)' },
             fasttalk: { main: '#00BCD4', light: '#33D4E8', text: '#FFFFFF', glow: 'rgba(0,188,212,0.4)' },
             roast: { main: '#E74C3C', light: '#F06A5A', text: '#FFFFFF', glow: 'rgba(231,76,60,0.4)' },
-            whoami: { main: '#8E44AD', light: '#A569BD', text: '#FFFFFF', glow: 'rgba(142,68,173,0.4)' }
+            whoami: { main: '#8E44AD', light: '#A569BD', text: '#FFFFFF', glow: 'rgba(142,68,173,0.4)' },
+            describeguess: { main: '#F39C12', light: '#F5B342', text: '#FFFFFF', glow: 'rgba(243,156,18,0.4)' },
+            describeit: { main: '#F39C12', light: '#F5B342', text: '#FFFFFF', glow: 'rgba(243,156,18,0.4)' },
+            rapidfire: { main: '#00BCD4', light: '#33D4E8', text: '#FFFFFF', glow: 'rgba(0,188,212,0.4)' },
+            dontsayit: { main: '#E74C3C', light: '#F06A5A', text: '#FFFFFF', glow: 'rgba(231,76,60,0.4)' },
+            hardmode: { main: '#8E44AD', light: '#A569BD', text: '#FFFFFF', glow: 'rgba(142,68,173,0.4)' }
         };
 
         const GAMES = [
@@ -4969,6 +5897,9 @@
         let roastLines = [];
         let whoamiNames = [];
 
+        // Describe & Guess data
+        let dontSayItData = [];
+
         let timerInterval = null;
         let timerSeconds = 30;
         let currentTimerValue = 30;
@@ -4985,7 +5916,11 @@
             truthlie: [],
             fasttalk: [],
             roast: [],
-            whoami: []
+            whoami: [],
+            describeit: [],
+            rapidfire: [],
+            dontsayit: [],
+            hardmode: []
         };
 
         let changeCounts = {};
@@ -5002,13 +5937,42 @@
             definitionRevealed: false
         };
 
-        let pointPresets = {
-            active: 1,
-            values: { 1: 1, 3: 3, 5: 5, '-1': -1 },
-            custom: null
-        };
-
         let hangmanGMFilter = 'all';
+
+        // ============================================================
+        //  DESCRIBE & GUESS STATE
+        // ============================================================
+
+        let dgGameState = {
+            mode: null,
+            active: false,
+            currentWordIndex: 0,
+            words: [],
+            correct: 0,
+            incorrect: 0,
+            skipped: 0,
+            totalWords: 0,
+            timerSeconds: 60,
+            roundComplete: false,
+            gameComplete: false,
+            results: [],
+            usedWords: [],
+            wordTracker: {},
+            hardModeWords: [],
+            rapidFireWords: [],
+            dontSayItWords: [],
+            describeItWords: [],
+            rapidFireTeamIndex: 0,
+            rapidFireTeamResults: [],
+            rapidFireCurrentTeam: null,
+            rapidFireTeamsComplete: false,
+            rapidFireAllTeams: [],
+            rapidFireWordPool: [],
+            rapidFireUsedWords: [],
+            transitionDelay: 10,
+            transitionTimer: null,
+            transitioning: false
+        };
 
         // ============================================================
         //  WORD TRACKING
@@ -5058,6 +6022,19 @@
                     wordTracking[key].currentCategoryIndex = 0;
                 }
             });
+            usedItemsInRound = {
+                charades: [],
+                pictionary: [],
+                karaoke: [],
+                truthlie: [],
+                fasttalk: [],
+                roast: [],
+                whoami: [],
+                describeit: [],
+                rapidfire: [],
+                dontsayit: [],
+                hardmode: []
+            };
         }
 
         // ============================================================
@@ -5068,7 +6045,6 @@
             if (!categories || categories.length === 0) return null;
             if (categories.length === 1) return categories[0];
 
-            // Ensure tracker exists
             if (!wordTracking.fasttalk) {
                 wordTracking.fasttalk = { currentCategoryIndex: 0 };
             }
@@ -5083,7 +6059,6 @@
                 attempts++;
             } while (newIndex === currentIndex && categories.length > 1 && attempts < maxAttempts);
 
-            // If we somehow got the same index (shouldn't happen with attempts limit), just pick a different one
             if (newIndex === currentIndex && categories.length > 1) {
                 newIndex = (currentIndex + 1) % categories.length;
             }
@@ -5095,15 +6070,12 @@
         function advanceFastTalkCategory() {
             const categories = fastTalkCategories;
             if (!categories || categories.length === 0) return;
-
-            // If only one category, just keep it
             if (categories.length === 1) {
                 if (!wordTracking.fasttalk) {
                     wordTracking.fasttalk = { currentCategoryIndex: 0 };
                 }
                 return categories[0];
             }
-
             return getRandomFastTalkCategory();
         }
 
@@ -5802,6 +6774,20 @@
                 }
                 bgInit();
             },
+            'describe-guess': function() {
+                currentPage = 'describe-guess';
+                document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+                const navItem = document.querySelector('.nav-item[data-page="describe-guess"]');
+                if (navItem) navItem.classList.add('active');
+                document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+                const targetPage = document.getElementById('describeGuessPage');
+                if (targetPage) targetPage.classList.add('active');
+                document.getElementById('pageTitle').textContent = '💬 DESCRIBE & GUESS';
+                if (document.getElementById('modalOverlay').classList.contains('active')) {
+                    closeModal();
+                }
+                dgUpdatePlayerCount();
+            },
             games: function() {
                 currentPage = 'games';
                 document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
@@ -5945,35 +6931,25 @@
         //  POINT SYSTEM
         // ============================================================
         function setPointPreset(val) {
-            pointPresets.active = val;
+            // Keep for backward compatibility but all games now use +1
             document.querySelectorAll('.ps-presets .ps-btn').forEach(b => b.classList.remove('active'));
             document.querySelector(`.ps-presets .ps-btn[data-val="${val}"]`)?.classList.add('active');
-            document.getElementById('psCustomInput').style.display = 'none';
-            renderLeaderboardFull();
         }
 
         function togglePointEdit() {
             const customInput = document.getElementById('psCustomInput');
             if (customInput.style.display === 'none') {
                 customInput.style.display = 'flex';
-                document.getElementById('psCustomVal').value = 2;
+                document.getElementById('psCustomVal').value = 1;
             } else {
                 customInput.style.display = 'none';
             }
         }
 
         function applyCustomPoint() {
-            const val = parseInt(document.getElementById('psCustomVal').value);
-            if (!isNaN(val) && val >= -10 && val <= 20) {
-                pointPresets.custom = val;
-                pointPresets.active = 'custom';
-                document.querySelectorAll('.ps-presets .ps-btn').forEach(b => b.classList.remove('active'));
-                document.getElementById('psCustomInput').style.display = 'none';
-                renderLeaderboardFull();
-                playSound('success');
-            } else {
-                alert('Please enter a value between -10 and 20');
-            }
+            // All games now use +1 only
+            document.getElementById('psCustomInput').style.display = 'none';
+            playSound('success');
         }
 
         function cancelPointEdit() {
@@ -5981,10 +6957,7 @@
         }
 
         function getActivePointValue() {
-            if (pointPresets.active === 'custom' && pointPresets.custom !== null) {
-                return pointPresets.custom;
-            }
-            return pointPresets.values[pointPresets.active] || 1;
+            return 1; // All games now use +1
         }
 
         // ============================================================
@@ -6049,6 +7022,7 @@
                 `;
             }).join('');
             document.getElementById('playerCountBadge').textContent = `👥 ${players.length}`;
+            dgUpdatePlayerCount();
         }
 
         function renderTeams() {
@@ -6115,6 +7089,7 @@
             renderTeams();
             updateModalHeader();
             if (currentPage === 'players') renderLeaderboardFull();
+            dgUpdatePlayerCount();
         }
 
         // ============================================================
@@ -6363,7 +7338,7 @@
         }
 
         // ============================================================
-        //  SCORING
+        //  SCORING - UNIFIED +1 SYSTEM
         // ============================================================
         function addPoints(index, amount) {
             const p = players[index];
@@ -6490,7 +7465,6 @@
 
         function renderLeaderboardFull() {
             const list = document.getElementById('lbFullList');
-            const activeVal = getActivePointValue();
             if (teamModeEnabled) {
                 if (teams.length === 0) {
                     list.innerHTML = `<div class="empty-state">🏆 No teams yet. Add teams on the Home page!</div>`;
@@ -6515,10 +7489,7 @@
                             <div class="lb-full-points">${t.points}</div>
                             <div class="lb-full-stats">👥 ${t.members.length}</div>
                             <div class="lb-full-actions">
-                                <button class="lb-add1" onclick="addTeamPoints(${i}, ${activeVal})">+${activeVal}</button>
-                                <button class="lb-add3" onclick="addTeamPoints(${i}, ${activeVal * 3})">+${activeVal * 3}</button>
-                                <button class="lb-add5" onclick="addTeamPoints(${i}, ${activeVal * 5})">+${activeVal * 5}</button>
-                                <button class="lb-sub1" onclick="addTeamPoints(${i}, -1)">−1</button>
+                                <button class="lb-add1" onclick="addTeamPoints(${i}, 1)">+1</button>
                             </div>
                         </div>
                     `;
@@ -6557,10 +7528,7 @@
                         <div class="lb-full-points">${p.points}</div>
                         <div class="lb-full-stats">${streak}</div>
                         <div class="lb-full-actions">
-                            <button class="lb-add1" onclick="addPoints(${originalIdx}, ${activeVal})">+${activeVal}</button>
-                            <button class="lb-add3" onclick="addPoints(${originalIdx}, ${activeVal * 3})">+${activeVal * 3}</button>
-                            <button class="lb-add5" onclick="addPoints(${originalIdx}, ${activeVal * 5})">+${activeVal * 5}</button>
-                            <button class="lb-sub1" onclick="addPoints(${originalIdx}, -1)">−1</button>
+                            <button class="lb-add1" onclick="addPoints(${originalIdx}, 1)">+1</button>
                         </div>
                     </div>
                 `;
@@ -6680,7 +7648,11 @@
                 truthlie: [],
                 fasttalk: [],
                 roast: [],
-                whoami: []
+                whoami: [],
+                describeit: [],
+                rapidfire: [],
+                dontsayit: [],
+                hardmode: []
             };
 
             document.getElementById('modalTitle').textContent = `${gameData.emoji} ${gameData.title}`;
@@ -6691,6 +7663,11 @@
             roastGameState.roundComplete = false;
             roastGameState.gameComplete = false;
             roastGameState.results = [];
+
+            // Reset colors
+            const modalBox = document.getElementById('modalBox');
+            modalBox.style.borderColor = 'var(--theme-blue-bright)';
+            modalBox.style.boxShadow = '0 0 80px var(--theme-glow-blue-strong)';
 
             if (gameId === 'roast') {
                 document.getElementById('timerSetup').style.display = 'none';
@@ -6724,6 +7701,11 @@
             overlay.classList.remove('active');
             document.body.style.overflow = '';
 
+            // Reset colors
+            const modalBox = document.getElementById('modalBox');
+            modalBox.style.borderColor = 'var(--theme-blue-bright)';
+            modalBox.style.boxShadow = '0 0 80px var(--theme-glow-blue-strong)';
+
             changeCounts = {};
             usedItemsInRound = {
                 charades: [],
@@ -6732,7 +7714,11 @@
                 truthlie: [],
                 fasttalk: [],
                 roast: [],
-                whoami: []
+                whoami: [],
+                describeit: [],
+                rapidfire: [],
+                dontsayit: [],
+                hardmode: []
             };
 
             roastGameState.active = false;
@@ -6743,6 +7729,15 @@
             hangmanState.gameOver = false;
             hangmanState.won = false;
             hangmanState.definitionRevealed = false;
+
+            dgGameState.active = false;
+            dgGameState.roundComplete = false;
+            dgGameState.gameComplete = false;
+            dgGameState.transitioning = false;
+            if (dgGameState.transitionTimer) {
+                clearInterval(dgGameState.transitionTimer);
+                dgGameState.transitionTimer = null;
+            }
 
             const container = document.getElementById('modalContent');
             const timerSetup = document.getElementById('timerSetup');
@@ -6756,6 +7751,18 @@
                 timerSetup.style.display = 'flex';
                 timerDisplay.style.display = 'block';
                 renderHangmanDifficultySelector();
+            } else if (selectedGameId && selectedGameData && selectedGameData.id === 'describe-guess') {
+                timerSetup.style.display = 'flex';
+                timerDisplay.style.display = 'block';
+                container.style.display = 'none';
+                container.innerHTML = '';
+                timerDisplay.textContent = currentGameTimerSeconds || 30;
+                document.getElementById('customTimerInput').value = currentGameTimerSeconds || 30;
+                document.querySelectorAll('.timer-presets button').forEach(b => b.classList.remove('active'));
+                const defaultPreset = document.querySelector(
+                    `.timer-presets button[onclick*="${currentGameTimerSeconds || 30}"]`);
+                if (defaultPreset) defaultPreset.classList.add('active');
+                updateModalHeader();
             } else {
                 timerSetup.style.display = 'flex';
                 timerDisplay.style.display = 'block';
@@ -6848,7 +7855,7 @@
             stopTimer();
             if (isGameActive()) {
                 startTimer(currentGameTimerSeconds, () => {
-                    const fb = document.querySelector('.feedback');
+                    const fb = document.querySelector('.feedback') || document.querySelector('.dg-feedback');
                     if (fb) {
                         fb.style.display = 'block';
                         fb.className = 'feedback error';
@@ -6877,23 +7884,13 @@
         }
 
         function applyGameColors(gameId) {
-            const color = GAME_COLORS[gameId];
+            const color = GAME_COLORS[gameId] || GAME_COLORS.describeguess;
             if (!color) return;
             const modalBox = document.getElementById('modalBox');
             const timerSetup = document.getElementById('timerSetup');
             const timerDisplay = document.getElementById('timerDisplay');
             const modalTitle = document.getElementById('modalTitle');
             const timerStartBtn = document.getElementById('timerStartBtn');
-            const wordDisplay = document.querySelector('.word-display');
-            const songTitle = document.querySelector('.song-display .title');
-            const hangmanWord = document.querySelector('.hangman-word');
-            const hangmanRevealed = document.querySelectorAll('.hangman-word .letter.revealed');
-            const currentScore = document.getElementById('scoringCurrentScore');
-            const plusButtons = document.querySelectorAll('.scoring-section .score-buttons .btn-plus');
-            const hangmanButtons = document.querySelectorAll('.hangman-input-row button:not(.next-btn)');
-            const hangmanHint = document.querySelector('.hangman-input-row .hint-btn');
-            const hangmanSvg = document.querySelector('.hangman-figure svg');
-            const changeBtn = document.querySelector('.change-btn');
 
             modalBox.style.borderColor = color.main;
             modalBox.style.boxShadow = `0 0 80px ${color.glow}`;
@@ -6905,46 +7902,6 @@
             timerStartBtn.style.background = color.main;
             timerStartBtn.style.boxShadow = `0 0 30px ${color.glow}`;
 
-            if (wordDisplay) {
-                wordDisplay.style.color = color.main;
-                wordDisplay.style.borderColor = color.main;
-                wordDisplay.style.textShadow = `0 0 40px ${color.glow}`;
-            }
-            if (songTitle) {
-                songTitle.style.color = color.main;
-                songTitle.style.textShadow = `0 0 30px ${color.glow}`;
-            }
-            if (hangmanWord) {
-                hangmanWord.style.color = color.main;
-                hangmanWord.style.textShadow = `0 0 30px ${color.glow}`;
-            }
-            if (hangmanSvg) {
-                hangmanSvg.style.border = 'none';
-                hangmanSvg.style.boxShadow = 'none';
-            }
-            hangmanRevealed.forEach(el => {
-                el.style.color = color.main;
-            });
-            if (currentScore) {
-                currentScore.style.color = color.main;
-            }
-            plusButtons.forEach(btn => {
-                btn.style.background = color.main;
-                btn.style.boxShadow = `0 0 20px ${color.glow}`;
-            });
-            hangmanButtons.forEach(btn => {
-                btn.style.background = color.main;
-                btn.style.boxShadow = `0 0 20px ${color.glow}`;
-            });
-            if (hangmanHint) {
-                hangmanHint.style.background = color.light;
-                hangmanHint.style.boxShadow = `0 0 20px ${color.glow}`;
-            }
-            if (changeBtn) {
-                changeBtn.style.background = color.main;
-                changeBtn.style.borderColor = color.main;
-                changeBtn.style.boxShadow = `0 0 15px ${color.glow}`;
-            }
             document.querySelectorAll('.timer-presets button.active').forEach(btn => {
                 btn.style.borderColor = color.main;
                 btn.style.background = color.main;
@@ -7031,7 +7988,7 @@
         }
 
         // ============================================================
-        //  NEXT TURN - Also advances Fast Talk category
+        //  NEXT TURN
         // ============================================================
         function nextTurn() {
             if (players.length === 0) return;
@@ -7075,12 +8032,10 @@
                 currentTurnIndex = (currentTurnIndex + 1) % players.length;
             }
 
-            // ✅ ADVANCE FAST TALK CATEGORY - RANDOM
             if (fastTalkCategories.length > 0) {
                 getRandomFastTalkCategory();
             }
 
-            // Hide reveal if showing
             const revealDiv = document.getElementById('fastTalkReveal');
             if (revealDiv) revealDiv.style.display = 'none';
 
@@ -7091,7 +8046,11 @@
                 truthlie: [],
                 fasttalk: [],
                 roast: [],
-                whoami: []
+                whoami: [],
+                describeit: [],
+                rapidfire: [],
+                dontsayit: [],
+                hardmode: []
             };
 
             renderAll();
@@ -7117,7 +8076,6 @@
                 displayName = current.name;
                 displayScore = current.points;
             }
-            const activeVal = getActivePointValue();
             return `
                 <div class="scoring-section">
                     <div class="scoring-label">⚡ SCORE</div>
@@ -7128,9 +8086,7 @@
                     </div>
                     <div class="score-buttons">
                         <button class="btn-minus" onclick="scoreCurrentPlayer(-1)">−1</button>
-                        <button class="btn-plus" onclick="scoreCurrentPlayer(${activeVal})">+${activeVal}</button>
-                        <button class="btn-plus" onclick="scoreCurrentPlayer(${activeVal * 3})">+${activeVal * 3}</button>
-                        <button class="btn-green" onclick="scoreCurrentPlayer(${activeVal * 5})">+${activeVal * 5}</button>
+                        <button class="btn-plus" onclick="scoreCurrentPlayer(1)">+1</button>
                     </div>
                 </div>
             `;
@@ -7142,6 +8098,11 @@
         function startGameWithTimer() {
             if (selectedGameId === 'hangman') {
                 startHangmanGame();
+                return;
+            }
+
+            if (selectedGameId === 'describe-guess') {
+                dgStartGame();
                 return;
             }
 
@@ -7173,6 +8134,9 @@
                 return;
             }
             if (gameId === 'hangman') {
+                return;
+            }
+            if (gameId === 'describe-guess') {
                 return;
             }
 
@@ -7302,11 +8266,10 @@
             }, 50);
         }
 
-        // ---- FAST TALK - RANDOM CATEGORY FLIPPING ----
+        // ---- FAST TALK ----
         function renderFastTalk(container) {
             const categories = fastTalkCategories.length > 0 ? fastTalkCategories : FALLBACK_DATA.fastTalk;
 
-            // If no categories, show message
             if (!categories || categories.length === 0) {
                 container.innerHTML = `
                     <p style="font-size:0.65rem;font-weight:600;">⏱️ FAST TALK</p>
@@ -7319,18 +8282,15 @@
                 return;
             }
 
-            // Ensure tracker exists
             if (!wordTracking.fasttalk) {
                 wordTracking.fasttalk = { currentCategoryIndex: 0 };
             }
 
-            // Get current category (or random if not set)
             let cat = null;
             if (wordTracking.fasttalk.currentCategoryIndex < categories.length) {
                 cat = categories[wordTracking.fasttalk.currentCategoryIndex];
             }
 
-            // If no valid category, pick random
             if (!cat) {
                 const randomIndex = Math.floor(Math.random() * categories.length);
                 wordTracking.fasttalk.currentCategoryIndex = randomIndex;
@@ -7344,7 +8304,6 @@
             const changeCount = changeCounts[playerName] || 0;
             const maxChanges = 3;
 
-            // Build the items list for reveal
             const itemsList = cat.items.map(item =>
                 `<span style="display:inline-block;background:var(--theme-bg-input);padding:0.15rem 0.6rem;border-radius:10px;margin:0.15rem;font-size:0.6rem;border:1px solid var(--theme-border-color);color:var(--theme-text-primary);">${item}</span>`
             ).join('');
@@ -7392,16 +8351,13 @@
 
             changeCounts[playerName]++;
 
-            // ✅ Pick random category
             if (fastTalkCategories.length > 0) {
                 getRandomFastTalkCategory();
             }
 
-            // Hide reveal if showing
             const revealDiv = document.getElementById('fastTalkReveal');
             if (revealDiv) revealDiv.style.display = 'none';
 
-            // Refresh the game content
             if (selectedGameId && selectedGameData) {
                 refreshGameContent(selectedGameId, selectedGameData);
                 restartTimer();
@@ -7419,7 +8375,6 @@
             const revealDiv = document.getElementById('fastTalkReveal');
             if (!revealDiv) return;
 
-            // Toggle reveal
             if (revealDiv.style.display === 'block') {
                 revealDiv.style.display = 'none';
                 return;
@@ -7499,7 +8454,7 @@
             }, 50);
         }
 
-        // ---- WHO AM I - FULLY FIXED ----
+        // ---- WHO AM I ----
         function renderWhoAmI(container) {
             let names = [];
             if (whoamiNames && whoamiNames.length > 0) {
@@ -7570,7 +8525,7 @@
         }
 
         // ============================================================
-        //  HANGMAN - CENTERED SVG, NO BACKGROUND, SPACE BETWEEN LETTERS
+        //  HANGMAN
         // ============================================================
         function getHangmanWordForDifficulty(difficulty) {
             const words = hangmanWords[difficulty] || [];
@@ -7934,7 +8889,6 @@
                 currentTurnIndex = (currentTurnIndex + 1) % players.length;
             }
 
-            // ✅ Advance Fast Talk category - random
             if (fastTalkCategories.length > 0) {
                 getRandomFastTalkCategory();
             }
@@ -7946,7 +8900,11 @@
                 truthlie: [],
                 fasttalk: [],
                 roast: [],
-                whoami: []
+                whoami: [],
+                describeit: [],
+                rapidfire: [],
+                dontsayit: [],
+                hardmode: []
             };
 
             loadRandomHangmanWord();
@@ -8574,7 +9532,7 @@
         }
 
         // ============================================================
-        //  BG START GAME - MATCHES OTHER GAMES
+        //  BG START GAME
         // ============================================================
 
         function bgStartGame() {
@@ -8800,21 +9758,20 @@
             const fb = document.getElementById('bgFeedbackModal');
 
             if (isCorrect) {
-                const activeVal = getActivePointValue();
                 if (teamModeEnabled && currentTeam) {
                     currentTeam.members.forEach(memberName => {
                         const member = players.find(p => p.name === memberName);
                         if (member) {
                             const idx = players.indexOf(member);
-                            addPoints(idx, activeVal);
+                            addPoints(idx, 1);
                         }
                     });
                 } else if (current) {
                     const idx = players.findIndex(p => p.name === current.name);
-                    if (idx !== -1) addPoints(idx, activeVal);
+                    if (idx !== -1) addPoints(idx, 1);
                 }
                 fb.className = 'bg-feedback correct';
-                fb.textContent = `✅ CORRECT! +${activeVal} point${activeVal > 1 ? 's' : ''}!`;
+                fb.textContent = `✅ CORRECT! +1 point!`;
                 fb.style.display = 'block';
                 playSound('success');
                 createConfetti(15);
@@ -8883,6 +9840,1203 @@
         }
 
         // ============================================================
+        //  💬 DESCRIBE & GUESS - MAIN FUNCTIONS
+        // ============================================================
+
+        function dgUpdatePlayerCount() {
+            const el = document.getElementById('dgPlayerCount');
+            if (el) el.textContent = players.length;
+        }
+
+        function dgSelectMode(mode) {
+            if (players.length === 0) {
+                alert('👋 Add at least one player first!');
+                return;
+            }
+
+            const modeMap = {
+                'describe-it': { title: '🎯 DESCRIBE IT', emoji: '🎯', color: 'describeit', defaultTimer: 60 },
+                'rapid-fire': { title: '⚡ RAPID FIRE', emoji: '⚡', color: 'rapidfire', defaultTimer: 90 },
+                'dont-say-it': { title: '🚫 DON\'T SAY IT', emoji: '🚫', color: 'dontsayit', defaultTimer: 60 },
+                'hard-mode': { title: '💀 HARD MODE', emoji: '💀', color: 'hardmode', defaultTimer: 45 }
+            };
+
+            const info = modeMap[mode];
+            if (!info) return;
+
+            dgGameState.mode = mode;
+            dgGameState.active = false;
+            dgGameState.roundComplete = false;
+            dgGameState.gameComplete = false;
+            dgGameState.correct = 0;
+            dgGameState.incorrect = 0;
+            dgGameState.skipped = 0;
+            dgGameState.currentWordIndex = 0;
+            dgGameState.words = [];
+            dgGameState.usedWords = [];
+            dgGameState.transitioning = false;
+            if (dgGameState.transitionTimer) {
+                clearInterval(dgGameState.transitionTimer);
+                dgGameState.transitionTimer = null;
+            }
+
+            dgGameState.rapidFireTeamIndex = 0;
+            dgGameState.rapidFireTeamResults = [];
+            dgGameState.rapidFireCurrentTeam = null;
+            dgGameState.rapidFireTeamsComplete = false;
+            dgGameState.rapidFireAllTeams = [];
+            dgGameState.rapidFireWordPool = [];
+            dgGameState.rapidFireUsedWords = [];
+
+            dgGameState.timerSeconds = info.defaultTimer;
+            currentGameTimerSeconds = dgGameState.timerSeconds;
+
+            dgPrepareWords(mode);
+
+            const gameData = { id: 'describe-guess', emoji: info.emoji, title: info.title };
+            selectedGameId = 'describe-guess';
+            selectedGameData = gameData;
+
+            document.getElementById('modalTitle').textContent = `${info.emoji} ${info.title}`;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            document.getElementById('timerDisplay').style.display = 'block';
+            document.getElementById('timerDisplay').textContent = dgGameState.timerSeconds;
+            document.getElementById('customTimerInput').value = dgGameState.timerSeconds;
+            document.querySelectorAll('.timer-presets button').forEach(b => b.classList.remove('active'));
+            const defaultPreset = document.querySelector(
+                `.timer-presets button[onclick*="${dgGameState.timerSeconds}"]`);
+            if (defaultPreset) defaultPreset.classList.add('active');
+
+            // Simplified setup - just timer and start button
+            document.getElementById('timerSetup').style.display = 'flex';
+            document.getElementById('modalContent').style.display = 'none';
+
+            dgShowSetup();
+        }
+
+        function dgPrepareWords(mode) {
+            let words = [];
+
+            const allCharades = charadesWords.length > 0 ? charadesWords : FALLBACK_DATA.charades;
+            const allPictionary = pictionaryWords.length > 0 ? pictionaryWords : FALLBACK_DATA.pictionary;
+            let names = [];
+            if (whoamiNames && whoamiNames.length > 0) {
+                names = whoamiNames.map(n => {
+                    if (typeof n === 'string') return n;
+                    if (typeof n === 'object' && n !== null) {
+                        return n.name || n.value || n.text || String(n);
+                    }
+                    return String(n);
+                }).filter(n => n && n.length > 0);
+            }
+            if (names.length === 0) names = FALLBACK_DATA.whoami || [];
+
+            switch (mode) {
+                case 'describe-it':
+                    words = [...allCharades, ...allPictionary];
+                    break;
+                case 'rapid-fire':
+                    words = [...allCharades];
+                    break;
+                case 'dont-say-it':
+                    if (dontSayItData.length === 0) {
+                        dontSayItData = [...FALLBACK_DATA.dontSayIt];
+                        saveDontSayItData();
+                    }
+                    words = dontSayItData.map(item => item.word);
+                    dgGameState.dontSayItWords = dontSayItData;
+                    dgGameState.dontSayItLookup = {};
+                    dontSayItData.forEach(item => {
+                        dgGameState.dontSayItLookup[item.word] = item.forbidden || [];
+                    });
+                    break;
+                case 'hard-mode':
+                    const longCharades = allCharades.filter(w => w.length >= 8);
+                    words = [...names, ...longCharades];
+                    break;
+                default:
+                    words = [...allCharades];
+            }
+
+            words = [...new Set(words)];
+            for (let i = words.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [words[i], words[j]] = [words[j], words[i]];
+            }
+
+            dgGameState.words = words;
+            dgGameState.totalWords = words.length;
+            dgGameState.currentWordIndex = 0;
+            dgGameState.usedWords = [];
+
+            if (mode === 'hard-mode') {
+                dgGameState.wordTracker.usedWords = [];
+            }
+
+            if (mode === 'rapid-fire') {
+                dgPrepareRapidFireTeams();
+            }
+        }
+
+        function dgPrepareRapidFireTeams() {
+            let teamsList = [];
+            if (teamModeEnabled && teams.length > 0) {
+                teamsList = teams.map(t => ({
+                    name: t.name,
+                    members: t.members,
+                    words: []
+                }));
+            } else {
+                teamsList = players.map(p => ({
+                    name: p.name,
+                    members: [p.name],
+                    words: []
+                }));
+            }
+
+            dgGameState.rapidFireAllTeams = teamsList;
+            dgGameState.rapidFireTeamIndex = 0;
+            dgGameState.rapidFireTeamResults = [];
+            dgGameState.rapidFireTeamsComplete = false;
+
+            const allWords = [...dgGameState.words];
+            const shuffled = [...allWords];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+
+            let wordIndex = 0;
+            teamsList.forEach((team, idx) => {
+                const wordsPerTeam = Math.max(5, Math.floor(shuffled.length / teamsList.length));
+                const startIdx = idx * wordsPerTeam;
+                const endIdx = Math.min(startIdx + wordsPerTeam, shuffled.length);
+                team.words = shuffled.slice(startIdx, endIdx);
+                if (team.words.length === 0) {
+                    const fallback = shuffled.slice(0, 5);
+                    team.words = fallback;
+                }
+                team.usedWords = [];
+                team.correct = 0;
+                team.skipped = 0;
+                team.total = team.words.length;
+            });
+
+            const usedCount = teamsList.reduce((sum, t) => sum + t.words.length, 0);
+            if (usedCount < shuffled.length) {
+                const remaining = shuffled.slice(usedCount);
+                let idx = 0;
+                while (remaining.length > 0) {
+                    const team = teamsList[idx % teamsList.length];
+                    team.words.push(remaining.shift());
+                    team.total = team.words.length;
+                    idx++;
+                }
+            }
+        }
+
+        function dgShowSetup() {
+            const container = document.getElementById('modalContent');
+            container.style.display = 'block';
+
+            const modeName = {
+                'describe-it': 'DESCRIBE IT',
+                'rapid-fire': 'RAPID FIRE',
+                'dont-say-it': 'DON\'T SAY IT',
+                'hard-mode': 'HARD MODE'
+            } [dgGameState.mode] || 'DESCRIBE & GUESS';
+
+            const modeEmoji = {
+                'describe-it': '🎯',
+                'rapid-fire': '⚡',
+                'dont-say-it': '🚫',
+                'hard-mode': '💀'
+            } [dgGameState.mode] || '💬';
+
+            let restrictions = '';
+            if (dgGameState.mode === 'hard-mode') {
+                restrictions =
+                    '<p style="font-size:0.55rem;color:var(--theme-text-muted);margin-top:0.2rem;">🔒 Only 5 words allowed to describe! Click "MARK WORD USED" to track.</p>';
+            } else if (dgGameState.mode === 'dont-say-it') {
+                restrictions =
+                    '<p style="font-size:0.55rem;color:var(--theme-text-muted);margin-top:0.2rem;">🚫 Don\'t say the forbidden words! Penalty moves to next turn.</p>';
+            } else if (dgGameState.mode === 'rapid-fire') {
+                restrictions =
+                    '<p style="font-size:0.55rem;color:var(--theme-text-muted);margin-top:0.2rem;">⚡ Each team gets their own round! Most correct wins.</p>';
+            }
+
+            const wordCount = dgGameState.words.length;
+
+            let teamInfo = '';
+            if (dgGameState.mode === 'rapid-fire' && dgGameState.rapidFireAllTeams.length > 0) {
+                const teamNames = dgGameState.rapidFireAllTeams.map(t =>
+                    `${t.name} (${t.words.length} words)`
+                ).join(' · ');
+                teamInfo = `<div style="font-size:0.5rem;color:var(--theme-text-muted);margin-top:0.2rem;">👥 Teams: ${teamNames}</div>`;
+            }
+
+            container.innerHTML = `
+                <div class="dg-game-container">
+                    <div style="text-align:center;padding:0.5rem 0;">
+                        <span style="font-size:2rem;display:block;">${modeEmoji}</span>
+                        <h3 style="font-family:var(--font-display);font-size:0.8rem;color:var(--theme-blue-electric);margin-bottom:0.2rem;">
+                            ${modeName}
+                        </h3>
+                        ${restrictions}
+                        ${teamInfo}
+                    </div>
+
+                    <div class="dg-stats-bar" style="justify-content:center;gap:1rem;">
+                        <span class="dg-stat">📊 Words: <span class="stat-value">${wordCount}</span></span>
+                        <span class="dg-stat">⏱️ Timer: <span class="stat-value">${dgGameState.timerSeconds}s</span></span>
+                        <span class="dg-stat">👥 ${teamModeEnabled ? 'Teams' : 'Players'}: <span class="stat-value">${dgGameState.mode === 'rapid-fire' ? dgGameState.rapidFireAllTeams.length : players.length}</span></span>
+                    </div>
+
+                    <div style="background:var(--theme-bg-input);border-radius:12px;padding:0.8rem;border:2px solid var(--theme-border-color);margin:0.5rem 0;text-align:center;">
+                        ${dgGameState.mode === 'describe-it' ? `
+                            <p style="font-size:0.6rem;color:var(--theme-text-secondary);">
+                                🎯 Describe the word freely without saying it. Others guess!
+                                <br><span style="font-size:0.5rem;color:var(--theme-text-muted);">✅ CORRECT = +1 Point + Next Word + Next Turn</span>
+                            </p>
+                        ` : ''}
+                        ${dgGameState.mode === 'rapid-fire' ? `
+                            <p style="font-size:0.6rem;color:var(--theme-text-secondary);">
+                                ⚡ Each team gets their own round! Answer as many as possible!
+                                <br><span style="font-size:0.5rem;color:var(--theme-text-muted);">✅ CORRECT = +1 Point + Next Word · ⏭️ SKIP = 0 Points + Next Word</span>
+                            </p>
+                        ` : ''}
+                        ${dgGameState.mode === 'dont-say-it' ? `
+                            <p style="font-size:0.6rem;color:var(--theme-text-secondary);">
+                                🚫 Describe WITHOUT using forbidden words!
+                                <br><span style="font-size:0.5rem;color:var(--theme-text-muted);">✅ CORRECT = +1 Point + Next Word + Next Turn · 🚫 PENALTY = 0 Points + Next Word + Next Turn</span>
+                            </p>
+                        ` : ''}
+                        ${dgGameState.mode === 'hard-mode' ? `
+                            <p style="font-size:0.6rem;color:var(--theme-text-secondary);">
+                                💀 Only 5 words allowed! Click "MARK WORD USED" to track.
+                                <br><span style="font-size:0.5rem;color:var(--theme-text-muted);">✅ CORRECT = +1 Point + Next Word + Next Turn · 📝 MARK = Tracks word usage</span>
+                            </p>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+
+            const colorKey = dgGameState.mode === 'describe-it' ? 'describeit' :
+                dgGameState.mode === 'rapid-fire' ? 'rapidfire' :
+                dgGameState.mode === 'dont-say-it' ? 'dontsayit' : 'hardmode';
+            applyGameColors(colorKey);
+        }
+
+        // ============================================================
+        //  DG START GAME
+        // ============================================================
+
+        function dgStartGame() {
+            if (dgGameState.words.length === 0) {
+                alert('No words available for this mode!');
+                return;
+            }
+
+            // Use the timer from the setup modal
+            const timerValue = parseInt(document.getElementById('customTimerInput').value) || dgGameState.timerSeconds;
+            dgGameState.timerSeconds = timerValue;
+            currentGameTimerSeconds = timerValue;
+
+            if (dgGameState.mode === 'rapid-fire') {
+                dgStartRapidFireRound();
+                return;
+            }
+
+            dgGameState.active = true;
+            dgGameState.currentWordIndex = 0;
+            dgGameState.correct = 0;
+            dgGameState.incorrect = 0;
+            dgGameState.skipped = 0;
+            dgGameState.usedWords = [];
+
+            document.getElementById('timerSetup').style.display = 'none';
+            document.getElementById('modalContent').style.display = 'block';
+
+            if (dgGameState.mode === 'hard-mode') {
+                dgGameState.wordTracker.usedWords = [];
+            }
+
+            dgShowWord();
+
+            setTimeout(() => {
+                startTimer(dgGameState.timerSeconds, () => {
+                    dgEndRound('timeout');
+                });
+            }, 300);
+
+            const colorKey = dgGameState.mode === 'describe-it' ? 'describeit' :
+                dgGameState.mode === 'rapid-fire' ? 'rapidfire' :
+                dgGameState.mode === 'dont-say-it' ? 'dontsayit' : 'hardmode';
+            applyGameColors(colorKey);
+        }
+
+        // ============================================================
+        //  DG RAPID FIRE - TEAM ROUNDS
+        // ============================================================
+
+        function dgStartRapidFireRound() {
+            const teams = dgGameState.rapidFireAllTeams;
+            if (teams.length === 0) {
+                alert('No teams available for Rapid Fire!');
+                return;
+            }
+
+            // Use the timer from the setup modal
+            const timerValue = parseInt(document.getElementById('customTimerInput').value) || dgGameState.timerSeconds;
+            dgGameState.timerSeconds = timerValue;
+            currentGameTimerSeconds = timerValue;
+
+            dgGameState.active = true;
+            dgGameState.roundComplete = false;
+            dgGameState.gameComplete = false;
+            dgGameState.correct = 0;
+            dgGameState.incorrect = 0;
+            dgGameState.skipped = 0;
+
+            dgGameState.rapidFireTeamIndex = 0;
+            dgGameState.rapidFireTeamResults = [];
+            dgGameState.rapidFireTeamsComplete = false;
+
+            const team = teams[0];
+            dgGameState.rapidFireCurrentTeam = team;
+            dgGameState.words = team.words || [];
+            dgGameState.totalWords = team.words.length || 0;
+            dgGameState.currentWordIndex = 0;
+            dgGameState.usedWords = [];
+            dgGameState.correct = 0;
+            dgGameState.skipped = 0;
+
+            team.usedWords = [];
+            team.correct = 0;
+            team.skipped = 0;
+
+            document.getElementById('timerSetup').style.display = 'none';
+            document.getElementById('modalContent').style.display = 'block';
+
+            dgShowRapidFireWord();
+
+            setTimeout(() => {
+                startTimer(dgGameState.timerSeconds, () => {
+                    dgEndRapidFireTeamRound();
+                });
+            }, 300);
+
+            const colorKey = 'rapidfire';
+            applyGameColors(colorKey);
+        }
+
+        function dgShowRapidFireWord() {
+            const container = document.getElementById('modalContent');
+
+            const team = dgGameState.rapidFireCurrentTeam;
+            if (!team) {
+                dgEndRapidFireAllTeams();
+                return;
+            }
+
+            if (dgGameState.currentWordIndex >= team.words.length) {
+                dgEndRapidFireTeamRound();
+                return;
+            }
+
+            const word = team.words[dgGameState.currentWordIndex];
+            const isLong = word.length > 10;
+
+            const total = team.words.length;
+            const current = dgGameState.currentWordIndex + 1;
+            const correct = dgGameState.correct;
+            const skipped = dgGameState.skipped;
+
+            const teamIndex = dgGameState.rapidFireTeamIndex + 1;
+            const totalTeams = dgGameState.rapidFireAllTeams.length;
+
+            container.innerHTML = `
+                <div class="dg-game-container">
+                    <div style="text-align:center;margin-bottom:0.3rem;">
+                        <span style="font-size:0.5rem;font-family:var(--font-display);color:var(--theme-blue-electric);">
+                            ⚡ RAPID FIRE
+                        </span>
+                        <span style="font-size:0.5rem;color:var(--theme-text-muted);margin-left:0.5rem;">
+                            Team ${teamIndex}/${totalTeams}
+                        </span>
+                    </div>
+
+                    <div class="dg-stats-bar">
+                        <span class="dg-stat">👥 <span class="stat-value">${team.name}</span></span>
+                        <span class="dg-stat">📊 <span class="stat-value">${current}/${total}</span></span>
+                        <span class="dg-stat">✅ Correct: <span class="stat-value correct">${correct}</span></span>
+                        <span class="dg-stat">⏭️ Skipped: <span class="stat-value">${skipped}</span></span>
+                    </div>
+
+                    <div class="dg-word-display">
+                        <div class="dg-secret-word ${isLong ? 'long-word' : ''}">${word.toUpperCase()}</div>
+                    </div>
+
+                    <div class="dg-feedback" id="dgFeedback"></div>
+
+                    <div class="dg-game-actions">
+                        <button class="dg-correct-btn" onclick="dgRapidFireCorrect()">✅ CORRECT</button>
+                        <button class="dg-skip-btn" onclick="dgRapidFireSkip()">⏭️ SKIP</button>
+                    </div>
+
+                    ${createScoringUI()}
+                </div>
+            `;
+
+            updateModalHeader();
+            applyGameColors('rapidfire');
+        }
+
+        function dgRapidFireCorrect() {
+            if (!dgGameState.active) return;
+            dgGameState.correct++;
+            dgGameState.currentWordIndex++;
+            const team = dgGameState.rapidFireCurrentTeam;
+            if (team) {
+                team.correct = (team.correct || 0) + 1;
+                team.usedWords = team.usedWords || [];
+                const word = team.words[dgGameState.currentWordIndex - 1];
+                if (word) team.usedWords.push(word);
+            }
+
+            scoreCurrentPlayer(1);
+
+            const fb = document.getElementById('dgFeedback');
+            if (fb) {
+                fb.className = 'dg-feedback success';
+                fb.textContent = '✅ Correct! +1 point!';
+                fb.style.display = 'block';
+                setTimeout(() => { fb.style.display = 'none'; }, 500);
+            }
+
+            playSound('success');
+            createConfetti(8);
+
+            const teamObj = dgGameState.rapidFireCurrentTeam;
+            if (teamObj && dgGameState.currentWordIndex >= teamObj.words.length) {
+                setTimeout(() => dgEndRapidFireTeamRound(), 400);
+                return;
+            }
+
+            setTimeout(() => dgShowRapidFireWord(), 300);
+        }
+
+        function dgRapidFireSkip() {
+            if (!dgGameState.active) return;
+            dgGameState.skipped++;
+            dgGameState.currentWordIndex++;
+            const team = dgGameState.rapidFireCurrentTeam;
+            if (team) {
+                team.skipped = (team.skipped || 0) + 1;
+                team.usedWords = team.usedWords || [];
+                const word = team.words[dgGameState.currentWordIndex - 1];
+                if (word) team.usedWords.push(word);
+            }
+
+            const fb = document.getElementById('dgFeedback');
+            if (fb) {
+                fb.className = 'dg-feedback info';
+                fb.textContent = '⏭️ Skipped (0 points)';
+                fb.style.display = 'block';
+                setTimeout(() => { fb.style.display = 'none'; }, 400);
+            }
+
+            playSound('point');
+
+            const teamObj = dgGameState.rapidFireCurrentTeam;
+            if (teamObj && dgGameState.currentWordIndex >= teamObj.words.length) {
+                setTimeout(() => dgEndRapidFireTeamRound(), 400);
+                return;
+            }
+
+            setTimeout(() => dgShowRapidFireWord(), 250);
+        }
+
+        function dgEndRapidFireTeamRound() {
+            stopTimer();
+
+            const team = dgGameState.rapidFireCurrentTeam;
+            if (!team) {
+                dgEndRapidFireAllTeams();
+                return;
+            }
+
+            const result = {
+                teamName: team.name,
+                correct: team.correct || 0,
+                skipped: team.skipped || 0,
+                total: team.words.length || 0,
+                points: (team.correct || 0) * 1
+            };
+            dgGameState.rapidFireTeamResults.push(result);
+
+            const container = document.getElementById('modalContent');
+            container.innerHTML = `
+                <div class="dg-results">
+                    <span class="dg-result-emoji">⏰</span>
+                    <div class="dg-result-title">${team.name} - ROUND COMPLETE!</div>
+
+                    <div class="dg-result-stats">
+                        <span class="stat-item">✅ Correct: <span class="stat-num correct">${result.correct}</span></span>
+                        <span class="stat-item">⏭️ Skipped: <span class="stat-num incorrect">${result.skipped}</span></span>
+                        <span class="stat-item">📊 Total: <span class="stat-num">${result.total}</span></span>
+                        <span class="stat-item">⭐ Points: <span class="stat-num">${result.points}</span></span>
+                    </div>
+
+                    <div style="margin:0.5rem 0;">
+                        <span style="font-size:0.5rem;color:var(--theme-text-muted);">
+                            Next team starts in <span id="dgTransitionCountdown">10</span>s...
+                        </span>
+                    </div>
+
+                    <div class="dg-game-actions">
+                        <button class="dg-skip-wait-btn" onclick="dgSkipRapidFireWait()">⏭️ SKIP WAIT</button>
+                    </div>
+                </div>
+            `;
+
+            let countdown = 10;
+            dgGameState.transitioning = true;
+            dgGameState.transitionTimer = setInterval(() => {
+                countdown--;
+                const el = document.getElementById('dgTransitionCountdown');
+                if (el) el.textContent = countdown;
+                if (countdown <= 0) {
+                    clearInterval(dgGameState.transitionTimer);
+                    dgGameState.transitionTimer = null;
+                    dgGameState.transitioning = false;
+                    dgAdvanceRapidFireTeam();
+                }
+            }, 1000);
+
+            applyGameColors('rapidfire');
+        }
+
+        function dgSkipRapidFireWait() {
+            if (dgGameState.transitionTimer) {
+                clearInterval(dgGameState.transitionTimer);
+                dgGameState.transitionTimer = null;
+                dgGameState.transitioning = false;
+            }
+            dgAdvanceRapidFireTeam();
+        }
+
+        function dgAdvanceRapidFireTeam() {
+            dgGameState.rapidFireTeamIndex++;
+
+            if (dgGameState.rapidFireTeamIndex >= dgGameState.rapidFireAllTeams.length) {
+                dgEndRapidFireAllTeams();
+                return;
+            }
+
+            const team = dgGameState.rapidFireAllTeams[dgGameState.rapidFireTeamIndex];
+            dgGameState.rapidFireCurrentTeam = team;
+            dgGameState.words = team.words || [];
+            dgGameState.totalWords = team.words.length || 0;
+            dgGameState.currentWordIndex = 0;
+            dgGameState.usedWords = [];
+            dgGameState.correct = 0;
+            dgGameState.skipped = 0;
+            team.usedWords = [];
+            team.correct = 0;
+            team.skipped = 0;
+
+            dgShowRapidFireWord();
+
+            setTimeout(() => {
+                startTimer(dgGameState.timerSeconds, () => {
+                    dgEndRapidFireTeamRound();
+                });
+            }, 300);
+
+            playSound('point');
+        }
+
+        function dgEndRapidFireAllTeams() {
+            dgGameState.active = false;
+            dgGameState.gameComplete = true;
+            dgGameState.rapidFireTeamsComplete = true;
+
+            const results = dgGameState.rapidFireTeamResults;
+            const sorted = [...results].sort((a, b) => b.correct - a.correct);
+
+            let winner = sorted[0] || null;
+            let tie = false;
+            if (sorted.length > 1 && sorted[0].correct === sorted[1].correct) {
+                tie = true;
+            }
+
+            const container = document.getElementById('modalContent');
+            let resultsHTML = sorted.map((r, i) => {
+                const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}.`;
+                const isWinner = i === 0 && !tie;
+                return `<div class="result-item" style="${isWinner ? 'border-color:var(--theme-blue-electric);background:var(--theme-glow-blue);' : ''}">
+                    <span>${medal} ${r.teamName} ${isWinner ? '👑' : ''}</span>
+                    <span>✅ ${r.correct} correct <span style="color:var(--theme-text-muted);font-size:0.5rem;">(${r.points} pts)</span></span>
+                </div>`;
+            }).join('');
+
+            container.innerHTML = `
+                <div class="dg-results">
+                    <span class="dg-result-emoji">🏆</span>
+                    <div class="dg-result-title">RAPID FIRE - FINAL RESULTS!</div>
+
+                    ${tie ? `
+                        <div style="background:rgba(243,156,18,0.15);border:2px solid #f39c12;border-radius:10px;padding:0.5rem;margin-bottom:0.5rem;">
+                            <span style="font-size:0.7rem;color:#f39c12;">⚡ TIE BREAKER NEEDED!</span>
+                            <p style="font-size:0.5rem;color:var(--theme-text-muted);">Timer will be cut in half for the tied teams!</p>
+                            <button onclick="dgStartTieBreaker()" style="margin-top:0.3rem;padding:0.3rem 1rem;border-radius:20px;border:none;background:#f39c12;color:white;font-weight:700;font-size:0.5rem;cursor:pointer;font-family:var(--font-body);">⚡ START TIE BREAKER</button>
+                        </div>
+                    ` : `
+                        <div style="font-size:0.7rem;color:var(--theme-blue-electric);margin-bottom:0.3rem;">
+                            🏆 Winner: ${winner ? winner.teamName : 'None'}!
+                        </div>
+                    `}
+
+                    <div class="dg-result-stats" style="flex-direction:column;gap:0.3rem;align-items:stretch;">
+                        ${resultsHTML}
+                    </div>
+
+                    <div class="dg-result-actions">
+                        <button class="dg-play-again-btn" onclick="dgPlayAgain()">🔄 PLAY AGAIN</button>
+                        <button class="dg-close-btn" onclick="closeModal()">✕ CLOSE</button>
+                    </div>
+                </div>
+            `;
+
+            createConfetti(30);
+            playSound('levelup');
+            applyGameColors('rapidfire');
+        }
+
+        function dgStartTieBreaker() {
+            const results = dgGameState.rapidFireTeamResults;
+            const sorted = [...results].sort((a, b) => b.correct - a.correct);
+            if (sorted.length < 2) return;
+
+            const topScore = sorted[0].correct;
+            const tiedTeams = sorted.filter(r => r.correct === topScore);
+
+            const newTimer = Math.max(15, Math.floor(dgGameState.timerSeconds / 2));
+            dgGameState.timerSeconds = newTimer;
+            currentGameTimerSeconds = newTimer;
+
+            const teamsList = dgGameState.rapidFireAllTeams;
+            const tiedTeamNames = tiedTeams.map(r => r.teamName);
+            const tieBreakerTeams = teamsList.filter(t => tiedTeamNames.includes(t.name));
+
+            dgGameState.rapidFireAllTeams = tieBreakerTeams;
+            dgGameState.rapidFireTeamIndex = 0;
+            dgGameState.rapidFireTeamResults = [];
+            dgGameState.rapidFireTeamsComplete = false;
+
+            const allWords = dgGameState.words;
+            const shuffled = [...allWords];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+
+            let wordIndex = 0;
+            tieBreakerTeams.forEach((team, idx) => {
+                const wordsPerTeam = Math.max(3, Math.floor(shuffled.length / tieBreakerTeams.length));
+                const startIdx = idx * wordsPerTeam;
+                const endIdx = Math.min(startIdx + wordsPerTeam, shuffled.length);
+                team.words = shuffled.slice(startIdx, endIdx);
+                if (team.words.length === 0) {
+                    const fallback = shuffled.slice(0, 3);
+                    team.words = fallback;
+                }
+                team.usedWords = [];
+                team.correct = 0;
+                team.skipped = 0;
+                team.total = team.words.length;
+            });
+
+            dgStartRapidFireRound();
+            showChangeToast(`⚡ TIE BREAKER! Timer: ${newTimer}s`);
+            playSound('timer');
+        }
+
+        // ============================================================
+        //  DG SHOW WORD (Standard modes)
+        // ============================================================
+
+        function dgShowWord() {
+            const container = document.getElementById('modalContent');
+
+            if (dgGameState.currentWordIndex >= dgGameState.words.length) {
+                dgEndRound('complete');
+                return;
+            }
+
+            const word = dgGameState.words[dgGameState.currentWordIndex];
+            const isLong = word.length > 10;
+
+            let forbiddenWords = [];
+            if (dgGameState.mode === 'dont-say-it') {
+                const lookup = dgGameState.dontSayItLookup || {};
+                forbiddenWords = lookup[word] || [];
+                if (forbiddenWords.length === 0) {
+                    const fallback = FALLBACK_DATA.dontSayIt.find(item => item.word === word);
+                    if (fallback) forbiddenWords = fallback.forbidden || [];
+                }
+            }
+
+            let wordCounterHTML = '';
+            let markWordBtnHTML = '';
+            if (dgGameState.mode === 'hard-mode') {
+                const used = dgGameState.wordTracker.usedWords || [];
+                const remaining = 5 - used.length;
+                let dots = '';
+                for (let i = 0; i < 5; i++) {
+                    const isUsed = i < used.length;
+                    dots += `<span class="word-dot ${isUsed ? 'used' : ''} ${remaining <= 2 && isUsed ? 'warning' : ''}"></span>`;
+                }
+                wordCounterHTML = `
+                    <div class="dg-word-counter">
+                        ${dots}
+                        <span style="font-size:0.45rem;color:var(--theme-text-muted);margin-left:0.3rem;">
+                            ${remaining} words remaining
+                        </span>
+                    </div>
+                `;
+                const isDisabled = used.length >= 5;
+                markWordBtnHTML = `
+                    <button class="dg-mark-word-btn" onclick="dgMarkWordUsed()" ${isDisabled ? 'disabled' : ''}>
+                        📝 MARK WORD USED (${used.length}/5)
+                    </button>
+                `;
+            }
+
+            const total = dgGameState.words.length;
+            const current = dgGameState.currentWordIndex + 1;
+            const correct = dgGameState.correct;
+            const incorrect = dgGameState.incorrect;
+            const skipped = dgGameState.skipped;
+
+            let actionButtons = '';
+            if (dgGameState.mode === 'dont-say-it') {
+                actionButtons = `
+                    <button class="dg-correct-btn" onclick="dgWordCorrect()">✅ CORRECT</button>
+                    <button class="dg-penalty-btn" onclick="dgWordPenalty()">🚫 PENALTY</button>
+                    <button class="dg-skip-btn" onclick="dgWordSkip()">⏭️ SKIP</button>
+                `;
+            } else if (dgGameState.mode === 'hard-mode') {
+                actionButtons = `
+                    <button class="dg-correct-btn" onclick="dgWordCorrect()">✅ CORRECT</button>
+                    ${markWordBtnHTML}
+                    <button class="dg-skip-btn" onclick="dgWordSkip()">⏭️ SKIP</button>
+                `;
+            } else {
+                actionButtons = `
+                    <button class="dg-correct-btn" onclick="dgWordCorrect()">✅ CORRECT</button>
+                    <button class="dg-skip-btn" onclick="dgWordSkip()">⏭️ SKIP</button>
+                `;
+            }
+
+            let forbiddenHTML = '';
+            if (dgGameState.mode === 'dont-say-it' && forbiddenWords.length > 0) {
+                forbiddenHTML = `
+                    <div class="dg-forbidden-label">🚫 DON'T SAY:</div>
+                    <div class="dg-forbidden-words">
+                        ${forbiddenWords.map(fw => `<span class="dg-forbidden-word">${fw.toUpperCase()}</span>`).join('')}
+                    </div>
+                `;
+            }
+
+            let restrictionLabel = '';
+            if (dgGameState.mode === 'hard-mode') {
+                restrictionLabel = `
+                    <div class="dg-restriction-label">
+                        🔒 <span class="word-count">5</span> WORD LIMIT
+                    </div>
+                `;
+            }
+
+            const currentPlayer = getCurrentPlayerName() || 'No player';
+            const currentTeam = getCurrentTeam();
+
+            container.innerHTML = `
+                <div class="dg-game-container">
+                    <div class="dg-stats-bar">
+                        <span class="dg-stat">📊 <span class="stat-value">${current}/${total}</span></span>
+                        <span class="dg-stat">✅ Correct: <span class="stat-value correct">${correct}</span></span>
+                        <span class="dg-stat">❌ Incorrect: <span class="stat-value incorrect">${incorrect + skipped}</span></span>
+                        <span class="dg-stat">👤 ${currentTeam ? currentTeam.name : currentPlayer}</span>
+                    </div>
+
+                    <div class="dg-word-display">
+                        ${forbiddenHTML}
+                        <div class="dg-secret-word ${isLong ? 'long-word' : ''}">${word.toUpperCase()}</div>
+                        ${restrictionLabel}
+                        ${wordCounterHTML}
+                    </div>
+
+                    <div class="dg-feedback" id="dgFeedback"></div>
+
+                    <div class="dg-game-actions">
+                        ${actionButtons}
+                        <button class="dg-next-turn-btn" onclick="dgNextTurn()">⏭️ NEXT TURN</button>
+                    </div>
+
+                    ${createScoringUI()}
+                </div>
+            `;
+
+            updateModalHeader();
+
+            const colorKey = dgGameState.mode === 'describe-it' ? 'describeit' :
+                dgGameState.mode === 'rapid-fire' ? 'rapidfire' :
+                dgGameState.mode === 'dont-say-it' ? 'dontsayit' : 'hardmode';
+            applyGameColors(colorKey);
+
+            setTimeout(() => {
+                const correctBtn = container.querySelector('.dg-correct-btn');
+                if (correctBtn) correctBtn.focus();
+            }, 100);
+        }
+
+        // ============================================================
+        //  DG WORD ACTIONS (Standard modes)
+        // ============================================================
+
+        function dgWordCorrect() {
+            if (!dgGameState.active) return;
+            dgGameState.correct++;
+            dgGameState.currentWordIndex++;
+            const word = dgGameState.words[dgGameState.currentWordIndex - 1];
+            dgGameState.usedWords.push(word);
+
+            scoreCurrentPlayer(1);
+
+            const fb = document.getElementById('dgFeedback');
+            if (fb) {
+                fb.className = 'dg-feedback success';
+                fb.textContent = '✅ Correct! +1 point!';
+                fb.style.display = 'block';
+                setTimeout(() => { fb.style.display = 'none'; }, 600);
+            }
+
+            playSound('success');
+            createConfetti(10);
+
+            if (dgGameState.currentWordIndex >= dgGameState.words.length) {
+                setTimeout(() => dgEndRound('complete'), 500);
+                return;
+            }
+
+            setTimeout(() => {
+                nextTurn();
+                dgShowWord();
+                stopTimer();
+                setTimeout(() => {
+                    startTimer(dgGameState.timerSeconds, () => {
+                        dgEndRound('timeout');
+                    });
+                }, 300);
+            }, 400);
+        }
+
+        function dgWordSkip() {
+            if (!dgGameState.active) return;
+            dgGameState.skipped++;
+            dgGameState.currentWordIndex++;
+            const word = dgGameState.words[dgGameState.currentWordIndex - 1];
+            dgGameState.usedWords.push(word);
+
+            const fb = document.getElementById('dgFeedback');
+            if (fb) {
+                fb.className = 'dg-feedback info';
+                fb.textContent = '⏭️ Skipped (0 points)';
+                fb.style.display = 'block';
+                setTimeout(() => { fb.style.display = 'none'; }, 500);
+            }
+
+            playSound('point');
+
+            if (dgGameState.currentWordIndex >= dgGameState.words.length) {
+                setTimeout(() => dgEndRound('complete'), 500);
+                return;
+            }
+
+            setTimeout(() => {
+                dgShowWord();
+            }, 300);
+        }
+
+        function dgWordPenalty() {
+            if (!dgGameState.active || dgGameState.mode !== 'dont-say-it') return;
+            dgGameState.incorrect++;
+            dgGameState.currentWordIndex++;
+            const word = dgGameState.words[dgGameState.currentWordIndex - 1];
+            dgGameState.usedWords.push(word);
+
+            const fb = document.getElementById('dgFeedback');
+            if (fb) {
+                fb.className = 'dg-feedback error';
+                fb.textContent = '🚫 Forbidden word used! Moving to next turn.';
+                fb.style.display = 'block';
+                setTimeout(() => { fb.style.display = 'none'; }, 700);
+            }
+
+            playSound('error');
+
+            if (dgGameState.currentWordIndex >= dgGameState.words.length) {
+                setTimeout(() => dgEndRound('complete'), 600);
+                return;
+            }
+
+            setTimeout(() => {
+                nextTurn();
+                dgShowWord();
+                stopTimer();
+                setTimeout(() => {
+                    startTimer(dgGameState.timerSeconds, () => {
+                        dgEndRound('timeout');
+                    });
+                }, 300);
+            }, 500);
+        }
+
+        function dgMarkWordUsed() {
+            if (dgGameState.mode !== 'hard-mode' || !dgGameState.active) return;
+
+            const used = dgGameState.wordTracker.usedWords || [];
+            if (used.length >= 5) {
+                showChangeToast('⚠️ Already used 5 words!');
+                playSound('error');
+                return;
+            }
+
+            const currentWord = dgGameState.words[dgGameState.currentWordIndex];
+            if (!currentWord) return;
+
+            if (!used.includes(currentWord)) {
+                used.push(currentWord);
+                dgGameState.wordTracker.usedWords = used;
+                showChangeToast(`📝 "${currentWord}" marked (${used.length}/5)`);
+                playSound('point');
+
+                if (used.length >= 5) {
+                    showChangeToast('🔒 5 words used! No more descriptions allowed.');
+                    playSound('timer');
+                }
+
+                dgShowWord();
+            } else {
+                showChangeToast('⚠️ This word is already marked!');
+                playSound('error');
+            }
+        }
+
+        function dgNextTurn() {
+            if (!dgGameState.active) return;
+
+            if (dgGameState.currentWordIndex >= dgGameState.words.length) {
+                dgEndRound('complete');
+                return;
+            }
+
+            nextTurn();
+
+            if (dgGameState.mode === 'hard-mode') {
+                dgGameState.wordTracker.usedWords = [];
+            }
+
+            dgShowWord();
+
+            stopTimer();
+            setTimeout(() => {
+                startTimer(dgGameState.timerSeconds, () => {
+                    dgEndRound('timeout');
+                });
+            }, 300);
+
+            playSound('point');
+        }
+
+        // ============================================================
+        //  DG END ROUND (Standard modes)
+        // ============================================================
+
+        function dgEndRound(reason) {
+            if (!dgGameState.active) return;
+            dgGameState.active = false;
+            dgGameState.roundComplete = true;
+
+            stopTimer();
+
+            const container = document.getElementById('modalContent');
+            const total = dgGameState.words.length;
+            const correct = dgGameState.correct;
+            const incorrect = dgGameState.incorrect + dgGameState.skipped;
+
+            let reasonText = '🎉 ROUND COMPLETE!';
+            let emoji = '🏆';
+            if (reason === 'timeout') {
+                reasonText = '⏰ TIME\'S UP!';
+                emoji = '⏰';
+            }
+
+            const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
+            const currentPlayer = getCurrentPlayerName() || 'None';
+            const currentTeam = getCurrentTeam();
+
+            container.innerHTML = `
+                <div class="dg-results">
+                    <span class="dg-result-emoji">${emoji}</span>
+                    <div class="dg-result-title">${reasonText}</div>
+
+                    <div class="dg-result-stats">
+                        <span class="stat-item">✅ Correct: <span class="stat-num correct">${correct}</span></span>
+                        <span class="stat-item">❌ Incorrect: <span class="stat-num incorrect">${incorrect}</span></span>
+                        <span class="stat-item">📊 Total: <span class="stat-num">${total}</span></span>
+                        <span class="stat-item">🎯 Accuracy: <span class="stat-num">${accuracy}%</span></span>
+                    </div>
+
+                    <div style="font-size:0.6rem;color:var(--theme-text-secondary);margin-bottom:0.5rem;">
+                        👤 ${currentTeam ? currentTeam.name : currentPlayer}
+                    </div>
+
+                    <div class="dg-result-actions">
+                        <button class="dg-play-again-btn" onclick="dgPlayAgain()">🔄 PLAY AGAIN</button>
+                        <button class="dg-close-btn" onclick="closeModal()">✕ CLOSE</button>
+                    </div>
+                </div>
+            `;
+
+            createConfetti(20);
+            playSound('levelup');
+            const colorKey = dgGameState.mode === 'describe-it' ? 'describeit' :
+                dgGameState.mode === 'rapid-fire' ? 'rapidfire' :
+                dgGameState.mode === 'dont-say-it' ? 'dontsayit' : 'hardmode';
+            applyGameColors(colorKey);
+        }
+
+        function dgPlayAgain() {
+            dgGameState.active = false;
+            dgGameState.roundComplete = false;
+            dgGameState.gameComplete = false;
+            dgGameState.correct = 0;
+            dgGameState.incorrect = 0;
+            dgGameState.skipped = 0;
+            dgGameState.currentWordIndex = 0;
+            dgGameState.usedWords = [];
+            dgGameState.transitioning = false;
+            if (dgGameState.transitionTimer) {
+                clearInterval(dgGameState.transitionTimer);
+                dgGameState.transitionTimer = null;
+            }
+
+            dgPrepareWords(dgGameState.mode);
+            dgShowSetup();
+            playSound('point');
+        }
+
+        // ============================================================
+        //  DG GM FUNCTIONS
+        // ============================================================
+
+        function saveDontSayItData() {
+            try {
+                localStorage.setItem('arcadeDontSayItData', JSON.stringify(dontSayItData));
+            } catch (e) {}
+        }
+
+        function loadDontSayItData() {
+            try {
+                const saved = localStorage.getItem('arcadeDontSayItData');
+                if (saved) {
+                    dontSayItData = JSON.parse(saved);
+                    return true;
+                }
+            } catch (e) {}
+            return false;
+        }
+
+        function renderDontSayItGM() {
+            const list = document.getElementById('dgGmList');
+            document.getElementById('dgGmCount').textContent = `${dontSayItData.length}`;
+
+            if (dontSayItData.length === 0) {
+                list.innerHTML =
+                    '<div class="bg-empty-questions">No entries added yet. Add some above!</div>';
+                return;
+            }
+
+            list.innerHTML = dontSayItData.map((item, i) => `
+                <div class="dg-q-item">
+                    <span class="q-text-preview">
+                        📝 ${item.word}
+                        <span class="forbidden-preview">→ ${item.forbidden.join(', ')}</span>
+                    </span>
+                    <div class="q-actions">
+                        <button onclick="dgDeleteGmEntry(${i})" class="danger" title="Delete">🗑️</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function dgAddGmEntry() {
+            const wordInput = document.getElementById('dgGmWord');
+            const forbiddenInput = document.getElementById('dgGmForbidden');
+
+            const word = wordInput.value.trim().toLowerCase();
+            const forbidden = forbiddenInput.value.split(',').map(f => f.trim().toLowerCase()).filter(f => f);
+
+            if (!word) {
+                alert('Please enter a secret word!');
+                return;
+            }
+
+            if (forbidden.length === 0) {
+                alert('Please enter at least one forbidden word!');
+                return;
+            }
+
+            if (dontSayItData.some(item => item.word === word)) {
+                alert('This word already exists!');
+                return;
+            }
+
+            dontSayItData.push({ word, forbidden });
+            saveDontSayItData();
+            renderDontSayItGM();
+
+            wordInput.value = '';
+            forbiddenInput.value = '';
+            createConfetti(15);
+            playSound('success');
+        }
+
+        function dgDeleteGmEntry(index) {
+            if (confirm('Delete this entry?')) {
+                dontSayItData.splice(index, 1);
+                saveDontSayItData();
+                renderDontSayItGM();
+                playSound('point');
+            }
+        }
+
+        function dgClearGmEntries() {
+            if (dontSayItData.length === 0) return;
+            if (confirm('Clear all Don\'t Say It entries?')) {
+                dontSayItData = [];
+                saveDontSayItData();
+                renderDontSayItGM();
+                playSound('point');
+            }
+        }
+
+        // ============================================================
         //  LOAD DATA
         // ============================================================
         function loadFallbackData() {
@@ -8896,6 +11050,8 @@
             truthLieData.lies = [...FALLBACK_DATA.lies];
             roastLines = [...FALLBACK_DATA.roasts];
             whoamiNames = [...FALLBACK_DATA.whoami];
+            dontSayItData = [...FALLBACK_DATA.dontSayIt];
+            saveDontSayItData();
 
             if (FALLBACK_DATA.brainGames && FALLBACK_DATA.brainGames.length > 0) {
                 bgQuestions = [...FALLBACK_DATA.brainGames];
@@ -8904,7 +11060,7 @@
             }
 
             console.log(
-                `✅ Fallback data loaded: ${charadesWords.length} charades, ${whoamiNames.length} whoami, ${roastLines.length} roasts, ${bgQuestions.length} brain games`
+                `✅ Fallback data loaded: ${charadesWords.length} charades, ${whoamiNames.length} whoami, ${roastLines.length} roasts, ${dontSayItData.length} dont-say-it, ${bgQuestions.length} brain games`
                 );
         }
 
@@ -8931,6 +11087,16 @@
                     whoamiNames = data.whoAmI;
                 } else {
                     whoamiNames = [];
+                }
+
+                if (data.dontSayIt && data.dontSayIt.length > 0) {
+                    dontSayItData = data.dontSayIt;
+                    saveDontSayItData();
+                    console.log(`🚫 Loaded ${dontSayItData.length} Don't Say It entries from data.json`);
+                } else if (!loadDontSayItData()) {
+                    dontSayItData = [...FALLBACK_DATA.dontSayIt];
+                    saveDontSayItData();
+                    console.log(`🚫 Using fallback Don't Say It data (${dontSayItData.length} entries)`);
                 }
 
                 if (data.brainGames && data.brainGames.length > 0) {
@@ -8983,12 +11149,14 @@
                     `🧩 ${hangmanWords.easy?.length || 0} easy, ${hangmanWords.medium?.length || 0} medium, ${hangmanWords.hard?.length || 0} hard, ${hangmanWords.expert?.length || 0} expert hangman words`
                     );
                 console.log(`🧠 ${bgQuestions.length} brain games questions`);
+                console.log(`🚫 ${dontSayItData.length} Don't Say It entries`);
 
                 saveGMData();
                 renderGameGrid();
                 renderAll();
                 renderGMData();
                 renderThemes();
+                renderDontSayItGM();
                 if (typeof renderBGQuestions === 'function') renderBGQuestions();
                 return true;
             } catch (error) {
@@ -9000,6 +11168,7 @@
                 renderAll();
                 renderGMData();
                 renderThemes();
+                renderDontSayItGM();
                 return false;
             }
         }
@@ -9040,7 +11209,8 @@
                     hangmanWords,
                     truthLieData,
                     roastLines,
-                    whoamiNames
+                    whoamiNames,
+                    dontSayItData
                 }));
             } catch (e) {}
         }
@@ -9058,6 +11228,12 @@
                     truthLieData = data.truthLieData || { truths: [], lies: [] };
                     roastLines = data.roastLines || [];
                     whoamiNames = data.whoamiNames || [];
+                    if (data.dontSayItData) {
+                        dontSayItData = data.dontSayItData;
+                    } else if (!loadDontSayItData()) {
+                        dontSayItData = [...FALLBACK_DATA.dontSayIt];
+                        saveDontSayItData();
+                    }
                     return true;
                 }
             } catch (e) {}
@@ -9091,6 +11267,7 @@
             renderGMRoast();
             renderGMWhoami();
             renderBGQuestions();
+            renderDontSayItGM();
         }
 
         function renderGMCharades() {
@@ -9413,7 +11590,6 @@
                 renderGMRoast(); }
         }
 
-        // ---- WHO AM I GM - FULLY FIXED ----
         function renderGMWhoami() {
             const list = document.getElementById('gmWhoamiList');
 
@@ -9506,6 +11682,7 @@
                 whoamiNames,
                 teams,
                 bgQuestions,
+                dontSayItData,
                 timestamp: new Date().toISOString()
             };
             const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
@@ -9539,13 +11716,16 @@
                             if (data.whoamiNames) whoamiNames = data.whoamiNames;
                             if (data.teams) teams = data.teams;
                             if (data.bgQuestions) bgQuestions = data.bgQuestions;
+                            if (data.dontSayItData) dontSayItData = data.dontSayItData;
                             savePlayers();
                             saveGMData();
                             saveBGQuestions();
+                            saveDontSayItData();
                             renderAll();
                             renderGMData();
                             renderTeams();
                             renderBGQuestions();
+                            renderDontSayItGM();
                             playSound('success');
                             alert('✅ Import successful!');
                         }
@@ -9647,6 +11827,12 @@
                     'none';
             });
             document.getElementById('bgGmSearch').addEventListener('input', bgFilterQuestions);
+
+            document.getElementById('customTimerInput').addEventListener('change', function() {
+                if (dgGameState.active) {
+                    dgGameState.timerSeconds = parseInt(this.value) || 60;
+                }
+            });
         }
 
         // ============================================================
@@ -9663,6 +11849,7 @@
                 if (hangmanWords[diff] && hangmanWords[diff].length > 0) hasData = true;
             }
             if (whoamiNames.length > 0) hasData = true;
+            if (dontSayItData.length > 0) hasData = true;
 
             if (!hasData) {
                 console.log('📥 Loading from data.json...');
@@ -9670,6 +11857,7 @@
             } else {
                 console.log('✅ Data loaded from localStorage');
                 console.log(`🕵️ ${whoamiNames.length} whoami names loaded`);
+                console.log(`🚫 ${dontSayItData.length} Don't Say It entries loaded`);
                 console.log(
                     `🧩 ${hangmanWords.easy?.length || 0} easy, ${hangmanWords.medium?.length || 0} medium, ${hangmanWords.hard?.length || 0} hard, ${hangmanWords.expert?.length || 0} expert hangman words`
                     );
@@ -9686,6 +11874,14 @@
                 }
             }
 
+            if (dontSayItData.length === 0) {
+                await loadData();
+                if (dontSayItData.length === 0) {
+                    dontSayItData = [...FALLBACK_DATA.dontSayIt];
+                    saveDontSayItData();
+                }
+            }
+
             renderGameGrid();
             renderAll();
             setupGMTabs();
@@ -9695,7 +11891,6 @@
             loadSoundPreferences();
             currentGameTimerSeconds = 30;
 
-            // Initialize Fast Talk
             if (!wordTracking.fasttalk) {
                 wordTracking.fasttalk = { currentCategoryIndex: 0 };
             }
@@ -9706,8 +11901,12 @@
             console.log(`🧠 ${bgQuestions.length} Brain Games questions`);
             console.log(`🕵️ ${whoamiNames.length} whoami names`);
             console.log(`🔥 ${roastLines.length} roast lines`);
+            console.log(`🚫 ${dontSayItData.length} Don't Say It entries`);
             console.log(`🎨 ${Object.keys(THEMES).length} themes available`);
             console.log(`⏱️ Fast Talk has ${fastTalkCategories.length} categories (random flipping enabled)`);
+            console.log(`💬 Describe & Guess has 4 modes ready!`);
+            console.log(`⚡ Rapid Fire: Team rounds with ${dgGameState.rapidFireAllTeams.length || 0} teams`);
+            console.log(`🏆 Unified scoring: +1 per correct answer (all games)`);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
