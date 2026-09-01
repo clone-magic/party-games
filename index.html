@@ -89,6 +89,8 @@
             --color-dontsayit-light: #f06a5a;
             --color-hardmode: #8e44ad;
             --color-hardmode-light: #a569bd;
+            --color-spinbottle: #e74c8a;
+            --color-spinbottle-light: #f06a9e;
         }
 
         /* ============================================================
@@ -4496,6 +4498,636 @@
             background: rgba(231, 76, 60, 0.1);
         }
 
+        /* Spin GM Section */
+        .spin-gm-section {
+            background: var(--theme-bg-input);
+            border-radius: var(--card-radius);
+            padding: 1.2rem;
+            border: 2px solid var(--theme-border-color);
+            margin-bottom: 1rem;
+        }
+
+        .spin-gm-section h4 {
+            color: var(--theme-text-secondary);
+            font-size: 0.8rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+        }
+
+        .spin-gm-section h4 span {
+            font-family: var(--font-display);
+            font-size: 0.6rem;
+            color: var(--theme-blue-electric);
+        }
+
+        .spin-gm-section .gm-tabs-mini {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .spin-gm-section .gm-tabs-mini button {
+            padding: 0.2rem 0.8rem;
+            border-radius: 16px;
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-secondary);
+            font-size: 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            font-weight: 700;
+        }
+
+        .spin-gm-section .gm-tabs-mini button:hover {
+            border-color: var(--theme-blue-electric);
+            color: var(--theme-text-primary);
+            transform: scale(1.05);
+        }
+
+        .spin-gm-section .gm-tabs-mini button.active {
+            border-color: var(--color-spinbottle);
+            background: var(--color-spinbottle);
+            color: white;
+        }
+
+        .spin-gm-form {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .spin-gm-form input {
+            flex: 1;
+            padding: 0.4rem 0.8rem;
+            border-radius: 12px;
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-primary);
+            font-size: 0.7rem;
+            font-family: var(--font-body);
+            transition: var(--transition);
+            min-width: 120px;
+        }
+
+        .spin-gm-form input:focus {
+            outline: none;
+            border-color: var(--theme-blue-electric);
+            box-shadow: 0 0 20px var(--theme-glow-blue);
+        }
+
+        .spin-gm-form input::placeholder {
+            color: var(--theme-text-muted);
+        }
+
+        .spin-gm-form button {
+            padding: 0.3rem 1rem;
+            border-radius: 12px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.55rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            background: var(--theme-blue-bright);
+            color: white;
+            box-shadow: 0 0 15px var(--theme-glow-blue);
+            white-space: nowrap;
+        }
+
+        .spin-gm-form button:hover {
+            transform: scale(1.05);
+        }
+
+        .spin-gm-form button.danger {
+            background: #e74c3c;
+            box-shadow: 0 0 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .spin-gm-list {
+            max-height: 150px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            padding: 0.2rem 0;
+        }
+
+        .spin-gm-item {
+            background: var(--theme-bg-card);
+            padding: 0.3rem 0.6rem;
+            border-radius: 8px;
+            border: 1px solid var(--theme-border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.55rem;
+            gap: 0.5rem;
+            color: var(--theme-text-secondary);
+        }
+
+        .spin-gm-item .item-text {
+            flex: 1;
+            color: var(--theme-text-primary);
+        }
+
+        .spin-gm-item .item-actions {
+            display: flex;
+            gap: 0.2rem;
+        }
+
+        .spin-gm-item .item-actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.6rem;
+            padding: 0.1rem 0.3rem;
+            border-radius: 4px;
+            transition: var(--transition);
+            color: var(--theme-text-muted);
+        }
+
+        .spin-gm-item .item-actions button:hover {
+            background: var(--theme-bg-input);
+            color: var(--theme-text-primary);
+        }
+
+        .spin-gm-item .item-actions button.danger:hover {
+            color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+        }
+
+        .spin-gm-empty {
+            text-align: center;
+            color: var(--theme-text-muted);
+            font-size: 0.6rem;
+            padding: 0.5rem;
+        }
+
+        /* ============================================================
+           SPIN THE BOTTLE - SETUP & MAIN MODAL
+           ============================================================ */
+        .spin-setup-modal {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 0.5rem 0;
+        }
+
+        .spin-setup-modal .setup-title {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            color: var(--theme-blue-electric);
+            text-shadow: 0 0 30px var(--theme-glow-blue);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .spin-setup-modal .setup-subtitle {
+            color: var(--theme-text-secondary);
+            font-size: 0.7rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .spin-setup-modal .mode-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .spin-setup-modal .mode-btn {
+            padding: 1rem 0.5rem;
+            border-radius: var(--card-radius);
+            border: 3px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-secondary);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.6rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.2rem;
+        }
+
+        .spin-setup-modal .mode-btn .mode-emoji {
+            font-size: 1.8rem;
+        }
+
+        .spin-setup-modal .mode-btn:hover {
+            border-color: var(--theme-blue-electric);
+            transform: scale(1.03);
+        }
+
+        .spin-setup-modal .mode-btn.active {
+            border-color: var(--color-spinbottle);
+            background: rgba(231, 76, 138, 0.15);
+            color: var(--theme-text-primary);
+            box-shadow: 0 0 30px rgba(231, 76, 138, 0.2);
+        }
+
+        .spin-setup-modal .duration-section {
+            background: var(--theme-bg-input);
+            border-radius: 12px;
+            padding: 0.8rem;
+            border: 2px solid var(--theme-border-color);
+            margin-bottom: 0.8rem;
+            text-align: center;
+        }
+
+        .spin-setup-modal .duration-section .dur-label {
+            font-family: var(--font-display);
+            font-size: 0.5rem;
+            color: var(--theme-text-muted);
+            letter-spacing: 2px;
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+
+        .spin-setup-modal .duration-section .dur-presets {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .spin-setup-modal .duration-section .dur-presets button {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-secondary);
+            font-size: 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            font-weight: 700;
+            min-height: 32px;
+        }
+
+        .spin-setup-modal .duration-section .dur-presets button:hover {
+            border-color: var(--theme-blue-electric);
+            color: var(--theme-text-primary);
+            transform: scale(1.05);
+        }
+
+        .spin-setup-modal .duration-section .dur-presets button.active {
+            border-color: var(--color-spinbottle);
+            background: var(--color-spinbottle);
+            color: white;
+        }
+
+        .spin-setup-modal .setup-info {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            padding: 0.5rem;
+            background: var(--theme-bg-input);
+            border-radius: 12px;
+            border: 2px solid var(--theme-border-color);
+            margin-bottom: 1rem;
+        }
+
+        .spin-setup-modal .setup-info .info-item {
+            font-size: 0.55rem;
+            color: var(--theme-text-secondary);
+            font-weight: 600;
+        }
+
+        .spin-setup-modal .setup-info .info-item strong {
+            color: var(--theme-blue-electric);
+        }
+
+        .spin-setup-modal .setup-start-btn {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            background: linear-gradient(135deg, #e74c8a, #c0397a);
+            color: white;
+            box-shadow: 0 0 30px rgba(231, 76, 138, 0.3);
+        }
+
+        .spin-setup-modal .setup-start-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 50px rgba(231, 76, 138, 0.5);
+        }
+
+        .spin-setup-modal .setup-start-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Spin Main Modal */
+        .spin-main-container {
+            padding: 0.2rem 0;
+        }
+
+        .spin-main-container .bottle-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .spin-main-container .bottle-wrapper {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto;
+        }
+
+        .spin-main-container .bottle-wrapper .pointer {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.8rem;
+            color: var(--theme-blue-electric);
+            filter: drop-shadow(0 0 20px var(--theme-glow-blue));
+            z-index: 10;
+            animation: pointerBounce 1s ease-in-out infinite;
+        }
+
+        @keyframes pointerBounce {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        .spin-main-container .bottle-wrapper .bottle {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: transform 0.1s linear;
+        }
+
+        .spin-main-container .bottle-wrapper .bottle .bottle-body {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 5.5rem;
+            filter: drop-shadow(0 0 30px rgba(255, 100, 150, 0.4));
+        }
+
+        .spin-main-container .bottle-wrapper .bottle .bottle-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(231, 76, 138, 0.15) 0%, transparent 70%);
+        }
+
+        .spin-main-container .bottle-wrapper .sparkles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .spin-main-container .bottle-wrapper .sparkles.active {
+            opacity: 1;
+        }
+
+        .spin-main-container .bottle-wrapper .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: sparkleFade 1s ease-in-out infinite;
+        }
+
+        @keyframes sparkleFade {
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) rotate(180deg);
+            }
+        }
+
+        .spin-main-container .spin-btn {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            border: none;
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: var(--transition);
+            background: linear-gradient(135deg, #e74c8a, #c0397a);
+            color: white;
+            box-shadow: 0 0 40px rgba(231, 76, 138, 0.4);
+            margin: 0.5rem 0;
+            min-width: 160px;
+        }
+
+        .spin-main-container .spin-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 60px rgba(231, 76, 138, 0.6);
+        }
+
+        .spin-main-container .spin-btn:active {
+            transform: scale(0.95);
+        }
+
+        .spin-main-container .spin-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .spin-main-container .challenge-area {
+            background: var(--theme-bg-card);
+            border-radius: var(--card-radius);
+            padding: 1rem;
+            border: 2px solid var(--theme-border-color);
+            box-shadow: var(--theme-shadow);
+            margin-top: 0.5rem;
+            text-align: center;
+            min-height: 130px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .spin-main-container .challenge-area .challenge-emoji {
+            font-size: 2rem;
+            margin-bottom: 0.1rem;
+        }
+
+        .spin-main-container .challenge-area .challenge-text {
+            font-size: 1rem;
+            color: var(--theme-text-primary);
+            font-weight: 700;
+            line-height: 1.5;
+            margin: 0.2rem 0;
+            max-width: 500px;
+        }
+
+        .spin-main-container .challenge-area .challenge-player {
+            font-size: 0.8rem;
+            color: var(--color-spinbottle);
+            font-family: var(--font-display);
+            letter-spacing: 2px;
+            margin-top: 0.2rem;
+            animation: playerReveal 0.5s ease;
+        }
+
+        .spin-main-container .challenge-area .challenge-player .player-name {
+            color: var(--theme-blue-electric);
+        }
+
+        /* Removed challenge-sequence styles since we no longer show sequence counts */
+
+        @keyframes playerReveal {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .spin-main-container .challenge-area .challenge-mode-label {
+            font-size: 0.45rem;
+            color: var(--theme-text-muted);
+            font-family: var(--font-display);
+            letter-spacing: 2px;
+            margin-bottom: 0.2rem;
+        }
+
+        .spin-main-container .challenge-area .challenge-actions {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 0.6rem;
+        }
+
+        .spin-main-container .challenge-area .challenge-actions button {
+            padding: 0.35rem 1.2rem;
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.55rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+        }
+
+        .spin-main-container .challenge-area .challenge-actions .complete-btn {
+            background: #2ecc71;
+            color: white;
+            box-shadow: 0 0 20px rgba(46, 204, 113, 0.3);
+        }
+
+        .spin-main-container .challenge-area .challenge-actions .complete-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(46, 204, 113, 0.5);
+        }
+
+        .spin-main-container .challenge-area .challenge-actions .skip-btn {
+            background: var(--theme-bg-input);
+            color: var(--theme-text-secondary);
+            border: 2px solid var(--theme-border-color);
+        }
+
+        .spin-main-container .challenge-area .challenge-actions .skip-btn:hover {
+            border-color: var(--theme-blue-electric);
+            color: var(--theme-text-primary);
+            transform: scale(1.05);
+        }
+
+        .spin-main-container .challenge-area .challenge-actions .spin-again-btn {
+            background: var(--color-spinbottle);
+            color: white;
+            box-shadow: 0 0 20px rgba(231, 76, 138, 0.3);
+        }
+
+        .spin-main-container .challenge-area .challenge-actions .spin-again-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(231, 76, 138, 0.5);
+        }
+
+        .spin-main-container .challenge-area .challenge-status {
+            font-size: 0.5rem;
+            color: var(--theme-text-muted);
+            margin-top: 0.3rem;
+        }
+
+        .spin-main-container .challenge-area .empty-state {
+            text-align: center;
+            color: var(--theme-text-muted);
+            font-size: 0.7rem;
+            padding: 0.5rem;
+        }
+
+        .spin-main-container .challenge-area .empty-state .empty-emoji {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .spin-main-container .spin-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            padding: 0.3rem 0.5rem;
+            background: var(--theme-bg-input);
+            border-radius: 10px;
+            border: 2px solid var(--theme-border-color);
+            margin-top: 0.5rem;
+        }
+
+        .spin-main-container .spin-stats .stat-item {
+            font-size: 0.5rem;
+            color: var(--theme-text-secondary);
+            font-weight: 600;
+        }
+
+        .spin-main-container .spin-stats .stat-item strong {
+            color: var(--color-spinbottle);
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .dg-mode-grid {
@@ -4791,6 +5423,49 @@
                 font-size: 0.5rem;
                 padding: 0.3rem 0.6rem;
             }
+
+            .spin-main-container .bottle-wrapper {
+                width: 140px;
+                height: 140px;
+            }
+
+            .spin-main-container .bottle-wrapper .bottle .bottle-body {
+                font-size: 4rem;
+            }
+
+            .spin-main-container .spin-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.6rem;
+                min-width: 120px;
+            }
+
+            .spin-main-container .challenge-area .challenge-text {
+                font-size: 0.85rem;
+            }
+
+            .spin-setup-modal .mode-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.5rem;
+            }
+
+            .spin-setup-modal .mode-btn {
+                padding: 0.7rem 0.3rem;
+                font-size: 0.5rem;
+            }
+
+            .spin-setup-modal .mode-btn .mode-emoji {
+                font-size: 1.4rem;
+            }
+
+            .spin-setup-modal .setup-start-btn {
+                font-size: 0.7rem;
+                padding: 0.6rem;
+            }
+
+            .spin-setup-modal .duration-section .dur-presets button {
+                font-size: 0.4rem;
+                padding: 0.2rem 0.6rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -4824,6 +5499,40 @@
             .dg-mode-card .dg-play-btn {
                 font-size: 0.5rem;
                 padding: 0.3rem 1rem;
+            }
+
+            .spin-main-container .bottle-wrapper {
+                width: 120px;
+                height: 120px;
+            }
+
+            .spin-main-container .bottle-wrapper .bottle .bottle-body {
+                font-size: 3.2rem;
+            }
+
+            .spin-main-container .spin-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.5rem;
+                min-width: 100px;
+            }
+
+            .spin-main-container .challenge-area .challenge-text {
+                font-size: 0.75rem;
+            }
+
+            .spin-setup-modal .mode-btn {
+                font-size: 0.45rem;
+                padding: 0.5rem 0.2rem;
+            }
+
+            .spin-setup-modal .mode-btn .mode-emoji {
+                font-size: 1.2rem;
+            }
+
+            .spin-setup-modal .duration-section .dur-presets button {
+                font-size: 0.35rem;
+                padding: 0.15rem 0.4rem;
+                min-height: 26px;
             }
         }
 
@@ -4912,6 +5621,25 @@
                 font-size: 0.4rem;
                 padding: 0.2rem 0.4rem;
             }
+
+            .spin-main-container .bottle-wrapper {
+                width: 100px;
+                height: 100px;
+            }
+
+            .spin-main-container .bottle-wrapper .bottle .bottle-body {
+                font-size: 2.8rem;
+            }
+
+            .spin-main-container .spin-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.45rem;
+                min-width: 80px;
+            }
+
+            .spin-main-container .challenge-area .challenge-text {
+                font-size: 0.65rem;
+            }
         }
 
         @media (pointer: coarse) {
@@ -4924,7 +5652,9 @@
             .star,
             .player-avatar,
             .lb-full-actions button,
-            .dg-mode-card {
+            .dg-mode-card,
+            .spin-setup-modal .mode-btn,
+            .spin-setup-modal .dur-presets button {
                 cursor: default;
                 touch-action: manipulation;
                 -webkit-tap-highlight-color: transparent;
@@ -4968,6 +5698,14 @@
                 transform: translateY(-4px);
                 border-color: var(--theme-blue-electric);
                 box-shadow: var(--theme-shadow-hover), 0 0 30px var(--theme-glow-blue);
+            }
+            .spin-setup-modal .mode-btn:hover {
+                border-color: var(--theme-blue-electric);
+                transform: scale(1.03);
+            }
+            .spin-setup-modal .dur-presets button:hover {
+                border-color: var(--theme-blue-electric);
+                transform: scale(1.05);
             }
         }
     </style>
@@ -5028,7 +5766,98 @@
         </div>
     </div>
 
-    <!-- MODAL OVERLAY -->
+    <!-- ============================================================
+         SPIN THE BOTTLE SETUP MODAL
+         ============================================================ -->
+    <div class="modal-overlay" id="spinSetupModal">
+        <div class="modal-box" id="spinSetupBox">
+            <button class="modal-close" onclick="closeSpinSetup()">✕</button>
+            <div class="spin-setup-modal">
+                <div class="setup-title">🍾 SPIN THE BOTTLE</div>
+                <div class="setup-subtitle">Select your game mode</div>
+
+                <div class="mode-grid" id="spinSetupModes">
+                    <button class="mode-btn active" data-mode="truth" onclick="spinSelectSetupMode('truth')">
+                        <span class="mode-emoji">🎯</span>
+                        Truth or Dare
+                    </button>
+                    <button class="mode-btn" data-mode="wouldrather" onclick="spinSelectSetupMode('wouldrather')">
+                        <span class="mode-emoji">💬</span>
+                        Would You Rather
+                    </button>
+                    <button class="mode-btn" data-mode="challenge" onclick="spinSelectSetupMode('challenge')">
+                        <span class="mode-emoji">💪</span>
+                        Challenge
+                    </button>
+                    <button class="mode-btn" data-mode="question" onclick="spinSelectSetupMode('question')">
+                        <span class="mode-emoji">❓</span>
+                        Question
+                    </button>
+                </div>
+
+                <div class="duration-section">
+                    <span class="dur-label">⏱️ SPIN DURATION</span>
+                    <div class="dur-presets" id="spinDurPresets">
+                        <button data-dur="5" onclick="spinSelectDuration(5, this)">5s</button>
+                        <button data-dur="8" onclick="spinSelectDuration(8, this)">8s</button>
+                        <button class="active" data-dur="10" onclick="spinSelectDuration(10, this)">10s</button>
+                        <button data-dur="12" onclick="spinSelectDuration(12, this)">12s</button>
+                        <button data-dur="15" onclick="spinSelectDuration(15, this)">15s</button>
+                    </div>
+                </div>
+
+                <div class="setup-info">
+                    <span class="info-item">👥 Players: <strong id="spinSetupPlayerCount">0</strong></span>
+                    <span class="info-item">🎯 Mode: <strong id="spinSetupModeDisplay">Truth or Dare</strong></span>
+                    <span class="info-item">⏱️ Duration: <strong id="spinSetupDurationDisplay">10s</strong></span>
+                </div>
+
+                <button class="setup-start-btn" id="spinSetupStartBtn" onclick="spinStartGame()">
+                    🚀 START SPINNING
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         SPIN THE BOTTLE MAIN MODAL
+         ============================================================ -->
+    <div class="modal-overlay" id="spinMainModal">
+        <div class="modal-box" id="spinMainBox">
+            <button class="modal-close" onclick="closeSpinMain()">✕</button>
+            <div class="spin-main-container">
+                <div class="bottle-area">
+                    <div class="bottle-wrapper">
+                        <div class="pointer">▼</div>
+                        <div class="sparkles" id="spinMainSparkles"></div>
+                        <div class="bottle" id="spinMainBottle">
+                            <div class="bottle-glow"></div>
+                            <div class="bottle-body">🍾</div>
+                        </div>
+                    </div>
+                    <button class="spin-btn" id="spinMainBtn" onclick="spinMainSpin()">
+                        🔄 SPIN THE BOTTLE
+                    </button>
+                </div>
+
+                <div class="challenge-area" id="spinMainChallenge">
+                    <div class="empty-state">
+                        <span class="empty-emoji">🍾</span>
+                        Press "SPIN THE BOTTLE" to start!
+                    </div>
+                </div>
+
+                <!-- Simplified stats: Only Spins, Mode, Player -->
+                <div class="spin-stats">
+                    <span class="stat-item">🔄 Spins: <strong id="spinMainTotalSpins">0</strong></span>
+                    <span class="stat-item">🎯 Mode: <strong id="spinMainModeDisplay">Truth or Dare</strong></span>
+                    <span class="stat-item">👤 Player: <strong id="spinMainPlayerDisplay">-</strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL OVERLAY (for other games) -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal-box" id="modalBox">
             <button class="modal-close" id="closeModalBtn">✕</button>
@@ -5087,6 +5916,10 @@
             <button class="nav-item" onclick="navigateTo('describe-guess')" data-page="describe-guess">
                 <span class="icon">💬</span>
                 <span>Describe & Guess</span>
+            </button>
+            <button class="nav-item" onclick="navigateTo('spin-bottle')" data-page="spin-bottle">
+                <span class="icon">🍾</span>
+                <span>Spin the Bottle</span>
             </button>
             <button class="nav-item" onclick="navigateTo('games')" data-page="games">
                 <span class="icon">🎮</span>
@@ -5311,6 +6144,43 @@
             </div>
 
             <!-- ==========================================================
+                 🍾 SPIN THE BOTTLE PAGE
+                 ========================================================== -->
+
+            <div class="page" id="spinBottlePage">
+                <div class="spin-container" style="max-width:900px;margin:0 auto;padding:0.5rem 0;text-align:center;">
+                    <div style="font-family:var(--font-display);font-size:1.4rem;color:var(--theme-blue-electric);text-shadow:0 0 30px var(--theme-glow-blue);letter-spacing:2px;margin-bottom:0.3rem;">
+                        🍾 SPIN THE BOTTLE
+                    </div>
+                    <div style="color:var(--theme-text-secondary);font-size:0.85rem;margin-bottom:1.5rem;">
+                        Gather your friends and spin to reveal fun challenges!
+                    </div>
+
+                    <div style="background:var(--theme-bg-card);border-radius:var(--card-radius);padding:2rem;border:2px solid var(--theme-border-color);box-shadow:var(--theme-shadow);max-width:500px;margin:0 auto;">
+                        <div style="font-size:4rem;margin-bottom:0.5rem;">🍾</div>
+                        <div style="font-size:1.1rem;color:var(--theme-text-primary);font-weight:700;margin-bottom:0.3rem;">
+                            Ready to play?
+                        </div>
+                        <div style="color:var(--theme-text-secondary);font-size:0.7rem;margin-bottom:1rem;">
+                            Make sure you have at least 2 players added on the Home page!
+                        </div>
+                        <div style="display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;">
+                            <button onclick="openSpinSetup()" style="padding:0.8rem 2.5rem;border-radius:50px;border:none;font-family:var(--font-display);font-size:0.7rem;cursor:pointer;transition:var(--transition);background:linear-gradient(135deg,#e74c8a,#c0397a);color:white;box-shadow:0 0 40px rgba(231,76,138,0.4);">
+                                🚀 START GAME
+                            </button>
+                            <button onclick="navigateTo('home')" style="padding:0.8rem 2rem;border-radius:50px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-secondary);font-family:var(--font-body);font-weight:700;font-size:0.6rem;cursor:pointer;transition:var(--transition);">
+                                👥 Add Players
+                            </button>
+                        </div>
+                        <div style="margin-top:1rem;padding:0.5rem;background:var(--theme-bg-input);border-radius:10px;border:2px solid var(--theme-border-color);">
+                            <span style="font-size:0.5rem;color:var(--theme-text-muted);">👥 Current players: <strong style="color:var(--theme-blue-electric);" id="spinPagePlayerCount">0</strong></span>
+                            <span style="font-size:0.5rem;color:var(--theme-text-muted);margin-left:1rem;">🎯 4 modes available</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==========================================================
                  GAMES PAGE
                  ========================================================== -->
 
@@ -5408,6 +6278,7 @@
                         <button data-tab="tab-whoami">🕵️ Who Am I</button>
                         <button data-tab="tab-braingames">🧠 Brain Games</button>
                         <button data-tab="tab-describeguess">💬 Describe & Guess</button>
+                        <button data-tab="tab-spinbottle">🍾 Spin the Bottle</button>
                     </div>
 
                     <!-- Charades -->
@@ -5619,6 +6490,31 @@
                         </div>
                     </div>
 
+                    <!-- Spin the Bottle GM Tab -->
+                    <div class="gm-tab-content" id="tab-spinbottle">
+                        <div class="spin-gm-section">
+                            <h4>🍾 Spin the Bottle - Challenges <span id="spinGmCount">0</span></h4>
+
+                            <div class="gm-tabs-mini" id="spinGmTabs">
+                                <button class="active" data-category="truth" onclick="spinGmSwitchTab('truth')">🎯 Truth</button>
+                                <button data-category="dare" onclick="spinGmSwitchTab('dare')">🔥 Dare</button>
+                                <button data-category="wouldrather" onclick="spinGmSwitchTab('wouldrather')">💬 Would Rather</button>
+                                <button data-category="challenge" onclick="spinGmSwitchTab('challenge')">💪 Challenge</button>
+                                <button data-category="question" onclick="spinGmSwitchTab('question')">❓ Question</button>
+                            </div>
+
+                            <div class="spin-gm-form">
+                                <input type="text" id="spinGmInput" placeholder="Add challenge..." />
+                                <button onclick="spinGmAdd()">➕ Add</button>
+                                <button class="danger" onclick="spinGmClear()">🗑️ Clear</button>
+                            </div>
+
+                            <div class="spin-gm-list" id="spinGmList">
+                                <div class="spin-gm-empty">No challenges added yet. Add some above!</div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -5631,20 +6527,13 @@
 
     <script>
         // ============================================================
-        //  FALLBACK DATA
+        //  FALLBACK DATA - SMALL (~10 per category for fallback)
         // ============================================================
         const FALLBACK_DATA = {
             charades: [
                 "elephant", "guitar", "astronaut", "penguin", "helicopter",
                 "telescope", "skateboard", "volcano", "tornado", "mermaid",
-                "dragon", "unicorn", "pirate", "knight", "zombie",
-                "dolphin", "eagle", "flamingo", "giraffe", "hippopotamus",
-                "igloo", "jacket", "kangaroo", "lighthouse", "mushroom",
-                "necklace", "octopus", "pancake", "quilt", "rainbow",
-                "snowman", "toothbrush", "umbrella", "vampire", "waterfall",
-                "xylophone", "yacht", "zipper", "alligator", "barn",
-                "cactus", "daisy", "escalator", "fireplace", "geyser",
-                "hammock", "icicle", "jellyfish", "kite", "lobster"
+                "dragon", "unicorn", "pirate", "knight", "zombie"
             ],
             karaoke: [
                 { title: "African Giant", artist: "Burna Boy" },
@@ -5654,11 +6543,7 @@
                 { title: "Love Nwantiti", artist: "CKay" },
                 { title: "Peru", artist: "Fireboy DML" },
                 { title: "Sungba", artist: "Asake" },
-                { title: "Rush", artist: "Ayra Starr" },
-                { title: "Cough (Odo)", artist: "Kizz Daniel" },
-                { title: "Buga", artist: "Kizz Daniel" },
-                { title: "Finesse", artist: "Pheelz" },
-                { title: "Feel", artist: "Davido" }
+                { title: "Rush", artist: "Ayra Starr" }
             ],
             fastTalk: [
                 { name: "Fruits", items: ["apple", "banana", "orange", "grape", "strawberry", "mango", "pineapple",
@@ -5676,10 +6561,7 @@
             ],
             pictionary: [
                 "house", "tree", "car", "dog", "cat", "sun", "moon", "star", "fish", "bird",
-                "apple", "banana", "pizza", "cake", "ice", "cream", "rain", "snow", "cloud", "rainbow",
-                "bicycle", "airplane", "train", "ship", "rocket", "castle", "tower", "bridge", "tunnel", "mountain",
-                "river", "lake", "ocean", "desert", "forest", "garden", "farm", "zoo", "museum", "theater",
-                "guitar", "drum", "piano", "trumpet", "violin", "microphone", "headphones", "speaker", "radio", "television"
+                "apple", "banana", "pizza", "cake", "ice", "cream", "rain", "snow", "cloud", "rainbow"
             ],
             hangman: {
                 easy: [
@@ -5765,22 +6647,12 @@
                 "You play sports like you're just happy to be here, and honestly, same.",
                 "Your hairstyle is giving 'I woke up like this' and we respect the confidence.",
                 "Your accent is like a fun remix of every language ever.",
-                "Your love life is a mystery novel - we're still reading, but we're invested.",
-                "You're the life of the party, even when the party is just you.",
-                "You're so funny, even when you're not trying - which is most of the time.",
-                "Your selfies are always a vibe - even the blurry ones.",
-                "You're tall and we appreciate you reaching things on high shelves.",
-                "You eat like you're enjoying life, and honestly, that's goals."
+                "Your love life is a mystery novel - we're still reading, but we're invested."
             ],
             whoami: [
                 "Wizkid", "Davido", "Burna Boy", "Rema", "Asake",
                 "Ayra Starr", "Tems", "Tiwa Savage", "Olamide", "Phyno",
-                "2Baba", "D'banj", "Don Jazzy", "Yemi Alade", "Flavour",
-                "Spider-Man", "Batman", "Superman", "Iron Man", "Black Panther",
-                "Wonder Woman", "Hulk", "Thor", "Captain America", "Deadpool",
-                "Dwayne Johnson", "Tom Cruise", "Leonardo DiCaprio", "Will Smith", "Denzel Washington",
-                "Beyoncé", "Rihanna", "Taylor Swift", "Adele", "Lady Gaga",
-                "Messi", "Ronaldo", "Neymar", "Serena Williams", "Tiger Woods"
+                "2Baba", "D'banj", "Don Jazzy", "Yemi Alade", "Flavour"
             ],
             brainGames: [
                 { text: "What is the capital of France?", options: ["Paris", "London", "Berlin", "Madrid"], correct: 0,
@@ -5804,28 +6676,71 @@
                 { word: "library", forbidden: ["book", "read", "quiet", "shelf", "library"] },
                 { word: "hospital", forbidden: ["doctor", "nurse", "patient", "medicine", "hospital"] },
                 { word: "school", forbidden: ["teacher", "student", "class", "learn", "grade"] },
-                { word: "restaurant", forbidden: ["food", "menu", "table", "order", "restaurant"] },
-                { word: "mountain", forbidden: ["hill", "peak", "climb", "snow", "summit"] },
-                { word: "ocean", forbidden: ["water", "waves", "deep", "blue", "fish"] },
-                { word: "guitar", forbidden: ["string", "music", "strum", "rock", "band"] },
-                { word: "camera", forbidden: ["photo", "lens", "picture", "flash", "snap"] },
-                { word: "bicycle", forbidden: ["pedal", "wheel", "ride", "helmet", "cycle"] },
-                { word: "keyboard", forbidden: ["type", "keys", "computer", "click", "letters"] },
-                { word: "umbrella", forbidden: ["rain", "shelter", "handle", "cover", "drops"] },
-                { word: "clock", forbidden: ["time", "hour", "minute", "tick", "second"] },
-                { word: "mirror", forbidden: ["reflection", "glass", "look", "face", "image"] },
-                { word: "book", forbidden: ["page", "read", "cover", "story", "author"] },
-                { word: "key", forbidden: ["door", "lock", "open", "metal", "chain"] },
-                { word: "fire", forbidden: ["burn", "flame", "heat", "smoke", "ash"] },
-                { word: "bread", forbidden: ["bake", "dough", "loaf", "toast", "flour"] },
-                { word: "train", forbidden: ["rail", "station", "track", "commute", "engine"] },
-                { word: "garden", forbidden: ["flower", "plant", "grow", "soil", "bloom"] },
-                { word: "lock", forbidden: ["key", "secure", "open", "padlock", "bolt"] },
-                { word: "needle", forbidden: ["sew", "thread", "sharp", "stitch", "eye"] },
-                { word: "newspaper", forbidden: ["news", "paper", "read", "headline", "article"] },
-                { word: "candle", forbidden: ["light", "wax", "flame", "glow", "stick"] },
-                { word: "wallet", forbidden: ["money", "card", "cash", "purse", "billfold"] }
-            ]
+                { word: "restaurant", forbidden: ["food", "menu", "table", "order", "restaurant"] }
+            ],
+            // Small fallback for Spin the Bottle (~10 per category)
+            spinBottle: {
+                truth: [
+                    "What is your biggest fear?",
+                    "What is the most embarrassing thing you've done?",
+                    "Have you ever had a secret crush on someone here?",
+                    "What is your biggest regret?",
+                    "What is the most adventurous thing you've ever done?",
+                    "What is something you've never told anyone?",
+                    "Who was your first celebrity crush?",
+                    "What is the worst date you've ever been on?",
+                    "What is the most spontaneous thing you've ever done?",
+                    "What is a secret talent you have?"
+                ],
+                dare: [
+                    "Do your best impression of a celebrity for 30 seconds",
+                    "Sing a song badly for 30 seconds",
+                    "Speak in an accent for the next 2 rounds",
+                    "Do 10 push-ups right now",
+                    "Act like a robot for 30 seconds",
+                    "Speak only in questions for the next minute",
+                    "Do a dramatic reading of the last text you sent",
+                    "Dance like nobody's watching for 30 seconds",
+                    "Say the alphabet backwards",
+                    "Do your best animal impression"
+                ],
+                wouldrather: [
+                    "Would you rather be rich or famous?",
+                    "Would you rather lose your phone or your wallet?",
+                    "Would you rather travel to the past or the future?",
+                    "Would you rather never eat chocolate or never eat pizza?",
+                    "Would you rather have no internet or no electricity?",
+                    "Would you rather be too hot or too cold?",
+                    "Would you rather have a beautiful face or a perfect body?",
+                    "Would you rather be able to fly or be invisible?",
+                    "Would you rather live in the city or the countryside?",
+                    "Would you rather have more time or more money?"
+                ],
+                challenge: [
+                    "Hold a plank for 30 seconds",
+                    "Recite a tongue twister 3 times fast",
+                    "Impress us with a talent",
+                    "Tell a joke that makes everyone laugh",
+                    "Do 20 jumping jacks",
+                    "Try to touch your toes without bending your knees",
+                    "Make up a song about the person to your right",
+                    "Do a dramatic reading of your favorite movie quote",
+                    "Whistle a song and let others guess it",
+                    "Do 15 squats right now"
+                ],
+                question: [
+                    "What's the best advice you've ever received?",
+                    "If you could have any superpower, what would it be?",
+                    "What's a skill you'd like to learn?",
+                    "Who do you admire most and why?",
+                    "What is the most important lesson life has taught you?",
+                    "What makes you feel grateful?",
+                    "What is a goal you're currently working toward?",
+                    "What is the best thing that happened to you today?",
+                    "What is a childhood memory that makes you smile?",
+                    "What is something you're passionate about?"
+                ]
+            }
         };
 
         // ============================================================
@@ -5866,7 +6781,8 @@
             describeit: { main: '#F39C12', light: '#F5B342', text: '#FFFFFF', glow: 'rgba(243,156,18,0.4)' },
             rapidfire: { main: '#00BCD4', light: '#33D4E8', text: '#FFFFFF', glow: 'rgba(0,188,212,0.4)' },
             dontsayit: { main: '#E74C3C', light: '#F06A5A', text: '#FFFFFF', glow: 'rgba(231,76,60,0.4)' },
-            hardmode: { main: '#8E44AD', light: '#A569BD', text: '#FFFFFF', glow: 'rgba(142,68,173,0.4)' }
+            hardmode: { main: '#8E44AD', light: '#A569BD', text: '#FFFFFF', glow: 'rgba(142,68,173,0.4)' },
+            spinbottle: { main: '#E74C8A', light: '#F06A9E', text: '#FFFFFF', glow: 'rgba(231,76,138,0.4)' }
         };
 
         const GAMES = [
@@ -5899,6 +6815,36 @@
 
         // Describe & Guess data
         let dontSayItData = [];
+
+        // Spin the Bottle data
+        let spinData = {
+            truth: [],
+            dare: [],
+            wouldrather: [],
+            challenge: [],
+            question: []
+        };
+        let spinCurrentMode = 'truth';
+        let spinIsSpinning = false;
+        let spinHistory = [];
+        let spinTotalSpins = 0;
+        let spinSelectedPlayer = null;
+        let spinCurrentChallenge = null;
+        let spinSetupMode = 'truth';
+        let spinUsedChallenges = {
+            truth: [],
+            dare: [],
+            wouldrather: [],
+            challenge: [],
+            question: []
+        };
+        let spinDuration = 10;
+        let spinTruthDareCounter = 0; // 0-4: 0=Truth(1/2), 1=Truth(2/2), 2=Dare(1/3), 3=Dare(2/3), 4=Dare(3/3)
+        let spinCurrentChallengeType = 'TRUTH';
+
+        // NEW: Track used players in the current round (no repeats until all selected)
+        let spinUsedPlayers = [];
+        let spinAvailablePlayers = [];
 
         let timerInterval = null;
         let timerSeconds = 30;
@@ -5938,6 +6884,7 @@
         };
 
         let hangmanGMFilter = 'all';
+        let spinGmCategory = 'truth';
 
         // ============================================================
         //  DESCRIBE & GUESS STATE
@@ -6065,18 +7012,6 @@
 
             wordTracking.fasttalk.currentCategoryIndex = newIndex;
             return categories[newIndex];
-        }
-
-        function advanceFastTalkCategory() {
-            const categories = fastTalkCategories;
-            if (!categories || categories.length === 0) return;
-            if (categories.length === 1) {
-                if (!wordTracking.fasttalk) {
-                    wordTracking.fasttalk = { currentCategoryIndex: 0 };
-                }
-                return categories[0];
-            }
-            return getRandomFastTalkCategory();
         }
 
         // ============================================================
@@ -6745,6 +7680,12 @@
                 if (document.getElementById('modalOverlay').classList.contains('active')) {
                     closeModal();
                 }
+                if (document.getElementById('spinSetupModal').classList.contains('active')) {
+                    closeSpinSetup();
+                }
+                if (document.getElementById('spinMainModal').classList.contains('active')) {
+                    closeSpinMain();
+                }
             },
             players: function() {
                 currentPage = 'players';
@@ -6759,6 +7700,12 @@
                 if (document.getElementById('modalOverlay').classList.contains('active')) {
                     closeModal();
                 }
+                if (document.getElementById('spinSetupModal').classList.contains('active')) {
+                    closeSpinSetup();
+                }
+                if (document.getElementById('spinMainModal').classList.contains('active')) {
+                    closeSpinMain();
+                }
             },
             braingames: function() {
                 currentPage = 'braingames';
@@ -6771,6 +7718,12 @@
                 document.getElementById('pageTitle').textContent = '🧠 BRAIN GAMES';
                 if (document.getElementById('modalOverlay').classList.contains('active')) {
                     closeModal();
+                }
+                if (document.getElementById('spinSetupModal').classList.contains('active')) {
+                    closeSpinSetup();
+                }
+                if (document.getElementById('spinMainModal').classList.contains('active')) {
+                    closeSpinMain();
                 }
                 bgInit();
             },
@@ -6786,7 +7739,33 @@
                 if (document.getElementById('modalOverlay').classList.contains('active')) {
                     closeModal();
                 }
+                if (document.getElementById('spinSetupModal').classList.contains('active')) {
+                    closeSpinSetup();
+                }
+                if (document.getElementById('spinMainModal').classList.contains('active')) {
+                    closeSpinMain();
+                }
                 dgUpdatePlayerCount();
+            },
+            'spin-bottle': function() {
+                currentPage = 'spin-bottle';
+                document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+                const navItem = document.querySelector('.nav-item[data-page="spin-bottle"]');
+                if (navItem) navItem.classList.add('active');
+                document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+                const targetPage = document.getElementById('spinBottlePage');
+                if (targetPage) targetPage.classList.add('active');
+                document.getElementById('pageTitle').textContent = '🍾 SPIN THE BOTTLE';
+                if (document.getElementById('modalOverlay').classList.contains('active')) {
+                    closeModal();
+                }
+                if (document.getElementById('spinSetupModal').classList.contains('active')) {
+                    closeSpinSetup();
+                }
+                if (document.getElementById('spinMainModal').classList.contains('active')) {
+                    closeSpinMain();
+                }
+                spinInit();
             },
             games: function() {
                 currentPage = 'games';
@@ -6800,6 +7779,12 @@
                 renderGameGrid();
                 if (document.getElementById('modalOverlay').classList.contains('active')) {
                     closeModal();
+                }
+                if (document.getElementById('spinSetupModal').classList.contains('active')) {
+                    closeSpinSetup();
+                }
+                if (document.getElementById('spinMainModal').classList.contains('active')) {
+                    closeSpinMain();
                 }
             },
             themes: function() {
@@ -6815,6 +7800,12 @@
                 loadSoundPreferences();
                 if (document.getElementById('modalOverlay').classList.contains('active')) {
                     closeModal();
+                }
+                if (document.getElementById('spinSetupModal').classList.contains('active')) {
+                    closeSpinSetup();
+                }
+                if (document.getElementById('spinMainModal').classList.contains('active')) {
+                    closeSpinMain();
                 }
             },
             gm: function() {
@@ -6832,6 +7823,12 @@
                 document.getElementById('pageTitle').textContent = 'GAME MASTER';
                 if (document.getElementById('modalOverlay').classList.contains('active')) {
                     closeModal();
+                }
+                if (document.getElementById('spinSetupModal').classList.contains('active')) {
+                    closeSpinSetup();
+                }
+                if (document.getElementById('spinMainModal').classList.contains('active')) {
+                    closeSpinMain();
                 }
             }
         };
@@ -6925,13 +7922,18 @@
             if (e.key === 'Escape' && document.getElementById('gmLockOverlay').classList.contains('active')) {
                 closeLockScreen();
             }
+            if (e.key === 'Escape' && document.getElementById('spinSetupModal').classList.contains('active')) {
+                closeSpinSetup();
+            }
+            if (e.key === 'Escape' && document.getElementById('spinMainModal').classList.contains('active')) {
+                closeSpinMain();
+            }
         });
 
         // ============================================================
         //  POINT SYSTEM
         // ============================================================
         function setPointPreset(val) {
-            // Keep for backward compatibility but all games now use +1
             document.querySelectorAll('.ps-presets .ps-btn').forEach(b => b.classList.remove('active'));
             document.querySelector(`.ps-presets .ps-btn[data-val="${val}"]`)?.classList.add('active');
         }
@@ -6947,7 +7949,6 @@
         }
 
         function applyCustomPoint() {
-            // All games now use +1 only
             document.getElementById('psCustomInput').style.display = 'none';
             playSound('success');
         }
@@ -6957,7 +7958,7 @@
         }
 
         function getActivePointValue() {
-            return 1; // All games now use +1
+            return 1;
         }
 
         // ============================================================
@@ -7023,6 +8024,7 @@
             }).join('');
             document.getElementById('playerCountBadge').textContent = `👥 ${players.length}`;
             dgUpdatePlayerCount();
+            spinUpdateUI();
         }
 
         function renderTeams() {
@@ -7090,6 +8092,7 @@
             updateModalHeader();
             if (currentPage === 'players') renderLeaderboardFull();
             dgUpdatePlayerCount();
+            spinUpdateUI();
         }
 
         // ============================================================
@@ -7664,7 +8667,6 @@
             roastGameState.gameComplete = false;
             roastGameState.results = [];
 
-            // Reset colors
             const modalBox = document.getElementById('modalBox');
             modalBox.style.borderColor = 'var(--theme-blue-bright)';
             modalBox.style.boxShadow = '0 0 80px var(--theme-glow-blue-strong)';
@@ -7701,7 +8703,6 @@
             overlay.classList.remove('active');
             document.body.style.overflow = '';
 
-            // Reset colors
             const modalBox = document.getElementById('modalBox');
             modalBox.style.borderColor = 'var(--theme-blue-bright)';
             modalBox.style.boxShadow = '0 0 80px var(--theme-glow-blue-strong)';
@@ -7785,7 +8786,6 @@
 
         document.getElementById('closeModalBtn').addEventListener('click', closeModal);
         overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
         // ============================================================
         //  TIMER
@@ -8093,7 +9093,7 @@
         }
 
         // ============================================================
-        //  GAME CONTENT FUNCTIONS
+        //  GAME CONTENT FUNCTIONS (other games)
         // ============================================================
         function startGameWithTimer() {
             if (selectedGameId === 'hangman') {
@@ -9909,7 +10909,6 @@
                 `.timer-presets button[onclick*="${dgGameState.timerSeconds}"]`);
             if (defaultPreset) defaultPreset.classList.add('active');
 
-            // Simplified setup - just timer and start button
             document.getElementById('timerSetup').style.display = 'flex';
             document.getElementById('modalContent').style.display = 'none';
 
@@ -10093,33 +11092,6 @@
                         <span class="dg-stat">⏱️ Timer: <span class="stat-value">${dgGameState.timerSeconds}s</span></span>
                         <span class="dg-stat">👥 ${teamModeEnabled ? 'Teams' : 'Players'}: <span class="stat-value">${dgGameState.mode === 'rapid-fire' ? dgGameState.rapidFireAllTeams.length : players.length}</span></span>
                     </div>
-
-                    <div style="background:var(--theme-bg-input);border-radius:12px;padding:0.8rem;border:2px solid var(--theme-border-color);margin:0.5rem 0;text-align:center;">
-                        ${dgGameState.mode === 'describe-it' ? `
-                            <p style="font-size:0.6rem;color:var(--theme-text-secondary);">
-                                🎯 Describe the word freely without saying it. Others guess!
-                                <br><span style="font-size:0.5rem;color:var(--theme-text-muted);">✅ CORRECT = +1 Point + Next Word + Next Turn</span>
-                            </p>
-                        ` : ''}
-                        ${dgGameState.mode === 'rapid-fire' ? `
-                            <p style="font-size:0.6rem;color:var(--theme-text-secondary);">
-                                ⚡ Each team gets their own round! Answer as many as possible!
-                                <br><span style="font-size:0.5rem;color:var(--theme-text-muted);">✅ CORRECT = +1 Point + Next Word · ⏭️ SKIP = 0 Points + Next Word</span>
-                            </p>
-                        ` : ''}
-                        ${dgGameState.mode === 'dont-say-it' ? `
-                            <p style="font-size:0.6rem;color:var(--theme-text-secondary);">
-                                🚫 Describe WITHOUT using forbidden words!
-                                <br><span style="font-size:0.5rem;color:var(--theme-text-muted);">✅ CORRECT = +1 Point + Next Word + Next Turn · 🚫 PENALTY = 0 Points + Next Word + Next Turn</span>
-                            </p>
-                        ` : ''}
-                        ${dgGameState.mode === 'hard-mode' ? `
-                            <p style="font-size:0.6rem;color:var(--theme-text-secondary);">
-                                💀 Only 5 words allowed! Click "MARK WORD USED" to track.
-                                <br><span style="font-size:0.5rem;color:var(--theme-text-muted);">✅ CORRECT = +1 Point + Next Word + Next Turn · 📝 MARK = Tracks word usage</span>
-                            </p>
-                        ` : ''}
-                    </div>
                 </div>
             `;
 
@@ -10139,7 +11111,6 @@
                 return;
             }
 
-            // Use the timer from the setup modal
             const timerValue = parseInt(document.getElementById('customTimerInput').value) || dgGameState.timerSeconds;
             dgGameState.timerSeconds = timerValue;
             currentGameTimerSeconds = timerValue;
@@ -10188,7 +11159,6 @@
                 return;
             }
 
-            // Use the timer from the setup modal
             const timerValue = parseInt(document.getElementById('customTimerInput').value) || dgGameState.timerSeconds;
             dgGameState.timerSeconds = timerValue;
             currentGameTimerSeconds = timerValue;
@@ -11037,6 +12007,572 @@
         }
 
         // ============================================================
+        //  🍾 SPIN THE BOTTLE - UPDATED
+        //  Changes:
+        //  1. Reset rotation to 0° after each spin (consistent speed)
+        //  2. No sequence counts shown in UI (only "TRUTH" or "DARE")
+        //  3. No player repeats until all players have been selected
+        //  4. Simplified stats (Spins, Mode, Player)
+        // ============================================================
+
+        function spinInit() {
+            loadSpinData();
+            spinUpdateUI();
+            spinUpdatePagePlayerCount();
+            // Reset sequence counters (backend only)
+            spinTruthDareCounter = 0;
+            spinCurrentChallengeType = 'TRUTH';
+            // Reset player pool
+            spinUpdatePlayerPool();
+        }
+
+        function spinUpdatePlayerPool() {
+            // Reset available players to all players, used players to empty
+            spinUsedPlayers = [];
+            spinAvailablePlayers = players.map(p => p.name);
+        }
+
+        function spinGetNextPlayer() {
+            // If no players available, reset the pool
+            if (spinAvailablePlayers.length === 0) {
+                spinUsedPlayers = [];
+                spinAvailablePlayers = players.map(p => p.name);
+                // If still empty (no players), return null
+                if (spinAvailablePlayers.length === 0) return null;
+            }
+
+            // Pick a random player from available players
+            const randomIndex = Math.floor(Math.random() * spinAvailablePlayers.length);
+            const playerName = spinAvailablePlayers[randomIndex];
+
+            // Move this player to used list
+            spinAvailablePlayers.splice(randomIndex, 1);
+            spinUsedPlayers.push(playerName);
+
+            // Find the actual player object
+            return players.find(p => p.name === playerName);
+        }
+
+        function getNextTruthDareChallenge() {
+            // Random reset chance (15%) - only during Truth phase to minimize truths
+            if (spinCurrentChallengeType === 'TRUTH' && Math.random() < 0.15) {
+                // Reset: go back to Truth phase
+                spinTruthDareCounter = 0;
+                spinCurrentChallengeType = 'TRUTH';
+                return { type: 'TRUTH' };
+            }
+
+            if (spinCurrentChallengeType === 'TRUTH') {
+                spinTruthDareCounter++;
+                if (spinTruthDareCounter >= 2) {
+                    // Switch to Dare phase
+                    spinCurrentChallengeType = 'DARE';
+                    spinTruthDareCounter = 0;
+                    return { type: 'DARE' };
+                }
+                return { type: 'TRUTH' };
+            } else {
+                // Dare phase
+                spinTruthDareCounter++;
+                if (spinTruthDareCounter >= 3) {
+                    // Switch back to Truth phase
+                    spinCurrentChallengeType = 'TRUTH';
+                    spinTruthDareCounter = 0;
+                    return { type: 'TRUTH' };
+                }
+                return { type: 'DARE' };
+            }
+        }
+
+        function spinUpdatePagePlayerCount() {
+            const el = document.getElementById('spinPagePlayerCount');
+            if (el) el.textContent = players.length;
+        }
+
+        function loadSpinData() {
+            try {
+                const saved = localStorage.getItem('arcadeSpinData');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    spinData = data;
+                    return true;
+                }
+            } catch (e) {}
+            spinData = FALLBACK_DATA.spinBottle || {
+                truth: [],
+                dare: [],
+                wouldrather: [],
+                challenge: [],
+                question: []
+            };
+            saveSpinData();
+            return true;
+        }
+
+        function saveSpinData() {
+            try {
+                localStorage.setItem('arcadeSpinData', JSON.stringify(spinData));
+            } catch (e) {}
+        }
+
+        function spinSelectSetupMode(mode) {
+            spinSetupMode = mode;
+            document.querySelectorAll('#spinSetupModes .mode-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.mode === mode);
+            });
+            const modeNames = {
+                truth: 'Truth or Dare',
+                wouldrather: 'Would You Rather',
+                challenge: 'Challenge',
+                question: 'Question'
+            };
+            document.getElementById('spinSetupModeDisplay').textContent = modeNames[mode] || 'Truth or Dare';
+            // Reset sequence when mode changes
+            if (mode === 'truth') {
+                spinTruthDareCounter = 0;
+                spinCurrentChallengeType = 'TRUTH';
+            }
+            playSound('point');
+        }
+
+        function spinSelectDuration(duration, btn) {
+            spinDuration = duration;
+            document.querySelectorAll('#spinDurPresets button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('spinSetupDurationDisplay').textContent = duration + 's';
+            playSound('point');
+        }
+
+        function openSpinSetup() {
+            if (players.length < 2) {
+                alert('Need at least 2 players to play Spin the Bottle!\nAdd players on the Home page.');
+                return;
+            }
+
+            // Reset spin state
+            spinSelectedPlayer = null;
+            spinCurrentChallenge = null;
+            spinTotalSpins = 0;
+            spinHistory = [];
+            spinUsedChallenges = {
+                truth: [],
+                dare: [],
+                wouldrather: [],
+                challenge: [],
+                question: []
+            };
+            spinUpdatePlayerPool();
+
+            // Reset sequence
+            if (spinSetupMode === 'truth') {
+                spinTruthDareCounter = 0;
+                spinCurrentChallengeType = 'TRUTH';
+            }
+
+            // Update setup modal
+            document.getElementById('spinSetupPlayerCount').textContent = players.length;
+            const modeNames = {
+                truth: 'Truth or Dare',
+                wouldrather: 'Would You Rather',
+                challenge: 'Challenge',
+                question: 'Question'
+            };
+            document.getElementById('spinSetupModeDisplay').textContent = modeNames[spinSetupMode] || 'Truth or Dare';
+            document.getElementById('spinSetupDurationDisplay').textContent = spinDuration + 's';
+
+            // Reset active mode button
+            document.querySelectorAll('#spinSetupModes .mode-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.mode === spinSetupMode);
+            });
+
+            // Reset duration active button
+            document.querySelectorAll('#spinDurPresets button').forEach(btn => {
+                btn.classList.toggle('active', parseInt(btn.dataset.dur) === spinDuration);
+            });
+
+            document.getElementById('spinSetupModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSpinSetup() {
+            document.getElementById('spinSetupModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function spinStartGame() {
+            if (players.length < 2) {
+                alert('Need at least 2 players!');
+                return;
+            }
+
+            closeSpinSetup();
+
+            // Reset main modal
+            spinTotalSpins = 0;
+            spinSelectedPlayer = null;
+            spinCurrentChallenge = null;
+            spinUsedChallenges = {
+                truth: [],
+                dare: [],
+                wouldrather: [],
+                challenge: [],
+                question: []
+            };
+            spinUpdatePlayerPool();
+            if (spinSetupMode === 'truth') {
+                spinTruthDareCounter = 0;
+                spinCurrentChallengeType = 'TRUTH';
+            }
+
+            // Update main modal
+            const modeNames = {
+                truth: 'Truth or Dare',
+                wouldrather: 'Would You Rather',
+                challenge: 'Challenge',
+                question: 'Question'
+            };
+            document.getElementById('spinMainModeDisplay').textContent = modeNames[spinSetupMode] || 'Truth or Dare';
+            document.getElementById('spinMainTotalSpins').textContent = '0';
+            document.getElementById('spinMainPlayerDisplay').textContent = '-';
+
+            // Reset challenge area
+            const challengeArea = document.getElementById('spinMainChallenge');
+            challengeArea.innerHTML = `
+                <div class="empty-state">
+                    <span class="empty-emoji">🍾</span>
+                    Press "SPIN THE BOTTLE" to start!
+                </div>
+            `;
+
+            // Reset bottle - set to 0 degrees
+            const bottle = document.getElementById('spinMainBottle');
+            bottle.style.transition = 'none';
+            bottle.style.transform = 'rotate(0deg)';
+            bottle.classList.remove('spinning');
+            document.getElementById('spinMainSparkles').classList.remove('active');
+
+            document.getElementById('spinMainModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            document.getElementById('spinMainBtn').disabled = false;
+
+            playSound('success');
+        }
+
+        function closeSpinMain() {
+            document.getElementById('spinMainModal').classList.remove('active');
+            document.body.style.overflow = '';
+            const bottle = document.getElementById('spinMainBottle');
+            bottle.style.transition = 'none';
+            bottle.style.transform = 'rotate(0deg)';
+            bottle.classList.remove('spinning');
+            document.getElementById('spinMainSparkles').classList.remove('active');
+            document.getElementById('spinMainBtn').disabled = false;
+            spinIsSpinning = false;
+        }
+
+        function spinMainSpin() {
+            if (players.length < 2) {
+                alert('Need at least 2 players!');
+                return;
+            }
+
+            if (spinIsSpinning) return;
+
+            const mode = spinSetupMode;
+            let category = mode === 'wouldrather' ? 'wouldrather' :
+                mode === 'challenge' ? 'challenge' :
+                mode === 'question' ? 'question' :
+                mode === 'dare' ? 'dare' :
+                'truth';
+
+            // For Truth or Dare mode, determine if we show Truth or Dare (backend only)
+            let challengeType = '';
+            let challengeCategory = 'truth';
+            let displayMode = '';
+
+            if (mode === 'truth') {
+                const result = getNextTruthDareChallenge();
+                challengeType = result.type;
+                challengeCategory = challengeType === 'TRUTH' ? 'truth' : 'dare';
+                displayMode = challengeType; // Just "TRUTH" or "DARE" - no counts
+            } else {
+                challengeType = 'CHALLENGE';
+                challengeCategory = category;
+                displayMode = mode.toUpperCase();
+            }
+
+            // Get challenges for the selected category
+            let challenges = spinData[challengeCategory] || [];
+            if (challenges.length === 0) {
+                const fallback = FALLBACK_DATA.spinBottle[challengeCategory] || [];
+                challenges = fallback;
+            }
+
+            if (challenges.length === 0) {
+                alert(`No challenges available for this mode! Add some in Game Master.`);
+                return;
+            }
+
+            // Filter out used challenges (tracked in backend)
+            const used = spinUsedChallenges[challengeCategory] || [];
+            let available = challenges.filter((_, idx) => !used.includes(idx));
+
+            // If all challenges used, reset the used list
+            if (available.length === 0) {
+                spinUsedChallenges[challengeCategory] = [];
+                used.length = 0;
+                available = challenges;
+            }
+
+            // Pick random challenge
+            const randomIndex = Math.floor(Math.random() * available.length);
+            const challenge = available[randomIndex];
+            const challengeIndex = challenges.indexOf(challenge);
+            spinUsedChallenges[challengeCategory].push(challengeIndex);
+
+            // Pick random player from available players (no repeats until all selected)
+            const selectedPlayer = spinGetNextPlayer();
+            if (!selectedPlayer) {
+                // Should never happen if players.length >= 2
+                spinUpdatePlayerPool();
+                alert('No players available!');
+                return;
+            }
+
+            spinSelectedPlayer = selectedPlayer;
+            spinCurrentChallenge = challenge;
+
+            // Animate bottle
+            const bottle = document.getElementById('spinMainBottle');
+            const sparkles = document.getElementById('spinMainSparkles');
+            const btn = document.getElementById('spinMainBtn');
+
+            btn.disabled = true;
+            spinIsSpinning = true;
+
+            // Reset bottle to 0° before starting new spin (ensure consistent speed)
+            bottle.style.transition = 'none';
+            bottle.style.transform = 'rotate(0deg)';
+            // Force reflow
+            void bottle.offsetWidth;
+
+            // Fixed duration (user selected)
+            const spinDurationMs = spinDuration * 1000;
+            const rotations = 4 + Math.random() * 6;
+            const extraAngle = Math.random() * 360;
+            const totalAngle = rotations * 360 + extraAngle;
+
+            // Show spinning state in challenge area
+            const challengeArea = document.getElementById('spinMainChallenge');
+            challengeArea.innerHTML = `
+                <div style="text-align:center;padding:0.5rem;">
+                    <span style="font-size:2.5rem;display:block;animation:spin 0.5s linear infinite;">🔄</span>
+                    <p style="color:var(--theme-text-muted);font-size:0.7rem;margin-top:0.3rem;">Spinning the bottle...</p>
+                    <p style="color:var(--theme-text-muted);font-size:0.5rem;margin-top:0.1rem;">${spinDuration}s</p>
+                </div>
+            `;
+
+            // Start spin animation with gradual slow down
+            bottle.style.transition = `transform ${spinDurationMs/1000}s cubic-bezier(0.08, 0.82, 0.17, 1)`;
+            bottle.style.transform = `rotate(${totalAngle}deg)`;
+            bottle.classList.add('spinning');
+            sparkles.classList.add('active');
+
+            playSound('timer');
+
+            // Show result after spin
+            setTimeout(() => {
+                bottle.classList.remove('spinning');
+                sparkles.classList.remove('active');
+                spinIsSpinning = false;
+                btn.disabled = false;
+
+                spinTotalSpins++;
+
+                // Update stats
+                document.getElementById('spinMainTotalSpins').textContent = spinTotalSpins;
+                document.getElementById('spinMainPlayerDisplay').textContent = selectedPlayer.emoji + ' ' + selectedPlayer.name;
+
+                // Show challenge result - simplified UI (no sequence counts)
+                const emojis = {
+                    truth: '🎯',
+                    dare: '🔥',
+                    wouldrather: '💬',
+                    challenge: '💪',
+                    question: '❓'
+                };
+
+                const modeNames = {
+                    truth: 'TRUTH OR DARE',
+                    dare: 'DARE',
+                    wouldrather: 'WOULD YOU RATHER',
+                    challenge: 'CHALLENGE',
+                    question: 'QUESTION'
+                };
+
+                let displayModeText = modeNames[mode] || 'CHALLENGE';
+                if (mode === 'truth') {
+                    displayModeText = challengeType === 'TRUTH' ? 'TRUTH' : 'DARE';
+                }
+
+                challengeArea.innerHTML = `
+                    <div class="challenge-mode-label">${displayModeText}</div>
+                    <div class="challenge-emoji">${emojis[challengeCategory] || emojis[mode] || '🎯'}</div>
+                    <div class="challenge-text">${challenge}</div>
+                    <div class="challenge-player">
+                        👤 Selected: <span class="player-name">${selectedPlayer.emoji} ${selectedPlayer.name}</span>
+                    </div>
+                    <div class="challenge-actions">
+                        <button class="complete-btn" onclick="spinMainComplete()">✅ COMPLETE</button>
+                        <button class="skip-btn" onclick="spinMainSkip()">⏭️ SKIP</button>
+                        <button class="spin-again-btn" onclick="spinMainSpin()">🔄 SPIN AGAIN</button>
+                    </div>
+                    <div class="challenge-status">💡 Host confirms completion or skip</div>
+                `;
+
+                createConfetti(15);
+                playSound('success');
+
+                // After spin completes, reset the bottle rotation to 0° for next spin
+                // This ensures consistent spin speed every time
+                setTimeout(() => {
+                    bottle.style.transition = 'none';
+                    bottle.style.transform = 'rotate(0deg)';
+                }, 200);
+
+            }, spinDurationMs);
+        }
+
+        function spinMainComplete() {
+            if (!spinSelectedPlayer || !spinCurrentChallenge) return;
+
+            // Show feedback
+            const challengeArea = document.getElementById('spinMainChallenge');
+            challengeArea.innerHTML = `
+                <div style="text-align:center;padding:0.5rem;">
+                    <span style="font-size:2.5rem;display:block;">🎉</span>
+                    <p style="color:#2ecc71;font-weight:700;font-size:0.9rem;">Challenge completed!</p>
+                    <p style="font-size:0.6rem;color:var(--theme-text-muted);margin-top:0.2rem;">Ready for the next spin!</p>
+                    <button onclick="spinMainResetChallenge()" style="margin-top:0.5rem;padding:0.4rem 1.5rem;border-radius:20px;border:none;background:var(--theme-blue-bright);color:white;font-weight:700;font-size:0.55rem;cursor:pointer;font-family:var(--font-body);">🔄 SPIN AGAIN</button>
+                </div>
+            `;
+
+            createConfetti(20);
+            playSound('levelup');
+
+            spinSelectedPlayer = null;
+            spinCurrentChallenge = null;
+        }
+
+        function spinMainSkip() {
+            if (!spinSelectedPlayer || !spinCurrentChallenge) return;
+
+            const challengeArea = document.getElementById('spinMainChallenge');
+            challengeArea.innerHTML = `
+                <div style="text-align:center;padding:0.5rem;">
+                    <span style="font-size:2.5rem;display:block;">⏭️</span>
+                    <p style="color:var(--theme-text-secondary);font-weight:700;font-size:0.9rem;">Challenge skipped</p>
+                    <p style="font-size:0.6rem;color:var(--theme-text-muted);margin-top:0.2rem;">Ready for the next spin!</p>
+                    <button onclick="spinMainResetChallenge()" style="margin-top:0.5rem;padding:0.4rem 1.5rem;border-radius:20px;border:none;background:var(--theme-blue-bright);color:white;font-weight:700;font-size:0.55rem;cursor:pointer;font-family:var(--font-body);">🔄 SPIN AGAIN</button>
+                </div>
+            `;
+
+            playSound('point');
+
+            spinSelectedPlayer = null;
+            spinCurrentChallenge = null;
+        }
+
+        function spinMainResetChallenge() {
+            const challengeArea = document.getElementById('spinMainChallenge');
+            challengeArea.innerHTML = `
+                <div class="empty-state">
+                    <span class="empty-emoji">🍾</span>
+                    Press "SPIN THE BOTTLE" to start!
+                </div>
+            `;
+            document.getElementById('spinMainPlayerDisplay').textContent = '-';
+        }
+
+        function spinUpdateUI() {
+            spinUpdatePagePlayerCount();
+        }
+
+        // ============================================================
+        //  SPIN GM FUNCTIONS
+        // ============================================================
+
+        function spinGmSwitchTab(category) {
+            spinGmCategory = category;
+            document.querySelectorAll('#spinGmTabs button').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.category === category);
+            });
+            renderSpinGM();
+            playSound('point');
+        }
+
+        function renderSpinGM() {
+            const list = document.getElementById('spinGmList');
+            const items = spinData[spinGmCategory] || [];
+            document.getElementById('spinGmCount').textContent =
+                Object.values(spinData).reduce((sum, arr) => sum + arr.length, 0);
+
+            if (items.length === 0) {
+                list.innerHTML = '<div class="spin-gm-empty">No challenges added yet. Add some above!</div>';
+                return;
+            }
+
+            list.innerHTML = items.map((item, i) => `
+                <div class="spin-gm-item">
+                    <span class="item-text">${item}</span>
+                    <div class="item-actions">
+                        <button onclick="spinGmDelete(${i})" class="danger" title="Delete">🗑️</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function spinGmAdd() {
+            const input = document.getElementById('spinGmInput');
+            const value = input.value.trim();
+
+            if (!value) {
+                alert('Please enter a challenge!');
+                return;
+            }
+
+            if (!spinData[spinGmCategory]) {
+                spinData[spinGmCategory] = [];
+            }
+
+            spinData[spinGmCategory].push(value);
+            saveSpinData();
+            renderSpinGM();
+            input.value = '';
+            createConfetti(10);
+            playSound('success');
+        }
+
+        function spinGmDelete(index) {
+            if (confirm('Delete this challenge?')) {
+                spinData[spinGmCategory].splice(index, 1);
+                saveSpinData();
+                renderSpinGM();
+                playSound('point');
+            }
+        }
+
+        function spinGmClear() {
+            if (confirm(`Clear all challenges in ${spinGmCategory}?`)) {
+                spinData[spinGmCategory] = [];
+                saveSpinData();
+                renderSpinGM();
+                playSound('point');
+            }
+        }
+
+        // ============================================================
         //  LOAD DATA
         // ============================================================
         function loadFallbackData() {
@@ -11052,6 +12588,14 @@
             whoamiNames = [...FALLBACK_DATA.whoami];
             dontSayItData = [...FALLBACK_DATA.dontSayIt];
             saveDontSayItData();
+            spinData = FALLBACK_DATA.spinBottle || {
+                truth: [],
+                dare: [],
+                wouldrather: [],
+                challenge: [],
+                question: []
+            };
+            saveSpinData();
 
             if (FALLBACK_DATA.brainGames && FALLBACK_DATA.brainGames.length > 0) {
                 bgQuestions = [...FALLBACK_DATA.brainGames];
@@ -11089,15 +12633,32 @@
                     whoamiNames = [];
                 }
 
-                if (data.describeGuess && data.describeGuess.dontSayIt && data.describeGuess.dontSayIt.length > 0) {
-    dontSayItData = data.describeGuess.dontSayIt;
-    saveDontSayItData();
-    console.log(`🚫 Loaded ${dontSayItData.length} Don't Say It entries from data.json`);
-} else if (!loadDontSayItData()) {
-    dontSayItData = [...FALLBACK_DATA.dontSayIt];
-    saveDontSayItData();
-    console.log(`🚫 Using fallback Don't Say It data (${dontSayItData.length} entries)`);
-}
+                if (data.dontSayIt && data.dontSayIt.length > 0) {
+                    dontSayItData = data.dontSayIt;
+                    saveDontSayItData();
+                    console.log(`🚫 Loaded ${dontSayItData.length} Don't Say It entries from data.json`);
+                } else if (!loadDontSayItData()) {
+                    dontSayItData = [...FALLBACK_DATA.dontSayIt];
+                    saveDontSayItData();
+                    console.log(`🚫 Using fallback Don't Say It data (${dontSayItData.length} entries)`);
+                }
+
+                // Load Spin the Bottle data
+                if (data.spinTheBottle) {
+                    spinData = data.spinTheBottle;
+                    saveSpinData();
+                    console.log(`🍾 Loaded Spin the Bottle data from data.json`);
+                } else if (!loadSpinData()) {
+                    spinData = FALLBACK_DATA.spinBottle || {
+                        truth: [],
+                        dare: [],
+                        wouldrather: [],
+                        challenge: [],
+                        question: []
+                    };
+                    saveSpinData();
+                    console.log(`🍾 Using fallback Spin the Bottle data`);
+                }
 
                 if (data.brainGames && data.brainGames.length > 0) {
                     bgQuestions = data.brainGames;
@@ -11150,6 +12711,7 @@
                     );
                 console.log(`🧠 ${bgQuestions.length} brain games questions`);
                 console.log(`🚫 ${dontSayItData.length} Don't Say It entries`);
+                console.log(`🍾 Spin the Bottle data loaded`);
 
                 saveGMData();
                 renderGameGrid();
@@ -11157,6 +12719,7 @@
                 renderGMData();
                 renderThemes();
                 renderDontSayItGM();
+                renderSpinGM();
                 if (typeof renderBGQuestions === 'function') renderBGQuestions();
                 return true;
             } catch (error) {
@@ -11169,6 +12732,7 @@
                 renderGMData();
                 renderThemes();
                 renderDontSayItGM();
+                renderSpinGM();
                 return false;
             }
         }
@@ -11210,7 +12774,8 @@
                     truthLieData,
                     roastLines,
                     whoamiNames,
-                    dontSayItData
+                    dontSayItData,
+                    spinData
                 }));
             } catch (e) {}
         }
@@ -11233,6 +12798,19 @@
                     } else if (!loadDontSayItData()) {
                         dontSayItData = [...FALLBACK_DATA.dontSayIt];
                         saveDontSayItData();
+                    }
+                    if (data.spinData) {
+                        spinData = data.spinData;
+                        saveSpinData();
+                    } else if (!loadSpinData()) {
+                        spinData = FALLBACK_DATA.spinBottle || {
+                            truth: [],
+                            dare: [],
+                            wouldrather: [],
+                            challenge: [],
+                            question: []
+                        };
+                        saveSpinData();
                     }
                     return true;
                 }
@@ -11268,6 +12846,7 @@
             renderGMWhoami();
             renderBGQuestions();
             renderDontSayItGM();
+            renderSpinGM();
         }
 
         function renderGMCharades() {
@@ -11683,6 +13262,7 @@
                 teams,
                 bgQuestions,
                 dontSayItData,
+                spinData,
                 timestamp: new Date().toISOString()
             };
             const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
@@ -11717,15 +13297,18 @@
                             if (data.teams) teams = data.teams;
                             if (data.bgQuestions) bgQuestions = data.bgQuestions;
                             if (data.dontSayItData) dontSayItData = data.dontSayItData;
+                            if (data.spinData) spinData = data.spinData;
                             savePlayers();
                             saveGMData();
                             saveBGQuestions();
                             saveDontSayItData();
+                            saveSpinData();
                             renderAll();
                             renderGMData();
                             renderTeams();
                             renderBGQuestions();
                             renderDontSayItGM();
+                            renderSpinGM();
                             playSound('success');
                             alert('✅ Import successful!');
                         }
@@ -11833,6 +13416,16 @@
                     dgGameState.timerSeconds = parseInt(this.value) || 60;
                 }
             });
+
+            document.getElementById('spinGmInput').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') spinGmAdd();
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && document.getElementById('spinSetupModal').classList.contains('active')) {
+                    spinStartGame();
+                }
+            });
         }
 
         // ============================================================
@@ -11882,6 +13475,20 @@
                 }
             }
 
+            if (Object.values(spinData).every(arr => arr.length === 0)) {
+                await loadData();
+                if (Object.values(spinData).every(arr => arr.length === 0)) {
+                    spinData = FALLBACK_DATA.spinBottle || {
+                        truth: [],
+                        dare: [],
+                        wouldrather: [],
+                        challenge: [],
+                        question: []
+                    };
+                    saveSpinData();
+                }
+            }
+
             renderGameGrid();
             renderAll();
             setupGMTabs();
@@ -11896,6 +13503,7 @@
             }
 
             bgInit();
+            spinInit();
 
             console.log('🎮 ARCADE PARTY loaded with Fast Talk random category flipping!');
             console.log(`🧠 ${bgQuestions.length} Brain Games questions`);
@@ -11906,7 +13514,12 @@
             console.log(`⏱️ Fast Talk has ${fastTalkCategories.length} categories (random flipping enabled)`);
             console.log(`💬 Describe & Guess has 4 modes ready!`);
             console.log(`⚡ Rapid Fire: Team rounds with ${dgGameState.rapidFireAllTeams.length || 0} teams`);
+            console.log(`🍾 Spin the Bottle has ${Object.values(spinData).reduce((sum, arr) => sum + arr.length, 0)} challenges!`);
             console.log(`🏆 Unified scoring: +1 per correct answer (all games)`);
+            console.log(`⏱️ Spin duration: User selectable (5s, 8s, 10s, 12s, 15s) with gradual slow down`);
+            console.log(`🎯 Truth or Dare: 2 Truths → 3 Dares sequence with random reset to minimize truths`);
+            console.log(`🔄 Spin: No player repeats until all have been selected`);
+            console.log(`🔒 Spin: Sequence counts hidden from UI`);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -11921,6 +13534,7 @@
                         wordTracking.fasttalk = { currentCategoryIndex: 0 };
                     }
                     bgInit();
+                    spinInit();
                 });
             }
         });
