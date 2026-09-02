@@ -1,10 +1,10 @@
 # 🎮 ARCADE PARTY
 
-**A complete offline multiplayer party game platform - 8 games, team management, scoring, and full customization.**
+**A complete offline multiplayer party game platform - 11 games, team management, scoring, and full customization.**
 
 > Built as a single HTML file. No installation required. Just open in any browser and play!
 
-![ARCADE PARTY](https://img.shields.io/badge/version-2.0-blue) ![Platform](https://img.shields.io/badge/platform-web-brightgreen) ![License](https://img.shields.io/badge/license-MIT-orange)
+![ARCADE PARTY](https://img.shields.io/badge/version-3.0-blue) ![Platform](https://img.shields.io/badge/platform-web-brightgreen) ![License](https://img.shields.io/badge/license-MIT-orange)
 
 ---
 
@@ -13,6 +13,8 @@
 - [Overview](#-overview)
 - [Quick Start](#-quick-start)
 - [Game Library](#-game-library)
+- [Mind Games](#-mind-games)
+- [Spin the Bottle](#-spin-the-bottle)
 - [Game Master](#-game-master)
 - [Team Mode](#-team-mode)
 - [Scoring System](#-scoring-system)
@@ -26,18 +28,19 @@
 
 ## 🎯 Overview
 
-**ARCADE PARTY** is a full-featured party game platform designed for gatherings with friends and family. It includes 8 unique games, team management, customizable content, and a robust scoring system—all in a single, self-contained HTML file.
+**ARCADE PARTY** is a full-featured party game platform designed for gatherings with friends and family. It includes 11 unique games, team management, customizable content, and a robust scoring system—all in a single, self-contained HTML file.
 
 ### Key Features
 
-- ✅ **8 Unique Games** - Charades, Hangman, Truth & Lie, Pictionary, Karaoke, Fast Talk, Roast Battle, Who Am I?
+- ✅ **11 Unique Games** - Charades, Hangman, Truth & Lie, Pictionary, Karaoke, Fast Talk, Roast Battle, Who Am I?, Brain Games, Describe & Guess, Spin the Bottle
 - ✅ **Offline Ready** - No internet connection needed after initial load
 - ✅ **Team Mode** - Play in teams with automatic scoring
-- ✅ **Game Master** - Customize game content (words, songs, categories, questions)
+- ✅ **Game Master** - Customize game content (words, songs, categories, questions, challenges)
 - ✅ **Persistent Data** - All scores and custom content saved in your browser
 - ✅ **Export/Import** - Save and share your game data
 - ✅ **Sound Effects** - Toggle on/off with multiple sound options
 - ✅ **Themes** - 12 professional color themes to choose from
+- ✅ **18+ Verification** - Age verification for Spin the Bottle
 
 ---
 
@@ -121,32 +124,87 @@
 
 ---
 
+## 🧠 Mind Games
+
+**Access:** Click "Mind Games" in the sidebar
+
+Combines Brain Games and Describe & Guess into one tabbed interface.
+
+### Brain Games
+- Trivia quiz with multiple choice questions
+- Customizable timer (5-300 seconds)
+- Select number of questions (5, 10, 15, 20, or All)
+- Tracks correct answers and awards points
+
+### Describe & Guess
+Four game modes:
+
+| Mode | Description |
+|------|-------------|
+| 🎯 **Describe It** | Standard description game using Charades + Pictionary words |
+| ⚡ **Rapid Fire** | Team rounds against the clock. Most correct wins! |
+| 🚫 **Don't Say It** | Describe words without using forbidden words (word bank in GM) |
+| 💀 **Hard Mode** | Only 5 words allowed to describe. Mark words as you use them |
+
+---
+
+## 🍾 Spin the Bottle
+
+**Access:** Click "Spin the Bottle" in the sidebar
+
+> 🔞 **18+ Verification Required** - Age check before launching
+
+### Game Modes
+
+| Mode | Description |
+|------|-------------|
+| 🎯 **Truth or Dare** | Sequential (2 Truths → 3 Dares → reset) |
+| 💬 **Would You Rather** | Steamy romantic choices |
+| 💪 **Challenge** | Physical/social challenges (massage, dancing, touch, eye contact) |
+| ❓ **Question** | Deep intimate conversation starters |
+
+### Features
+- **No Player Repeats** - Each player is selected once before resetting
+- **Truth or Dare Sequence** - 2 truths → 3 dares → random reset
+- **Customizable Spin Duration** - 5s, 8s, 10s, 12s, 15s
+- **Spin History Tracking** - Shows spins, mode, and current player
+- **No Gym Activities** - All challenges are romantic/physical (massage, dancing, touch, eye contact)
+
+---
+
 ## 👑 Game Master
 
 **Access:** Click the "Game Master" button in the sidebar
 
 **Password:** `clone1234#`
 
-
 ### What You Can Customize
 
 | Tab | Content |
 |-----|---------|
-| 🎭 Charades | Add/remove acting words |
-| 🎤 Karaoke | Add/remove songs with artists |
-| ⏱️ Fast Talk | Add/remove categories with items |
-| 🎨 Pictionary | Add/remove drawing words |
-| 🧩 Hangman | Add/remove words with definitions & difficulty |
-| 🤥 Truth & Lie | Add/remove truths and lies |
-| 🔥 Roast | Add/remove roast lines |
-| 🕵️ Who Am I | Add/remove character names |
-| 🧠 Brain Games | Add/remove quiz questions (multiple choice) |
+| 🎭 **Charades** | Add/remove acting words |
+| 🎤 **Karaoke** | Add/remove songs with artists |
+| ⏱️ **Fast Talk** | Add/remove categories with items |
+| 🎨 **Pictionary** | Add/remove drawing words |
+| 🧩 **Hangman** | Add/remove words with definitions & difficulty |
+| 🤥 **Truth & Lie** | Add/remove truths and lies |
+| 🔥 **Roast** | Add/remove roast lines |
+| 🕵️ **Who Am I** | Add/remove character names |
+| 🧠 **Brain Games** | Add/remove quiz questions (multiple choice) |
+| 💬 **Describe & Guess** | Add/remove Don't Say It word pairs (word + forbidden words) |
+| 🍾 **Spin the Bottle** | Add/remove challenges for Truth, Dare, Would Rather, Challenge, Question |
 
 ### Adding Brain Games Questions
 1. Go to Game Master → Brain Games tab
 2. Fill in: Question text, 4 options, correct answer, category
 3. Click "Add Question"
 4. Questions appear in the Brain Games game mode
+
+### Adding Spin the Bottle Challenges
+1. Go to Game Master → Spin the Bottle tab
+2. Select a category: Truth, Dare, Would Rather, Challenge, or Question
+3. Type your challenge and click "Add"
+4. Challenges appear in the Spin the Bottle game
 
 ---
 
@@ -178,9 +236,7 @@
 ### Scoring Buttons
 During any game, use the scoring section at the bottom:
 - **−1** - Subtract 1 point
-- **+N** - Add the current point value (1, 3, or 5)
-- **+3N** - Add triple the current point value
-- **+5N** - Add 5× the current point value
+- **+1** - Add 1 point (unified scoring across all games)
 
 ### Achievements
 Players earn achievements for milestones:
