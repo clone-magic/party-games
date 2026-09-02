@@ -88,7 +88,6 @@
 - Hint system (reveals a letter or definition)
 - 6 wrong guesses allowed
 - Win bonus: +1 point
-- Clean SVG drawing (no background, no glow)
 
 #### 🤥 Truth & Lie
 - Random facts from your custom data bank
@@ -128,7 +127,6 @@
 
 **Access:** Click "Mind Games" in the sidebar
 
-Combines Brain Games and Describe & Guess into one tabbed interface.
 
 ### Brain Games
 - Trivia quiz with multiple choice questions
@@ -158,17 +156,16 @@ Four game modes:
 
 | Mode | Description |
 |------|-------------|
-| 🎯 **Truth or Dare** | Sequential (2 Truths → 3 Dares → reset) |
-| 💬 **Would You Rather** | Steamy romantic choices |
-| 💪 **Challenge** | Physical/social challenges (massage, dancing, touch, eye contact) |
-| ❓ **Question** | Deep intimate conversation starters |
+| 🎯 **Truth or Dare** |
+| 💬 **Would You Rather** |
+| 💪 **Challenge** |
+| ❓ **Question** |
 
 ### Features
 - **No Player Repeats** - Each player is selected once before resetting
 - **Truth or Dare Sequence** - 2 truths → 3 dares → random reset
 - **Customizable Spin Duration** - 5s, 8s, 10s, 12s, 15s
 - **Spin History Tracking** - Shows spins, mode, and current player
-- **No Gym Activities** - All challenges are romantic/physical (massage, dancing, touch, eye contact)
 
 ---
 
