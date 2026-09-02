@@ -1416,104 +1416,481 @@
         }
 
         /* ============================================================
-           DESCRIBE & GUESS PAGE
+           MIND GAMES PAGE (Combined Brain Games + Describe & Guess)
            ============================================================ */
-        .describe-guess-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .mind-games-container {
+            display: block;
             padding: 0.5rem 0;
         }
 
-        .dg-header {
-            text-align: center;
-            margin-bottom: 1.5rem;
+        .mg-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.2rem;
+            border-bottom: 2px solid var(--theme-border-color);
+            padding-bottom: 0.8rem;
         }
 
-        .dg-title {
-            font-family: var(--font-display);
-            font-size: 1.4rem;
-            color: var(--theme-blue-electric);
-            text-shadow: 0 0 30px var(--theme-glow-blue);
-            letter-spacing: 2px;
-        }
-
-        .dg-subtitle {
-            color: var(--theme-text-secondary);
-            font-size: 0.85rem;
-            margin-top: 0.2rem;
-        }
-
-        .dg-mode-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .dg-mode-card {
-            background: var(--theme-bg-card);
-            border-radius: var(--card-radius);
-            padding: 1.5rem 1rem;
+        .mg-tabs button {
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
             border: 2px solid var(--theme-border-color);
-            text-align: center;
+            background: var(--theme-bg-input);
+            color: var(--theme-text-secondary);
+            font-size: 0.7rem;
             cursor: pointer;
             transition: var(--transition);
+            font-family: var(--font-body);
+            font-weight: 700;
+        }
+
+        .mg-tabs button:hover {
+            border-color: var(--theme-blue-electric);
+            color: var(--theme-text-primary);
+            transform: scale(1.05);
+        }
+
+        .mg-tabs button.active {
+            border-color: var(--theme-blue-electric);
+            background: var(--theme-blue-electric);
+            color: var(--blue-dark);
+        }
+
+        .mg-tab-content {
+            display: none;
+            animation: pageIn 0.3s ease;
+        }
+
+        .mg-tab-content.active {
+            display: block;
+        }
+
+        /* Brain Games styles (unchanged) */
+        .bg-setup-card {
+            background: var(--theme-bg-card);
+            border-radius: var(--card-radius);
+            padding: 1.5rem;
+            border: 2px solid var(--theme-border-color);
             box-shadow: var(--theme-shadow);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .bg-setup-card .setup-title {
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            color: var(--theme-blue-electric);
+            text-shadow: 0 0 30px var(--theme-glow-blue);
+            text-align: center;
+            margin-bottom: 1.2rem;
+        }
+
+        .bg-setup-row {
+            margin-bottom: 1.2rem;
+        }
+
+        .bg-setup-row label {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 0.5rem;
+            color: var(--theme-text-muted);
+            letter-spacing: 2px;
+            margin-bottom: 0.4rem;
+        }
+
+        .bg-setup-row .preset-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .bg-setup-row .preset-buttons button {
+            padding: 0.45rem 1rem;
+            border-radius: 20px;
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-secondary);
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            font-weight: 700;
+            min-height: 44px;
+            min-width: 50px;
+        }
+
+        .bg-setup-row .preset-buttons button:hover {
+            border-color: var(--theme-blue-electric);
+            color: var(--theme-text-primary);
+            transform: scale(1.05);
+        }
+
+        .bg-setup-row .preset-buttons button.active {
+            border-color: var(--theme-blue-electric);
+            background: var(--theme-blue-electric);
+            color: var(--blue-dark);
+        }
+
+        .bg-setup-row .preset-buttons button.qty-active.active {
+            border-color: var(--color-braingames);
+            background: var(--color-braingames);
+            color: white;
+        }
+
+        .bg-setup-row .custom-input {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 0.4rem;
+        }
+
+        .bg-setup-row .custom-input input {
+            width: 60px;
+            padding: 0.35rem 0.4rem;
+            border-radius: 16px;
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-primary);
+            font-size: 0.8rem;
+            text-align: center;
+            font-family: var(--font-body);
+            font-weight: 700;
+            min-height: 38px;
+        }
+
+        .bg-setup-row .custom-input input:focus {
+            outline: none;
+            border-color: var(--theme-blue-electric);
+        }
+
+        .bg-setup-row .custom-input span {
+            font-size: 0.55rem;
+            color: var(--theme-text-muted);
+        }
+
+        .bg-setup-info {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            padding: 0.5rem;
+            background: var(--theme-bg-input);
+            border-radius: 12px;
+            border: 2px solid var(--theme-border-color);
+            margin-bottom: 1rem;
+        }
+
+        .bg-setup-info .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.6rem;
+            color: var(--theme-text-secondary);
+        }
+
+        .bg-setup-info .info-item .value {
+            font-weight: 800;
+            color: var(--theme-blue-electric);
+        }
+
+        .bg-start-btn {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            background: #2ecc71;
+            color: white;
+            box-shadow: 0 0 30px rgba(46, 204, 113, 0.3);
+            min-height: 52px;
+        }
+
+        .bg-start-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 50px rgba(46, 204, 113, 0.5);
+        }
+
+        .bg-start-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .bg-empty-questions {
+            text-align: center;
+            color: var(--theme-text-muted);
+            font-size: 0.7rem;
+            padding: 2rem;
+        }
+
+        /* Brain Games Modal */
+        .bg-modal-content {
+            padding: 0.2rem 0;
+        }
+
+        .bg-question-text {
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-align: center;
+            padding: 0.3rem 0 0.8rem 0;
+            color: var(--theme-text-primary);
+            line-height: 1.3;
+        }
+
+        .bg-question-text.long {
+            font-size: 1.1rem;
+        }
+
+        .bg-options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .bg-option-btn {
+            padding: 0.7rem;
+            border-radius: 12px;
+            border: 3px solid transparent;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.4rem;
-        }
-
-        .dg-mode-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--theme-blue-electric);
-            box-shadow: var(--theme-shadow-hover), 0 0 30px var(--theme-glow-blue);
-        }
-
-        .dg-mode-card:active {
-            transform: scale(0.96);
-        }
-
-        .dg-mode-card .dg-mode-icon {
-            font-size: 2.5rem;
-        }
-
-        .dg-mode-card .dg-mode-name {
-            font-family: var(--font-display);
-            font-size: 0.7rem;
-            color: var(--theme-text-primary);
-            letter-spacing: 1px;
-        }
-
-        .dg-mode-card .dg-mode-desc {
-            font-size: 0.6rem;
-            color: var(--theme-text-secondary);
-            line-height: 1.4;
-            min-height: 2.8rem;
-        }
-
-        .dg-mode-card .dg-mode-tags {
-            display: flex;
-            gap: 0.4rem;
-            flex-wrap: wrap;
             justify-content: center;
+            min-height: 60px;
+            font-family: var(--font-body);
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            position: relative;
         }
 
-        .dg-mode-card .dg-tag {
+        .bg-option-btn .label {
             font-size: 0.45rem;
-            background: var(--theme-bg-input);
-            padding: 0.15rem 0.6rem;
-            border-radius: 12px;
-            border: 1px solid var(--theme-border-color);
-            color: var(--theme-text-muted);
-            font-weight: 600;
+            opacity: 0.6;
+            font-weight: 400;
+            margin-bottom: 0.05rem;
         }
 
-        .dg-mode-card .dg-play-btn {
-            margin-top: 0.3rem;
-            padding: 0.4rem 1.5rem;
-            border-radius: 30px;
+        .bg-option-btn .text {
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .bg-option-btn.opt-a {
+            background: #4A90D9;
+        }
+        .bg-option-btn.opt-b {
+            background: #E74C3C;
+        }
+        .bg-option-btn.opt-c {
+            background: #2ECC71;
+        }
+        .bg-option-btn.opt-d {
+            background: #F39C12;
+        }
+
+        .bg-option-btn:hover:not(:disabled) {
+            transform: scale(1.03);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .bg-option-btn:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+
+        .bg-option-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+            transform: none !important;
+        }
+
+        .bg-option-btn.selected {
+            border-color: white;
+            transform: scale(1.03);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+        }
+
+        .bg-option-btn.correct {
+            border-color: #2ecc71;
+            box-shadow: 0 0 30px rgba(46, 204, 113, 0.4);
+            transform: scale(1.02);
+            opacity: 1 !important;
+        }
+
+        .bg-option-btn.correct::after {
+            content: '⭐';
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            font-size: 1.4rem;
+            animation: starPop 0.5s ease;
+        }
+
+        .bg-option-btn.wrong {
+            border-color: #e74c3c;
+            box-shadow: 0 0 30px rgba(231, 76, 60, 0.25);
+            opacity: 0.4;
+        }
+
+        .bg-feedback {
+            text-align: center;
+            padding: 0.4rem;
+            border-radius: 10px;
+            margin: 0.3rem 0;
+            font-weight: 700;
+            font-size: 0.75rem;
+            display: none;
+        }
+
+        .bg-feedback.correct {
+            display: block;
+            background: rgba(46, 204, 113, 0.12);
+            border: 2px solid #2ecc71;
+            color: #2ecc71;
+        }
+
+        .bg-feedback.wrong {
+            display: block;
+            background: rgba(231, 76, 60, 0.12);
+            border: 2px solid #e74c3c;
+            color: #e74c3c;
+        }
+
+        .bg-feedback.timeout {
+            display: block;
+            background: rgba(243, 156, 18, 0.12);
+            border: 2px solid #f39c12;
+            color: #f39c12;
+        }
+
+        .bg-controls {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 0.4rem 0;
+        }
+
+        .bg-controls button {
+            padding: 0.4rem 1.2rem;
+            border-radius: 24px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.55rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            min-height: 38px;
+        }
+
+        .bg-controls button:hover {
+            transform: scale(1.05);
+        }
+
+        .bg-controls button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .bg-controls .btn-next {
+            background: var(--theme-blue-bright);
+            color: white;
+            box-shadow: 0 0 20px var(--theme-glow-blue);
+        }
+
+        .bg-controls .btn-next:hover {
+            box-shadow: 0 0 40px var(--theme-glow-blue-strong);
+        }
+
+        .bg-controls .btn-end {
+            background: #e74c3c;
+            color: white;
+            box-shadow: 0 0 20px rgba(231, 76, 60, 0.25);
+        }
+
+        .bg-controls .btn-end:hover {
+            box-shadow: 0 0 40px rgba(231, 76, 60, 0.4);
+        }
+
+        /* GM Brain Games Section */
+        .bg-gm-section {
+            background: var(--theme-bg-input);
+            border-radius: var(--card-radius);
+            padding: 1.2rem;
+            border: 2px solid var(--theme-border-color);
+            margin-bottom: 1rem;
+        }
+
+        .bg-gm-section h4 {
+            color: var(--theme-text-secondary);
+            font-size: 0.8rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+        }
+
+        .bg-gm-section h4 span {
+            font-family: var(--font-display);
+            font-size: 0.6rem;
+            color: var(--theme-blue-electric);
+        }
+
+        .bg-gm-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+        }
+
+        .bg-gm-form .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .bg-gm-form input,
+        .bg-gm-form select {
+            padding: 0.4rem 0.8rem;
+            border-radius: 12px;
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-primary);
+            font-size: 0.7rem;
+            font-family: var(--font-body);
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .bg-gm-form input:focus,
+        .bg-gm-form select:focus {
+            outline: none;
+            border-color: var(--theme-blue-electric);
+            box-shadow: 0 0 20px var(--theme-glow-blue);
+        }
+
+        .bg-gm-form input::placeholder {
+            color: var(--theme-text-muted);
+        }
+
+        .bg-gm-form select option {
+            background: var(--theme-bg-card);
+            color: var(--theme-text-primary);
+        }
+
+        .bg-gm-form .gm-btn {
+            padding: 0.4rem 1.2rem;
+            border-radius: 12px;
             border: none;
             font-weight: 700;
             font-size: 0.6rem;
@@ -1522,55 +1899,964 @@
             font-family: var(--font-body);
             background: var(--theme-blue-bright);
             color: white;
+            box-shadow: 0 0 15px var(--theme-glow-blue);
+        }
+
+        .bg-gm-form .gm-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .bg-gm-form .gm-btn.danger {
+            background: #e74c3c;
+            box-shadow: 0 0 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .bg-questions-list {
+            max-height: 200px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            padding: 0.2rem 0;
+        }
+
+        .bg-q-item {
+            background: var(--theme-bg-card);
+            padding: 0.4rem 0.8rem;
+            border-radius: 10px;
+            border: 1px solid var(--theme-border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.6rem;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .bg-q-item .q-text-preview {
+            color: var(--theme-text-primary);
+            flex: 1;
+            font-weight: 600;
+        }
+
+        .bg-q-item .q-category {
+            font-size: 0.4rem;
+            color: var(--theme-text-muted);
+            background: var(--theme-bg-input);
+            padding: 0.05rem 0.4rem;
+            border-radius: 10px;
+        }
+
+        .bg-q-item .q-actions {
+            display: flex;
+            gap: 0.3rem;
+        }
+
+        .bg-q-item .q-actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.6rem;
+            padding: 0.1rem 0.3rem;
+            border-radius: 6px;
+            transition: var(--transition);
+            color: var(--theme-text-muted);
+        }
+
+        .bg-q-item .q-actions button:hover {
+            background: var(--theme-bg-input);
+            color: var(--theme-text-primary);
+        }
+
+        .bg-q-item .q-actions button.danger:hover {
+            color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+        }
+
+        /* DG GM Section */
+        .dg-gm-section {
+            background: var(--theme-bg-input);
+            border-radius: var(--card-radius);
+            padding: 1.2rem;
+            border: 2px solid var(--theme-border-color);
+            margin-bottom: 1rem;
+        }
+
+        .dg-gm-section h4 {
+            color: var(--theme-text-secondary);
+            font-size: 0.8rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+        }
+
+        .dg-gm-section h4 span {
+            font-family: var(--font-display);
+            font-size: 0.6rem;
+            color: var(--theme-blue-electric);
+        }
+
+        .dg-gm-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+        }
+
+        .dg-gm-form .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .dg-gm-form input {
+            padding: 0.4rem 0.8rem;
+            border-radius: 12px;
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-primary);
+            font-size: 0.7rem;
+            font-family: var(--font-body);
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .dg-gm-form input:focus {
+            outline: none;
+            border-color: var(--theme-blue-electric);
             box-shadow: 0 0 20px var(--theme-glow-blue);
         }
 
-        .dg-mode-card .dg-play-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px var(--theme-glow-blue-strong);
+        .dg-gm-form input::placeholder {
+            color: var(--theme-text-muted);
         }
 
-        .dg-mode-card .dg-play-btn:active {
-            transform: scale(0.95);
-        }
-
-        .dg-mode-card.mode-describe-it:hover {
-            border-color: var(--color-describeit);
-        }
-        .dg-mode-card.mode-rapid-fire:hover {
-            border-color: var(--color-rapidfire);
-        }
-        .dg-mode-card.mode-dont-say-it:hover {
-            border-color: var(--color-dontsayit);
-        }
-        .dg-mode-card.mode-hard-mode:hover {
-            border-color: var(--color-hardmode);
-        }
-
-        .dg-info-bar {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            justify-content: center;
-            padding: 0.8rem 1.2rem;
-            background: var(--theme-bg-card);
-            border-radius: var(--card-radius);
-            border: 2px solid var(--theme-border-color);
-            box-shadow: var(--theme-shadow);
-        }
-
-        .dg-info-bar .dg-info-item {
+        .dg-gm-form .gm-btn {
+            padding: 0.4rem 1.2rem;
+            border-radius: 12px;
+            border: none;
+            font-weight: 700;
             font-size: 0.6rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            background: var(--theme-blue-bright);
+            color: white;
+            box-shadow: 0 0 15px var(--theme-glow-blue);
+        }
+
+        .dg-gm-form .gm-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .dg-gm-form .gm-btn.danger {
+            background: #e74c3c;
+            box-shadow: 0 0 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .dg-questions-list {
+            max-height: 200px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            padding: 0.2rem 0;
+        }
+
+        .dg-q-item {
+            background: var(--theme-bg-card);
+            padding: 0.4rem 0.8rem;
+            border-radius: 10px;
+            border: 1px solid var(--theme-border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.6rem;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .dg-q-item .q-text-preview {
+            color: var(--theme-text-primary);
+            flex: 1;
+            font-weight: 600;
+        }
+
+        .dg-q-item .q-text-preview .forbidden-preview {
+            font-size: 0.4rem;
+            color: var(--theme-text-muted);
+            font-weight: 400;
+        }
+
+        .dg-q-item .q-actions {
+            display: flex;
+            gap: 0.3rem;
+        }
+
+        .dg-q-item .q-actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.6rem;
+            padding: 0.1rem 0.3rem;
+            border-radius: 6px;
+            transition: var(--transition);
+            color: var(--theme-text-muted);
+        }
+
+        .dg-q-item .q-actions button:hover {
+            background: var(--theme-bg-input);
+            color: var(--theme-text-primary);
+        }
+
+        .dg-q-item .q-actions button.danger:hover {
+            color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+        }
+
+        /* Spin GM Section */
+        .spin-gm-section {
+            background: var(--theme-bg-input);
+            border-radius: var(--card-radius);
+            padding: 1.2rem;
+            border: 2px solid var(--theme-border-color);
+            margin-bottom: 1rem;
+        }
+
+        .spin-gm-section h4 {
+            color: var(--theme-text-secondary);
+            font-size: 0.8rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+        }
+
+        .spin-gm-section h4 span {
+            font-family: var(--font-display);
+            font-size: 0.6rem;
+            color: var(--theme-blue-electric);
+        }
+
+        .spin-gm-section .gm-tabs-mini {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .spin-gm-section .gm-tabs-mini button {
+            padding: 0.2rem 0.8rem;
+            border-radius: 16px;
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-secondary);
+            font-size: 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            font-weight: 700;
+        }
+
+        .spin-gm-section .gm-tabs-mini button:hover {
+            border-color: var(--theme-blue-electric);
+            color: var(--theme-text-primary);
+            transform: scale(1.05);
+        }
+
+        .spin-gm-section .gm-tabs-mini button.active {
+            border-color: var(--color-spinbottle);
+            background: var(--color-spinbottle);
+            color: white;
+        }
+
+        .spin-gm-form {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .spin-gm-form input {
+            flex: 1;
+            padding: 0.4rem 0.8rem;
+            border-radius: 12px;
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-primary);
+            font-size: 0.7rem;
+            font-family: var(--font-body);
+            transition: var(--transition);
+            min-width: 120px;
+        }
+
+        .spin-gm-form input:focus {
+            outline: none;
+            border-color: var(--theme-blue-electric);
+            box-shadow: 0 0 20px var(--theme-glow-blue);
+        }
+
+        .spin-gm-form input::placeholder {
+            color: var(--theme-text-muted);
+        }
+
+        .spin-gm-form button {
+            padding: 0.3rem 1rem;
+            border-radius: 12px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.55rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            background: var(--theme-blue-bright);
+            color: white;
+            box-shadow: 0 0 15px var(--theme-glow-blue);
+            white-space: nowrap;
+        }
+
+        .spin-gm-form button:hover {
+            transform: scale(1.05);
+        }
+
+        .spin-gm-form button.danger {
+            background: #e74c3c;
+            box-shadow: 0 0 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .spin-gm-list {
+            max-height: 150px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            padding: 0.2rem 0;
+        }
+
+        .spin-gm-item {
+            background: var(--theme-bg-card);
+            padding: 0.3rem 0.6rem;
+            border-radius: 8px;
+            border: 1px solid var(--theme-border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.55rem;
+            gap: 0.5rem;
+            color: var(--theme-text-secondary);
+        }
+
+        .spin-gm-item .item-text {
+            flex: 1;
+            color: var(--theme-text-primary);
+        }
+
+        .spin-gm-item .item-actions {
+            display: flex;
+            gap: 0.2rem;
+        }
+
+        .spin-gm-item .item-actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.6rem;
+            padding: 0.1rem 0.3rem;
+            border-radius: 4px;
+            transition: var(--transition);
+            color: var(--theme-text-muted);
+        }
+
+        .spin-gm-item .item-actions button:hover {
+            background: var(--theme-bg-input);
+            color: var(--theme-text-primary);
+        }
+
+        .spin-gm-item .item-actions button.danger:hover {
+            color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+        }
+
+        .spin-gm-empty {
+            text-align: center;
+            color: var(--theme-text-muted);
+            font-size: 0.6rem;
+            padding: 0.5rem;
+        }
+
+        /* ============================================================
+           SPIN THE BOTTLE - SETUP & MAIN MODAL
+           ============================================================ */
+        .spin-setup-modal {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 0.5rem 0;
+        }
+
+        .spin-setup-modal .setup-title {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            color: var(--theme-blue-electric);
+            text-shadow: 0 0 30px var(--theme-glow-blue);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .spin-setup-modal .setup-subtitle {
+            color: var(--theme-text-secondary);
+            font-size: 0.7rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .spin-setup-modal .mode-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .spin-setup-modal .mode-btn {
+            padding: 1rem 0.5rem;
+            border-radius: var(--card-radius);
+            border: 3px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-secondary);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.6rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.2rem;
+        }
+
+        .spin-setup-modal .mode-btn .mode-emoji {
+            font-size: 1.8rem;
+        }
+
+        .spin-setup-modal .mode-btn:hover {
+            border-color: var(--theme-blue-electric);
+            transform: scale(1.03);
+        }
+
+        .spin-setup-modal .mode-btn.active {
+            border-color: var(--color-spinbottle);
+            background: rgba(231, 76, 138, 0.15);
+            color: var(--theme-text-primary);
+            box-shadow: 0 0 30px rgba(231, 76, 138, 0.2);
+        }
+
+        .spin-setup-modal .duration-section {
+            background: var(--theme-bg-input);
+            border-radius: 12px;
+            padding: 0.8rem;
+            border: 2px solid var(--theme-border-color);
+            margin-bottom: 0.8rem;
+            text-align: center;
+        }
+
+        .spin-setup-modal .duration-section .dur-label {
+            font-family: var(--font-display);
+            font-size: 0.5rem;
+            color: var(--theme-text-muted);
+            letter-spacing: 2px;
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+
+        .spin-setup-modal .duration-section .dur-presets {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .spin-setup-modal .duration-section .dur-presets button {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-secondary);
+            font-size: 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            font-weight: 700;
+            min-height: 32px;
+        }
+
+        .spin-setup-modal .duration-section .dur-presets button:hover {
+            border-color: var(--theme-blue-electric);
+            color: var(--theme-text-primary);
+            transform: scale(1.05);
+        }
+
+        .spin-setup-modal .duration-section .dur-presets button.active {
+            border-color: var(--color-spinbottle);
+            background: var(--color-spinbottle);
+            color: white;
+        }
+
+        .spin-setup-modal .setup-info {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            padding: 0.5rem;
+            background: var(--theme-bg-input);
+            border-radius: 12px;
+            border: 2px solid var(--theme-border-color);
+            margin-bottom: 1rem;
+        }
+
+        .spin-setup-modal .setup-info .info-item {
+            font-size: 0.55rem;
             color: var(--theme-text-secondary);
             font-weight: 600;
         }
 
-        .dg-info-bar .dg-info-item strong {
+        .spin-setup-modal .setup-info .info-item strong {
             color: var(--theme-blue-electric);
         }
 
+        .spin-setup-modal .setup-start-btn {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            background: linear-gradient(135deg, #e74c8a, #c0397a);
+            color: white;
+            box-shadow: 0 0 30px rgba(231, 76, 138, 0.3);
+        }
+
+        .spin-setup-modal .setup-start-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 50px rgba(231, 76, 138, 0.5);
+        }
+
+        .spin-setup-modal .setup-start-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Spin Main Modal */
+        .spin-main-container {
+            padding: 0.2rem 0;
+        }
+
+        .spin-main-container .bottle-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .spin-main-container .bottle-wrapper {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto;
+        }
+
+        .spin-main-container .bottle-wrapper .pointer {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.8rem;
+            color: var(--theme-blue-electric);
+            filter: drop-shadow(0 0 20px var(--theme-glow-blue));
+            z-index: 10;
+            animation: pointerBounce 1s ease-in-out infinite;
+        }
+
+        @keyframes pointerBounce {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        .spin-main-container .bottle-wrapper .bottle {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: transform 0.1s linear;
+        }
+
+        .spin-main-container .bottle-wrapper .bottle .bottle-body {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 5.5rem;
+            filter: drop-shadow(0 0 30px rgba(255, 100, 150, 0.4));
+        }
+
+        .spin-main-container .bottle-wrapper .bottle .bottle-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(231, 76, 138, 0.15) 0%, transparent 70%);
+        }
+
+        .spin-main-container .bottle-wrapper .sparkles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .spin-main-container .bottle-wrapper .sparkles.active {
+            opacity: 1;
+        }
+
+        .spin-main-container .bottle-wrapper .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: sparkleFade 1s ease-in-out infinite;
+        }
+
+        @keyframes sparkleFade {
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) rotate(180deg);
+            }
+        }
+
+        .spin-main-container .spin-btn {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            border: none;
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: var(--transition);
+            background: linear-gradient(135deg, #e74c8a, #c0397a);
+            color: white;
+            box-shadow: 0 0 40px rgba(231, 76, 138, 0.4);
+            margin: 0.5rem 0;
+            min-width: 160px;
+        }
+
+        .spin-main-container .spin-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 60px rgba(231, 76, 138, 0.6);
+        }
+
+        .spin-main-container .spin-btn:active {
+            transform: scale(0.95);
+        }
+
+        .spin-main-container .spin-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .spin-main-container .challenge-area {
+            background: var(--theme-bg-card);
+            border-radius: var(--card-radius);
+            padding: 1rem;
+            border: 2px solid var(--theme-border-color);
+            box-shadow: var(--theme-shadow);
+            margin-top: 0.5rem;
+            text-align: center;
+            min-height: 130px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .spin-main-container .challenge-area .challenge-emoji {
+            font-size: 2rem;
+            margin-bottom: 0.1rem;
+        }
+
+        .spin-main-container .challenge-area .challenge-text {
+            font-size: 1rem;
+            color: var(--theme-text-primary);
+            font-weight: 700;
+            line-height: 1.5;
+            margin: 0.2rem 0;
+            max-width: 500px;
+        }
+
+        .spin-main-container .challenge-area .challenge-player {
+            font-size: 0.8rem;
+            color: var(--color-spinbottle);
+            font-family: var(--font-display);
+            letter-spacing: 2px;
+            margin-top: 0.2rem;
+            animation: playerReveal 0.5s ease;
+        }
+
+        .spin-main-container .challenge-area .challenge-player .player-name {
+            color: var(--theme-blue-electric);
+        }
+
+        @keyframes playerReveal {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .spin-main-container .challenge-area .challenge-mode-label {
+            font-size: 0.45rem;
+            color: var(--theme-text-muted);
+            font-family: var(--font-display);
+            letter-spacing: 2px;
+            margin-bottom: 0.2rem;
+        }
+
+        .spin-main-container .challenge-area .challenge-actions {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 0.6rem;
+        }
+
+        .spin-main-container .challenge-area .challenge-actions button {
+            padding: 0.35rem 1.2rem;
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.55rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+        }
+
+        .spin-main-container .challenge-area .challenge-actions .complete-btn {
+            background: #2ecc71;
+            color: white;
+            box-shadow: 0 0 20px rgba(46, 204, 113, 0.3);
+        }
+
+        .spin-main-container .challenge-area .challenge-actions .complete-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(46, 204, 113, 0.5);
+        }
+
+        .spin-main-container .challenge-area .challenge-actions .skip-btn {
+            background: var(--theme-bg-input);
+            color: var(--theme-text-secondary);
+            border: 2px solid var(--theme-border-color);
+        }
+
+        .spin-main-container .challenge-area .challenge-actions .skip-btn:hover {
+            border-color: var(--theme-blue-electric);
+            color: var(--theme-text-primary);
+            transform: scale(1.05);
+        }
+
+        .spin-main-container .challenge-area .challenge-actions .spin-again-btn {
+            background: var(--color-spinbottle);
+            color: white;
+            box-shadow: 0 0 20px rgba(231, 76, 138, 0.3);
+        }
+
+        .spin-main-container .challenge-area .challenge-actions .spin-again-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(231, 76, 138, 0.5);
+        }
+
+        .spin-main-container .challenge-area .challenge-status {
+            font-size: 0.5rem;
+            color: var(--theme-text-muted);
+            margin-top: 0.3rem;
+        }
+
+        .spin-main-container .challenge-area .empty-state {
+            text-align: center;
+            color: var(--theme-text-muted);
+            font-size: 0.7rem;
+            padding: 0.5rem;
+        }
+
+        .spin-main-container .challenge-area .empty-state .empty-emoji {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .spin-main-container .spin-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            padding: 0.3rem 0.5rem;
+            background: var(--theme-bg-input);
+            border-radius: 10px;
+            border: 2px solid var(--theme-border-color);
+            margin-top: 0.5rem;
+        }
+
+        .spin-main-container .spin-stats .stat-item {
+            font-size: 0.5rem;
+            color: var(--theme-text-secondary);
+            font-weight: 600;
+        }
+
+        .spin-main-container .spin-stats .stat-item strong {
+            color: var(--color-spinbottle);
+        }
+
         /* ============================================================
-           DG GAME MODAL STYLES
+           18+ VERIFICATION MODAL
+           ============================================================ */
+        .age-verify-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+        }
+
+        .age-verify-overlay.active {
+            display: flex;
+            animation: modalIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .age-verify-box {
+            background: var(--theme-bg-card);
+            border-radius: var(--card-radius);
+            padding: 2.5rem 2rem;
+            max-width: 480px;
+            width: 100%;
+            border: 3px solid var(--color-spinbottle);
+            box-shadow: 0 0 80px rgba(231, 76, 138, 0.3);
+            text-align: center;
+        }
+
+        .age-verify-box .age-icon {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .age-verify-box h2 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--theme-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .age-verify-box .age-subtitle {
+            color: var(--theme-text-secondary);
+            font-size: 0.75rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .age-verify-box .age-warning {
+            color: var(--color-roast);
+            font-size: 0.65rem;
+            font-weight: 700;
+            background: rgba(231, 76, 60, 0.1);
+            border: 2px solid rgba(231, 76, 60, 0.2);
+            border-radius: 10px;
+            padding: 0.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .age-verify-box .age-buttons {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .age-verify-box .age-buttons button {
+            padding: 0.6rem 2rem;
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            min-width: 120px;
+        }
+
+        .age-verify-box .age-buttons .btn-yes {
+            background: #2ecc71;
+            color: white;
+            box-shadow: 0 0 30px rgba(46, 204, 113, 0.3);
+        }
+
+        .age-verify-box .age-buttons .btn-yes:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px rgba(46, 204, 113, 0.5);
+        }
+
+        .age-verify-box .age-buttons .btn-no {
+            background: var(--theme-bg-input);
+            color: var(--theme-text-secondary);
+            border: 2px solid var(--theme-border-color);
+        }
+
+        .age-verify-box .age-buttons .btn-no:hover {
+            border-color: var(--color-roast);
+            color: var(--color-roast);
+            transform: scale(1.05);
+        }
+
+        .age-verify-box .age-note {
+            font-size: 0.4rem;
+            color: var(--theme-text-muted);
+            margin-top: 0.8rem;
+            opacity: 0.5;
+        }
+
+        /* ============================================================
+           DESCRIBE & GUESS STYLES
            ============================================================ */
         .dg-game-container {
             padding: 0.2rem 0;
@@ -1927,6 +3213,158 @@
         .dg-results .dg-result-actions .dg-close-btn:hover {
             border-color: var(--theme-blue-electric);
             color: var(--theme-text-primary);
+        }
+
+        /* DG Mode Grid */
+        .dg-mode-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .dg-mode-card {
+            background: var(--theme-bg-card);
+            border-radius: var(--card-radius);
+            padding: 1.5rem 1rem;
+            border: 2px solid var(--theme-border-color);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--theme-shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .dg-mode-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--theme-blue-electric);
+            box-shadow: var(--theme-shadow-hover), 0 0 30px var(--theme-glow-blue);
+        }
+
+        .dg-mode-card:active {
+            transform: scale(0.96);
+        }
+
+        .dg-mode-card .dg-mode-icon {
+            font-size: 2.5rem;
+        }
+
+        .dg-mode-card .dg-mode-name {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            color: var(--theme-text-primary);
+            letter-spacing: 1px;
+        }
+
+        .dg-mode-card .dg-mode-desc {
+            font-size: 0.6rem;
+            color: var(--theme-text-secondary);
+            line-height: 1.4;
+            min-height: 2.8rem;
+        }
+
+        .dg-mode-card .dg-mode-tags {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .dg-mode-card .dg-tag {
+            font-size: 0.45rem;
+            background: var(--theme-bg-input);
+            padding: 0.15rem 0.6rem;
+            border-radius: 12px;
+            border: 1px solid var(--theme-border-color);
+            color: var(--theme-text-muted);
+            font-weight: 600;
+        }
+
+        .dg-mode-card .dg-play-btn {
+            margin-top: 0.3rem;
+            padding: 0.4rem 1.5rem;
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.6rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            background: var(--theme-blue-bright);
+            color: white;
+            box-shadow: 0 0 20px var(--theme-glow-blue);
+        }
+
+        .dg-mode-card .dg-play-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px var(--theme-glow-blue-strong);
+        }
+
+        .dg-mode-card .dg-play-btn:active {
+            transform: scale(0.95);
+        }
+
+        .dg-mode-card.mode-describe-it:hover {
+            border-color: var(--color-describeit);
+        }
+        .dg-mode-card.mode-rapid-fire:hover {
+            border-color: var(--color-rapidfire);
+        }
+        .dg-mode-card.mode-dont-say-it:hover {
+            border-color: var(--color-dontsayit);
+        }
+        .dg-mode-card.mode-hard-mode:hover {
+            border-color: var(--color-hardmode);
+        }
+
+        .dg-info-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            padding: 0.8rem 1.2rem;
+            background: var(--theme-bg-card);
+            border-radius: var(--card-radius);
+            border: 2px solid var(--theme-border-color);
+            box-shadow: var(--theme-shadow);
+        }
+
+        .dg-info-bar .dg-info-item {
+            font-size: 0.6rem;
+            color: var(--theme-text-secondary);
+            font-weight: 600;
+        }
+
+        .dg-info-bar .dg-info-item strong {
+            color: var(--theme-blue-electric);
+        }
+
+        .describe-guess-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.5rem 0;
+        }
+
+        .dg-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .dg-title {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--theme-blue-electric);
+            text-shadow: 0 0 30px var(--theme-glow-blue);
+            letter-spacing: 2px;
+        }
+
+        .dg-subtitle {
+            color: var(--theme-text-secondary);
+            font-size: 0.85rem;
+            margin-top: 0.2rem;
         }
 
         /* ============================================================
@@ -3840,1295 +5278,8 @@
         }
 
         /* ============================================================
-           BRAIN GAMES
+           RESPONSIVE
            ============================================================ */
-        .brain-games-container {
-            display: none;
-            padding: 1rem 0;
-        }
-
-        .brain-games-container.active {
-            display: block;
-            animation: pageIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .bg-setup-card {
-            background: var(--theme-bg-card);
-            border-radius: var(--card-radius);
-            padding: 1.5rem;
-            border: 2px solid var(--theme-border-color);
-            box-shadow: var(--theme-shadow);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .bg-setup-card .setup-title {
-            font-family: var(--font-display);
-            font-size: 0.8rem;
-            color: var(--theme-blue-electric);
-            text-shadow: 0 0 30px var(--theme-glow-blue);
-            text-align: center;
-            margin-bottom: 1.2rem;
-        }
-
-        .bg-setup-row {
-            margin-bottom: 1.2rem;
-        }
-
-        .bg-setup-row label {
-            display: block;
-            font-family: var(--font-display);
-            font-size: 0.5rem;
-            color: var(--theme-text-muted);
-            letter-spacing: 2px;
-            margin-bottom: 0.4rem;
-        }
-
-        .bg-setup-row .preset-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-        }
-
-        .bg-setup-row .preset-buttons button {
-            padding: 0.45rem 1rem;
-            border-radius: 20px;
-            border: 2px solid var(--theme-border-color);
-            background: var(--theme-bg-input);
-            color: var(--theme-text-secondary);
-            font-size: 0.7rem;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-body);
-            font-weight: 700;
-            min-height: 44px;
-            min-width: 50px;
-        }
-
-        .bg-setup-row .preset-buttons button:hover {
-            border-color: var(--theme-blue-electric);
-            color: var(--theme-text-primary);
-            transform: scale(1.05);
-        }
-
-        .bg-setup-row .preset-buttons button.active {
-            border-color: var(--theme-blue-electric);
-            background: var(--theme-blue-electric);
-            color: var(--blue-dark);
-        }
-
-        .bg-setup-row .preset-buttons button.qty-active.active {
-            border-color: var(--color-braingames);
-            background: var(--color-braingames);
-            color: white;
-        }
-
-        .bg-setup-row .custom-input {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            margin-top: 0.4rem;
-        }
-
-        .bg-setup-row .custom-input input {
-            width: 60px;
-            padding: 0.35rem 0.4rem;
-            border-radius: 16px;
-            border: 2px solid var(--theme-border-color);
-            background: var(--theme-bg-input);
-            color: var(--theme-text-primary);
-            font-size: 0.8rem;
-            text-align: center;
-            font-family: var(--font-body);
-            font-weight: 700;
-            min-height: 38px;
-        }
-
-        .bg-setup-row .custom-input input:focus {
-            outline: none;
-            border-color: var(--theme-blue-electric);
-        }
-
-        .bg-setup-row .custom-input span {
-            font-size: 0.55rem;
-            color: var(--theme-text-muted);
-        }
-
-        .bg-setup-info {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            padding: 0.5rem;
-            background: var(--theme-bg-input);
-            border-radius: 12px;
-            border: 2px solid var(--theme-border-color);
-            margin-bottom: 1rem;
-        }
-
-        .bg-setup-info .info-item {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-size: 0.6rem;
-            color: var(--theme-text-secondary);
-        }
-
-        .bg-setup-info .info-item .value {
-            font-weight: 800;
-            color: var(--theme-blue-electric);
-        }
-
-        .bg-start-btn {
-            width: 100%;
-            padding: 0.8rem;
-            border-radius: 30px;
-            border: none;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-body);
-            background: #2ecc71;
-            color: white;
-            box-shadow: 0 0 30px rgba(46, 204, 113, 0.3);
-            min-height: 52px;
-        }
-
-        .bg-start-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 50px rgba(46, 204, 113, 0.5);
-        }
-
-        .bg-start-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-
-        .bg-empty-questions {
-            text-align: center;
-            color: var(--theme-text-muted);
-            font-size: 0.7rem;
-            padding: 2rem;
-        }
-
-        /* Brain Games Modal */
-        .bg-modal-content {
-            padding: 0.2rem 0;
-        }
-
-        .bg-question-text {
-            font-size: 1.4rem;
-            font-weight: 800;
-            text-align: center;
-            padding: 0.3rem 0 0.8rem 0;
-            color: var(--theme-text-primary);
-            line-height: 1.3;
-        }
-
-        .bg-question-text.long {
-            font-size: 1.1rem;
-        }
-
-        .bg-options-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .bg-option-btn {
-            padding: 0.7rem;
-            border-radius: 12px;
-            border: 3px solid transparent;
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: white;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 60px;
-            font-family: var(--font-body);
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-            position: relative;
-        }
-
-        .bg-option-btn .label {
-            font-size: 0.45rem;
-            opacity: 0.6;
-            font-weight: 400;
-            margin-bottom: 0.05rem;
-        }
-
-        .bg-option-btn .text {
-            font-size: 0.95rem;
-            font-weight: 700;
-        }
-
-        .bg-option-btn.opt-a {
-            background: #4A90D9;
-        }
-        .bg-option-btn.opt-b {
-            background: #E74C3C;
-        }
-        .bg-option-btn.opt-c {
-            background: #2ECC71;
-        }
-        .bg-option-btn.opt-d {
-            background: #F39C12;
-        }
-
-        .bg-option-btn:hover:not(:disabled) {
-            transform: scale(1.03);
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-        }
-
-        .bg-option-btn:active:not(:disabled) {
-            transform: scale(0.95);
-        }
-
-        .bg-option-btn:disabled {
-            cursor: not-allowed;
-            opacity: 0.5;
-            transform: none !important;
-        }
-
-        .bg-option-btn.selected {
-            border-color: white;
-            transform: scale(1.03);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
-        }
-
-        .bg-option-btn.correct {
-            border-color: #2ecc71;
-            box-shadow: 0 0 30px rgba(46, 204, 113, 0.4);
-            transform: scale(1.02);
-            opacity: 1 !important;
-        }
-
-        .bg-option-btn.correct::after {
-            content: '⭐';
-            position: absolute;
-            top: -12px;
-            right: -12px;
-            font-size: 1.4rem;
-            animation: starPop 0.5s ease;
-        }
-
-        .bg-option-btn.wrong {
-            border-color: #e74c3c;
-            box-shadow: 0 0 30px rgba(231, 76, 60, 0.25);
-            opacity: 0.4;
-        }
-
-        .bg-feedback {
-            text-align: center;
-            padding: 0.4rem;
-            border-radius: 10px;
-            margin: 0.3rem 0;
-            font-weight: 700;
-            font-size: 0.75rem;
-            display: none;
-        }
-
-        .bg-feedback.correct {
-            display: block;
-            background: rgba(46, 204, 113, 0.12);
-            border: 2px solid #2ecc71;
-            color: #2ecc71;
-        }
-
-        .bg-feedback.wrong {
-            display: block;
-            background: rgba(231, 76, 60, 0.12);
-            border: 2px solid #e74c3c;
-            color: #e74c3c;
-        }
-
-        .bg-feedback.timeout {
-            display: block;
-            background: rgba(243, 156, 18, 0.12);
-            border: 2px solid #f39c12;
-            color: #f39c12;
-        }
-
-        .bg-controls {
-            display: flex;
-            gap: 0.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 0.4rem 0;
-        }
-
-        .bg-controls button {
-            padding: 0.4rem 1.2rem;
-            border-radius: 24px;
-            border: none;
-            font-weight: 700;
-            font-size: 0.55rem;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-body);
-            min-height: 38px;
-        }
-
-        .bg-controls button:hover {
-            transform: scale(1.05);
-        }
-
-        .bg-controls button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-
-        .bg-controls .btn-next {
-            background: var(--theme-blue-bright);
-            color: white;
-            box-shadow: 0 0 20px var(--theme-glow-blue);
-        }
-
-        .bg-controls .btn-next:hover {
-            box-shadow: 0 0 40px var(--theme-glow-blue-strong);
-        }
-
-        .bg-controls .btn-end {
-            background: #e74c3c;
-            color: white;
-            box-shadow: 0 0 20px rgba(231, 76, 60, 0.25);
-        }
-
-        .bg-controls .btn-end:hover {
-            box-shadow: 0 0 40px rgba(231, 76, 60, 0.4);
-        }
-
-        /* GM Brain Games Section */
-        .bg-gm-section {
-            background: var(--theme-bg-input);
-            border-radius: var(--card-radius);
-            padding: 1.2rem;
-            border: 2px solid var(--theme-border-color);
-            margin-bottom: 1rem;
-        }
-
-        .bg-gm-section h4 {
-            color: var(--theme-text-secondary);
-            font-size: 0.8rem;
-            margin-bottom: 0.6rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 700;
-        }
-
-        .bg-gm-section h4 span {
-            font-family: var(--font-display);
-            font-size: 0.6rem;
-            color: var(--theme-blue-electric);
-        }
-
-        .bg-gm-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.6rem;
-        }
-
-        .bg-gm-form .full-width {
-            grid-column: 1 / -1;
-        }
-
-        .bg-gm-form input,
-        .bg-gm-form select {
-            padding: 0.4rem 0.8rem;
-            border-radius: 12px;
-            border: 2px solid var(--theme-border-color);
-            background: var(--theme-bg-input);
-            color: var(--theme-text-primary);
-            font-size: 0.7rem;
-            font-family: var(--font-body);
-            transition: var(--transition);
-            width: 100%;
-        }
-
-        .bg-gm-form input:focus,
-        .bg-gm-form select:focus {
-            outline: none;
-            border-color: var(--theme-blue-electric);
-            box-shadow: 0 0 20px var(--theme-glow-blue);
-        }
-
-        .bg-gm-form input::placeholder {
-            color: var(--theme-text-muted);
-        }
-
-        .bg-gm-form select option {
-            background: var(--theme-bg-card);
-            color: var(--theme-text-primary);
-        }
-
-        .bg-gm-form .gm-btn {
-            padding: 0.4rem 1.2rem;
-            border-radius: 12px;
-            border: none;
-            font-weight: 700;
-            font-size: 0.6rem;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-body);
-            background: var(--theme-blue-bright);
-            color: white;
-            box-shadow: 0 0 15px var(--theme-glow-blue);
-        }
-
-        .bg-gm-form .gm-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .bg-gm-form .gm-btn.danger {
-            background: #e74c3c;
-            box-shadow: 0 0 15px rgba(231, 76, 60, 0.3);
-        }
-
-        .bg-questions-list {
-            max-height: 200px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 0.3rem;
-            padding: 0.2rem 0;
-        }
-
-        .bg-q-item {
-            background: var(--theme-bg-card);
-            padding: 0.4rem 0.8rem;
-            border-radius: 10px;
-            border: 1px solid var(--theme-border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.6rem;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .bg-q-item .q-text-preview {
-            color: var(--theme-text-primary);
-            flex: 1;
-            font-weight: 600;
-        }
-
-        .bg-q-item .q-category {
-            font-size: 0.4rem;
-            color: var(--theme-text-muted);
-            background: var(--theme-bg-input);
-            padding: 0.05rem 0.4rem;
-            border-radius: 10px;
-        }
-
-        .bg-q-item .q-actions {
-            display: flex;
-            gap: 0.3rem;
-        }
-
-        .bg-q-item .q-actions button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 0.6rem;
-            padding: 0.1rem 0.3rem;
-            border-radius: 6px;
-            transition: var(--transition);
-            color: var(--theme-text-muted);
-        }
-
-        .bg-q-item .q-actions button:hover {
-            background: var(--theme-bg-input);
-            color: var(--theme-text-primary);
-        }
-
-        .bg-q-item .q-actions button.danger:hover {
-            color: #e74c3c;
-            background: rgba(231, 76, 60, 0.1);
-        }
-
-        /* DG GM Section */
-        .dg-gm-section {
-            background: var(--theme-bg-input);
-            border-radius: var(--card-radius);
-            padding: 1.2rem;
-            border: 2px solid var(--theme-border-color);
-            margin-bottom: 1rem;
-        }
-
-        .dg-gm-section h4 {
-            color: var(--theme-text-secondary);
-            font-size: 0.8rem;
-            margin-bottom: 0.6rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 700;
-        }
-
-        .dg-gm-section h4 span {
-            font-family: var(--font-display);
-            font-size: 0.6rem;
-            color: var(--theme-blue-electric);
-        }
-
-        .dg-gm-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.6rem;
-        }
-
-        .dg-gm-form .full-width {
-            grid-column: 1 / -1;
-        }
-
-        .dg-gm-form input {
-            padding: 0.4rem 0.8rem;
-            border-radius: 12px;
-            border: 2px solid var(--theme-border-color);
-            background: var(--theme-bg-input);
-            color: var(--theme-text-primary);
-            font-size: 0.7rem;
-            font-family: var(--font-body);
-            transition: var(--transition);
-            width: 100%;
-        }
-
-        .dg-gm-form input:focus {
-            outline: none;
-            border-color: var(--theme-blue-electric);
-            box-shadow: 0 0 20px var(--theme-glow-blue);
-        }
-
-        .dg-gm-form input::placeholder {
-            color: var(--theme-text-muted);
-        }
-
-        .dg-gm-form .gm-btn {
-            padding: 0.4rem 1.2rem;
-            border-radius: 12px;
-            border: none;
-            font-weight: 700;
-            font-size: 0.6rem;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-body);
-            background: var(--theme-blue-bright);
-            color: white;
-            box-shadow: 0 0 15px var(--theme-glow-blue);
-        }
-
-        .dg-gm-form .gm-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .dg-gm-form .gm-btn.danger {
-            background: #e74c3c;
-            box-shadow: 0 0 15px rgba(231, 76, 60, 0.3);
-        }
-
-        .dg-questions-list {
-            max-height: 200px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 0.3rem;
-            padding: 0.2rem 0;
-        }
-
-        .dg-q-item {
-            background: var(--theme-bg-card);
-            padding: 0.4rem 0.8rem;
-            border-radius: 10px;
-            border: 1px solid var(--theme-border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.6rem;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .dg-q-item .q-text-preview {
-            color: var(--theme-text-primary);
-            flex: 1;
-            font-weight: 600;
-        }
-
-        .dg-q-item .q-text-preview .forbidden-preview {
-            font-size: 0.4rem;
-            color: var(--theme-text-muted);
-            font-weight: 400;
-        }
-
-        .dg-q-item .q-actions {
-            display: flex;
-            gap: 0.3rem;
-        }
-
-        .dg-q-item .q-actions button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 0.6rem;
-            padding: 0.1rem 0.3rem;
-            border-radius: 6px;
-            transition: var(--transition);
-            color: var(--theme-text-muted);
-        }
-
-        .dg-q-item .q-actions button:hover {
-            background: var(--theme-bg-input);
-            color: var(--theme-text-primary);
-        }
-
-        .dg-q-item .q-actions button.danger:hover {
-            color: #e74c3c;
-            background: rgba(231, 76, 60, 0.1);
-        }
-
-        /* Spin GM Section */
-        .spin-gm-section {
-            background: var(--theme-bg-input);
-            border-radius: var(--card-radius);
-            padding: 1.2rem;
-            border: 2px solid var(--theme-border-color);
-            margin-bottom: 1rem;
-        }
-
-        .spin-gm-section h4 {
-            color: var(--theme-text-secondary);
-            font-size: 0.8rem;
-            margin-bottom: 0.6rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 700;
-        }
-
-        .spin-gm-section h4 span {
-            font-family: var(--font-display);
-            font-size: 0.6rem;
-            color: var(--theme-blue-electric);
-        }
-
-        .spin-gm-section .gm-tabs-mini {
-            display: flex;
-            gap: 0.3rem;
-            flex-wrap: wrap;
-            margin-bottom: 0.5rem;
-        }
-
-        .spin-gm-section .gm-tabs-mini button {
-            padding: 0.2rem 0.8rem;
-            border-radius: 16px;
-            border: 2px solid var(--theme-border-color);
-            background: var(--theme-bg-input);
-            color: var(--theme-text-secondary);
-            font-size: 0.5rem;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-body);
-            font-weight: 700;
-        }
-
-        .spin-gm-section .gm-tabs-mini button:hover {
-            border-color: var(--theme-blue-electric);
-            color: var(--theme-text-primary);
-            transform: scale(1.05);
-        }
-
-        .spin-gm-section .gm-tabs-mini button.active {
-            border-color: var(--color-spinbottle);
-            background: var(--color-spinbottle);
-            color: white;
-        }
-
-        .spin-gm-form {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .spin-gm-form input {
-            flex: 1;
-            padding: 0.4rem 0.8rem;
-            border-radius: 12px;
-            border: 2px solid var(--theme-border-color);
-            background: var(--theme-bg-input);
-            color: var(--theme-text-primary);
-            font-size: 0.7rem;
-            font-family: var(--font-body);
-            transition: var(--transition);
-            min-width: 120px;
-        }
-
-        .spin-gm-form input:focus {
-            outline: none;
-            border-color: var(--theme-blue-electric);
-            box-shadow: 0 0 20px var(--theme-glow-blue);
-        }
-
-        .spin-gm-form input::placeholder {
-            color: var(--theme-text-muted);
-        }
-
-        .spin-gm-form button {
-            padding: 0.3rem 1rem;
-            border-radius: 12px;
-            border: none;
-            font-weight: 700;
-            font-size: 0.55rem;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-body);
-            background: var(--theme-blue-bright);
-            color: white;
-            box-shadow: 0 0 15px var(--theme-glow-blue);
-            white-space: nowrap;
-        }
-
-        .spin-gm-form button:hover {
-            transform: scale(1.05);
-        }
-
-        .spin-gm-form button.danger {
-            background: #e74c3c;
-            box-shadow: 0 0 15px rgba(231, 76, 60, 0.3);
-        }
-
-        .spin-gm-list {
-            max-height: 150px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 0.2rem;
-            padding: 0.2rem 0;
-        }
-
-        .spin-gm-item {
-            background: var(--theme-bg-card);
-            padding: 0.3rem 0.6rem;
-            border-radius: 8px;
-            border: 1px solid var(--theme-border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.55rem;
-            gap: 0.5rem;
-            color: var(--theme-text-secondary);
-        }
-
-        .spin-gm-item .item-text {
-            flex: 1;
-            color: var(--theme-text-primary);
-        }
-
-        .spin-gm-item .item-actions {
-            display: flex;
-            gap: 0.2rem;
-        }
-
-        .spin-gm-item .item-actions button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 0.6rem;
-            padding: 0.1rem 0.3rem;
-            border-radius: 4px;
-            transition: var(--transition);
-            color: var(--theme-text-muted);
-        }
-
-        .spin-gm-item .item-actions button:hover {
-            background: var(--theme-bg-input);
-            color: var(--theme-text-primary);
-        }
-
-        .spin-gm-item .item-actions button.danger:hover {
-            color: #e74c3c;
-            background: rgba(231, 76, 60, 0.1);
-        }
-
-        .spin-gm-empty {
-            text-align: center;
-            color: var(--theme-text-muted);
-            font-size: 0.6rem;
-            padding: 0.5rem;
-        }
-
-        /* ============================================================
-           SPIN THE BOTTLE - SETUP & MAIN MODAL
-           ============================================================ */
-        .spin-setup-modal {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 0.5rem 0;
-        }
-
-        .spin-setup-modal .setup-title {
-            font-family: var(--font-display);
-            font-size: 0.9rem;
-            color: var(--theme-blue-electric);
-            text-shadow: 0 0 30px var(--theme-glow-blue);
-            text-align: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .spin-setup-modal .setup-subtitle {
-            color: var(--theme-text-secondary);
-            font-size: 0.7rem;
-            text-align: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .spin-setup-modal .mode-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.8rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .spin-setup-modal .mode-btn {
-            padding: 1rem 0.5rem;
-            border-radius: var(--card-radius);
-            border: 3px solid var(--theme-border-color);
-            background: var(--theme-bg-input);
-            color: var(--theme-text-secondary);
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-body);
-            font-weight: 700;
-            font-size: 0.6rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.2rem;
-        }
-
-        .spin-setup-modal .mode-btn .mode-emoji {
-            font-size: 1.8rem;
-        }
-
-        .spin-setup-modal .mode-btn:hover {
-            border-color: var(--theme-blue-electric);
-            transform: scale(1.03);
-        }
-
-        .spin-setup-modal .mode-btn.active {
-            border-color: var(--color-spinbottle);
-            background: rgba(231, 76, 138, 0.15);
-            color: var(--theme-text-primary);
-            box-shadow: 0 0 30px rgba(231, 76, 138, 0.2);
-        }
-
-        .spin-setup-modal .duration-section {
-            background: var(--theme-bg-input);
-            border-radius: 12px;
-            padding: 0.8rem;
-            border: 2px solid var(--theme-border-color);
-            margin-bottom: 0.8rem;
-            text-align: center;
-        }
-
-        .spin-setup-modal .duration-section .dur-label {
-            font-family: var(--font-display);
-            font-size: 0.5rem;
-            color: var(--theme-text-muted);
-            letter-spacing: 2px;
-            margin-bottom: 0.4rem;
-            display: block;
-        }
-
-        .spin-setup-modal .duration-section .dur-presets {
-            display: flex;
-            gap: 0.4rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .spin-setup-modal .duration-section .dur-presets button {
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            border: 2px solid var(--theme-border-color);
-            background: var(--theme-bg-input);
-            color: var(--theme-text-secondary);
-            font-size: 0.5rem;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-body);
-            font-weight: 700;
-            min-height: 32px;
-        }
-
-        .spin-setup-modal .duration-section .dur-presets button:hover {
-            border-color: var(--theme-blue-electric);
-            color: var(--theme-text-primary);
-            transform: scale(1.05);
-        }
-
-        .spin-setup-modal .duration-section .dur-presets button.active {
-            border-color: var(--color-spinbottle);
-            background: var(--color-spinbottle);
-            color: white;
-        }
-
-        .spin-setup-modal .setup-info {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            padding: 0.5rem;
-            background: var(--theme-bg-input);
-            border-radius: 12px;
-            border: 2px solid var(--theme-border-color);
-            margin-bottom: 1rem;
-        }
-
-        .spin-setup-modal .setup-info .info-item {
-            font-size: 0.55rem;
-            color: var(--theme-text-secondary);
-            font-weight: 600;
-        }
-
-        .spin-setup-modal .setup-info .info-item strong {
-            color: var(--theme-blue-electric);
-        }
-
-        .spin-setup-modal .setup-start-btn {
-            width: 100%;
-            padding: 0.8rem;
-            border-radius: 30px;
-            border: none;
-            font-weight: 700;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-body);
-            background: linear-gradient(135deg, #e74c8a, #c0397a);
-            color: white;
-            box-shadow: 0 0 30px rgba(231, 76, 138, 0.3);
-        }
-
-        .spin-setup-modal .setup-start-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 50px rgba(231, 76, 138, 0.5);
-        }
-
-        .spin-setup-modal .setup-start-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-
-        /* Spin Main Modal */
-        .spin-main-container {
-            padding: 0.2rem 0;
-        }
-
-        .spin-main-container .bottle-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        .spin-main-container .bottle-wrapper {
-            position: relative;
-            width: 180px;
-            height: 180px;
-            margin: 0 auto;
-        }
-
-        .spin-main-container .bottle-wrapper .pointer {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 1.8rem;
-            color: var(--theme-blue-electric);
-            filter: drop-shadow(0 0 20px var(--theme-glow-blue));
-            z-index: 10;
-            animation: pointerBounce 1s ease-in-out infinite;
-        }
-
-        @keyframes pointerBounce {
-            0%,
-            100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            50% {
-                transform: translateX(-50%) translateY(-5px);
-            }
-        }
-
-        .spin-main-container .bottle-wrapper .bottle {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transition: transform 0.1s linear;
-        }
-
-        .spin-main-container .bottle-wrapper .bottle .bottle-body {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 5.5rem;
-            filter: drop-shadow(0 0 30px rgba(255, 100, 150, 0.4));
-        }
-
-        .spin-main-container .bottle-wrapper .bottle .bottle-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(231, 76, 138, 0.15) 0%, transparent 70%);
-        }
-
-        .spin-main-container .bottle-wrapper .sparkles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 5;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .spin-main-container .bottle-wrapper .sparkles.active {
-            opacity: 1;
-        }
-
-        .spin-main-container .bottle-wrapper .sparkle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: #ffd700;
-            border-radius: 50%;
-            animation: sparkleFade 1s ease-in-out infinite;
-        }
-
-        @keyframes sparkleFade {
-            0%,
-            100% {
-                opacity: 0;
-                transform: scale(0) rotate(0deg);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1) rotate(180deg);
-            }
-        }
-
-        .spin-main-container .spin-btn {
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            border: none;
-            font-family: var(--font-display);
-            font-size: 0.7rem;
-            cursor: pointer;
-            transition: var(--transition);
-            background: linear-gradient(135deg, #e74c8a, #c0397a);
-            color: white;
-            box-shadow: 0 0 40px rgba(231, 76, 138, 0.4);
-            margin: 0.5rem 0;
-            min-width: 160px;
-        }
-
-        .spin-main-container .spin-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 60px rgba(231, 76, 138, 0.6);
-        }
-
-        .spin-main-container .spin-btn:active {
-            transform: scale(0.95);
-        }
-
-        .spin-main-container .spin-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-
-        .spin-main-container .challenge-area {
-            background: var(--theme-bg-card);
-            border-radius: var(--card-radius);
-            padding: 1rem;
-            border: 2px solid var(--theme-border-color);
-            box-shadow: var(--theme-shadow);
-            margin-top: 0.5rem;
-            text-align: center;
-            min-height: 130px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .spin-main-container .challenge-area .challenge-emoji {
-            font-size: 2rem;
-            margin-bottom: 0.1rem;
-        }
-
-        .spin-main-container .challenge-area .challenge-text {
-            font-size: 1rem;
-            color: var(--theme-text-primary);
-            font-weight: 700;
-            line-height: 1.5;
-            margin: 0.2rem 0;
-            max-width: 500px;
-        }
-
-        .spin-main-container .challenge-area .challenge-player {
-            font-size: 0.8rem;
-            color: var(--color-spinbottle);
-            font-family: var(--font-display);
-            letter-spacing: 2px;
-            margin-top: 0.2rem;
-            animation: playerReveal 0.5s ease;
-        }
-
-        .spin-main-container .challenge-area .challenge-player .player-name {
-            color: var(--theme-blue-electric);
-        }
-
-        /* Removed challenge-sequence styles since we no longer show sequence counts */
-
-        @keyframes playerReveal {
-            0% {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .spin-main-container .challenge-area .challenge-mode-label {
-            font-size: 0.45rem;
-            color: var(--theme-text-muted);
-            font-family: var(--font-display);
-            letter-spacing: 2px;
-            margin-bottom: 0.2rem;
-        }
-
-        .spin-main-container .challenge-area .challenge-actions {
-            display: flex;
-            gap: 0.4rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 0.6rem;
-        }
-
-        .spin-main-container .challenge-area .challenge-actions button {
-            padding: 0.35rem 1.2rem;
-            border-radius: 30px;
-            border: none;
-            font-weight: 700;
-            font-size: 0.55rem;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-body);
-        }
-
-        .spin-main-container .challenge-area .challenge-actions .complete-btn {
-            background: #2ecc71;
-            color: white;
-            box-shadow: 0 0 20px rgba(46, 204, 113, 0.3);
-        }
-
-        .spin-main-container .challenge-area .challenge-actions .complete-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(46, 204, 113, 0.5);
-        }
-
-        .spin-main-container .challenge-area .challenge-actions .skip-btn {
-            background: var(--theme-bg-input);
-            color: var(--theme-text-secondary);
-            border: 2px solid var(--theme-border-color);
-        }
-
-        .spin-main-container .challenge-area .challenge-actions .skip-btn:hover {
-            border-color: var(--theme-blue-electric);
-            color: var(--theme-text-primary);
-            transform: scale(1.05);
-        }
-
-        .spin-main-container .challenge-area .challenge-actions .spin-again-btn {
-            background: var(--color-spinbottle);
-            color: white;
-            box-shadow: 0 0 20px rgba(231, 76, 138, 0.3);
-        }
-
-        .spin-main-container .challenge-area .challenge-actions .spin-again-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(231, 76, 138, 0.5);
-        }
-
-        .spin-main-container .challenge-area .challenge-status {
-            font-size: 0.5rem;
-            color: var(--theme-text-muted);
-            margin-top: 0.3rem;
-        }
-
-        .spin-main-container .challenge-area .empty-state {
-            text-align: center;
-            color: var(--theme-text-muted);
-            font-size: 0.7rem;
-            padding: 0.5rem;
-        }
-
-        .spin-main-container .challenge-area .empty-state .empty-emoji {
-            font-size: 2.5rem;
-            display: block;
-            margin-bottom: 0.2rem;
-        }
-
-        .spin-main-container .spin-stats {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            padding: 0.3rem 0.5rem;
-            background: var(--theme-bg-input);
-            border-radius: 10px;
-            border: 2px solid var(--theme-border-color);
-            margin-top: 0.5rem;
-        }
-
-        .spin-main-container .spin-stats .stat-item {
-            font-size: 0.5rem;
-            color: var(--theme-text-secondary);
-            font-weight: 600;
-        }
-
-        .spin-main-container .spin-stats .stat-item strong {
-            color: var(--color-spinbottle);
-        }
-
-        /* Responsive */
         @media (max-width: 1024px) {
             .dg-mode-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -5466,6 +5617,29 @@
                 font-size: 0.4rem;
                 padding: 0.2rem 0.6rem;
             }
+
+            .mg-tabs button {
+                font-size: 0.55rem;
+                padding: 0.3rem 0.8rem;
+            }
+
+            .age-verify-box {
+                padding: 1.5rem 1rem;
+            }
+
+            .age-verify-box .age-icon {
+                font-size: 3rem;
+            }
+
+            .age-verify-box h2 {
+                font-size: 0.9rem;
+            }
+
+            .age-verify-box .age-buttons button {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.6rem;
+                min-width: 80px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -5640,6 +5814,17 @@
             .spin-main-container .challenge-area .challenge-text {
                 font-size: 0.65rem;
             }
+
+            .mg-tabs button {
+                font-size: 0.45rem;
+                padding: 0.2rem 0.6rem;
+            }
+
+            .age-verify-box .age-buttons button {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.5rem;
+                min-width: 60px;
+            }
         }
 
         @media (pointer: coarse) {
@@ -5767,6 +5952,28 @@
     </div>
 
     <!-- ============================================================
+         18+ VERIFICATION MODAL
+         ============================================================ -->
+    <div class="age-verify-overlay" id="ageVerifyOverlay">
+        <div class="age-verify-box">
+            <span class="age-icon">🔞</span>
+            <h2>AGE VERIFICATION REQUIRED</h2>
+            <p class="age-subtitle">
+                Spin the Bottle contains <strong>spicy, flirty, and steamy</strong> content<br>
+                suitable for <strong>25+</strong> audiences only.
+            </p>
+            <div class="age-warning">
+                ⚠️ The host must confirm ALL players are 18+ before proceeding.
+            </div>
+            <div class="age-buttons">
+                <button class="btn-yes" onclick="confirmAge()">✅ YES, ALL 18+</button>
+                <button class="btn-no" onclick="denyAge()">❌ NO, CANCEL</button>
+            </div>
+            <p class="age-note">By clicking "YES" you confirm all players are 18+</p>
+        </div>
+    </div>
+
+    <!-- ============================================================
          SPIN THE BOTTLE SETUP MODAL
          ============================================================ -->
     <div class="modal-overlay" id="spinSetupModal">
@@ -5847,7 +6054,6 @@
                     </div>
                 </div>
 
-                <!-- Simplified stats: Only Spins, Mode, Player -->
                 <div class="spin-stats">
                     <span class="stat-item">🔄 Spins: <strong id="spinMainTotalSpins">0</strong></span>
                     <span class="stat-item">🎯 Mode: <strong id="spinMainModeDisplay">Truth or Dare</strong></span>
@@ -5909,13 +6115,9 @@
                 <span class="icon">👥</span>
                 <span>Players</span>
             </button>
-            <button class="nav-item" onclick="navigateTo('braingames')" data-page="braingames">
+            <button class="nav-item" onclick="navigateTo('mindgames')" data-page="mindgames">
                 <span class="icon">🧠</span>
-                <span>Brain Games</span>
-            </button>
-            <button class="nav-item" onclick="navigateTo('describe-guess')" data-page="describe-guess">
-                <span class="icon">💬</span>
-                <span>Describe & Guess</span>
+                <span>Mind Games</span>
             </button>
             <button class="nav-item" onclick="navigateTo('spin-bottle')" data-page="spin-bottle">
                 <span class="icon">🍾</span>
@@ -6024,121 +6226,131 @@
             </div>
 
             <!-- ==========================================================
-                 🧠 BRAIN GAMES PAGE
+                 🧠 MIND GAMES PAGE (Combined)
                  ========================================================== -->
 
-            <div class="page" id="braingamesPage">
-                <div class="brain-games-container active" id="brainGamesContainer">
-                    <div class="bg-setup-card" id="bgSetupCard">
-                        <div class="setup-title">🧠 BRAIN GAMES</div>
-                        <div class="bg-setup-row">
-                            <label>⏱️ SET TIMER</label>
-                            <div class="preset-buttons" id="bgTimerPresets">
-                                <button class="timer-active" data-timer="15" onclick="bgSetTimer(15, this)">15s</button>
-                                <button class="timer-active active" data-timer="30" onclick="bgSetTimer(30, this)">30s</button>
-                                <button data-timer="45" onclick="bgSetTimer(45, this)">45s</button>
-                                <button data-timer="60" onclick="bgSetTimer(60, this)">60s</button>
-                                <button data-timer="90" onclick="bgSetTimer(90, this)">90s</button>
-                            </div>
-                            <div class="custom-input">
-                                <input type="number" id="bgCustomTimer" value="30" min="5" max="300" onchange="bgSetCustomTimer(this.value)" />
-                                <span>seconds</span>
-                            </div>
-                        </div>
-                        <div class="bg-setup-row">
-                            <label>📋 QUESTIONS</label>
-                            <div class="preset-buttons" id="bgQtyPresets">
-                                <button class="qty-active" data-qty="5" onclick="bgSetQuestionCount(5, this)">5</button>
-                                <button class="qty-active active" data-qty="10" onclick="bgSetQuestionCount(10, this)">10</button>
-                                <button class="qty-active" data-qty="15" onclick="bgSetQuestionCount(15, this)">15</button>
-                                <button class="qty-active" data-qty="20" onclick="bgSetQuestionCount(20, this)">20</button>
-                                <button class="qty-active" data-qty="all" onclick="bgSetQuestionCount('all', this)">All</button>
-                            </div>
-                            <div class="custom-input" style="margin-top:0.4rem;">
-                                <label style="font-family:var(--font-display);font-size:0.45rem;color:var(--theme-text-muted);letter-spacing:1px;margin-right:0.3rem;">Custom:</label>
-                                <input type="number" id="bgCustomQty" value="10" min="1" max="999" onchange="bgSetCustomQuestionCount(this.value)" style="width:60px;padding:0.25rem 0.4rem;border-radius:16px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);font-size:0.7rem;text-align:center;font-family:var(--font-body);font-weight:700;" />
-                                <span style="font-size:0.55rem;color:var(--theme-text-muted);">questions</span>
-                            </div>
-                            <div style="font-size:0.5rem;color:var(--theme-text-muted);margin-top:0.3rem;">
-                                <span id="bgTotalAvailable">0</span> questions available
-                            </div>
-                        </div>
-                        <div class="bg-setup-info">
-                            <span class="info-item">👥 Players: <span class="value" id="bgPlayerCountSetup">0</span></span>
-                            <span class="info-item">📊 Questions: <span class="value" id="bgQtyDisplay">10</span></span>
-                            <span class="info-item">⏱️ Timer: <span class="value" id="bgTimerDisplay">30s</span></span>
-                        </div>
-                        <button class="bg-start-btn" id="bgStartBtn" onclick="bgStartGame()">
-                            🚀 START BRAIN GAMES
-                        </button>
-                    </div>
-                    <div id="bgEmptyState">
-                        <div class="bg-empty-questions">❌ No questions added yet.<br>Add questions in <strong>Game Master → Brain Games</strong>!</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ==========================================================
-                 💬 DESCRIBE & GUESS PAGE
-                 ========================================================== -->
-
-            <div class="page" id="describeGuessPage">
-                <div class="describe-guess-container">
-                    <div class="dg-header">
-                        <div class="dg-title">💬 DESCRIBE & GUESS</div>
-                        <div class="dg-subtitle">Choose your game mode</div>
+            <div class="page" id="mindgamesPage">
+                <div class="mind-games-container">
+                    <!-- Tabs -->
+                    <div class="mg-tabs">
+                        <button class="active" data-tab="mg-brain" onclick="switchMindGamesTab('brain')">🧠 Brain Games</button>
+                        <button data-tab="mg-describe" onclick="switchMindGamesTab('describe')">💬 Describe & Guess</button>
                     </div>
 
-                    <div class="dg-mode-grid" id="dgModeGrid">
-                        <div class="dg-mode-card mode-describe-it" data-mode="describe-it" onclick="dgSelectMode('describe-it')">
-                            <div class="dg-mode-icon">🎯</div>
-                            <div class="dg-mode-name">DESCRIBE IT</div>
-                            <div class="dg-mode-desc">Standard description game. Describe freely without saying the answer.</div>
-                            <div class="dg-mode-tags">
-                                <span class="dg-tag">⏱️ 60s</span>
-                                <span class="dg-tag">🎯 Medium</span>
+                    <!-- Brain Games Tab -->
+                    <div class="mg-tab-content active" id="mg-brain">
+                        <div class="bg-setup-card" id="bgSetupCard">
+                            <div class="setup-title">🧠 BRAIN GAMES</div>
+                            <div class="bg-setup-row">
+                                <label>⏱️ SET TIMER</label>
+                                <div class="preset-buttons" id="bgTimerPresets">
+                                    <button class="timer-active" data-timer="15" onclick="bgSetTimer(15, this)">15s</button>
+                                    <button class="timer-active active" data-timer="30" onclick="bgSetTimer(30, this)">30s</button>
+                                    <button data-timer="45" onclick="bgSetTimer(45, this)">45s</button>
+                                    <button data-timer="60" onclick="bgSetTimer(60, this)">60s</button>
+                                    <button data-timer="90" onclick="bgSetTimer(90, this)">90s</button>
+                                </div>
+                                <div class="custom-input">
+                                    <input type="number" id="bgCustomTimer" value="30" min="5" max="300" onchange="bgSetCustomTimer(this.value)" />
+                                    <span>seconds</span>
+                                </div>
                             </div>
-                            <button class="dg-play-btn">▶ PLAY</button>
+                            <div class="bg-setup-row">
+                                <label>📋 QUESTIONS</label>
+                                <div class="preset-buttons" id="bgQtyPresets">
+                                    <button class="qty-active" data-qty="5" onclick="bgSetQuestionCount(5, this)">5</button>
+                                    <button class="qty-active active" data-qty="10" onclick="bgSetQuestionCount(10, this)">10</button>
+                                    <button class="qty-active" data-qty="15" onclick="bgSetQuestionCount(15, this)">15</button>
+                                    <button class="qty-active" data-qty="20" onclick="bgSetQuestionCount(20, this)">20</button>
+                                    <button class="qty-active" data-qty="all" onclick="bgSetQuestionCount('all', this)">All</button>
+                                </div>
+                                <div class="custom-input" style="margin-top:0.4rem;">
+                                    <label style="font-family:var(--font-display);font-size:0.45rem;color:var(--theme-text-muted);letter-spacing:1px;margin-right:0.3rem;">Custom:</label>
+                                    <input type="number" id="bgCustomQty" value="10" min="1" max="999" onchange="bgSetCustomQuestionCount(this.value)" style="width:60px;padding:0.25rem 0.4rem;border-radius:16px;border:2px solid var(--theme-border-color);background:var(--theme-bg-input);color:var(--theme-text-primary);font-size:0.7rem;text-align:center;font-family:var(--font-body);font-weight:700;" />
+                                    <span style="font-size:0.55rem;color:var(--theme-text-muted);">questions</span>
+                                </div>
+                                <div style="font-size:0.5rem;color:var(--theme-text-muted);margin-top:0.3rem;">
+                                    <span id="bgTotalAvailable">0</span> questions available
+                                </div>
+                            </div>
+                            <div class="bg-setup-info">
+                                <span class="info-item">👥 Players: <span class="value" id="bgPlayerCountSetup">0</span></span>
+                                <span class="info-item">📊 Questions: <span class="value" id="bgQtyDisplay">10</span></span>
+                                <span class="info-item">⏱️ Timer: <span class="value" id="bgTimerDisplay">30s</span></span>
+                            </div>
+                            <button class="bg-start-btn" id="bgStartBtn" onclick="bgStartGame()">
+                                🚀 START BRAIN GAMES
+                            </button>
                         </div>
-
-                        <div class="dg-mode-card mode-rapid-fire" data-mode="rapid-fire" onclick="dgSelectMode('rapid-fire')">
-                            <div class="dg-mode-icon">⚡</div>
-                            <div class="dg-mode-name">RAPID FIRE</div>
-                            <div class="dg-mode-desc">Race against the clock! Each team gets their own round.</div>
-                            <div class="dg-mode-tags">
-                                <span class="dg-tag">⏱️ 90s</span>
-                                <span class="dg-tag">⚡ Fast</span>
-                            </div>
-                            <button class="dg-play-btn">▶ PLAY</button>
-                        </div>
-
-                        <div class="dg-mode-card mode-dont-say-it" data-mode="dont-say-it" onclick="dgSelectMode('dont-say-it')">
-                            <div class="dg-mode-icon">🚫</div>
-                            <div class="dg-mode-name">DON'T SAY IT</div>
-                            <div class="dg-mode-desc">Describe WITHOUT using forbidden words! Challenge your skills.</div>
-                            <div class="dg-mode-tags">
-                                <span class="dg-tag">⏱️ 60s</span>
-                                <span class="dg-tag">🚫 Forbidden</span>
-                            </div>
-                            <button class="dg-play-btn">▶ PLAY</button>
-                        </div>
-
-                        <div class="dg-mode-card mode-hard-mode" data-mode="hard-mode" onclick="dgSelectMode('hard-mode')">
-                            <div class="dg-mode-icon">💀</div>
-                            <div class="dg-mode-name">HARD MODE</div>
-                            <div class="dg-mode-desc">Only 5 words allowed to describe! Mark words as you use them.</div>
-                            <div class="dg-mode-tags">
-                                <span class="dg-tag">⏱️ 45s</span>
-                                <span class="dg-tag">💀 5 Words</span>
-                            </div>
-                            <button class="dg-play-btn">▶ PLAY</button>
+                        <div id="bgEmptyState">
+                            <div class="bg-empty-questions">❌ No questions added yet.<br>Add questions in <strong>Game Master → Brain Games</strong>!</div>
                         </div>
                     </div>
 
-                    <div class="dg-info-bar">
-                        <span class="dg-info-item">👥 Current players: <strong id="dgPlayerCount">0</strong></span>
-                        <span class="dg-info-item">🏆 Scoring: 1 point per correct answer</span>
-                        <span class="dg-info-item">💡 All modes use the same scoring system</span>
+                    <!-- Describe & Guess Tab -->
+                    <div class="mg-tab-content" id="mg-describe">
+                        <div class="describe-guess-container">
+                            <div class="dg-header" style="text-align:center;margin-bottom:1.2rem;">
+                                <div class="dg-title" style="font-size:1.2rem;">💬 DESCRIBE & GUESS</div>
+                                <div class="dg-subtitle" style="font-size:0.75rem;color:var(--theme-text-secondary);">Choose your game mode</div>
+                            </div>
+
+                            <div class="dg-mode-grid">
+                                <!-- Describe It -->
+                                <div class="dg-mode-card mode-describe-it" data-mode="describe-it" onclick="dgSelectMode('describe-it')">
+                                    <div class="dg-mode-icon">🎯</div>
+                                    <div class="dg-mode-name">DESCRIBE IT</div>
+                                    <div class="dg-mode-desc">Standard description game. Describe freely without saying the answer.</div>
+                                    <div class="dg-mode-tags">
+                                        <span class="dg-tag">⏱️ 60s</span>
+                                        <span class="dg-tag">🎯 Medium</span>
+                                    </div>
+                                    <button class="dg-play-btn">▶ PLAY</button>
+                                </div>
+
+                                <!-- Rapid Fire -->
+                                <div class="dg-mode-card mode-rapid-fire" data-mode="rapid-fire" onclick="dgSelectMode('rapid-fire')">
+                                    <div class="dg-mode-icon">⚡</div>
+                                    <div class="dg-mode-name">RAPID FIRE</div>
+                                    <div class="dg-mode-desc">Race against the clock! Each team gets their own round.</div>
+                                    <div class="dg-mode-tags">
+                                        <span class="dg-tag">⏱️ 90s</span>
+                                        <span class="dg-tag">⚡ Fast</span>
+                                    </div>
+                                    <button class="dg-play-btn">▶ PLAY</button>
+                                </div>
+
+                                <!-- Don't Say It -->
+                                <div class="dg-mode-card mode-dont-say-it" data-mode="dont-say-it" onclick="dgSelectMode('dont-say-it')">
+                                    <div class="dg-mode-icon">🚫</div>
+                                    <div class="dg-mode-name">DON'T SAY IT</div>
+                                    <div class="dg-mode-desc">Describe WITHOUT using forbidden words! Challenge your skills.</div>
+                                    <div class="dg-mode-tags">
+                                        <span class="dg-tag">⏱️ 60s</span>
+                                        <span class="dg-tag">🚫 Forbidden</span>
+                                    </div>
+                                    <button class="dg-play-btn">▶ PLAY</button>
+                                </div>
+
+                                <!-- Hard Mode -->
+                                <div class="dg-mode-card mode-hard-mode" data-mode="hard-mode" onclick="dgSelectMode('hard-mode')">
+                                    <div class="dg-mode-icon">💀</div>
+                                    <div class="dg-mode-name">HARD MODE</div>
+                                    <div class="dg-mode-desc">Only 5 words allowed to describe! Mark words as you use them.</div>
+                                    <div class="dg-mode-tags">
+                                        <span class="dg-tag">⏱️ 45s</span>
+                                        <span class="dg-tag">💀 5 Words</span>
+                                    </div>
+                                    <button class="dg-play-btn">▶ PLAY</button>
+                                </div>
+                            </div>
+
+                            <div class="dg-info-bar">
+                                <span class="dg-info-item">👥 Current players: <strong id="dgPlayerCount">0</strong></span>
+                                <span class="dg-info-item">🏆 Scoring: 1 point per correct answer</span>
+                                <span class="dg-info-item">💡 All modes use the same scoring system</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -6175,6 +6387,7 @@
                         <div style="margin-top:1rem;padding:0.5rem;background:var(--theme-bg-input);border-radius:10px;border:2px solid var(--theme-border-color);">
                             <span style="font-size:0.5rem;color:var(--theme-text-muted);">👥 Current players: <strong style="color:var(--theme-blue-electric);" id="spinPagePlayerCount">0</strong></span>
                             <span style="font-size:0.5rem;color:var(--theme-text-muted);margin-left:1rem;">🎯 4 modes available</span>
+                            <span style="font-size:0.5rem;color:var(--theme-text-muted);margin-left:1rem;">🔞 18+</span>
                         </div>
                     </div>
                 </div>
@@ -6678,7 +6891,6 @@
                 { word: "school", forbidden: ["teacher", "student", "class", "learn", "grade"] },
                 { word: "restaurant", forbidden: ["food", "menu", "table", "order", "restaurant"] }
             ],
-            // Small fallback for Spin the Bottle (~10 per category)
             spinBottle: {
                 truth: [
                     "What is your biggest fear?",
@@ -6839,12 +7051,15 @@
             question: []
         };
         let spinDuration = 10;
-        let spinTruthDareCounter = 0; // 0-4: 0=Truth(1/2), 1=Truth(2/2), 2=Dare(1/3), 3=Dare(2/3), 4=Dare(3/3)
+        let spinTruthDareCounter = 0;
         let spinCurrentChallengeType = 'TRUTH';
 
-        // NEW: Track used players in the current round (no repeats until all selected)
+        // Track used players in the current round (no repeats until all selected)
         let spinUsedPlayers = [];
         let spinAvailablePlayers = [];
+
+        // 18+ verification state
+        let ageVerified = false;
 
         let timerInterval = null;
         let timerSeconds = 30;
@@ -7707,15 +7922,15 @@
                     closeSpinMain();
                 }
             },
-            braingames: function() {
-                currentPage = 'braingames';
+            mindgames: function() {
+                currentPage = 'mindgames';
                 document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-                const navItem = document.querySelector('.nav-item[data-page="braingames"]');
+                const navItem = document.querySelector('.nav-item[data-page="mindgames"]');
                 if (navItem) navItem.classList.add('active');
                 document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
-                const targetPage = document.getElementById('braingamesPage');
+                const targetPage = document.getElementById('mindgamesPage');
                 if (targetPage) targetPage.classList.add('active');
-                document.getElementById('pageTitle').textContent = '🧠 BRAIN GAMES';
+                document.getElementById('pageTitle').textContent = '🧠 MIND GAMES';
                 if (document.getElementById('modalOverlay').classList.contains('active')) {
                     closeModal();
                 }
@@ -7726,25 +7941,6 @@
                     closeSpinMain();
                 }
                 bgInit();
-            },
-            'describe-guess': function() {
-                currentPage = 'describe-guess';
-                document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-                const navItem = document.querySelector('.nav-item[data-page="describe-guess"]');
-                if (navItem) navItem.classList.add('active');
-                document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
-                const targetPage = document.getElementById('describeGuessPage');
-                if (targetPage) targetPage.classList.add('active');
-                document.getElementById('pageTitle').textContent = '💬 DESCRIBE & GUESS';
-                if (document.getElementById('modalOverlay').classList.contains('active')) {
-                    closeModal();
-                }
-                if (document.getElementById('spinSetupModal').classList.contains('active')) {
-                    closeSpinSetup();
-                }
-                if (document.getElementById('spinMainModal').classList.contains('active')) {
-                    closeSpinMain();
-                }
                 dgUpdatePlayerCount();
             },
             'spin-bottle': function() {
@@ -7837,6 +8033,17 @@
             if (navFunctions[page]) {
                 navFunctions[page]();
             }
+        }
+
+        // ============================================================
+        //  MIND GAMES TABS
+        // ============================================================
+        function switchMindGamesTab(tab) {
+            document.querySelectorAll('.mg-tabs button').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.mg-tabs button[data-tab="mg-${tab}"]`)?.classList.add('active');
+            document.querySelectorAll('.mg-tab-content').forEach(el => el.classList.remove('active'));
+            document.getElementById(`mg-${tab}`)?.classList.add('active');
+            playSound('point');
         }
 
         // ============================================================
@@ -12007,56 +12214,39 @@
         }
 
         // ============================================================
-        //  🍾 SPIN THE BOTTLE - UPDATED
-        //  Changes:
-        //  1. Reset rotation to 0° after each spin (consistent speed)
-        //  2. No sequence counts shown in UI (only "TRUTH" or "DARE")
-        //  3. No player repeats until all players have been selected
-        //  4. Simplified stats (Spins, Mode, Player)
+        //  🍾 SPIN THE BOTTLE
         // ============================================================
 
         function spinInit() {
             loadSpinData();
             spinUpdateUI();
             spinUpdatePagePlayerCount();
-            // Reset sequence counters (backend only)
             spinTruthDareCounter = 0;
             spinCurrentChallengeType = 'TRUTH';
-            // Reset player pool
             spinUpdatePlayerPool();
         }
 
         function spinUpdatePlayerPool() {
-            // Reset available players to all players, used players to empty
             spinUsedPlayers = [];
             spinAvailablePlayers = players.map(p => p.name);
         }
 
         function spinGetNextPlayer() {
-            // If no players available, reset the pool
             if (spinAvailablePlayers.length === 0) {
                 spinUsedPlayers = [];
                 spinAvailablePlayers = players.map(p => p.name);
-                // If still empty (no players), return null
                 if (spinAvailablePlayers.length === 0) return null;
             }
 
-            // Pick a random player from available players
             const randomIndex = Math.floor(Math.random() * spinAvailablePlayers.length);
             const playerName = spinAvailablePlayers[randomIndex];
-
-            // Move this player to used list
             spinAvailablePlayers.splice(randomIndex, 1);
             spinUsedPlayers.push(playerName);
-
-            // Find the actual player object
             return players.find(p => p.name === playerName);
         }
 
         function getNextTruthDareChallenge() {
-            // Random reset chance (15%) - only during Truth phase to minimize truths
             if (spinCurrentChallengeType === 'TRUTH' && Math.random() < 0.15) {
-                // Reset: go back to Truth phase
                 spinTruthDareCounter = 0;
                 spinCurrentChallengeType = 'TRUTH';
                 return { type: 'TRUTH' };
@@ -12065,17 +12255,14 @@
             if (spinCurrentChallengeType === 'TRUTH') {
                 spinTruthDareCounter++;
                 if (spinTruthDareCounter >= 2) {
-                    // Switch to Dare phase
                     spinCurrentChallengeType = 'DARE';
                     spinTruthDareCounter = 0;
                     return { type: 'DARE' };
                 }
                 return { type: 'TRUTH' };
             } else {
-                // Dare phase
                 spinTruthDareCounter++;
                 if (spinTruthDareCounter >= 3) {
-                    // Switch back to Truth phase
                     spinCurrentChallengeType = 'TRUTH';
                     spinTruthDareCounter = 0;
                     return { type: 'TRUTH' };
@@ -12127,7 +12314,6 @@
                 question: 'Question'
             };
             document.getElementById('spinSetupModeDisplay').textContent = modeNames[mode] || 'Truth or Dare';
-            // Reset sequence when mode changes
             if (mode === 'truth') {
                 spinTruthDareCounter = 0;
                 spinCurrentChallengeType = 'TRUTH';
@@ -12149,54 +12335,83 @@
                 return;
             }
 
-            // Reset spin state
-            spinSelectedPlayer = null;
-            spinCurrentChallenge = null;
-            spinTotalSpins = 0;
-            spinHistory = [];
-            spinUsedChallenges = {
-                truth: [],
-                dare: [],
-                wouldrather: [],
-                challenge: [],
-                question: []
-            };
-            spinUpdatePlayerPool();
+            // Show age verification first
+            showAgeVerification(function() {
+                // User confirmed 18+
+                spinSelectedPlayer = null;
+                spinCurrentChallenge = null;
+                spinTotalSpins = 0;
+                spinHistory = [];
+                spinUsedChallenges = {
+                    truth: [],
+                    dare: [],
+                    wouldrather: [],
+                    challenge: [],
+                    question: []
+                };
+                spinUpdatePlayerPool();
 
-            // Reset sequence
-            if (spinSetupMode === 'truth') {
-                spinTruthDareCounter = 0;
-                spinCurrentChallengeType = 'TRUTH';
-            }
+                if (spinSetupMode === 'truth') {
+                    spinTruthDareCounter = 0;
+                    spinCurrentChallengeType = 'TRUTH';
+                }
 
-            // Update setup modal
-            document.getElementById('spinSetupPlayerCount').textContent = players.length;
-            const modeNames = {
-                truth: 'Truth or Dare',
-                wouldrather: 'Would You Rather',
-                challenge: 'Challenge',
-                question: 'Question'
-            };
-            document.getElementById('spinSetupModeDisplay').textContent = modeNames[spinSetupMode] || 'Truth or Dare';
-            document.getElementById('spinSetupDurationDisplay').textContent = spinDuration + 's';
+                document.getElementById('spinSetupPlayerCount').textContent = players.length;
+                const modeNames = {
+                    truth: 'Truth or Dare',
+                    wouldrather: 'Would You Rather',
+                    challenge: 'Challenge',
+                    question: 'Question'
+                };
+                document.getElementById('spinSetupModeDisplay').textContent = modeNames[spinSetupMode] || 'Truth or Dare';
+                document.getElementById('spinSetupDurationDisplay').textContent = spinDuration + 's';
 
-            // Reset active mode button
-            document.querySelectorAll('#spinSetupModes .mode-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.mode === spinSetupMode);
+                document.querySelectorAll('#spinSetupModes .mode-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.mode === spinSetupMode);
+                });
+
+                document.querySelectorAll('#spinDurPresets button').forEach(btn => {
+                    btn.classList.toggle('active', parseInt(btn.dataset.dur) === spinDuration);
+                });
+
+                document.getElementById('spinSetupModal').classList.add('active');
+                document.body.style.overflow = 'hidden';
             });
-
-            // Reset duration active button
-            document.querySelectorAll('#spinDurPresets button').forEach(btn => {
-                btn.classList.toggle('active', parseInt(btn.dataset.dur) === spinDuration);
-            });
-
-            document.getElementById('spinSetupModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
         }
 
         function closeSpinSetup() {
             document.getElementById('spinSetupModal').classList.remove('active');
             document.body.style.overflow = '';
+        }
+
+        // ============================================================
+        //  18+ VERIFICATION
+        // ============================================================
+        let ageVerificationCallback = null;
+
+        function showAgeVerification(callback) {
+            ageVerificationCallback = callback;
+            document.getElementById('ageVerifyOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function confirmAge() {
+            ageVerified = true;
+            document.getElementById('ageVerifyOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+            if (ageVerificationCallback) {
+                ageVerificationCallback();
+                ageVerificationCallback = null;
+            }
+            playSound('success');
+        }
+
+        function denyAge() {
+            document.getElementById('ageVerifyOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+            ageVerificationCallback = null;
+            playSound('error');
+            showChangeToast('❌ 18+ verification required to play Spin the Bottle');
         }
 
         function spinStartGame() {
@@ -12207,7 +12422,6 @@
 
             closeSpinSetup();
 
-            // Reset main modal
             spinTotalSpins = 0;
             spinSelectedPlayer = null;
             spinCurrentChallenge = null;
@@ -12224,7 +12438,6 @@
                 spinCurrentChallengeType = 'TRUTH';
             }
 
-            // Update main modal
             const modeNames = {
                 truth: 'Truth or Dare',
                 wouldrather: 'Would You Rather',
@@ -12235,7 +12448,6 @@
             document.getElementById('spinMainTotalSpins').textContent = '0';
             document.getElementById('spinMainPlayerDisplay').textContent = '-';
 
-            // Reset challenge area
             const challengeArea = document.getElementById('spinMainChallenge');
             challengeArea.innerHTML = `
                 <div class="empty-state">
@@ -12244,7 +12456,6 @@
                 </div>
             `;
 
-            // Reset bottle - set to 0 degrees
             const bottle = document.getElementById('spinMainBottle');
             bottle.style.transition = 'none';
             bottle.style.transform = 'rotate(0deg)';
@@ -12253,7 +12464,6 @@
 
             document.getElementById('spinMainModal').classList.add('active');
             document.body.style.overflow = 'hidden';
-
             document.getElementById('spinMainBtn').disabled = false;
 
             playSound('success');
@@ -12286,7 +12496,6 @@
                 mode === 'dare' ? 'dare' :
                 'truth';
 
-            // For Truth or Dare mode, determine if we show Truth or Dare (backend only)
             let challengeType = '';
             let challengeCategory = 'truth';
             let displayMode = '';
@@ -12295,14 +12504,13 @@
                 const result = getNextTruthDareChallenge();
                 challengeType = result.type;
                 challengeCategory = challengeType === 'TRUTH' ? 'truth' : 'dare';
-                displayMode = challengeType; // Just "TRUTH" or "DARE" - no counts
+                displayMode = challengeType;
             } else {
                 challengeType = 'CHALLENGE';
                 challengeCategory = category;
                 displayMode = mode.toUpperCase();
             }
 
-            // Get challenges for the selected category
             let challenges = spinData[challengeCategory] || [];
             if (challenges.length === 0) {
                 const fallback = FALLBACK_DATA.spinBottle[challengeCategory] || [];
@@ -12314,27 +12522,22 @@
                 return;
             }
 
-            // Filter out used challenges (tracked in backend)
             const used = spinUsedChallenges[challengeCategory] || [];
             let available = challenges.filter((_, idx) => !used.includes(idx));
 
-            // If all challenges used, reset the used list
             if (available.length === 0) {
                 spinUsedChallenges[challengeCategory] = [];
                 used.length = 0;
                 available = challenges;
             }
 
-            // Pick random challenge
             const randomIndex = Math.floor(Math.random() * available.length);
             const challenge = available[randomIndex];
             const challengeIndex = challenges.indexOf(challenge);
             spinUsedChallenges[challengeCategory].push(challengeIndex);
 
-            // Pick random player from available players (no repeats until all selected)
             const selectedPlayer = spinGetNextPlayer();
             if (!selectedPlayer) {
-                // Should never happen if players.length >= 2
                 spinUpdatePlayerPool();
                 alert('No players available!');
                 return;
@@ -12343,7 +12546,6 @@
             spinSelectedPlayer = selectedPlayer;
             spinCurrentChallenge = challenge;
 
-            // Animate bottle
             const bottle = document.getElementById('spinMainBottle');
             const sparkles = document.getElementById('spinMainSparkles');
             const btn = document.getElementById('spinMainBtn');
@@ -12351,19 +12553,15 @@
             btn.disabled = true;
             spinIsSpinning = true;
 
-            // Reset bottle to 0° before starting new spin (ensure consistent speed)
             bottle.style.transition = 'none';
             bottle.style.transform = 'rotate(0deg)';
-            // Force reflow
             void bottle.offsetWidth;
 
-            // Fixed duration (user selected)
             const spinDurationMs = spinDuration * 1000;
             const rotations = 4 + Math.random() * 6;
             const extraAngle = Math.random() * 360;
             const totalAngle = rotations * 360 + extraAngle;
 
-            // Show spinning state in challenge area
             const challengeArea = document.getElementById('spinMainChallenge');
             challengeArea.innerHTML = `
                 <div style="text-align:center;padding:0.5rem;">
@@ -12373,7 +12571,6 @@
                 </div>
             `;
 
-            // Start spin animation with gradual slow down
             bottle.style.transition = `transform ${spinDurationMs/1000}s cubic-bezier(0.08, 0.82, 0.17, 1)`;
             bottle.style.transform = `rotate(${totalAngle}deg)`;
             bottle.classList.add('spinning');
@@ -12381,7 +12578,6 @@
 
             playSound('timer');
 
-            // Show result after spin
             setTimeout(() => {
                 bottle.classList.remove('spinning');
                 sparkles.classList.remove('active');
@@ -12390,11 +12586,9 @@
 
                 spinTotalSpins++;
 
-                // Update stats
                 document.getElementById('spinMainTotalSpins').textContent = spinTotalSpins;
                 document.getElementById('spinMainPlayerDisplay').textContent = selectedPlayer.emoji + ' ' + selectedPlayer.name;
 
-                // Show challenge result - simplified UI (no sequence counts)
                 const emojis = {
                     truth: '🎯',
                     dare: '🔥',
@@ -12434,8 +12628,6 @@
                 createConfetti(15);
                 playSound('success');
 
-                // After spin completes, reset the bottle rotation to 0° for next spin
-                // This ensures consistent spin speed every time
                 setTimeout(() => {
                     bottle.style.transition = 'none';
                     bottle.style.transform = 'rotate(0deg)';
@@ -12447,7 +12639,6 @@
         function spinMainComplete() {
             if (!spinSelectedPlayer || !spinCurrentChallenge) return;
 
-            // Show feedback
             const challengeArea = document.getElementById('spinMainChallenge');
             challengeArea.innerHTML = `
                 <div style="text-align:center;padding:0.5rem;">
@@ -12460,7 +12651,6 @@
 
             createConfetti(20);
             playSound('levelup');
-
             spinSelectedPlayer = null;
             spinCurrentChallenge = null;
         }
@@ -12479,7 +12669,6 @@
             `;
 
             playSound('point');
-
             spinSelectedPlayer = null;
             spinCurrentChallenge = null;
         }
@@ -12643,7 +12832,6 @@
                     console.log(`🚫 Using fallback Don't Say It data (${dontSayItData.length} entries)`);
                 }
 
-                // Load Spin the Bottle data
                 if (data.spinTheBottle) {
                     spinData = data.spinTheBottle;
                     saveSpinData();
@@ -13519,7 +13707,8 @@
             console.log(`⏱️ Spin duration: User selectable (5s, 8s, 10s, 12s, 15s) with gradual slow down`);
             console.log(`🎯 Truth or Dare: 2 Truths → 3 Dares sequence with random reset to minimize truths`);
             console.log(`🔄 Spin: No player repeats until all have been selected`);
-            console.log(`🔒 Spin: Sequence counts hidden from UI`);
+            console.log(`🔞 18+ verification required for Spin the Bottle`);
+            console.log(`🧠 Mind Games: Brain Games + Describe & Guess combined under one tab`);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
