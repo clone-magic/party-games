@@ -154,8 +154,8 @@ Four game modes:
 
 ### Game Modes
 
-| Mode | Description |
-|------|-------------|
+| Mode |
+|------|
 | 🎯 **Truth or Dare** |
 | 💬 **Would You Rather** |
 | 💪 **Challenge** |
