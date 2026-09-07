@@ -44,7 +44,7 @@
             --transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             --font-display: 'Press Start 2P', monospace;
             --font-body: 'Nunito', sans-serif;
-            --sidebar-width: 200px;
+            --sidebar-width: 160px;
             --bottom-nav-height: 0px;
             --theme-bg-primary: #0a1628;
             --theme-bg-secondary: #0f1f33;
@@ -81,8 +81,8 @@
             --color-whoami-light: #a569bd;
             --color-braingames: #9b59b6;
             --color-braingames-light: #af7ac5;
-            --color-describeit: #f39c12;
-            --color-describeit-light: #f5b342;
+            --color-describeit: #000080;
+            --color-describeit-light: #3333aa;
             --color-rapidfire: #00bcd4;
             --color-rapidfire-light: #33d4e8;
             --color-dontsayit: #e74c3c;
@@ -128,10 +128,10 @@
             width: var(--sidebar-width);
             height: 100vh;
             background: var(--theme-bg-sidebar);
-            padding: 1.2rem 0.8rem;
+            padding: 1.2rem 0.6rem;
             display: flex;
             flex-direction: column;
-            gap: 0.3rem;
+            gap: 0.2rem;
             z-index: 1000;
             transition: var(--transition);
             overflow-y: auto;
@@ -141,12 +141,12 @@
 
         .sidebar .brand {
             font-family: var(--font-display);
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             color: var(--theme-blue-electric);
             text-align: center;
-            padding: 0.5rem 0 0.8rem 0;
+            padding: 0.3rem 0 0.6rem 0;
             border-bottom: 2px solid var(--theme-glow-blue);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
             text-shadow: 0 0 30px var(--theme-glow-blue);
             letter-spacing: 1px;
             line-height: 1.6;
@@ -154,7 +154,7 @@
 
         .sidebar .brand .sub {
             font-family: var(--font-body);
-            font-size: 0.4rem;
+            font-size: 0.35rem;
             color: var(--theme-text-muted);
             letter-spacing: 3px;
         }
@@ -162,12 +162,12 @@
         .sidebar .nav-item {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            padding: 0.6rem 0.8rem;
+            gap: 0.4rem;
+            padding: 0.4rem 0.6rem;
             border-radius: 10px;
             color: var(--theme-text-muted);
             font-weight: 700;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             cursor: pointer;
             transition: var(--transition);
             border: none;
@@ -190,8 +190,8 @@
         }
 
         .sidebar .nav-item .icon {
-            font-size: 1rem;
-            width: 24px;
+            font-size: 0.9rem;
+            width: 20px;
             text-align: center;
             flex-shrink: 0;
         }
@@ -199,7 +199,7 @@
         .sidebar .nav-item.gm-toggle {
             margin-top: auto;
             border-top: 1px solid var(--theme-glow-blue);
-            padding-top: 0.8rem;
+            padding-top: 0.6rem;
         }
 
         .main-content {
@@ -1197,23 +1197,6 @@
             background: rgba(255, 255, 255, 0.3);
             transform: scale(1.08);
             border-color: white;
-        }
-
-        .game-card .featured-ribbon {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            background: rgba(255, 255, 255, 0.25);
-            color: white;
-            font-size: 0.4rem;
-            font-weight: 800;
-            padding: 0.15rem 0.6rem;
-            border-radius: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-family: var(--font-display);
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .game-card.game-charades {
@@ -2742,7 +2725,7 @@
         }
 
         /* ============================================================
-           18+ VERIFICATION MODAL
+           18+ VERIFICATION MODAL - UPDATED
            ============================================================ */
         .age-verify-overlay {
             display: none;
@@ -2853,6 +2836,101 @@
             color: var(--theme-text-muted);
             margin-top: 0.8rem;
             opacity: 0.5;
+        }
+
+        /* Password step inside age verification */
+        .age-password-step {
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 2px solid var(--theme-border-color);
+        }
+
+        .age-password-step .password-hint {
+            font-size: 0.7rem;
+            color: var(--theme-text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .age-password-step .password-label {
+            font-family: var(--font-display);
+            font-size: 0.5rem;
+            color: var(--theme-blue-electric);
+            letter-spacing: 2px;
+            margin-bottom: 0.3rem;
+            display: block;
+        }
+
+        .age-password-step .password-input {
+            width: 100%;
+            padding: 0.6rem;
+            border-radius: 30px;
+            border: 2px solid var(--theme-border-color);
+            background: var(--theme-bg-input);
+            color: var(--theme-text-primary);
+            font-size: 0.9rem;
+            text-align: center;
+            font-family: var(--font-body);
+            margin-bottom: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .age-password-step .password-input:focus {
+            outline: none;
+            border-color: var(--theme-blue-electric);
+            box-shadow: 0 0 20px var(--theme-glow-blue);
+        }
+
+        .age-password-step .password-error {
+            color: #e74c3c;
+            font-size: 0.65rem;
+            display: none;
+            margin-bottom: 0.5rem;
+        }
+
+        .age-password-step .password-error.show {
+            display: block;
+        }
+
+        .age-password-step .password-buttons {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .age-password-step .password-buttons button {
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.6rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            min-width: 100px;
+        }
+
+        .age-password-step .password-buttons .btn-verify {
+            background: var(--theme-blue-bright);
+            color: white;
+            box-shadow: 0 0 20px var(--theme-glow-blue);
+        }
+
+        .age-password-step .password-buttons .btn-verify:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px var(--theme-glow-blue-strong);
+        }
+
+        .age-password-step .password-buttons .btn-back-pw {
+            background: var(--theme-bg-input);
+            color: var(--theme-text-secondary);
+            border: 2px solid var(--theme-border-color);
+        }
+
+        .age-password-step .password-buttons .btn-back-pw:hover {
+            border-color: var(--theme-blue-electric);
+            color: var(--theme-text-primary);
+            transform: scale(1.05);
         }
 
         /* ============================================================
@@ -3215,7 +3293,7 @@
             color: var(--theme-text-primary);
         }
 
-        /* DG Mode Grid */
+        /* DG Mode Grid - Now styled like Games tab */
         .dg-mode-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -3224,10 +3302,9 @@
         }
 
         .dg-mode-card {
-            background: var(--theme-bg-card);
             border-radius: var(--card-radius);
             padding: 1.5rem 1rem;
-            border: 2px solid var(--theme-border-color);
+            border: 3px solid transparent;
             text-align: center;
             cursor: pointer;
             transition: var(--transition);
@@ -3236,34 +3313,47 @@
             flex-direction: column;
             align-items: center;
             gap: 0.4rem;
+            color: white;
+            min-height: 200px;
+            position: relative;
+            overflow: hidden;
         }
 
         .dg-mode-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--theme-blue-electric);
-            box-shadow: var(--theme-shadow-hover), 0 0 30px var(--theme-glow-blue);
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: var(--theme-shadow-hover), 0 0 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
         .dg-mode-card:active {
-            transform: scale(0.96);
+            transform: scale(0.95);
         }
 
         .dg-mode-card .dg-mode-icon {
             font-size: 2.5rem;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .dg-mode-card:hover .dg-mode-icon {
+            transform: scale(1.15) rotate(-5deg);
         }
 
         .dg-mode-card .dg-mode-name {
             font-family: var(--font-display);
-            font-size: 0.7rem;
-            color: var(--theme-text-primary);
+            font-size: 0.65rem;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
             letter-spacing: 1px;
+            margin-top: 0.2rem;
         }
 
         .dg-mode-card .dg-mode-desc {
-            font-size: 0.6rem;
-            color: var(--theme-text-secondary);
+            font-size: 0.55rem;
+            color: rgba(255, 255, 255, 0.85);
             line-height: 1.4;
             min-height: 2.8rem;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
         }
 
         .dg-mode-card .dg-mode-tags {
@@ -3274,50 +3364,49 @@
         }
 
         .dg-mode-card .dg-tag {
-            font-size: 0.45rem;
-            background: var(--theme-bg-input);
+            font-size: 0.4rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
             padding: 0.15rem 0.6rem;
             border-radius: 12px;
-            border: 1px solid var(--theme-border-color);
-            color: var(--theme-text-muted);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.9);
             font-weight: 600;
         }
 
         .dg-mode-card .dg-play-btn {
             margin-top: 0.3rem;
-            padding: 0.4rem 1.5rem;
+            padding: 0.35rem 1.5rem;
             border-radius: 30px;
-            border: none;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
             font-weight: 700;
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             cursor: pointer;
             transition: var(--transition);
             font-family: var(--font-body);
-            background: var(--theme-blue-bright);
-            color: white;
-            box-shadow: 0 0 20px var(--theme-glow-blue);
+            backdrop-filter: blur(4px);
         }
 
         .dg-mode-card .dg-play-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px var(--theme-glow-blue-strong);
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.08);
+            border-color: white;
         }
 
-        .dg-mode-card .dg-play-btn:active {
-            transform: scale(0.95);
+        /* Mode-specific colors */
+        .dg-mode-card.mode-describe-it {
+            background: var(--color-describeit);
         }
-
-        .dg-mode-card.mode-describe-it:hover {
-            border-color: var(--color-describeit);
+        .dg-mode-card.mode-rapid-fire {
+            background: var(--color-rapidfire);
         }
-        .dg-mode-card.mode-rapid-fire:hover {
-            border-color: var(--color-rapidfire);
+        .dg-mode-card.mode-dont-say-it {
+            background: var(--color-dontsayit);
         }
-        .dg-mode-card.mode-dont-say-it:hover {
-            border-color: var(--color-dontsayit);
-        }
-        .dg-mode-card.mode-hard-mode:hover {
-            border-color: var(--color-hardmode);
+        .dg-mode-card.mode-hard-mode {
+            background: var(--color-hardmode);
         }
 
         .dg-info-bar {
@@ -5278,6 +5367,244 @@
         }
 
         /* ============================================================
+           WALKTHROUGH OVERLAY - IMPROVED VERSION
+           ============================================================ */
+        .walkthrough-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 20000;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+        }
+
+        .walkthrough-overlay.active {
+            display: flex;
+            animation: modalIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .walkthrough-box {
+            background: var(--theme-bg-card);
+            border-radius: var(--card-radius);
+            padding: 2rem 2rem 1.8rem;
+            max-width: 600px;
+            width: 100%;
+            border: 3px solid var(--theme-blue-electric);
+            box-shadow: 0 0 80px var(--theme-glow-blue-strong);
+            text-align: center;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .walkthrough-box .wt-step-indicator {
+            font-family: var(--font-display);
+            font-size: 0.45rem;
+            color: var(--theme-text-muted);
+            letter-spacing: 2px;
+            margin-bottom: 0.3rem;
+        }
+
+        .walkthrough-box .wt-progress-bar {
+            width: 100%;
+            height: 4px;
+            background: var(--theme-border-color);
+            border-radius: 4px;
+            margin-bottom: 1.2rem;
+            overflow: hidden;
+        }
+
+        .walkthrough-box .wt-progress-bar .wt-progress-fill {
+            height: 100%;
+            background: var(--theme-blue-electric);
+            border-radius: 4px;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+
+        .walkthrough-box .wt-icon {
+            font-size: 3.5rem;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .walkthrough-box h2 {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            color: var(--theme-text-primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .walkthrough-box .wt-subtitle {
+            color: var(--theme-text-secondary);
+            font-size: 0.7rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .walkthrough-box .wt-content {
+            color: var(--theme-text-secondary);
+            font-size: 0.75rem;
+            line-height: 1.8;
+            margin-bottom: 0.8rem;
+            text-align: left;
+            padding: 0.5rem 0.8rem;
+            background: var(--theme-bg-input);
+            border-radius: 10px;
+            border: 2px solid var(--theme-border-color);
+        }
+
+        .walkthrough-box .wt-content .wt-highlight {
+            color: var(--theme-blue-electric);
+            font-weight: 700;
+        }
+
+        .walkthrough-box .wt-content .wt-step-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.2rem 0;
+        }
+
+        .walkthrough-box .wt-content .wt-step-list li {
+            padding: 0.2rem 0;
+            border-bottom: 1px solid var(--theme-border-color);
+            font-size: 0.7rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.4rem;
+        }
+
+        .walkthrough-box .wt-content .wt-step-list li:last-child {
+            border-bottom: none;
+        }
+
+        .walkthrough-box .wt-content .wt-step-list .li-icon {
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            margin-top: 0.05rem;
+        }
+
+        .walkthrough-box .wt-content .wt-game-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.3rem 0.8rem;
+            margin: 0.2rem 0;
+        }
+
+        .walkthrough-box .wt-content .wt-game-grid .wt-game-item {
+            font-size: 0.55rem;
+            padding: 0.15rem 0.3rem;
+            border-radius: 6px;
+            background: var(--theme-bg-card);
+            border: 1px solid var(--theme-border-color);
+            text-align: center;
+        }
+
+        .walkthrough-box .wt-content .wt-game-grid .wt-game-item .game-emoji {
+            font-size: 0.9rem;
+            display: block;
+        }
+
+        .walkthrough-box .wt-content .wt-feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.3rem;
+            margin: 0.2rem 0;
+        }
+
+        .walkthrough-box .wt-content .wt-feature-grid .wt-feature-item {
+            font-size: 0.55rem;
+            padding: 0.2rem 0.4rem;
+            border-radius: 6px;
+            background: var(--theme-bg-card);
+            border: 1px solid var(--theme-border-color);
+            text-align: center;
+        }
+
+        .walkthrough-box .wt-actions {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 0.2rem;
+        }
+
+        .walkthrough-box .wt-actions button {
+            padding: 0.4rem 1.5rem;
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.6rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            min-height: 38px;
+        }
+
+        .walkthrough-box .wt-actions .wt-btn-primary {
+            background: var(--theme-blue-bright);
+            color: white;
+            box-shadow: 0 0 20px var(--theme-glow-blue);
+        }
+
+        .walkthrough-box .wt-actions .wt-btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px var(--theme-glow-blue-strong);
+        }
+
+        .walkthrough-box .wt-actions .wt-btn-secondary {
+            background: var(--theme-bg-input);
+            color: var(--theme-text-secondary);
+            border: 2px solid var(--theme-border-color);
+        }
+
+        .walkthrough-box .wt-actions .wt-btn-secondary:hover {
+            border-color: var(--theme-blue-electric);
+            color: var(--theme-text-primary);
+            transform: scale(1.05);
+        }
+
+        .walkthrough-box .wt-actions .wt-btn-success {
+            background: #2ecc71;
+            color: white;
+            box-shadow: 0 0 20px rgba(46, 204, 113, 0.3);
+        }
+
+        .walkthrough-box .wt-actions .wt-btn-success:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(46, 204, 113, 0.5);
+        }
+
+        .walkthrough-box .wt-dismiss {
+            margin-top: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.45rem;
+            color: var(--theme-text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .walkthrough-box .wt-dismiss input[type="checkbox"] {
+            accent-color: var(--theme-blue-electric);
+            width: 14px;
+            height: 14px;
+            cursor: pointer;
+        }
+
+        .walkthrough-box .wt-dismiss:hover {
+            color: var(--theme-text-primary);
+        }
+
+        /* ============================================================
            RESPONSIVE
            ============================================================ */
         @media (max-width: 1024px) {
@@ -5640,6 +5967,43 @@
                 font-size: 0.6rem;
                 min-width: 80px;
             }
+
+            .walkthrough-box {
+                padding: 1.5rem 1rem;
+                max-width: 95%;
+            }
+
+            .walkthrough-box h2 {
+                font-size: 0.85rem;
+            }
+
+            .walkthrough-box .wt-content {
+                font-size: 0.65rem;
+                padding: 0.4rem 0.6rem;
+            }
+
+            .walkthrough-box .wt-content .wt-game-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.2rem 0.4rem;
+            }
+
+            .walkthrough-box .wt-content .wt-game-grid .wt-game-item {
+                font-size: 0.5rem;
+            }
+
+            .walkthrough-box .wt-content .wt-feature-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .walkthrough-box .wt-content .wt-feature-grid .wt-feature-item {
+                font-size: 0.5rem;
+            }
+
+            .walkthrough-box .wt-actions button {
+                padding: 0.3rem 1rem;
+                font-size: 0.5rem;
+                min-height: 32px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -5707,6 +6071,15 @@
                 font-size: 0.35rem;
                 padding: 0.15rem 0.4rem;
                 min-height: 26px;
+            }
+
+            .walkthrough-box .wt-content .wt-game-grid {
+                grid-template-columns: 1fr;
+                gap: 0.15rem;
+            }
+
+            .walkthrough-box .wt-content .wt-feature-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -5825,6 +6198,24 @@
                 font-size: 0.5rem;
                 min-width: 60px;
             }
+
+            .walkthrough-box .wt-content .wt-game-grid {
+                grid-template-columns: 1fr;
+                gap: 0.1rem;
+            }
+
+            .walkthrough-box .wt-content .wt-game-grid .wt-game-item {
+                font-size: 0.45rem;
+                padding: 0.1rem 0.2rem;
+            }
+
+            .walkthrough-box .wt-content .wt-feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .walkthrough-box .wt-content .wt-feature-grid .wt-feature-item {
+                font-size: 0.45rem;
+            }
         }
 
         @media (pointer: coarse) {
@@ -5880,9 +6271,8 @@
                 transform: translateY(-2px);
             }
             .dg-mode-card:hover {
-                transform: translateY(-4px);
-                border-color: var(--theme-blue-electric);
-                box-shadow: var(--theme-shadow-hover), 0 0 30px var(--theme-glow-blue);
+                transform: translateY(-6px) scale(1.02);
+                border-color: rgba(255, 255, 255, 0.3);
             }
             .spin-setup-modal .mode-btn:hover {
                 border-color: var(--theme-blue-electric);
@@ -5952,7 +6342,7 @@
     </div>
 
     <!-- ============================================================
-         18+ VERIFICATION MODAL
+         18+ VERIFICATION MODAL with Password (Updated Layout)
          ============================================================ -->
     <div class="age-verify-overlay" id="ageVerifyOverlay">
         <div class="age-verify-box">
@@ -5965,10 +6355,31 @@
             <div class="age-warning">
                 ⚠️ The host must confirm ALL players are 18+ before proceeding.
             </div>
-            <div class="age-buttons">
-                <button class="btn-yes" onclick="confirmAge()">✅ YES, ALL 18+</button>
+
+            <!-- Initial buttons -->
+            <div id="ageInitialButtons" style="display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap;">
+                <button class="btn-yes" onclick="showAgePassword()">✅ YES, ALL 18+</button>
                 <button class="btn-no" onclick="denyAge()">❌ NO, CANCEL</button>
             </div>
+
+            <!-- Password step (hidden initially) -->
+            <div id="agePasswordStep" class="age-password-step" style="display:none;">
+                <div style="font-size:0.8rem;color:var(--theme-text-secondary);margin-bottom:0.5rem;line-height:1.5;">
+                    ⚠️ Spin the Bottle contains spicy, flirty, and steamy content<br>
+                    suitable for 25+ audiences only.
+                </div>
+                <span class="password-label">🔑 PASSWORD: party</span>
+                <input type="text" id="agePasswordInput" class="password-input" placeholder="Enter password..." />
+                <div id="agePasswordError" class="password-error">❌ Incorrect password. Please try again.</div>
+                <div class="password-buttons">
+                    <button class="btn-verify" onclick="confirmAgePassword()">🔓 VERIFY</button>
+                    <button class="btn-back-pw" onclick="hideAgePassword()">✕ BACK</button>
+                </div>
+                <p style="font-size:0.4rem;color:var(--theme-text-muted);margin-top:0.5rem;opacity:0.4;">
+                    Password: visible for host
+                </p>
+            </div>
+
             <p class="age-note">By clicking "YES" you confirm all players are 18+</p>
         </div>
     </div>
@@ -6097,6 +6508,33 @@
     </div>
 
     <!-- ============================================================
+         WALKTHROUGH OVERLAY - IMPROVED VERSION
+         ============================================================ -->
+    <div class="walkthrough-overlay" id="walkthroughOverlay">
+        <div class="walkthrough-box" id="walkthroughBox">
+            <div class="wt-step-indicator" id="wtStepIndicator">STEP 1/8</div>
+            <div class="wt-progress-bar">
+                <div class="wt-progress-fill" id="wtProgressFill"></div>
+            </div>
+            <span class="wt-icon" id="wtIcon">🎮</span>
+            <h2 id="wtTitle">Welcome to ARCADE PARTY!</h2>
+            <div class="wt-subtitle" id="wtSubtitle">Your all-in-one party game hub</div>
+            <div class="wt-content" id="wtContent">
+                <p>Get ready to play the best party games with your friends!</p>
+                <p style="margin-top:0.3rem;">Let's walk through everything you need to know.</p>
+            </div>
+            <div class="wt-actions" id="wtActions">
+                <button class="wt-btn-primary" id="wtNextBtn" onclick="walkthroughNext()">▶ LET'S GO</button>
+                <button class="wt-btn-secondary" onclick="walkthroughSkip()">⏭️ SKIP</button>
+            </div>
+            <div class="wt-dismiss">
+                <input type="checkbox" id="wtDontShowAgain" />
+                <label for="wtDontShowAgain">Don't show this again</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
          APP
          ============================================================ -->
 
@@ -6135,6 +6573,7 @@
                 <span class="icon">👑</span>
                 <span>Game Master</span>
             </button>
+            <!-- Help button removed from sidebar -->
         </nav>
 
         <main class="main-content">
@@ -6146,6 +6585,7 @@
                 </div>
                 <div class="top-actions">
                     <span class="player-count-badge" id="playerCountBadge">👥 0</span>
+                    <button onclick="openWalkthrough()" style="background:var(--theme-bg-input);border:2px solid var(--theme-border-color);border-radius:30px;padding:0.15rem 0.6rem;font-size:0.5rem;color:var(--theme-text-muted);cursor:pointer;font-family:var(--font-body);font-weight:700;transition:var(--transition);">❓ Help</button>
                 </div>
             </div>
 
@@ -6960,6 +7400,7 @@
         // ============================================================
         const GM_PASSWORD = 'clone1234#';
         const ADMIN_CODE = 'ADMIN2026';
+        const SPIN_AGE_PASSWORD = 'party';
         let gmUnlocked = false;
         let adminAttempts = 0;
         let soundEnabled = true;
@@ -6980,6 +7421,180 @@
         ];
         const COLORS = ['#4A90D9', '#00D4FF', '#7EC8E3', '#2E6B9E', '#5BA3D9', '#1A4A7A', '#00A8CC'];
 
+        // ============================================================
+        //  THEMES - Updated (Neumorphism with dark gray)
+        // ============================================================
+        const THEMES = {
+            'lush-forest': {
+                name: 'Lush Forest',
+                mood: 'Natural · Grounded · Organic',
+                colors: ['#1B4D3D', '#2D6A4F', '#40916C', '#52B788'],
+                variables: {
+                    '--theme-bg-primary': '#0F2A1F',
+                    '--theme-bg-secondary': '#1B4D3D',
+                    '--theme-bg-card': '#1B4D3D',
+                    '--theme-bg-card-hover': '#2D6A4F',
+                    '--theme-bg-input': '#1B4D3D',
+                    '--theme-bg-sidebar': '#0A1A12',
+                    '--theme-bg-sidebar-hover': '#1B4D3D',
+                    '--theme-text-primary': '#E8F0E8',
+                    '--theme-text-secondary': '#A0C0A8',
+                    '--theme-text-muted': '#6A8A72',
+                    '--theme-border-color': '#2D6A4F',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.5)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.7)',
+                    '--theme-blue-bright': '#40916C',
+                    '--theme-blue-electric': '#52B788',
+                    '--theme-glow-blue': 'rgba(82,183,136,0.2)',
+                    '--theme-glow-blue-strong': 'rgba(82,183,136,0.4)'
+                }
+            },
+            'urban-loft': {
+                name: 'Urban Loft',
+                mood: 'Modern · Industrial · Clean',
+                colors: ['#2C2C2C', '#8B4513', '#D3D3D3', '#F5F5F5'],
+                variables: {
+                    '--theme-bg-primary': '#F5F5F5',
+                    '--theme-bg-secondary': '#E8E8E8',
+                    '--theme-bg-card': '#FFFFFF',
+                    '--theme-bg-card-hover': '#F5F5F5',
+                    '--theme-bg-input': '#E8E8E8',
+                    '--theme-bg-sidebar': '#1A1A1A',
+                    '--theme-bg-sidebar-hover': '#2C2C2C',
+                    '--theme-text-primary': '#1A1A1A',
+                    '--theme-text-secondary': '#4A4A4A',
+                    '--theme-text-muted': '#8A8A8A',
+                    '--theme-border-color': '#D3D3D3',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.08)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.15)',
+                    '--theme-blue-bright': '#8B4513',
+                    '--theme-blue-electric': '#A05520',
+                    '--theme-glow-blue': 'rgba(139,69,19,0.15)',
+                    '--theme-glow-blue-strong': 'rgba(139,69,19,0.3)'
+                }
+            },
+            'dark-professional': {
+                name: 'Dark Professional',
+                mood: 'Premium · Modern · Elegant',
+                colors: ['#1A1A1A', '#2D2D2D', '#C9A96E', '#FFFFFF'],
+                variables: {
+                    '--theme-bg-primary': '#0D0D0D',
+                    '--theme-bg-secondary': '#1A1A1A',
+                    '--theme-bg-card': '#1A1A1A',
+                    '--theme-bg-card-hover': '#2D2D2D',
+                    '--theme-bg-input': '#1A1A1A',
+                    '--theme-bg-sidebar': '#050505',
+                    '--theme-bg-sidebar-hover': '#1A1A1A',
+                    '--theme-text-primary': '#F5F5F5',
+                    '--theme-text-secondary': '#C9A96E',
+                    '--theme-text-muted': '#8A8A8A',
+                    '--theme-border-color': '#2D2D2D',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.6)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.8)',
+                    '--theme-blue-bright': '#C9A96E',
+                    '--theme-blue-electric': '#D4B88A',
+                    '--theme-glow-blue': 'rgba(201,169,110,0.15)',
+                    '--theme-glow-blue-strong': 'rgba(201,169,110,0.3)'
+                }
+            },
+            'neumorphism': {
+                name: 'Neumorphism',
+                mood: 'Soft · Tactile · Modern',
+                colors: ['#E8EDF2', '#D4DCE4', '#C0C8D0', '#B8C0C8'],
+                variables: {
+                    '--theme-bg-primary': '#E8EDF2',
+                    '--theme-bg-secondary': '#D4DCE4',
+                    '--theme-bg-card': '#E8EDF2',
+                    '--theme-bg-card-hover': '#D4DCE4',
+                    '--theme-bg-input': '#D4DCE4',
+                    '--theme-bg-sidebar': '#C8D0D8',
+                    '--theme-bg-sidebar-hover': '#D4DCE4',
+                    '--theme-text-primary': '#2D3540',
+                    '--theme-text-secondary': '#5A6A7A',
+                    '--theme-text-muted': '#8A9AAA',
+                    '--theme-border-color': '#6B7280',
+                    '--theme-shadow': '8px 8px 16px #B8C0C8, -8px -8px 16px #F8FCFF',
+                    '--theme-shadow-hover': '12px 12px 24px #B0B8C0, -12px -12px 24px #F8FCFF',
+                    '--theme-blue-bright': '#4B5563',
+                    '--theme-blue-electric': '#6B7280',
+                    '--theme-glow-blue': 'rgba(107,114,128,0.15)',
+                    '--theme-glow-blue-strong': 'rgba(107,114,128,0.3)'
+                }
+            },
+            'dark-media': {
+                name: 'Dark Media',
+                mood: 'Sleek · Modern · Edgy',
+                colors: ['#0A0A0F', '#1A1A2E', '#16213E', '#0F3460'],
+                variables: {
+                    '--theme-bg-primary': '#0A0A0F',
+                    '--theme-bg-secondary': '#12121E',
+                    '--theme-bg-card': '#1A1A2E',
+                    '--theme-bg-card-hover': '#22223E',
+                    '--theme-bg-input': '#1A1A2E',
+                    '--theme-bg-sidebar': '#05050A',
+                    '--theme-bg-sidebar-hover': '#1A1A2E',
+                    '--theme-text-primary': '#E8EEFF',
+                    '--theme-text-secondary': '#8899CC',
+                    '--theme-text-muted': '#556688',
+                    '--theme-border-color': '#1A1A2E',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.6)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.8)',
+                    '--theme-blue-bright': '#6A8AFF',
+                    '--theme-blue-electric': '#4A6AFF',
+                    '--theme-glow-blue': 'rgba(74,106,255,0.2)',
+                    '--theme-glow-blue-strong': 'rgba(74,106,255,0.4)'
+                }
+            },
+            'warm-profile': {
+                name: 'Warm Profile',
+                mood: 'Friendly · Personal · Warm',
+                colors: ['#FDF6E3', '#F5E6D3', '#E8D5C4', '#D4A89B'],
+                variables: {
+                    '--theme-bg-primary': '#FDF6E3',
+                    '--theme-bg-secondary': '#F5E6D3',
+                    '--theme-bg-card': '#FFFFFF',
+                    '--theme-bg-card-hover': '#FDF6E3',
+                    '--theme-bg-input': '#F5E6D3',
+                    '--theme-bg-sidebar': '#3A2A22',
+                    '--theme-bg-sidebar-hover': '#5A4A42',
+                    '--theme-text-primary': '#3A2A22',
+                    '--theme-text-secondary': '#7A5A4A',
+                    '--theme-text-muted': '#B09A8A',
+                    '--theme-border-color': '#E8D5C4',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.06)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.12)',
+                    '--theme-blue-bright': '#D4A89B',
+                    '--theme-blue-electric': '#B0806A',
+                    '--theme-glow-blue': 'rgba(176,128,106,0.15)',
+                    '--theme-glow-blue-strong': 'rgba(176,128,106,0.3)'
+                }
+            },
+            'amoled': {
+                name: 'AMOLED',
+                mood: 'Premium · Deep · High Contrast',
+                colors: ['#000000', '#0A0A0A', '#1A1A1A', '#2A2A2A'],
+                variables: {
+                    '--theme-bg-primary': '#000000',
+                    '--theme-bg-secondary': '#050505',
+                    '--theme-bg-card': '#0D0D0D',
+                    '--theme-bg-card-hover': '#1A1A1A',
+                    '--theme-bg-input': '#0D0D0D',
+                    '--theme-bg-sidebar': '#000000',
+                    '--theme-bg-sidebar-hover': '#0D0D0D',
+                    '--theme-text-primary': '#FFFFFF',
+                    '--theme-text-secondary': '#CCCCCC',
+                    '--theme-text-muted': '#888888',
+                    '--theme-border-color': '#1A1A1A',
+                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.8)',
+                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.9)',
+                    '--theme-blue-bright': '#AAAAAA',
+                    '--theme-blue-electric': '#DDDDDD',
+                    '--theme-glow-blue': 'rgba(255,255,255,0.08)',
+                    '--theme-glow-blue-strong': 'rgba(255,255,255,0.15)'
+                }
+            }
+        };
+
         const GAME_COLORS = {
             charades: { main: '#1A5276', light: '#2A7AA6', text: '#FFFFFF', glow: 'rgba(26,82,118,0.4)' },
             hangman: { main: '#1ABC9C', light: '#3DD4B8', text: '#FFFFFF', glow: 'rgba(26,188,156,0.4)' },
@@ -6990,7 +7605,7 @@
             roast: { main: '#E74C3C', light: '#F06A5A', text: '#FFFFFF', glow: 'rgba(231,76,60,0.4)' },
             whoami: { main: '#8E44AD', light: '#A569BD', text: '#FFFFFF', glow: 'rgba(142,68,173,0.4)' },
             describeguess: { main: '#F39C12', light: '#F5B342', text: '#FFFFFF', glow: 'rgba(243,156,18,0.4)' },
-            describeit: { main: '#F39C12', light: '#F5B342', text: '#FFFFFF', glow: 'rgba(243,156,18,0.4)' },
+            describeit: { main: '#000080', light: '#3333AA', text: '#FFFFFF', glow: 'rgba(0,0,128,0.4)' },
             rapidfire: { main: '#00BCD4', light: '#33D4E8', text: '#FFFFFF', glow: 'rgba(0,188,212,0.4)' },
             dontsayit: { main: '#E74C3C', light: '#F06A5A', text: '#FFFFFF', glow: 'rgba(231,76,60,0.4)' },
             hardmode: { main: '#8E44AD', light: '#A569BD', text: '#FFFFFF', glow: 'rgba(142,68,173,0.4)' },
@@ -7060,6 +7675,7 @@
 
         // 18+ verification state
         let ageVerified = false;
+        let agePasswordStep = false;
 
         let timerInterval = null;
         let timerSeconds = 30;
@@ -7069,6 +7685,7 @@
         let currentGameTimerSeconds = 30;
         let selectedGameId = null;
         let selectedGameData = null;
+        let currentGameSetupPage = null; // Track which setup page we're on
 
         let usedItemsInRound = {
             charades: [],
@@ -7133,7 +7750,8 @@
             rapidFireUsedWords: [],
             transitionDelay: 10,
             transitionTimer: null,
-            transitioning: false
+            transitioning: false,
+            currentColor: '#000080'
         };
 
         // ============================================================
@@ -7481,252 +8099,7 @@
         // ============================================================
         //  THEME FUNCTIONS
         // ============================================================
-        const THEMES = {
-            // KEEPING 5 EXISTING THEMES
-            'quiet-luxury': {
-                name: 'Quiet Luxury',
-                mood: 'Elegant · Soft · Timeless',
-                colors: ['#F5E6D3', '#E8D5C4', '#D4A89B', '#8B6B61'],
-                variables: {
-                    '--theme-bg-primary': '#F5E6D3',
-                    '--theme-bg-secondary': '#EDDCCB',
-                    '--theme-bg-card': '#FFFFFF',
-                    '--theme-bg-card-hover': '#F5EDE6',
-                    '--theme-bg-input': '#EDDCCB',
-                    '--theme-bg-sidebar': '#3A2A22',
-                    '--theme-bg-sidebar-hover': '#5A4A42',
-                    '--theme-text-primary': '#3A2A22',
-                    '--theme-text-secondary': '#6A5A52',
-                    '--theme-text-muted': '#9A8A82',
-                    '--theme-border-color': '#E8D5C4',
-                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.08)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.15)',
-                    '--theme-blue-bright': '#D4A89B',
-                    '--theme-blue-electric': '#8B6B61',
-                    '--theme-glow-blue': 'rgba(139,107,97,0.2)',
-                    '--theme-glow-blue-strong': 'rgba(139,107,97,0.4)'
-                }
-            },
-            'lush-forest': {
-                name: 'Lush Forest',
-                mood: 'Natural · Grounded · Organic',
-                colors: ['#1B4D3D', '#2D6A4F', '#40916C', '#52B788'],
-                variables: {
-                    '--theme-bg-primary': '#0F2A1F',
-                    '--theme-bg-secondary': '#1B4D3D',
-                    '--theme-bg-card': '#1B4D3D',
-                    '--theme-bg-card-hover': '#2D6A4F',
-                    '--theme-bg-input': '#1B4D3D',
-                    '--theme-bg-sidebar': '#0A1A12',
-                    '--theme-bg-sidebar-hover': '#1B4D3D',
-                    '--theme-text-primary': '#E8F0E8',
-                    '--theme-text-secondary': '#A0C0A8',
-                    '--theme-text-muted': '#6A8A72',
-                    '--theme-border-color': '#2D6A4F',
-                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.5)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.7)',
-                    '--theme-blue-bright': '#40916C',
-                    '--theme-blue-electric': '#52B788',
-                    '--theme-glow-blue': 'rgba(82,183,136,0.2)',
-                    '--theme-glow-blue-strong': 'rgba(82,183,136,0.4)'
-                }
-            },
-            'urban-loft': {
-                name: 'Urban Loft',
-                mood: 'Modern · Industrial · Clean',
-                colors: ['#2C2C2C', '#8B4513', '#D3D3D3', '#F5F5F5'],
-                variables: {
-                    '--theme-bg-primary': '#F5F5F5',
-                    '--theme-bg-secondary': '#E8E8E8',
-                    '--theme-bg-card': '#FFFFFF',
-                    '--theme-bg-card-hover': '#F5F5F5',
-                    '--theme-bg-input': '#E8E8E8',
-                    '--theme-bg-sidebar': '#1A1A1A',
-                    '--theme-bg-sidebar-hover': '#2C2C2C',
-                    '--theme-text-primary': '#1A1A1A',
-                    '--theme-text-secondary': '#4A4A4A',
-                    '--theme-text-muted': '#8A8A8A',
-                    '--theme-border-color': '#D3D3D3',
-                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.08)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.15)',
-                    '--theme-blue-bright': '#8B4513',
-                    '--theme-blue-electric': '#A05520',
-                    '--theme-glow-blue': 'rgba(139,69,19,0.15)',
-                    '--theme-glow-blue-strong': 'rgba(139,69,19,0.3)'
-                }
-            },
-            'retro-arcade': {
-                name: 'Retro Arcade',
-                mood: 'Classic · Pixelated · Fun',
-                colors: ['#FF00FF', '#00FFFF', '#000000', '#FFFFFF'],
-                variables: {
-                    '--theme-bg-primary': '#0A0A1A',
-                    '--theme-bg-secondary': '#1A0A2A',
-                    '--theme-bg-card': '#1A0A2A',
-                    '--theme-bg-card-hover': '#2A1A3A',
-                    '--theme-bg-input': '#1A0A2A',
-                    '--theme-bg-sidebar': '#05050A',
-                    '--theme-bg-sidebar-hover': '#1A0A2A',
-                    '--theme-text-primary': '#00FFFF',
-                    '--theme-text-secondary': '#FF00FF',
-                    '--theme-text-muted': '#8844AA',
-                    '--theme-border-color': '#FF00FF',
-                    '--theme-shadow': '0 8px 32px rgba(255,0,255,0.2)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(0,255,255,0.3)',
-                    '--theme-blue-bright': '#00FFFF',
-                    '--theme-blue-electric': '#FF00FF',
-                    '--theme-glow-blue': 'rgba(0,255,255,0.2)',
-                    '--theme-glow-blue-strong': 'rgba(255,0,255,0.3)'
-                }
-            },
-            'corporate-blue': {
-                name: 'Corporate Blue',
-                mood: 'Trustworthy · Professional · Crisp',
-                colors: ['#1B3A5C', '#2E6B9E', '#4A90D9', '#FFFFFF'],
-                variables: {
-                    '--theme-bg-primary': '#F0F4F8',
-                    '--theme-bg-secondary': '#E8EDF2',
-                    '--theme-bg-card': '#FFFFFF',
-                    '--theme-bg-card-hover': '#F5F8FA',
-                    '--theme-bg-input': '#E8EDF2',
-                    '--theme-bg-sidebar': '#0F1F33',
-                    '--theme-bg-sidebar-hover': '#1A3A5C',
-                    '--theme-text-primary': '#0F1F33',
-                    '--theme-text-secondary': '#2E6B9E',
-                    '--theme-text-muted': '#6A8A9E',
-                    '--theme-border-color': '#D0DCE8',
-                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.08)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.15)',
-                    '--theme-blue-bright': '#2E6B9E',
-                    '--theme-blue-electric': '#1B3A5C',
-                    '--theme-glow-blue': 'rgba(26,82,118,0.15)',
-                    '--theme-glow-blue-strong': 'rgba(26,82,118,0.3)'
-                }
-            },
-            'dark-professional': {
-                name: 'Dark Professional',
-                mood: 'Premium · Modern · Elegant',
-                colors: ['#1A1A1A', '#2D2D2D', '#C9A96E', '#FFFFFF'],
-                variables: {
-                    '--theme-bg-primary': '#0D0D0D',
-                    '--theme-bg-secondary': '#1A1A1A',
-                    '--theme-bg-card': '#1A1A1A',
-                    '--theme-bg-card-hover': '#2D2D2D',
-                    '--theme-bg-input': '#1A1A1A',
-                    '--theme-bg-sidebar': '#050505',
-                    '--theme-bg-sidebar-hover': '#1A1A1A',
-                    '--theme-text-primary': '#F5F5F5',
-                    '--theme-text-secondary': '#C9A96E',
-                    '--theme-text-muted': '#8A8A8A',
-                    '--theme-border-color': '#2D2D2D',
-                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.6)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.8)',
-                    '--theme-blue-bright': '#C9A96E',
-                    '--theme-blue-electric': '#D4B88A',
-                    '--theme-glow-blue': 'rgba(201,169,110,0.15)',
-                    '--theme-glow-blue-strong': 'rgba(201,169,110,0.3)'
-                }
-            },
-            // NEW THEMES
-            'neumorphism': {
-                name: 'Neumorphism',
-                mood: 'Soft · Tactile · Modern',
-                colors: ['#E8EDF2', '#D4DCE4', '#C0C8D0', '#B8C0C8'],
-                variables: {
-                    '--theme-bg-primary': '#E8EDF2',
-                    '--theme-bg-secondary': '#D4DCE4',
-                    '--theme-bg-card': '#E8EDF2',
-                    '--theme-bg-card-hover': '#D4DCE4',
-                    '--theme-bg-input': '#D4DCE4',
-                    '--theme-bg-sidebar': '#C8D0D8',
-                    '--theme-bg-sidebar-hover': '#D4DCE4',
-                    '--theme-text-primary': '#2D3540',
-                    '--theme-text-secondary': '#5A6A7A',
-                    '--theme-text-muted': '#8A9AAA',
-                    '--theme-border-color': '#D4DCE4',
-                    '--theme-shadow': '8px 8px 16px #B8C0C8, -8px -8px 16px #F8FCFF',
-                    '--theme-shadow-hover': '12px 12px 24px #B0B8C0, -12px -12px 24px #F8FCFF',
-                    '--theme-blue-bright': '#6A8A9A',
-                    '--theme-blue-electric': '#4A6A8A',
-                    '--theme-glow-blue': 'rgba(74,106,138,0.15)',
-                    '--theme-glow-blue-strong': 'rgba(74,106,138,0.3)'
-                }
-            },
-            'dark-media': {
-                name: 'Dark Media',
-                mood: 'Sleek · Modern · Edgy',
-                colors: ['#0A0A0F', '#1A1A2E', '#16213E', '#0F3460'],
-                variables: {
-                    '--theme-bg-primary': '#0A0A0F',
-                    '--theme-bg-secondary': '#12121E',
-                    '--theme-bg-card': '#1A1A2E',
-                    '--theme-bg-card-hover': '#22223E',
-                    '--theme-bg-input': '#1A1A2E',
-                    '--theme-bg-sidebar': '#05050A',
-                    '--theme-bg-sidebar-hover': '#1A1A2E',
-                    '--theme-text-primary': '#E8EEFF',
-                    '--theme-text-secondary': '#8899CC',
-                    '--theme-text-muted': '#556688',
-                    '--theme-border-color': '#1A1A2E',
-                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.6)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.8)',
-                    '--theme-blue-bright': '#6A8AFF',
-                    '--theme-blue-electric': '#4A6AFF',
-                    '--theme-glow-blue': 'rgba(74,106,255,0.2)',
-                    '--theme-glow-blue-strong': 'rgba(74,106,255,0.4)'
-                }
-            },
-            'warm-profile': {
-                name: 'Warm Profile',
-                mood: 'Friendly · Personal · Warm',
-                colors: ['#FDF6E3', '#F5E6D3', '#E8D5C4', '#D4A89B'],
-                variables: {
-                    '--theme-bg-primary': '#FDF6E3',
-                    '--theme-bg-secondary': '#F5E6D3',
-                    '--theme-bg-card': '#FFFFFF',
-                    '--theme-bg-card-hover': '#FDF6E3',
-                    '--theme-bg-input': '#F5E6D3',
-                    '--theme-bg-sidebar': '#3A2A22',
-                    '--theme-bg-sidebar-hover': '#5A4A42',
-                    '--theme-text-primary': '#3A2A22',
-                    '--theme-text-secondary': '#7A5A4A',
-                    '--theme-text-muted': '#B09A8A',
-                    '--theme-border-color': '#E8D5C4',
-                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.06)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.12)',
-                    '--theme-blue-bright': '#D4A89B',
-                    '--theme-blue-electric': '#B0806A',
-                    '--theme-glow-blue': 'rgba(176,128,106,0.15)',
-                    '--theme-glow-blue-strong': 'rgba(176,128,106,0.3)'
-                }
-            },
-            'amoled': {
-                name: 'AMOLED',
-                mood: 'Premium · Deep · High Contrast',
-                colors: ['#000000', '#0A0A0A', '#1A1A1A', '#2A2A2A'],
-                variables: {
-                    '--theme-bg-primary': '#000000',
-                    '--theme-bg-secondary': '#050505',
-                    '--theme-bg-card': '#0D0D0D',
-                    '--theme-bg-card-hover': '#1A1A1A',
-                    '--theme-bg-input': '#0D0D0D',
-                    '--theme-bg-sidebar': '#000000',
-                    '--theme-bg-sidebar-hover': '#0D0D0D',
-                    '--theme-text-primary': '#FFFFFF',
-                    '--theme-text-secondary': '#CCCCCC',
-                    '--theme-text-muted': '#888888',
-                    '--theme-border-color': '#1A1A1A',
-                    '--theme-shadow': '0 8px 32px rgba(0,0,0,0.8)',
-                    '--theme-shadow-hover': '0 12px 48px rgba(0,0,0,0.9)',
-                    '--theme-blue-bright': '#4A90FF',
-                    '--theme-blue-electric': '#00D4FF',
-                    '--theme-glow-blue': 'rgba(0,212,255,0.2)',
-                    '--theme-glow-blue-strong': 'rgba(0,212,255,0.4)'
-                }
-            }
-        };
-
-        let currentTheme = 'corporate-blue';
+        let currentTheme = 'dark-professional';
 
         function applyTheme(themeId) {
             const theme = THEMES[themeId];
@@ -7753,7 +8126,7 @@
             if (saved && THEMES[saved]) {
                 applyTheme(saved);
             } else {
-                applyTheme('corporate-blue');
+                applyTheme('dark-professional');
             }
         }
 
@@ -8040,6 +8413,23 @@
             }
             if (e.key === 'Escape' && document.getElementById('spinMainModal').classList.contains('active')) {
                 closeSpinMain();
+            }
+            // Escape handling for game modals - return to setup instead of closing
+            if (e.key === 'Escape' && document.getElementById('modalOverlay').classList.contains('active')) {
+                // Check if game is active (not on setup page)
+                const isGameActive = selectedGameId && selectedGameData && 
+                    document.getElementById('modalContent').style.display !== 'none' &&
+                    !document.getElementById('timerSetup').style.display.includes('none') === false;
+                
+                // If game content is showing (not setup), go back to setup
+                if (document.getElementById('modalContent').style.display === 'block' && 
+                    document.getElementById('timerSetup').style.display === 'none') {
+                    e.preventDefault();
+                    goBackToSetup();
+                } else {
+                    // If on setup page, close modal normally
+                    closeModal();
+                }
             }
         });
 
@@ -8570,7 +8960,6 @@
             const grid = document.getElementById('gameGrid');
             grid.innerHTML = GAMES.map((game, i) => `
                 <div class="game-card ${game.color}" onclick="launchGame('${game.id}')" style="animation-delay: ${i * 0.05}s">
-                    ${game.id === 'charades' ? '<span class="featured-ribbon">⭐ FEATURED</span>' : ''}
                     <span class="emoji">${game.emoji}</span>
                     <div class="title">${game.title}</div>
                     <div class="desc">${game.desc}</div>
@@ -8725,6 +9114,52 @@
         }
 
         // ============================================================
+        //  TIMER COLOR RESET
+        // ============================================================
+        function resetTimerColors() {
+            const timerDisplay = document.getElementById('timerDisplay');
+            const timerSetup = document.getElementById('timerSetup');
+            const modalTitle = document.getElementById('modalTitle');
+            const timerStartBtn = document.getElementById('timerStartBtn');
+            const modalBox = document.getElementById('modalBox');
+
+            // Reset timer display color
+            if (timerDisplay) {
+                timerDisplay.style.color = '';
+                timerDisplay.classList.remove('warning');
+            }
+
+            // Reset modal box border and shadow
+            if (modalBox) {
+                modalBox.style.borderColor = '';
+                modalBox.style.boxShadow = '';
+            }
+
+            // Reset modal title color
+            if (modalTitle) {
+                modalTitle.style.color = '';
+            }
+
+            // Reset timer setup border
+            if (timerSetup) {
+                timerSetup.style.borderColor = '';
+            }
+
+            // Reset timer start button
+            if (timerStartBtn) {
+                timerStartBtn.style.background = '';
+                timerStartBtn.style.boxShadow = '';
+            }
+
+            // Reset preset buttons
+            document.querySelectorAll('.timer-presets button.active').forEach(btn => {
+                btn.style.borderColor = '';
+                btn.style.background = '';
+                btn.style.color = '';
+            });
+        }
+
+        // ============================================================
         //  GAME LAUNCH / MODAL
         // ============================================================
         const overlay = document.getElementById('modalOverlay');
@@ -8739,6 +9174,9 @@
                 alert('🔥 Roast Battle is an individual game! Please disable Team Mode first.');
                 return;
             }
+
+            // Reset timer colors before launching new game
+            resetTimerColors();
 
             const game = GAMES.find(g => g.id === gameId);
             if (game) {
@@ -8756,6 +9194,7 @@
         function openModal(gameId, gameData) {
             selectedGameId = gameId;
             selectedGameData = gameData;
+            currentGameSetupPage = 'setup';
 
             usedItemsInRound = {
                 charades: [],
@@ -8794,6 +9233,8 @@
                 document.getElementById('timerDisplay').style.display = 'block';
                 document.getElementById('modalContent').style.display = 'block';
                 renderHangmanDifficultySelector();
+            } else if (gameId === 'describe-guess') {
+                // Already handled by dgSelectMode
             } else {
                 document.getElementById('timerDisplay').style.display = 'block';
                 document.getElementById('timerSetup').style.display = 'flex';
@@ -8811,8 +9252,64 @@
             }
         }
 
+        function goBackToSetup() {
+            // Stop any running timer
+            stopTimer();
+            
+            // Reset timer colors when going back to setup
+            resetTimerColors();
+            
+            // Reset game state
+            if (selectedGameId === 'roast') {
+                roastGameState.active = false;
+                roastGameState.roundComplete = false;
+                roastGameState.gameComplete = false;
+                roastGameState.results = [];
+                renderRoastSetup();
+            } else if (selectedGameId === 'hangman') {
+                hangmanState.gameOver = false;
+                hangmanState.won = false;
+                hangmanState.definitionRevealed = false;
+                renderHangmanDifficultySelector();
+            } else if (selectedGameId === 'describe-guess') {
+                dgGameState.active = false;
+                dgGameState.roundComplete = false;
+                dgGameState.gameComplete = false;
+                dgGameState.transitioning = false;
+                if (dgGameState.transitionTimer) {
+                    clearInterval(dgGameState.transitionTimer);
+                    dgGameState.transitionTimer = null;
+                }
+                dgShowSetup();
+            } else if (selectedGameId === 'brain-games') {
+                bgGameActive = false;
+                if (bgTimerInterval) { clearInterval(bgTimerInterval);
+                    bgTimerInterval = null; }
+                bgShowSetup();
+            } else {
+                // For other games: show timer setup
+                document.getElementById('timerSetup').style.display = 'flex';
+                document.getElementById('modalContent').style.display = 'none';
+                document.getElementById('modalContent').innerHTML = '';
+                document.getElementById('timerDisplay').textContent = currentGameTimerSeconds || 30;
+                document.getElementById('customTimerInput').value = currentGameTimerSeconds || 30;
+                document.querySelectorAll('.timer-presets button').forEach(b => b.classList.remove('active'));
+                const defaultPreset = document.querySelector(
+                    `.timer-presets button[onclick*="${currentGameTimerSeconds || 30}"]`);
+                if (defaultPreset) defaultPreset.classList.add('active');
+                updateModalHeader();
+                const colorKey = selectedGameId?.replace('-', '') || 'charades';
+                applyGameColors(colorKey);
+            }
+            
+            currentGameSetupPage = 'setup';
+            playSound('point');
+        }
+
         function closeModal() {
             stopTimer();
+            // Reset timer colors when closing modal
+            resetTimerColors();
             overlay.classList.remove('active');
             document.body.style.overflow = '';
 
@@ -8895,6 +9392,7 @@
 
             selectedGameId = null;
             selectedGameData = null;
+            currentGameSetupPage = null;
         }
 
         document.getElementById('closeModalBtn').addEventListener('click', closeModal);
@@ -8981,7 +9479,7 @@
 
         function isGameActive() {
             return selectedGameId && selectedGameData && document.getElementById('modalContent').style.display !== 'none' &&
-                !roastGameState.active;
+                !roastGameState.active && currentGameSetupPage !== 'setup';
         }
 
         function updateTimerDisplay() {
@@ -9224,6 +9722,7 @@
             document.getElementById('timerDisplay').textContent = seconds;
             document.getElementById('timerSetup').style.display = 'none';
             document.getElementById('modalContent').style.display = 'block';
+            currentGameSetupPage = 'game';
             const colorKey = selectedGameId.replace('-', '');
             applyGameColors(colorKey);
             if (selectedGameId && selectedGameData) {
@@ -9679,6 +10178,7 @@
             document.getElementById('timerSetup').style.display = 'none';
             const container = document.getElementById('modalContent');
             container.style.display = 'block';
+            currentGameSetupPage = 'game';
             renderHangman();
 
             const colorKey = 'hangman';
@@ -10068,6 +10568,7 @@
         function renderHangmanDifficultySelector() {
             const container = document.getElementById('modalContent');
             container.style.display = 'block';
+            currentGameSetupPage = 'setup';
             container.innerHTML = `
                 <div style="text-align:center;padding:0.3rem 0;">
                     <h3 style="font-family:var(--font-display);font-size:0.7rem;color:var(--theme-blue-electric);margin-bottom:0.3rem;">
@@ -10146,6 +10647,7 @@
 
         function renderRoastSetup() {
             const container = document.getElementById('modalContent');
+            currentGameSetupPage = 'setup';
             const totalRoastsNeeded = selectedRoastsPerRound * selectedTotalRounds;
             container.innerHTML = `
                 <div class="roast-setup">
@@ -10219,6 +10721,7 @@
             document.getElementById('timerSetup').style.display = 'none';
             document.getElementById('timerDisplay').style.display = 'none';
             document.getElementById('modalContent').style.display = 'block';
+            currentGameSetupPage = 'game';
 
             roastGameState.active = true;
             roastGameState.round = 0;
@@ -10694,6 +11197,7 @@
 
             timerSetup.style.display = 'none';
             modalContent.style.display = 'block';
+            currentGameSetupPage = 'game';
             overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
 
@@ -10967,15 +11471,21 @@
                 return;
             }
 
+            // Reset timer colors before starting a new mode
+            resetTimerColors();
+
             const modeMap = {
-                'describe-it': { title: '🎯 DESCRIBE IT', emoji: '🎯', color: 'describeit', defaultTimer: 60 },
-                'rapid-fire': { title: '⚡ RAPID FIRE', emoji: '⚡', color: 'rapidfire', defaultTimer: 90 },
-                'dont-say-it': { title: '🚫 DON\'T SAY IT', emoji: '🚫', color: 'dontsayit', defaultTimer: 60 },
-                'hard-mode': { title: '💀 HARD MODE', emoji: '💀', color: 'hardmode', defaultTimer: 45 }
+                'describe-it': { title: '🎯 DESCRIBE IT', emoji: '🎯', color: 'describeit', defaultTimer: 60, hex: '#000080' },
+                'rapid-fire': { title: '⚡ RAPID FIRE', emoji: '⚡', color: 'rapidfire', defaultTimer: 90, hex: '#00BCD4' },
+                'dont-say-it': { title: '🚫 DON\'T SAY IT', emoji: '🚫', color: 'dontsayit', defaultTimer: 60, hex: '#E74C3C' },
+                'hard-mode': { title: '💀 HARD MODE', emoji: '💀', color: 'hardmode', defaultTimer: 45, hex: '#8E44AD' }
             };
 
             const info = modeMap[mode];
             if (!info) return;
+
+            // Store the color for this mode
+            dgGameState.currentColor = info.hex;
 
             dgGameState.mode = mode;
             dgGameState.active = false;
@@ -11016,6 +11526,7 @@
 
             document.getElementById('timerDisplay').style.display = 'block';
             document.getElementById('timerDisplay').textContent = dgGameState.timerSeconds;
+            document.getElementById('timerDisplay').style.color = info.hex;
             document.getElementById('customTimerInput').value = dgGameState.timerSeconds;
             document.querySelectorAll('.timer-presets button').forEach(b => b.classList.remove('active'));
             const defaultPreset = document.querySelector(
@@ -11024,6 +11535,23 @@
 
             document.getElementById('timerSetup').style.display = 'flex';
             document.getElementById('modalContent').style.display = 'none';
+
+            // Apply the mode color
+            const modalBox = document.getElementById('modalBox');
+            modalBox.style.borderColor = info.hex;
+            modalBox.style.boxShadow = `0 0 80px ${info.hex}44`;
+            const modalTitle = document.getElementById('modalTitle');
+            if (modalTitle) modalTitle.style.color = info.hex;
+            const timerStartBtn = document.getElementById('timerStartBtn');
+            if (timerStartBtn) {
+                timerStartBtn.style.background = info.hex;
+                timerStartBtn.style.boxShadow = `0 0 30px ${info.hex}66`;
+            }
+            document.querySelectorAll('.timer-presets button.active').forEach(btn => {
+                btn.style.borderColor = info.hex;
+                btn.style.background = info.hex;
+                btn.style.color = '#ffffff';
+            });
 
             dgShowSetup();
         }
@@ -11152,6 +11680,7 @@
         function dgShowSetup() {
             const container = document.getElementById('modalContent');
             container.style.display = 'block';
+            currentGameSetupPage = 'setup';
 
             const modeName = {
                 'describe-it': 'DESCRIBE IT',
@@ -11242,6 +11771,7 @@
 
             document.getElementById('timerSetup').style.display = 'none';
             document.getElementById('modalContent').style.display = 'block';
+            currentGameSetupPage = 'game';
 
             if (dgGameState.mode === 'hard-mode') {
                 dgGameState.wordTracker.usedWords = [];
@@ -11302,6 +11832,7 @@
 
             document.getElementById('timerSetup').style.display = 'none';
             document.getElementById('modalContent').style.display = 'block';
+            currentGameSetupPage = 'game';
 
             dgShowRapidFireWord();
 
@@ -11340,10 +11871,13 @@
             const teamIndex = dgGameState.rapidFireTeamIndex + 1;
             const totalTeams = dgGameState.rapidFireAllTeams.length;
 
+            // Get the mode color
+            const modeColor = dgGameState.currentColor || '#00BCD4';
+
             container.innerHTML = `
                 <div class="dg-game-container">
                     <div style="text-align:center;margin-bottom:0.3rem;">
-                        <span style="font-size:0.5rem;font-family:var(--font-display);color:var(--theme-blue-electric);">
+                        <span style="font-size:0.5rem;font-family:var(--font-display);color:${modeColor};">
                             ⚡ RAPID FIRE
                         </span>
                         <span style="font-size:0.5rem;color:var(--theme-text-muted);margin-left:0.5rem;">
@@ -11358,8 +11892,8 @@
                         <span class="dg-stat">⏭️ Skipped: <span class="stat-value">${skipped}</span></span>
                     </div>
 
-                    <div class="dg-word-display">
-                        <div class="dg-secret-word ${isLong ? 'long-word' : ''}">${word.toUpperCase()}</div>
+                    <div class="dg-word-display" style="border-color:${modeColor};">
+                        <div class="dg-secret-word ${isLong ? 'long-word' : ''}" style="color:${modeColor};">${word.toUpperCase()}</div>
                     </div>
 
                     <div class="dg-feedback" id="dgFeedback"></div>
@@ -11373,8 +11907,18 @@
                 </div>
             `;
 
+            // Apply mode color to the scoring section border
+            const scoringSection = container.querySelector('.scoring-section');
+            if (scoringSection) {
+                scoringSection.style.borderColor = modeColor;
+            }
+            // Update timer color
+            const timerDisplay = document.getElementById('timerDisplay');
+            if (timerDisplay && !timerDisplay.classList.contains('warning')) {
+                timerDisplay.style.color = modeColor;
+            }
+
             updateModalHeader();
-            applyGameColors('rapidfire');
         }
 
         function dgRapidFireCorrect() {
@@ -11461,10 +12005,11 @@
             dgGameState.rapidFireTeamResults.push(result);
 
             const container = document.getElementById('modalContent');
+            const modeColor = dgGameState.currentColor || '#00BCD4';
             container.innerHTML = `
                 <div class="dg-results">
                     <span class="dg-result-emoji">⏰</span>
-                    <div class="dg-result-title">${team.name} - ROUND COMPLETE!</div>
+                    <div class="dg-result-title" style="color:${modeColor};">${team.name} - ROUND COMPLETE!</div>
 
                     <div class="dg-result-stats">
                         <span class="stat-item">✅ Correct: <span class="stat-num correct">${result.correct}</span></span>
@@ -11484,6 +12029,12 @@
                     </div>
                 </div>
             `;
+
+            // Apply mode color to the results
+            const resultTitle = container.querySelector('.dg-result-title');
+            if (resultTitle) resultTitle.style.color = modeColor;
+            const statsBar = container.querySelector('.dg-result-stats');
+            if (statsBar) statsBar.style.borderColor = modeColor;
 
             let countdown = 10;
             dgGameState.transitioning = true;
@@ -11557,10 +12108,11 @@
             }
 
             const container = document.getElementById('modalContent');
+            const modeColor = dgGameState.currentColor || '#00BCD4';
             let resultsHTML = sorted.map((r, i) => {
                 const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}.`;
                 const isWinner = i === 0 && !tie;
-                return `<div class="result-item" style="${isWinner ? 'border-color:var(--theme-blue-electric);background:var(--theme-glow-blue);' : ''}">
+                return `<div class="result-item" style="${isWinner ? 'border-color:' + modeColor + ';background:var(--theme-glow-blue);' : ''}">
                     <span>${medal} ${r.teamName} ${isWinner ? '👑' : ''}</span>
                     <span>✅ ${r.correct} correct <span style="color:var(--theme-text-muted);font-size:0.5rem;">(${r.points} pts)</span></span>
                 </div>`;
@@ -11569,7 +12121,7 @@
             container.innerHTML = `
                 <div class="dg-results">
                     <span class="dg-result-emoji">🏆</span>
-                    <div class="dg-result-title">RAPID FIRE - FINAL RESULTS!</div>
+                    <div class="dg-result-title" style="color:${modeColor};">RAPID FIRE - FINAL RESULTS!</div>
 
                     ${tie ? `
                         <div style="background:rgba(243,156,18,0.15);border:2px solid #f39c12;border-radius:10px;padding:0.5rem;margin-bottom:0.5rem;">
@@ -11578,7 +12130,7 @@
                             <button onclick="dgStartTieBreaker()" style="margin-top:0.3rem;padding:0.3rem 1rem;border-radius:20px;border:none;background:#f39c12;color:white;font-weight:700;font-size:0.5rem;cursor:pointer;font-family:var(--font-body);">⚡ START TIE BREAKER</button>
                         </div>
                     ` : `
-                        <div style="font-size:0.7rem;color:var(--theme-blue-electric);margin-bottom:0.3rem;">
+                        <div style="font-size:0.7rem;color:${modeColor};margin-bottom:0.3rem;">
                             🏆 Winner: ${winner ? winner.teamName : 'None'}!
                         </div>
                     `}
@@ -11593,6 +12145,10 @@
                     </div>
                 </div>
             `;
+
+            // Apply mode color to the results
+            const resultTitle = container.querySelector('.dg-result-title');
+            if (resultTitle) resultTitle.style.color = modeColor;
 
             createConfetti(30);
             playSound('levelup');
@@ -11662,6 +12218,7 @@
 
             const word = dgGameState.words[dgGameState.currentWordIndex];
             const isLong = word.length > 10;
+            const modeColor = dgGameState.currentColor || '#000080';
 
             let forbiddenWords = [];
             if (dgGameState.mode === 'dont-say-it') {
@@ -11756,9 +12313,9 @@
                         <span class="dg-stat">👤 ${currentTeam ? currentTeam.name : currentPlayer}</span>
                     </div>
 
-                    <div class="dg-word-display">
+                    <div class="dg-word-display" style="border-color:${modeColor};">
                         ${forbiddenHTML}
-                        <div class="dg-secret-word ${isLong ? 'long-word' : ''}">${word.toUpperCase()}</div>
+                        <div class="dg-secret-word ${isLong ? 'long-word' : ''}" style="color:${modeColor};">${word.toUpperCase()}</div>
                         ${restrictionLabel}
                         ${wordCounterHTML}
                     </div>
@@ -11773,6 +12330,17 @@
                     ${createScoringUI()}
                 </div>
             `;
+
+            // Apply mode color to the scoring section border
+            const scoringSection = container.querySelector('.scoring-section');
+            if (scoringSection) {
+                scoringSection.style.borderColor = modeColor;
+            }
+            // Update timer color
+            const timerDisplay = document.getElementById('timerDisplay');
+            if (timerDisplay && !timerDisplay.classList.contains('warning')) {
+                timerDisplay.style.color = modeColor;
+            }
 
             updateModalHeader();
 
@@ -11972,11 +12540,12 @@
             const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
             const currentPlayer = getCurrentPlayerName() || 'None';
             const currentTeam = getCurrentTeam();
+            const modeColor = dgGameState.currentColor || '#000080';
 
             container.innerHTML = `
                 <div class="dg-results">
                     <span class="dg-result-emoji">${emoji}</span>
-                    <div class="dg-result-title">${reasonText}</div>
+                    <div class="dg-result-title" style="color:${modeColor};">${reasonText}</div>
 
                     <div class="dg-result-stats">
                         <span class="stat-item">✅ Correct: <span class="stat-num correct">${correct}</span></span>
@@ -11995,6 +12564,12 @@
                     </div>
                 </div>
             `;
+
+            // Apply mode color to the results
+            const resultTitle = container.querySelector('.dg-result-title');
+            if (resultTitle) resultTitle.style.color = modeColor;
+            const statsBar = container.querySelector('.dg-result-stats');
+            if (statsBar) statsBar.style.borderColor = modeColor;
 
             createConfetti(20);
             playSound('levelup');
@@ -12235,15 +12810,95 @@
             playSound('point');
         }
 
+        // ============================================================
+        //  18+ VERIFICATION WITH PASSWORD (Updated)
+        // ============================================================
+        let ageVerificationCallback = null;
+
+        function showAgeVerification(callback) {
+            ageVerificationCallback = callback;
+            agePasswordStep = false;
+            document.getElementById('ageInitialButtons').style.display = 'flex';
+            document.getElementById('agePasswordStep').style.display = 'none';
+            document.getElementById('agePasswordInput').value = '';
+            document.getElementById('agePasswordError').classList.remove('show');
+            document.getElementById('ageVerifyOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function showAgePassword() {
+            agePasswordStep = true;
+            document.getElementById('ageInitialButtons').style.display = 'none';
+            document.getElementById('agePasswordStep').style.display = 'block';
+            document.getElementById('agePasswordInput').value = '';
+            document.getElementById('agePasswordError').classList.remove('show');
+            setTimeout(() => document.getElementById('agePasswordInput').focus(), 100);
+        }
+
+        function hideAgePassword() {
+            agePasswordStep = false;
+            document.getElementById('agePasswordStep').style.display = 'none';
+            document.getElementById('ageInitialButtons').style.display = 'flex';
+            document.getElementById('agePasswordError').classList.remove('show');
+            document.getElementById('agePasswordInput').value = '';
+            playSound('point');
+        }
+
+        function confirmAgePassword() {
+            const input = document.getElementById('agePasswordInput');
+            const entered = input.value.trim();
+            
+            if (entered.toLowerCase() === SPIN_AGE_PASSWORD) {
+                // Password correct
+                ageVerified = true;
+                document.getElementById('ageVerifyOverlay').classList.remove('active');
+                document.body.style.overflow = '';
+                if (ageVerificationCallback) {
+                    ageVerificationCallback();
+                    ageVerificationCallback = null;
+                }
+                playSound('success');
+            } else {
+                // Wrong password
+                const errorEl = document.getElementById('agePasswordError');
+                errorEl.textContent = '❌ Incorrect password. Please try again.';
+                errorEl.classList.add('show');
+                input.value = '';
+                input.focus();
+                playSound('error');
+                
+                // Auto-hide error after 2 seconds
+                setTimeout(() => {
+                    errorEl.classList.remove('show');
+                }, 2000);
+            }
+        }
+
+        function confirmAge() {
+            // This is now handled by the password flow
+            // Keep for compatibility
+        }
+
+        function denyAge() {
+            document.getElementById('ageVerifyOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+            ageVerificationCallback = null;
+            document.getElementById('ageInitialButtons').style.display = 'flex';
+            document.getElementById('agePasswordStep').style.display = 'none';
+            document.getElementById('agePasswordError').classList.remove('show');
+            playSound('error');
+            showChangeToast('❌ 18+ verification required to play Spin the Bottle');
+        }
+
         function openSpinSetup() {
             if (players.length < 2) {
                 alert('Need at least 2 players to play Spin the Bottle!\nAdd players on the Home page.');
                 return;
             }
 
-            // Show age verification first
+            // Show age verification with password
             showAgeVerification(function() {
-                // User confirmed 18+
+                // User confirmed 18+ with password
                 spinSelectedPlayer = null;
                 spinCurrentChallenge = null;
                 spinTotalSpins = 0;
@@ -12288,36 +12943,6 @@
         function closeSpinSetup() {
             document.getElementById('spinSetupModal').classList.remove('active');
             document.body.style.overflow = '';
-        }
-
-        // ============================================================
-        //  18+ VERIFICATION
-        // ============================================================
-        let ageVerificationCallback = null;
-
-        function showAgeVerification(callback) {
-            ageVerificationCallback = callback;
-            document.getElementById('ageVerifyOverlay').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function confirmAge() {
-            ageVerified = true;
-            document.getElementById('ageVerifyOverlay').classList.remove('active');
-            document.body.style.overflow = '';
-            if (ageVerificationCallback) {
-                ageVerificationCallback();
-                ageVerificationCallback = null;
-            }
-            playSound('success');
-        }
-
-        function denyAge() {
-            document.getElementById('ageVerifyOverlay').classList.remove('active');
-            document.body.style.overflow = '';
-            ageVerificationCallback = null;
-            playSound('error');
-            showChangeToast('❌ 18+ verification required to play Spin the Bottle');
         }
 
         function spinStartGame() {
@@ -12664,6 +13289,223 @@
                 saveSpinData();
                 renderSpinGM();
                 playSound('point');
+            }
+        }
+
+        // ============================================================
+        //  WALKTHROUGH SYSTEM - IMPROVED VERSION (8 steps)
+        // ============================================================
+
+        let walkthroughStep = 0;
+        const walkthroughSteps = [
+            {
+                icon: '🎮',
+                title: 'Welcome to ARCADE PARTY!',
+                subtitle: 'Your all-in-one party game hub',
+                content: `<p>Get ready to play the best party games with your friends!</p>
+                          <p style="margin-top:0.3rem;">Let's walk through everything you need to know.</p>`,
+                primaryText: '▶ LET\'S GO',
+                primaryAction: 'walkthroughNext'
+            },
+            {
+                icon: '👥',
+                title: 'Adding Players',
+                subtitle: 'Every game needs players!',
+                content: `<ul class="wt-step-list">
+                            <li><span class="li-icon">📍</span> Type a name in the input box on the <span class="wt-highlight">Home</span> page</li>
+                            <li><span class="li-icon">📍</span> Click <span class="wt-highlight">"ADD"</span> or press <span class="wt-highlight">Enter</span></li>
+                            <li><span class="li-icon">📍</span> Watch your player appear with their own emoji!</li>
+                            <li><span class="li-icon">📍</span> You can add up to <span class="wt-highlight">20</span> players</li>
+                            <li><span class="li-icon">🔁</span> Click the emoji circle to change it</li>
+                          </ul>`,
+                primaryText: 'NEXT →',
+                primaryAction: 'walkthroughNext'
+            },
+            {
+                icon: '🏆',
+                title: 'Scoring & Points',
+                subtitle: 'How the game tracks your progress',
+                content: `<ul class="wt-step-list">
+                            <li><span class="li-icon">⭐</span> All games use <span class="wt-highlight">unified +1 scoring</span> for correct answers</li>
+                            <li><span class="li-icon">🔥</span> Get <span class="wt-highlight">streaks</span> for consecutive correct answers</li>
+                            <li><span class="li-icon">📈</span> Level up at <span class="wt-highlight">10, 30, 50, 100</span> points</li>
+                            <li><span class="li-icon">🏅</span> Earn achievements: <span class="wt-highlight">First 10, Streak 5, Century</span> and more!</li>
+                            <li><span class="li-icon">👑</span> Leaderboard shows the current rankings</li>
+                          </ul>`,
+                primaryText: 'NEXT →',
+                primaryAction: 'walkthroughNext'
+            },
+            {
+                icon: '👥',
+                title: 'Team Mode',
+                subtitle: 'Play in teams for epic battles!',
+                content: `<ul class="wt-step-list">
+                            <li><span class="li-icon">🔄</span> Toggle <span class="wt-highlight">Team Mode</span> on the Home page</li>
+                            <li><span class="li-icon">➕</span> Add multiple teams with custom names</li>
+                            <li><span class="li-icon">🤝</span> Auto-assign players to teams evenly</li>
+                            <li><span class="li-icon">👑</span> Set which team's turn it is</li>
+                            <li><span class="li-icon">📊</span> Team scores are aggregated from all members</li>
+                          </ul>`,
+                primaryText: 'NEXT →',
+                primaryAction: 'walkthroughNext'
+            },
+            {
+                icon: '🎮',
+                title: 'Classic Games',
+                subtitle: '8 exciting party games to choose from!',
+                content: `<div class="wt-game-grid">
+                            <div class="wt-game-item"><span class="game-emoji">🎭</span>Charades</div>
+                            <div class="wt-game-item"><span class="game-emoji">🧩</span>Hangman</div>
+                            <div class="wt-game-item"><span class="game-emoji">🤥</span>Truth & Lie</div>
+                            <div class="wt-game-item"><span class="game-emoji">🎨</span>Pictionary</div>
+                            <div class="wt-game-item"><span class="game-emoji">🎤</span>Karaoke</div>
+                            <div class="wt-game-item"><span class="game-emoji">⏱️</span>Fast Talk</div>
+                            <div class="wt-game-item"><span class="game-emoji">🔥</span>Roast</div>
+                            <div class="wt-game-item"><span class="game-emoji">🕵️</span>Who Am I?</div>
+                          </div>
+                          <p style="margin-top:0.3rem;font-size:0.6rem;text-align:center;">💡 Each game has a timer and scoring buttons</p>`,
+                primaryText: 'NEXT →',
+                primaryAction: 'walkthroughNext'
+            },
+            {
+                icon: '🧠',
+                title: 'Mind Games',
+                subtitle: 'Test your knowledge and description skills!',
+                content: `<ul class="wt-step-list">
+                            <li><span class="li-icon">🧠</span> <span class="wt-highlight">Brain Games</span> – Answer trivia questions</li>
+                            <li><span class="li-icon">🎯</span> <span class="wt-highlight">Describe It</span> – Standard description game</li>
+                            <li><span class="li-icon">⚡</span> <span class="wt-highlight">Rapid Fire</span> – Team vs team, race the clock</li>
+                            <li><span class="li-icon">🚫</span> <span class="wt-highlight">Don't Say It</span> – Describe without forbidden words</li>
+                            <li><span class="li-icon">💀</span> <span class="wt-highlight">Hard Mode</span> – Only 5 words allowed!</li>
+                          </ul>
+                          <p style="font-size:0.55rem;color:var(--theme-text-muted);margin-top:0.2rem;text-align:center;">All modes use the same +1 scoring system</p>`,
+                primaryText: 'NEXT →',
+                primaryAction: 'walkthroughNext'
+            },
+            {
+                icon: '🍾',
+                title: 'Spin the Bottle',
+                subtitle: 'Spicy, flirty, and steamy fun!',
+                content: `<ul class="wt-step-list">
+                            <li><span class="li-icon">🎯</span> <span class="wt-highlight">Truth or Dare</span> – 2 Truths, 3 Dares sequence</li>
+                            <li><span class="li-icon">💬</span> <span class="wt-highlight">Would You Rather</span> – Tough choices</li>
+                            <li><span class="li-icon">💪</span> <span class="wt-highlight">Challenge</span> – Physical or skill challenges</li>
+                            <li><span class="li-icon">❓</span> <span class="wt-highlight">Question</span> – Deep or fun questions</li>
+                            <li><span class="li-icon">🔞</span> <span class="wt-highlight">18+ Verified</span> – Password: <span class="wt-highlight">party</span></li>
+                            <li><span class="li-icon">🔄</span> No player repeats until all have been picked!</li>
+                          </ul>`,
+                primaryText: 'NEXT →',
+                primaryAction: 'walkthroughNext'
+            },
+            {
+                icon: '👑',
+                title: 'Game Master',
+                subtitle: 'Customize your game experience!',
+                content: `<ul class="wt-step-list">
+                            <li><span class="li-icon">🔒</span> Password protected: <span class="wt-highlight">clone1234#</span></li>
+                            <li><span class="li-icon">📝</span> Add your own <span class="wt-highlight">charades, pictionary, hangman</span> words</li>
+                            <li><span class="li-icon">🎵</span> Add <span class="wt-highlight">karaoke</span> songs with artists</li>
+                            <li><span class="li-icon">🔥</span> Write custom <span class="wt-highlight">roast</span> lines</li>
+                            <li><span class="li-icon">🧠</span> Create <span class="wt-highlight">Brain Games</span> questions with 4 options</li>
+                            <li><span class="li-icon">🚫</span> Build <span class="wt-highlight">Don't Say It</span> word banks with forbidden words</li>
+                          </ul>
+                          <p style="font-size:0.5rem;color:var(--theme-text-muted);margin-top:0.2rem;text-align:center;">All custom content saves automatically to your browser!</p>`,
+                primaryText: '🎮 START PLAYING',
+                primaryAction: 'walkthroughFinish'
+            }
+        ];
+
+        function openWalkthrough() {
+            walkthroughStep = 0;
+            const overlay = document.getElementById('walkthroughOverlay');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            renderWalkthroughStep();
+            playSound('point');
+        }
+
+        function closeWalkthrough() {
+            const overlay = document.getElementById('walkthroughOverlay');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+            
+            // Save to localStorage if "Don't show again" is checked
+            const dontShow = document.getElementById('wtDontShowAgain');
+            if (dontShow && dontShow.checked) {
+                localStorage.setItem('arcadeWalkthroughDismissed', 'true');
+            }
+        }
+
+        function renderWalkthroughStep() {
+            const step = walkthroughSteps[walkthroughStep];
+            if (!step) return;
+
+            const totalSteps = walkthroughSteps.length;
+            const progress = ((walkthroughStep + 1) / totalSteps) * 100;
+
+            document.getElementById('wtStepIndicator').textContent = `STEP ${walkthroughStep + 1}/${totalSteps}`;
+            document.getElementById('wtProgressFill').style.width = `${progress}%`;
+            document.getElementById('wtIcon').textContent = step.icon;
+            document.getElementById('wtTitle').textContent = step.title;
+            document.getElementById('wtSubtitle').textContent = step.subtitle;
+            document.getElementById('wtContent').innerHTML = step.content;
+
+            const actions = document.getElementById('wtActions');
+            let buttonsHTML = '';
+            
+            if (walkthroughStep > 0) {
+                buttonsHTML += `<button class="wt-btn-secondary" onclick="walkthroughPrev()">← BACK</button>`;
+            }
+            
+            buttonsHTML += `<button class="wt-btn-primary" onclick="window.${step.primaryAction}()">${step.primaryText}</button>`;
+            
+            if (walkthroughStep < totalSteps - 1) {
+                buttonsHTML += `<button class="wt-btn-secondary" onclick="walkthroughSkip()">⏭️ SKIP</button>`;
+            }
+            
+            actions.innerHTML = buttonsHTML;
+        }
+
+        function walkthroughNext() {
+            if (walkthroughStep < walkthroughSteps.length - 1) {
+                walkthroughStep++;
+                renderWalkthroughStep();
+                playSound('point');
+            } else {
+                walkthroughFinish();
+            }
+        }
+
+        function walkthroughPrev() {
+            if (walkthroughStep > 0) {
+                walkthroughStep--;
+                renderWalkthroughStep();
+                playSound('point');
+            }
+        }
+
+        function walkthroughSkip() {
+            closeWalkthrough();
+            playSound('point');
+        }
+
+        function walkthroughFinish() {
+            closeWalkthrough();
+            playSound('success');
+            createConfetti(25);
+            // Navigate to games page to encourage playing
+            setTimeout(() => {
+                navigateTo('games');
+            }, 500);
+        }
+
+        function checkWalkthroughFirstVisit() {
+            const dismissed = localStorage.getItem('arcadeWalkthroughDismissed');
+            if (!dismissed) {
+                // Show walkthrough after a short delay (let the page load first)
+                setTimeout(() => {
+                    openWalkthrough();
+                }, 800);
             }
         }
 
@@ -13519,6 +14361,12 @@
                 if (e.key === 'Enter' && document.getElementById('spinSetupModal').classList.contains('active')) {
                     spinStartGame();
                 }
+                // Handle Enter key for age password
+                if (e.key === 'Enter' && document.getElementById('ageVerifyOverlay').classList.contains('active')) {
+                    if (document.getElementById('agePasswordStep').style.display !== 'none') {
+                        confirmAgePassword();
+                    }
+                }
             });
         }
 
@@ -13599,23 +14447,17 @@
             bgInit();
             spinInit();
 
-            console.log('🎮 ARCADE PARTY loaded with Fast Talk random category flipping!');
-            console.log(`🧠 ${bgQuestions.length} Brain Games questions`);
-            console.log(`🕵️ ${whoamiNames.length} whoami names`);
-            console.log(`🔥 ${roastLines.length} roast lines`);
-            console.log(`🚫 ${dontSayItData.length} Don't Say It entries`);
-            console.log(`🎨 ${Object.keys(THEMES).length} themes available`);
-            console.log(`⏱️ Fast Talk has ${fastTalkCategories.length} categories (random flipping enabled)`);
-            console.log(`💬 Describe & Guess has 4 modes ready!`);
-            console.log(`⚡ Rapid Fire: Team rounds with ${dgGameState.rapidFireAllTeams.length || 0} teams`);
-            console.log(`🍾 Spin the Bottle has ${Object.values(spinData).reduce((sum, arr) => sum + arr.length, 0)} challenges!`);
-            console.log(`🏆 Unified scoring: +1 per correct answer (all games)`);
-            console.log(`⏱️ Spin duration: User selectable (5s, 8s, 10s, 12s, 15s) with gradual slow down`);
-            console.log(`🎯 Truth or Dare: 2 Truths → 3 Dares sequence with random reset to minimize truths`);
-            console.log(`🔄 Spin: No player repeats until all have been selected`);
-            console.log(`🔞 18+ verification required for Spin the Bottle`);
-            console.log(`🧠 Mind Games: Brain Games + Describe & Guess combined under one tab`);
-            console.log(`🎨 9 Themes: Quiet Luxury, Lush Forest, Urban Loft, Retro Arcade, Corporate Blue, Dark Professional, Neumorphism, Dark Media, Warm Profile, AMOLED`);
+            // Check if first visit - show walkthrough
+            checkWalkthroughFirstVisit();
+
+            console.log('🎮 ARCADE PARTY loaded with all fixes applied!');
+            console.log(`📐 Sidebar width: ${getComputedStyle(document.documentElement).getPropertyValue('--sidebar-width')} (reduced from 200px)`);
+            console.log(`❓ Help button: Only in top bar (sidebar removed)`);
+            console.log(`🎨 Describe & Guess: Each mode has its own distinct background color like Games tab`);
+            console.log(`🔞 Spin the Bottle: Password protection with "party"`);
+            console.log(`🎨 Timer colors: Reset when changing games or returning to setup`);
+            console.log(`📖 Walkthrough: 8 comprehensive steps (improved from 5)`);
+            console.log(`🎨 Neumorphism: Dark gray border/highlight (#6B7280/#4B5563)`);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -13631,6 +14473,7 @@
                     }
                     bgInit();
                     spinInit();
+                    checkWalkthroughFirstVisit();
                 });
             }
         });
