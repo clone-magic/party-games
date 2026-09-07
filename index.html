@@ -6535,8 +6535,7 @@
     </div>
 
     <!-- ============================================================
-         APP
-         ============================================================ -->
+         APP         ============================================================ -->
 
     <div class="app">
         <nav class="sidebar" id="sidebar">
@@ -8397,6 +8396,9 @@
             }
         }
 
+        // ============================================================
+        //  ESCAPE KEY HANDLER - FIXED
+        // ============================================================
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' && document.getElementById('gmLockOverlay').classList.contains('active')) {
                 if (document.getElementById('adminInputContainer').classList.contains('show')) {
@@ -8414,20 +8416,17 @@
             if (e.key === 'Escape' && document.getElementById('spinMainModal').classList.contains('active')) {
                 closeSpinMain();
             }
-            // Escape handling for game modals - return to setup instead of closing
+            // Fixed ESC handler for game modals - go back to setup instead of closing
             if (e.key === 'Escape' && document.getElementById('modalOverlay').classList.contains('active')) {
-                // Check if game is active (not on setup page)
-                const isGameActive = selectedGameId && selectedGameData && 
-                    document.getElementById('modalContent').style.display !== 'none' &&
-                    !document.getElementById('timerSetup').style.display.includes('none') === false;
+                const content = document.getElementById('modalContent');
+                const timerSetup = document.getElementById('timerSetup');
                 
-                // If game content is showing (not setup), go back to setup
-                if (document.getElementById('modalContent').style.display === 'block' && 
-                    document.getElementById('timerSetup').style.display === 'none') {
+                // If game content is visible AND timer setup is hidden, we're in a game → go back to setup
+                if (content.style.display === 'block' && timerSetup.style.display === 'none') {
                     e.preventDefault();
                     goBackToSetup();
                 } else {
-                    // If on setup page, close modal normally
+                    // Otherwise we're on the setup page → close the modal
                     closeModal();
                 }
             }
