@@ -4381,7 +4381,7 @@
             roastGameState.results = [];
 
             const bigTurnDisplay = document.getElementById('bigTurnDisplay');
-            if (bigTurnDisplay) bigTurnDisplay.style.display = 'flex';
+            if (bigTurnDisplay) bigTurnDisplay.style.display = (gameId === 'roast') ? 'none' : 'flex';
             updateBigTurnDisplay();
 
             const colorKey = gameId.replace('-', '');
@@ -4498,6 +4498,8 @@
             if (selectedGameId === 'roast') {
                 timerSetup.style.display = 'none';
                 timerDisplay.style.display = 'none';
+                const btd = document.getElementById('bigTurnDisplay'); if (btd) btd.style.display = 'none';
+                renderRoastSetup();
             } else if (selectedGameId === 'hangman') {
                 timerSetup.style.display = 'flex';
                 timerDisplay.style.display = 'block';
